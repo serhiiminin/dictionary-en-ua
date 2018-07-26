@@ -6,4 +6,4 @@ const Root = () => (
   </div>
 );
 
-export { Root };
+export default Root;
