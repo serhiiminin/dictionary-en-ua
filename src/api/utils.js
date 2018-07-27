@@ -11,4 +11,4 @@ const joinUrl = (...urlParts) => {
   ].filter(a => a !== false).join(URL_DELIMITER);
 };
 
-export default { joinUrl };
+export { joinUrl };

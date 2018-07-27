@@ -1,4 +1,5 @@
-import { ENDPOINTS, utils } from './';
+import { DICTIONARY } from './endpoints';
+import { joinUrl } from './utils';
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -27,8 +28,8 @@ const fetchJSON = (url, params) =>
 
 
 const api = (path, params = {}) => {
-  const endpoint = utils.joinUrl(ENDPOINTS.dictionary, path);
+  const endpoint = joinUrl(DICTIONARY, path);
   return fetchJSON(endpoint, params);
 };
 
-export default api;
+export { api };
