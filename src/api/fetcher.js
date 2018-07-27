@@ -1,4 +1,5 @@
-import { ENDPOINTS, utils } from './';
+import { DICTIONARY } from './endpoints';
+import { requests } from './request';
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -12,8 +13,18 @@ const checkStatus = (response) => {
 
 const parseJSON = response => response.json();
 
-const fetchJSON = (url, params) =>
-  window.fetch(url, params)
+const fetchJSON = params => {
+  const { endpoint, body, headers, ...restParams } = params;
+
+  const request = new Request(
+    endpoint,
+    {
+      body,
+      headers: new Headers(headers),
+      ...restParams,
+    },
+  );
+  return window.fetch(request)
     .then(checkStatus)
     .then(parseJSON)
     .catch(error => {
@@ -23,12 +34,16 @@ const fetchJSON = (url, params) =>
       }
       throw new Error(error);
     });
-
-
-
-const api = (path, params = {}) => {
-  const endpoint = utils.joinUrl(ENDPOINTS.dictionary, path);
-  return fetchJSON(endpoint, params);
 };
 
-export default api;
+const wordRequests = requests(DICTIONARY);
+
+const api = {
+  getWord: wordId => fetchJSON(wordRequests.getWord(wordId)),
+  getWordsList: () => fetchJSON(wordRequests.getWordsList()),
+  addWord: body => fetchJSON(wordRequests.addWord(body)),
+  updateWord: (wordId, body) => fetchJSON(wordRequests.updateWord(wordId, body)),
+  deleteWord: wordId => fetchJSON(wordRequests.deleteWord(wordId)),
+};
+
+export { api };
