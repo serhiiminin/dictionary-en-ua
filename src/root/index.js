@@ -5,7 +5,7 @@ import { api } from './../api/fetcher';
 
 const Root = () => (
   <div className="root">
-    <button onClick={() => api()
+    <button onClick={() => api.getWordsList()
       .then(res => console.log(res))}>Hello
     </button>
     <GoogleLogin
