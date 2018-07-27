@@ -19,8 +19,12 @@ const fetchJSON = params => {
   const request = new Request(
     endpoint,
     {
-      body,
-      headers: new Headers(headers),
+      body: JSON.stringify(body),
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        ...headers,
+      }),
       ...restParams,
     },
   );
