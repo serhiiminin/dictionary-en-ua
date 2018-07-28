@@ -15,15 +15,14 @@ class Main extends Component {
       .then(words => this.setState({ words }));
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(prevProps, this.props);
+  handleSaveWords = words => {
+    this.setState({ words })
   }
-
   render() {
     const { words } = this.state;
     return (
       <BlocksContainer>
-        <Form/>
+        <Form saveWords={this.handleSaveWords}/>
         <WordsList>
           {words.map(word => (
             <WordsListItem word={word} key={word._id}/>

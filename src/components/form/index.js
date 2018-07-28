@@ -19,6 +19,7 @@ class Form extends Component {
 
     api.addWord(this.state)
       .then(() => api.getWordsList())
+      .then(words => this.props.saveWords(words))
       .then(() => {
         const prevState = { ...this.state };
         const newState = Object.assign({},
@@ -27,7 +28,6 @@ class Form extends Component {
         );
         this.setState({ ...newState });
       })
-
       .catch(error => console.log(error));
   };
 
