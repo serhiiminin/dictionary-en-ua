@@ -13,4 +13,4 @@ const WordsListItem = ({ word, classes }) => {
   );
 };
 
-export { WordsListItem };
+export default WordsListItem;

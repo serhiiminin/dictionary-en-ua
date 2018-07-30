@@ -6,6 +6,19 @@ const variables = {
     line: '#F2FF9E',
     button: '#083D77',
     important: '#DA4167',
+  },
+  opacity: {
+    disabled: .7,
+  },
+  margin: {
+    small: '5px',
+    medium: '10px',
+    large: '15px',
+  },
+  padding: {
+    small: '5px',
+    medium: '10px',
+    large: '15px',
   }
 };
 

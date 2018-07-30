@@ -7,13 +7,15 @@
     "i": "^0.3.6",
     "normalize-jss": "^4.0.0",
     "npm": "^6.2.0",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-google-login": "^3.2.1",
     "react-jss": "^8.6.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "recompose": "^0.27.1"
+    "recompose": "^0.27.1",
+    "url-join": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

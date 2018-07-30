@@ -1,26 +1,26 @@
-import { joinUrl } from './utils';
+import urljoin from 'url-join';
 
 const requests = url => ({
-  getWord: wordId => ({
-    endpoint: joinUrl(url, wordId),
+  getEntity: wordId => ({
+    endpoint: urljoin(url, wordId),
     method: 'GET',
   }),
-  getWordsList: () => ({
+  getEntitiesList: () => ({
     endpoint: url,
     method: 'GET',
   }),
-  addWord: body => ({
+  addEntity: body => ({
     endpoint: url,
     method: 'POST',
     body,
   }),
-  updateWord: (wordId, body) => ({
-    endpoint: joinUrl(url, wordId),
+  updateEntity: (wordId, body) => ({
+    endpoint: urljoin(url, wordId),
     method: 'PUT',
     body,
   }),
-  deleteWord: wordId => ({
-    endpoint: joinUrl(url, wordId),
+  deleteEntity: wordId => ({
+    endpoint: urljoin(url, wordId),
     method: 'DELETE',
   })
 });
