@@ -14,6 +14,11 @@ const variables = {
     small: '5px',
     medium: '10px',
     large: '15px',
+  },
+  padding: {
+    small: '5px',
+    medium: '10px',
+    large: '15px',
   }
 };
 
