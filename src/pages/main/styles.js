@@ -14,7 +14,7 @@ const styles = {
       gridTemplateColumns: '1fr 2fr',
     },
     '@media (min-width: 1200px)': {
-      gridTemplateColumns: '1fr 3fr',
+      gridTemplateColumns: '1fr 4fr',
       gridAutoRows: 'minmax(300px, auto)',
     },
 
