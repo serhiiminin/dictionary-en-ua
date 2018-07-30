@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { compose } from 'recompose';
 import { withStyles, Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 import styles from './styles';
@@ -48,7 +49,7 @@ class Content extends Component {
                   <TableCell>{word.en || '-'}</TableCell>
                   <TableCell>{word.transcription || '-'}</TableCell>
                   <TableCell>{word.example || '-'}</TableCell>
-                  <TableCell>{word.date || '-'}</TableCell>
+                  <TableCell>{moment(word.date).format('DD.MM.YY hh:mm a') || '-'}</TableCell>
                 </TableRow>
               );
             })}
