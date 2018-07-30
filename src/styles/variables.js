@@ -9,6 +9,11 @@ const variables = {
   },
   opacity: {
     disabled: .7,
+  },
+  margin: {
+    small: '5px',
+    medium: '10px',
+    large: '15px',
   }
 };
 

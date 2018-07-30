@@ -4,4 +4,4 @@ const WordsList = ({ classes, children }) => (
   <div className={classes}>{children}</div>
 );
 
-export { WordsList };
+export default WordsList;

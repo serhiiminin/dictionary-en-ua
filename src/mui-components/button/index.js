@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Button } from '@material-ui/core';
 import { compose } from 'recompose';
-import { styles } from './styles';
+import styles from './styles';
 
 const ButtonCustomized = ({ classes, ...restProps }) => (
   <Button
@@ -18,8 +18,8 @@ ButtonCustomized.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-const ButtonMui = compose(
+const enhance = compose(
   withStyles(styles),
-)(ButtonCustomized);
+);
 
-export { ButtonMui };
+export default enhance(ButtonCustomized);

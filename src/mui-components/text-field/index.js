@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, TextField } from '@material-ui/core';
 import { compose } from 'recompose';
-import { styles } from './styles';
+import styles from './styles';
 
 const TextFieldCustomized = ({ classes, ...restProps }) => (
   <TextField
@@ -25,8 +25,8 @@ TextFieldCustomized.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-const TextFieldMui = compose(
+const enhance = compose(
   withStyles(styles),
-)(TextFieldCustomized);
+);
 
-export { TextFieldMui };
+export default enhance(TextFieldCustomized);

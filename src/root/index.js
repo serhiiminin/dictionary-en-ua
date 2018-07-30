@@ -5,7 +5,7 @@ import injectSheet from 'react-jss';
 import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
-import { Main } from '../pages/main';
+import { Main } from '../pages';
 import styles from './styles';
 
 const theme = createMuiTheme({

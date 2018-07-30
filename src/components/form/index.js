@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { TextFieldMui } from '../../mui-components/text-field';
-import { ButtonMui } from '../../mui-components/button';
+import { TextField, Button } from '../../mui-components';
 
 class Form extends Component {
   state = {
@@ -36,37 +35,37 @@ class Form extends Component {
     return (
       <form onSubmit={this.handleOnSubmit}>
         <div>
-          <TextFieldMui
+          <TextField
             placeholder="English"
             value={en}
             onChange={e => this.handleOnChange(e, 'en')}
           />
         </div>
         <div>
-          <TextFieldMui
+          <TextField
             placeholder="Russian"
             value={ru}
             onChange={e => this.handleOnChange(e, 'ru')}
           />
         </div>
         <div>
-          <TextFieldMui
+          <TextField
             placeholder="Transcription"
             value={transcription}
             onChange={e => this.handleOnChange(e, 'transcription')}
           />
         </div>
         <div>
-          <TextFieldMui
+          <TextField
             placeholder="Example"
             value={example}
             onChange={e => this.handleOnChange(e, 'example')}
           />
         </div>
-        <ButtonMui type="submit">Add word</ButtonMui>
+        <Button type="submit">Add word</Button>
       </form>
     );
   }
 }
 
-export { Form };
+export default Form;
