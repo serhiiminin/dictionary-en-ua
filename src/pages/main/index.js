@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
+import { Form } from '../../components/form';
 import { WordsList } from '../../components/words-list';
 import { WordsListItem } from '../../components/words-list-item';
 import { BlocksContainer } from '../../components/blocks-container';
-import { Form } from '../../components/form';
 import { api } from '../../api/fetcher';
+import { Sidebar } from '../../components/sidebar';
+import { Content } from '../../components/content';
 
 class Main extends Component {
   state = {
     words: [],
   };
 
-  componentDidMount() {
+  handleFetchWords = () =>
     api.getWordsList()
       .then(words => this.setState({ words }));
-  }
 
-  handleSaveWords = words => {
-    this.setState({ words });
-  };
+  handleAddWord = data =>
+    api.addWord({ ...data });
+
+  componentDidMount() {
+    this.handleFetchWords();
+  }
 
   render() {
     const { words } = this.state;
     return (
       <BlocksContainer>
-        <Form saveWords={this.handleSaveWords}/>
-        <WordsList>
-          {words.map(word => (
-            <WordsListItem word={word} key={word._id}/>
-          ))}
-        </WordsList>
+        <Sidebar>
+          <Form
+            fetchWords={this.handleFetchWords}
+            addWord={this.handleAddWord}
+          />
+        </Sidebar>
+        <Content>
+          <WordsList>
+            {words.map(word => (
+              <WordsListItem word={word} key={word._id}/>
+            ))}
+          </WordsList>
+        </Content>
       </BlocksContainer>
     );
   }

@@ -6,6 +6,9 @@ const variables = {
     line: '#F2FF9E',
     button: '#083D77',
     important: '#DA4167',
+  },
+  opacity: {
+    disabled: .7,
   }
 };
 

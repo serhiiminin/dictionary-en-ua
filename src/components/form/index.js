@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { api } from '../../api/fetcher';
+import { TextFieldMui } from '../../mui-components/text-field';
+import { ButtonMui } from '../../mui-components/button';
 
 class Form extends Component {
   state = {
@@ -17,9 +18,8 @@ class Form extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
 
-    api.addWord(this.state)
-      .then(() => api.getWordsList())
-      .then(words => this.props.saveWords(words))
+    this.props.addWord({...this.state})
+      .then(() => this.props.fetchWords())
       .then(() => {
         const prevState = { ...this.state };
         const newState = Object.assign({},
@@ -35,12 +35,35 @@ class Form extends Component {
     const { en, ru, transcription, example } = this.state;
     return (
       <form onSubmit={this.handleOnSubmit}>
-        <input type="text" placeholder='English' value={en} onChange={e => this.handleOnChange(e, 'en')}/>
-        <input type="text" placeholder='Russian' value={ru} onChange={e => this.handleOnChange(e, 'ru')}/>
-        <input type="text" placeholder='Transcription' value={transcription}
-               onChange={e => this.handleOnChange(e, 'transcription')}/>
-        <input type="text" placeholder='Example' value={example} onChange={e => this.handleOnChange(e, 'example')}/>
-        <input type="submit" value="Add Word"/>
+        <div>
+          <TextFieldMui
+            placeholder="English"
+            value={en}
+            onChange={e => this.handleOnChange(e, 'en')}
+          />
+        </div>
+        <div>
+          <TextFieldMui
+            placeholder="Russian"
+            value={ru}
+            onChange={e => this.handleOnChange(e, 'ru')}
+          />
+        </div>
+        <div>
+          <TextFieldMui
+            placeholder="Transcription"
+            value={transcription}
+            onChange={e => this.handleOnChange(e, 'transcription')}
+          />
+        </div>
+        <div>
+          <TextFieldMui
+            placeholder="Example"
+            value={example}
+            onChange={e => this.handleOnChange(e, 'example')}
+          />
+        </div>
+        <ButtonMui type="submit">Add word</ButtonMui>
       </form>
     );
   }
