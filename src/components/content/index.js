@@ -134,8 +134,8 @@ let EnhancedTableToolbar = props => {
       <div className={classes.actions}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon/>
+            <IconButton aria-label="Delete" onClick={() => console.log('aa')}>
+              <DeleteIcon />
             </IconButton>
           </Tooltip>
         ) : (
@@ -234,10 +234,12 @@ class EnhancedTable extends Component {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
+    console.log(selected.map(item => data.find(i => item === i.id)));
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length}/>
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead

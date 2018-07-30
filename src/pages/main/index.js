@@ -17,6 +17,9 @@ class Main extends Component {
   handleAddWord = data =>
     api.addWord({ ...data });
 
+  handleDeleteWord = id =>
+    api.deleteWord(id);
+
   componentDidMount() {
     this.handleFetchWords();
   }
@@ -33,7 +36,10 @@ class Main extends Component {
               addWord={this.handleAddWord}
             />
           </Sidebar>
-          <Content words={words}>
+          <Content
+            deleteWord={this.handleDeleteWord}
+            words={words}
+          >
             <WordsList>
               {words.map(word => (
                 <WordsListItem word={word} key={word._id}/>
