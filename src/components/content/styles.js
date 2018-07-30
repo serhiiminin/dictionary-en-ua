@@ -1,13 +1,11 @@
-const styles = theme => ({
+const styles = {
   root: {
     width: '100%',
-  },
-  table: {
-    minWidth: 1020,
-  },
-  tableWrapper: {
     overflowX: 'auto',
   },
-});
+  table: {
+    minWidth: 700,
+  },
+};
 
 export default styles;
