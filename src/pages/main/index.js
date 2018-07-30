@@ -16,8 +16,9 @@ class Main extends Component {
   }
 
   handleSaveWords = words => {
-    this.setState({ words })
-  }
+    this.setState({ words });
+  };
+
   render() {
     const { words } = this.state;
     return (

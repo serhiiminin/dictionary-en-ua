@@ -1,4 +1,4 @@
-import { DICTIONARY } from './endpoints';
+import { WORDS  } from './endpoints';
 import { requests } from './request';
 
 const checkStatus = (response) => {
@@ -40,14 +40,14 @@ const fetchJSON = params => {
     });
 };
 
-const wordRequests = requests(DICTIONARY);
+const wordRequests = requests(WORDS);
 
 const api = {
-  getWord: wordId => fetchJSON(wordRequests.getWord(wordId)),
-  getWordsList: () => fetchJSON(wordRequests.getWordsList()),
-  addWord: body => fetchJSON(wordRequests.addWord(body)),
-  updateWord: (wordId, body) => fetchJSON(wordRequests.updateWord(wordId, body)),
-  deleteWord: wordId => fetchJSON(wordRequests.deleteWord(wordId)),
+  getWord: wordId => fetchJSON(wordRequests.getEntity(wordId)),
+  getWordsList: () => fetchJSON(wordRequests.getEntitiesList()),
+  addWord: body => fetchJSON(wordRequests.addEntity(body)),
+  updateWord: (wordId, body) => fetchJSON(wordRequests.updateEntity(wordId, body)),
+  deleteWord: wordId => fetchJSON(wordRequests.deleteEntity(wordId)),
 };
 
 export { api };
