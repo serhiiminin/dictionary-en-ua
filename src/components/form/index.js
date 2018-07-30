@@ -36,18 +36,19 @@ class Form extends Component {
       <form onSubmit={this.handleOnSubmit}>
         <div>
           <TextField
-            placeholder="English"
-            value={en}
-            onChange={e => this.handleOnChange(e, 'en')}
-          />
-        </div>
-        <div>
-          <TextField
             placeholder="Russian"
             value={ru}
             onChange={e => this.handleOnChange(e, 'ru')}
           />
         </div>
+        <div>
+          <TextField
+            placeholder="English"
+            value={en}
+            onChange={e => this.handleOnChange(e, 'en')}
+          />
+        </div>
+
         <div>
           <TextField
             placeholder="Transcription"

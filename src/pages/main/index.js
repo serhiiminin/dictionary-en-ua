@@ -33,7 +33,7 @@ class Main extends Component {
               addWord={this.handleAddWord}
             />
           </Sidebar>
-          <Content>
+          <Content words={words}>
             <WordsList>
               {words.map(word => (
                 <WordsListItem word={word} key={word._id}/>
