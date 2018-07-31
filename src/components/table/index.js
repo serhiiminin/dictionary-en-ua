@@ -133,7 +133,9 @@ class TableCmp extends Component {
                     <TableCell>{item.en || '-'}</TableCell>
                     <TableCell>{item.transcription || '-'}</TableCell>
                     <TableCell>{item.example || '-'}</TableCell>
-                    <TableCell>{moment(item.date).format('DD.MM.YY hh:mm a') || '-'}</TableCell>
+                    <TableCell>{moment(item.date).isSame(moment(), 'day')
+                      ? `Today at ${moment(item.date).format('hh:mm:ss a') }`
+                      : moment(item.date).format('DD.MM.YY, hh:mm a') || '-'}</TableCell>
                   </TableRow>
                 );
               })}
