@@ -34,7 +34,9 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
         </Tooltip>
       ) : (
         <Tooltip title="Filter list">
-          <IconButton aria-label="Filter list">
+          <IconButton
+            aria-label="Filter list"
+          >
             <FilterListIcon/>
           </IconButton>
         </Tooltip>
