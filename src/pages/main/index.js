@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { api } from '../../api/fetcher';
-import { Form, BlocksContainer, Sidebar, Content, WordsList, WordsListItem } from '../../components';
+import { Form, BlocksContainer, Sidebar, Table, Content } from '../../components';
 import styles from './styles';
 
 class Main extends Component {
@@ -36,16 +36,12 @@ class Main extends Component {
               addWord={this.handleAddWord}
             />
           </Sidebar>
-          <Content
-            deleteWord={this.handleDeleteWord}
-            fetchWords={this.handleFetchWords}
-            words={words}
-          >
-            <WordsList>
-              {words.map(word => (
-                <WordsListItem word={word} key={word._id}/>
-              ))}
-            </WordsList>
+          <Content>
+            <Table
+              deleteWord={this.handleDeleteWord}
+              fetchWords={this.handleFetchWords}
+              words={words}
+            />
           </Content>
         </div>
       </BlocksContainer>
