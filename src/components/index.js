@@ -6,3 +6,4 @@ export { default as Sidebar } from './sidebar';
 export { default as Header } from './header';
 export { default as Toolbar } from './toolbar';
 export { default as TableHead } from './table-head';
+export { default as TableBody } from './table-body';

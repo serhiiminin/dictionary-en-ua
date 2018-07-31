@@ -1,15 +1,9 @@
-import moment from 'moment';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withStyles, Table, Paper, Checkbox, TableBody, TablePagination, TableRow, TableCell } from '@material-ui/core';
-import { Toolbar, TableHead } from '../';
+import { withStyles, Table, Paper, TablePagination } from '@material-ui/core';
+import { Toolbar, TableHead, TableBody } from '../';
 import styles from './styles';
-
-const getSorting = (order, orderBy) =>
-  order === 'desc'
-    ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
-    : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
 
 class TableCmp extends Component {
   state = {
@@ -37,7 +31,6 @@ class TableCmp extends Component {
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
-
     this.setState({ order, orderBy });
   };
 
@@ -85,8 +78,8 @@ class TableCmp extends Component {
     const fetchList = itemsIds.map(id => deleteWord(id));
     return Promise.all(fetchList)
       .then(() => fetchWords())
+      .then(() => this.setState({ selected: [] }))
   };
-
 
   render() {
     const { classes } = this.props;
@@ -110,53 +103,24 @@ class TableCmp extends Component {
             onRequestSort={this.handleRequestSort}
             rowCount={words.length}
           />
-          <TableBody>
-            {words
-              .sort(getSorting(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(item => {
-                const isSelected = this.isSelected(item._id);
-                return (
-                  <TableRow
-                    hover
-                    onClick={event => this.handleClick(event, item._id)}
-                    role="checkbox"
-                    aria-checked={isSelected}
-                    tabIndex={-1}
-                    key={item._id}
-                    selected={isSelected}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isSelected} />
-                    </TableCell>
-                    <TableCell component="th" scope="row">{item.ru || '-'}</TableCell>
-                    <TableCell>{item.en || '-'}</TableCell>
-                    <TableCell>{item.transcription || '-'}</TableCell>
-                    <TableCell>{item.example || '-'}</TableCell>
-                    <TableCell>{moment(item.date).isSame(moment(), 'day')
-                      ? `Today at ${moment(item.date).format('hh:mm:ss a') }`
-                      : moment(item.date).format('DD.MM.YY, hh:mm a') || '-'}</TableCell>
-                  </TableRow>
-                );
-              })}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 49 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
+          <TableBody
+            words={words}
+            order={order}
+            orderBy={orderBy}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            emptyRows={emptyRows}
+            isSelected={this.isSelected}
+            handleClick={this.handleClick}
+          />
         </Table>
         <TablePagination
           component="div"
           count={words.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          backIconButtonProps={{
-            'aria-label': 'Previous Page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'Next Page',
-          }}
+          backIconButtonProps={{ 'aria-label': 'Previous Page' }}
+          nextIconButtonProps={{ 'aria-label': 'Next Page' }}
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
