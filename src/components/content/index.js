@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { compose } from 'recompose';
 import { withStyles, Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 import styles from './styles';
-
-let id = 0;
-const createData = data => {
-  id += 1;
-  return { id, ...data };
-};
 
 class Content extends Component {
   state = {
@@ -18,7 +13,7 @@ class Content extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.words.length !== prevState.words.length) {
       return {
-        words: nextProps.words.map(word => createData(word))
+        words: nextProps.words
       };
     }
     return null;
@@ -43,12 +38,12 @@ class Content extends Component {
           <TableBody>
             {words.map(word => {
               return (
-                <TableRow key={word.id}>
+                <TableRow key={word._id}>
                   <TableCell component="th" scope="row">{word.ru || '-'}</TableCell>
                   <TableCell>{word.en || '-'}</TableCell>
                   <TableCell>{word.transcription || '-'}</TableCell>
                   <TableCell>{word.example || '-'}</TableCell>
-                  <TableCell>{word.date || '-'}</TableCell>
+                  <TableCell>{moment(word.date).format('DD.MM.YY hh:mm a') || '-'}</TableCell>
                 </TableRow>
               );
             })}
