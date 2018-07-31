@@ -5,3 +5,5 @@ export { default as Sidebar } from './sidebar';
 export { default as WordsList } from './words-list';
 export { default as WordsListItem } from './words-list-item';
 export { default as Header } from './header';
+export { default as Toolbar } from './toolbar';
+export { default as TableHead } from './table-head';
