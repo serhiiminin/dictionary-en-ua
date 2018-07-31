@@ -38,6 +38,7 @@ class Main extends Component {
           </Sidebar>
           <Content
             deleteWord={this.handleDeleteWord}
+            fetchWords={this.handleFetchWords}
             words={words}
           >
             <WordsList>

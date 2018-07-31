@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withStyles, Table, Paper, Checkbox, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { withStyles, Table, Paper, Checkbox, TableBody, TablePagination, TableRow, TableCell } from '@material-ui/core';
 import { Toolbar, TableHead } from '../';
 import styles from './styles';
 
@@ -11,13 +11,13 @@ const getSorting = (order, orderBy) =>
     ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
 
-
 class Content extends Component {
   state = {
     words: [],
     selected: [],
-    orderBy: 'ru',
-    rowsPerPage: 5,
+    order: 'desc',
+    orderBy: 'date',
+    rowsPerPage: 10,
     page: 0,
   };
 
@@ -80,6 +80,13 @@ class Content extends Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+  handleDeleteItems = itemsIds => {
+    const { fetchWords, deleteWord } = this.props;
+    const fetchList = itemsIds.map(id => deleteWord(id));
+    return Promise.all(fetchList)
+      .then(() => fetchWords())
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -90,6 +97,8 @@ class Content extends Component {
       <Paper className={classes.root}>
         <Toolbar
           numSelected={selected.length}
+          deleteItems={this.handleDeleteItems}
+          selected={selected}
         />
         <Table className={classes.table}>
           <TableHead
@@ -135,6 +144,20 @@ class Content extends Component {
             )}
           </TableBody>
         </Table>
+        <TablePagination
+          component="div"
+          count={words.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          backIconButtonProps={{
+            'aria-label': 'Previous Page',
+          }}
+          nextIconButtonProps={{
+            'aria-label': 'Next Page',
+          }}
+          onChangePage={this.handleChangePage}
+          onChangeRowsPerPage={this.handleChangeRowsPerPage}
+        />
       </Paper>
     );
   }

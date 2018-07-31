@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import styles from './styles';
 
-const ToolbarCmp = ({ classes, numSelected }) => (
+const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
   <Toolbar
     className={classes.root}
   >
@@ -25,7 +25,10 @@ const ToolbarCmp = ({ classes, numSelected }) => (
     <div className={classes.actions}>
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="Delete">
+          <IconButton
+            aria-label="Delete"
+            onClick={() => deleteItems(selected)}
+          >
             <DeleteIcon/>
           </IconButton>
         </Tooltip>
