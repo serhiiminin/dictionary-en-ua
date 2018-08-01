@@ -76,6 +76,7 @@ class TableCmp extends Component {
   handleDeleteItems = itemsIds => {
     const { fetchWords, deleteWord } = this.props;
     const fetchList = itemsIds.map(id => deleteWord(id));
+
     return Promise.all(fetchList)
       .then(() => fetchWords())
       .then(() => this.setState({ selected: [] }))

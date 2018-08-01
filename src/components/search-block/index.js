@@ -64,6 +64,7 @@ class SearchBlock extends Component {
   render() {
     const { classes } = this.props;
     const { foundTranslation, input } = this.state;
+
     return (
       <div
         className={classes.searchBlock}

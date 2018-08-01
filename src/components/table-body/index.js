@@ -14,6 +14,7 @@ const TableBodyCmp = ({ words, order, orderBy, page, rowsPerPage, emptyRows, isS
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map(item => {
         const isSelectedCurrent = isSelected(item._id);
+
         return (
           <TableRow
             hover

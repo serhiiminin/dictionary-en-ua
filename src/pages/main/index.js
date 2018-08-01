@@ -27,6 +27,7 @@ class Main extends Component {
   render() {
     const { classes } = this.props;
     const { words } = this.state;
+
     return (
       <BlocksContainer>
         <div className={classes.root}>
