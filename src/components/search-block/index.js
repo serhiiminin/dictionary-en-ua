@@ -14,7 +14,7 @@ class SearchBlock extends Component {
     foundTranslation: {
       en: '',
       ru: '',
-      example: [],
+      examples: [],
       transcription: '',
     }
   };
@@ -42,9 +42,8 @@ class SearchBlock extends Component {
                   : [...res],
               []);
 
-          console.log(en, ru, transcription, examplesList);
           this.setState({
-            foundTranslation: { en, ru, transcription, example: examplesList || [], }
+            foundTranslation: { en, ru, transcription, examples: examplesList || [], }
           });
         });
     }, SEARCH_INPUT_TIMEOUT);
@@ -66,7 +65,7 @@ class SearchBlock extends Component {
         <SearchResult
           en={foundTranslation.en}
           ru={foundTranslation.ru}
-          example={foundTranslation.example}
+          examples={foundTranslation.examples}
           transcription={foundTranslation.transcription}/>
       </div>
     );

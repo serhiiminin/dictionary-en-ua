@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ExamplesList = ({ children }) => (
-  <div>{children}</div>
+  <ul>{children}</ul>
 );
 
 export default ExamplesList;

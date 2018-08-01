@@ -1,21 +1,20 @@
 import React from 'react';
 import { ExamplesList, ExamplesListItem } from '../';
 
-const SearchResult = ({ en, ru, example, transcription }) =>
+const SearchResult = ({ en, ru, examples, transcription }) =>
   en && ru && en !== ru
     ? (
       <div>
         <p><span>ru: </span>{ru}</p>
         <p><span>en: </span>{en}</p>
         <p>{transcription}</p>
-        <ul>
-          {example.map(text => (
-            <li key={text}>{text}</li>
+        <ExamplesList>
+          {examples.map(example => (
+            <ExamplesListItem key={example} example={example}/>
           ))}
-        </ul>
+        </ExamplesList>
       </div>
     )
     : <div>No results</div>;
-
 
 export default SearchResult;

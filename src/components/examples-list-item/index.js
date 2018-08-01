@@ -1,7 +1,8 @@
 import React from 'react';
 
-const ExamplesListItem = () => (
-  <div>List Item</div>
+const ExamplesListItem = ({ example }) => (
+  <li>{example}</li>
 );
 
-export default  ExamplesListItem;
+
+export default ExamplesListItem;
