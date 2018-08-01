@@ -29,6 +29,7 @@
     "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' npm run lint"
   },
   "devDependencies": {
+    "pre-commit": "^1.2.2",
     "react-app-rewire-eslint": "^0.2.3",
     "react-app-rewired": "^1.5.2"
   },
