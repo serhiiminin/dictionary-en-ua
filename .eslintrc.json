@@ -1,0 +1,44 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "function-paren-newline": "off",
+    "import/exports-last": "off",
+    "import/first": "off",
+    "import/no-named-as-default-member": "off",
+    "react/no-did-mount-set-state": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/href-no-hash": "off",
+    "max-len": [
+      "error",
+      120,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "newline-after-var": [
+      "error"
+    ],
+    "no-underscore-dangle": "off",
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    "react/no-typos": "off"
+  },
+  "globals": {
+    "document": true,
+    "foo": true,
+    "window": true
+  }
+}
