@@ -8,16 +8,18 @@ import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
+const initialState = {
+  input: '',
+  foundTranslation: {
+    en: '',
+    ru: '',
+    examples: [],
+    transcription: '',
+  }
+};
+
 class SearchBlock extends Component {
-  state = {
-    input: '',
-    foundTranslation: {
-      en: '',
-      ru: '',
-      examples: [],
-      transcription: '',
-    }
-  };
+  state = initialState;
 
   componentWillUnmount() {
     clearTimeout(this.inputTimer);
@@ -49,6 +51,13 @@ class SearchBlock extends Component {
     }, SEARCH_INPUT_TIMEOUT);
   };
 
+  handleTextToForm = () => {
+    this.props.addWord({ ...this.state.foundTranslation, example: this.state.foundTranslation.examples[0] })
+      .then(() => this.props.fetchWords())
+      .then(() => this.setState({ ...initialState }));
+
+  };
+
   render() {
     const { classes } = this.props;
     const { foundTranslation, input } = this.state;
@@ -63,6 +72,7 @@ class SearchBlock extends Component {
           onChange={this.handleOnChange}
         />
         <SearchResult
+          handleTextToForm={this.handleTextToForm}
           en={foundTranslation.en}
           ru={foundTranslation.ru}
           examples={foundTranslation.examples}

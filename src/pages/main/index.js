@@ -35,7 +35,10 @@ class Main extends Component {
               fetchWords={this.handleFetchWords}
               addWord={this.handleAddWord}
             />
-            <SearchBlock />
+            <SearchBlock
+              fetchWords={this.handleFetchWords}
+              addWord={this.handleAddWord}
+            />
           </Sidebar>
           <Content>
             <Table
