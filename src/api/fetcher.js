@@ -45,8 +45,9 @@ const wordRequests = requests(WORDS);
 const api = {
   getWord: wordId => fetchJSON(wordRequests.getEntity(wordId)),
   getWordsList: () => fetchJSON(wordRequests.getEntitiesList()),
-  addWord: body => fetchJSON(wordRequests.addEntity(body)),
-  updateWord: (wordId, body) => fetchJSON(wordRequests.updateEntity(wordId, body)),
+  searchWord: params => fetchJSON(wordRequests.search(params)),
+  addWord: params => fetchJSON(wordRequests.addEntity(params)),
+  updateWord: (wordId, params) => fetchJSON(wordRequests.updateEntity(wordId, params)),
   deleteWord: wordId => fetchJSON(wordRequests.deleteEntity(wordId)),
 };
 

@@ -7,3 +7,7 @@ export { default as Header } from './header';
 export { default as Toolbar } from './toolbar';
 export { default as TableHead } from './table-head';
 export { default as TableBody } from './table-body';
+export { default as SearchBlock } from './search-block';
+export { default as SearchResult } from './search-result';
+export { default as ExamplesList } from './examples-list';
+export { default as ExamplesListItem } from './examples-list-item';

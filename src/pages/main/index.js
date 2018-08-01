@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { api } from '../../api/fetcher';
-import { Form, BlocksContainer, Sidebar, Table, Content } from '../../components';
+import { Form, BlocksContainer, Sidebar, Table, Content, SearchBlock } from '../../components';
 import styles from './styles';
 
 class Main extends Component {
@@ -32,6 +32,10 @@ class Main extends Component {
         <div className={classes.root}>
           <Sidebar>
             <Form
+              fetchWords={this.handleFetchWords}
+              addWord={this.handleAddWord}
+            />
+            <SearchBlock
               fetchWords={this.handleFetchWords}
               addWord={this.handleAddWord}
             />
