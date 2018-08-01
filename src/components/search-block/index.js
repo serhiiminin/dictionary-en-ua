@@ -32,7 +32,10 @@ class SearchBlock extends Component {
     const to = encodeURIComponent(value) === value ? 'ru' : 'en';
 
     this.setState({ input: value });
-
+    if (!value) {
+      this.setState({ ...initialState });
+      return;
+    }
     this.inputTimer = setTimeout(() => {
       api.searchWord({ text: value, from, to })
         .then(response => {
