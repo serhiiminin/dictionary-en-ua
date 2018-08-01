@@ -10,6 +10,7 @@ const SEARCH_INPUT_TIMEOUT = 500;
 
 class SearchBlock extends Component {
   state = {
+    input: '',
     foundTranslation: {
       en: '',
       ru: '',
@@ -27,41 +28,38 @@ class SearchBlock extends Component {
     const { value } = event.target;
     const from = encodeURIComponent(value) === value ? 'en' : 'ru';
     const to = encodeURIComponent(value) === value ? 'ru' : 'en';
-    console.log(value, from, to);
+
+    this.setState({ input: value });
+
     this.inputTimer = setTimeout(() => {
       api.searchWord({ text: value, from, to })
         .then(response => {
           const { ru, en, transcription, results } = response;
           const examplesList = results && results
             .reduce((res, val) =>
-              val.examples
-                ? [ ...res, ...val.examples]
-                : [ ...res ],
+                val.examples
+                  ? [...res, ...val.examples]
+                  : [...res],
               []);
 
           console.log(en, ru, transcription, examplesList);
           this.setState({
-            foundTranslation: {
-              en,
-              ru,
-              transcription,
-              example: examplesList || [],
-            }
-          })
-
+            foundTranslation: { en, ru, transcription, example: examplesList || [], }
+          });
         });
     }, SEARCH_INPUT_TIMEOUT);
   };
 
   render() {
     const { classes } = this.props;
-    const { foundTranslation } = this.state;
+    const { foundTranslation, input } = this.state;
     return (
       <div
         className={classes.searchBlock}
       >
         <h3>Try to search</h3>
         <TextField
+          value={input}
           placeholder="Search a word"
           onChange={this.handleOnChange}
         />
@@ -69,7 +67,7 @@ class SearchBlock extends Component {
           en={foundTranslation.en}
           ru={foundTranslation.ru}
           example={foundTranslation.example}
-          transcription={foundTranslation.transcription} />
+          transcription={foundTranslation.transcription}/>
       </div>
     );
   }

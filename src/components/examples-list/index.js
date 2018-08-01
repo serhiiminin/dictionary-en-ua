@@ -1,7 +1,7 @@
 import React from 'react';
 
-const WordsList = ({ children }) => (
+const ExamplesList = ({ children }) => (
   <div>{children}</div>
 );
 
-export default WordsList;
+export default ExamplesList;
