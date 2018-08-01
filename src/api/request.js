@@ -9,6 +9,11 @@ const requests = url => ({
     endpoint: url,
     method: 'GET',
   }),
+  search: body => ({
+    endpoint: urljoin(url, '_search'),
+    method: 'POST',
+    body
+  }),
   addEntity: body => ({
     endpoint: url,
     method: 'POST',
