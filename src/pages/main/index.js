@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import ResizeDetector from 'react-resize-detector';
 import { api } from '../../api/fetcher';
 import { Sidebar, Table, Content } from '../../components';
 import styles from './styles';
-
-export const MainPageContext = React.createContext({});
 
 class Main extends Component {
   state = {
@@ -36,28 +35,26 @@ class Main extends Component {
     const { words } = this.state;
 
     return (
-      <MainPageContext.Provider
-        value={{
-          words: words,
-          fetchWordsList: this.handleFetchWords,
-          addWord: this.handleAddWord,
-          deleteWord: this.handleDeleteWord,
-        }}
-      >
-        <div className={classes.main}>
-          <Sidebar
-            searchWord={this.handleSearchWord}
-            addWord={this.handleAddWord}
+      <div className={classes.main}>
+        <Sidebar
+          searchWord={this.handleSearchWord}
+          addWord={this.handleAddWord}
+        />
+        <Content>
+          <ResizeDetector
+            handleWidth
+            handleHeight
+            render={({ width }) => (
+              <Table
+                screenWidth={width}
+                deleteWord={this.handleDeleteWord}
+                fetchWords={this.handleFetchWords}
+                words={words}
+              />
+            )}
           />
-          <Content>
-            <Table
-              deleteWord={this.handleDeleteWord}
-              fetchWords={this.handleFetchWords}
-              words={words}
-            />
-          </Content>
-        </div>
-      </MainPageContext.Provider>
+        </Content>
+      </div>
     );
   }
 }
