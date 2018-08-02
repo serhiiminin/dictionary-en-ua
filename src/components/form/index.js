@@ -1,75 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TextField, Button } from '../../mui-components';
 
-class Form extends Component {
-  state = {
-    en: '',
-    ru: '',
-    transcription: '',
-    example: '',
-  };
+const Form = ({ onSubmit, onReset, onChange, form = {} }) => {
+  const { ru, en, transcription, example } = form;
 
-  handleOnChange = (event, field) => {
-    const { value } = event.target;
-
-    this.setState({ [field]: value });
-  };
-
-  handleOnSubmit = event => {
-    event.preventDefault();
-
-    this.props.addWord({...this.state})
-      .then(() => this.props.fetchWords())
-      .then(() => {
-        const prevState = { ...this.state };
-        const newState = Object.assign({},
-          ...Object.entries(prevState)
-            .map(([key]) => ({ [key]: '' }))
-        );
-
-        this.setState({ ...newState });
-      })
-      .catch(error => console.log(error));
-  };
-
-  render() {
-    const { en, ru, transcription, example } = this.state;
-
-    return (
-      <form onSubmit={this.handleOnSubmit}>
-        <div>
-          <TextField
-            placeholder="Russian"
-            value={ru}
-            onChange={e => this.handleOnChange(e, 'ru')}
-          />
-        </div>
-        <div>
-          <TextField
-            placeholder="English"
-            value={en}
-            onChange={e => this.handleOnChange(e, 'en')}
-          />
-        </div>
-
-        <div>
-          <TextField
-            placeholder="Transcription"
-            value={transcription}
-            onChange={e => this.handleOnChange(e, 'transcription')}
-          />
-        </div>
-        <div>
-          <TextField
-            placeholder="Example"
-            value={example}
-            onChange={e => this.handleOnChange(e, 'example')}
-          />
-        </div>
-        <Button type="submit">Add word</Button>
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={onSubmit}>
+      <div>
+        <TextField
+          placeholder="Russian"
+          value={ru}
+          onChange={e => onChange(e, 'ru')}
+        />
+      </div>
+      <div>
+        <TextField
+          placeholder="English"
+          value={en}
+          onChange={e => onChange(e, 'en')}
+        />
+      </div>
+      <div>
+        <TextField
+          placeholder="Transcription"
+          value={transcription}
+          onChange={e => onChange(e, 'transcription')}
+        />
+      </div>
+      <div>
+        <TextField
+          placeholder="Example"
+          value={example}
+          onChange={e => onChange(e, 'example')}
+        />
+      </div>
+      <Button type="submit" disabled={!Object.values(form).join('')}>Add word</Button>
+      {!!Object.values(form).join('') && <Button onClick={onReset}>Reset Form</Button>}
+    </form>
+  );
+};
 
 export default Form;

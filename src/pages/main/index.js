@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import ResizeDetector from 'react-resize-detector';
 import { api } from '../../api/fetcher';
-import { Form, BlocksContainer, Sidebar, Table, Content, SearchBlock } from '../../components';
+import { Sidebar, Table, Content } from '../../components';
 import styles from './styles';
 
 class Main extends Component {
@@ -15,10 +16,15 @@ class Main extends Component {
       .then(words => this.setState({ words }));
 
   handleAddWord = data =>
-    api.addWord({ ...data });
+    api.addWord({ ...data })
+      .then(() => this.handleFetchWords());
 
   handleDeleteWord = id =>
-    api.deleteWord(id);
+    api.deleteWord(id)
+      .then(() => this.handleFetchWords());
+
+  handleSearchWord = params =>
+    api.searchWord(params);
 
   componentDidMount() {
     this.handleFetchWords();
@@ -29,27 +35,26 @@ class Main extends Component {
     const { words } = this.state;
 
     return (
-      <BlocksContainer>
-        <div className={classes.root}>
-          <Sidebar>
-            <Form
-              fetchWords={this.handleFetchWords}
-              addWord={this.handleAddWord}
-            />
-            <SearchBlock
-              fetchWords={this.handleFetchWords}
-              addWord={this.handleAddWord}
-            />
-          </Sidebar>
-          <Content>
-            <Table
-              deleteWord={this.handleDeleteWord}
-              fetchWords={this.handleFetchWords}
-              words={words}
-            />
-          </Content>
-        </div>
-      </BlocksContainer>
+      <div className={classes.main}>
+        <Sidebar
+          searchWord={this.handleSearchWord}
+          addWord={this.handleAddWord}
+        />
+        <Content>
+          <ResizeDetector
+            handleWidth
+            handleHeight
+            render={({ width }) => (
+              <Table
+                screenWidth={width}
+                deleteWord={this.handleDeleteWord}
+                fetchWords={this.handleFetchWords}
+                words={words}
+              />
+            )}
+          />
+        </Content>
+      </div>
     );
   }
 }

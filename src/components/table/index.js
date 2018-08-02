@@ -17,9 +17,7 @@ class TableCmp extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.words.length !== prevState.words.length) {
-      return {
-        words: nextProps.words,
-      };
+      return { words: nextProps.words, };
     }
     return null;
   }
@@ -79,11 +77,11 @@ class TableCmp extends Component {
 
     return Promise.all(fetchList)
       .then(() => fetchWords())
-      .then(() => this.setState({ selected: [] }))
+      .then(() => this.setState({ selected: [] }));
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, screenWidth } = this.props;
     const { words, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
 
@@ -96,7 +94,12 @@ class TableCmp extends Component {
         />
         <Table className={classes.table}>
           <TableHead
-            cells={['Russian', 'English', 'Transcription', 'Example', 'Date']}
+            screenWidth={screenWidth}
+            cells={
+              screenWidth > 800
+                ? ['Russian', 'English', 'Transcription', 'Example', 'Date']
+                : ['Russian', 'English', 'Transcription', 'Date']
+            }
             numSelected={selected.length}
             order={order}
             orderBy={orderBy}
@@ -105,6 +108,7 @@ class TableCmp extends Component {
             rowCount={words.length}
           />
           <TableBody
+            screenWidth={screenWidth}
             words={words}
             order={order}
             orderBy={orderBy}
@@ -135,7 +139,7 @@ TableCmp.propTypes = {
 };
 
 const enhance = compose(
-  withStyles(styles)
+  withStyles(styles),
 );
 
 export default enhance(TableCmp);

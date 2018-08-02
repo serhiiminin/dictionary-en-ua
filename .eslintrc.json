@@ -2,7 +2,7 @@
   "parser": "babel-eslint",
   "rules": {
     "arrow-parens": [
-      "error",
+      "warn",
       "as-needed"
     ],
     "function-paren-newline": "off",
@@ -13,7 +13,7 @@
     "import/prefer-default-export": "off",
     "jsx-a11y/href-no-hash": "off",
     "max-len": [
-      "error",
+      "warn",
       120,
       2,
       {
@@ -25,11 +25,11 @@
       }
     ],
     "newline-after-var": [
-      "error"
+      "warn"
     ],
     "no-underscore-dangle": "off",
     "object-curly-newline": [
-      "error",
+      "warn",
       {
         "consistent": true
       }
