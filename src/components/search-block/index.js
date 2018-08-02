@@ -19,7 +19,7 @@ const SearchBlock = ({ classes, foundTranslation, inputValue, onChange, textToFo
         onChange={onChange}
       />
       <SearchResult
-        handleTextToForm={textToForm}
+        textToForm={textToForm}
         en={en}
         ru={ru}
         examples={examples}

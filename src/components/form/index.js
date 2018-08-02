@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextField, Button } from '../../mui-components';
 
-const Form = ({ onSubmit, onChange, form }) => {
-  const { ru, en, transcription, example} = form;
+const Form = ({ onSubmit, onReset, onChange, form = {} }) => {
+  const { ru, en, transcription, example } = form;
 
   return (
     <form onSubmit={onSubmit}>
@@ -36,6 +36,7 @@ const Form = ({ onSubmit, onChange, form }) => {
         />
       </div>
       <Button type="submit">Add word</Button>
+      {!!Object.values(form).join('') && <Button onClick={onReset}>Reset Form</Button>}
     </form>
   );
 };

@@ -11,7 +11,7 @@ const initialState = {
     en: '',
     ru: '',
     transcription: '',
-    example: '',
+    examples: [],
   },
   searchInput: '',
   foundTranslation: {
@@ -29,11 +29,15 @@ class Sidebar extends Component {
     const { value } = event.target;
 
     this.setState({
-      form: {
-        ...this.state.form,
-        [field]: value
-      }
+      form: { ...this.state.form, [field]: value }
     });
+  };
+
+  handleOnFormReset = () => {
+    this.setState({
+      ...this.state,
+      form: { ...initialState.form }
+    })
   };
 
   handleOnFormSubmit = event => {
@@ -42,15 +46,7 @@ class Sidebar extends Component {
 
     this.props.addWord({ ...form })
       .then(() => this.props.fetchWords())
-      .then(() => {
-        const prevFormValues = { ...form };
-        const emptyFormValues = Object.assign({},
-          ...Object.entries(prevFormValues)
-            .map(([key]) => ({ [key]: '' }))
-        );
-
-        this.setState({ ...this.state, form: { ...emptyFormValues } });
-      })
+      .then(() => this.handleOnFormReset())
       .catch(error => console.log(error));
   };
 
@@ -86,17 +82,16 @@ class Sidebar extends Component {
   };
 
   handleTextToForm = () => {
-    const { foundTranslation, } = this.state;
+    const { foundTranslation } = this.state;
+    const { en, ru, transcription, examples } = foundTranslation;
 
-    this.props.addWord({ ...foundTranslation, example: foundTranslation.examples[0] })
-      .then(() => this.props.fetchWords())
-      .then(() => {
-        const { searchInput, foundTranslation } = initialState;
-
-        return this.setState({ searchInput, foundTranslation });
-      });
-
+    this.setState({
+      ...initialState,
+      form: { en, ru, transcription, examples },
+    });
   };
+
+
 
   render() {
     const { form, foundTranslation, searchInput } = this.state;
@@ -108,6 +103,7 @@ class Sidebar extends Component {
           form={form}
           onSubmit={this.handleOnFormSubmit}
           onChange={this.handleOnFormItemChange}
+          onReset={this.handleOnFormReset}
         />
         <SearchBlock
           inputValue={searchInput}
