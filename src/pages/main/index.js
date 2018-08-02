@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import ResizeDetector from 'react-resize-detector';
@@ -7,9 +8,17 @@ import { Sidebar, Table, Content } from '../../components';
 import styles from './styles';
 
 class Main extends Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  };
+
   state = {
     words: [],
   };
+
+  componentDidMount() {
+    this.handleFetchWords();
+  }
 
   handleFetchWords = () =>
     api.getWordsList()
@@ -26,9 +35,7 @@ class Main extends Component {
   handleSearchWord = params =>
     api.searchWord(params);
 
-  componentDidMount() {
-    this.handleFetchWords();
-  }
+
 
   render() {
     const { classes } = this.props;

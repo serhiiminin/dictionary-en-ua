@@ -1,16 +1,40 @@
 {
   "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true
+    }
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
   "rules": {
     "arrow-parens": [
       "warn",
       "as-needed"
     ],
-    "function-paren-newline": "off",
+    "import/no-useless-path-segments": 1,
+    "import/no-cycle": 0,
     "import/exports-last": "off",
     "import/first": "off",
     "import/no-named-as-default-member": "off",
-    "react/no-did-mount-set-state": "off",
     "import/prefer-default-export": "off",
+    "no-unused-vars": 1,
+    "react/sort-comp": 1,
+    "react/prop-types": 1,
+    "react/forbid-prop-types": 1,
+    "react/no-access-state-in-setstate": 1,
+    "react/require-default-props": 1,
+    "react/destructuring-assignment": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-unused-prop-types": 1,
+    "react/no-did-mount-set-state": "off",
+    "function-paren-newline": "off",
     "jsx-a11y/href-no-hash": "off",
     "max-len": [
       "warn",

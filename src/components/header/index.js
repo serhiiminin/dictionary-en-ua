@@ -1,6 +1,7 @@
 import React from 'react';
-import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
+import { compose } from 'recompose';
 import { Link } from 'react-router-dom';
 import styles from './styles';
 
@@ -14,6 +15,10 @@ const Header = ({ classes }) => (
     </h1>
   </div>
 );
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
 
 const enhance = compose(
   injectSheet(styles)

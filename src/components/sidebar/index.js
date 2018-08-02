@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
+import { compose } from 'recompose';
 import { Form, SearchBlock } from '../index';
 import styles from './styles';
 
@@ -23,27 +24,33 @@ const initialState = {
 };
 
 class Sidebar extends Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    addWord: PropTypes.func.isRequired,
+    searchWord: PropTypes.func.isRequired,
+  };
+
   state = initialState;
 
   handleOnFormItemChange = (event, field) => {
     const { value } = event.target;
 
-    this.setState({ form: { ...this.state.form, [field]: value } });
+    this.setState(prevState => ({ form: { ...prevState.form, [field]: value } }));
   };
 
   handleOnFormReset = () => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       form: { ...initialState.form }
-    });
+    }));
   };
 
   handleResetSearchData = () => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       foundTranslation: { ...initialState.foundTranslation },
       searchInput: initialState.searchInput,
-    });
+    }));
   };
 
   handleOnFormSubmit = event => {
@@ -52,7 +59,7 @@ class Sidebar extends Component {
 
     this.props.addWord({ ...form })
       .then(() => this.handleOnFormReset())
-      .catch(error => console.log(error));
+      .catch(error => console.log(error)); // eslint-disable-line no-console
   };
 
   handleOnSearchInputChange = event => {

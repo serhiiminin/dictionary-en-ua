@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Checkbox, TableBody, TableCell, TableRow } from '@material-ui/core';
 
@@ -50,6 +51,23 @@ const TableBodyCmp = props => {
       )}
     </TableBody>
   );
+};
+
+TableBodyCmp.propTypes = {
+  words: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line react/forbid-prop-types
+  order: PropTypes.string.isRequired,
+  orderBy: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+  emptyRows: PropTypes.number.isRequired,
+  isSelected: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  screenWidth: PropTypes.number,
+};
+
+TableBodyCmp.defaultProps = {
+  words: [],
+  screenWidth: null,
 };
 
 export default TableBodyCmp;

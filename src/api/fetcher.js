@@ -33,7 +33,7 @@ const fetchJSON = params => {
     .then(checkStatus)
     .then(parseJSON)
     .catch(error => {
-      console.log(error.status);
+      console.log(error.status); // eslint-disable-line no-console
       if (error.message === 'Failed to fetch' && !window.navigator.onLine) {
         throw new Error('Check your internet connection');
       }

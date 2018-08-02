@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TextField, Button } from '../../mui-components';
 
 const Form = ({ onSubmit, onReset, onChange, form = {} }) => {
@@ -38,6 +39,17 @@ const Form = ({ onSubmit, onReset, onChange, form = {} }) => {
       {!!Object.values(form).join('') && <Button onClick={onReset}>Reset Form</Button>}
     </form>
   );
+};
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  form: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+Form.defaultProps = {
+  form: {},
 };
 
 export default Form;

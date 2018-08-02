@@ -32,7 +32,13 @@
   "devDependencies": {
     "pre-commit": "^1.2.2",
     "react-app-rewire-eslint": "^0.2.3",
-    "react-app-rewired": "^1.5.2"
+    "react-app-rewired": "^1.5.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.10.0"
   },
   "pre-commit": {
     "run": [

@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withStyles, Table, Paper, TablePagination } from '@material-ui/core';
-import { Toolbar, TableHead, TableBody } from '../';
+import { Toolbar, TableHead, TableBody } from '..';
 import styles from './styles';
 
 class TableCmp extends Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    fetchWords: PropTypes.func.isRequired,
+    deleteWord: PropTypes.func.isRequired,
+    screenWidth: PropTypes.number,
+  };
+
+  static defaultProps = {
+    screenWidth: null,
+  };
+
   state = {
     words: [],
     selected: [],
@@ -23,13 +34,14 @@ class TableCmp extends Component {
   }
 
   handleRequestSort = (event, property) => {
-    const orderBy = property;
-    let order = 'desc';
+    const currentOrderBy = property;
+    const { orderBy, order } = this.state;
+    let currentOrder = 'desc';
 
-    if (this.state.orderBy === property && this.state.order === 'desc') {
-      order = 'asc';
+    if (orderBy === property && order === 'desc') {
+      currentOrder = 'asc';
     }
-    this.setState({ order, orderBy });
+    this.setState({ order: currentOrder, orderBy: currentOrderBy });
   };
 
   handleSelectAllClick = (event, checked) => {
@@ -133,10 +145,6 @@ class TableCmp extends Component {
     );
   }
 }
-
-TableCmp.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 const enhance = compose(
   withStyles(styles),

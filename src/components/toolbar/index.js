@@ -17,7 +17,7 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
         </Typography>
       ) : (
         <Typography variant="title" id="tableTitle">
-          Nutrition
+          Saved words
         </Typography>
       )}
     </div>
@@ -46,8 +46,10 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
 );
 
 ToolbarCmp.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   numSelected: PropTypes.number.isRequired,
+  deleteItems: PropTypes.func.isRequired,
+  selected: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const enhance = compose(

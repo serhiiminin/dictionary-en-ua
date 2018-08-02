@@ -1,5 +1,6 @@
 import React from 'react';
-import { ExamplesList, ExamplesListItem } from '../';
+import PropTypes from 'prop-types';
+import { ExamplesList, ExamplesListItem } from '..';
 import { Button } from '../../mui-components';
 
 const SearchResult = ({ en, ru, examples, transcription, editBeforeSaving, addWordToList }) =>
@@ -19,5 +20,21 @@ const SearchResult = ({ en, ru, examples, transcription, editBeforeSaving, addWo
       </div>
     )
     : <div>No results</div>;
+
+SearchResult.propTypes = {
+  en: PropTypes.string,
+  ru: PropTypes.string,
+  examples: PropTypes.arrayOf(PropTypes.string),
+  transcription: PropTypes.string,
+  editBeforeSaving: PropTypes.func.isRequired,
+  addWordToList: PropTypes.func.isRequired,
+};
+
+SearchResult.defaultProps = {
+  en: '',
+  ru: '',
+  examples: [],
+  transcription: '',
+};
 
 export default SearchResult;

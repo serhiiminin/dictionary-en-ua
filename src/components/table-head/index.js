@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TableCell, TableHead, TableRow, Checkbox } from '@material-ui/core';
 
 const TableHeadCmp = ({ cells, numSelected, rowCount, onSelectAllClick }) => (
@@ -17,5 +18,16 @@ const TableHeadCmp = ({ cells, numSelected, rowCount, onSelectAllClick }) => (
     </TableRow>
   </TableHead>
 );
+
+TableHeadCmp.propTypes = {
+  cells: PropTypes.arrayOf(PropTypes.string),
+  numSelected: PropTypes.number.isRequired,
+  rowCount: PropTypes.number.isRequired,
+  onSelectAllClick: PropTypes.func.isRequired,
+};
+
+TableHeadCmp.defaultProps = {
+  cells: [],
+};
 
 export default TableHeadCmp;
