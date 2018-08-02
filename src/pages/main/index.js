@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { api } from '../../api/fetcher';
-import { Form, BlocksContainer, Sidebar, Table, Content, SearchBlock } from '../../components';
+import { Sidebar, Table, Content } from '../../components';
 import styles from './styles';
+
+export const MainPageContext = React.createContext({});
 
 class Main extends Component {
   state = {
@@ -20,6 +22,9 @@ class Main extends Component {
   handleDeleteWord = id =>
     api.deleteWord(id);
 
+  handleSearchWord = params =>
+    api.searchWord(params);
+
   componentDidMount() {
     this.handleFetchWords();
   }
@@ -29,18 +34,20 @@ class Main extends Component {
     const { words } = this.state;
 
     return (
-      <BlocksContainer>
-        <div className={classes.root}>
-          <Sidebar>
-            <Form
-              fetchWords={this.handleFetchWords}
-              addWord={this.handleAddWord}
-            />
-            <SearchBlock
-              fetchWords={this.handleFetchWords}
-              addWord={this.handleAddWord}
-            />
-          </Sidebar>
+      <MainPageContext.Provider
+        value={{
+          words: words,
+          fetchWordsList: this.handleFetchWords,
+          addWord: this.handleAddWord,
+          deleteWord: this.handleDeleteWord,
+        }}
+      >
+        <div className={classes.main}>
+          <Sidebar
+            searchWord={this.handleSearchWord}
+            addWord={this.handleAddWord}
+            fetchWords={this.handleFetchWords}
+          />
           <Content>
             <Table
               deleteWord={this.handleDeleteWord}
@@ -49,7 +56,7 @@ class Main extends Component {
             />
           </Content>
         </div>
-      </BlocksContainer>
+      </MainPageContext.Provider>
     );
   }
 }
