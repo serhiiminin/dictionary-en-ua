@@ -20,9 +20,23 @@
     "url-join": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
+    "lint:fix": "LINT_ARGS=--fix npm run lint",
+    "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' npm run lint"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "react-app-rewire-eslint": "^0.2.3",
+    "react-app-rewired": "^1.5.2"
+  },
+  "pre-commit": {
+    "run": [
+      "lint:with-cache"
+    ],
+    "silent": true
   }
 }

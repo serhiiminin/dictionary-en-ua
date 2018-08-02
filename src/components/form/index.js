@@ -11,6 +11,7 @@ class Form extends Component {
 
   handleOnChange = (event, field) => {
     const { value } = event.target;
+
     this.setState({ [field]: value });
   };
 
@@ -25,6 +26,7 @@ class Form extends Component {
           ...Object.entries(prevState)
             .map(([key]) => ({ [key]: '' }))
         );
+
         this.setState({ ...newState });
       })
       .catch(error => console.log(error));
@@ -32,6 +34,7 @@ class Form extends Component {
 
   render() {
     const { en, ru, transcription, example } = this.state;
+
     return (
       <form onSubmit={this.handleOnSubmit}>
         <div>

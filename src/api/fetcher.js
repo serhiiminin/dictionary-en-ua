@@ -1,7 +1,7 @@
 import { WORDS  } from './endpoints';
 import { requests } from './request';
 
-const checkStatus = (response) => {
+const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -28,6 +28,7 @@ const fetchJSON = params => {
       ...restParams,
     },
   );
+
   return window.fetch(request)
     .then(checkStatus)
     .then(parseJSON)
