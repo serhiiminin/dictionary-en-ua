@@ -20,7 +20,6 @@ const Form = ({ onSubmit, onReset, onChange, form = {} }) => {
           onChange={e => onChange(e, 'en')}
         />
       </div>
-
       <div>
         <TextField
           placeholder="Transcription"
@@ -35,7 +34,7 @@ const Form = ({ onSubmit, onReset, onChange, form = {} }) => {
           onChange={e => onChange(e, 'example')}
         />
       </div>
-      <Button type="submit">Add word</Button>
+      <Button type="submit" disabled={!Object.values(form).join('')}>Add word</Button>
       {!!Object.values(form).join('') && <Button onClick={onReset}>Reset Form</Button>}
     </form>
   );

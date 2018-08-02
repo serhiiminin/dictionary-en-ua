@@ -17,8 +17,8 @@ const initialState = {
   foundTranslation: {
     en: '',
     ru: '',
-    examples: [],
     transcription: '',
+    examples: [],
   }
 };
 
@@ -28,16 +28,22 @@ class Sidebar extends Component {
   handleOnFormItemChange = (event, field) => {
     const { value } = event.target;
 
-    this.setState({
-      form: { ...this.state.form, [field]: value }
-    });
+    this.setState({ form: { ...this.state.form, [field]: value } });
   };
 
   handleOnFormReset = () => {
     this.setState({
       ...this.state,
       form: { ...initialState.form }
-    })
+    });
+  };
+
+  handleResetSearchData = () => {
+    this.setState({
+      ...this.state,
+      foundTranslation: { ...initialState.foundTranslation },
+      searchInput: initialState.searchInput,
+    });
   };
 
   handleOnFormSubmit = event => {
@@ -45,7 +51,6 @@ class Sidebar extends Component {
     const { form } = this.state;
 
     this.props.addWord({ ...form })
-      .then(() => this.props.fetchWords())
       .then(() => this.handleOnFormReset())
       .catch(error => console.log(error));
   };
@@ -81,7 +86,7 @@ class Sidebar extends Component {
     }, SEARCH_INPUT_TIMEOUT);
   };
 
-  handleTextToForm = () => {
+  handleEditBeforeSaving = () => {
     const { foundTranslation } = this.state;
     const { en, ru, transcription, examples } = foundTranslation;
 
@@ -91,7 +96,9 @@ class Sidebar extends Component {
     });
   };
 
-
+  handleAddWordToList = () =>
+    this.props.addWord({ ...this.state.foundTranslation })
+      .then(() => this.handleResetSearchData());
 
   render() {
     const { form, foundTranslation, searchInput } = this.state;
@@ -109,7 +116,8 @@ class Sidebar extends Component {
           inputValue={searchInput}
           foundTranslation={foundTranslation}
           onChange={this.handleOnSearchInputChange}
-          textToForm={this.handleTextToForm}
+          editBeforeSaving={this.handleEditBeforeSaving}
+          addWordToList={this.handleAddWordToList}
         />
       </div>
     );

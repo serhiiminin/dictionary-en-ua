@@ -2,12 +2,12 @@ import React from 'react';
 import { ExamplesList, ExamplesListItem } from '../';
 import { Button } from '../../mui-components';
 
-const SearchResult = ({ en, ru, examples, transcription, textToForm }) =>
+const SearchResult = ({ en, ru, examples, transcription, editBeforeSaving, addWordToList }) =>
   en && ru && en !== ru
     ? (
       <div>
-        <Button onClick={textToForm}>Add to my list</Button>
-        <Button onClick={textToForm}>Edit before saving</Button>
+        <Button onClick={addWordToList}>Add to my words</Button>
+        <Button onClick={editBeforeSaving}>Edit before saving</Button>
         <p><span>ru: </span>{ru}</p>
         <p><span>en: </span>{en}</p>
         <p>{transcription}</p>

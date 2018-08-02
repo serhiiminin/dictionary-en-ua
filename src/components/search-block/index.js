@@ -5,7 +5,7 @@ import { SearchResult } from '../';
 import { TextField } from '../../mui-components';
 import styles from './styles';
 
-const SearchBlock = ({ classes, foundTranslation, inputValue, onChange, textToForm }) => {
+const SearchBlock = ({ classes, foundTranslation, inputValue, onChange, editBeforeSaving, addWordToList }) => {
   const { ru, en, examples, transcription } = foundTranslation;
 
   return (
@@ -19,11 +19,13 @@ const SearchBlock = ({ classes, foundTranslation, inputValue, onChange, textToFo
         onChange={onChange}
       />
       <SearchResult
-        textToForm={textToForm}
         en={en}
         ru={ru}
         examples={examples}
-        transcription={transcription}/>
+        transcription={transcription}
+        editBeforeSaving={editBeforeSaving}
+        addWordToList={addWordToList}
+      />
     </div>
   );
 };

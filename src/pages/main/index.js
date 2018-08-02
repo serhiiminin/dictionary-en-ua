@@ -17,10 +17,12 @@ class Main extends Component {
       .then(words => this.setState({ words }));
 
   handleAddWord = data =>
-    api.addWord({ ...data });
+    api.addWord({ ...data })
+      .then(() => this.handleFetchWords());
 
   handleDeleteWord = id =>
-    api.deleteWord(id);
+    api.deleteWord(id)
+      .then(() => this.handleFetchWords());
 
   handleSearchWord = params =>
     api.searchWord(params);
@@ -46,7 +48,6 @@ class Main extends Component {
           <Sidebar
             searchWord={this.handleSearchWord}
             addWord={this.handleAddWord}
-            fetchWords={this.handleFetchWords}
           />
           <Content>
             <Table
