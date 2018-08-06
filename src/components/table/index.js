@@ -21,7 +21,7 @@ class TableCmp extends Component {
     words: [],
     selected: [],
     order: 'desc',
-    orderBy: 'date',
+    orderBy: 'dateCreated',
     rowsPerPage: 10,
     page: 0,
   };

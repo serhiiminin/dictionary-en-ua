@@ -5,7 +5,7 @@ import injectSheet from 'react-jss';
 import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
-import { Header, BlocksContainer } from '../components';
+import { Header, BlocksContainer, Notifications } from '../components';
 import { Main } from '../pages';
 import styles from './styles';
 
@@ -23,13 +23,15 @@ const theme = createMuiTheme({
 const RootCmp = () => (
   <MuiThemeProvider theme={theme}>
     <Router>
-      <BlocksContainer>
-        <Header/>
-        <Switch>
-          <Route exact path="/login" render={() => 'login'}/>
-          <Route exact path="/" component={Main}/>
-        </Switch>
-      </BlocksContainer>
+      <Notifications>
+        <BlocksContainer>
+          <Header/>
+          <Switch>
+            <Route exact path="/login" render={() => 'login'}/>
+            <Route exact path="/" component={Main}/>
+          </Switch>
+        </BlocksContainer>
+      </Notifications>
     </Router>
   </MuiThemeProvider>
 );

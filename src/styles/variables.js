@@ -19,6 +19,17 @@ const variables = {
     small: '5px',
     medium: '10px',
     large: '15px',
+  },
+  borderRadius: {
+    small: '5px',
+    medium: '10px',
+    large: '15px',
+  },
+  zIndex: {
+    notification: 1000,
+  },
+  timeout: {
+    notification: 300,
   }
 };
 

@@ -11,3 +11,5 @@ export { default as SearchBlock } from './search-block';
 export { default as SearchResult } from './search-result';
 export { default as ExamplesList } from './examples-list';
 export { default as ExamplesListItem } from './examples-list-item';
+export { default as Notifications } from './notifications';
+export { default as NotificationItem } from './notification-item';
