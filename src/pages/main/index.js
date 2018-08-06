@@ -35,8 +35,6 @@ class Main extends Component {
   handleSearchWord = params =>
     api.searchWord(params);
 
-
-
   render() {
     const { classes } = this.props;
     const { words } = this.state;
