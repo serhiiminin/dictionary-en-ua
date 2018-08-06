@@ -17,7 +17,7 @@ const TableBodyCmp = props => {
         .sort(getSorting(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(word => {
-          const { en, ru, transcription, examples, date, _id } = word;
+          const { en, ru, transcription, examples, dateCreated, _id } = word;
           const isSelectedCurrent = isSelected(_id);
 
           return (
@@ -35,11 +35,11 @@ const TableBodyCmp = props => {
               <TableCell>{en || '-'}</TableCell>
               <TableCell>{transcription || '-'}</TableCell>
               {screenWidth > 800 && <TableCell>{examples ? examples[0] : '-'}</TableCell>}
-              <TableCell>{moment(date)
+              <TableCell>{moment(dateCreated)
                 .isSame(moment(), 'day')
-                ? `Today at ${moment(date)
+                ? `Today at ${moment(dateCreated)
                   .format('hh:mm:ss a') }`
-                : moment(date)
+                : moment(dateCreated)
                 .format('DD.MM.YY, hh:mm a') || '-'}</TableCell>
             </TableRow>
           );
