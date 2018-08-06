@@ -6,6 +6,7 @@ import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
+import { WordsProvider } from '../context/words';
 import { Main } from '../pages';
 import styles from './styles';
 
@@ -24,13 +25,15 @@ const RootCmp = () => (
   <MuiThemeProvider theme={theme}>
     <Router>
       <Notifications>
-        <BlocksContainer>
-          <Header/>
-          <Switch>
-            <Route exact path="/login" render={() => 'login'}/>
-            <Route exact path="/" component={Main}/>
-          </Switch>
-        </BlocksContainer>
+        <WordsProvider>
+          <BlocksContainer>
+            <Header/>
+            <Switch>
+              <Route exact path="/login" render={() => 'login'}/>
+              <Route exact path="/" component={Main}/>
+            </Switch>
+          </BlocksContainer>
+        </WordsProvider>
       </Notifications>
     </Router>
   </MuiThemeProvider>

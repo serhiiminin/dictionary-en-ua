@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import ResizeDetector from 'react-resize-detector';
 import { api } from '../../api/fetcher';
 import { Sidebar, Table, Content } from '../../components';
+import { withWords } from '../../context/words';
 import styles from './styles';
 
 class Main extends Component {
@@ -65,6 +66,7 @@ class Main extends Component {
 }
 
 const enhance = compose(
+  withWords,
   injectSheet(styles)
 );
 

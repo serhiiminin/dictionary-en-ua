@@ -52,6 +52,7 @@ class WordsProvider extends Component {
   }
 }
 
-export const withWords = Cmp => props =>
+const withWords = Cmp => props =>
   <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>;
-export default WordsProvider;
+
+export { WordsProvider, withWords};
