@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { withWords } from '../../context/words';
 import { Form, SearchBlock } from '../index';
 import styles from './styles';
 
@@ -132,7 +133,8 @@ class Sidebar extends Component {
 }
 
 const enhance = compose(
-  injectSheet(styles)
+  injectSheet(styles),
+  withWords,
 );
 
 export default enhance(Sidebar);
