@@ -42,7 +42,7 @@ class SearchBlock extends Component {
     this.props.addWord({
       ...this.props.foundWord,
     })
-      .then(this.props.clearFoundWord());
+      .then(this.props.cleanFoundWord());
 
   render() {
     const { inputValue } = this.state;
@@ -73,7 +73,7 @@ SearchBlock.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   searchWord: PropTypes.func.isRequired,
   addWord: PropTypes.func.isRequired,
-  clearFoundWord: PropTypes.func.isRequired,
+  cleanFoundWord: PropTypes.func.isRequired,
 };
 
 const enhance = compose(

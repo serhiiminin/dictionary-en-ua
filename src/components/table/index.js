@@ -11,6 +11,7 @@ class TableCmp extends Component {
     classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
+    cleanWords: PropTypes.func.isRequired,
     screenWidth: PropTypes.number,
   };
 
@@ -31,12 +32,18 @@ class TableCmp extends Component {
     this.props.fetchWords();
   }
 
+  componentWillUnmount() {
+    this.props.cleanWords();
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.words.length !== prevState.words.length) {
       return { words: nextProps.words, };
     }
     return null;
   }
+
+
 
   handleRequestSort = (event, property) => {
     const currentOrderBy = property;

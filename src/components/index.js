@@ -1,4 +1,5 @@
 export { default as BlocksContainer } from './blocks-container';
+export { default as ButtonWithRouter } from './button-with-router';
 export { default as Table } from './table';
 export { default as Form } from './form';
 export { default as Header } from './header';

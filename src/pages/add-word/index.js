@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { Form, SearchBlock } from '../../components';
+import { ButtonWithRouter, Form, SearchBlock } from '../../components';
 import styles from './styles';
 
 const AddWord = ({ classes }) => (
   <main className={classes.addWord}>
+    <ButtonWithRouter to='/my-words'>List of my words</ButtonWithRouter>
     <Form />
     <SearchBlock />
   </main>

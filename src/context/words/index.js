@@ -49,13 +49,13 @@ class WordsProvider extends Component {
         });
       });
 
-  clearWords = () =>
+  cleanWords = () =>
     this.setState(prevState => ({
       ...prevState,
         words: initialState.words,
     }));
 
-  clearFoundWord = () =>
+  cleanFoundWord = () =>
     this.setState(prevState => ({
       ...prevState,
       foundWord: initialState.foundWord,
@@ -73,8 +73,8 @@ class WordsProvider extends Component {
           addWord: this.handleAddWord,
           searchWord: this.handleSearchWord,
           deleteWord: this.handleDeleteWord,
-          clearWords: this.clearWords,
-          clearFoundWord: this.clearFoundWord,
+          cleanWords: this.cleanWords,
+          cleanFoundWord: this.cleanFoundWord,
         }}
       >{this.props.children}</WordsContext.Provider>
     )
