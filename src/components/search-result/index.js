@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { ExamplesList, ExamplesListItem } from '..';
 import { Button } from '../../mui-components';
 
-const SearchResult = ({ en, ru, examples, transcription, addWordToList }) =>
+const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBeforeSaving }) =>
   en && ru && en !== ru
     ? (
       <div>
-        <Button onClick={addWordToList}>Add to my words</Button>
+        <Button onClick={addWord}>Add to my words</Button>
+        <Button onClick={editWordBeforeSaving}>Edit before saving</Button>
         <p><span>ru: </span>{ru}</p>
         <p><span>en: </span>{en}</p>
         <p>{transcription}</p>
@@ -25,7 +26,8 @@ SearchResult.propTypes = {
   ru: PropTypes.string,
   examples: PropTypes.arrayOf(PropTypes.string),
   transcription: PropTypes.string,
-  addWordToList: PropTypes.func.isRequired,
+  editWordBeforeSaving: PropTypes.func.isRequired,
+  addWord: PropTypes.func.isRequired,
 };
 
 SearchResult.defaultProps = {
