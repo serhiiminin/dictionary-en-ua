@@ -2,23 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import ResizeDetector from 'react-resize-detector';
 import { Sidebar, Table, Content } from '../../components';
 import styles from './styles';
 
 const Main = ({ classes }) => (
-  <ResizeDetector
-    handleWidth
-    handleHeight
-    render={({ width }) => (
-      <main className={classes.main}>
-        <Sidebar/>
-        <Content>
-          <Table screenWidth={width}/>
-        </Content>
-      </main>
-    )}
-  />
+  <main className={classes.main}>
+    <Sidebar/>
+    <Content>
+      <Table />
+    </Content>
+  </main>
 );
 
 Main.propTypes = {

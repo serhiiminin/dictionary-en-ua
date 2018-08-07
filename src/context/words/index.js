@@ -4,21 +4,22 @@ import { api } from '../../api/fetcher';
 
 const WordsContext = createContext([]);
 
+const initialState = {
+  words: [],
+  foundWord: {
+    en: '',
+    ru: '',
+    transcription: '',
+    examples: [],
+  }
+};
+
 class WordsProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  state = {
-    words: []
-  };
-
-  // shouldComponentUpdate(nextProps, nextState)  {
-  //   const prevWords = this.context.words.map(w => w.dateLastUpdated).join('');
-  //   const nextWords = nextState.words.map(w => w.dateLastUpdated).join('');
-  //
-  //   return prevWords !== nextWords;
-  // }
+  state = initialState;
 
   handleFetchWords = () =>
     api.getWordsList()
@@ -33,19 +34,47 @@ class WordsProvider extends Component {
       .then(() => this.handleFetchWords());
 
   handleSearchWord = params =>
-    api.searchWord(params);
+    api.searchWord(params)
+      .then(response => {
+        const { ru, en, transcription, results } = response;
+        const examplesList = results && results
+          .reduce((res, val) =>
+              val.examples
+                ? [...res, ...val.examples]
+                : [...res],
+            []);
+
+        this.setState({
+          foundWord: { en, ru, transcription, examples: examplesList || [], }
+        });
+      });
+
+  clearWords = () =>
+    this.setState(prevState => ({
+      ...prevState,
+        words: initialState.words,
+    }));
+
+  clearFoundWord = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      foundWord: initialState.foundWord,
+    }));
 
   render() {
-    const { words } = this.state;
+    const { words, foundWord } = this.state;
 
     return (
       <WordsContext.Provider
         value={{
           words,
+          foundWord,
           fetchWords: this.handleFetchWords,
           addWord: this.handleAddWord,
           searchWord: this.handleSearchWord,
           deleteWord: this.handleDeleteWord,
+          clearWords: this.clearWords,
+          clearFoundWord: this.clearFoundWord,
         }}
       >{this.props.children}</WordsContext.Provider>
     )

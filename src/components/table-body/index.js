@@ -9,7 +9,7 @@ const getSorting = (order, orderBy) =>
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
 
 const TableBodyCmp = props => {
-  const { words, order, orderBy, page, rowsPerPage, emptyRows, isSelected, handleClick, screenWidth } = props;
+  const { words, order, orderBy, page, rowsPerPage, emptyRows, isSelected, handleClick } = props;
 
   return (
     <TableBody>
@@ -34,7 +34,7 @@ const TableBodyCmp = props => {
               <TableCell component="th" scope="row">{ru || '-'}</TableCell>
               <TableCell>{en || '-'}</TableCell>
               <TableCell>{transcription || '-'}</TableCell>
-              {screenWidth > 800 && <TableCell>{examples ? examples[0] : '-'}</TableCell>}
+              <TableCell>{examples ? examples[0] : '-'}</TableCell>
               <TableCell>{moment(dateCreated)
                 .isSame(moment(), 'day')
                 ? `Today at ${moment(dateCreated)
@@ -62,12 +62,10 @@ TableBodyCmp.propTypes = {
   emptyRows: PropTypes.number.isRequired,
   isSelected: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  screenWidth: PropTypes.number,
 };
 
 TableBodyCmp.defaultProps = {
   words: [],
-  screenWidth: null,
 };
 
 export default TableBodyCmp;
