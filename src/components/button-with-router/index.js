@@ -13,7 +13,7 @@ const ButtonWithRouter = ({ to, staticContext, history, ...restProps }) => (
 
 ButtonWithRouter.propTypes = {
   history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  staticContext: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  staticContext: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   to: PropTypes.string.isRequired,
 };
 
