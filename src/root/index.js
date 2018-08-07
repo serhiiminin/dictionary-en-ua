@@ -8,7 +8,7 @@ import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
 import { WordsProvider } from '../context/words';
 import { NotificationsProvider } from '../context/notifications';
-import { Main } from '../pages';
+import { MyWords, AddWord } from '../pages';
 import styles from './styles';
 
 const theme = createMuiTheme({
@@ -32,7 +32,8 @@ const RootCmp = () => (
               <Header/>
               <Switch>
                 <Route exact path="/login" render={() => 'login'}/>
-                <Route exact path="/" component={Main}/>
+                <Route exact path="/add-word" component={AddWord}/>
+                <Route exact path="/my-words" component={MyWords}/>
               </Switch>
             </BlocksContainer>
           </Notifications>

@@ -2,24 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { withWords } from '../../context/words';
-import { Form, SearchBlock } from '../index';
+import { Form, SearchBlock } from '../../components';
 import styles from './styles';
 
-const Sidebar = ({ classes }) => (
-  <div className={classes.sidebar}>
+const AddWord = ({ classes }) => (
+  <main className={classes.addWord}>
     <Form />
     <SearchBlock />
-  </div>
+  </main>
 );
 
-Sidebar.propTypes = {
+AddWord.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 const enhance = compose(
   injectSheet(styles),
-  withWords,
 );
 
-export default enhance(Sidebar);
+export default enhance(AddWord);

@@ -1,7 +1,7 @@
 // import { variables } from '../../styles/variables';
 
 const styles = {
-  main: {
+  myWords: {
     // display: 'grid',
     // gridTemplateColumns: '1fr',
     // '@media (min-width: 768px)': {
