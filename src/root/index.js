@@ -6,7 +6,9 @@ import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
-import { Main } from '../pages';
+import { WordsProvider } from '../context/words';
+import { NotificationsProvider } from '../context/notifications';
+import { MyWords, AddWord } from '../pages';
 import styles from './styles';
 
 const theme = createMuiTheme({
@@ -22,17 +24,22 @@ const theme = createMuiTheme({
 
 const RootCmp = () => (
   <MuiThemeProvider theme={theme}>
-    <Router>
-      <Notifications>
-        <BlocksContainer>
-          <Header/>
-          <Switch>
-            <Route exact path="/login" render={() => 'login'}/>
-            <Route exact path="/" component={Main}/>
-          </Switch>
-        </BlocksContainer>
-      </Notifications>
-    </Router>
+    <NotificationsProvider>
+      <WordsProvider>
+        <Router>
+          <Notifications>
+            <BlocksContainer>
+              <Header/>
+              <Switch>
+                <Route exact path="/login" render={() => 'login'}/>
+                <Route exact path="/add-word" component={AddWord}/>
+                <Route exact path="/my-words" component={MyWords}/>
+              </Switch>
+            </BlocksContainer>
+          </Notifications>
+        </Router>
+      </WordsProvider>
+    </NotificationsProvider>
   </MuiThemeProvider>
 );
 

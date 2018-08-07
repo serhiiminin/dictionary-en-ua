@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withStyles, Table, Paper, TablePagination } from '@material-ui/core';
 import { Toolbar, TableHead, TableBody } from '..';
+import { withWords } from '../../context/words';
 import styles from './styles';
 
 class TableCmp extends Component {
@@ -10,6 +11,7 @@ class TableCmp extends Component {
     classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
+    cleanWords: PropTypes.func.isRequired,
     screenWidth: PropTypes.number,
   };
 
@@ -26,12 +28,22 @@ class TableCmp extends Component {
     page: 0,
   };
 
+  componentDidMount() {
+    this.props.fetchWords();
+  }
+
+  componentWillUnmount() {
+    this.props.cleanWords();
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.words.length !== prevState.words.length) {
       return { words: nextProps.words, };
     }
     return null;
   }
+
+
 
   handleRequestSort = (event, property) => {
     const currentOrderBy = property;
@@ -107,11 +119,7 @@ class TableCmp extends Component {
         <Table className={classes.table}>
           <TableHead
             screenWidth={screenWidth}
-            cells={
-              screenWidth > 800
-                ? ['Russian', 'English', 'Transcription', 'Example', 'Date']
-                : ['Russian', 'English', 'Transcription', 'Date']
-            }
+            cells={['Russian', 'English', 'Transcription', 'Example', 'Date']}
             numSelected={selected.length}
             order={order}
             orderBy={orderBy}
@@ -148,6 +156,7 @@ class TableCmp extends Component {
 
 const enhance = compose(
   withStyles(styles),
+  withWords,
 );
 
 export default enhance(TableCmp);
