@@ -7,6 +7,7 @@ import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
 import { WordsProvider } from '../context/words';
+import { NotificationsProvider } from '../context/notifications';
 import { Main } from '../pages';
 import styles from './styles';
 
@@ -23,19 +24,21 @@ const theme = createMuiTheme({
 
 const RootCmp = () => (
   <MuiThemeProvider theme={theme}>
-    <Router>
-      <Notifications>
-        <WordsProvider>
-          <BlocksContainer>
-            <Header/>
-            <Switch>
-              <Route exact path="/login" render={() => 'login'}/>
-              <Route exact path="/" component={Main}/>
-            </Switch>
-          </BlocksContainer>
-        </WordsProvider>
-      </Notifications>
-    </Router>
+    <NotificationsProvider>
+      <WordsProvider>
+        <Router>
+          <Notifications>
+            <BlocksContainer>
+              <Header/>
+              <Switch>
+                <Route exact path="/login" render={() => 'login'}/>
+                <Route exact path="/" component={Main}/>
+              </Switch>
+            </BlocksContainer>
+          </Notifications>
+        </Router>
+      </WordsProvider>
+    </NotificationsProvider>
   </MuiThemeProvider>
 );
 

@@ -2,7 +2,7 @@ import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { api } from '../../api/fetcher';
 
-const WordsContext = createContext('words');
+const WordsContext = createContext([]);
 
 class WordsProvider extends Component {
   static propTypes = {

@@ -1,88 +1,45 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import uuid from 'uuid';
 import { compose } from 'recompose';
 import { NotificationItem } from '..';
+import { withNotifications } from '../../context/notifications';
 import styles from './styles';
 
-const NOTIFICATION_TIMEOUT = 5000;
+const Notifications = ({ children, notifications, classes, hideNotification }) => {
+  const notificationsTextList = Object.entries(notifications);
 
-const NotificationsContext = React.createContext([]);
+  return (
+    <Fragment>
+      {children}
+      <div className={classes.notifications}>
+        {notificationsTextList.map(([id, value]) => {
+          const { text, type } = value;
 
-class Notifications extends Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    children: PropTypes.node
-  };
+          return (
+            <NotificationItem
+              type={type}
+              text={text}
+              key={id}
+              onClick={() => hideNotification(id)}
+            />
+          );
+        })}
+      </div>
+    </Fragment>
+  );
+};
 
-  static defaultProps = {
-    children: null,
-  };
-
-  state = {
-    notifications: {}
-  };
-
-  hideNotification = id => {
-    this.setState(prevState => ({
-      notifications: Object.assign({},
-        ...Object.entries(prevState.notifications)
-          .filter(([key]) => key !== id)
-          .map(([key, value]) => ({ [key]: value })))
-    }));
-  };
-
-  showNotification = (text, type) => {
-    const id = uuid();
-
-    this.setState(prevState => ({
-      notifications: {
-        ...prevState.notifications,
-        [id]: { text, type },
-      }
-    }));
-
-    setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
-  };
-
-  render() {
-    const { classes, children } = this.props;
-    const { notifications } = this.state;
-    const notificationsTextList = Object.entries(notifications);
-
-    return (
-      <React.Fragment>
-        <NotificationsContext.Provider
-          value={{
-            showNotification: this.showNotification,
-          }}
-        >
-          {children}
-        </NotificationsContext.Provider>
-        <div className={classes.notifications}>
-          {notificationsTextList.map(([id, value]) => {
-            const { text, type } = value;
-
-            return (
-              <NotificationItem
-                type={type}
-                text={text}
-                key={id}
-                onClick={() => this.hideNotification(id)}
-              />
-            );
-          })}
-        </div>
-      </React.Fragment>
-    );
-  }
-}
-
-export { NotificationsContext };
+Notifications.propTypes = {
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  notifications: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  hideNotification: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 const enhance = compose(
-  injectSheet(styles)
+  injectSheet(styles),
+  withNotifications
 );
 
 export default enhance(Notifications);
