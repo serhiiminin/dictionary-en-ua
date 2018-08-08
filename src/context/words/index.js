@@ -41,11 +41,7 @@ class WordsProvider extends Component {
         const examplesList = results && results
           .reduce((res, val) =>
               val.examples
-                ? [...res, ...val.examples.map(example => {
-                  const id = uuid();
-
-                  return ({ id, example });
-                })]
+                ? [...res, ...val.examples.map(example => ({ id: uuid(), example }))]
                 : [...res],
             []);
 
