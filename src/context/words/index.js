@@ -22,13 +22,25 @@ class WordsProvider extends Component {
 
   state = initialState;
 
+  cleanWords = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      words: initialState.words,
+    }));
+
+  cleanFoundWord = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      foundWord: initialState.foundWord,
+    }));
+
   handleFetchWords = () =>
     api.getWordsList()
       .then(words => this.setState({ words }));
 
   handleAddWord = data =>
     api.addWord({ ...data })
-      .then(() => this.handleFetchWords());
+      .then(() => this.cleanFoundWord());
 
   handleDeleteWord = id =>
     api.deleteWord(id)
@@ -50,17 +62,7 @@ class WordsProvider extends Component {
         });
       });
 
-  cleanWords = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      words: initialState.words,
-    }));
 
-  cleanFoundWord = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      foundWord: initialState.foundWord,
-    }));
 
   render() {
     const { words, foundWord } = this.state;

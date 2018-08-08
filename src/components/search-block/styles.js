@@ -1,8 +1,8 @@
 import { variables } from '../../styles/variables';
 
 const styles = {
-  searchBlock: {
-    marginTop: variables.margin.large,
+  title: {
+    margin: `0 0 ${variables.margin.medium}`,
   }
 };
 

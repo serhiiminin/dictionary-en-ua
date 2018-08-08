@@ -51,14 +51,13 @@ class AddWord extends Component {
     }));
   };
 
-  handleOnFormReset = () => {
+  handleOnFormReset = () =>
     this.setState(prevState => ({
       ...prevState,
       form: {
         ...initialState.form
       }
     }));
-  };
 
   handleOnChangeSearchInput = event => {
     clearTimeout(this.inputTimer);
@@ -142,13 +141,15 @@ class AddWord extends Component {
 
     return (
       <React.Fragment>
-        <ButtonWithRouter to='/my-words'>List of words</ButtonWithRouter>
+        <div className={classes.linkToMyWords}>
+          <ButtonWithRouter to='/my-words'>List of my words</ButtonWithRouter>
+        </div>
         <main className={classes.addWord}>
           <Form
             form={form}
             onSubmit={this.handleOnFormSubmit}
             onChange={this.handleOnFormItemChange}
-            onReset={this.handleOnFormItemChange}
+            onReset={this.handleOnFormReset}
             onChangeExample={this.handleOnExampleChange}
             addNewExample={this.handleAddNewExample}
             removeExample={this.handleRemoveExample}

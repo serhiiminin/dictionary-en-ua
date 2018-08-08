@@ -1,14 +1,11 @@
 import { variables } from '../../styles/variables';
 
 const styles = {
-  addWord: {
+  addExample: {
     display: 'grid',
-    gridTemplateColumns: '1fr 2fr',
-    rowGap: '0.5rem',
-    columnGap: '1rem',
-  },
-  linkToMyWords: {
     padding: `${variables.padding.medium} 0`,
+    justifyContent: 'end',
+    alignItems: 'center',
   }
 };
 

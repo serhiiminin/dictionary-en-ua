@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import styles from './styles';
 
 const TextFieldCustomized = ({ classes, control, ...restProps }) => (
-  <div>
+  <div className={control ? classes.textFieldControl : classes.textField}>
     <TextField
       {...restProps}
       classes={{

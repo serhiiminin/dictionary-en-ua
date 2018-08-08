@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
+import styles from './styles';
 
-const Form = ({ onSubmit, onChange, onReset, form, addNewExample, onChangeExample, removeExample }) => {
+const Form = ({ classes, onSubmit, onChange, onReset, form, addNewExample, onChangeExample, removeExample }) => {
   const { en, ru, transcription, examples } = form;
 
   return (
@@ -42,7 +44,7 @@ const Form = ({ onSubmit, onChange, onReset, form, addNewExample, onChangeExampl
             }
           />
         ))}
-        <div>
+        <div className={classes.addExample}>
           <Button onClick={addNewExample}>
             Add example
           </Button>
@@ -57,6 +59,7 @@ const Form = ({ onSubmit, onChange, onReset, form, addNewExample, onChangeExampl
 };
 
 Form.propTypes = {
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
@@ -71,6 +74,7 @@ Form.defaultProps = {
 };
 
 const enhance = compose(
+  injectSheet(styles),
   withWords,
 );
 
