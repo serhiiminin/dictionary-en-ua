@@ -1,86 +1,59 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
 
-const initialState = {
-  form: {
-    en: '',
-    ru: '',
-    transcription: '',
-    examples: [],
-  },
+const Form = ({ onSubmit, onChange, onReset, form }) => {
+  const { en, ru, transcription, example } = form;
+
+  return (
+    <form onSubmit={onSubmit}>
+      <div>
+        <TextField
+          placeholder="Russian"
+          value={ru}
+          onChange={e => onChange(e, 'ru')}
+        />
+      </div>
+      <div>
+        <TextField
+          placeholder="English"
+          value={en}
+          onChange={e => onChange(e, 'en')}
+        />
+      </div>
+      <div>
+        <TextField
+          placeholder="Transcription"
+          value={transcription}
+          onChange={e => onChange(e, 'transcription')}
+        />
+      </div>
+      <div>
+        <TextField
+          placeholder="Example"
+          value={example}
+          onChange={e => onChange(e, 'example')}
+        />
+      </div>
+      <Button type="submit" disabled={!Object.values(form)
+        .join('')}>Add word</Button>
+      {!!Object.values(form)
+        .join('') && <Button onClick={onReset}>Reset Form</Button>}
+    </form>
+  );
 };
 
-class Form extends Component {
-  state = initialState;
-
-  handleOnFormSubmit = event => {
-    event.preventDefault();
-    const { form } = this.state;
-
-    this.props.addWord({ ...form })
-      .then(() => this.handleOnFormReset())
-      .catch(error => console.log(error)); // eslint-disable-line no-console
-  };
-
-  handleOnFormItemChange = (event, field) => {
-    const { value } = event.target;
-
-    this.setState(prevState => ({ form: { ...prevState.form, [field]: value } }));
-  };
-
-  handleOnFormReset = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      form: { ...initialState.form }
-    }));
-  };
-
-  render() {
-    const { form } = this.state;
-    const { ru, en, transcription, example } = form;
-
-    return (
-      <form onSubmit={this.handleOnFormSubmit}>
-        <div>
-          <TextField
-            placeholder="Russian"
-            value={ru}
-            onChange={e => this.handleOnFormItemChange(e, 'ru')}
-          />
-        </div>
-        <div>
-          <TextField
-            placeholder="English"
-            value={en}
-            onChange={e => this.handleOnFormItemChange(e, 'en')}
-          />
-        </div>
-        <div>
-          <TextField
-            placeholder="Transcription"
-            value={transcription}
-            onChange={e => this.handleOnFormItemChange(e, 'transcription')}
-          />
-        </div>
-        <div>
-          <TextField
-            placeholder="Example"
-            value={example}
-            onChange={e => this.handleOnFormItemChange(e, 'example')}
-          />
-        </div>
-        <Button type="submit" disabled={!Object.values(form).join('')}>Add word</Button>
-        {!!Object.values(form).join('') && <Button onClick={this.handleOnFormReset}>Reset Form</Button>}
-      </form>
-    )
-  }
-}
-
 Form.propTypes = {
-  addWord: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  form: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+Form.defaultProps = {
+  form: {},
 };
 
 const enhance = compose(
