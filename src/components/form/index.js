@@ -5,7 +5,7 @@ import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
 
 const Form = ({ onSubmit, onChange, onReset, form }) => {
-  const { en, ru, transcription, example } = form;
+  const { en, ru, transcription, examples } = form;
 
   return (
     <form onSubmit={onSubmit}>
@@ -31,11 +31,14 @@ const Form = ({ onSubmit, onChange, onReset, form }) => {
         />
       </div>
       <div>
-        <TextField
-          placeholder="Example"
-          value={example}
-          onChange={e => onChange(e, 'example')}
-        />
+        {examples.map(({ example, id })=> (
+          <TextField
+            key={id}
+            placeholder="Examples"
+            value={example}
+            onChange={e => onChange(e, 'example')}
+          />
+        ))}
       </div>
       <Button type="submit" disabled={!Object.values(form)
         .join('')}>Add word</Button>

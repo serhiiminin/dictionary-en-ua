@@ -13,8 +13,11 @@ const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBefore
         <p><span>en: </span>{en}</p>
         <p>{transcription}</p>
         <ExamplesList>
-          {examples.map(example => (
-            <ExamplesListItem key={example} example={example}/>
+          {examples.map(({ example, id }) => (
+            <ExamplesListItem
+              key={id}
+              example={example}
+            />
           ))}
         </ExamplesList>
       </div>
@@ -24,7 +27,7 @@ const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBefore
 SearchResult.propTypes = {
   en: PropTypes.string,
   ru: PropTypes.string,
-  examples: PropTypes.arrayOf(PropTypes.string),
+  examples: PropTypes.arrayOf(PropTypes.object),
   transcription: PropTypes.string,
   editWordBeforeSaving: PropTypes.func.isRequired,
   addWord: PropTypes.func.isRequired,

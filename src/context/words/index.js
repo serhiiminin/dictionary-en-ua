@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 import { api } from '../../api/fetcher';
 
 const WordsContext = createContext([]);
@@ -40,7 +41,11 @@ class WordsProvider extends Component {
         const examplesList = results && results
           .reduce((res, val) =>
               val.examples
-                ? [...res, ...val.examples]
+                ? [...res, ...val.examples.map(example => {
+                  const id = uuid();
+
+                  return ({ id, example });
+                })]
                 : [...res],
             []);
 
@@ -52,7 +57,7 @@ class WordsProvider extends Component {
   cleanWords = () =>
     this.setState(prevState => ({
       ...prevState,
-        words: initialState.words,
+      words: initialState.words,
     }));
 
   cleanFoundWord = () =>
@@ -77,11 +82,11 @@ class WordsProvider extends Component {
           cleanFoundWord: this.cleanFoundWord,
         }}
       >{this.props.children}</WordsContext.Provider>
-    )
+    );
   }
 }
 
 const withWords = Cmp => props =>
   <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>;
 
-export { WordsProvider, withWords};
+export { WordsProvider, withWords };
