@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import uuid from 'uuid';
 import { ButtonWithRouter, Form, SearchBlock, ControlsSeparator } from '../../components';
 import { withWords } from '../../context/words';
+import routes from '../../routes';
 import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
@@ -142,7 +143,7 @@ class AddWord extends Component {
     return (
       <Fragment>
         <ControlsSeparator>
-          <ButtonWithRouter to='/my-words'>List of my words</ButtonWithRouter>
+          <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
         </ControlsSeparator>
         <main className={classes.addWord}>
           <Form

@@ -1,8 +1,9 @@
 import React from 'react';
 import { ButtonWithRouter } from '../../components';
+import routes from '../../routes';
 
 const Main = () => (
-  <ButtonWithRouter to='/my-words'>List of my words</ButtonWithRouter>
+  <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
 );
 
 export default Main;
