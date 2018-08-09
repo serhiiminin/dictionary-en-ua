@@ -14,7 +14,7 @@ import styles from './styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: variables.colors.block,
+      light: variables.colors.line,
       main: variables.colors.background,
       dark: variables.colors.button,
       contrastText: variables.colors.block,

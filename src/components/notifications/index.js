@@ -6,6 +6,12 @@ import { NotificationItem } from '..';
 import { withNotifications } from '../../context/notifications';
 import styles from './styles';
 
+export const notificationType = {
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+};
+
 const Notifications = ({ children, notifications, classes, hideNotification }) => {
   const notificationsTextList = Object.entries(notifications);
 

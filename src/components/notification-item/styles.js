@@ -1,4 +1,5 @@
 import { variables } from '../../styles/variables';
+import { notificationType } from '../notifications';
 
 const styles = {
   notification: {
@@ -9,13 +10,13 @@ const styles = {
     listStyle: 'none',
     transition: `all ${variables.timeout.notification}ms ease-in-out`,
   },
-  error: {
+  [notificationType.error]: {
     background: variables.colors.important,
   },
-  success: {
+  [notificationType.success]: {
     background: variables.colors.block,
   },
-  warning: {
+  [notificationType.warning]: {
     background: variables.colors.line,
   },
   topLine: {
