@@ -12,6 +12,7 @@ export const notificationType = {
   success: 'success',
   warning: 'warning',
   error: 'error',
+  info: 'info',
 };
 
 const Notifications = ({ children, notifications, classes, hideNotification }) => {

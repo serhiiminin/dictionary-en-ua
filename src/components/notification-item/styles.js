@@ -11,13 +11,16 @@ const styles = {
     transition: `all ${variables.timeout.notification}ms ease-in-out`,
   },
   [notificationType.error]: {
-    background: variables.colors.important,
+    background: variables.colors.notification.error,
   },
   [notificationType.success]: {
-    background: variables.colors.block,
+    background: variables.colors.notification.success,
   },
   [notificationType.warning]: {
-    background: variables.colors.line,
+    background: variables.colors.notification.warning,
+  },
+  [notificationType.info]: {
+    background: variables.colors.notification.info,
   },
   topLine: {
     display: 'grid',

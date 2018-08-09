@@ -4,13 +4,15 @@ import injectSheet from 'react-jss';
 import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
 import WarningIcon from '@material-ui/icons/Warning';
-import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import InfoIcon from '@material-ui/icons/Info';
 import { compose } from 'recompose';
 import { notificationType } from '../notifications';
 import styles from './styles';
 
 const icons = {
-  [notificationType.success]: <CheckCircleOutline/>,
+  [notificationType.success]: <CheckCircleOutlineIcon/>,
+  [notificationType.info]: <InfoIcon/>,
   [notificationType.warning]: <WarningIcon/>,
   [notificationType.error]: <ErrorIcon/>,
 };
