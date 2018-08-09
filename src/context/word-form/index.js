@@ -20,11 +20,13 @@ class WordFormProvider extends Component {
 
   state = initialState;
 
+  handleFillForm = form =>
+    Promise.resolve(this.setState({ form: { ...form } }));
+
   handleOnFormItemChange = (event, field) => {
     const { value } = event.target;
 
     this.setState(prevState => ({
-      ...prevState,
       form: {
         ...prevState.form,
         [field]: value
@@ -64,8 +66,6 @@ class WordFormProvider extends Component {
       }
     }));
 
-
-
   handleRemoveExample = id =>
     this.setState(prevState => ({
       ...prevState,
@@ -91,6 +91,7 @@ class WordFormProvider extends Component {
       <WordFormContext.Provider
         value={{
           form,
+          onFillForm: this.handleFillForm,
           onFormItemChange: this.handleOnFormItemChange,
           onExampleChange: this.handleOnExampleChange,
           onAddNewExample: this.handleAddNewExample,

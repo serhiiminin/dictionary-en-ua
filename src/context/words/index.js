@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { api } from '../../api/fetcher';
 
-const WordsContext = createContext([]);
+const WordsContext = createContext({});
 
 const initialState = {
   words: [],

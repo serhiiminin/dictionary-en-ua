@@ -6,7 +6,7 @@ import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
-import { Main, MyWords, AddWord } from '../pages';
+import { Main, MyWords, AddWord, SearchWord } from '../pages';
 import StateProvider from '../context/provider';
 import routes from '../routes';
 import styles from './styles';
@@ -33,6 +33,7 @@ const RootCmp = () => (
                 <Route exact path={routes.root} component={Main}/>
                 <Route exact path={routes.login} render={() => 'login'}/>
                 <Route exact path={routes.addWord} component={AddWord}/>
+                <Route exact path={routes.searchWord} component={SearchWord}/>
                 <Route exact path={routes.myWords} component={MyWords}/>
               </Switch>
             </BlocksContainer>

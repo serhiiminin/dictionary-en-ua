@@ -1,62 +1,37 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
+import { withRouter } from 'react-router-dom';
+import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { ButtonWithRouter, Form, SearchBlock, ControlsSeparator } from '../../components';
+import { ButtonWithRouter, ControlsSeparator, SearchResult } from '../../components';
+import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
+import { TextField } from '../../mui-components';
 import routes from '../../routes';
+import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
 const initialState = {
-  form: {
-    en: '',
-    ru: '',
-    transcription: '',
-    examples: [],
-  },
   searchValue: '',
 };
 
-class AddWord extends Component {
+class SearchWord extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     foundWord: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     addWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
+    onFillForm: PropTypes.func.isRequired,
   };
 
   state = initialState;
 
-  handleOnFormSubmit = event => {
-    event.preventDefault();
-    const { form } = this.state;
-
-    this.props.addWord({ ...form })
-      .then(() => this.handleOnFormReset())
-      .catch(error => console.log(error)); // eslint-disable-line no-console
-  };
-
-  handleOnFormItemChange = (event, field) => {
-    const { value } = event.target;
-
-    this.setState(prevState => ({
-      ...prevState,
-      form: {
-        ...prevState.form,
-        [field]: value
-      }
-    }));
-  };
-
-  handleOnFormReset = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      form: {
-        ...initialState.form
-      }
-    }));
+  componentWillUnmount() {
+    this.props.cleanFoundWord();
+  }
 
   handleOnChangeSearchInput = event => {
     clearTimeout(this.inputTimer);
@@ -78,84 +53,43 @@ class AddWord extends Component {
   };
 
   handleEditBeforeSaving = () => {
-    const { foundWord } = this.props;
-    const { en, ru, transcription, examples } = foundWord;
+    const { foundWord, onFillForm, history } = this.props;
 
-    this.setState({
-      ...initialState,
-      form: { en, ru, transcription, examples },
-    });
+    this.setState({ ...initialState });
+    onFillForm(foundWord)
+      .then(history.push(routes.addWord));
   };
 
-  handleAddWordToList = () =>
-    this.props.addWord({
-      ...this.props.foundWord,
+  handleAddWordToList = () => {
+    const { addWord, foundWord, cleanFoundWord } = this.props;
+
+    return addWord({
+      ...foundWord,
     })
-      .then(this.props.cleanFoundWord());
-
-  handleAddNewExample = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      form: {
-        ...prevState.form,
-        examples: [
-          ...prevState.form.examples,
-          {
-            id: uuid(),
-            example: ''
-          }
-        ]
-      }
-    }));
-
-  handleOnExampleChange = (event, currentId) => {
-    const { value } = event.target;
-
-    this.setState(prevState => {
-      const updatedExamples = [...prevState.form.examples]
-        .map(item => item.id === currentId ? ({ ...item, example: value, }) : item);
-
-      return ({
-        ...prevState,
-        form: {
-          ...prevState.form,
-          examples: updatedExamples,
-        }
-      });
-    });
+      .then(cleanFoundWord());
   };
-
-  handleRemoveExample = id =>
-    this.setState(prevState => ({
-      ...prevState,
-      form: {
-        ...prevState.form,
-        examples: [...prevState.form.examples].filter(example => example.id !== id),
-      }
-    }));
 
   render() {
-    const { classes } = this.props;
-    const { form, searchValue } = this.state;
+    const { searchValue } = this.state;
+    const { classes, foundWord } = this.props;
+    const { en, ru, examples, transcription } = foundWord;
 
     return (
       <Fragment>
         <ControlsSeparator>
           <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
         </ControlsSeparator>
-        <main className={classes.addWord}>
-          <Form
-            form={form}
-            onSubmit={this.handleOnFormSubmit}
-            onChange={this.handleOnFormItemChange}
-            onReset={this.handleOnFormReset}
-            onChangeExample={this.handleOnExampleChange}
-            addNewExample={this.handleAddNewExample}
-            removeExample={this.handleRemoveExample}
-          />
-          <SearchBlock
-            searchValue={searchValue}
+        <main className={classes.searchWord}>
+          <TextField
+            value={searchValue}
+            placeholder="Search a word"
             onChange={this.handleOnChangeSearchInput}
+          />
+          <SearchResult
+            en={en}
+            ru={ru}
+            examples={examples}
+            transcription={transcription}
             addWord={this.handleAddWordToList}
             editWordBeforeSaving={this.handleEditBeforeSaving}
           />
@@ -166,7 +100,10 @@ class AddWord extends Component {
 }
 
 const enhance = compose(
+  injectSheet(styles),
+  withRouter,
   withWords,
+  withWordForm,
 );
 
-export default enhance(AddWord);
+export default enhance(SearchWord);
