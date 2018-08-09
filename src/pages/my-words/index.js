@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { Table, ButtonWithRouter, ControlsSeparator } from '../../components';
+import { withNotifications } from '../../context/notifications';
 import routes from '../../routes';
 import styles from './styles';
 
@@ -21,6 +22,7 @@ MyWords.propTypes = {
 
 const enhance = compose(
   injectSheet(styles),
+  withNotifications
 );
 
 export default enhance(MyWords);

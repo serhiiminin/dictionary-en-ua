@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withStyles, Table, Paper, TablePagination } from '@material-ui/core';
 import { Toolbar, TableHead, TableBody } from '..';
+import { withNotifications } from '../../context/notifications';
 import { withWords } from '../../context/words';
 import styles from './styles';
 
@@ -12,6 +13,7 @@ class TableCmp extends Component {
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
+    showNotification: PropTypes.func.isRequired,
     screenWidth: PropTypes.number,
   };
 
@@ -29,7 +31,9 @@ class TableCmp extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchWords();
+    this.props.fetchWords()
+      .catch(e => this.props.showNotification(e.message, 'error'))
+    ;
   }
 
   componentWillUnmount() {
@@ -154,6 +158,7 @@ class TableCmp extends Component {
 
 const enhance = compose(
   withStyles(styles),
+  withNotifications,
   withWords,
 );
 
