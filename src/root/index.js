@@ -22,7 +22,7 @@ const theme = createMuiTheme({
   },
 });
 
-const RootCmp = () => (
+const Root = () => (
   <MuiThemeProvider theme={theme}>
     <StateProvider>
         <Router>
@@ -43,11 +43,11 @@ const RootCmp = () => (
   </MuiThemeProvider>
 );
 
-const Root = compose(
+const enhance = compose(
   injectSheet({
     ...normalize,
     ...styles
   }),
-)(RootCmp);
+);
 
-export { Root };
+export default enhance(Root);
