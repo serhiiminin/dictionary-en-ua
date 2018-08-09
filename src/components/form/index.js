@@ -1,78 +1,101 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
 import { ControlsSeparator } from '..';
 import styles from './styles';
 
-const Form = ({ classes, onSubmit, onChange, onReset, form, addNewExample, onChangeExample, removeExample }) => {
-  const { en, ru, transcription, examples } = form;
+class Form extends Component {
+  static propTypes = {
+    form: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    onAddNewExample: PropTypes.func.isRequired,
+    onRemoveExample: PropTypes.func.isRequired,
+    onResetForm: PropTypes.func.isRequired,
+    onExampleChange: PropTypes.func.isRequired,
+    onFormItemChange: PropTypes.func.isRequired,
+    addWord: PropTypes.func.isRequired,
+  };
 
-  return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <TextField
-          placeholder="Russian"
-          value={ru}
-          onChange={e => onChange(e, 'ru')}
-        />
-      </div>
-      <div>
-        <TextField
-          placeholder="English"
-          value={en}
-          onChange={e => onChange(e, 'en')}
-        />
-      </div>
-      <div>
-        <TextField
-          placeholder="Transcription"
-          value={transcription}
-          onChange={e => onChange(e, 'transcription')}
-        />
-      </div>
-      <div>
-        {examples.map(({ example, id }) => (
+  static defaultProps = {
+    form: {},
+  };
+
+  componentWillUnmount() {
+    this.props.onResetForm();
+  }
+
+  handleOnSubmit = event => {
+    event.preventDefault();
+    const { form, addWord, onResetForm } = this.props;
+
+    addWord({ ...form })
+      .then(() => onResetForm())
+      .catch(error => console.log(error)); // eslint-disable-line no-console
+  };
+
+  render() {
+    const {
+      form, onResetForm, onAddNewExample, onRemoveExample,
+      onExampleChange, onFormItemChange
+    } = this.props;
+    const { en, ru, transcription, examples } = form;
+
+    return (
+      <form onSubmit={this.handleOnSubmit}>
+        <div>
           <TextField
-            key={id}
-            placeholder="Example"
-            value={example}
-            onChange={e => onChangeExample(e, id)}
-            control={
-              <Button onClick={() => removeExample(id)}>-</Button>
-            }
+            placeholder="Russian"
+            value={ru}
+            onChange={e => onFormItemChange(e, 'ru')}
           />
-        ))}
-        <div className={classes.addExample}>
-          <Button onClick={addNewExample}>
-            Add an example
-          </Button>
         </div>
-      </div>
-      <ControlsSeparator
-        align='right'
-      >
-        <Button type="submit" disabled={!Object.values(form)
-          .join('')}>Save word</Button>
-        {!!Object.values(form)
-          .join('') && <Button onClick={onReset}>Reset Form</Button>}
-      </ControlsSeparator>
-    </form>
-  );
-};
-
-Form.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
-  addNewExample: PropTypes.func.isRequired,
-  removeExample: PropTypes.func.isRequired,
-  onChangeExample: PropTypes.func.isRequired,
-  form: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
+        <div>
+          <TextField
+            placeholder="English"
+            value={en}
+            onChange={e => onFormItemChange(e, 'en')}
+          />
+        </div>
+        <div>
+          <TextField
+            placeholder="Transcription"
+            value={transcription}
+            onChange={e => onFormItemChange(e, 'transcription')}
+          />
+        </div>
+        <div>
+          {examples.map(({ example, id }) => (
+            <TextField
+              key={id}
+              placeholder="Example"
+              value={example}
+              onChange={e => onExampleChange(e, id)}
+              control={
+                <Button onClick={() => onRemoveExample(id)}>-</Button>
+              }
+            />
+          ))}
+          <ControlsSeparator>
+            <Button onClick={onAddNewExample}>
+              Add an example
+            </Button>
+          </ControlsSeparator>
+        </div>
+        <ControlsSeparator
+          align='right'
+        >
+          <Button type="submit" disabled={!Object.values(form)
+            .join('')}>Save word</Button>
+          {!!Object.values(form)
+            .join('') && <Button onClick={onResetForm}>Reset Form</Button>}
+        </ControlsSeparator>
+      </form>
+    );
+  }
+}
 
 Form.defaultProps = {
   form: {},
@@ -81,6 +104,7 @@ Form.defaultProps = {
 const enhance = compose(
   injectSheet(styles),
   withWords,
+  withWordForm,
 );
 
 export default enhance(Form);

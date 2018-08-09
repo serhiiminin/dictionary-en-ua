@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { Link } from 'react-router-dom';
+import routes from '../../routes';
 import styles from './styles';
 
 const Header = ({ classes }) => (
   <div className={classes.header}>
     <h1>
       <Link
-        to='/'
+        to={routes.root}
         className={classes.headerLink}
       >My dictionary</Link>
     </h1>
