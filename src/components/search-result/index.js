@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
+import { compose } from 'recompose';
 import { ExamplesList, ExamplesListItem, ControlsSeparator } from '..';
 import { Button } from '../../mui-components';
+import styles from './styles';
 
-const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBeforeSaving }) =>
+const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBeforeSaving, classes, pushWordToInput }) =>
   en && ru
     ? (
       <div>
@@ -11,20 +14,21 @@ const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBefore
           <Button onClick={addWord}>Add to my words</Button>
           <Button onClick={editWordBeforeSaving}>Edit before saving</Button>
         </ControlsSeparator>
-        <p><span>ru: </span>{ru}</p>
-        <p><span>en: </span>{en}</p>
-        <p>{transcription}</p>
+        <p><span>Russian: </span>{ru}</p>
+        <p><span>English: </span>{en}</p>
+        <p><span>transcription: </span>{transcription}</p>
         <ExamplesList>
           {examples.map(({ example, id }) => (
             <ExamplesListItem
               key={id}
               example={example}
+              pushWordToInput={pushWordToInput}
             />
           ))}
         </ExamplesList>
       </div>
     )
-    : <div>No results</div>;
+    : <div className={classes.noResults}>No results</div>;
 
 SearchResult.propTypes = {
   en: PropTypes.string,
@@ -33,6 +37,8 @@ SearchResult.propTypes = {
   transcription: PropTypes.string,
   editWordBeforeSaving: PropTypes.func.isRequired,
   addWord: PropTypes.func.isRequired,
+  pushWordToInput: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 SearchResult.defaultProps = {
@@ -42,4 +48,8 @@ SearchResult.defaultProps = {
   transcription: '',
 };
 
-export default SearchResult;
+const enhance = compose(
+  injectSheet(styles),
+);
+
+export default enhance(SearchResult);

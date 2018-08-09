@@ -16,6 +16,13 @@ const initialState = {
   searchValue: '',
 };
 
+const composeSearchData = text => {
+  const from = encodeURIComponent(text) === text ? 'en' : 'ru';
+  const to = encodeURIComponent(text) === text ? 'ru' : 'en';
+
+  return { text, from, to }
+};
+
 class SearchWord extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -33,11 +40,18 @@ class SearchWord extends Component {
     this.props.cleanFoundWord();
   }
 
+  handleSearchWord = text => {
+    clearTimeout(this.inputTimer);
+    this.setState({ searchValue: text });
+    this.inputTimer = setTimeout(() => {
+      this.props.searchWord(composeSearchData(text));
+    }, SEARCH_INPUT_TIMEOUT);
+  };
+
+
   handleOnChangeSearchInput = event => {
     clearTimeout(this.inputTimer);
     const { value } = event.target;
-    const from = encodeURIComponent(value) === value ? 'en' : 'ru';
-    const to = encodeURIComponent(value) === value ? 'ru' : 'en';
 
     this.setState({ searchValue: value });
 
@@ -47,9 +61,7 @@ class SearchWord extends Component {
       this.setState({ searchValue });
       return;
     }
-    this.inputTimer = setTimeout(() => {
-      this.props.searchWord({ text: value, from, to });
-    }, SEARCH_INPUT_TIMEOUT);
+    this.handleSearchWord(value)
   };
 
   handleEditBeforeSaving = () => {
@@ -92,6 +104,7 @@ class SearchWord extends Component {
             transcription={transcription}
             addWord={this.handleAddWordToList}
             editWordBeforeSaving={this.handleEditBeforeSaving}
+            pushWordToInput={this.handleSearchWord}
           />
         </main>
       </Fragment>
