@@ -4,6 +4,7 @@ import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
+import { ControlsSeparator } from '..';
 import styles from './styles';
 
 const Form = ({ classes, onSubmit, onChange, onReset, form, addNewExample, onChangeExample, removeExample }) => {
@@ -46,14 +47,18 @@ const Form = ({ classes, onSubmit, onChange, onReset, form, addNewExample, onCha
         ))}
         <div className={classes.addExample}>
           <Button onClick={addNewExample}>
-            Add example
+            Add an example
           </Button>
         </div>
       </div>
-      <Button type="submit" disabled={!Object.values(form)
-        .join('')}>Save word</Button>
-      {!!Object.values(form)
-        .join('') && <Button onClick={onReset}>Reset Form</Button>}
+      <ControlsSeparator
+        align='right'
+      >
+        <Button type="submit" disabled={!Object.values(form)
+          .join('')}>Save word</Button>
+        {!!Object.values(form)
+          .join('') && <Button onClick={onReset}>Reset Form</Button>}
+      </ControlsSeparator>
     </form>
   );
 };

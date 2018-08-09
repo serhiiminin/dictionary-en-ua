@@ -12,3 +12,4 @@ export { default as ExamplesList } from './examples-list';
 export { default as ExamplesListItem } from './examples-list-item';
 export { default as Notifications } from './notifications';
 export { default as NotificationItem } from './notification-item';
+export { default as ControlsSeparator } from './controls-separator';

@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ExamplesList, ExamplesListItem } from '..';
+import { ExamplesList, ExamplesListItem, ControlsSeparator } from '..';
 import { Button } from '../../mui-components';
 
 const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBeforeSaving }) =>
-  en && ru && en !== ru
+  en && ru
     ? (
       <div>
-        <Button onClick={addWord}>Add to my words</Button>
-        <Button onClick={editWordBeforeSaving}>Edit before saving</Button>
+        <ControlsSeparator>
+          <Button onClick={addWord}>Add to my words</Button>
+          <Button onClick={editWordBeforeSaving}>Edit before saving</Button>
+        </ControlsSeparator>
         <p><span>ru: </span>{ru}</p>
         <p><span>en: </span>{en}</p>
         <p>{transcription}</p>

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import uuid from 'uuid';
-import { ButtonWithRouter, Form, SearchBlock } from '../../components';
+import { ButtonWithRouter, Form, SearchBlock, ControlsSeparator } from '../../components';
 import { withWords } from '../../context/words';
 import styles from './styles';
 
@@ -140,10 +140,10 @@ class AddWord extends Component {
     const { form, searchValue } = this.state;
 
     return (
-      <React.Fragment>
-        <div className={classes.linkToMyWords}>
+      <Fragment>
+        <ControlsSeparator>
           <ButtonWithRouter to='/my-words'>List of my words</ButtonWithRouter>
-        </div>
+        </ControlsSeparator>
         <main className={classes.addWord}>
           <Form
             form={form}
@@ -161,7 +161,7 @@ class AddWord extends Component {
             editWordBeforeSaving={this.handleEditBeforeSaving}
           />
         </main>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

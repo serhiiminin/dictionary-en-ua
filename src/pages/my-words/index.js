@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { Table, ButtonWithRouter } from '../../components';
+import { Table, ButtonWithRouter, ControlsSeparator } from '../../components';
 import styles from './styles';
 
 const MyWords = ({ classes }) => (
   <main className={classes.myWords}>
-    <ButtonWithRouter to='/add-word'>Add a new word</ButtonWithRouter>
-    <Table />
+    <ControlsSeparator align='right'>
+      <ButtonWithRouter to='/add-word'>Add a new word</ButtonWithRouter>
+    </ControlsSeparator>
+    <Table/>
   </main>
 );
 
