@@ -81,8 +81,8 @@ class SearchWord extends Component {
         </ControlsSeparator>
         <main className={classes.searchWord}>
           <TextField
+            label="Search a word"
             value={searchValue}
-            placeholder="Search a word"
             onChange={this.handleOnChangeSearchInput}
           />
           <SearchResult

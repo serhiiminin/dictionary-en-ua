@@ -47,21 +47,21 @@ class Form extends Component {
       <form onSubmit={this.handleOnSubmit}>
         <div>
           <TextField
-            placeholder="Russian"
+            label="Russian"
             value={ru}
             onChange={e => onFormItemChange(e, 'ru')}
           />
         </div>
         <div>
           <TextField
-            placeholder="English"
+            label="English"
             value={en}
             onChange={e => onFormItemChange(e, 'en')}
           />
         </div>
         <div>
           <TextField
-            placeholder="Transcription"
+            label="Transcription"
             value={transcription}
             onChange={e => onFormItemChange(e, 'transcription')}
           />
@@ -70,7 +70,7 @@ class Form extends Component {
           {examples.map(({ example, id }) => (
             <TextField
               key={id}
-              placeholder="Example"
+              label="Example"
               value={example}
               onChange={e => onExampleChange(e, id)}
               control={
