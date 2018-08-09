@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
@@ -74,7 +75,9 @@ class Form extends Component {
               value={example}
               onChange={e => onExampleChange(e, id)}
               control={
-                <Button onClick={() => onRemoveExample(id)}>-</Button>
+                <Button onClick={() => onRemoveExample(id)}>
+                  <DeleteIcon/>
+                </Button>
               }
             />
           ))}
