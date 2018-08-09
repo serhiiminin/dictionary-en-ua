@@ -39,12 +39,11 @@ const TableBodyCmp = props => {
                   ? examples[0].example
                   : '-'
               }</TableCell>
-              <TableCell>{moment(dateCreated)
-                .isSame(moment(), 'day')
-                ? `Today at ${moment(dateCreated)
-                  .format('hh:mm:ss a') }`
-                : moment(dateCreated)
-                .format('DD.MM.YY, hh:mm a') || '-'}</TableCell>
+              <TableCell>
+                <time dateTime={dateCreated} title={new Date(dateCreated).toLocaleString()}>
+                  {moment(dateCreated).fromNow()}
+                  </time>
+              </TableCell>
             </TableRow>
           );
         })}
