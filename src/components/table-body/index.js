@@ -36,7 +36,7 @@ const TableBodyCmp = props => {
               <TableCell>{transcription || '-'}</TableCell>
               <TableCell>{
                 examples.length > 0
-                  ? examples[Math.floor(Math.random() * examples.length)].example
+                  ? examples[0].example
                   : '-'
               }</TableCell>
               <TableCell>{moment(dateCreated)

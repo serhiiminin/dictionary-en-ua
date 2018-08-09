@@ -10,13 +10,13 @@ const styles = {
     transition: `all ${variables.timeout.notification}ms ease-in-out`,
   },
   error: {
-    background: variables.colors.notifications,
+    background: variables.colors.important,
   },
   success: {
-    background: variables.colors.notifications,
+    background: variables.colors.block,
   },
   warning: {
-    background: variables.colors.notifications,
+    background: variables.colors.line,
   },
   topLine: {
     display: 'grid',
@@ -36,8 +36,7 @@ const styles = {
     padding: 0,
     border: 0,
     borderRadius: '50%',
-    transform: 'rotate(45deg)',
-    fontSize: '1.2em',
+    fontSize: '.81em',
     outline: 'none',
     '&:hover': {
       cursor: 'pointer',

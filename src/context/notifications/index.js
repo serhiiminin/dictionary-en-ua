@@ -24,7 +24,7 @@ class NotificationsProvider extends Component {
     }));
   };
 
-  showNotification = (text, type) => {
+  showNotification = (text, type, autoHide=true) => {
     const id = uuid();
 
     this.setState(prevState => ({
@@ -33,8 +33,9 @@ class NotificationsProvider extends Component {
         [id]: { text, type },
       }
     }));
-
-    setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
+    if(autoHide) {
+      setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
+    }
   };
 
   render() {

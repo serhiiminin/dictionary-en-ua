@@ -20,7 +20,7 @@ MyWords.propTypes = {
 };
 
 const enhance = compose(
-  injectSheet(styles)
+  injectSheet(styles),
 );
 
 export default enhance(MyWords);

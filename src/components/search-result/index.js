@@ -16,7 +16,7 @@ const SearchResult = ({ en, ru, examples, transcription, addWord, editWordBefore
         </ControlsSeparator>
         <p><span>Russian: </span>{ru}</p>
         <p><span>English: </span>{en}</p>
-        <p><span>transcription: </span>{transcription}</p>
+        <p><span>Transcription: </span>{transcription}</p>
         <ExamplesList>
           {examples.map(({ example, id }) => (
             <ExamplesListItem

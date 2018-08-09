@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
+import CloseIcon from '@material-ui/icons/Close';
 import { compose } from 'recompose';
 import styles from './styles';
 
@@ -13,7 +14,7 @@ const NotificationItem = ({ classes, onClick, text, type }) => (
             type='button'
             className={classes.closeButton}
             onClick={onClick}
-          >+
+          ><CloseIcon/>
           </button>
         </div>
       </div>
