@@ -34,7 +34,11 @@ const TableBodyCmp = props => {
               <TableCell component="th" scope="row">{ru || '-'}</TableCell>
               <TableCell>{en || '-'}</TableCell>
               <TableCell>{transcription || '-'}</TableCell>
-              <TableCell>{examples ? examples[0] : '-'}</TableCell>
+              <TableCell>{
+                examples.length > 0
+                  ? examples[Math.floor(Math.random() * examples.length)].example
+                  : '-'
+              }</TableCell>
               <TableCell>{moment(dateCreated)
                 .isSame(moment(), 'day')
                 ? `Today at ${moment(dateCreated)

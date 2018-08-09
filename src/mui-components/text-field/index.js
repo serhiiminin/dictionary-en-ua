@@ -4,25 +4,34 @@ import { withStyles, TextField } from '@material-ui/core';
 import { compose } from 'recompose';
 import styles from './styles';
 
-const TextFieldCustomized = ({ classes, ...restProps }) => (
-  <TextField
-    {...restProps}
-    classes={{
-      root: classes.root,
-    }}
-    InputProps={{
-      classes: {
-        underline: classes.underline,
-      },
-    }}
-    InputLabelProps={{
-      className: classes.label,
-    }}
-  />
+const TextFieldCustomized = ({ classes, control, ...restProps }) => (
+  <div className={control ? classes.textFieldControl : classes.textField}>
+    <TextField
+      {...restProps}
+      classes={{
+        root: classes.root,
+      }}
+      InputProps={{
+        classes: {
+          underline: classes.underline,
+        },
+      }}
+      InputLabelProps={{
+        className: classes.label,
+      }}
+    />
+    {control}
+  </div>
+
 );
 
 TextFieldCustomized.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  control: PropTypes.node,
+};
+
+TextFieldCustomized.defaultProps = {
+  control: null,
 };
 
 const enhance = compose(

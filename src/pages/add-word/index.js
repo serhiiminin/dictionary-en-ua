@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { ButtonWithRouter, Form, SearchBlock } from '../../components';
+import uuid from 'uuid';
+import { ButtonWithRouter, Form, SearchBlock, ControlsSeparator } from '../../components';
 import { withWords } from '../../context/words';
 import styles from './styles';
 
@@ -50,14 +51,13 @@ class AddWord extends Component {
     }));
   };
 
-  handleOnFormReset = () => {
+  handleOnFormReset = () =>
     this.setState(prevState => ({
       ...prevState,
       form: {
         ...initialState.form
       }
     }));
-  };
 
   handleOnChangeSearchInput = event => {
     clearTimeout(this.inputTimer);
@@ -94,19 +94,65 @@ class AddWord extends Component {
     })
       .then(this.props.cleanFoundWord());
 
+  handleAddNewExample = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      form: {
+        ...prevState.form,
+        examples: [
+          ...prevState.form.examples,
+          {
+            id: uuid(),
+            example: ''
+          }
+        ]
+      }
+    }));
+
+  handleOnExampleChange = (event, currentId) => {
+    const { value } = event.target;
+
+    this.setState(prevState => {
+      const updatedExamples = [...prevState.form.examples]
+        .map(item => item.id === currentId ? ({ ...item, example: value, }) : item);
+
+      return ({
+        ...prevState,
+        form: {
+          ...prevState.form,
+          examples: updatedExamples,
+        }
+      });
+    });
+  };
+
+  handleRemoveExample = id =>
+    this.setState(prevState => ({
+      ...prevState,
+      form: {
+        ...prevState.form,
+        examples: [...prevState.form.examples].filter(example => example.id !== id),
+      }
+    }));
+
   render() {
     const { classes } = this.props;
     const { form, searchValue } = this.state;
 
     return (
-      <React.Fragment>
-        <ButtonWithRouter to='my-words'>List of words</ButtonWithRouter>
+      <Fragment>
+        <ControlsSeparator>
+          <ButtonWithRouter to='/my-words'>List of my words</ButtonWithRouter>
+        </ControlsSeparator>
         <main className={classes.addWord}>
           <Form
             form={form}
             onSubmit={this.handleOnFormSubmit}
             onChange={this.handleOnFormItemChange}
-            onReset={this.handleOnFormItemChange}
+            onReset={this.handleOnFormReset}
+            onChangeExample={this.handleOnExampleChange}
+            addNewExample={this.handleAddNewExample}
+            removeExample={this.handleRemoveExample}
           />
           <SearchBlock
             searchValue={searchValue}
@@ -115,7 +161,7 @@ class AddWord extends Component {
             editWordBeforeSaving={this.handleEditBeforeSaving}
           />
         </main>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

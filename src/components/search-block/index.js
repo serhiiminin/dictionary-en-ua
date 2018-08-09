@@ -12,7 +12,7 @@ const SearchBlock = ({ classes, searchValue, onChange, foundWord, addWord, editW
 
   return (
     <div className={classes.searchBlock}>
-      <h3>Try to search</h3>
+      <h3 className={classes.title}>Try to search</h3>
       <TextField
         value={searchValue}
         placeholder="Search a word"

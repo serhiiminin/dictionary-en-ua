@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 import { api } from '../../api/fetcher';
 
 const WordsContext = createContext([]);
@@ -21,13 +22,25 @@ class WordsProvider extends Component {
 
   state = initialState;
 
+  cleanWords = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      words: initialState.words,
+    }));
+
+  cleanFoundWord = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      foundWord: initialState.foundWord,
+    }));
+
   handleFetchWords = () =>
     api.getWordsList()
       .then(words => this.setState({ words }));
 
   handleAddWord = data =>
     api.addWord({ ...data })
-      .then(() => this.handleFetchWords());
+      .then(() => this.cleanFoundWord());
 
   handleDeleteWord = id =>
     api.deleteWord(id)
@@ -40,7 +53,7 @@ class WordsProvider extends Component {
         const examplesList = results && results
           .reduce((res, val) =>
               val.examples
-                ? [...res, ...val.examples]
+                ? [...res, ...val.examples.map(example => ({ id: uuid(), example }))]
                 : [...res],
             []);
 
@@ -49,17 +62,7 @@ class WordsProvider extends Component {
         });
       });
 
-  cleanWords = () =>
-    this.setState(prevState => ({
-      ...prevState,
-        words: initialState.words,
-    }));
 
-  cleanFoundWord = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      foundWord: initialState.foundWord,
-    }));
 
   render() {
     const { words, foundWord } = this.state;
@@ -77,11 +80,11 @@ class WordsProvider extends Component {
           cleanFoundWord: this.cleanFoundWord,
         }}
       >{this.props.children}</WordsContext.Provider>
-    )
+    );
   }
 }
 
 const withWords = Cmp => props =>
   <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>;
 
-export { WordsProvider, withWords};
+export { WordsProvider, withWords };
