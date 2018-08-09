@@ -6,9 +6,8 @@ import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
-import { WordsProvider } from '../context/words';
-import { NotificationsProvider } from '../context/notifications';
 import { Main, MyWords, AddWord } from '../pages';
+import StateProvider from '../context/provider';
 import routes from '../routes';
 import styles from './styles';
 
@@ -25,8 +24,7 @@ const theme = createMuiTheme({
 
 const RootCmp = () => (
   <MuiThemeProvider theme={theme}>
-    <NotificationsProvider>
-      <WordsProvider>
+    <StateProvider>
         <Router>
           <Notifications>
             <BlocksContainer>
@@ -40,8 +38,7 @@ const RootCmp = () => (
             </BlocksContainer>
           </Notifications>
         </Router>
-      </WordsProvider>
-    </NotificationsProvider>
+    </StateProvider>
   </MuiThemeProvider>
 );
 
