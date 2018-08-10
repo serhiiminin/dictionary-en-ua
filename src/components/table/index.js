@@ -107,6 +107,7 @@ class TableCmp extends Component {
     const { words, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
 
+
     return (
       <Paper className={classes.root}>
         <Toolbar
@@ -117,7 +118,7 @@ class TableCmp extends Component {
         <Table className={classes.table}>
           <TableHead
             screenWidth={screenWidth}
-            cells={['Russian', 'English', 'Transcription', 'Example', 'Date']}
+            cells={['English', 'Russian', 'Transcription', 'Example', 'Date']}
             numSelected={selected.length}
             order={order}
             orderBy={orderBy}

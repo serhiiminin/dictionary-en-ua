@@ -32,7 +32,7 @@ const TableBodyCmp = props => {
             >
               <TableCell padding="checkbox"><Checkbox checked={isSelectedCurrent}/></TableCell>
               <TableCell>{en}</TableCell>
-              <TableCell component="th" scope="row">{ru}</TableCell>
+              <TableCell>{ru}</TableCell>
               <TableCell>{transcription}</TableCell>
               <TableCell>{
                 examples.length > 0

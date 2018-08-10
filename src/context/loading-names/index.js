@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const LoadingNamesContext = createContext({});
 
 const initialState = {
-  loadingNames: [],
+  currentLoadingNames: [],
 };
 
 class LoadingNamesProvider extends Component {
@@ -16,21 +16,21 @@ class LoadingNamesProvider extends Component {
 
   handleStartLoading = name =>
     this.setState(prevState => ({
-      loadingNames: [...prevState.loadingNames, name]
+      currentLoadingNames: [...prevState.currentLoadingNames, name]
     }));
 
   handleStopLoading = name =>
     this.setState(prevState => ({
-      loadingNames: [...prevState.loadingNames].filter(loadingName => loadingName !== name)
+      currentLoadingNames: [...prevState.currentLoadingNames].filter(loadingName => loadingName !== name)
     }));
 
   render() {
-    const { loadingNames } = this.state;
+    const { currentLoadingNames } = this.state;
 
     return (
       <LoadingNamesContext.Provider
         value={{
-          loadingNames,
+          currentLoadingNames,
           startLoading: this.handleStartLoading,
           stopLoading: this.handleStopLoading,
         }}
