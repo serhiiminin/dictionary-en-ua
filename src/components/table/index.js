@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withStyles, Table, Paper, TablePagination } from '@material-ui/core';
+import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade } from '@material-ui/core';
 import { Toolbar, TableHead, TableBody } from '..';
+import { withLoadingNames } from '../../context/loading-names';
 import { withWords } from '../../context/words';
+import { loadingNames } from '../../defaults';
 import styles from './styles';
 
 class TableCmp extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/forbid-prop-types
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
@@ -17,6 +20,7 @@ class TableCmp extends Component {
 
   static defaultProps = {
     screenWidth: null,
+    currentLoadingNames: [],
   };
 
   state = {
@@ -103,10 +107,10 @@ class TableCmp extends Component {
   };
 
   render() {
-    const { classes, screenWidth } = this.props;
+    const { classes, screenWidth, currentLoadingNames } = this.props;
     const { words, order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
-
+    const loading = currentLoadingNames.includes(loadingNames.wordsList);
 
     return (
       <Paper className={classes.root}>
@@ -126,6 +130,14 @@ class TableCmp extends Component {
             onRequestSort={this.handleRequestSort}
             rowCount={words.length}
           />
+        </Table>
+        <Fade
+          in={loading}
+          style={{ transitionDelay: loading ? '300ms' : '' }}
+        >
+          <LinearProgress color='secondary' />
+        </Fade>
+        <Table>
           <TableBody
             screenWidth={screenWidth}
             words={words}
@@ -155,6 +167,7 @@ class TableCmp extends Component {
 
 const enhance = compose(
   withStyles(styles),
+  withLoadingNames,
   withWords,
 );
 

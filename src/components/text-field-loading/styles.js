@@ -1,9 +1,9 @@
 const styles = {
   textFieldLoading: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    // display: 'grid',
+    // gridAutoFlow: 'column',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
   }
 };
 

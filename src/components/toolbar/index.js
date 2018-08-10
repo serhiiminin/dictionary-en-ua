@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withStyles, Toolbar, Typography, Tooltip, IconButton, CircularProgress, Fade } from '@material-ui/core';
+import { withStyles, Toolbar, Typography, Tooltip, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { withLoadingNames } from '../../context/loading-names';
-import { loadingNames } from '../../defaults';
 import styles from './styles';
 
-const ToolbarCmp = ({ classes, numSelected, deleteItems, selected, currentLoadingNames }) => {
-  const loading = currentLoadingNames.includes(loadingNames.wordsList)
-
-  return (
+const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
     <Toolbar
       className={classes.root}
     >
@@ -23,13 +18,6 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected, currentLoadin
         ) : (
           <Typography variant="title" id="tableTitle">
             Saved words
-            <Fade
-              in={loading}
-              style={{ transitionDelay: loading ? '300ms' : '' }}
-              unmountOnExit
-            >
-              <CircularProgress/>
-            </Fade>
           </Typography>
         )}
       </div>
@@ -56,23 +44,16 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected, currentLoadin
       </div>
     </Toolbar>
   );
-};
 
 ToolbarCmp.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  currentLoadingNames: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/forbid-prop-types
   numSelected: PropTypes.number.isRequired,
   deleteItems: PropTypes.func.isRequired,
   selected: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-ToolbarCmp.defaultProps = {
-  currentLoadingNames: [],
-};
-
 const enhance = compose(
   withStyles(styles),
-  withLoadingNames,
 );
 
 export default enhance(ToolbarCmp);

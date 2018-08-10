@@ -1,5 +1,5 @@
-import { CircularProgress, Fade } from '@material-ui/core';
-import React from 'react';
+import React  from 'react';
+import { Fade, LinearProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import injectSheet from 'react-jss';
@@ -13,7 +13,7 @@ const TextFieldLoading = ({ classes, loading = false, ...restProps }) => (
       in={loading}
       style={{ transitionDelay: loading ? '300ms' : '' }}
     >
-      <CircularProgress/>
+      <LinearProgress color='secondary' />
     </Fade>
   </div>
 );

@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { CircularProgress, Fade } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { withLoadingNames } from '../../context/loading-names';
 import { withNotifications } from '../../context/notifications';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
+import { loadingNames } from '../../defaults';
 import { TextField, Button } from '../../mui-components';
 import { ControlsSeparator } from '..';
 import { notificationType } from '../notifications';
@@ -14,6 +17,7 @@ import styles from './styles';
 class FormAddWord extends Component {
   static propTypes = {
     form: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/forbid-prop-types
     onAddNewExample: PropTypes.func.isRequired,
     onRemoveExample: PropTypes.func.isRequired,
     onResetForm: PropTypes.func.isRequired,
@@ -25,6 +29,7 @@ class FormAddWord extends Component {
 
   static defaultProps = {
     form: {},
+    currentLoadingNames: [],
   };
 
   componentWillUnmount() {
@@ -44,9 +49,10 @@ class FormAddWord extends Component {
   render() {
     const {
       form, onResetForm, onAddNewExample, onRemoveExample,
-      onExampleChange, onFormItemChange
+      onExampleChange, onFormItemChange, currentLoadingNames
     } = this.props;
     const { en, ru, transcription, examples } = form;
+    const loading = currentLoadingNames.includes(loadingNames.saveWord);
 
     return (
       <form onSubmit={this.handleOnSubmit}>
@@ -95,7 +101,19 @@ class FormAddWord extends Component {
           align='right'
         >
           <Button type="submit" disabled={!Object.values(form)
-            .join('')}>Save word</Button>
+            .join('')}>
+            <Fade
+              in={loading}
+              style={{ transitionDelay: loading ? '300ms' : '' }}
+              unmountOnExit
+            >
+              <CircularProgress
+                color="inherit"
+                size={16}
+              />
+            </Fade>
+            Save word
+          </Button>
           {!!Object.values(form)
             .join('') && <Button onClick={onResetForm}>Reset Form</Button>}
         </ControlsSeparator>
@@ -111,6 +129,7 @@ FormAddWord.defaultProps = {
 const enhance = compose(
   injectSheet(styles),
   withNotifications,
+  withLoadingNames,
   withWords,
   withWordForm,
 );

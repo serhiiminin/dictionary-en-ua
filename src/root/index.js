@@ -15,10 +15,16 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       light: variables.colors.block,
-      main: variables.colors.background,
+      main: variables.colors.text,
       dark: variables.colors.button,
       contrastText: variables.colors.block,
     },
+    secondary: {
+      light: variables.colors.block,
+      main: variables.colors.button,
+      dark: variables.colors.button,
+      contrastText: variables.colors.block,
+    }
   },
 });
 
