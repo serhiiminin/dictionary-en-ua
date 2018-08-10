@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { ButtonWithRouter, ControlsSeparator, SearchResult } from '../../components';
+import { ButtonWithRouter, ControlsSeparator, SearchResult, TextFieldLoading } from '../../components';
 import { withFoundWord } from '../../context/foundWord';
+import { withLoadingNames } from '../../context/loading-names';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
-import { TextField } from '../../mui-components';
+import { loadingNames } from '../../defaults';
 import routes from '../../routes';
 import styles from './styles';
 
@@ -18,10 +19,11 @@ const initialState = {
 };
 
 const composeSearchData = text => {
-  const from = encodeURIComponent(text) === text ? 'en' : 'ru';
-  const to = encodeURIComponent(text) === text ? 'ru' : 'en';
+  const translatingWord = text.trim();
+  const from = encodeURIComponent(translatingWord) === translatingWord ? 'en' : 'ru';
+  const to = encodeURIComponent(translatingWord) === translatingWord ? 'ru' : 'en';
 
-  return { text, from, to }
+  return { text: translatingWord, from, to }
 };
 
 class SearchWord extends Component {
@@ -33,6 +35,11 @@ class SearchWord extends Component {
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     onFillForm: PropTypes.func.isRequired,
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string)
+  };
+
+  static defaultProps = {
+    currentLoadingNames: [],
   };
 
   state = initialState;
@@ -81,8 +88,9 @@ class SearchWord extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { classes, foundWord } = this.props;
+    const { classes, foundWord, currentLoadingNames } = this.props;
     const { en, ru, examples, transcription } = foundWord;
+    const loading = currentLoadingNames.includes(loadingNames.searchWord);
 
     return (
       <Fragment>
@@ -90,10 +98,11 @@ class SearchWord extends Component {
           <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
         </ControlsSeparator>
         <main className={classes.searchWord}>
-          <TextField
+          <TextFieldLoading
             label="Search a word"
             value={searchValue}
             onChange={this.handleOnChangeSearchInput}
+            loading={loading}
           />
           <SearchResult
             en={en}
@@ -113,6 +122,7 @@ class SearchWord extends Component {
 const enhance = compose(
   injectSheet(styles),
   withRouter,
+  withLoadingNames,
   withWords,
   withFoundWord,
   withWordForm,
