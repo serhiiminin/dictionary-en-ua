@@ -7,14 +7,14 @@ import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
 import { Main, MyWords, AddWord, SearchWord } from '../pages';
-import StateProvider from '../context/provider';
+import StateProvider from '../context/index';
 import routes from '../routes';
 import styles from './styles';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: variables.colors.line,
+      light: variables.colors.block,
       main: variables.colors.background,
       dark: variables.colors.button,
       contrastText: variables.colors.block,

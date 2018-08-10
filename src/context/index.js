@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LoadingNamesProvider } from '../loading-names';
-import { NotificationsProvider } from '../notifications';
-import { WordsProvider } from '../words';
-import { WordFormProvider } from '../word-form';
-import { FoundWordProvider } from '../foundWord';
+import { LoadingNamesProvider } from './loading-names/index';
+import { NotificationsProvider } from './notifications/index';
+import { WordsProvider } from './words/index';
+import { WordFormProvider } from './word-form/index';
+import { FoundWordProvider } from './foundWord/index';
 
 const StateProvider = ({ children }) => (
   <LoadingNamesProvider>
     <NotificationsProvider>
-      <WordsProvider>
-        <FoundWordProvider>
+      <FoundWordProvider>
+        <WordsProvider>
           <WordFormProvider>
             {children}
           </WordFormProvider>
-        </FoundWordProvider>
-      </WordsProvider>
+        </WordsProvider>
+      </FoundWordProvider>
     </NotificationsProvider>
   </LoadingNamesProvider>
 );

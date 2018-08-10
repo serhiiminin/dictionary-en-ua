@@ -36,7 +36,7 @@ class FormAddWord extends Component {
     const { form, saveWord, onResetForm, showNotification } = this.props;
 
     saveWord({ ...form })
-      .then(() => showNotification('Words has been added successfully', notificationType.success))
+      .then(() => showNotification('The word has been added successfully', notificationType.success))
       .then(() => onResetForm())
       .catch(error => console.log(error)); // eslint-disable-line no-console
   };
@@ -72,7 +72,7 @@ class FormAddWord extends Component {
           />
         </div>
         <div>
-          {examples.map(({ example, id }) => (
+          {examples && examples.map(({ example, id }) => (
             <TextField
               key={id}
               label="Example"

@@ -25,7 +25,7 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected, currentLoadin
             Saved words
             <Fade
               in={loading}
-              style={{ transitionDelay: '300ms' }}
+              style={{ transitionDelay: loading ? '300ms' : '' }}
               unmountOnExit
             >
               <CircularProgress/>

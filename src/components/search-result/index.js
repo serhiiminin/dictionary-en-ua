@@ -18,9 +18,9 @@ const SearchResult = ({ en, ru, examples, transcription, saveWord, editWordBefor
         <p><span>English: </span>{en}</p>
         <p><span>Transcription: </span>{transcription}</p>
         <ExamplesList>
-          {examples.map(({ example, id }) => (
+          {examples.map(({ example }) => (
             <ExamplesListItem
-              key={id}
+              key={example}
               example={example}
               pushWordToInput={pushWordToInput}
             />

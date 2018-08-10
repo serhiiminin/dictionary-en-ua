@@ -33,7 +33,6 @@ class SearchWord extends Component {
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     onFillForm: PropTypes.func.isRequired,
-    setFoundWord: PropTypes.func.isRequired,
   };
 
   state = initialState;
@@ -46,13 +45,9 @@ class SearchWord extends Component {
     clearTimeout(this.inputTimer);
     this.setState({ searchValue: text });
     this.inputTimer = setTimeout(() => {
-      const { searchWord, setFoundWord } = this.props;
-
-      searchWord(composeSearchData(text))
-        .then(foundWord => setFoundWord(foundWord))
+      this.props.searchWord(composeSearchData(text))
     }, SEARCH_INPUT_TIMEOUT);
   };
-
 
   handleOnChangeSearchInput = event => {
     clearTimeout(this.inputTimer);
@@ -80,9 +75,7 @@ class SearchWord extends Component {
   handleSaveWordList = () => {
     const { saveWord, foundWord, cleanFoundWord } = this.props;
 
-    return saveWord({
-      ...foundWord,
-    })
+    return saveWord(foundWord)
       .then(cleanFoundWord());
   };
 

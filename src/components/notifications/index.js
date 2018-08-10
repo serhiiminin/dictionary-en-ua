@@ -25,7 +25,6 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
         {notificationsTextList.map(([id, value]) => {
           const { text, type } = value;
 
-
           return (
             <Transition
               timeout={variables.timeout.notification}

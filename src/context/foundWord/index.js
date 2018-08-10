@@ -7,6 +7,18 @@ const initialState = {
   foundWord: {}
 };
 
+const normalizeWord = (result = {}) => {
+  const { en = '', ru = '', transcription = '', results = [] } = result;
+  const examples = results && results
+    .reduce((res, val) =>
+        val.examples
+          ? [...res, ...val.examples.map(example => ({ example }))]
+          : [...res],
+      []);
+
+  return { en, ru, transcription, examples }
+};
+
 class FoundWordProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -20,9 +32,9 @@ class FoundWordProvider extends Component {
       foundWord: initialState.foundWord,
     })));
 
-  handleSetFoundWord = params =>
+  handleSetFoundWord = foundWord =>
     Promise.resolve(this.setState({
-      foundWord: { ...params }
+      foundWord: normalizeWord(foundWord)
     }));
 
   render() {
