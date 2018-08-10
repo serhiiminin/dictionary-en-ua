@@ -1,4 +1,4 @@
-import { WORDS  } from './endpoints';
+import { WORDS } from './endpoints';
 import { requests } from './request';
 
 const checkStatus = response => {
@@ -11,45 +11,47 @@ const checkStatus = response => {
   throw error;
 };
 
-const parseJSON = response => response.json();
+const parseJson = response => response.json();
 
-const fetchJSON = params => {
-  const { endpoint, body, headers, ...restParams } = params;
+const createFetchJson = fetcher =>
+  params => {
+    const { endpoint, body, headers, ...restParams } = params;
 
-  const request = new Request(
-    endpoint,
-    {
-      body: JSON.stringify(body),
-      headers: new Headers({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        ...headers,
-      }),
-      ...restParams,
-    },
-  );
+    const request = new Request(
+      endpoint,
+      {
+        body: JSON.stringify(body),
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          ...headers,
+        }),
+        ...restParams,
+      },
+    );
 
-  return window.fetch(request)
-    .then(checkStatus)
-    .then(parseJSON)
-    .catch(error => {
-      console.log(error.status); // eslint-disable-line no-console
-      if (error.message === 'Failed to fetch' && !window.navigator.onLine) {
-        throw new Error('Check your internet connection');
-      }
-      throw new Error(error);
-    });
-};
+    return fetcher(request)
+      .then(checkStatus)
+      .then(parseJson)
+      .catch(error => {
+        console.log(error.status); // eslint-disable-line no-console
+        if (error.message === 'Failed to fetch' && !window.navigator.onLine) {
+          throw new Error('Check your internet connection');
+        }
+        throw new Error(error);
+      });
+  };
 
 const wordRequests = requests(WORDS);
+const fetcher = createFetchJson(window.fetch);
 
 const api = {
-  getWord: wordId => fetchJSON(wordRequests.getEntity(wordId)),
-  getWordsList: () => fetchJSON(wordRequests.getEntitiesList()),
-  searchWord: params => fetchJSON(wordRequests.search(params)),
-  addWord: params => fetchJSON(wordRequests.addEntity(params)),
-  updateWord: (wordId, params) => fetchJSON(wordRequests.updateEntity(wordId, params)),
-  deleteWord: wordId => fetchJSON(wordRequests.deleteEntity(wordId)),
+  getWord: wordId => fetcher(wordRequests.getEntity(wordId)),
+  getWordsList: () => fetcher(wordRequests.getEntitiesList()),
+  searchWord: params => fetcher(wordRequests.search(params)),
+  saveWord: params => fetcher(wordRequests.addEntity(params)),
+  updateWord: (wordId, params) => fetcher(wordRequests.updateEntity(wordId, params)),
+  deleteWord: wordId => fetcher(wordRequests.deleteEntity(wordId)),
 };
 
 export { api };

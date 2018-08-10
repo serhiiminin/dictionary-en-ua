@@ -1,10 +1,19 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
+import { Transition, TransitionGroup } from 'react-transition-group';
 import { compose } from 'recompose';
 import { NotificationItem } from '..';
 import { withNotifications } from '../../context/notifications';
+import { variables } from '../../styles/variables';
 import styles from './styles';
+
+export const notificationType = {
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+  info: 'info',
+};
 
 const Notifications = ({ children, notifications, classes, hideNotification }) => {
   const notificationsTextList = Object.entries(notifications);
@@ -12,20 +21,29 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
   return (
     <Fragment>
       {children}
-      <div className={classes.notifications}>
+      <TransitionGroup className={classes.notifications} component="ul">
         {notificationsTextList.map(([id, value]) => {
           const { text, type } = value;
 
+
           return (
-            <NotificationItem
-              type={type}
-              text={text}
+            <Transition
+              timeout={variables.timeout.notification}
+              unmountOnExit
               key={id}
-              onClick={() => hideNotification(id)}
-            />
+            >{status => (
+              <NotificationItem
+                type={type}
+                text={text}
+                key={id}
+                status={status}
+                onClick={() => hideNotification(id)}
+              />
+            )}
+            </Transition>
           );
         })}
-      </div>
+      </TransitionGroup>
     </Fragment>
   );
 };

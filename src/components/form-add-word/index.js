@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { withNotifications } from '../../context/notifications';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { TextField, Button } from '../../mui-components';
 import { ControlsSeparator } from '..';
+import { notificationType } from '../notifications';
 import styles from './styles';
 
-class Form extends Component {
+class FormAddWord extends Component {
   static propTypes = {
     form: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     onAddNewExample: PropTypes.func.isRequired,
@@ -17,7 +19,8 @@ class Form extends Component {
     onResetForm: PropTypes.func.isRequired,
     onExampleChange: PropTypes.func.isRequired,
     onFormItemChange: PropTypes.func.isRequired,
-    addWord: PropTypes.func.isRequired,
+    showNotification: PropTypes.func.isRequired,
+    saveWord: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -30,9 +33,10 @@ class Form extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    const { form, addWord, onResetForm } = this.props;
+    const { form, saveWord, onResetForm, showNotification } = this.props;
 
-    addWord({ ...form })
+    saveWord({ ...form })
+      .then(() => showNotification('Words has been added successfully', notificationType.success))
       .then(() => onResetForm())
       .catch(error => console.log(error)); // eslint-disable-line no-console
   };
@@ -100,14 +104,15 @@ class Form extends Component {
   }
 }
 
-Form.defaultProps = {
+FormAddWord.defaultProps = {
   form: {},
 };
 
 const enhance = compose(
   injectSheet(styles),
+  withNotifications,
   withWords,
   withWordForm,
 );
 
-export default enhance(Form);
+export default enhance(FormAddWord);

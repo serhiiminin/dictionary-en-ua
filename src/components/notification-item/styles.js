@@ -1,4 +1,5 @@
 import { variables } from '../../styles/variables';
+import { notificationType } from '../notifications';
 
 const styles = {
   notification: {
@@ -9,14 +10,17 @@ const styles = {
     listStyle: 'none',
     transition: `all ${variables.timeout.notification}ms ease-in-out`,
   },
-  error: {
-    background: variables.colors.notifications,
+  [notificationType.error]: {
+    background: variables.colors.notification.error,
   },
-  success: {
-    background: variables.colors.notifications,
+  [notificationType.success]: {
+    background: variables.colors.notification.success,
   },
-  warning: {
-    background: variables.colors.notifications,
+  [notificationType.warning]: {
+    background: variables.colors.notification.warning,
+  },
+  [notificationType.info]: {
+    background: variables.colors.notification.info,
   },
   topLine: {
     display: 'grid',
@@ -36,8 +40,7 @@ const styles = {
     padding: 0,
     border: 0,
     borderRadius: '50%',
-    transform: 'rotate(45deg)',
-    fontSize: '1.2em',
+    fontSize: '.81em',
     outline: 'none',
     '&:hover': {
       cursor: 'pointer',

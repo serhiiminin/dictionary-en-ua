@@ -43,8 +43,6 @@ class TableCmp extends Component {
     return null;
   }
 
-
-
   handleRequestSort = (event, property) => {
     const currentOrderBy = property;
     const { orderBy, order } = this.state;

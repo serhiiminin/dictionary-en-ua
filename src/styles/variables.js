@@ -6,6 +6,12 @@ const variables = {
     line: '#F2FF9E',
     button: '#083D77',
     important: '#DA4167',
+    notification: {
+      success: '#D9FAD4',
+      error: '#EBC5C0',
+      warning: '#F5FAD2',
+      info: '#CBE5F6',
+    }
   },
   opacity: {
     disabled: .7,

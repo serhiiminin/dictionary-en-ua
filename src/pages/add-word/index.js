@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { ButtonWithRouter, Form, ControlsSeparator } from '../../components';
+import { ButtonWithRouter, FormAddWord, ControlsSeparator } from '../../components';
 import { withWords } from '../../context/words';
 import routes from '../../routes';
 import styles from './styles';
@@ -14,7 +14,7 @@ const AddWord = ({ classes }) => (
       <ButtonWithRouter to={routes.searchWord}>Search for a new word</ButtonWithRouter>
     </ControlsSeparator>
     <main className={classes.addWord}>
-      <Form/>
+      <FormAddWord/>
     </main>
   </Fragment>
 );

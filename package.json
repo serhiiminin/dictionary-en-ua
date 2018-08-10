@@ -17,14 +17,15 @@
     "react-resize-detector": "^3.1.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-transition-group": "^2.4.0",
     "recompose": "^0.27.1",
     "url-join": "^4.0.0",
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
     "lint:fix": "LINT_ARGS=--fix npm run lint",
@@ -32,8 +33,6 @@
   },
   "devDependencies": {
     "pre-commit": "^1.2.2",
-    "react-app-rewire-eslint": "^0.2.3",
-    "react-app-rewired": "^1.5.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "17.0.0",
     "eslint-config-prettier": "^2.9.0",
