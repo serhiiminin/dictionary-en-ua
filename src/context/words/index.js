@@ -1,6 +1,11 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'recompose';
 import { api } from '../../api/fetcher';
+import { notificationType } from '../../components/notifications';
+import { loadingNames } from '../../defaults';
+import { withLoadingNames } from '../loading-names';
+import { withNotifications } from '../notifications';
 
 const WordsContext = createContext({});
 
@@ -8,9 +13,12 @@ const initialState = {
   words: [],
 };
 
-class WordsProvider extends Component {
+class WordsProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    showNotification: PropTypes.func.isRequired,
+    startLoading: PropTypes.func.isRequired,
+    stopLoading: PropTypes.func.isRequired,
   };
 
   state = initialState;
@@ -21,38 +29,67 @@ class WordsProvider extends Component {
       words: initialState.words,
     }));
 
-  handleFetchWords = () =>
-    api.getWordsList()
-      .then(words => this.setState({ words }));
+  handleFetchWords = () => {
+    const { showNotification, startLoading, stopLoading } = this.props;
 
-  handleAddWord = data =>
-    api.addWord({ ...data })
-      .then(() => this.cleanFoundWord());
+    return Promise.resolve(startLoading(loadingNames.wordsList))
+      .then(() => api.getWordsList())
+      .then(words => this.setState({ words }))
+      .then(() => stopLoading(loadingNames.wordsList))
+      .catch(err => showNotification(err.message, notificationType.error))
+  };
 
-  handleDeleteWord = id =>
-    api.deleteWord(id)
+  handleSaveWord = data => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.saveWord))
+      .then(() => api.saveWord(data))
+      .then(() => stopLoading(loadingNames.saveWord))
+      .catch(err => showNotification(err.message, notificationType.error))
+  };
+
+  handleDeleteWord = id => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.deleteWord))
+      .then(() => api.deleteWord(id))
+      .then(() => stopLoading(loadingNames.deleteWord))
+      .catch(err => showNotification(err.message, notificationType.error))
       .then(() => this.handleFetchWords());
+  };
 
-  handleSearchWord = params =>
-    api.searchWord(params);
+  handleSearchWord = params => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.searchWord))
+      .then(() =>api.searchWord(params))
+      .then(() => stopLoading(loadingNames.searchWord))
+      .catch(err => showNotification(err.message, notificationType.error))
+  };
 
   render() {
     const { words } = this.state;
+    const { children } = this.props;
 
     return (
       <WordsContext.Provider
         value={{
           words,
           fetchWords: this.handleFetchWords,
-          addWord: this.handleAddWord,
+          saveWord: this.handleSaveWord,
           searchWord: this.handleSearchWord,
           deleteWord: this.handleDeleteWord,
           cleanWords: this.cleanWords,
         }}
-      >{this.props.children}</WordsContext.Provider>
+      >{children}</WordsContext.Provider>
     );
   }
 }
+
+const WordsProvider = compose(
+  withLoadingNames,
+  withNotifications,
+)(WordsProviderCmp);
 
 const withWords = Cmp => props =>
   <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>;

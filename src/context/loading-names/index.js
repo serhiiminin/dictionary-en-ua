@@ -21,7 +21,7 @@ class LoadingNamesProvider extends Component {
 
   handleStopLoading = name =>
     this.setState(prevState => ({
-      loadingNames: [...prevState.loadingNames, name]
+      loadingNames: [...prevState.loadingNames].filter(loadingName => loadingName !== name)
     }));
 
   render() {

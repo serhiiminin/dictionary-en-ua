@@ -20,7 +20,7 @@ class FormAddWord extends Component {
     onExampleChange: PropTypes.func.isRequired,
     onFormItemChange: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
-    addWord: PropTypes.func.isRequired,
+    saveWord: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -33,9 +33,9 @@ class FormAddWord extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    const { form, addWord, onResetForm, showNotification } = this.props;
+    const { form, saveWord, onResetForm, showNotification } = this.props;
 
-    addWord({ ...form })
+    saveWord({ ...form })
       .then(() => showNotification('Words has been added successfully', notificationType.success))
       .then(() => onResetForm())
       .catch(error => console.log(error)); // eslint-disable-line no-console

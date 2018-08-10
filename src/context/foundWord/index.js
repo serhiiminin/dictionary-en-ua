@@ -26,12 +26,11 @@ class FoundWordProvider extends Component {
     }));
 
   render() {
-    const { words, foundWord } = this.state;
+    const { foundWord } = this.state;
 
     return (
       <FoundWordContext.Provider
         value={{
-          words,
           foundWord,
           setFoundWord: this.handleSetFoundWord,
           cleanFoundWord: this.cleanFoundWord,

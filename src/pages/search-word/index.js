@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { ButtonWithRouter, ControlsSeparator, SearchResult } from '../../components';
+import { withFoundWord } from '../../context/foundWord';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { TextField } from '../../mui-components';
@@ -28,10 +29,11 @@ class SearchWord extends Component {
     classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     foundWord: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    addWord: PropTypes.func.isRequired,
+    saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     onFillForm: PropTypes.func.isRequired,
+    setFoundWord: PropTypes.func.isRequired,
   };
 
   state = initialState;
@@ -44,7 +46,10 @@ class SearchWord extends Component {
     clearTimeout(this.inputTimer);
     this.setState({ searchValue: text });
     this.inputTimer = setTimeout(() => {
-      this.props.searchWord(composeSearchData(text));
+      const { searchWord, setFoundWord } = this.props;
+
+      searchWord(composeSearchData(text))
+        .then(foundWord => setFoundWord(foundWord))
     }, SEARCH_INPUT_TIMEOUT);
   };
 
@@ -61,7 +66,7 @@ class SearchWord extends Component {
       this.setState({ searchValue });
       return;
     }
-    this.handleSearchWord(value)
+    this.handleSearchWord(value);
   };
 
   handleEditBeforeSaving = () => {
@@ -72,10 +77,10 @@ class SearchWord extends Component {
       .then(history.push(routes.addWord));
   };
 
-  handleAddWordToList = () => {
-    const { addWord, foundWord, cleanFoundWord } = this.props;
+  handleSaveWordList = () => {
+    const { saveWord, foundWord, cleanFoundWord } = this.props;
 
-    return addWord({
+    return saveWord({
       ...foundWord,
     })
       .then(cleanFoundWord());
@@ -102,7 +107,7 @@ class SearchWord extends Component {
             ru={ru}
             examples={examples}
             transcription={transcription}
-            addWord={this.handleAddWordToList}
+            saveWord={this.handleSaveWordList}
             editWordBeforeSaving={this.handleEditBeforeSaving}
             pushWordToInput={this.handleSearchWord}
           />
@@ -116,6 +121,7 @@ const enhance = compose(
   injectSheet(styles),
   withRouter,
   withWords,
+  withFoundWord,
   withWordForm,
 );
 

@@ -2,7 +2,7 @@ const NS = 'LOADING';
 
 const loadingNames = {
   wordsList: `${NS}/words-list`,
-  addWord: `${NS}/add-word`,
+  saveWord: `${NS}/save-word`,
   searchWord: `${NS}/search-word`,
   deleteWord: `${NS}/deleteWord`,
 };
