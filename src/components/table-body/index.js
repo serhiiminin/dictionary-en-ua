@@ -17,7 +17,7 @@ const TableBodyCmp = props => {
         .sort(getSorting(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(word => {
-          const { en, ru, transcription, examples, dateCreated, _id } = word;
+          const { en = '', ru = '', transcription = '', examples, dateCreated, _id } = word;
           const isSelectedCurrent = isSelected(_id);
 
           return (
@@ -31,18 +31,16 @@ const TableBodyCmp = props => {
               selected={isSelectedCurrent}
             >
               <TableCell padding="checkbox"><Checkbox checked={isSelectedCurrent}/></TableCell>
-              <TableCell component="th" scope="row">{ru || '-'}</TableCell>
-              <TableCell>{en || '-'}</TableCell>
-              <TableCell>{transcription || '-'}</TableCell>
+              <TableCell>{en}</TableCell>
+              <TableCell component="th" scope="row">{ru}</TableCell>
+              <TableCell>{transcription}</TableCell>
               <TableCell>{
                 examples.length > 0
                   ? examples[0].example
                   : '-'
               }</TableCell>
-              <TableCell>
-                <time dateTime={dateCreated} title={new Date(dateCreated).toLocaleString()}>
-                  {moment(dateCreated).fromNow()}
-                  </time>
+              <TableCell title={new Date(dateCreated).toLocaleString()}>
+                {moment(dateCreated).fromNow()}
               </TableCell>
             </TableRow>
           );
