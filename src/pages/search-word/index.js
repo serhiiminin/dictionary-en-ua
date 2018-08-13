@@ -1,14 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { ButtonWithRouter, ControlsSeparator, SearchResult, TextFieldLoading } from '../../components';
-import { withFoundWord } from '../../context/foundWord';
+import { foundWordInitialState, withFoundWord } from '../../context/foundWord';
+import { foundWordShape } from '../../context/foundWord/shape';
 import { withLoadingNames } from '../../context/loading-names';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
+import { classesShape } from '../../defaults/shapes';
 import routes from '../../routes';
 import styles from './styles';
 
@@ -28,9 +31,9 @@ const composeSearchData = text => {
 
 class SearchWord extends Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    foundWord: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    classes: classesShape.isRequired,
+    foundWord: foundWordShape,
+    history: ReactRouterPropTypes.history.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
@@ -40,6 +43,7 @@ class SearchWord extends Component {
 
   static defaultProps = {
     currentLoadingNames: [],
+    foundWord: foundWordInitialState,
   };
 
   state = initialState;

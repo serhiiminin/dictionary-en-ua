@@ -10,7 +10,7 @@ import { withNotifications } from '../notifications';
 
 const WordsContext = createContext({});
 
-const initialState = {
+const wordsInitialState = {
   words: [],
 };
 
@@ -23,12 +23,12 @@ class WordsProviderCmp extends Component {
     setFoundWord: PropTypes.func.isRequired,
   };
 
-  state = initialState;
+  state = wordsInitialState;
 
   cleanWords = () =>
     this.setState(prevState => ({
       ...prevState,
-      words: initialState.words,
+      words: wordsInitialState.words,
     }));
 
   handleFetchWords = () => {
@@ -98,4 +98,4 @@ const WordsProvider = compose(
 const withWords = Cmp => props =>
   <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>;
 
-export { WordsProvider, withWords };
+export { WordsProvider, withWords, wordsInitialState };

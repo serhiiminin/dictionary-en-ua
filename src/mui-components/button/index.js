@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, Button } from '@material-ui/core';
 import { compose } from 'recompose';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const ButtonCustomized = ({ classes, ...restProps }) => (
@@ -15,7 +15,7 @@ const ButtonCustomized = ({ classes, ...restProps }) => (
 );
 
 ButtonCustomized.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: classesShape.isRequired,
 };
 
 const enhance = compose(

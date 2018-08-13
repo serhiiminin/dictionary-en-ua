@@ -2,32 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TableCell, TableHead, TableRow, Checkbox } from '@material-ui/core';
 
-const TableHeadCmp = ({ cells, numSelected, rowCount, onSelectAllClick }) => (
+const TableHeadCmp = ({ numSelected, rowCount, onSelectAllClick }) => (
   <TableHead>
     <TableRow>
       <TableCell padding="checkbox">
         <Checkbox
           indeterminate={numSelected > 0 && numSelected < rowCount}
-          checked={numSelected === rowCount}
+          checked={numSelected === rowCount && rowCount !== 0}
           onChange={onSelectAllClick}
         />
       </TableCell>
-      {cells.map(cell => (
-        <TableCell key={cell}>{cell}</TableCell>
-      ))}
+      <TableCell>English</TableCell>
+      <TableCell>Russian</TableCell>
+      <TableCell>Transcription</TableCell>
+      <TableCell>Example</TableCell>
+      <TableCell>Date</TableCell>
     </TableRow>
   </TableHead>
 );
 
 TableHeadCmp.propTypes = {
-  cells: PropTypes.arrayOf(PropTypes.string),
   numSelected: PropTypes.number.isRequired,
   rowCount: PropTypes.number.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
-};
-
-TableHeadCmp.defaultProps = {
-  cells: [],
 };
 
 export default TableHeadCmp;

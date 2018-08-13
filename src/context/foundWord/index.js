@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const FoundWordContext = createContext({});
 
-const initialState = {
+const foundWordInitialState = {
   foundWord: {}
 };
 
@@ -25,12 +25,12 @@ class FoundWordProvider extends Component {
     children: PropTypes.node.isRequired,
   };
 
-  state = initialState;
+  state = foundWordInitialState;
 
   cleanFoundWord = () =>
     Promise.resolve(this.setState(prevState => ({
       ...prevState,
-      foundWord: initialState.foundWord,
+      foundWord: foundWordInitialState.foundWord,
     })));
 
   handleSetFoundWord = foundWord =>
@@ -56,4 +56,4 @@ class FoundWordProvider extends Component {
 const withFoundWord = Cmp => props =>
   <FoundWordContext.Consumer>{value => <Cmp {...value} {...props} />}</FoundWordContext.Consumer>;
 
-export { FoundWordProvider, withFoundWord };
+export { FoundWordProvider, withFoundWord, foundWordInitialState };

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import PropTypes from 'prop-types';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const ExamplesList = ({ children, classes }) => (
@@ -9,7 +10,7 @@ const ExamplesList = ({ children, classes }) => (
 );
 
 ExamplesList.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: classesShape.isRequired,
   children: PropTypes.node.isRequired,
 };
 

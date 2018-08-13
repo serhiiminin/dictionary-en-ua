@@ -1,10 +1,5 @@
 const styles = {
-  textFieldLoading: {
-    // display: 'grid',
-    // gridAutoFlow: 'column',
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
-  }
+  textFieldLoading: {}
 };
 
 export default styles;

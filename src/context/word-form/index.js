@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 const WordFormContext = createContext({});
 
-const initialState = {
+const wordFormInitialState = {
   form: {
     en: '',
     ru: '',
@@ -18,7 +18,7 @@ class WordFormProvider extends Component {
     children: PropTypes.node.isRequired,
   };
 
-  state = initialState;
+  state = wordFormInitialState;
 
   handleFillForm = form =>
     Promise.resolve(this.setState({ form: { ...form } }));
@@ -79,7 +79,7 @@ class WordFormProvider extends Component {
     this.setState(prevState => ({
       ...prevState,
       form: {
-        ...initialState.form
+        ...wordFormInitialState.form
       }
     }));
 
@@ -106,4 +106,4 @@ class WordFormProvider extends Component {
 const withWordForm = Cmp => props =>
   <WordFormContext.Consumer>{value => <Cmp {...value} {...props} />}</WordFormContext.Consumer>;
 
-export { WordFormProvider, withWordForm };
+export { WordFormProvider, withWordForm, wordFormInitialState };

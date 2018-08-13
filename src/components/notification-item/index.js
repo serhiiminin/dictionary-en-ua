@@ -7,6 +7,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import InfoIcon from '@material-ui/icons/Info';
 import { compose } from 'recompose';
+import { classesShape } from '../../defaults/shapes';
 import { notificationType } from '../notifications';
 import styles from './styles';
 
@@ -37,7 +38,7 @@ const NotificationItem = ({ classes, onClick, text, type=notificationType.succes
 );
 
 NotificationItem.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types,
+  classes: classesShape.isRequired,
   onClick: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
   text: PropTypes.string,

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import uuid from 'uuid';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const ExamplesListItem = ({ example, classes, pushWordToInput }) => (
@@ -21,7 +22,7 @@ const ExamplesListItem = ({ example, classes, pushWordToInput }) => (
 );
 
 ExamplesListItem.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: classesShape.isRequired,
   pushWordToInput: PropTypes.func.isRequired,
   example: PropTypes.string,
 };

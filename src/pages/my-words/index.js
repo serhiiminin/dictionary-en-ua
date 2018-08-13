@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesShape } from '../../defaults/shapes';
 import { Table, ButtonWithRouter, ControlsSeparator } from '../../components';
 import routes from '../../routes';
 import styles from './styles';
@@ -16,7 +16,7 @@ const MyWords = ({ classes }) => (
 );
 
 MyWords.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: classesShape.isRequired,
 };
 
 const enhance = compose(

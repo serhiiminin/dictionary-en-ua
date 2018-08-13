@@ -2,29 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade } from '@material-ui/core';
-import { Toolbar, TableHead, TableBody } from '..';
-import { withLoadingNames } from '../../context/loading-names';
-import { withWords } from '../../context/words';
+import { Toolbar, TableBody, TableHead } from '..';
+import { loadingNamesInitialState, withLoadingNames } from '../../context/loading-names';
+import { withWords, wordsInitialState } from '../../context/words';
+import { classesShape } from '../../defaults/shapes';
 import { loadingNames } from '../../defaults';
+import { wordsListShape } from '../../context/words/shape';
 import styles from './styles';
 
 class TableCmp extends Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/forbid-prop-types
+    classes: classesShape.isRequired,
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    words: wordsListShape,
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
-    screenWidth: PropTypes.number,
   };
 
   static defaultProps = {
-    screenWidth: null,
-    currentLoadingNames: [],
+    words: wordsInitialState,
+    currentLoadingNames: loadingNamesInitialState,
   };
 
   state = {
-    words: [],
     selected: [],
     order: 'desc',
     orderBy: 'dateCreated',
@@ -40,62 +41,31 @@ class TableCmp extends Component {
     this.props.cleanWords();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.words.length !== prevState.words.length) {
-      return { words: nextProps.words, };
-    }
-    return null;
-  }
-
-  handleRequestSort = (event, property) => {
-    const currentOrderBy = property;
-    const { orderBy, order } = this.state;
-    let currentOrder = 'desc';
-
-    if (orderBy === property && order === 'desc') {
-      currentOrder = 'asc';
-    }
-    this.setState({ order: currentOrder, orderBy: currentOrderBy });
-  };
-
-  handleSelectAllClick = (event, checked) => {
-    if (checked) {
-      this.setState(state => ({ selected: state.words.map(n => n._id) }));
-      return;
-    }
-    this.setState({ selected: [] });
-  };
+  handleSelectAllClick = (event, checked) =>
+    this.setState({
+      selected: checked
+        ? this.props.words.map(word => word._id)
+        : []
+    });
 
   handleClick = (event, id) => {
     const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+    const isChecked = selected.includes(id);
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+    const newSelected = isChecked
+      ? [...selected].filter(item => item !== id)
+      : [...selected, id];
 
     this.setState({ selected: newSelected });
   };
 
-  handleChangePage = (event, page) => {
+  handleChangePage = (event, page) =>
     this.setState({ page });
-  };
 
-  handleChangeRowsPerPage = event => {
+  handleChangeRowsPerPage = event =>
     this.setState({ rowsPerPage: event.target.value });
-  };
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1;
+  isSelected = id => this.state.selected.includes(id);
 
   handleDeleteItems = itemsIds => {
     const { fetchWords, deleteWord } = this.props;
@@ -107,39 +77,33 @@ class TableCmp extends Component {
   };
 
   render() {
-    const { classes, screenWidth, currentLoadingNames } = this.props;
-    const { words, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { classes, currentLoadingNames, words } = this.props;
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
+    const numSelected = selected.length;
+    const wordsCount = words.length;
 
     return (
       <Paper className={classes.root}>
+        <Fade
+          in={loading}
+          style={{ transitionDelay: loading ? '300ms' : '' }}
+        >
+          <LinearProgress color='secondary'/>
+        </Fade>
         <Toolbar
-          numSelected={selected.length}
+          numSelected={numSelected}
           deleteItems={this.handleDeleteItems}
           selected={selected}
         />
         <Table className={classes.table}>
           <TableHead
-            screenWidth={screenWidth}
-            cells={['English', 'Russian', 'Transcription', 'Example', 'Date']}
-            numSelected={selected.length}
-            order={order}
-            orderBy={orderBy}
             onSelectAllClick={this.handleSelectAllClick}
-            onRequestSort={this.handleRequestSort}
-            rowCount={words.length}
+            rowCount={wordsCount}
+            numSelected={numSelected}
           />
-        </Table>
-        <Fade
-          in={loading}
-          style={{ transitionDelay: loading ? '300ms' : '' }}
-        >
-          <LinearProgress color='secondary' />
-        </Fade>
-        <Table>
           <TableBody
-            screenWidth={screenWidth}
             words={words}
             order={order}
             orderBy={orderBy}
@@ -152,7 +116,7 @@ class TableCmp extends Component {
         </Table>
         <TablePagination
           component="div"
-          count={words.length}
+          count={wordsCount}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{ 'aria-label': 'Previous Page' }}

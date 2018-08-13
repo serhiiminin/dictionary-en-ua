@@ -3,6 +3,7 @@ import { Fade, LinearProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import injectSheet from 'react-jss';
+import { classesShape } from '../../defaults/shapes';
 import { TextField } from '../../mui-components';
 import styles from './styles';
 
@@ -19,7 +20,7 @@ const TextFieldLoading = ({ classes, loading = false, ...restProps }) => (
 );
 
 TextFieldLoading.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: classesShape.isRequired,
   loading: PropTypes.bool,
 };
 

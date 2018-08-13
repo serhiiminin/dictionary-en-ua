@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const BlocksContainer = ({ classes, children }) => (
@@ -11,7 +12,7 @@ const BlocksContainer = ({ classes, children }) => (
 );
 
 BlocksContainer.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: classesShape.isRequired,
   children: PropTypes.node.isRequired,
 };
 
