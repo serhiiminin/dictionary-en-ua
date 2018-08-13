@@ -11,7 +11,7 @@ const getSorting = (order, orderBy) =>
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
 
 const TableBodyCmp = props => {
-  const { words, order, orderBy, page, rowsPerPage, emptyRows, isSelected, handleClick } = props;
+  const { words, order, orderBy, page, rowsPerPage, isSelected, handleClick } = props;
 
   return (
     <TableBody>
@@ -39,17 +39,13 @@ const TableBodyCmp = props => {
                 <TableCell>{transcription}</TableCell>
                 <TableCell>{examples.length > 0 ? examples[0].example : '-'}</TableCell>
                 <TableCell title={new Date(dateCreated).toLocaleString()}>
-                  {moment(dateCreated).fromNow()}
+                  {moment(dateCreated)
+                    .fromNow()}
                 </TableCell>
               </TableRow>
             </Fragment>
           );
         })}
-      {emptyRows > 0 && (
-        <TableRow style={{ height: 49 * emptyRows }}>
-          <TableCell colSpan={6}/>
-        </TableRow>
-      )}
     </TableBody>
   );
 };
@@ -60,7 +56,6 @@ TableBodyCmp.propTypes = {
   orderBy: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
-  emptyRows: PropTypes.number.isRequired,
   isSelected: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
