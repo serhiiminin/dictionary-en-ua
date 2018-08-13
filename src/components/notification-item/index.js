@@ -37,7 +37,7 @@ const NotificationItem = ({ classes, onClick, text, type=notificationType.succes
 );
 
 NotificationItem.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   onClick: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
   text: PropTypes.string,

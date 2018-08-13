@@ -21,7 +21,7 @@ const ExamplesListItem = ({ example, classes, pushWordToInput }) => (
 );
 
 ExamplesListItem.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   pushWordToInput: PropTypes.func.isRequired,
   example: PropTypes.string,
 };

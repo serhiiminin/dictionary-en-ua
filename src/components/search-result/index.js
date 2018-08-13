@@ -38,7 +38,7 @@ SearchResult.propTypes = {
   editWordBeforeSaving: PropTypes.func.isRequired,
   saveWord: PropTypes.func.isRequired,
   pushWordToInput: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 SearchResult.defaultProps = {

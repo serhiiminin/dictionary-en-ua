@@ -48,7 +48,7 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
 };
 
 Notifications.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   notifications: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   hideNotification: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,

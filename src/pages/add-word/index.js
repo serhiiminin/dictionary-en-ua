@@ -20,7 +20,7 @@ const AddWord = ({ classes }) => (
 );
 
 AddWord.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 const enhance = compose(

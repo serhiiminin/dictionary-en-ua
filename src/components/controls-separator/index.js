@@ -11,7 +11,7 @@ const ControlsSeparator = ({ children, classes, align='left' }) => (
 );
 
 ControlsSeparator.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
 };

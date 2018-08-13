@@ -28,7 +28,7 @@ const composeSearchData = text => {
 
 class SearchWord extends Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
     foundWord: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     saveWord: PropTypes.func.isRequired,

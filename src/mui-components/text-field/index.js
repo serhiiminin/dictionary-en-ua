@@ -26,7 +26,7 @@ const TextFieldCustomized = ({ classes, control, ...restProps }) => (
 );
 
 TextFieldCustomized.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   control: PropTypes.node,
 };
 

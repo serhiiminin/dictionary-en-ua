@@ -10,8 +10,8 @@ import styles from './styles';
 
 class TableCmp extends Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line react/forbid-prop-types
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,

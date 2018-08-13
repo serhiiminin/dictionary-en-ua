@@ -11,7 +11,7 @@ const BlocksContainer = ({ classes, children }) => (
 );
 
 BlocksContainer.propTypes = {
-  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   children: PropTypes.node.isRequired,
 };
 
