@@ -6,21 +6,21 @@ const NotificationsContext = createContext({});
 
 const NOTIFICATION_TIMEOUT = 5000;
 
+const notificationInitialState = {
+  notifications: [],
+};
+
 class NotificationsProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  state = {
-    notifications: {}
-  };
+  state = notificationInitialState;
 
-  hideNotification = id => {
+  hideNotification = currentId => {
     this.setState(prevState => ({
-      notifications: Object.assign({},
-        ...Object.entries(prevState.notifications)
-          .filter(([key]) => key !== id)
-          .map(([key, value]) => ({ [key]: value })))
+      notifications: [...prevState.notifications]
+          .filter(({ id }) => id !== currentId)
     }));
   };
 
@@ -28,10 +28,10 @@ class NotificationsProvider extends Component {
     const id = uuid();
 
     this.setState(prevState => ({
-      notifications: {
+      notifications: [
         ...prevState.notifications,
-        [id]: { text, type },
-      }
+        { id, text, type },
+      ]
     }));
     if(autoHide) {
       setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
@@ -57,4 +57,4 @@ class NotificationsProvider extends Component {
 const withNotifications = Cmp => props =>
   <NotificationsContext.Consumer>{value => <Cmp {...value} {...props} />}</NotificationsContext.Consumer>;
 
-export { NotificationsProvider, withNotifications};
+export { NotificationsProvider, withNotifications, notificationInitialState };

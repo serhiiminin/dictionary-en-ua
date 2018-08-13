@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const LoadingNamesContext = createContext({});
 
-const initialState = {
+const loadingNamesInitialState = {
   currentLoadingNames: [],
 };
 
@@ -12,7 +12,7 @@ class LoadingNamesProvider extends Component {
     children: PropTypes.node.isRequired,
   };
 
-  state = initialState;
+  state = loadingNamesInitialState;
 
   handleStartLoading = name =>
     this.setState(prevState => ({
@@ -42,4 +42,4 @@ class LoadingNamesProvider extends Component {
 const withLoadingNames = Cmp => props =>
   <LoadingNamesContext.Consumer>{value => <Cmp {...value} {...props} />}</LoadingNamesContext.Consumer>;
 
-export { LoadingNamesProvider, withLoadingNames };
+export { LoadingNamesProvider, withLoadingNames, loadingNamesInitialState };

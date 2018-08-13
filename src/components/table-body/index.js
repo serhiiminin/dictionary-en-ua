@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Checkbox, TableBody, TableCell, TableRow } from '@material-ui/core';
+import { wordsInitialState } from '../../context/words';
+import { wordsListShape } from '../../context/words/shape';
 
 const getSorting = (order, orderBy) =>
   order === 'desc'
@@ -58,7 +60,7 @@ const TableBodyCmp = props => {
 };
 
 TableBodyCmp.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line react/forbid-prop-types
+  words: wordsListShape,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,
@@ -69,7 +71,7 @@ TableBodyCmp.propTypes = {
 };
 
 TableBodyCmp.defaultProps = {
-  words: [],
+  words: wordsInitialState,
 };
 
 export default TableBodyCmp;

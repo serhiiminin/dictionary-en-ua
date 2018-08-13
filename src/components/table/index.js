@@ -4,14 +4,16 @@ import { compose } from 'recompose';
 import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade } from '@material-ui/core';
 import { Toolbar, TableHead, TableBody } from '..';
 import { withLoadingNames } from '../../context/loading-names';
-import { withWords } from '../../context/words';
+import { withWords, wordsInitialState } from '../../context/words';
 import { loadingNames } from '../../defaults';
+import { wordsListShape } from '../../context/words/shape';
 import styles from './styles';
 
 class TableCmp extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    words: wordsListShape,
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
@@ -20,6 +22,7 @@ class TableCmp extends Component {
 
   static defaultProps = {
     screenWidth: null,
+    words: wordsInitialState,
     currentLoadingNames: [],
   };
 
@@ -107,8 +110,8 @@ class TableCmp extends Component {
   };
 
   render() {
-    const { classes, screenWidth, currentLoadingNames } = this.props;
-    const { words, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { classes, screenWidth, currentLoadingNames, words } = this.props;
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
 

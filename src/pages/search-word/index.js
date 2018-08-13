@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { ButtonWithRouter, ControlsSeparator, SearchResult, TextFieldLoading } from '../../components';
-import { withFoundWord } from '../../context/foundWord';
+import { foundWordInitialState, withFoundWord } from '../../context/foundWord';
+import { foundWordShape } from '../../context/foundWord/shape';
 import { withLoadingNames } from '../../context/loading-names';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
@@ -29,7 +30,7 @@ const composeSearchData = text => {
 class SearchWord extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    foundWord: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    foundWord: foundWordShape,
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
@@ -40,6 +41,7 @@ class SearchWord extends Component {
 
   static defaultProps = {
     currentLoadingNames: [],
+    foundWord: foundWordInitialState,
   };
 
   state = initialState;

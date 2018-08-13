@@ -4,7 +4,8 @@ import injectSheet from 'react-jss';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { compose } from 'recompose';
 import { NotificationItem } from '..';
-import { withNotifications } from '../../context/notifications';
+import { notificationInitialState, withNotifications } from '../../context/notifications';
+import { notificationsListShape } from '../../context/notifications/shape';
 import { variables } from '../../styles/variables';
 import styles from './styles';
 
@@ -15,44 +16,41 @@ export const notificationType = {
   info: 'info',
 };
 
-const Notifications = ({ children, notifications, classes, hideNotification }) => {
-  const notificationsTextList = Object.entries(notifications);
-
-  return (
-    <Fragment>
-      {children}
-      <TransitionGroup className={classes.notifications} component="ul">
-        {notificationsTextList.map(([id, value]) => {
-          const { text, type } = value;
-
-          return (
-            <Transition
-              timeout={variables.timeout.notification}
-              unmountOnExit
-              key={id}
-            >{status => (
-              <NotificationItem
-                type={type}
-                text={text}
-                key={id}
-                status={status}
-                onClick={() => hideNotification(id)}
-              />
-            )}
-            </Transition>
-          );
-        })}
-      </TransitionGroup>
-    </Fragment>
-  );
-};
+const Notifications = ({ children, notifications, classes, hideNotification }) => (
+  <Fragment>
+    {children}
+    <TransitionGroup className={classes.notifications} component="ul">
+      {notifications.map(({ id, text, type }) => (
+        <Transition
+          timeout={variables.timeout.notification}
+          unmountOnExit
+          key={id}
+        >{status => (
+          <NotificationItem
+            type={type}
+            text={text}
+            key={id}
+            status={status}
+            onClick={() => hideNotification(id)}
+          />
+        )}
+        </Transition>
+      ))}
+    </TransitionGroup>
+  </Fragment>
+);
 
 Notifications.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  notifications: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  notifications: notificationsListShape,
   hideNotification: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
+
+Notifications.defaultProps = {
+  notifications: notificationInitialState,
+};
+
 
 const enhance = compose(
   injectSheet(styles),
