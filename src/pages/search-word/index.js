@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
@@ -31,7 +32,7 @@ class SearchWord extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
     foundWord: foundWordShape,
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: ReactRouterPropTypes.history.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,

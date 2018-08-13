@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../mui-components';
@@ -12,7 +13,7 @@ const ButtonWithRouter = ({ to, staticContext, history, ...restProps }) => (
 );
 
 ButtonWithRouter.propTypes = {
-  history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  history: ReactRouterPropTypes.history.isRequired,
   staticContext: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   to: PropTypes.string.isRequired,
 };
