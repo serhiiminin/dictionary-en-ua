@@ -37,14 +37,9 @@ const TableBodyCmp = props => {
                 <TableCell>{en}</TableCell>
                 <TableCell>{ru}</TableCell>
                 <TableCell>{transcription}</TableCell>
-                <TableCell>{
-                  examples.length > 0
-                    ? examples[0].example
-                    : '-'
-                }</TableCell>
+                <TableCell>{examples.length > 0 ? examples[0].example : '-'}</TableCell>
                 <TableCell title={new Date(dateCreated).toLocaleString()}>
-                  {moment(dateCreated)
-                    .fromNow()}
+                  {moment(dateCreated).fromNow()}
                 </TableCell>
               </TableRow>
             </Fragment>

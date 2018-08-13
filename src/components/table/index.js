@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade } from '@material-ui/core';
-import { Toolbar, TableHead, TableBody } from '..';
-import { withLoadingNames } from '../../context/loading-names';
+import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade, TableRow,
+  TableCell, Checkbox, TableHead } from '@material-ui/core';
+import { Toolbar, TableBody } from '..';
+import { loadingNamesInitialState, withLoadingNames } from '../../context/loading-names';
 import { withWords, wordsInitialState } from '../../context/words';
 import { classesShape } from '../../defaults/shapes';
 import { loadingNames } from '../../defaults';
@@ -24,11 +25,10 @@ class TableCmp extends Component {
   static defaultProps = {
     screenWidth: null,
     words: wordsInitialState,
-    currentLoadingNames: [],
+    currentLoadingNames: loadingNamesInitialState,
   };
 
   state = {
-    words: [],
     selected: [],
     order: 'desc',
     orderBy: 'dateCreated',
@@ -44,27 +44,9 @@ class TableCmp extends Component {
     this.props.cleanWords();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.words.length !== prevState.words.length) {
-      return { words: nextProps.words, };
-    }
-    return null;
-  }
-
-  handleRequestSort = (event, property) => {
-    const currentOrderBy = property;
-    const { orderBy, order } = this.state;
-    let currentOrder = 'desc';
-
-    if (orderBy === property && order === 'desc') {
-      currentOrder = 'asc';
-    }
-    this.setState({ order: currentOrder, orderBy: currentOrderBy });
-  };
-
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      this.setState(state => ({ selected: state.words.map(n => n._id) }));
+      this.setState(() => ({ selected: this.props.words.map(word => word._id) }));
       return;
     }
     this.setState({ selected: [] });
@@ -72,21 +54,11 @@ class TableCmp extends Component {
 
   handleClick = (event, id) => {
     const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+    const isChecked = selected.includes(id);
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+    const newSelected = isChecked
+      ? [...selected].filter(item => item !== id)
+      : [...selected, id];
 
     this.setState({ selected: newSelected });
   };
@@ -95,11 +67,10 @@ class TableCmp extends Component {
     this.setState({ page });
   };
 
-  handleChangeRowsPerPage = event => {
+  handleChangeRowsPerPage = event =>
     this.setState({ rowsPerPage: event.target.value });
-  };
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1;
+  isSelected = id => this.state.selected.includes(id);
 
   handleDeleteItems = itemsIds => {
     const { fetchWords, deleteWord } = this.props;
@@ -115,6 +86,8 @@ class TableCmp extends Component {
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
+    const numSelected = selected.length;
+    const rowCount = words.length;
 
     return (
       <Paper className={classes.root}>
@@ -124,22 +97,28 @@ class TableCmp extends Component {
           selected={selected}
         />
         <Table className={classes.table}>
-          <TableHead
-            screenWidth={screenWidth}
-            cells={['English', 'Russian', 'Transcription', 'Example', 'Date']}
-            numSelected={selected.length}
-            order={order}
-            orderBy={orderBy}
-            onSelectAllClick={this.handleSelectAllClick}
-            onRequestSort={this.handleRequestSort}
-            rowCount={words.length}
-          />
+          <TableHead>
+            <TableRow>
+              <TableCell padding="checkbox">
+                <Checkbox
+                  indeterminate={numSelected > 0 && numSelected < rowCount}
+                  checked={numSelected === rowCount && rowCount !== 0}
+                  onChange={this.handleSelectAllClick}
+                />
+              </TableCell>
+              <TableCell>English</TableCell>
+              <TableCell>Russian</TableCell>
+              <TableCell>Transcription</TableCell>
+              <TableCell>Example</TableCell>
+              <TableCell>Date</TableCell>
+            </TableRow>
+          </TableHead>
         </Table>
         <Fade
           in={loading}
           style={{ transitionDelay: loading ? '300ms' : '' }}
         >
-          <LinearProgress color='secondary' />
+          <LinearProgress color='secondary'/>
         </Fade>
         <Table>
           <TableBody
