@@ -7,6 +7,7 @@ import { NotificationItem } from '..';
 import { notificationInitialState, withNotifications } from '../../context/notifications';
 import { notificationsListShape } from '../../context/notifications/shape';
 import { variables } from '../../styles/variables';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 export const notificationType = {
@@ -41,7 +42,7 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
 );
 
 Notifications.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: classesShape.isRequired,
   notifications: notificationsListShape,
   hideNotification: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,

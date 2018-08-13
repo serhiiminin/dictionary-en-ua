@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const ControlsSeparator = ({ children, classes, align='left' }) => (
@@ -11,7 +12,7 @@ const ControlsSeparator = ({ children, classes, align='left' }) => (
 );
 
 ControlsSeparator.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: classesShape.isRequired,
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
 };

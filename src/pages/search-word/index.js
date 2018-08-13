@@ -11,6 +11,7 @@ import { withLoadingNames } from '../../context/loading-names';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
+import { classesShape } from '../../defaults/shapes';
 import routes from '../../routes';
 import styles from './styles';
 
@@ -30,7 +31,7 @@ const composeSearchData = text => {
 
 class SearchWord extends Component {
   static propTypes = {
-    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    classes: classesShape.isRequired,
     foundWord: foundWordShape,
     history: ReactRouterPropTypes.history.isRequired,
     saveWord: PropTypes.func.isRequired,

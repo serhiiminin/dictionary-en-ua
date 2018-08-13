@@ -5,13 +5,14 @@ import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade } from 
 import { Toolbar, TableHead, TableBody } from '..';
 import { withLoadingNames } from '../../context/loading-names';
 import { withWords, wordsInitialState } from '../../context/words';
+import { classesShape } from '../../defaults/shapes';
 import { loadingNames } from '../../defaults';
 import { wordsListShape } from '../../context/words/shape';
 import styles from './styles';
 
 class TableCmp extends Component {
   static propTypes = {
-    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    classes: classesShape.isRequired,
     currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     words: wordsListShape,
     fetchWords: PropTypes.func.isRequired,

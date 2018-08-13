@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 import { withStyles, Toolbar, Typography, Tooltip, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
@@ -46,7 +47,7 @@ const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
   );
 
 ToolbarCmp.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: classesShape.isRequired,
   numSelected: PropTypes.number.isRequired,
   deleteItems: PropTypes.func.isRequired,
   selected: PropTypes.arrayOf(PropTypes.string).isRequired,

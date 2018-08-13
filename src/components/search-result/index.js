@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesShape } from '../../defaults/shapes';
 import { ExamplesList, ExamplesListItem, ControlsSeparator } from '..';
 import { Button } from '../../mui-components';
 import styles from './styles';
@@ -38,7 +39,7 @@ SearchResult.propTypes = {
   editWordBeforeSaving: PropTypes.func.isRequired,
   saveWord: PropTypes.func.isRequired,
   pushWordToInput: PropTypes.func.isRequired,
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: classesShape.isRequired,
 };
 
 SearchResult.defaultProps = {
