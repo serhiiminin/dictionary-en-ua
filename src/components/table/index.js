@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade, TableRow,
-  TableCell, Checkbox, TableHead } from '@material-ui/core';
-import { Toolbar, TableBody } from '..';
+import { withStyles, Table, Paper, TablePagination, LinearProgress, Fade } from '@material-ui/core';
+import { Toolbar, TableBody, TableHead } from '..';
 import { loadingNamesInitialState, withLoadingNames } from '../../context/loading-names';
 import { withWords, wordsInitialState } from '../../context/words';
 import { classesShape } from '../../defaults/shapes';
@@ -19,11 +18,9 @@ class TableCmp extends Component {
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
-    screenWidth: PropTypes.number,
   };
 
   static defaultProps = {
-    screenWidth: null,
     words: wordsInitialState,
     currentLoadingNames: loadingNamesInitialState,
   };
@@ -44,13 +41,12 @@ class TableCmp extends Component {
     this.props.cleanWords();
   }
 
-  handleSelectAllClick = (event, checked) => {
-    if (checked) {
-      this.setState(() => ({ selected: this.props.words.map(word => word._id) }));
-      return;
-    }
-    this.setState({ selected: [] });
-  };
+  handleSelectAllClick = (event, checked) =>
+    this.setState({
+      selected: checked
+        ? this.props.words.map(word => word._id)
+        : []
+    });
 
   handleClick = (event, id) => {
     const { selected } = this.state;
@@ -63,9 +59,8 @@ class TableCmp extends Component {
     this.setState({ selected: newSelected });
   };
 
-  handleChangePage = (event, page) => {
+  handleChangePage = (event, page) =>
     this.setState({ page });
-  };
 
   handleChangeRowsPerPage = event =>
     this.setState({ rowsPerPage: event.target.value });
@@ -82,37 +77,26 @@ class TableCmp extends Component {
   };
 
   render() {
-    const { classes, screenWidth, currentLoadingNames, words } = this.props;
+    const { classes, currentLoadingNames, words } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, words.length - page * rowsPerPage);
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
     const numSelected = selected.length;
-    const rowCount = words.length;
+    const wordsCount = words.length;
 
     return (
       <Paper className={classes.root}>
         <Toolbar
-          numSelected={selected.length}
+          numSelected={numSelected}
           deleteItems={this.handleDeleteItems}
           selected={selected}
         />
         <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  indeterminate={numSelected > 0 && numSelected < rowCount}
-                  checked={numSelected === rowCount && rowCount !== 0}
-                  onChange={this.handleSelectAllClick}
-                />
-              </TableCell>
-              <TableCell>English</TableCell>
-              <TableCell>Russian</TableCell>
-              <TableCell>Transcription</TableCell>
-              <TableCell>Example</TableCell>
-              <TableCell>Date</TableCell>
-            </TableRow>
-          </TableHead>
+          <TableHead
+            onSelectAllClick={this.handleSelectAllClick}
+            rowCount={wordsCount}
+            numSelected={numSelected}
+          />
         </Table>
         <Fade
           in={loading}
@@ -122,7 +106,6 @@ class TableCmp extends Component {
         </Fade>
         <Table>
           <TableBody
-            screenWidth={screenWidth}
             words={words}
             order={order}
             orderBy={orderBy}
@@ -135,7 +118,7 @@ class TableCmp extends Component {
         </Table>
         <TablePagination
           component="div"
-          count={words.length}
+          count={wordsCount}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{ 'aria-label': 'Previous Page' }}
