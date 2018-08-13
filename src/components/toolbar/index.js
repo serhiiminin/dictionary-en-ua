@@ -7,43 +7,43 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import styles from './styles';
 
 const ToolbarCmp = ({ classes, numSelected, deleteItems, selected }) => (
-  <Toolbar
-    className={classes.root}
-  >
-    <div className={classes.title}>
-      {numSelected > 0 ? (
-        <Typography color="inherit" variant="subheading">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography variant="title" id="tableTitle">
-          Saved words
-        </Typography>
-      )}
-    </div>
-    <div className={classes.spacer}/>
-    <div className={classes.actions}>
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton
-            aria-label="Delete"
-            onClick={() => deleteItems(selected)}
-          >
-            <DeleteIcon/>
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton
-            aria-label="Filter list"
-          >
-            <FilterListIcon/>
-          </IconButton>
-        </Tooltip>
-      )}
-    </div>
-  </Toolbar>
-);
+    <Toolbar
+      className={classes.root}
+    >
+      <div className={classes.title}>
+        {numSelected > 0 ? (
+          <Typography color="inherit" variant="subheading">
+            {numSelected} selected
+          </Typography>
+        ) : (
+          <Typography variant="title" id="tableTitle">
+            Saved words
+          </Typography>
+        )}
+      </div>
+      <div className={classes.spacer}/>
+      <div className={classes.actions}>
+        {numSelected > 0 ? (
+          <Tooltip title="Delete">
+            <IconButton
+              aria-label="Delete"
+              onClick={() => deleteItems(selected)}
+            >
+              <DeleteIcon/>
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Filter list">
+            <IconButton
+              aria-label="Filter list"
+            >
+              <FilterListIcon/>
+            </IconButton>
+          </Tooltip>
+        )}
+      </div>
+    </Toolbar>
+  );
 
 ToolbarCmp.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types

@@ -55,11 +55,9 @@ const styles = {
     opacity: '1',
   },
   exiting: {
-    marginTop: '50px',
     opacity: '0',
   },
   exited: {
-    marginTop: '50px',
     opacity: '0',
   },
 };

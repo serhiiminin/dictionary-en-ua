@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 import { api } from '../../api/fetcher';
 import { notificationType } from '../../components/notifications';
 import { loadingNames } from '../../defaults';
+import { withFoundWord } from '../foundWord';
 import { withLoadingNames } from '../loading-names';
 import { withNotifications } from '../notifications';
 
@@ -19,6 +20,7 @@ class WordsProviderCmp extends Component {
     showNotification: PropTypes.func.isRequired,
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
+    setFoundWord: PropTypes.func.isRequired,
   };
 
   state = initialState;
@@ -59,10 +61,11 @@ class WordsProviderCmp extends Component {
   };
 
   handleSearchWord = params => {
-    const { showNotification, startLoading, stopLoading } = this.props;
+    const { showNotification, startLoading, stopLoading, setFoundWord } = this.props;
 
     return Promise.resolve(startLoading(loadingNames.searchWord))
-      .then(() =>api.searchWord(params))
+      .then(() => api.searchWord(params))
+      .then(foundWord => setFoundWord(foundWord))
       .then(() => stopLoading(loadingNames.searchWord))
       .catch(err => showNotification(err.message, notificationType.error))
   };
@@ -87,6 +90,7 @@ class WordsProviderCmp extends Component {
 }
 
 const WordsProvider = compose(
+  withFoundWord,
   withLoadingNames,
   withNotifications,
 )(WordsProviderCmp);

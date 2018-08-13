@@ -1,10 +1,23 @@
 import React, { Component, createContext } from 'react';
+import uuid from 'uuid';
 import PropTypes from 'prop-types';
 
 const FoundWordContext = createContext({});
 
 const initialState = {
   foundWord: {}
+};
+
+const normalizeWord = (result = {}) => {
+  const { en = '', ru = '', transcription = '', results = [] } = result;
+  const examples = results && results
+    .reduce((res, val) =>
+        val.examples
+          ? [...res, ...val.examples.map(example => ({ example, id: uuid() }))]
+          : [...res],
+      []);
+
+  return { en, ru, transcription, examples };
 };
 
 class FoundWordProvider extends Component {
@@ -20,9 +33,9 @@ class FoundWordProvider extends Component {
       foundWord: initialState.foundWord,
     })));
 
-  handleSetFoundWord = params =>
+  handleSetFoundWord = foundWord =>
     Promise.resolve(this.setState({
-      foundWord: { ...params }
+      foundWord: normalizeWord(foundWord)
     }));
 
   render() {

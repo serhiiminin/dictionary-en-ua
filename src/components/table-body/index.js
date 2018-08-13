@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Checkbox, TableBody, TableCell, TableRow } from '@material-ui/core';
@@ -21,28 +21,31 @@ const TableBodyCmp = props => {
           const isSelectedCurrent = isSelected(_id);
 
           return (
-            <TableRow
-              hover
-              onClick={event => handleClick(event, _id)}
-              role="checkbox"
-              aria-checked={isSelectedCurrent}
-              tabIndex={-1}
-              key={_id}
-              selected={isSelectedCurrent}
-            >
-              <TableCell padding="checkbox"><Checkbox checked={isSelectedCurrent}/></TableCell>
-              <TableCell>{en}</TableCell>
-              <TableCell component="th" scope="row">{ru}</TableCell>
-              <TableCell>{transcription}</TableCell>
-              <TableCell>{
-                examples.length > 0
-                  ? examples[0].example
-                  : '-'
-              }</TableCell>
-              <TableCell title={new Date(dateCreated).toLocaleString()}>
-                {moment(dateCreated).fromNow()}
-              </TableCell>
-            </TableRow>
+            <Fragment>
+              <TableRow
+                hover
+                onClick={event => handleClick(event, _id)}
+                role="checkbox"
+                aria-checked={isSelectedCurrent}
+                tabIndex={-1}
+                key={_id}
+                selected={isSelectedCurrent}
+              >
+                <TableCell padding="checkbox"><Checkbox checked={isSelectedCurrent}/></TableCell>
+                <TableCell>{en}</TableCell>
+                <TableCell>{ru}</TableCell>
+                <TableCell>{transcription}</TableCell>
+                <TableCell>{
+                  examples.length > 0
+                    ? examples[0].example
+                    : '-'
+                }</TableCell>
+                <TableCell title={new Date(dateCreated).toLocaleString()}>
+                  {moment(dateCreated)
+                    .fromNow()}
+                </TableCell>
+              </TableRow>
+            </Fragment>
           );
         })}
       {emptyRows > 0 && (
