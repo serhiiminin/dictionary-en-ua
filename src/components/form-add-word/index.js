@@ -58,16 +58,16 @@ class FormAddWord extends Component {
       <form onSubmit={this.handleOnSubmit}>
         <div>
           <TextField
-            label="Russian"
-            value={ru}
-            onChange={e => onFormItemChange(e, 'ru')}
+            label="English"
+            value={en}
+            onChange={e => onFormItemChange(e, 'en')}
           />
         </div>
         <div>
           <TextField
-            label="English"
-            value={en}
-            onChange={e => onFormItemChange(e, 'en')}
+            label="Russian"
+            value={ru}
+            onChange={e => onFormItemChange(e, 'ru')}
           />
         </div>
         <div>

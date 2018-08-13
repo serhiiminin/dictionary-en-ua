@@ -86,6 +86,12 @@ class TableCmp extends Component {
 
     return (
       <Paper className={classes.root}>
+        <Fade
+          in={loading}
+          style={{ transitionDelay: loading ? '300ms' : '' }}
+        >
+          <LinearProgress color='secondary'/>
+        </Fade>
         <Toolbar
           numSelected={numSelected}
           deleteItems={this.handleDeleteItems}
@@ -97,14 +103,6 @@ class TableCmp extends Component {
             rowCount={wordsCount}
             numSelected={numSelected}
           />
-        </Table>
-        <Fade
-          in={loading}
-          style={{ transitionDelay: loading ? '300ms' : '' }}
-        >
-          <LinearProgress color='secondary'/>
-        </Fade>
-        <Table>
           <TableBody
             words={words}
             order={order}

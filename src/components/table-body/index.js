@@ -32,7 +32,9 @@ const TableBodyCmp = props => {
               key={_id}
               selected={isSelectedCurrent}
             >
-              <TableCell padding="checkbox"><Checkbox checked={isSelectedCurrent}/></TableCell>
+              <TableCell padding="checkbox">
+                <Checkbox checked={isSelectedCurrent}/>
+              </TableCell>
               <TableCell>{en}</TableCell>
               <TableCell>{ru}</TableCell>
               <TableCell>{transcription}</TableCell>
