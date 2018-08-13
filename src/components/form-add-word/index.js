@@ -47,10 +47,8 @@ class FormAddWord extends Component {
   };
 
   render() {
-    const {
-      form, onResetForm, onAddNewExample, onRemoveExample,
-      onExampleChange, onFormItemChange, currentLoadingNames
-    } = this.props;
+    const { form, onResetForm, onAddNewExample, onRemoveExample,
+      onExampleChange, onFormItemChange, currentLoadingNames } = this.props;
     const { en, ru, transcription, examples } = form;
     const loading = currentLoadingNames.includes(loadingNames.saveWord);
 

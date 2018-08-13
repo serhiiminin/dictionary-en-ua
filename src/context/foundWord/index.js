@@ -1,4 +1,5 @@
 import React, { Component, createContext } from 'react';
+import uuid from 'uuid';
 import PropTypes from 'prop-types';
 
 const FoundWordContext = createContext({});
@@ -12,11 +13,11 @@ const normalizeWord = (result = {}) => {
   const examples = results && results
     .reduce((res, val) =>
         val.examples
-          ? [...res, ...val.examples.map(example => ({ example }))]
+          ? [...res, ...val.examples.map(example => ({ example, id: uuid() }))]
           : [...res],
       []);
 
-  return { en, ru, transcription, examples }
+  return { en, ru, transcription, examples };
 };
 
 class FoundWordProvider extends Component {

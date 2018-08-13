@@ -79,7 +79,7 @@ class SearchWord extends Component {
       .then(history.push(routes.addWord));
   };
 
-  handleSaveWordList = () => {
+  handleSaveWord = () => {
     const { saveWord, foundWord, cleanFoundWord } = this.props;
 
     return saveWord(foundWord)
@@ -109,7 +109,7 @@ class SearchWord extends Component {
             ru={ru}
             examples={examples}
             transcription={transcription}
-            saveWord={this.handleSaveWordList}
+            saveWord={this.handleSaveWord}
             editWordBeforeSaving={this.handleEditBeforeSaving}
             pushWordToInput={this.handleSearchWord}
           />
