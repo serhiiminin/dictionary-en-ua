@@ -87,7 +87,12 @@ class SearchWord extends Component {
     const { saveWord, foundWord, cleanFoundWord } = this.props;
 
     return saveWord(foundWord)
-      .then(cleanFoundWord());
+      .then(() => {
+        const { searchValue } = initialState;
+
+        this.setState({ searchValue });
+        cleanFoundWord();
+      });
   };
 
   render() {

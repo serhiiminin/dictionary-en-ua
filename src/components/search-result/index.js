@@ -15,8 +15,8 @@ const SearchResult = ({ en, ru, examples, transcription, saveWord, editWordBefor
           <Button onClick={saveWord}>Add to my words</Button>
           <Button onClick={editWordBeforeSaving}>Edit before saving</Button>
         </ControlsSeparator>
-        <p><span>Russian: </span>{ru}</p>
         <p><span>English: </span>{en}</p>
+        <p><span>Russian: </span>{ru}</p>
         <p><span>Transcription: </span>{transcription}</p>
         <ExamplesList>
           {examples.map(({ example }) => (

@@ -6,14 +6,12 @@ import { CircularProgress, Fade } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { withLoadingNames, loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
-import { withNotifications } from '../../context/notifications';
 import { withWordForm, wordFormInitialState } from '../../context/word-form';
 import { wordFormShape } from '../../context/word-form/shape';
 import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
 import { TextField, Button } from '../../mui-components';
 import { ControlsSeparator } from '..';
-import { notificationType } from '../notifications';
 import styles from './styles';
 
 class FormAddWord extends Component {
@@ -25,7 +23,6 @@ class FormAddWord extends Component {
     onResetForm: PropTypes.func.isRequired,
     onExampleChange: PropTypes.func.isRequired,
     onFormItemChange: PropTypes.func.isRequired,
-    showNotification: PropTypes.func.isRequired,
     saveWord: PropTypes.func.isRequired,
   };
 
@@ -40,10 +37,9 @@ class FormAddWord extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    const { form, saveWord, onResetForm, showNotification } = this.props;
+    const { form, saveWord, onResetForm } = this.props;
 
     saveWord({ ...form })
-      .then(() => showNotification('The word has been added successfully', notificationType.success))
       .then(() => onResetForm())
       .catch(error => console.log(error)); // eslint-disable-line no-console
   };
@@ -128,7 +124,6 @@ FormAddWord.defaultProps = {
 
 const enhance = compose(
   injectSheet(styles),
-  withNotifications,
   withLoadingNames,
   withWords,
   withWordForm,
