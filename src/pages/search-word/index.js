@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { ButtonWithRouter, ControlsSeparator, SearchResult, TextFieldLoading } from '../../components';
+import { ButtonWithRouter, ControlsSeparator, TextFieldLoading, FoundWordDescription, FoundWordExamples } from '../../components';
 import { foundWordInitialState, withFoundWord } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
 import { withLoadingNames } from '../../context/loading-names';
@@ -12,6 +12,7 @@ import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
 import { classesShape } from '../../defaults/shapes';
+import { Button } from '../../mui-components';
 import routes from '../../routes';
 import styles from './styles';
 
@@ -98,7 +99,7 @@ class SearchWord extends Component {
   render() {
     const { searchValue } = this.state;
     const { classes, foundWord, currentLoadingNames } = this.props;
-    const { en, ru, examples, transcription } = foundWord;
+    const isEmpty = !Object.keys(foundWord).length;
     const loading = currentLoadingNames.includes(loadingNames.searchWord);
 
     return (
@@ -107,21 +108,29 @@ class SearchWord extends Component {
           <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
         </ControlsSeparator>
         <main className={classes.searchWord}>
-          <TextFieldLoading
-            label="Search a word"
-            value={searchValue}
-            onChange={this.handleOnChangeSearchInput}
-            loading={loading}
-          />
-          <SearchResult
-            en={en}
-            ru={ru}
-            examples={examples}
-            transcription={transcription}
-            saveWord={this.handleSaveWord}
-            editWordBeforeSaving={this.handleEditBeforeSaving}
-            pushWordToInput={this.handleSearchWord}
-          />
+          <div>
+            <TextFieldLoading
+              label="Search a word"
+              value={searchValue}
+              onChange={this.handleOnChangeSearchInput}
+              loading={loading}
+            />
+            <ControlsSeparator>
+              <Button onClick={this.handleSaveWord} disabled={isEmpty}>Add to my words</Button>
+              <Button onClick={this.handleEditBeforeSaving} disabled={isEmpty}>Edit before saving</Button>
+            </ControlsSeparator>
+            <FoundWordDescription
+              foundWord={foundWord}
+              pushTextToInput={this.handleSearchWord}
+            />
+          </div>
+          <div>
+            <FoundWordExamples
+              foundWord={foundWord}
+              pushTextToInput={this.handleSearchWord}
+            />
+          </div>
+
         </main>
       </Fragment>
     );

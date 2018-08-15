@@ -9,17 +9,20 @@ const foundWordInitialState = {
 };
 
 const mergeArrays = (data, field) =>
-  data && data.reduce((res, val) =>
-    val[field]
-      ? [...res, ...val[field]]
-      : [...res],
-  []);
+  Array.from(
+    new Set(
+      data && data.reduce((res, val) =>
+        val[field]
+          ? [...res, ...val[field]]
+          : [...res],
+      [])));
 
 const normalizeWord = (wordData = {}) => {
   const { en = '', ru = '', transcription = '', results = [] } = wordData;
 
   const partOfSpeech = results && Array.from(new Set(results.map(item => item.partOfSpeech)));
-  const examples = mergeArrays(results, 'examples').map(example => ({ example, id: uuid() }));
+  const examples = mergeArrays(results, 'examples')
+    .map(example => ({ example, id: uuid() }));
   const definitions = results && results.map(item => item.definition);
   const synonyms = mergeArrays(results, 'synonyms');
   const antonyms = mergeArrays(results, 'antonyms');
