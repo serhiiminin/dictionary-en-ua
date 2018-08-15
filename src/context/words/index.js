@@ -39,6 +39,7 @@ class WordsProviderCmp extends Component {
       .then(words => this.setState({ words }))
       .then(() => stopLoading(loadingNames.wordsList))
       .catch(err => showNotification(err.message, notificationType.error))
+      .then(() => stopLoading(loadingNames.wordsList))
   };
 
   handleSaveWord = data => {
@@ -47,7 +48,9 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.saveWord))
       .then(() => api.saveWord(data))
       .then(() => stopLoading(loadingNames.saveWord))
+      .then(() => showNotification('The word has been added successfully', notificationType.success))
       .catch(err => showNotification(err.message, notificationType.error))
+      .then(() => stopLoading(loadingNames.saveWord))
   };
 
   handleDeleteWord = id => {
@@ -57,6 +60,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.deleteWord(id))
       .then(() => stopLoading(loadingNames.deleteWord))
       .catch(err => showNotification(err.message, notificationType.error))
+      .then(() => stopLoading(loadingNames.deleteWord))
       .then(() => this.handleFetchWords());
   };
 
@@ -68,6 +72,7 @@ class WordsProviderCmp extends Component {
       .then(foundWord => setFoundWord(foundWord))
       .then(() => stopLoading(loadingNames.searchWord))
       .catch(err => showNotification(err.message, notificationType.error))
+      .then(() => stopLoading(loadingNames.searchWord))
   };
 
   render() {

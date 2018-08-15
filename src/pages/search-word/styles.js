@@ -1,7 +1,9 @@
 const styles = {
   searchWord: {
-    width: '450px',
-    margin: '0 auto',
+    display: 'grid',
+    gridTemplateColumns: '3fr 5fr',
+    rowGap: '1rem',
+    columnGap: '1rem',
   }
 };
 

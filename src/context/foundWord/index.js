@@ -8,16 +8,27 @@ const foundWordInitialState = {
   foundWord: {}
 };
 
-const normalizeWord = (result = {}) => {
-  const { en = '', ru = '', transcription = '', results = [] } = result;
-  const examples = results && results
-    .reduce((res, val) =>
-        val.examples
-          ? [...res, ...val.examples.map(example => ({ example, id: uuid() }))]
+const mergeArrays = (data, field) =>
+  Array.from(
+    new Set(
+      data && data.reduce((res, val) =>
+        val[field]
+          ? [...res, ...val[field]]
           : [...res],
-      []);
+      [])));
 
-  return { en, ru, transcription, examples };
+const normalizeWord = (wordData = {}) => {
+  const { en = '', ru = '', transcription = '', results = [] } = wordData;
+
+  const partOfSpeech = results && Array.from(new Set(results.map(item => item.partOfSpeech)));
+  const examples = mergeArrays(results, 'examples')
+    .map(example => ({ example, id: uuid() }));
+  const definitions = results && results.map(item => item.definition);
+  const synonyms = mergeArrays(results, 'synonyms');
+  const antonyms = mergeArrays(results, 'antonyms');
+  const similarTo = mergeArrays(results, 'similarTo');
+
+  return { en, ru, transcription, examples, definitions, similarTo, synonyms, antonyms, partOfSpeech };
 };
 
 class FoundWordProvider extends Component {
