@@ -10,6 +10,10 @@ const styles = {
     padding: variables.padding.small,
     marginBottom: variables.margin.medium,
     borderRadius: variables.borderRadius.small,
+  },
+  noResults: {
+    fontStyle: 'italic',
+    opacity: variables.opacity.disabled,
   }
 };
 

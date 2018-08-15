@@ -15,14 +15,17 @@ const FoundWordExamples = ({ foundWord, pushTextToInput, classes }) => {
     <Fragment>
       <h3 className={classes.examplesTitle}>Examples:</h3>
       <div>
-        {examples && examples.map(({ example, id }) => (
-          <div className={classes.exampleItem} key={id}>
-            <ListOfClickableStrings
-              items={example && example.split(' ')}
-              onClick={pushTextToInput}
-            />
-          </div>
-        ))}
+        {examples && examples.length > 0
+          ? examples.map(({ example, id }) => (
+            <div className={classes.exampleItem} key={id}>
+              <ListOfClickableStrings
+                items={example && example.split(' ')}
+                onClick={pushTextToInput}
+              />
+            </div>
+          ))
+          : <div className={classes.noResults}>No results</div>
+        }
       </div>
     </Fragment>
   );
