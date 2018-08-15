@@ -6,8 +6,6 @@ export { default as Header } from './header';
 export { default as Toolbar } from './toolbar';
 export { default as TableHead } from './table-head';
 export { default as TableBody } from './table-body';
-export { default as ExamplesList } from './examples-list';
-export { default as ExamplesListItem } from './examples-list-item';
 export { default as Notifications } from './notifications';
 export { default as NotificationItem } from './notification-item';
 export { default as ControlsSeparator } from './controls-separator';

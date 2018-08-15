@@ -1,15 +1,15 @@
 const variables = {
   colors: {
-    background: '#EBEBD3',
+    background: '#F6F0ED',
+    button: '#28536B',
     text: '#333333',
-    block: '#37C6BA',
-    line: '#F2FF9E',
-    button: '#083D77',
-    important: '#DA4167',
+    block: '#66D4CA',
+    line: '#BBB193',
+    important: '#C2948A',
     notification: {
-      success: '#D9FAD4',
-      error: '#EBC5C0',
-      warning: '#F5FAD2',
+      success: '#66D4CA',
+      error: '#C2948A',
+      warning: '#BBB193',
       info: '#CBE5F6',
     }
   },

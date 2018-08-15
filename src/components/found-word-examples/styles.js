@@ -8,8 +8,12 @@ const styles = {
   exampleItem: {
     background: variables.colors.line,
     padding: variables.padding.small,
-    marginBottom: variables.margin.medium,
+    marginBottom: variables.margin.small,
     borderRadius: variables.borderRadius.small,
+  },
+  noResults: {
+    fontStyle: 'italic',
+    opacity: variables.opacity.disabled,
   }
 };
 
