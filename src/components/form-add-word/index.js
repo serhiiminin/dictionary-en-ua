@@ -10,6 +10,7 @@ import { withWordForm, wordFormInitialState } from '../../context/word-form';
 import { wordFormShape } from '../../context/word-form/shape';
 import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
+import { classesShape } from '../../defaults/shapes';
 import { TextField, Button } from '../../mui-components';
 import { ControlsSeparator } from '..';
 import styles from './styles';
@@ -24,6 +25,7 @@ class FormAddWord extends Component {
     onExampleChange: PropTypes.func.isRequired,
     onFormItemChange: PropTypes.func.isRequired,
     saveWord: PropTypes.func.isRequired,
+    classes: classesShape.isRequired,
   };
 
   static defaultProps = {
@@ -45,33 +47,51 @@ class FormAddWord extends Component {
   };
 
   render() {
-    const { form, onResetForm, onAddNewExample, onRemoveExample,
+    const { form, onResetForm, onAddNewExample, onRemoveExample, classes,
       onExampleChange, onFormItemChange, currentLoadingNames } = this.props;
     const { en, ru, transcription, examples } = form;
     const loading = currentLoadingNames.includes(loadingNames.saveWord);
 
     return (
-      <form onSubmit={this.handleOnSubmit}>
+      <form
+        onSubmit={this.handleOnSubmit}
+        className={classes.formAdd}
+      >
         <div>
           <TextField
             label="English"
             value={en}
             onChange={e => onFormItemChange(e, 'en')}
           />
-        </div>
-        <div>
           <TextField
             label="Russian"
             value={ru}
             onChange={e => onFormItemChange(e, 'ru')}
           />
-        </div>
-        <div>
           <TextField
             label="Transcription"
             value={transcription}
             onChange={e => onFormItemChange(e, 'transcription')}
           />
+          <ControlsSeparator
+            align='right'
+          >
+            <Button type="submit" disabled={!Object.values(form).join('')}>
+              <Fade
+                in={loading}
+                style={{ transitionDelay: loading ? '300ms' : '' }}
+                unmountOnExit
+              >
+                <CircularProgress
+                  color="inherit"
+                  size={16}
+                />
+              </Fade>
+              Save word
+            </Button>
+            {!!Object.values(form)
+              .join('') && <Button onClick={onResetForm}>Reset Form</Button>}
+          </ControlsSeparator>
         </div>
         <div>
           {examples && examples.map(({ example, id }) => (
@@ -93,34 +113,10 @@ class FormAddWord extends Component {
             </Button>
           </ControlsSeparator>
         </div>
-        <ControlsSeparator
-          align='right'
-        >
-          <Button type="submit" disabled={!Object.values(form)
-            .join('')}>
-            <Fade
-              in={loading}
-              style={{ transitionDelay: loading ? '300ms' : '' }}
-              unmountOnExit
-            >
-              <CircularProgress
-                color="inherit"
-                size={16}
-              />
-            </Fade>
-            Save word
-          </Button>
-          {!!Object.values(form)
-            .join('') && <Button onClick={onResetForm}>Reset Form</Button>}
-        </ControlsSeparator>
       </form>
     );
   }
 }
-
-FormAddWord.defaultProps = {
-  form: {},
-};
 
 const enhance = compose(
   injectSheet(styles),

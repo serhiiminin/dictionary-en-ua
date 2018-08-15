@@ -1,9 +1,3 @@
-const styles = {
-  addWord: {
-    display: 'grid',
-    width: '450px',
-    margin: '0 auto',
-  },
-};
+const styles = {};
 
 export default styles;
