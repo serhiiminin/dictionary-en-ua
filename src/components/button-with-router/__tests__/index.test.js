@@ -6,7 +6,9 @@ import ButtonWithRouter from '..';
 
 describe('Button with Router', () => {
   const component = renderer.create(
-    <Router>
+    <Router
+      initialEntries={[{ pathname: '/', key: 'testKey' }]}
+    >
       <ButtonWithRouter to='/anywhere'>Anywhere</ButtonWithRouter>
     </Router>
   );
@@ -19,6 +21,7 @@ describe('Button with Router', () => {
   test('onClick', () => {
     tree.props.onClick();
     tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(tree)
+      .toMatchSnapshot();
   });
 });
