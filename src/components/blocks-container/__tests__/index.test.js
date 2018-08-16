@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BlockContainer from '.';
+import BlockContainer from '../index';
 
 
 describe('Block Container', () => {
