@@ -33,13 +33,14 @@
     "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' npm run lint"
   },
   "devDependencies": {
-    "pre-commit": "^1.2.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "17.0.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
-    "eslint-plugin-react": "^7.10.0"
+    "eslint-plugin-react": "^7.10.0",
+    "pre-commit": "^1.2.2",
+    "react-test-renderer": "^16.4.2"
   },
   "pre-commit": {
     "run": [
