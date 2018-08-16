@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Controls separator align right 1`] = `
+<div
+  className="ControlsSeparator-alignControls-0-1-1 ControlsSeparator-left-0-1-2"
+>
+  <button
+    type="button"
+  >
+    anything
+  </button>
+  <button
+    type="button"
+  >
+    anything
+  </button>
+</div>
+`;
+
+exports[`Controls separator render 1`] = `
+<div
+  className="ControlsSeparator-alignControls-0-1-1 ControlsSeparator-left-0-1-2"
+>
+  <button
+    type="button"
+  >
+    anything
+  </button>
+  <button
+    type="button"
+  >
+    anything
+  </button>
+</div>
+`;
