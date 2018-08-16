@@ -7,7 +7,7 @@ import ButtonWithRouter from '..';
 describe('Button with Router', () => {
   const component = renderer.create(
     <Router
-      initialEntries={[{ pathname: '/', key: 'testKey' }]}
+      keyLength={0}
     >
       <ButtonWithRouter to='/anywhere'>Anywhere</ButtonWithRouter>
     </Router>
