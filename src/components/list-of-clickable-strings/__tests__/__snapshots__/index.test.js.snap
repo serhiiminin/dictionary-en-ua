@@ -3,14 +3,14 @@
 exports[`List of clickable strings delimiter 1`] = `
 <div>
   <a
-    className="ListOfClickableStrings-clickableWord-0-1-1"
+    className="ClicableString-clickableWord-0-1-1"
     href="/"
     onClick={[Function]}
   >
     One
   </a>
   <a
-    className="ListOfClickableStrings-clickableWord-0-1-1"
+    className="ClicableString-clickableWord-0-1-1"
     href="/"
     onClick={[Function]}
   >
@@ -22,14 +22,14 @@ exports[`List of clickable strings delimiter 1`] = `
 exports[`List of clickable strings render 1`] = `
 <div>
   <a
-    className="ListOfClickableStrings-clickableWord-0-1-1"
+    className="ClicableString-clickableWord-0-1-1"
     href="/"
     onClick={[Function]}
   >
     One
   </a>
   <a
-    className="ListOfClickableStrings-clickableWord-0-1-1"
+    className="ClicableString-clickableWord-0-1-1"
     href="/"
     onClick={[Function]}
   >

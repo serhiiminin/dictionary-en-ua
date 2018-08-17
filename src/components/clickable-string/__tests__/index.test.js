@@ -1,12 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ListOfClickableStrings from '..';
+import ClickableString from '..';
 
-describe('List of clickable strings', () => {
+describe('Clickable string', () => {
+  const event = { preventDefault: () => {} };
   const component = renderer.create(
-    <ListOfClickableStrings
-      items={['One', 'two']}
-      onClick={() => {}}
+    <ClickableString
+      item='String'
+      onClick={() => { event.preventDefault(); }}
     />
   );
   let tree = component.toJSON();

@@ -10,7 +10,10 @@ const ClicableString = ({ onClick, item, classes, delimiter }) => (
     href="/"
     key={item}
     className={classes.clickableWord}
-    onClick={event => { event.preventDefault(); onClick(item)}}
+    onClick={event => {
+      event.preventDefault();
+      onClick(item);
+    }}
   >
     {`${item}${delimiter}`}
   </a>

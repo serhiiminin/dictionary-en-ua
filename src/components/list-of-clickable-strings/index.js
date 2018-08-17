@@ -7,7 +7,8 @@ const ListOfClickableStrings = ({ items, onClick, delimiter = '' }) => (
     {items && items.map(item =>
       <ClickableString
         key={item}
-        onClick={event => { event.preventDefault(); onClick(item)}}
+        item={item}
+        onClick={onClick}
         delimiter={delimiter}
       />
     )}
