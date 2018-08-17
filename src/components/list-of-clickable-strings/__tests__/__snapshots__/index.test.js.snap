@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List of clickable strings delimiter 1`] = `
+<div>
+  <a
+    className="ClicableString-clickableWord-0-1-1"
+    href="/"
+    onClick={[Function]}
+  >
+    One
+  </a>
+  <a
+    className="ClicableString-clickableWord-0-1-1"
+    href="/"
+    onClick={[Function]}
+  >
+    two
+  </a>
+</div>
+`;
+
+exports[`List of clickable strings render 1`] = `
+<div>
+  <a
+    className="ClicableString-clickableWord-0-1-1"
+    href="/"
+    onClick={[Function]}
+  >
+    One
+  </a>
+  <a
+    className="ClicableString-clickableWord-0-1-1"
+    href="/"
+    onClick={[Function]}
+  >
+    two
+  </a>
+</div>
+`;

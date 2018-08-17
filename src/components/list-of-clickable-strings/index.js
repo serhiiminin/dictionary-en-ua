@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'recompose';
-import injectSheet from 'react-jss';
-import { classesShape } from '../../defaults/shapes';
-import styles from './styles';
+import { ClickableString } from '..';
 
-const ListOfClickableStrings = ({ items, onClick, classes, delimiter = '' }) => (
+const ListOfClickableStrings = ({ items, onClick, delimiter = '' }) => (
   <div>
     {items && items.map(item =>
-      <a
-        href="/"
+      <ClickableString
         key={item}
-        className={classes.clickableWord}
-        onClick={event => { event.preventDefault(); onClick(item)}}
-      >
-        {`${item}${delimiter}`}
-      </a>
+        item={item}
+        onClick={onClick}
+        delimiter={delimiter}
+      />
     )}
   </div>
 );
@@ -23,7 +18,6 @@ const ListOfClickableStrings = ({ items, onClick, classes, delimiter = '' }) => 
 ListOfClickableStrings.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
-  classes: classesShape.isRequired,
   delimiter: PropTypes.string,
 };
 
@@ -32,8 +26,4 @@ ListOfClickableStrings.defaultProps = {
   delimiter: '',
 };
 
-const enhance = compose(
-  injectSheet(styles),
-);
-
-export default enhance(ListOfClickableStrings);
+export default ListOfClickableStrings;
