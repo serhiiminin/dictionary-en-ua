@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
-const ControlsSeparator = ({ children, classes, align='left' }) => (
+const ControlsSeparator = ({ children, classes, align }) => (
   <div className={`${classes.alignControls} ${classes[align]}`}>
     {children}
     </div>
