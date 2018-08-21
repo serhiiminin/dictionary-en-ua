@@ -14,3 +14,4 @@ export { default as LineExplanation } from './line-explanation';
 export { default as FoundWordDescription } from './found-word-description';
 export { default as FoundWordExamples } from './found-word-examples';
 export { default as ListOfClickableStrings } from './list-of-clickable-strings';
+export { default as ClickableWord } from './clickable-word';
