@@ -5,7 +5,7 @@ import injectSheet from 'react-jss';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
-const ListOfClickableStrings = ({ items, onClick, classes, delimiter = '' }) => (
+const ListOfClickableStrings = ({ items, onClick, classes, delimiter }) => (
   <div>
     {items && items.map(item =>
       <a
