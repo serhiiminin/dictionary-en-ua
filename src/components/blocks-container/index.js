@@ -6,7 +6,7 @@ import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
 const BlocksContainer = ({ classes, children }) => (
-  <div className={classes.root}>
+  <div className={classes.blocksContainer}>
     {children}
   </div>
 );

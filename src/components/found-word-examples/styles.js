@@ -7,7 +7,7 @@ const styles = {
   },
   exampleItem: {
     background: variables.colors.line,
-    padding: variables.padding.small,
+    padding: variables.padding.medium,
     marginBottom: variables.margin.small,
     borderRadius: variables.borderRadius.small,
   },
