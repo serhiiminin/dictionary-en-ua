@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ClickableWord from '../clickable-word';
+import ClickableWord from '../clickable-word/component';
 
 describe('Clickable Word', () => {
 

@@ -1,5 +1,5 @@
 import { variables } from '../../styles/variables';
-import { notificationType } from '../notifications';
+import { notificationType } from '../notifications/component';
 
 const styles = {
   notification: {

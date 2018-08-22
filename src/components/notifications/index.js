@@ -1,59 +1,8 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Transition, TransitionGroup } from 'react-transition-group';
 import { compose } from 'recompose';
-import { NotificationItem } from '..';
-import { notificationInitialState, withNotifications } from '../../context/notifications';
-import { notificationsListShape } from '../../context/notifications/shape';
-import { classesDefaultProps } from '../../defaults/default-props';
-import { variables } from '../../styles/variables';
-import { classesShape } from '../../defaults/shapes';
+import { withNotifications } from '../../context/notifications';
 import styles from './styles';
-
-export const notificationType = {
-  success: 'success',
-  warning: 'warning',
-  error: 'error',
-  info: 'info',
-};
-
-const Notifications = ({ children, notifications, classes, hideNotification }) => (
-  <Fragment>
-    {children}
-    <TransitionGroup className={classes.notifications} component="ul">
-      {notifications.map(({ id, text, type }) => (
-        <Transition
-          timeout={variables.timeout.notification}
-          unmountOnExit
-          key={id}
-        >{status => (
-          <NotificationItem
-            type={type}
-            text={text}
-            key={id}
-            status={status}
-            onClick={() => hideNotification(id)}
-          />
-        )}
-        </Transition>
-      ))}
-    </TransitionGroup>
-  </Fragment>
-);
-
-Notifications.propTypes = {
-  classes: classesShape,
-  notifications: notificationsListShape,
-  hideNotification: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-Notifications.defaultProps = {
-  notifications: notificationInitialState,
-  classes: classesDefaultProps,
-};
-
+import Notifications from './component';
 
 const enhance = compose(
   injectSheet(styles),
