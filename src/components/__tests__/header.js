@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ListOfClickableStrings from '..';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Header } from '..';
 
 
-describe('List of clickable strings', () => {
+describe('Header', () => {
   const component = renderer.create(
-    <ListOfClickableStrings
-      items={['one', 'two']}
-      onClick={() => {}}
-    />
+    <Router keyLength={0}>
+      <Header/>
+    </Router>
   );
   const tree = component.toJSON();
 

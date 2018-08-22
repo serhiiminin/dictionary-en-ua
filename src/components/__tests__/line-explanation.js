@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import LineExplanation from '..';
+import { LineExplanation } from '..';
 
 
 describe('Line explanation', () => {

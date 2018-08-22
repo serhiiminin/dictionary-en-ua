@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import ClickableWord from '..';
+import { ClickableWord } from '..';
 
 describe('Clickable Word', () => {
   const component = renderer.create(
