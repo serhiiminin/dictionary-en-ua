@@ -1,14 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { BrowserRouter as Router } from 'react-router-dom';
-import ButtonWithRouter from '..';
+import { ControlsSeparator } from '..';
 
-
-describe('Button with Router', () => {
+describe('Controls separator', () => {
   const component = renderer.create(
-    <Router keyLength={0}>
-      <ButtonWithRouter to='/anywhere'>Anywhere</ButtonWithRouter>
-    </Router>
+    <ControlsSeparator>
+      <button type='button'>anything</button>
+      <button type='button'>anything</button>
+    </ControlsSeparator>
   );
   let tree = component.toJSON();
 
@@ -16,8 +15,8 @@ describe('Button with Router', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test('onClick', () => {
-    tree.props.onClick();
+  test('align right', () => {
+    tree.props.align='right';
     tree = component.toJSON();
     expect(tree)
       .toMatchSnapshot();

@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BlockContainer from '..';
+import { BlocksContainer } from '..';
 
 
-describe('Block Container', () => {
+describe('Blocks Container', () => {
   const component = renderer.create(
-    <BlockContainer>Anything</BlockContainer>
+    <BlocksContainer>Anything</BlocksContainer>
   );
 
   test('render', () => {

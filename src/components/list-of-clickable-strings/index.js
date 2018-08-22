@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ClickableString } from '..';
+import { ClickableWord } from '../index';
 
-const ListOfClickableStrings = ({ items, onClick, delimiter = '' }) => (
+const ListOfClickableStrings = ({ items, onClick, delimiter }) => (
   <div>
     {items && items.map(item =>
-      <ClickableString
+      <ClickableWord
         key={item}
-        item={item}
         onClick={onClick}
-        delimiter={delimiter}
+        word={`${item}${delimiter}`}
       />
     )}
   </div>

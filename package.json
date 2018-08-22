@@ -8,7 +8,7 @@
     "i": "^0.3.6",
     "moment": "^2.22.2",
     "normalize-jss": "^4.0.0",
-    "npm": "^6.3.0",
+    "npm": "^6.4.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -34,6 +34,8 @@
     "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' npm run lint"
   },
   "devDependencies": {
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "17.0.0",
     "eslint-config-prettier": "^2.9.0",

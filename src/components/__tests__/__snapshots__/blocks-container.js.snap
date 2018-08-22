@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Block Container render 1`] = `
+exports[`Blocks Container render 1`] = `
 <div
   className="BlocksContainer-root-0-1-1"
 >

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clickable Word render 1`] = `
+<a
+  className="ClickableWord-clickableWord-0-1-1"
+  href="/"
+  onClick={[Function]}
+>
+  word
+</a>
+`;
