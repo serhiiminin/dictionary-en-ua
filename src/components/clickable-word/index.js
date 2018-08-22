@@ -5,14 +5,14 @@ import injectSheet from 'react-jss';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
-const ClickableWord = ({ word, onClick, classes }) => (
+const ClickableWord = ({ word, delimiter, onClick, classes }) => (
   <a href="/"
      className={classes.clickableWord}
      onClick={event => {
        event.preventDefault();
        onClick(word);
      }}>
-    {word}
+    {`${word}${delimiter}`}
   </a>
 );
 
@@ -20,6 +20,11 @@ ClickableWord.propTypes = {
   word: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   classes: classesShape.isRequired,
+  delimiter: PropTypes.string,
+};
+
+ClickableWord.defaultProps = {
+  delimiter: '',
 };
 
 const enhance = compose(

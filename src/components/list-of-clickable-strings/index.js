@@ -4,11 +4,12 @@ import { ClickableWord } from '../index';
 
 const ListOfClickableStrings = ({ items, onClick, delimiter }) => (
   <div>
-    {items && items.map(item =>
+    {items && items.map((item, key) =>
       <ClickableWord
         key={item}
         onClick={onClick}
-        word={`${item}${delimiter}`}
+        word={item}
+        delimiter={items.length-1 > key ? delimiter : ''}
       />
     )}
   </div>
