@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Button } from '../../mui-components';
+import { Button } from '../../components-mui';
 
 const ButtonWithRouter = ({ to, staticContext, history, ...restProps }) => (
   <Button

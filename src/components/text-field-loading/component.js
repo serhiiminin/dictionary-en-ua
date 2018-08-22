@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import { TextField } from '../../mui-components';
+import { TextField } from '../../components-mui';
 
 const TextFieldLoading = ({ classes, loading = false, ...restProps }) => (
   <div className={classes.textFieldLoading}>

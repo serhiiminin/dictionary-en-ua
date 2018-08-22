@@ -1,9 +1,7 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
-import { withStyles, Button } from '@material-ui/core';
-import { compose } from 'recompose';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import styles from './styles';
 
 const ButtonCustomized = ({ classes, ...restProps }) => (
   <Button
@@ -23,8 +21,4 @@ ButtonCustomized.defaultProps = {
   classes: classesDefaultProps
 };
 
-const enhance = compose(
-  withStyles(styles),
-);
-
-export default enhance(ButtonCustomized);
+export default ButtonCustomized;

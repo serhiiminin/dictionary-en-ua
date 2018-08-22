@@ -13,7 +13,7 @@ import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import { Button } from '../../mui-components';
+import { Button } from '../../components-mui';
 import routes from '../../routes';
 import styles from './styles';
 

@@ -9,7 +9,7 @@ import { wordFormShape } from '../../context/word-form/shape';
 import { loadingNames } from '../../defaults';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import { Button, TextField } from '../../mui-components';
+import { Button, TextField } from '../../components-mui';
 import { ControlsSeparator } from '../index';
 
 class FormAddWord extends Component {

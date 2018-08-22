@@ -1,10 +1,8 @@
-import React from 'react';
+import { TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { withStyles, TextField } from '@material-ui/core';
-import { compose } from 'recompose';
+import React from 'react';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import styles from './styles';
 
 const TextFieldCustomized = ({ classes, control, ...restProps }) => (
   <div className={control ? classes.textFieldControl : classes.textField}>
@@ -37,8 +35,4 @@ TextFieldCustomized.defaultProps = {
   classes: classesDefaultProps,
 };
 
-const enhance = compose(
-  withStyles(styles),
-);
-
-export default enhance(TextFieldCustomized);
+export default TextFieldCustomized;
