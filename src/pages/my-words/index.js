@@ -1,6 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { Table, ButtonWithRouter, ControlsSeparator } from '../../components';
 import routes from '../../routes';
@@ -16,7 +17,11 @@ const MyWords = ({ classes }) => (
 );
 
 MyWords.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
+};
+
+MyWords.defaultProps = {
+  classes: classesDefaultProps
 };
 
 const enhance = compose(

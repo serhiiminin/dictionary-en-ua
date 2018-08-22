@@ -2,6 +2,7 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { ButtonWithRouter } from '../../components';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
@@ -15,7 +16,11 @@ const PageNotFound = ({ classes }) => (
 );
 
 PageNotFound.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
+};
+
+PageNotFound.defaultProps = {
+  classes: classesDefaultProps
 };
 
 const enhance = compose(

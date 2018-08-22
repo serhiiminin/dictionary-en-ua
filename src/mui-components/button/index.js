@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, Button } from '@material-ui/core';
 import { compose } from 'recompose';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
@@ -15,7 +16,11 @@ const ButtonCustomized = ({ classes, ...restProps }) => (
 );
 
 ButtonCustomized.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
+};
+
+ButtonCustomized.defaultProps = {
+  classes: classesDefaultProps
 };
 
 const enhance = compose(

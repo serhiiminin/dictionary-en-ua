@@ -6,6 +6,7 @@ import { compose } from 'recompose';
 import { NotificationItem } from '..';
 import { notificationInitialState, withNotifications } from '../../context/notifications';
 import { notificationsListShape } from '../../context/notifications/shape';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { variables } from '../../styles/variables';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
@@ -42,7 +43,7 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
 );
 
 Notifications.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
   notifications: notificationsListShape,
   hideNotification: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
@@ -50,6 +51,7 @@ Notifications.propTypes = {
 
 Notifications.defaultProps = {
   notifications: notificationInitialState,
+  classes: classesDefaultProps,
 };
 
 

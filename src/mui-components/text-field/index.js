@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, TextField } from '@material-ui/core';
 import { compose } from 'recompose';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
@@ -27,12 +28,13 @@ const TextFieldCustomized = ({ classes, control, ...restProps }) => (
 );
 
 TextFieldCustomized.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
   control: PropTypes.node,
 };
 
 TextFieldCustomized.defaultProps = {
   control: null,
+  classes: classesDefaultProps,
 };
 
 const enhance = compose(

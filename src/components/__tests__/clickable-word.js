@@ -1,19 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
-import { ClickableWord } from '..';
+import ClickableWord from '../clickable-word';
 
 describe('Clickable Word', () => {
-  const component = renderer.create(
-    <ClickableWord
-      word='word'
-      onClick={() => {}}
-    />
-  );
-  const tree = component.toJSON();
 
   test('render', () => {
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow(
+      <ClickableWord
+        word='word'
+        onClick={() => {}}
+      />
+    );
+
+    expect(wrapper.text()).toEqual('word');
   });
 
   test('onClick', () => {

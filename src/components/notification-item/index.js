@@ -7,6 +7,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import InfoIcon from '@material-ui/icons/Info';
 import { compose } from 'recompose';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { notificationType } from '../notifications';
 import styles from './styles';
@@ -38,7 +39,7 @@ const NotificationItem = ({ classes, onClick, text, type=notificationType.succes
 );
 
 NotificationItem.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
   onClick: PropTypes.func.isRequired,
   status: PropTypes.string.isRequired,
   text: PropTypes.string,
@@ -48,6 +49,7 @@ NotificationItem.propTypes = {
 NotificationItem.defaultProps = {
   text: '',
   type: '',
+  classes: classesDefaultProps,
 };
 
 const enhance = compose(

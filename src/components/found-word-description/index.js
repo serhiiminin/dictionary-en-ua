@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import { LineExplanation, ListOfClickableStrings } from '..';
 import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
@@ -53,11 +54,12 @@ const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
 FoundWordDescription.propTypes = {
   foundWord: foundWordShape,
   pushTextToInput: PropTypes.func.isRequired,
-  classes: classesShape.isRequired
+  classes: classesShape
 };
 
 FoundWordDescription.defaultProps = {
   foundWord: foundWordInitialState,
+  classes: classesDefaultProps,
 };
 
 const enhance = compose(

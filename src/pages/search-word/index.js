@@ -11,6 +11,7 @@ import { withLoadingNames } from '../../context/loading-names';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { Button } from '../../mui-components';
 import routes from '../../routes';
@@ -32,7 +33,7 @@ const composeSearchData = text => {
 
 class SearchWord extends Component {
   static propTypes = {
-    classes: classesShape.isRequired,
+    classes: classesShape,
     foundWord: foundWordShape,
     history: ReactRouterPropTypes.history.isRequired,
     saveWord: PropTypes.func.isRequired,
@@ -45,6 +46,7 @@ class SearchWord extends Component {
   static defaultProps = {
     currentLoadingNames: [],
     foundWord: foundWordInitialState,
+    classes: classesDefaultProps,
   };
 
   state = initialState;

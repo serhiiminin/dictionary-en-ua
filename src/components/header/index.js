@@ -2,6 +2,7 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
 import { Link } from 'react-router-dom';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import routes from '../../routes';
 import styles from './styles';
@@ -18,7 +19,11 @@ const Header = ({ classes }) => (
 );
 
 Header.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
+};
+
+Header.defaultProps = {
+  classes: classesDefaultProps
 };
 
 const enhance = compose(

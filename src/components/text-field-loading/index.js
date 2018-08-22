@@ -3,6 +3,7 @@ import { Fade, LinearProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import injectSheet from 'react-jss';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { TextField } from '../../mui-components';
 import styles from './styles';
@@ -20,12 +21,13 @@ const TextFieldLoading = ({ classes, loading = false, ...restProps }) => (
 );
 
 TextFieldLoading.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
   loading: PropTypes.bool,
 };
 
 TextFieldLoading.defaultProps = {
   loading: false,
+  classes: classesDefaultProps,
 };
 
 const enhance = compose(

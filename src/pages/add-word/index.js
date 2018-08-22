@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { ButtonWithRouter, FormAddWord, ControlsSeparator } from '../../components';
 import { withWords } from '../../context/words';
@@ -20,7 +21,11 @@ const AddWord = ({ classes }) => (
 );
 
 AddWord.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
+};
+
+AddWord.defaultProps = {
+  classes: classesDefaultProps
 };
 
 const enhance = compose(

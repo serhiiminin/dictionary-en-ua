@@ -1,9 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'recompose';
-import injectSheet from 'react-jss';
+import React from 'react';
 import { classesShape } from '../../defaults/shapes';
-import styles from './styles';
 
 const ClickableWord = ({ word, delimiter, onClick, classes }) => (
   <a href="/"
@@ -19,16 +16,13 @@ const ClickableWord = ({ word, delimiter, onClick, classes }) => (
 ClickableWord.propTypes = {
   word: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  classes: classesShape.isRequired,
+  classes: classesShape,
   delimiter: PropTypes.string,
 };
 
 ClickableWord.defaultProps = {
   delimiter: '',
+  classes: {},
 };
 
-const enhance = compose(
-  injectSheet(styles),
-);
-
-export default enhance(ClickableWord);
+export default ClickableWord

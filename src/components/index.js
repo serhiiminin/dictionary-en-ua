@@ -1,6 +1,6 @@
 export { default as BlocksContainer } from './blocks-container';
 export { default as ButtonWithRouter } from './button-with-router';
-export { default as ClickableWord } from './clickable-word';
+export { default as ClickableWord } from './clickable-word/container';
 export { default as ControlsSeparator } from './controls-separator';
 export { default as FormAddWord } from './form-add-word';
 export { default as FoundWordDescription } from './found-word-description';

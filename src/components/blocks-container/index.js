@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
+import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import styles from './styles';
 
@@ -12,8 +13,12 @@ const BlocksContainer = ({ classes, children }) => (
 );
 
 BlocksContainer.propTypes = {
-  classes: classesShape.isRequired,
+  classes: classesShape,
   children: PropTypes.node.isRequired,
+};
+
+BlocksContainer.defaultProps = {
+  classes: classesDefaultProps
 };
 
 const enhance = compose(
