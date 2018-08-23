@@ -12,7 +12,6 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-google-login": "^3.2.1",
     "react-jss": "^8.6.1",
     "react-resize-detector": "^3.1.0",
     "react-router-dom": "^4.3.1",

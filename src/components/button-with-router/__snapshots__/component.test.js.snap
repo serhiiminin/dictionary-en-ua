@@ -1,91 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button with Router onClick 1`] = `
-<button
-  className="MuiButtonBase-root-27 MuiButton-root-3 ButtonCustomized-root-1 MuiButton-text-5 MuiButton-flat-8"
-  disabled={false}
-  location={
-    Object {
-      "hash": "",
-      "pathname": "/anywhere",
-      "search": "",
-      "state": undefined,
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ButtonWithRouter
+    history={
+        Object {
+            "push": [Function],
+          }
     }
-  }
-  match={
-    Object {
-      "isExact": false,
-      "params": Object {},
-      "path": "/",
-      "url": "/",
-    }
-  }
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex="0"
-  type="button"
+    staticContext={undefined}
+    to="/anywhere"
 >
-  <span
-    className="MuiButton-label-4"
-  >
     Anywhere
-  </span>
-  <span
-    className="MuiTouchRipple-root-30"
-  />
-</button>
+</ButtonWithRouter>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "Anywhere",
+      "onClick": [Function],
+    },
+    "ref": null,
+    "rendered": "Anywhere",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "Anywhere",
+        "onClick": [Function],
+      },
+      "ref": null,
+      "rendered": "Anywhere",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;
 
 exports[`Button with Router render 1`] = `
-<button
-  className="MuiButtonBase-root-27 MuiButton-root-3 ButtonCustomized-root-1 MuiButton-text-5 MuiButton-flat-8"
-  disabled={false}
-  location={
-    Object {
-      "hash": "",
-      "pathname": "/",
-      "search": "",
-      "state": undefined,
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ButtonWithRouter
+    history={
+        Object {
+            "push": [Function],
+          }
     }
-  }
-  match={
-    Object {
-      "isExact": true,
-      "params": Object {},
-      "path": "/",
-      "url": "/",
-    }
-  }
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex="0"
-  type="button"
+    staticContext={undefined}
+    to="/anywhere"
 >
-  <span
-    className="MuiButton-label-4"
-  >
     Anywhere
-  </span>
-  <span
-    className="MuiTouchRipple-root-30"
-  />
-</button>
+</ButtonWithRouter>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "Anywhere",
+      "onClick": [Function],
+    },
+    "ref": null,
+    "rendered": "Anywhere",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "Anywhere",
+        "onClick": [Function],
+      },
+      "ref": null,
+      "rendered": "Anywhere",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;
