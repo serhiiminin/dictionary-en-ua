@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { BlocksContainer } from '..';
-
+import BlocksContainer  from './component';
 
 describe('Blocks Container', () => {
   const component = renderer.create(

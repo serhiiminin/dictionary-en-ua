@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FoundWordExample from '../found-word-examples/component';
+import FoundWordExample from './component';
 
 describe('Clickable Word', () => {
-
   test('Empty found word', () => {
     const wrapper = shallow(
       <FoundWordExample
@@ -27,5 +26,4 @@ describe('Clickable Word', () => {
 
     expect(wrapper.find('ListOfClickableStrings')).toHaveLength(1);
   });
-
 });

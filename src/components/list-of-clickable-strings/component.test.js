@@ -1,13 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { LineExplanation } from '..';
+import ListOfClickableStrings from './component';
 
-
-describe('Line explanation', () => {
+describe('List of clickable strings', () => {
   const component = renderer.create(
-    <LineExplanation
-      label='label'
-    >text</LineExplanation>
+    <ListOfClickableStrings
+      items={['one', 'two']}
+      onClick={() => {}}
+    />
   );
   const tree = component.toJSON();
 

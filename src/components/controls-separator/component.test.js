@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { ControlsSeparator } from '..';
+import ControlsSeparator from './component';
 
 describe('Controls separator', () => {
   const component = renderer.create(

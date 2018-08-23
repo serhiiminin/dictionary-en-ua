@@ -22,7 +22,6 @@ const TextFieldCustomized = ({ classes, control, ...restProps }) => (
     />
     {control}
   </div>
-
 );
 
 TextFieldCustomized.propTypes = {

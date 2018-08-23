@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ClickableWord from '../clickable-word/component';
+import ClickableWord from './component';
 
 describe('Clickable Word', () => {
-
   test('render', () => {
     const wrapper = shallow(
       <ClickableWord

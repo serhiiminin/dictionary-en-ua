@@ -2,7 +2,7 @@
 
 exports[`Line explanation render 1`] = `
 <div
-  className="LineExplanation-lineExplanation-0-1-1"
+  className={undefined}
 >
   <div
     className={undefined}
