@@ -1,35 +1,283 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Controls separator align right 1`] = `
-<div
-  className="undefined undefined"
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ControlsSeparator
+    align="right"
+    classes={Object {}}
 >
-  <button
-    type="button"
-  >
-    anything
-  </button>
-  <button
-    type="button"
-  >
-    anything
-  </button>
-</div>
+    <button
+        type="button"
+    >
+        anything
+    </button>
+    <button
+        type="button"
+    >
+        everything
+    </button>
+</ControlsSeparator>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <button
+          type="button"
+>
+          anything
+</button>,
+        <button
+          type="button"
+>
+          everything
+</button>,
+      ],
+      "className": "undefined undefined",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "anything",
+          "type": "button",
+        },
+        "ref": null,
+        "rendered": "anything",
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "everything",
+          "type": "button",
+        },
+        "ref": null,
+        "rendered": "everything",
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <button
+            type="button"
+>
+            anything
+</button>,
+          <button
+            type="button"
+>
+            everything
+</button>,
+        ],
+        "className": "undefined undefined",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "anything",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": "anything",
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "everything",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": "everything",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;
 
 exports[`Controls separator render 1`] = `
-<div
-  className="undefined undefined"
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ControlsSeparator
+    align="left"
+    classes={Object {}}
 >
-  <button
-    type="button"
-  >
-    anything
-  </button>
-  <button
-    type="button"
-  >
-    anything
-  </button>
-</div>
+    <button
+        type="button"
+    >
+        anything
+    </button>
+    <button
+        type="button"
+    >
+        everything
+    </button>
+</ControlsSeparator>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <button
+          type="button"
+>
+          anything
+</button>,
+        <button
+          type="button"
+>
+          everything
+</button>,
+      ],
+      "className": "undefined undefined",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "anything",
+          "type": "button",
+        },
+        "ref": null,
+        "rendered": "anything",
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "everything",
+          "type": "button",
+        },
+        "ref": null,
+        "rendered": "everything",
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <button
+            type="button"
+>
+            anything
+</button>,
+          <button
+            type="button"
+>
+            everything
+</button>,
+        ],
+        "className": "undefined undefined",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "anything",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": "anything",
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "everything",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": "everything",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;

@@ -1,24 +1,25 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 import ControlsSeparator from './component';
 
 describe('Controls separator', () => {
-  const component = renderer.create(
-    <ControlsSeparator>
-      <button type='button'>anything</button>
-      <button type='button'>anything</button>
-    </ControlsSeparator>
-  );
-  let tree = component.toJSON();
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <ControlsSeparator>
+        <button type='button'>anything</button>
+        <button type='button'>everything</button>
+      </ControlsSeparator>
+    );
+  });
 
   test('render', () => {
-    expect(tree).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   test('align right', () => {
-    tree.props.align='right';
-    tree = component.toJSON();
-    expect(tree)
-      .toMatchSnapshot();
+    wrapper.setProps({ align: 'right' });
+    expect(wrapper).toMatchSnapshot();
   });
 });

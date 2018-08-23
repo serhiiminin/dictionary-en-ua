@@ -1,15 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import BlocksContainer  from './component';
+import { shallow } from 'enzyme';
+import BlocksContainer from './component';
 
 describe('Blocks Container', () => {
-  const component = renderer.create(
-    <BlocksContainer>Anything</BlocksContainer>
-  );
-
   test('render', () => {
-    const tree = component.toJSON();
+    const wrapper = shallow(
+      <BlocksContainer>
+        Anything
+      </BlocksContainer>
+    );
 
-    expect(tree).toMatchSnapshot();
+    expect(wrapper.contains('Anything')).toMatchSnapshot();
   });
 });
