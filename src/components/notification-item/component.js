@@ -6,8 +6,14 @@ import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import { notificationType } from '../notifications/component';
-import { CloseButton } from '..';
+import CloseButton from '../close-button';
+
+export const notificationType = {
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+  info: 'info',
+};
 
 const icons = {
   [notificationType.success]: <CheckCircleOutlineIcon/>,
