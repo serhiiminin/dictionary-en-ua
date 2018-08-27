@@ -38,10 +38,10 @@ const Root = () => (
               <Switch>
                 <Route exact path={routes.root} component={Main}/>
                 <Route exact path={routes.login} render={() => 'login'}/>
-                <Route exact path={routes.addWord} component={AddWord}/>
-                <Route exact path={routes.searchWord} component={SearchWord}/>
-                <Route exact path={routes.myWords} component={MyWords}/>
-                <Route exact path={routes.learn} component={LearnWords}/>
+                <Route exact path={routes.words.add} component={AddWord}/>
+                <Route exact path={routes.words.learn} component={LearnWords}/>
+                <Route exact path={routes.words.list} component={MyWords}/>
+                <Route exact path={routes.words.search} component={SearchWord}/>
                 <Route component={PageNotFound}/>
               </Switch>
             </BlocksContainer>

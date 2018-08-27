@@ -83,7 +83,7 @@ class SearchWord extends Component {
 
     this.setState({ ...initialState });
     onFillForm(foundWord)
-      .then(history.push(routes.addWord));
+      .then(history.push(routes.word.add));
   };
 
   handleSaveWord = () => {
@@ -107,7 +107,7 @@ class SearchWord extends Component {
     return (
       <Fragment>
         <ControlsSeparator>
-          <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
+          <ButtonWithRouter to={routes.words.list}>List of my words</ButtonWithRouter>
         </ControlsSeparator>
         <main className={classes.searchWord}>
           <div>
@@ -132,7 +132,6 @@ class SearchWord extends Component {
               pushTextToInput={this.handleSearchWord}
             />
           </div>
-
         </main>
       </Fragment>
     );

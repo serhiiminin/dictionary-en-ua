@@ -11,8 +11,8 @@ import styles from './styles';
 const AddWord = ({ classes }) => (
   <Fragment>
     <ControlsSeparator>
-      <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
-      <ButtonWithRouter to={routes.searchWord}>Search for a new word</ButtonWithRouter>
+      <ButtonWithRouter to={routes.words.list}>List of my words</ButtonWithRouter>
+      <ButtonWithRouter to={routes.words.search}>Search for a new word</ButtonWithRouter>
     </ControlsSeparator>
     <main className={classes.addWord}>
       <FormAddWord/>
