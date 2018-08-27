@@ -1,18 +1,17 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { shallow } from 'enzyme';
 import Header from './component';
 
-
 describe('Header', () => {
-  const component = renderer.create(
-    <Router keyLength={0}>
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(
       <Header/>
-    </Router>
-  );
-  const tree = component.toJSON();
+    );
+  });
 
   test('render', () => {
-    expect(tree).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

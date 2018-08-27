@@ -1,16 +1,19 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 import LineExplanation from './component';
 
 describe('Line explanation', () => {
-  const component = renderer.create(
-    <LineExplanation
-      label='label'
-    >text</LineExplanation>
-  );
-  const tree = component.toJSON();
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <LineExplanation
+        label='label'
+      >text</LineExplanation>
+    );
+  });
 
   test('render', () => {
-    expect(tree).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

@@ -1,17 +1,132 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header render 1`] = `
-<div
-  className={undefined}
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Header
+    classes={Object {}}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <h1>
+        <Link
+                className={undefined}
+                replace={false}
+                to="/"
+        >
+                My dictionary
+        </Link>
+</h1>,
+      "className": undefined,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <Link
+          className={undefined}
+          replace={false}
+          to="/"
 >
-  <h1>
-    <a
-      className={undefined}
-      href="/"
-      onClick={[Function]}
-    >
-      My dictionary
-    </a>
-  </h1>
-</div>
+          My dictionary
+</Link>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "My dictionary",
+          "className": undefined,
+          "replace": false,
+          "to": "/",
+        },
+        "ref": null,
+        "rendered": "My dictionary",
+        "type": [Function],
+      },
+      "type": "h1",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <h1>
+          <Link
+                    className={undefined}
+                    replace={false}
+                    to="/"
+          >
+                    My dictionary
+          </Link>
+</h1>,
+        "className": undefined,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <Link
+            className={undefined}
+            replace={false}
+            to="/"
+>
+            My dictionary
+</Link>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "My dictionary",
+            "className": undefined,
+            "replace": false,
+            "to": "/",
+          },
+          "ref": null,
+          "rendered": "My dictionary",
+          "type": [Function],
+        },
+        "type": "h1",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;

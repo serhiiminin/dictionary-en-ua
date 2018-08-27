@@ -1,20 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List of clickable strings render 1`] = `
-<div>
-  <a
-    className="ClickableWord-clickableWord-0-1-1"
-    href="/"
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ListOfClickableStrings
+    delimiter=""
+    items={
+        Array [
+            "one",
+            "two",
+          ]
+    }
     onClick={[Function]}
-  >
-    one
-  </a>
-  <a
-    className="ClickableWord-clickableWord-0-1-1"
-    href="/"
-    onClick={[Function]}
-  >
-    two
-  </a>
-</div>
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Jss(ClickableWord)
+          delimiter=""
+          onClick={[Function]}
+          word="one"
+/>,
+        <Jss(ClickableWord)
+          delimiter=""
+          onClick={[Function]}
+          word="two"
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "one",
+        "nodeType": "class",
+        "props": Object {
+          "delimiter": "",
+          "onClick": [Function],
+          "word": "one",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "two",
+        "nodeType": "class",
+        "props": Object {
+          "delimiter": "",
+          "onClick": [Function],
+          "word": "two",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Jss(ClickableWord)
+            delimiter=""
+            onClick={[Function]}
+            word="one"
+/>,
+          <Jss(ClickableWord)
+            delimiter=""
+            onClick={[Function]}
+            word="two"
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "one",
+          "nodeType": "class",
+          "props": Object {
+            "delimiter": "",
+            "onClick": [Function],
+            "word": "one",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "two",
+          "nodeType": "class",
+          "props": Object {
+            "delimiter": "",
+            "onClick": [Function],
+            "word": "two",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
 `;

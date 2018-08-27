@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NotificationItem
     classes={Object {}}
     onClick={[Function]}
+    status="exited"
     text=""
     type="error"
 />,

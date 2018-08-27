@@ -7,6 +7,7 @@ describe('Notification item', () => {
     const wrapper = shallow(
       <NotificationItem
         onClick={() => {}}
+        status='exited'
       />
     );
 
