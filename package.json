@@ -46,12 +46,15 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
-      "!src/**/styles.js"
+      "!src/**/styles.js",
+      "!src/index.js",
+      "!src/registerServiceWorker.js"
     ]
   },
   "pre-commit": {
     "run": [
-      "lint:with-cache"
+      "lint:with-cache",
+      "test:coverage"
     ],
     "silent": true
   }

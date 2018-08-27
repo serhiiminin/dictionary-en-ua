@@ -1,3 +1,5 @@
-const styles = {};
+const styles = {
+  addWord: {}
+};
 
 export default styles;
