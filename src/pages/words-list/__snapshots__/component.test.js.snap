@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main page render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MyWords
+    classes={Object {}}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Jss(ControlsSeparator)
+          align="right"
+>
+          <withRouter(ButtonWithRouter)
+                    to="/learn-words"
+          >
+                    Learn words
+          </withRouter(ButtonWithRouter)>
+          <withRouter(ButtonWithRouter)
+                    to="/add-word"
+          >
+                    Add a new word
+          </withRouter(ButtonWithRouter)>
+</Jss(ControlsSeparator)>,
+        <WithStyles(Component) />,
+      ],
+      "className": undefined,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "align": "right",
+          "children": Array [
+            <withRouter(ButtonWithRouter)
+              to="/learn-words"
+>
+              Learn words
+</withRouter(ButtonWithRouter)>,
+            <withRouter(ButtonWithRouter)
+              to="/add-word"
+>
+              Add a new word
+</withRouter(ButtonWithRouter)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Learn words",
+              "to": "/learn-words",
+            },
+            "ref": null,
+            "rendered": "Learn words",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Add a new word",
+              "to": "/add-word",
+            },
+            "ref": null,
+            "rendered": "Add a new word",
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "main",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Jss(ControlsSeparator)
+            align="right"
+>
+            <withRouter(ButtonWithRouter)
+                        to="/learn-words"
+            >
+                        Learn words
+            </withRouter(ButtonWithRouter)>
+            <withRouter(ButtonWithRouter)
+                        to="/add-word"
+            >
+                        Add a new word
+            </withRouter(ButtonWithRouter)>
+</Jss(ControlsSeparator)>,
+          <WithStyles(Component) />,
+        ],
+        "className": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "align": "right",
+            "children": Array [
+              <withRouter(ButtonWithRouter)
+                to="/learn-words"
+>
+                Learn words
+</withRouter(ButtonWithRouter)>,
+              <withRouter(ButtonWithRouter)
+                to="/add-word"
+>
+                Add a new word
+</withRouter(ButtonWithRouter)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Learn words",
+                "to": "/learn-words",
+              },
+              "ref": null,
+              "rendered": "Learn words",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Add a new word",
+                "to": "/add-word",
+              },
+              "ref": null,
+              "rendered": "Add a new word",
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "main",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

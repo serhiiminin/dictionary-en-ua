@@ -1,0 +1,5185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form add word Loading 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={
+        Array [
+            "LOADING/save-word",
+          ]
+    }
+    form={
+        Object {
+            "form": Object {
+              "en": "",
+              "examples": Array [],
+              "ru": "",
+              "transcription": "",
+            },
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={true}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "300ms",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={true}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "300ms",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={true}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "300ms",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={true}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "300ms",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": true,
+                      "style": Object {
+                        "transitionDelay": "300ms",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            undefined,
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={true}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "300ms",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={true}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "300ms",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={true}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "300ms",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={true}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "300ms",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": true,
+                        "style": Object {
+                          "transitionDelay": "300ms",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Form add word example on Change 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={Array []}
+    form={
+        Object {
+            "examples": Array [
+              Object {
+                "example": "example",
+                "id": "id",
+              },
+            ],
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    control={
+                              <WithStyles(ButtonCustomized)
+                                        onClick={[Function]}
+                              >
+                                        <pure(Delete) />
+                              </WithStyles(ButtonCustomized)>
+                    }
+                    label="Example"
+                    onChange={[Function]}
+                    value="example"
+          />
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={false}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={false}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={false}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": false,
+                      "style": Object {
+                        "transitionDelay": "",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            Array [
+              <WithStyles(TextFieldCustomized)
+                control={
+                                <WithStyles(ButtonCustomized)
+                                                onClick={[Function]}
+                                >
+                                                <pure(Delete) />
+                                </WithStyles(ButtonCustomized)>
+                }
+                label="Example"
+                onChange={[Function]}
+                value="example"
+/>,
+            ],
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "id",
+            "nodeType": "class",
+            "props": Object {
+              "control": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                <pure(Delete) />
+</WithStyles(ButtonCustomized)>,
+              "label": "Example",
+              "onChange": [Function],
+              "value": "example",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        control={
+                                    <WithStyles(ButtonCustomized)
+                                                onClick={[Function]}
+                                    >
+                                                <pure(Delete) />
+                                    </WithStyles(ButtonCustomized)>
+                        }
+                        label="Example"
+                        onChange={[Function]}
+                        value="example"
+            />
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={false}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": false,
+                        "style": Object {
+                          "transitionDelay": "",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              Array [
+                <WithStyles(TextFieldCustomized)
+                  control={
+                                    <WithStyles(ButtonCustomized)
+                                                      onClick={[Function]}
+                                    >
+                                                      <pure(Delete) />
+                                    </WithStyles(ButtonCustomized)>
+                  }
+                  label="Example"
+                  onChange={[Function]}
+                  value="example"
+/>,
+              ],
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "id",
+              "nodeType": "class",
+              "props": Object {
+                "control": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  <pure(Delete) />
+</WithStyles(ButtonCustomized)>,
+                "label": "Example",
+                "onChange": [Function],
+                "value": "example",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Form add word examples 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={Array []}
+    form={
+        Object {
+            "examples": Array [
+              Object {
+                "example": "example",
+                "id": "id",
+              },
+            ],
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    control={
+                              <WithStyles(ButtonCustomized)
+                                        onClick={[Function]}
+                              >
+                                        <pure(Delete) />
+                              </WithStyles(ButtonCustomized)>
+                    }
+                    label="Example"
+                    onChange={[Function]}
+                    value="example"
+          />
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={false}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={false}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={false}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": false,
+                      "style": Object {
+                        "transitionDelay": "",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            Array [
+              <WithStyles(TextFieldCustomized)
+                control={
+                                <WithStyles(ButtonCustomized)
+                                                onClick={[Function]}
+                                >
+                                                <pure(Delete) />
+                                </WithStyles(ButtonCustomized)>
+                }
+                label="Example"
+                onChange={[Function]}
+                value="example"
+/>,
+            ],
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "id",
+            "nodeType": "class",
+            "props": Object {
+              "control": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                <pure(Delete) />
+</WithStyles(ButtonCustomized)>,
+              "label": "Example",
+              "onChange": [Function],
+              "value": "example",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        control={
+                                    <WithStyles(ButtonCustomized)
+                                                onClick={[Function]}
+                                    >
+                                                <pure(Delete) />
+                                    </WithStyles(ButtonCustomized)>
+                        }
+                        label="Example"
+                        onChange={[Function]}
+                        value="example"
+            />
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={false}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": false,
+                        "style": Object {
+                          "transitionDelay": "",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              Array [
+                <WithStyles(TextFieldCustomized)
+                  control={
+                                    <WithStyles(ButtonCustomized)
+                                                      onClick={[Function]}
+                                    >
+                                                      <pure(Delete) />
+                                    </WithStyles(ButtonCustomized)>
+                  }
+                  label="Example"
+                  onChange={[Function]}
+                  value="example"
+/>,
+              ],
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "id",
+              "nodeType": "class",
+              "props": Object {
+                "control": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  <pure(Delete) />
+</WithStyles(ButtonCustomized)>,
+                "label": "Example",
+                "onChange": [Function],
+                "value": "example",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Form add word onChange english 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={Array []}
+    form={
+        Object {
+            "form": Object {
+              "en": "",
+              "examples": Array [],
+              "ru": "",
+              "transcription": "",
+            },
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={false}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={false}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={false}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": false,
+                      "style": Object {
+                        "transitionDelay": "",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            undefined,
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={false}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": false,
+                        "style": Object {
+                          "transitionDelay": "",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Form add word onChange russian 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={Array []}
+    form={
+        Object {
+            "form": Object {
+              "en": "",
+              "examples": Array [],
+              "ru": "",
+              "transcription": "",
+            },
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={false}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={false}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={false}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": false,
+                      "style": Object {
+                        "transitionDelay": "",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            undefined,
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={false}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": false,
+                        "style": Object {
+                          "transitionDelay": "",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Form add word onChange transcription 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={Array []}
+    form={
+        Object {
+            "form": Object {
+              "en": "",
+              "examples": Array [],
+              "ru": "",
+              "transcription": "",
+            },
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={false}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={false}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={false}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": false,
+                      "style": Object {
+                        "transitionDelay": "",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            undefined,
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={false}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": false,
+                        "style": Object {
+                          "transitionDelay": "",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Form add word render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <FormAddWord
+    classes={Object {}}
+    currentLoadingNames={Array []}
+    form={
+        Object {
+            "form": Object {
+              "en": "",
+              "examples": Array [],
+              "ru": "",
+              "transcription": "",
+            },
+          }
+    }
+    onAddNewExample={[Function]}
+    onExampleChange={[Function]}
+    onFormItemChange={[Function]}
+    onRemoveExample={[Function]}
+    onResetForm={[Function]}
+    saveWord={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div>
+          <WithStyles(TextFieldCustomized)
+                    label="English"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Russian"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <WithStyles(TextFieldCustomized)
+                    label="Transcription"
+                    onChange={[Function]}
+                    value={undefined}
+          />
+          <Jss(ControlsSeparator)
+                    align="right"
+          >
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              type="submit"
+                    >
+                              <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                  Object {
+                                                            "transitionDelay": "",
+                                                          }
+                                        }
+                                        unmountOnExit={true}
+                              >
+                                        <WithStyles(CircularProgress)
+                                                  color="inherit"
+                                                  size={16}
+                                        />
+                              </WithTheme(Fade)>
+                              Save word
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Reset Form
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+        <div>
+          <Jss(ControlsSeparator)
+                    align="left"
+          >
+                    <WithStyles(ButtonCustomized)
+                              onClick={[Function]}
+                    >
+                              Add an example
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+</div>,
+      ],
+      "className": undefined,
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <WithStyles(TextFieldCustomized)
+              label="English"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Russian"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <WithStyles(TextFieldCustomized)
+              label="Transcription"
+              onChange={[Function]}
+              value={undefined}
+/>,
+            <Jss(ControlsSeparator)
+              align="right"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            type="submit"
+              >
+                            <WithTheme(Fade)
+                                          in={false}
+                                          style={
+                                                        Object {
+                                                                      "transitionDelay": "",
+                                                                    }
+                                          }
+                                          unmountOnExit={true}
+                            >
+                                          <WithStyles(CircularProgress)
+                                                        color="inherit"
+                                                        size={16}
+                                          />
+                            </WithTheme(Fade)>
+                            Save word
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Reset Form
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "English",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Russian",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "label": "Transcription",
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "right",
+              "children": Array [
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  type="submit"
+>
+                  <WithTheme(Fade)
+                                    in={false}
+                                    style={
+                                                      Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                    }
+                                    unmountOnExit={true}
+                  >
+                                    <WithStyles(CircularProgress)
+                                                      color="inherit"
+                                                      size={16}
+                                    />
+                  </WithTheme(Fade)>
+                  Save word
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Reset Form
+</WithStyles(ButtonCustomized)>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <WithTheme(Fade)
+                      in={false}
+                      style={
+                                            Object {
+                                                                  "transitionDelay": "",
+                                                                }
+                      }
+                      unmountOnExit={true}
+>
+                      <WithStyles(CircularProgress)
+                                            color="inherit"
+                                            size={16}
+                      />
+</WithTheme(Fade)>,
+                    "Save word",
+                  ],
+                  "disabled": false,
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <WithStyles(CircularProgress)
+                        color="inherit"
+                        size={16}
+/>,
+                      "in": false,
+                      "style": Object {
+                        "transitionDelay": "",
+                      },
+                      "unmountOnExit": true,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "inherit",
+                        "size": 16,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "Save word",
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Reset Form",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Reset Form",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            undefined,
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            onClick={[Function]}
+              >
+                            Add an example
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
+              "children": <WithStyles(ButtonCustomized)
+                onClick={[Function]}
+>
+                Add an example
+</WithStyles(ButtonCustomized)>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add an example",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Add an example",
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <WithStyles(TextFieldCustomized)
+                        label="English"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Russian"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <WithStyles(TextFieldCustomized)
+                        label="Transcription"
+                        onChange={[Function]}
+                        value={undefined}
+            />
+            <Jss(ControlsSeparator)
+                        align="right"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    type="submit"
+                        >
+                                    <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                            Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                                                }
+                                                unmountOnExit={true}
+                                    >
+                                                <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                                />
+                                    </WithTheme(Fade)>
+                                    Save word
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Reset Form
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+          <div>
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    onClick={[Function]}
+                        >
+                                    Add an example
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+</div>,
+        ],
+        "className": undefined,
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <WithStyles(TextFieldCustomized)
+                label="English"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Russian"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <WithStyles(TextFieldCustomized)
+                label="Transcription"
+                onChange={[Function]}
+                value={undefined}
+/>,
+              <Jss(ControlsSeparator)
+                align="right"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                type="submit"
+                >
+                                <WithTheme(Fade)
+                                                in={false}
+                                                style={
+                                                                Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                                }
+                                                unmountOnExit={true}
+                                >
+                                                <WithStyles(CircularProgress)
+                                                                color="inherit"
+                                                                size={16}
+                                                />
+                                </WithTheme(Fade)>
+                                Save word
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Reset Form
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "English",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Russian",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Transcription",
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "right",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    type="submit"
+>
+                    <WithTheme(Fade)
+                                        in={false}
+                                        style={
+                                                            Object {
+                                                                                "transitionDelay": "",
+                                                                              }
+                                        }
+                                        unmountOnExit={true}
+                    >
+                                        <WithStyles(CircularProgress)
+                                                            color="inherit"
+                                                            size={16}
+                                        />
+                    </WithTheme(Fade)>
+                    Save word
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    onClick={[Function]}
+>
+                    Reset Form
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <WithTheme(Fade)
+                        in={false}
+                        style={
+                                                Object {
+                                                                        "transitionDelay": "",
+                                                                      }
+                        }
+                        unmountOnExit={true}
+>
+                        <WithStyles(CircularProgress)
+                                                color="inherit"
+                                                size={16}
+                        />
+</WithTheme(Fade)>,
+                      "Save word",
+                    ],
+                    "disabled": false,
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <WithStyles(CircularProgress)
+                          color="inherit"
+                          size={16}
+/>,
+                        "in": false,
+                        "style": Object {
+                          "transitionDelay": "",
+                        },
+                        "unmountOnExit": true,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "color": "inherit",
+                          "size": 16,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    "Save word",
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Reset Form",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Reset Form",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                onClick={[Function]}
+                >
+                                Add an example
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": <WithStyles(ButtonCustomized)
+                  onClick={[Function]}
+>
+                  Add an example
+</WithStyles(ButtonCustomized)>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Add an example",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Add an example",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

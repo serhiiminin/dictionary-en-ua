@@ -12,7 +12,8 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
   <Fragment>
     {children}
     <TransitionGroup className={classes.notifications} component="ul">
-      {notifications.map(({ id, text, type }) => (
+      {notifications
+        .map(({ id, text, type }) => (
         <Transition
           timeout={variables.timeout.notification}
           unmountOnExit

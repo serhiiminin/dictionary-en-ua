@@ -1,9 +1,12 @@
 const routes = {
   root: '/',
   login: '/login',
-  myWords: '/my-words',
-  addWord: '/add-word',
-  searchWord: '/search-word',
+  words: {
+    add: '/add-word',
+    learn: '/learn-words',
+    list: '/words-list',
+    search: '/words-search',
+  },
 };
 
 export default routes;

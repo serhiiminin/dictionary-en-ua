@@ -1,21 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { withRouter } from 'react-router-dom';
-import injectSheet from 'react-jss';
-import { compose } from 'recompose';
 import { ButtonWithRouter, ControlsSeparator, TextFieldLoading, FoundWordDescription, FoundWordExamples } from '../../components';
-import { foundWordInitialState, withFoundWord } from '../../context/foundWord';
+import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
-import { withLoadingNames } from '../../context/loading-names';
-import { withWordForm } from '../../context/word-form';
-import { withWords } from '../../context/words';
 import { loadingNames } from '../../defaults';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { Button } from '../../components-mui';
 import routes from '../../routes';
-import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
@@ -83,7 +76,7 @@ class SearchWord extends Component {
 
     this.setState({ ...initialState });
     onFillForm(foundWord)
-      .then(history.push(routes.addWord));
+      .then(history.push(routes.words.add));
   };
 
   handleSaveWord = () => {
@@ -107,7 +100,7 @@ class SearchWord extends Component {
     return (
       <Fragment>
         <ControlsSeparator>
-          <ButtonWithRouter to={routes.myWords}>List of my words</ButtonWithRouter>
+          <ButtonWithRouter to={routes.words.list}>List of my words</ButtonWithRouter>
         </ControlsSeparator>
         <main className={classes.searchWord}>
           <div>
@@ -118,7 +111,7 @@ class SearchWord extends Component {
               loading={loading}
             />
             <ControlsSeparator>
-              <Button onClick={this.handleSaveWord} disabled={isEmpty}>Add to my words</Button>
+              <Button onClick={this.handleSaveWord} disabled={isEmpty}>Save to my words</Button>
               <Button onClick={this.handleEditBeforeSaving} disabled={isEmpty}>Edit before saving</Button>
             </ControlsSeparator>
             <FoundWordDescription
@@ -132,20 +125,10 @@ class SearchWord extends Component {
               pushTextToInput={this.handleSearchWord}
             />
           </div>
-
         </main>
       </Fragment>
     );
   }
 }
 
-const enhance = compose(
-  injectSheet(styles),
-  withRouter,
-  withLoadingNames,
-  withWords,
-  withFoundWord,
-  withWordForm,
-);
-
-export default enhance(SearchWord);
+export default SearchWord;

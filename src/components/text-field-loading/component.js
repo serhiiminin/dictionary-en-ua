@@ -5,7 +5,7 @@ import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { TextField } from '../../components-mui';
 
-const TextFieldLoading = ({ classes, loading = false, ...restProps }) => (
+const TextFieldLoading = ({ classes, loading, ...restProps }) => (
   <div className={classes.textFieldLoading}>
     <TextField {...restProps} />
     <Fade

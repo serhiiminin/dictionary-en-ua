@@ -1,14 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Line explanation render 1`] = `
+exports[`Page not found render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <LineExplanation
+  Symbol(enzyme.__unrendered__): <PageNotFound
     classes={Object {}}
-    label="label"
->
-    text
-</LineExplanation>,
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -22,16 +19,14 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <div
-          className={undefined}
+        <h1>
+          Page not found
+</h1>,
+        <withRouter(ButtonWithRouter)
+          to="/"
 >
-          label:
-</div>,
-        <div
-          className={undefined}
->
-          text
-</div>,
+          Home
+</withRouter(ButtonWithRouter)>,
       ],
       "className": undefined,
     },
@@ -42,24 +37,23 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "label:",
-          "className": undefined,
+          "children": "Page not found",
         },
         "ref": null,
-        "rendered": "label:",
-        "type": "div",
+        "rendered": "Page not found",
+        "type": "h1",
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "text",
-          "className": undefined,
+          "children": "Home",
+          "to": "/",
         },
         "ref": null,
-        "rendered": "text",
-        "type": "div",
+        "rendered": "Home",
+        "type": [Function],
       },
     ],
     "type": "div",
@@ -71,16 +65,14 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <div
-            className={undefined}
+          <h1>
+            Page not found
+</h1>,
+          <withRouter(ButtonWithRouter)
+            to="/"
 >
-            label:
-</div>,
-          <div
-            className={undefined}
->
-            text
-</div>,
+            Home
+</withRouter(ButtonWithRouter)>,
         ],
         "className": undefined,
       },
@@ -91,24 +83,23 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "label:",
-            "className": undefined,
+            "children": "Page not found",
           },
           "ref": null,
-          "rendered": "label:",
-          "type": "div",
+          "rendered": "Page not found",
+          "type": "h1",
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "text",
-            "className": undefined,
+            "children": "Home",
+            "to": "/",
           },
           "ref": null,
-          "rendered": "text",
-          "type": "div",
+          "rendered": "Home",
+          "type": [Function],
         },
       ],
       "type": "div",
