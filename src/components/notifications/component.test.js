@@ -7,7 +7,10 @@ describe('Notifications', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-      <Notifications notifications={[]}>
+      <Notifications
+        notifications={[]}
+        hideNotification={() => {}}
+      >
         children
       </Notifications>
     );
