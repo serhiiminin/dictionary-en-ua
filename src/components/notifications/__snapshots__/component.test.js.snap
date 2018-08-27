@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notifications render empty 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Notifications
+    classes={Object {}}
+    notifications={Array []}
+>
+    children
+</Notifications>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        "children",
+        <TransitionGroup
+          childFactory={[Function]}
+          className={undefined}
+          component="ul"
+>
+          
+</TransitionGroup>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      "children",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "childFactory": [Function],
+          "children": Array [],
+          "className": undefined,
+          "component": "ul",
+        },
+        "ref": null,
+        "rendered": Array [],
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          "children",
+          <TransitionGroup
+            childFactory={[Function]}
+            className={undefined}
+            component="ul"
+>
+            
+</TransitionGroup>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        "children",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "childFactory": [Function],
+            "children": Array [],
+            "className": undefined,
+            "component": "ul",
+          },
+          "ref": null,
+          "rendered": Array [],
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
+
+exports[`Notifications render with one item 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Notifications
+    classes={Object {}}
+    notifications={
+        Array [
+            Object {
+              "id": "id",
+              "text": "text",
+              "type": "success",
+            },
+          ]
+    }
+>
+    children
+</Notifications>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        "children",
+        <TransitionGroup
+          childFactory={[Function]}
+          className={undefined}
+          component="ul"
+>
+          <Transition
+                    appear={false}
+                    enter={true}
+                    exit={true}
+                    in={false}
+                    mountOnEnter={false}
+                    onEnter={[Function]}
+                    onEntered={[Function]}
+                    onEntering={[Function]}
+                    onExit={[Function]}
+                    onExited={[Function]}
+                    onExiting={[Function]}
+                    timeout={300}
+                    unmountOnExit={true}
+          >
+                    [Function]
+          </Transition>
+</TransitionGroup>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      "children",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "childFactory": [Function],
+          "children": Array [
+            <Transition
+              appear={false}
+              enter={true}
+              exit={true}
+              in={false}
+              mountOnEnter={false}
+              onEnter={[Function]}
+              onEntered={[Function]}
+              onEntering={[Function]}
+              onExit={[Function]}
+              onExited={[Function]}
+              onExiting={[Function]}
+              timeout={300}
+              unmountOnExit={true}
+>
+              [Function]
+</Transition>,
+          ],
+          "className": undefined,
+          "component": "ul",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "id",
+            "nodeType": "class",
+            "props": Object {
+              "appear": false,
+              "children": [Function],
+              "enter": true,
+              "exit": true,
+              "in": false,
+              "mountOnEnter": false,
+              "onEnter": [Function],
+              "onEntered": [Function],
+              "onEntering": [Function],
+              "onExit": [Function],
+              "onExited": [Function],
+              "onExiting": [Function],
+              "timeout": 300,
+              "unmountOnExit": true,
+            },
+            "ref": null,
+            "rendered": [Function],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          "children",
+          <TransitionGroup
+            childFactory={[Function]}
+            className={undefined}
+            component="ul"
+>
+            <Transition
+                        appear={false}
+                        enter={true}
+                        exit={true}
+                        in={false}
+                        mountOnEnter={false}
+                        onEnter={[Function]}
+                        onEntered={[Function]}
+                        onEntering={[Function]}
+                        onExit={[Function]}
+                        onExited={[Function]}
+                        onExiting={[Function]}
+                        timeout={300}
+                        unmountOnExit={true}
+            >
+                        [Function]
+            </Transition>
+</TransitionGroup>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        "children",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "childFactory": [Function],
+            "children": Array [
+              <Transition
+                appear={false}
+                enter={true}
+                exit={true}
+                in={false}
+                mountOnEnter={false}
+                onEnter={[Function]}
+                onEntered={[Function]}
+                onEntering={[Function]}
+                onExit={[Function]}
+                onExited={[Function]}
+                onExiting={[Function]}
+                timeout={300}
+                unmountOnExit={true}
+>
+                [Function]
+</Transition>,
+            ],
+            "className": undefined,
+            "component": "ul",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "id",
+              "nodeType": "class",
+              "props": Object {
+                "appear": false,
+                "children": [Function],
+                "enter": true,
+                "exit": true,
+                "in": false,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "timeout": 300,
+                "unmountOnExit": true,
+              },
+              "ref": null,
+              "rendered": [Function],
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
