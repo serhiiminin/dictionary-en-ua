@@ -83,7 +83,7 @@ class SearchWord extends Component {
 
     this.setState({ ...initialState });
     onFillForm(foundWord)
-      .then(history.push(routes.word.add));
+      .then(history.push(routes.words.add));
   };
 
   handleSaveWord = () => {
@@ -118,7 +118,7 @@ class SearchWord extends Component {
               loading={loading}
             />
             <ControlsSeparator>
-              <Button onClick={this.handleSaveWord} disabled={isEmpty}>Add to my words</Button>
+              <Button onClick={this.handleSaveWord} disabled={isEmpty}>Save to my words</Button>
               <Button onClick={this.handleEditBeforeSaving} disabled={isEmpty}>Edit before saving</Button>
             </ControlsSeparator>
             <FoundWordDescription

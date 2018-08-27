@@ -2,8 +2,8 @@ const routes = {
   root: '/',
   login: '/login',
   words: {
-    add: '/words-add',
-    learn: '/words-learn',
+    add: '/add-word',
+    learn: '/learn-words',
     list: '/words-list',
     search: '/words-search',
   },

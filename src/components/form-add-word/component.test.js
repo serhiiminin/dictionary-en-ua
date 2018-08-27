@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import FormAddWord from './component';
 import loadingNames  from '../../defaults/loading-names';
 
@@ -82,12 +82,4 @@ describe('Form add word', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('lifecycle methods', () => {
-    wrapper = mount(
-      <FormAddWord
-        currentLoadingNames={[]}
-      />
-    );
-    expect(wrapper).toMatchSnapshot();
-  })
 });
