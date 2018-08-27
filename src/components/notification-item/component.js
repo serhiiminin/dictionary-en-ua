@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import { notificationType } from '../notifications/component';
+import CloseButton from '../close-button';
+
+export const notificationType = {
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+  info: 'info',
+};
 
 const icons = {
   [notificationType.success]: <CheckCircleOutlineIcon/>,
@@ -16,22 +22,17 @@ const icons = {
   [notificationType.error]: <ErrorIcon/>,
 };
 
-const NotificationItem = ({ classes, onClick, text, type=notificationType.success, status }) => (
+const NotificationItem = ({ classes, onClick, text, type, status }) => (
   <li className={`${classes.notification} ${classes[type]} ${classes[status]}`}>
-    <div>
-      <div className={classes.topLine}>
-        {icons[type]}
-        <div className={classes.wrapperCloseButton}>
-          <button
-            type='button'
-            className={classes.closeButton}
-            onClick={onClick}
-          ><CloseIcon/>
-          </button>
-        </div>
+    <div className={classes.topLine}>
+      {icons[type]}
+      <div className={classes.wrapperCloseButton}>
+        <CloseButton
+          onClick={onClick}
+        />
       </div>
-      <div>{text}</div>
     </div>
+    <div>{text}</div>
   </li>
 );
 
@@ -45,7 +46,7 @@ NotificationItem.propTypes = {
 
 NotificationItem.defaultProps = {
   text: '',
-  type: '',
+  type: notificationType.error,
   classes: classesDefaultProps,
 };
 

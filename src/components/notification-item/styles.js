@@ -1,5 +1,5 @@
 import { variables } from '../../styles/variables';
-import { notificationType } from '../notifications/component';
+import { notificationType } from './component';
 
 const styles = {
   notification: {
@@ -33,18 +33,6 @@ const styles = {
   },
   wrapperCloseButton: {
     textAlign: 'right',
-  },
-  closeButton: {
-    background: 'transparent',
-    color: variables.colors.text,
-    padding: 0,
-    border: 0,
-    borderRadius: '50%',
-    fontSize: '.81em',
-    outline: 'none',
-    '&:hover': {
-      cursor: 'pointer',
-    },
   },
   entering: {
     marginTop: '100px',

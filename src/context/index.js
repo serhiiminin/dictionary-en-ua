@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LoadingNamesProvider } from './loading-names/index';
-import { NotificationsProvider } from './notifications/index';
-import { WordsProvider } from './words/index';
-import { WordFormProvider } from './word-form/index';
-import { FoundWordProvider } from './foundWord/index';
+import { LoadingNamesProvider } from './loading-names';
+import { NotificationsProvider } from './notifications';
+import { WordsProvider } from './words';
+import { WordFormProvider } from './word-form';
+import { FoundWordProvider } from './foundWord';
 
 const StateProvider = ({ children }) => (
   <LoadingNamesProvider>

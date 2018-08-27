@@ -36,7 +36,8 @@ const variables = {
   },
   timeout: {
     notification: 300,
-  }
+  },
+  transition: '.3s'
 };
 
 export { variables };

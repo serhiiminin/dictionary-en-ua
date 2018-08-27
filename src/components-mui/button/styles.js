@@ -6,8 +6,8 @@ const styles = {
     color: variables.colors.background,
     verticalAlign: 'bottom',
     textTransform: 'none',
+    transition: variables.transition,
     '&:hover': {
-      transition: variables.transition,
       background: variables.colors.button,
       opacity: variables.opacity.disabled,
     },

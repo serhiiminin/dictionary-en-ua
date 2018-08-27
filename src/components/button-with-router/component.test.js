@@ -1,24 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme'
-import ButtonWithRouter from './component';
+import { shallow } from 'enzyme';
+import ButtonWithRouter  from './component';
 
 describe('Button with Router', () => {
-  const wrapper = shallow(
-    <ButtonWithRouter to='/anywhere'>
-      Anywhere
-    </ButtonWithRouter>
-  );
+  let wrapper;
+  const push = jest.fn();
 
-  // console.log(wrapper.debug());
+  beforeEach(() => {
+    wrapper = shallow(
+      <ButtonWithRouter
+        to='/anywhere'
+        history={{ push, }}
+      >Anywhere</ButtonWithRouter>
+    )
+  });
+
   test('render', () => {
-
     expect(wrapper).toMatchSnapshot();
   });
 
-  // test('onClick', () => {
-  //   tree.props.onClick();
-  //   tree = component.toJSON();
-  //   expect(tree)
-  //     .toMatchSnapshot();
-  // });
+  test('onClick', () => {
+    wrapper.simulate('click');
+    expect(wrapper).toMatchSnapshot();
+    expect(push).toHaveBeenCalled();
+  });
 });

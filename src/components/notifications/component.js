@@ -6,14 +6,7 @@ import { notificationsListShape } from '../../context/notifications/shape';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { variables } from '../../styles/variables';
-import { NotificationItem } from '../index';
-
-export const notificationType = {
-  success: 'success',
-  warning: 'warning',
-  error: 'error',
-  info: 'info',
-};
+import { NotificationItem } from '..';
 
 const Notifications = ({ children, notifications, classes, hideNotification }) => (
   <Fragment>
