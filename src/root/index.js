@@ -6,7 +6,7 @@ import normalize from 'normalize-jss';
 import { compose } from 'recompose';
 import { variables } from '../styles/variables';
 import { Header, BlocksContainer, Notifications } from '../components';
-import { Main, MyWords, AddWord, SearchWord, PageNotFound } from '../pages';
+import { Main, MyWords, AddWord, SearchWord, PageNotFound, LearnWords } from '../pages';
 import StateProvider from '../context/index';
 import routes from '../routes';
 import styles from './styles';
@@ -41,6 +41,7 @@ const Root = () => (
                 <Route exact path={routes.addWord} component={AddWord}/>
                 <Route exact path={routes.searchWord} component={SearchWord}/>
                 <Route exact path={routes.myWords} component={MyWords}/>
+                <Route exact path={routes.learn} component={LearnWords}/>
                 <Route component={PageNotFound}/>
               </Switch>
             </BlocksContainer>

@@ -10,6 +10,7 @@ import styles from './styles';
 const MyWords = ({ classes }) => (
   <main className={classes.myWords}>
     <ControlsSeparator align='right'>
+      <ButtonWithRouter to={routes.learn}>Learn words</ButtonWithRouter>
       <ButtonWithRouter to={routes.addWord}>Add a new word</ButtonWithRouter>
     </ControlsSeparator>
     <Table/>
