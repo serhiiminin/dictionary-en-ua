@@ -13,7 +13,7 @@ const checkStatus = response => {
 
 const parseJson = response => response.json();
 
-const createFetchJson = fetcher =>
+const createFetcherJson = fetcher =>
   params => {
     const { endpoint, body, headers, ...restParams } = params;
 
@@ -34,7 +34,7 @@ const createFetchJson = fetcher =>
       .then(checkStatus)
       .then(parseJson)
       .catch(error => {
-        console.log(error.status); // eslint-disable-line no-console
+        console.log(error, error.status); // eslint-disable-line no-console
         if (error.message === 'Failed to fetch' && !window.navigator.onLine) {
           throw new Error('Check your internet connection');
         }
@@ -43,7 +43,7 @@ const createFetchJson = fetcher =>
   };
 
 const wordRequests = requests(WORDS);
-const fetcher = createFetchJson(window.fetch);
+const fetcher = createFetcherJson(window.fetch);
 
 const api = {
   getWord: wordId => fetcher(wordRequests.getEntity(wordId)),
@@ -54,4 +54,4 @@ const api = {
   deleteWord: wordId => fetcher(wordRequests.deleteEntity(wordId)),
 };
 
-export { api };
+export { api, createFetcherJson };

@@ -53,8 +53,7 @@
   },
   "pre-commit": {
     "run": [
-      "lint:with-cache",
-      "test:coverage"
+      "lint:with-cache"
     ],
     "silent": true
   }
