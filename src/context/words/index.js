@@ -1,7 +1,7 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { api } from '../../api/fetcher';
+import { api } from '../../api';
 import { notificationType } from '../../components/notification-item/component';
 import { loadingNames } from '../../defaults';
 import { withFoundWord } from '../foundWord';
