@@ -76,25 +76,28 @@ class WordsProviderCmp extends Component {
   };
 
   handleLearnWord = wordId => {
-    const { showNotification, startLoading, stopLoading, setFoundWord } = this.props;
+    const { showNotification, startLoading, stopLoading } = this.props;
 
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.learnWord(wordId))
-      .then(foundWord => setFoundWord(foundWord))
+      .then(() =>
+        this.setState(prevState => ({
+            words: [...prevState.words.filter(word => word._id !== wordId)]
+          })))
       .then(() => stopLoading(loadingNames.learnWord))
       .catch(err => showNotification(err.message, notificationType.error))
       .then(() => stopLoading(loadingNames.learnWord))
 
   };
 
-  handleRelearnWord = () => {
+  handleRelearnWord = wordId => {
     this.setState(prevState => {
-      const firstWord = prevState.words[0];
+      const wordToRelearn = prevState.words.find(word => word._id === wordId);
 
       return ({
         words: [
-          ...prevState.words.filter(word => word._id !== firstWord._id),
-          firstWord,
+          ...prevState.words.filter(word => word._id !== wordToRelearn._id),
+          wordToRelearn,
         ]
       });
     })
