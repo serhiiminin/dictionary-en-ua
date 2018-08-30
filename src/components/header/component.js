@@ -11,7 +11,7 @@ const Header = ({ classes }) => (
       <Link
         to={routes.root}
         className={classes.headerLink}
-      >My dictionary</Link>
+      >The dictionary</Link>
     </h1>
     <HeaderNavigation/>
   </div>

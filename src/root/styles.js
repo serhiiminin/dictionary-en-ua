@@ -8,10 +8,11 @@ const styles = {
     backgroundImage: `url(${texture})`,
     background: `${stylesVariables.colors.background} url(${texture}) center repeat`,
     color: stylesVariables.colors.text,
+    fontSize: '1rem',
   },
   '@global *': {
     boxSizing: 'border-box',
-    fontFamily: 'Arial, sans-serif !important',
+    fontFamily: '"Times New Roman", Times, serif',
   },
 };
 

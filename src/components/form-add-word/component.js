@@ -10,7 +10,7 @@ import loadingNames from '../../defaults/loading-names';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { Button, TextField } from '../../components-mui';
-import { ControlsSeparator } from '../index';
+import { ControlsSeparator } from '..';
 
 class FormAddWord extends Component {
   static propTypes = {
@@ -99,7 +99,12 @@ class FormAddWord extends Component {
               value={example}
               onChange={e => onExampleChange(e, id)}
               control={
-                <Button onClick={() => onRemoveExample(id)}>
+                <Button
+                  onClick={() => onRemoveExample(id)}
+                  title='Remove example'
+                  variant="fab"
+                  mini
+                >
                   <DeleteIcon/>
                 </Button>
               }

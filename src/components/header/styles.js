@@ -3,13 +3,14 @@ import { stylesVariables } from '../../defaults/styles-variables';
 const styles = {
   header: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: 'repeat(2, 1fr)',
     padding: `${stylesVariables.padding.large} 0`,
   },
   headerLink: {
     color: stylesVariables.colors.text,
     textDecoration: 'none',
-    fontFamily: 'Impact, sans-serif'
+    fontFamily: '"Lucida Console", Monaco, monospace',
+    fontSize: '1.5rem',
   }
 };
 
