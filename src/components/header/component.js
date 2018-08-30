@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
-import List from '@material-ui/icons/List';
-import NoteAdd from '@material-ui/icons/NoteAdd';
-import Search from '@material-ui/icons/Search';
-
+import { HeaderNavigation } from '..';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import routes from '../../routes';
@@ -16,16 +12,8 @@ const Header = ({ classes }) => (
         to={routes.root}
         className={classes.headerLink}
       >My dictionary</Link>
-      <Button variant="fab" mini>
-        <List/>
-      </Button>
-      <Button variant="fab" mini>
-        <NoteAdd/>
-      </Button>
-      <Button variant="fab" mini>
-        <Search/>
-      </Button>
     </h1>
+    <HeaderNavigation/>
   </div>
 );
 
