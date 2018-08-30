@@ -806,7 +806,10 @@ ShallowWrapper {
           <WithStyles(TextFieldCustomized)
                     control={
                               <WithStyles(ButtonCustomized)
+                                        mini={true}
                                         onClick={[Function]}
+                                        title="Remove example"
+                                        variant="fab"
                               >
                                         <pure(Delete) />
                               </WithStyles(ButtonCustomized)>
@@ -1049,7 +1052,10 @@ ShallowWrapper {
               <WithStyles(TextFieldCustomized)
                 control={
                                 <WithStyles(ButtonCustomized)
+                                                mini={true}
                                                 onClick={[Function]}
+                                                title="Remove example"
+                                                variant="fab"
                                 >
                                                 <pure(Delete) />
                                 </WithStyles(ButtonCustomized)>
@@ -1078,7 +1084,10 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "control": <WithStyles(ButtonCustomized)
+                mini={true}
                 onClick={[Function]}
+                title="Remove example"
+                variant="fab"
 >
                 <pure(Delete) />
 </WithStyles(ButtonCustomized)>,
@@ -1180,7 +1189,10 @@ ShallowWrapper {
             <WithStyles(TextFieldCustomized)
                         control={
                                     <WithStyles(ButtonCustomized)
+                                                mini={true}
                                                 onClick={[Function]}
+                                                title="Remove example"
+                                                variant="fab"
                                     >
                                                 <pure(Delete) />
                                     </WithStyles(ButtonCustomized)>
@@ -1423,7 +1435,10 @@ ShallowWrapper {
                 <WithStyles(TextFieldCustomized)
                   control={
                                     <WithStyles(ButtonCustomized)
+                                                      mini={true}
                                                       onClick={[Function]}
+                                                      title="Remove example"
+                                                      variant="fab"
                                     >
                                                       <pure(Delete) />
                                     </WithStyles(ButtonCustomized)>
@@ -1452,7 +1467,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "control": <WithStyles(ButtonCustomized)
+                  mini={true}
                   onClick={[Function]}
+                  title="Remove example"
+                  variant="fab"
 >
                   <pure(Delete) />
 </WithStyles(ButtonCustomized)>,
@@ -1606,7 +1624,10 @@ ShallowWrapper {
           <WithStyles(TextFieldCustomized)
                     control={
                               <WithStyles(ButtonCustomized)
+                                        mini={true}
                                         onClick={[Function]}
+                                        title="Remove example"
+                                        variant="fab"
                               >
                                         <pure(Delete) />
                               </WithStyles(ButtonCustomized)>
@@ -1849,7 +1870,10 @@ ShallowWrapper {
               <WithStyles(TextFieldCustomized)
                 control={
                                 <WithStyles(ButtonCustomized)
+                                                mini={true}
                                                 onClick={[Function]}
+                                                title="Remove example"
+                                                variant="fab"
                                 >
                                                 <pure(Delete) />
                                 </WithStyles(ButtonCustomized)>
@@ -1878,7 +1902,10 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "control": <WithStyles(ButtonCustomized)
+                mini={true}
                 onClick={[Function]}
+                title="Remove example"
+                variant="fab"
 >
                 <pure(Delete) />
 </WithStyles(ButtonCustomized)>,
@@ -1980,7 +2007,10 @@ ShallowWrapper {
             <WithStyles(TextFieldCustomized)
                         control={
                                     <WithStyles(ButtonCustomized)
+                                                mini={true}
                                                 onClick={[Function]}
+                                                title="Remove example"
+                                                variant="fab"
                                     >
                                                 <pure(Delete) />
                                     </WithStyles(ButtonCustomized)>
@@ -2223,7 +2253,10 @@ ShallowWrapper {
                 <WithStyles(TextFieldCustomized)
                   control={
                                     <WithStyles(ButtonCustomized)
+                                                      mini={true}
                                                       onClick={[Function]}
+                                                      title="Remove example"
+                                                      variant="fab"
                                     >
                                                       <pure(Delete) />
                                     </WithStyles(ButtonCustomized)>
@@ -2252,7 +2285,10 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "control": <WithStyles(ButtonCustomized)
+                  mini={true}
                   onClick={[Function]}
+                  title="Remove example"
+                  variant="fab"
 >
                   <pure(Delete) />
 </WithStyles(ButtonCustomized)>,

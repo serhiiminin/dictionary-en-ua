@@ -9,6 +9,14 @@ const requests = url => ({
     endpoint: url,
     method: 'GET',
   }),
+  getEntitiesListToLearn: () => ({
+    endpoint: urljoin(url, 'list-learn'),
+    method: 'GET',
+  }),
+  learnEntity: wordId => ({
+    endpoint: urljoin(url, wordId, '_learn'),
+    method: 'PUT',
+  }),
   search: body => ({
     endpoint: urljoin(url, '_search'),
     method: 'POST',

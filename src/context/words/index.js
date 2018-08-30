@@ -42,6 +42,17 @@ class WordsProviderCmp extends Component {
       .then(() => stopLoading(loadingNames.wordsList))
   };
 
+  handleFetchWordsToLearn = () => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.learnWord))
+      .then(() => api.getWordsListToLearn())
+      .then(words => this.setState({ words }))
+      .then(() => stopLoading(loadingNames.learnWord))
+      .catch(err => showNotification(err.message, notificationType.error))
+      .then(() => stopLoading(loadingNames.learnWord))
+  };
+
   handleSaveWord = data => {
     const { showNotification, startLoading, stopLoading } = this.props;
 
@@ -64,6 +75,31 @@ class WordsProviderCmp extends Component {
       .then(() => this.handleFetchWords());
   };
 
+  handleLearnWord = wordId => {
+    const { showNotification, startLoading, stopLoading, setFoundWord } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.learnWord))
+      .then(() => api.learnWord(wordId))
+      .then(foundWord => setFoundWord(foundWord))
+      .then(() => stopLoading(loadingNames.learnWord))
+      .catch(err => showNotification(err.message, notificationType.error))
+      .then(() => stopLoading(loadingNames.learnWord))
+
+  };
+
+  handleRelearnWord = () => {
+    this.setState(prevState => {
+      const firstWord = prevState.words[0];
+
+      return ({
+        words: [
+          ...prevState.words.filter(word => word._id !== firstWord._id),
+          firstWord,
+        ]
+      });
+    })
+  };
+
   handleSearchWord = params => {
     const { showNotification, startLoading, stopLoading, setFoundWord } = this.props;
 
@@ -84,8 +120,11 @@ class WordsProviderCmp extends Component {
         value={{
           words,
           fetchWords: this.handleFetchWords,
+          fetchWordsToLearn: this.handleFetchWordsToLearn,
           saveWord: this.handleSaveWord,
           searchWord: this.handleSearchWord,
+          learnWord: this.handleLearnWord,
+          relearnWord: this.handleRelearnWord,
           deleteWord: this.handleDeleteWord,
           cleanWords: this.cleanWords,
         }}
