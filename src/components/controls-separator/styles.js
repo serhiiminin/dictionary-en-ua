@@ -1,11 +1,11 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   alignControls: {
     display: 'grid',
     alignContent: 'center',
     gridAutoFlow: 'column',
-    padding: `${variables.padding.medium} 0`,
+    padding: `${stylesVariables.padding.medium} 0`,
     justifyContent: 'start',
     columnGap: '.5rem',
     rowGap: '.5rem',

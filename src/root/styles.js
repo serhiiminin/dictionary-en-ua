@@ -1,17 +1,18 @@
-import { variables } from '../styles/variables';
+import { stylesVariables } from '../defaults/styles-variables';
 import texture from '../images/texture.png';
 
 const styles = {
   '@global body': {
     overflowX: 'hidden',
-    backgroundColor: variables.colors.background,
+    backgroundColor: stylesVariables.colors.background,
     backgroundImage: `url(${texture})`,
-    background: `${variables.colors.background} url(${texture}) center repeat`,
-    color: variables.colors.text,
+    background: `${stylesVariables.colors.background} url(${texture}) center repeat`,
+    color: stylesVariables.colors.text,
+    fontSize: '1rem',
   },
   '@global *': {
     boxSizing: 'border-box',
-    fontFamily: 'Arial, sans-serif !important',
+    fontFamily: '"Times New Roman", Times, serif',
   },
 };
 

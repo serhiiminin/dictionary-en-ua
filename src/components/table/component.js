@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Fade, LinearProgress, Paper, Table, TablePagination } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { loadingNamesInitialState } from '../../context/loading-names';
+import { loadingNamesShape } from '../../context/loading-names/shape';
 import { wordsInitialState } from '../../context/words';
 import { wordsListShape } from '../../context/words/shape';
-import { loadingNames } from '../../defaults';
+import loadingNames from '../../defaults/loading-names';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { TableBody, TableHead, Toolbar } from '../index';
@@ -12,7 +13,7 @@ import { TableBody, TableHead, Toolbar } from '../index';
 class TableCmp extends Component {
   static propTypes = {
     classes: classesShape,
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    currentLoadingNames: loadingNamesShape,
     words: wordsListShape,
     fetchWords: PropTypes.func.isRequired,
     deleteWord: PropTypes.func.isRequired,

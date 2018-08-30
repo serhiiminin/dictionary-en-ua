@@ -566,7 +566,7 @@ babel-helper-call-delegate@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-helper-call-delegate/-/babel-helper-call-delegate-6.24.1.tgz#ece6aacddc76e41c3461f88bfc575bd0daa2df8d"
   dependencies:
-    babel-helper-hoist-variables "^6.24.1"
+    babel-helper-hoist-stylesVariables "^6.24.1"
     babel-runtime "^6.22.0"
     babel-traverse "^6.24.1"
     babel-types "^6.24.1"
@@ -605,9 +605,9 @@ babel-helper-get-function-arity@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-helper-hoist-variables@^6.24.1:
+babel-helper-hoist-stylesVariables@^6.24.1:
   version "6.24.1"
-  resolved "https://registry.yarnpkg.com/babel-helper-hoist-variables/-/babel-helper-hoist-variables-6.24.1.tgz#1ecb27689c9d25513eadbc9914a73f5408be7a76"
+  resolved "https://registry.yarnpkg.com/babel-helper-hoist-stylesVariables/-/babel-helper-hoist-stylesVariables-6.24.1.tgz#1ecb27689c9d25513eadbc9914a73f5408be7a76"
   dependencies:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
@@ -850,7 +850,7 @@ babel-plugin-transform-es2015-modules-systemjs@^6.23.0:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-modules-systemjs/-/babel-plugin-transform-es2015-modules-systemjs-6.24.1.tgz#ff89a142b9119a906195f5f106ecf305d9407d23"
   dependencies:
-    babel-helper-hoist-variables "^6.24.1"
+    babel-helper-hoist-stylesVariables "^6.24.1"
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 

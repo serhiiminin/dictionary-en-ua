@@ -1,19 +1,19 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   examplesTitle: {
-    margin: `0 0 ${variables.margin.medium}`,
+    margin: `0 0 ${stylesVariables.margin.medium}`,
     padding: 0,
   },
   exampleItem: {
-    background: variables.colors.line,
-    padding: variables.padding.medium,
-    marginBottom: variables.margin.small,
-    borderRadius: variables.borderRadius.small,
+    background: stylesVariables.colors.line,
+    padding: stylesVariables.padding.medium,
+    marginBottom: stylesVariables.margin.small,
+    borderRadius: stylesVariables.borderRadius.small,
   },
   noResults: {
     fontStyle: 'italic',
-    opacity: variables.opacity.disabled,
+    opacity: stylesVariables.opacity.disabled,
   }
 };
 

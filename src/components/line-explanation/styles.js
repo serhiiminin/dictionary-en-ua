@@ -1,13 +1,13 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   lineExplanation: {
     display: 'grid',
     gridTemplateColumns: '1fr 2fr',
-    background: variables.colors.line,
-    padding: variables.padding.medium,
-    marginBottom: variables.margin.medium,
-    borderRadius: variables.borderRadius.small,
+    background: stylesVariables.colors.line,
+    padding: stylesVariables.padding.medium,
+    marginBottom: stylesVariables.margin.medium,
+    borderRadius: stylesVariables.borderRadius.small,
   },
 };
 

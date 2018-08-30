@@ -1,4 +1,4 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   formAdd: {
@@ -9,7 +9,7 @@ const styles = {
   },
   addExample: {
     display: 'grid',
-    padding: `${variables.padding.medium} 0`,
+    padding: `${stylesVariables.padding.medium} 0`,
     justifyContent: 'end',
     alignItems: 'center',
   }

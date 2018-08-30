@@ -1,4 +1,4 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   textFieldControl: {
@@ -8,21 +8,21 @@ const styles = {
     columnGap: '1rem',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: variables.margin.medium,
+    marginBottom: stylesVariables.margin.medium,
   },
   textField: {
-    marginBottom: variables.margin.medium,
+    marginBottom: stylesVariables.margin.medium,
   },
   root: {
     width: '100%',
   },
   label: {
-    color: `${variables.colors.text} !important`,
+    color: `${stylesVariables.colors.text} !important`,
     opacity: 0.7,
   },
   underline: {
     '&:after': {
-      borderBottom: `${variables.colors.text} !important`,
+      borderBottom: `${stylesVariables.colors.text} !important`,
     },
   },
 };

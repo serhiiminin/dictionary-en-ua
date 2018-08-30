@@ -1,21 +1,21 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   root: {
-    background: variables.colors.button,
-    color: variables.colors.background,
+    background: stylesVariables.colors.button,
+    color: stylesVariables.colors.background,
     verticalAlign: 'bottom',
     textTransform: 'none',
-    transition: variables.transition,
+    transition: stylesVariables.transition,
     '&:hover': {
-      background: variables.colors.button,
-      opacity: variables.opacity.disabled,
+      background: stylesVariables.colors.button,
+      opacity: stylesVariables.opacity.disabled,
     },
   },
   disabled: {
-    opacity: variables.opacity.disabled,
-    background: variables.colors.button,
-    color: `${variables.colors.background} !important`,
+    opacity: stylesVariables.opacity.disabled,
+    background: stylesVariables.colors.button,
+    color: `${stylesVariables.colors.background} !important`,
   },
 };
 

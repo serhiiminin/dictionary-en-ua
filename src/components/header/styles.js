@@ -1,10 +1,16 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
+  header: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    padding: `${stylesVariables.padding.large} 0`,
+  },
   headerLink: {
-    color: variables.colors.text,
+    color: stylesVariables.colors.text,
     textDecoration: 'none',
-    fontFamily: 'Impact, sans-serif'
+    fontFamily: '"Lucida Console", Monaco, monospace',
+    fontSize: '1.5rem',
   }
 };
 
