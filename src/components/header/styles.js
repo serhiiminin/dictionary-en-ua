@@ -1,13 +1,13 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   header: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    padding: `${variables.padding.large} 0`,
+    padding: `${stylesVariables.padding.large} 0`,
   },
   headerLink: {
-    color: variables.colors.text,
+    color: stylesVariables.colors.text,
     textDecoration: 'none',
     fontFamily: 'Impact, sans-serif'
   }

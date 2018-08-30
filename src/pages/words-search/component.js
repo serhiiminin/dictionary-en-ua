@@ -5,7 +5,7 @@ import { ControlsSeparator, TextFieldLoading, FoundWordDescription, FoundWordExa
 import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
 import { loadingNamesShape } from '../../context/loading-names/shape';
-import { loadingNames } from '../../defaults';
+import loadingNames from '../../defaults/loading-names';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { Button } from '../../components-mui';

@@ -1,12 +1,12 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   foundWordDescription: {
-    marginTop: variables.margin.medium,
+    marginTop: stylesVariables.margin.medium,
   },
   emptyDescription: {
     fontStyle: 'italic',
-    opacity: variables.opacity.disabled,
+    opacity: stylesVariables.opacity.disabled,
   }
 };
 

@@ -1,9 +1,9 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   closeButton: {
     background: 'transparent',
-    color: variables.colors.text,
+    color: stylesVariables.colors.text,
     padding: 0,
     border: 0,
     borderRadius: '50%',

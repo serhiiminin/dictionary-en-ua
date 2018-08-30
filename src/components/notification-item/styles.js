@@ -1,32 +1,32 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 import { notificationType } from './component';
 
 const styles = {
   notification: {
     width: '100%',
-    borderRadius: variables.borderRadius.small,
-    padding: variables.padding.medium,
-    marginBottom: variables.margin.medium,
+    borderRadius: stylesVariables.borderRadius.small,
+    padding: stylesVariables.padding.medium,
+    marginBottom: stylesVariables.margin.medium,
     listStyle: 'none',
-    transition: `all ${variables.timeout.notification}ms ease-in-out`,
+    transition: `all ${stylesVariables.timeout.notification}ms ease-in-out`,
   },
   [notificationType.error]: {
-    background: variables.colors.notification.error,
+    background: stylesVariables.colors.notification.error,
   },
   [notificationType.success]: {
-    background: variables.colors.notification.success,
+    background: stylesVariables.colors.notification.success,
   },
   [notificationType.warning]: {
-    background: variables.colors.notification.warning,
+    background: stylesVariables.colors.notification.warning,
   },
   [notificationType.info]: {
-    background: variables.colors.notification.info,
+    background: stylesVariables.colors.notification.info,
   },
   topLine: {
     display: 'grid',
     alignItems: 'center',
     gridAutoFlow: 'column',
-    marginBottom: variables.margin.medium,
+    marginBottom: stylesVariables.margin.medium,
   },
   typeText: {
     fontWeight: 'bold',

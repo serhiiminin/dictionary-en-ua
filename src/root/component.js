@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import { variables } from '../styles/variables';
+import { stylesVariables } from '../defaults/styles-variables';
 import { Header, BlocksContainer, Notifications } from '../components';
 import { Main, MyWords, AddWord, SearchWord, PageNotFound, LearnWords } from '../pages';
 import StateProvider from '../context/index';
@@ -10,16 +10,16 @@ import routes from '../routes';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: variables.colors.block,
-      main: variables.colors.text,
-      dark: variables.colors.button,
-      contrastText: variables.colors.block,
+      light: stylesVariables.colors.block,
+      main: stylesVariables.colors.text,
+      dark: stylesVariables.colors.button,
+      contrastText: stylesVariables.colors.block,
     },
     secondary: {
-      light: variables.colors.block,
-      main: variables.colors.button,
-      dark: variables.colors.button,
-      contrastText: variables.colors.block,
+      light: stylesVariables.colors.block,
+      main: stylesVariables.colors.button,
+      dark: stylesVariables.colors.button,
+      contrastText: stylesVariables.colors.block,
     }
   },
 });

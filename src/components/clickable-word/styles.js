@@ -1,10 +1,10 @@
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 
 const styles = {
   clickableWord: {
     display: 'inline-block',
-    marginRight: variables.margin.small,
-    color: variables.colors.text,
+    marginRight: stylesVariables.margin.small,
+    color: stylesVariables.colors.text,
     fontWeight: 'bolder',
   }
 };

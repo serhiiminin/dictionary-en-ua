@@ -5,7 +5,7 @@ import { notificationInitialState } from '../../context/notifications';
 import { notificationsListShape } from '../../context/notifications/shape';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
-import { variables } from '../../styles/variables';
+import { stylesVariables } from '../../defaults/styles-variables';
 import { NotificationItem } from '..';
 
 const Notifications = ({ children, notifications, classes, hideNotification }) => (
@@ -15,7 +15,7 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
       {notifications
         .map(({ id, text, type }) => (
         <Transition
-          timeout={variables.timeout.notification}
+          timeout={stylesVariables.timeout.notification}
           unmountOnExit
           key={id}
         >{status => (

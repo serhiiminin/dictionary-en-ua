@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { api } from '../../api';
 import { notificationType } from '../../components/notification-item/component';
-import { loadingNames } from '../../defaults';
+import loadingNames from '../../defaults/loading-names';
 import { withFoundWord } from '../foundWord';
 import { withLoadingNames } from '../loading-names';
 import { withNotifications } from '../notifications';

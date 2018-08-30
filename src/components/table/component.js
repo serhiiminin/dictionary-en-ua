@@ -5,7 +5,7 @@ import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
 import { wordsInitialState } from '../../context/words';
 import { wordsListShape } from '../../context/words/shape';
-import { loadingNames } from '../../defaults';
+import loadingNames from '../../defaults/loading-names';
 import { classesDefaultProps } from '../../defaults/default-props';
 import { classesShape } from '../../defaults/shapes';
 import { TableBody, TableHead, Toolbar } from '../index';

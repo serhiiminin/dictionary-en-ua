@@ -1,4 +1,4 @@
-const variables = {
+const stylesVariables = {
   colors: {
     background: '#F6F0ED',
     button: '#28536B',
@@ -40,4 +40,4 @@ const variables = {
   transition: '.3s'
 };
 
-export { variables };
+export { stylesVariables };
