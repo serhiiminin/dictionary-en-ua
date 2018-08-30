@@ -24,13 +24,11 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         "children",
-        <TransitionGroup
-          childFactory={[Function]}
+        <ul
           className={undefined}
-          component="ul"
 >
           
-</TransitionGroup>,
+</ul>,
       ],
     },
     "ref": null,
@@ -39,16 +37,14 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "childFactory": [Function],
           "children": Array [],
           "className": undefined,
-          "component": "ul",
         },
         "ref": null,
         "rendered": Array [],
-        "type": [Function],
+        "type": "ul",
       },
     ],
     "type": Symbol(react.fragment),
@@ -61,13 +57,11 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           "children",
-          <TransitionGroup
-            childFactory={[Function]}
+          <ul
             className={undefined}
-            component="ul"
 >
             
-</TransitionGroup>,
+</ul>,
         ],
       },
       "ref": null,
@@ -76,16 +70,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
-            "childFactory": [Function],
             "children": Array [],
             "className": undefined,
-            "component": "ul",
           },
           "ref": null,
           "rendered": Array [],
-          "type": [Function],
+          "type": "ul",
         },
       ],
       "type": Symbol(react.fragment),
@@ -145,29 +137,16 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         "children",
-        <TransitionGroup
-          childFactory={[Function]}
+        <ul
           className={undefined}
-          component="ul"
 >
-          <Transition
-                    appear={false}
-                    enter={true}
-                    exit={true}
-                    in={false}
-                    mountOnEnter={false}
-                    onEnter={[Function]}
-                    onEntered={[Function]}
-                    onEntering={[Function]}
-                    onExit={[Function]}
-                    onExited={[Function]}
-                    onExiting={[Function]}
-                    timeout={300}
-                    unmountOnExit={true}
-          >
-                    [Function]
-          </Transition>
-</TransitionGroup>,
+          <Jss(NotificationItem)
+                    onClick={[Function]}
+                    status="entering"
+                    text="text"
+                    type="success"
+          />
+</ul>,
       ],
     },
     "ref": null,
@@ -176,30 +155,17 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "childFactory": [Function],
           "children": Array [
-            <Transition
-              appear={false}
-              enter={true}
-              exit={true}
-              in={false}
-              mountOnEnter={false}
-              onEnter={[Function]}
-              onEntered={[Function]}
-              onEntering={[Function]}
-              onExit={[Function]}
-              onExited={[Function]}
-              onExiting={[Function]}
-              timeout={300}
-              unmountOnExit={true}
->
-              [Function]
-</Transition>,
+            <Jss(NotificationItem)
+              onClick={[Function]}
+              status="entering"
+              text="text"
+              type="success"
+/>,
           ],
           "className": undefined,
-          "component": "ul",
         },
         "ref": null,
         "rendered": Array [
@@ -208,27 +174,17 @@ ShallowWrapper {
             "key": "id",
             "nodeType": "class",
             "props": Object {
-              "appear": false,
-              "children": [Function],
-              "enter": true,
-              "exit": true,
-              "in": false,
-              "mountOnEnter": false,
-              "onEnter": [Function],
-              "onEntered": [Function],
-              "onEntering": [Function],
-              "onExit": [Function],
-              "onExited": [Function],
-              "onExiting": [Function],
-              "timeout": 300,
-              "unmountOnExit": true,
+              "onClick": [Function],
+              "status": "entering",
+              "text": "text",
+              "type": "success",
             },
             "ref": null,
-            "rendered": [Function],
+            "rendered": null,
             "type": [Function],
           },
         ],
-        "type": [Function],
+        "type": "ul",
       },
     ],
     "type": Symbol(react.fragment),
@@ -241,29 +197,16 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           "children",
-          <TransitionGroup
-            childFactory={[Function]}
+          <ul
             className={undefined}
-            component="ul"
 >
-            <Transition
-                        appear={false}
-                        enter={true}
-                        exit={true}
-                        in={false}
-                        mountOnEnter={false}
-                        onEnter={[Function]}
-                        onEntered={[Function]}
-                        onEntering={[Function]}
-                        onExit={[Function]}
-                        onExited={[Function]}
-                        onExiting={[Function]}
-                        timeout={300}
-                        unmountOnExit={true}
-            >
-                        [Function]
-            </Transition>
-</TransitionGroup>,
+            <Jss(NotificationItem)
+                        onClick={[Function]}
+                        status="entering"
+                        text="text"
+                        type="success"
+            />
+</ul>,
         ],
       },
       "ref": null,
@@ -272,30 +215,17 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
-            "childFactory": [Function],
             "children": Array [
-              <Transition
-                appear={false}
-                enter={true}
-                exit={true}
-                in={false}
-                mountOnEnter={false}
-                onEnter={[Function]}
-                onEntered={[Function]}
-                onEntering={[Function]}
-                onExit={[Function]}
-                onExited={[Function]}
-                onExiting={[Function]}
-                timeout={300}
-                unmountOnExit={true}
->
-                [Function]
-</Transition>,
+              <Jss(NotificationItem)
+                onClick={[Function]}
+                status="entering"
+                text="text"
+                type="success"
+/>,
             ],
             "className": undefined,
-            "component": "ul",
           },
           "ref": null,
           "rendered": Array [
@@ -304,27 +234,17 @@ ShallowWrapper {
               "key": "id",
               "nodeType": "class",
               "props": Object {
-                "appear": false,
-                "children": [Function],
-                "enter": true,
-                "exit": true,
-                "in": false,
-                "mountOnEnter": false,
-                "onEnter": [Function],
-                "onEntered": [Function],
-                "onEntering": [Function],
-                "onExit": [Function],
-                "onExited": [Function],
-                "onExiting": [Function],
-                "timeout": 300,
-                "unmountOnExit": true,
+                "onClick": [Function],
+                "status": "entering",
+                "text": "text",
+                "type": "success",
               },
               "ref": null,
-              "rendered": [Function],
+              "rendered": null,
               "type": [Function],
             },
           ],
-          "type": [Function],
+          "type": "ul",
         },
       ],
       "type": Symbol(react.fragment),

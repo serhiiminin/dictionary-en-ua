@@ -9,6 +9,7 @@ const styles = {
     marginBottom: stylesVariables.margin.medium,
     listStyle: 'none',
     transition: `all ${stylesVariables.timeout.notification}ms ease-in-out`,
+    opacity: '1 !important'
   },
   [notificationType.error]: {
     background: stylesVariables.colors.notification.error,
@@ -33,20 +34,6 @@ const styles = {
   },
   wrapperCloseButton: {
     textAlign: 'right',
-  },
-  entering: {
-    marginTop: '100px',
-    opacity: '0',
-  },
-  entered: {
-    marginTop: '0',
-    opacity: '1',
-  },
-  exiting: {
-    opacity: '0',
-  },
-  exited: {
-    opacity: '0',
   },
 };
 
