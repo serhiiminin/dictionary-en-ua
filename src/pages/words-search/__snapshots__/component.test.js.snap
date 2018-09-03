@@ -26,184 +26,129 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "function",
+    "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Jss(ControlsSeparator)
-          align="left"
->
-          <withRouter(ButtonWithRouter)
-                    to="/words-list"
+        <div>
+          <Jss(TextFieldLoading)
+                    label="Search a word"
+                    loading={false}
+                    onChange={[Function]}
+                    value=""
+          />
+          <Jss(ControlsSeparator)
+                    align="left"
           >
-                    List of my words
-          </withRouter(ButtonWithRouter)>
-</Jss(ControlsSeparator)>,
-        <main
-          className={undefined}
->
-          <div>
-                    <Jss(TextFieldLoading)
-                              label="Search a word"
-                              loading={false}
-                              onChange={[Function]}
-                              value=""
-                    />
-                    <Jss(ControlsSeparator)
-                              align="left"
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              onClick={[Function]}
                     >
-                              <WithStyles(ButtonCustomized)
-                                        disabled={false}
-                                        onClick={[Function]}
-                              >
-                                        Save to my words
-                              </WithStyles(ButtonCustomized)>
-                              <WithStyles(ButtonCustomized)
-                                        disabled={false}
-                                        onClick={[Function]}
-                              >
-                                        Edit before saving
-                              </WithStyles(ButtonCustomized)>
-                    </Jss(ControlsSeparator)>
-                    <Jss(FoundWordDescription)
-                              foundWord={
-                                        Object {
-                                                  "foundWord": Object {},
-                                                }
-                              }
-                              pushTextToInput={[Function]}
-                    />
-          </div>
-          <div>
-                    <Jss(FoundWordExamples)
-                              foundWord={
-                                        Object {
-                                                  "foundWord": Object {},
-                                                }
-                              }
-                              pushTextToInput={[Function]}
-                    />
-          </div>
-</main>,
+                              Save to my words
+                    </WithStyles(ButtonCustomized)>
+                    <WithStyles(ButtonCustomized)
+                              disabled={false}
+                              onClick={[Function]}
+                    >
+                              Edit before saving
+                    </WithStyles(ButtonCustomized)>
+          </Jss(ControlsSeparator)>
+          <Jss(FoundWordDescription)
+                    foundWord={
+                              Object {
+                                        "foundWord": Object {},
+                                      }
+                    }
+                    pushTextToInput={[Function]}
+          />
+</div>,
+        <div>
+          <Jss(FoundWordExamples)
+                    foundWord={
+                              Object {
+                                        "foundWord": Object {},
+                                      }
+                    }
+                    pushTextToInput={[Function]}
+          />
+</div>,
       ],
+      "className": undefined,
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "align": "left",
-          "children": <withRouter(ButtonWithRouter)
-            to="/words-list"
->
-            List of my words
-</withRouter(ButtonWithRouter)>,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "List of my words",
-            "to": "/words-list",
-          },
-          "ref": null,
-          "rendered": "List of my words",
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <div>
-              <Jss(TextFieldLoading)
-                            label="Search a word"
-                            loading={false}
-                            onChange={[Function]}
-                            value=""
-              />
-              <Jss(ControlsSeparator)
-                            align="left"
+            <Jss(TextFieldLoading)
+              label="Search a word"
+              loading={false}
+              onChange={[Function]}
+              value=""
+/>,
+            <Jss(ControlsSeparator)
+              align="left"
+>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            onClick={[Function]}
               >
-                            <WithStyles(ButtonCustomized)
-                                          disabled={false}
-                                          onClick={[Function]}
-                            >
-                                          Save to my words
-                            </WithStyles(ButtonCustomized)>
-                            <WithStyles(ButtonCustomized)
-                                          disabled={false}
-                                          onClick={[Function]}
-                            >
-                                          Edit before saving
-                            </WithStyles(ButtonCustomized)>
-              </Jss(ControlsSeparator)>
-              <Jss(FoundWordDescription)
-                            foundWord={
-                                          Object {
-                                                        "foundWord": Object {},
-                                                      }
-                            }
-                            pushTextToInput={[Function]}
-              />
-</div>,
-            <div>
-              <Jss(FoundWordExamples)
-                            foundWord={
-                                          Object {
-                                                        "foundWord": Object {},
-                                                      }
-                            }
-                            pushTextToInput={[Function]}
-              />
-</div>,
+                            Save to my words
+              </WithStyles(ButtonCustomized)>
+              <WithStyles(ButtonCustomized)
+                            disabled={false}
+                            onClick={[Function]}
+              >
+                            Edit before saving
+              </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+            <Jss(FoundWordDescription)
+              foundWord={
+                            Object {
+                                          "foundWord": Object {},
+                                        }
+              }
+              pushTextToInput={[Function]}
+/>,
           ],
-          "className": undefined,
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
+              "label": "Search a word",
+              "loading": false,
+              "onChange": [Function],
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "align": "left",
               "children": Array [
-                <Jss(TextFieldLoading)
-                  label="Search a word"
-                  loading={false}
-                  onChange={[Function]}
-                  value=""
-/>,
-                <Jss(ControlsSeparator)
-                  align="left"
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  onClick={[Function]}
 >
-                  <WithStyles(ButtonCustomized)
-                                    disabled={false}
-                                    onClick={[Function]}
-                  >
-                                    Save to my words
-                  </WithStyles(ButtonCustomized)>
-                  <WithStyles(ButtonCustomized)
-                                    disabled={false}
-                                    onClick={[Function]}
-                  >
-                                    Edit before saving
-                  </WithStyles(ButtonCustomized)>
-</Jss(ControlsSeparator)>,
-                <Jss(FoundWordDescription)
-                  foundWord={
-                                    Object {
-                                                      "foundWord": Object {},
-                                                    }
-                  }
-                  pushTextToInput={[Function]}
-/>,
+                  Save to my words
+</WithStyles(ButtonCustomized)>,
+                <WithStyles(ButtonCustomized)
+                  disabled={false}
+                  onClick={[Function]}
+>
+                  Edit before saving
+</WithStyles(ButtonCustomized)>,
               ],
             },
             "ref": null,
@@ -213,13 +158,12 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "label": "Search a word",
-                  "loading": false,
-                  "onChange": [Function],
-                  "value": "",
+                  "children": "Save to my words",
+                  "disabled": false,
+                  "onClick": [Function],
                 },
                 "ref": null,
-                "rendered": null,
+                "rendered": "Save to my words",
                 "type": [Function],
               },
               Object {
@@ -227,76 +171,151 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "align": "left",
-                  "children": Array [
-                    <WithStyles(ButtonCustomized)
-                      disabled={false}
-                      onClick={[Function]}
->
-                      Save to my words
-</WithStyles(ButtonCustomized)>,
-                    <WithStyles(ButtonCustomized)
-                      disabled={false}
-                      onClick={[Function]}
->
-                      Edit before saving
-</WithStyles(ButtonCustomized)>,
-                  ],
+                  "children": "Edit before saving",
+                  "disabled": false,
+                  "onClick": [Function],
                 },
                 "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "Save to my words",
-                      "disabled": false,
-                      "onClick": [Function],
-                    },
-                    "ref": null,
-                    "rendered": "Save to my words",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "Edit before saving",
-                      "disabled": false,
-                      "onClick": [Function],
-                    },
-                    "ref": null,
-                    "rendered": "Edit before saving",
-                    "type": [Function],
-                  },
-                ],
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "foundWord": Object {
-                    "foundWord": Object {},
-                  },
-                  "pushTextToInput": [Function],
-                },
-                "ref": null,
-                "rendered": null,
+                "rendered": "Edit before saving",
                 "type": [Function],
               },
             ],
-            "type": "div",
+            "type": [Function],
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
-              "children": <Jss(FoundWordExamples)
+              "foundWord": Object {
+                "foundWord": Object {},
+              },
+              "pushTextToInput": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <Jss(FoundWordExamples)
+            foundWord={
+                        Object {
+                                    "foundWord": Object {},
+                                  }
+            }
+            pushTextToInput={[Function]}
+/>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "foundWord": Object {
+              "foundWord": Object {},
+            },
+            "pushTextToInput": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "div",
+      },
+    ],
+    "type": "main",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div>
+            <Jss(TextFieldLoading)
+                        label="Search a word"
+                        loading={false}
+                        onChange={[Function]}
+                        value=""
+            />
+            <Jss(ControlsSeparator)
+                        align="left"
+            >
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    onClick={[Function]}
+                        >
+                                    Save to my words
+                        </WithStyles(ButtonCustomized)>
+                        <WithStyles(ButtonCustomized)
+                                    disabled={false}
+                                    onClick={[Function]}
+                        >
+                                    Edit before saving
+                        </WithStyles(ButtonCustomized)>
+            </Jss(ControlsSeparator)>
+            <Jss(FoundWordDescription)
+                        foundWord={
+                                    Object {
+                                                "foundWord": Object {},
+                                              }
+                        }
+                        pushTextToInput={[Function]}
+            />
+</div>,
+          <div>
+            <Jss(FoundWordExamples)
+                        foundWord={
+                                    Object {
+                                                "foundWord": Object {},
+                                              }
+                        }
+                        pushTextToInput={[Function]}
+            />
+</div>,
+        ],
+        "className": undefined,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Jss(TextFieldLoading)
+                label="Search a word"
+                loading={false}
+                onChange={[Function]}
+                value=""
+/>,
+              <Jss(ControlsSeparator)
+                align="left"
+>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                onClick={[Function]}
+                >
+                                Save to my words
+                </WithStyles(ButtonCustomized)>
+                <WithStyles(ButtonCustomized)
+                                disabled={false}
+                                onClick={[Function]}
+                >
+                                Edit before saving
+                </WithStyles(ButtonCustomized)>
+</Jss(ControlsSeparator)>,
+              <Jss(FoundWordDescription)
                 foundWord={
                                 Object {
                                                 "foundWord": Object {},
@@ -304,9 +323,77 @@ ShallowWrapper {
                 }
                 pushTextToInput={[Function]}
 />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "label": "Search a word",
+                "loading": false,
+                "onChange": [Function],
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
             },
-            "ref": null,
-            "rendered": Object {
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "align": "left",
+                "children": Array [
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    onClick={[Function]}
+>
+                    Save to my words
+</WithStyles(ButtonCustomized)>,
+                  <WithStyles(ButtonCustomized)
+                    disabled={false}
+                    onClick={[Function]}
+>
+                    Edit before saving
+</WithStyles(ButtonCustomized)>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Save to my words",
+                    "disabled": false,
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Save to my words",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Edit before saving",
+                    "disabled": false,
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Edit before saving",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
@@ -320,319 +407,42 @@ ShallowWrapper {
               "rendered": null,
               "type": [Function],
             },
-            "type": "div",
-          },
-        ],
-        "type": "main",
-      },
-    ],
-    "type": Symbol(react.fragment),
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <Jss(ControlsSeparator)
-            align="left"
->
-            <withRouter(ButtonWithRouter)
-                        to="/words-list"
-            >
-                        List of my words
-            </withRouter(ButtonWithRouter)>
-</Jss(ControlsSeparator)>,
-          <main
-            className={undefined}
->
-            <div>
-                        <Jss(TextFieldLoading)
-                                    label="Search a word"
-                                    loading={false}
-                                    onChange={[Function]}
-                                    value=""
-                        />
-                        <Jss(ControlsSeparator)
-                                    align="left"
-                        >
-                                    <WithStyles(ButtonCustomized)
-                                                disabled={false}
-                                                onClick={[Function]}
-                                    >
-                                                Save to my words
-                                    </WithStyles(ButtonCustomized)>
-                                    <WithStyles(ButtonCustomized)
-                                                disabled={false}
-                                                onClick={[Function]}
-                                    >
-                                                Edit before saving
-                                    </WithStyles(ButtonCustomized)>
-                        </Jss(ControlsSeparator)>
-                        <Jss(FoundWordDescription)
-                                    foundWord={
-                                                Object {
-                                                            "foundWord": Object {},
-                                                          }
-                                    }
-                                    pushTextToInput={[Function]}
-                        />
-            </div>
-            <div>
-                        <Jss(FoundWordExamples)
-                                    foundWord={
-                                                Object {
-                                                            "foundWord": Object {},
-                                                          }
-                                    }
-                                    pushTextToInput={[Function]}
-                        />
-            </div>
-</main>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "align": "left",
-            "children": <withRouter(ButtonWithRouter)
-              to="/words-list"
->
-              List of my words
-</withRouter(ButtonWithRouter)>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "List of my words",
-              "to": "/words-list",
-            },
-            "ref": null,
-            "rendered": "List of my words",
-            "type": [Function],
-          },
-          "type": [Function],
+          ],
+          "type": "div",
         },
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": Array [
-              <div>
-                <Jss(TextFieldLoading)
-                                label="Search a word"
-                                loading={false}
-                                onChange={[Function]}
-                                value=""
-                />
-                <Jss(ControlsSeparator)
-                                align="left"
-                >
-                                <WithStyles(ButtonCustomized)
-                                                disabled={false}
-                                                onClick={[Function]}
-                                >
-                                                Save to my words
-                                </WithStyles(ButtonCustomized)>
-                                <WithStyles(ButtonCustomized)
-                                                disabled={false}
-                                                onClick={[Function]}
-                                >
-                                                Edit before saving
-                                </WithStyles(ButtonCustomized)>
-                </Jss(ControlsSeparator)>
-                <Jss(FoundWordDescription)
-                                foundWord={
-                                                Object {
-                                                                "foundWord": Object {},
-                                                              }
-                                }
-                                pushTextToInput={[Function]}
-                />
-</div>,
-              <div>
-                <Jss(FoundWordExamples)
-                                foundWord={
-                                                Object {
-                                                                "foundWord": Object {},
-                                                              }
-                                }
-                                pushTextToInput={[Function]}
-                />
-</div>,
-            ],
-            "className": undefined,
+            "children": <Jss(FoundWordExamples)
+              foundWord={
+                            Object {
+                                          "foundWord": Object {},
+                                        }
+              }
+              pushTextToInput={[Function]}
+/>,
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <Jss(TextFieldLoading)
-                    label="Search a word"
-                    loading={false}
-                    onChange={[Function]}
-                    value=""
-/>,
-                  <Jss(ControlsSeparator)
-                    align="left"
->
-                    <WithStyles(ButtonCustomized)
-                                        disabled={false}
-                                        onClick={[Function]}
-                    >
-                                        Save to my words
-                    </WithStyles(ButtonCustomized)>
-                    <WithStyles(ButtonCustomized)
-                                        disabled={false}
-                                        onClick={[Function]}
-                    >
-                                        Edit before saving
-                    </WithStyles(ButtonCustomized)>
-</Jss(ControlsSeparator)>,
-                  <Jss(FoundWordDescription)
-                    foundWord={
-                                        Object {
-                                                            "foundWord": Object {},
-                                                          }
-                    }
-                    pushTextToInput={[Function]}
-/>,
-                ],
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "foundWord": Object {
+                "foundWord": Object {},
               },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "label": "Search a word",
-                    "loading": false,
-                    "onChange": [Function],
-                    "value": "",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "align": "left",
-                    "children": Array [
-                      <WithStyles(ButtonCustomized)
-                        disabled={false}
-                        onClick={[Function]}
->
-                        Save to my words
-</WithStyles(ButtonCustomized)>,
-                      <WithStyles(ButtonCustomized)
-                        disabled={false}
-                        onClick={[Function]}
->
-                        Edit before saving
-</WithStyles(ButtonCustomized)>,
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "Save to my words",
-                        "disabled": false,
-                        "onClick": [Function],
-                      },
-                      "ref": null,
-                      "rendered": "Save to my words",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "Edit before saving",
-                        "disabled": false,
-                        "onClick": [Function],
-                      },
-                      "ref": null,
-                      "rendered": "Edit before saving",
-                      "type": [Function],
-                    },
-                  ],
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "foundWord": Object {
-                      "foundWord": Object {},
-                    },
-                    "pushTextToInput": [Function],
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-              ],
-              "type": "div",
+              "pushTextToInput": [Function],
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <Jss(FoundWordExamples)
-                  foundWord={
-                                    Object {
-                                                      "foundWord": Object {},
-                                                    }
-                  }
-                  pushTextToInput={[Function]}
-/>,
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "foundWord": Object {
-                    "foundWord": Object {},
-                  },
-                  "pushTextToInput": [Function],
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": "div",
-            },
-          ],
-          "type": "main",
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "div",
         },
       ],
-      "type": Symbol(react.fragment),
+      "type": "main",
     },
   ],
   Symbol(enzyme.__options__): Object {

@@ -14,27 +14,25 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "function",
+    "nodeType": "host",
     "props": Object {
-      "children": "List of my words",
-      "to": "/words-list",
+      "children": "Main page",
     },
     "ref": null,
-    "rendered": "List of my words",
-    "type": [Function],
+    "rendered": "Main page",
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "function",
+      "nodeType": "host",
       "props": Object {
-        "children": "List of my words",
-        "to": "/words-list",
+        "children": "Main page",
       },
       "ref": null,
-      "rendered": "List of my words",
-      "type": [Function],
+      "rendered": "Main page",
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

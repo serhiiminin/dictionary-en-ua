@@ -9,9 +9,11 @@ describe('requests', () => {
       addEntity: expect.any(Function),
       deleteEntity: expect.any(Function),
       getEntitiesList: expect.any(Function),
+      getEntitiesListToLearn: expect.any(Function),
       getEntity: expect.any(Function),
       search: expect.any(Function),
       updateEntity: expect.any(Function),
+      learnEntity: expect.any(Function),
     })
   });
 
@@ -28,6 +30,22 @@ describe('requests', () => {
     expect(endpoints.getEntitiesList()).toEqual({
       endpoint: url,
       method: 'GET'
+    })
+  });
+
+  test('get entities list to learn', () => {
+    expect(endpoints.getEntitiesListToLearn()).toEqual({
+      endpoint: `${url}/list-learn`,
+      method: 'GET'
+    })
+  });
+
+  test('learn entity', () => {
+    const id = 'id';
+
+    expect(endpoints.learnEntity(id)).toEqual({
+      endpoint: `${url}/${id}/_learn`,
+      method: 'PUT',
     })
   });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Grow } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
@@ -22,24 +23,25 @@ const icons = {
   [notificationType.error]: <ErrorIcon/>,
 };
 
-const NotificationItem = ({ classes, onClick, text, type, status }) => (
-  <li className={`${classes.notification} ${classes[type]} ${classes[status]}`}>
-    <div className={classes.topLine}>
-      {icons[type]}
-      <div className={classes.wrapperCloseButton}>
-        <CloseButton
-          onClick={onClick}
-        />
+const NotificationItem = ({ classes, onClick, text, type }) => (
+  <Grow in>
+    <li className={`${classes.notification} ${classes[type]}`}>
+      <div className={classes.topLine}>
+        {icons[type]}
+        <div className={classes.wrapperCloseButton}>
+          <CloseButton
+            onClick={onClick}
+          />
+        </div>
       </div>
-    </div>
-    <div>{text}</div>
-  </li>
+      <div>{text}</div>
+    </li>
+  </Grow>
 );
 
 NotificationItem.propTypes = {
   classes: classesShape,
   onClick: PropTypes.func.isRequired,
-  status: PropTypes.string.isRequired,
   text: PropTypes.string,
   type: PropTypes.string,
 };

@@ -20,98 +20,29 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "class",
     "props": Object {
-      "children": Array [
-        <div
-          className={undefined}
+      "children": <li
+        className="undefined undefined"
 >
-          <pure(Error) />
-          <div
-                    className={undefined}
-          >
-                    <Jss(CloseButton)
-                              onClick={[Function]}
-                    />
-          </div>
-</div>,
-        <div />,
-      ],
-      "className": "undefined undefined undefined",
+        <div
+                className={undefined}
+        >
+                <pure(Error) />
+                <div
+                        className={undefined}
+                >
+                        <Jss(CloseButton)
+                                onClick={[Function]}
+                        />
+                </div>
+        </div>
+        <div />
+</li>,
+      "in": true,
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <pure(Error) />,
-            <div
-              className={undefined}
->
-              <Jss(CloseButton)
-                            onClick={[Function]}
-              />
-</div>,
-          ],
-          "className": undefined,
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": <Jss(CloseButton)
-                onClick={[Function]}
-/>,
-              "className": undefined,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "onClick": [Function],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": "div",
-          },
-        ],
-        "type": "div",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "",
-        },
-        "ref": null,
-        "rendered": "",
-        "type": "div",
-      },
-    ],
-    "type": "li",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "host",
@@ -131,7 +62,7 @@ ShallowWrapper {
 </div>,
           <div />,
         ],
-        "className": "undefined undefined undefined",
+        "className": "undefined undefined",
       },
       "ref": null,
       "rendered": Array [
@@ -203,6 +134,129 @@ ShallowWrapper {
         },
       ],
       "type": "li",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <li
+          className="undefined undefined"
+>
+          <div
+                    className={undefined}
+          >
+                    <pure(Error) />
+                    <div
+                              className={undefined}
+                    >
+                              <Jss(CloseButton)
+                                        onClick={[Function]}
+                              />
+                    </div>
+          </div>
+          <div />
+</li>,
+        "in": true,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className={undefined}
+>
+              <pure(Error) />
+              <div
+                            className={undefined}
+              >
+                            <Jss(CloseButton)
+                                          onClick={[Function]}
+                            />
+              </div>
+</div>,
+            <div />,
+          ],
+          "className": "undefined undefined",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <pure(Error) />,
+                <div
+                  className={undefined}
+>
+                  <Jss(CloseButton)
+                                    onClick={[Function]}
+                  />
+</div>,
+              ],
+              "className": undefined,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Jss(CloseButton)
+                    onClick={[Function]}
+/>,
+                  "className": undefined,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "",
+            },
+            "ref": null,
+            "rendered": "",
+            "type": "div",
+          },
+        ],
+        "type": "li",
+      },
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

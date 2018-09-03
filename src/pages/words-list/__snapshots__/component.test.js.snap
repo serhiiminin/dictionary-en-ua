@@ -18,85 +18,19 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <Jss(ControlsSeparator)
-          align="right"
->
-          <withRouter(ButtonWithRouter)
-                    to="/learn-words"
-          >
-                    Learn words
-          </withRouter(ButtonWithRouter)>
-          <withRouter(ButtonWithRouter)
-                    to="/add-word"
-          >
-                    Add a new word
-          </withRouter(ButtonWithRouter)>
-</Jss(ControlsSeparator)>,
-        <WithStyles(Component) />,
-      ],
+      "children": <WithStyles(Component) />,
       "className": undefined,
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "align": "right",
-          "children": Array [
-            <withRouter(ButtonWithRouter)
-              to="/learn-words"
->
-              Learn words
-</withRouter(ButtonWithRouter)>,
-            <withRouter(ButtonWithRouter)
-              to="/add-word"
->
-              Add a new word
-</withRouter(ButtonWithRouter)>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "Learn words",
-              "to": "/learn-words",
-            },
-            "ref": null,
-            "rendered": "Learn words",
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "Add a new word",
-              "to": "/add-word",
-            },
-            "ref": null,
-            "rendered": "Add a new word",
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {},
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
     "type": "main",
   },
   Symbol(enzyme.__nodes__): Array [
@@ -105,85 +39,19 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": Array [
-          <Jss(ControlsSeparator)
-            align="right"
->
-            <withRouter(ButtonWithRouter)
-                        to="/learn-words"
-            >
-                        Learn words
-            </withRouter(ButtonWithRouter)>
-            <withRouter(ButtonWithRouter)
-                        to="/add-word"
-            >
-                        Add a new word
-            </withRouter(ButtonWithRouter)>
-</Jss(ControlsSeparator)>,
-          <WithStyles(Component) />,
-        ],
+        "children": <WithStyles(Component) />,
         "className": undefined,
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "align": "right",
-            "children": Array [
-              <withRouter(ButtonWithRouter)
-                to="/learn-words"
->
-                Learn words
-</withRouter(ButtonWithRouter)>,
-              <withRouter(ButtonWithRouter)
-                to="/add-word"
->
-                Add a new word
-</withRouter(ButtonWithRouter)>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "Learn words",
-                "to": "/learn-words",
-              },
-              "ref": null,
-              "rendered": "Learn words",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "Add a new word",
-                "to": "/add-word",
-              },
-              "ref": null,
-              "rendered": "Add a new word",
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       "type": "main",
     },
   ],
