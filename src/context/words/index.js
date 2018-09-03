@@ -59,7 +59,7 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.saveWord))
       .then(() => api.saveWord(data))
       .then(() => stopLoading(loadingNames.saveWord))
-      .then(() => showNotification('The word has been added successfully', notificationType.success))
+      .then(() => showNotification('The word has been saved successfully', notificationType.success))
       .catch(err => showNotification(err.message, notificationType.error))
       .then(() => stopLoading(loadingNames.saveWord))
   };
