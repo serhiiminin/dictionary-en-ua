@@ -1,63 +1,163 @@
-import { Fade, LinearProgress } from '@material-ui/core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Done from '@material-ui/icons/Done';
 import DoneAll from '@material-ui/icons/DoneAll';
 import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import { notificationType } from '../../components/notification-item/component';
 import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
-import { wordsInitialState } from '../../context/words';
-import { wordsListShape } from '../../context/words/shape';
 import loadingNames from '../../defaults/loading-names';
 import { Button } from '../../components-mui';
+import { TextFieldLoading } from '../../components';
 
 class LearnWords extends Component {
   static propTypes = {
     fetchWordsToLearn: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
+    learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
     currentLoadingNames: loadingNamesShape,
-    words: wordsListShape,
   };
 
   static defaultProps = {
-    words: wordsInitialState,
     currentLoadingNames: loadingNamesInitialState,
   };
 
-  // state={
-  //   countOfTry: 0,
-  //   guessed: false,
-  //   hintValue: '',
-  // };
+  state = {
+    countOfTry: 0,
+    guessed: false,
+    inputValue: '',
+    currentWord: {}
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {
+      ...prevState,
+      currentWord: nextProps.words[0],
+    };
+  }
 
   componentDidMount() {
-    this.props.fetchWordsToLearn()
+    this.props.fetchWordsToLearn();
   }
 
   componentWillUnmount() {
     this.props.cleanWords();
   }
 
+  onChangeInput = event => {
+    const { value } = event.target;
+
+    this.setState({ inputValue: value });
+  };
+
+  resetCountOfTry = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      countOfTry: 0,
+    }));
+
+  onCheckAnswer = () => {
+    const { showNotification, relearnWord, learnWord } = this.props;
+    const { inputValue, currentWord, countOfTry } = this.state;
+
+    if (!currentWord) return null;
+    const { en, _id } = currentWord;
+
+    if (inputValue.toLowerCase() === en.toLowerCase()) {
+      this.resetCountOfTry();
+      this.setState({ inputValue: '' });
+      return learnWord(_id)
+        .then(() => showNotification('You are right!', notificationType.info));
+    }
+    if (countOfTry <= 2) {
+      this.setState(prevState => ({
+        ...prevState,
+        countOfTry: prevState.countOfTry + 1,
+      }), () => {
+        showNotification(`You are wrong! ${4 - this.state.countOfTry} attempts left`, notificationType.info);
+      });
+    }
+    if (countOfTry > 2) {
+      this.resetCountOfTry();
+      showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
+      relearnWord(_id);
+    }
+    return false;
+  };
+
+  onGiveAHint = () => {
+    const { inputValue, currentWord } = this.state;
+
+    if (!currentWord) return null;
+    const { en } = currentWord;
+    const inputValueLength = inputValue.length;
+
+    if (inputValueLength < en.length) {
+      this.setState(prevState => ({
+        ...prevState,
+        inputValue: en.slice(0, inputValueLength + 1),
+      }));
+      return null;
+    }
+    return this.setState(prevState => ({
+      ...prevState,
+      inputValue: en.slice(0, inputValueLength),
+    }));
+  };
+
+  onKnownWord = () => {
+    const { currentWord } = this.state;
+    const { _id } = currentWord;
+
+    this.props.learnWord(_id);
+  };
+
+  onForgottenWord = () => {
+    const { currentWord } = this.state;
+    const { _id } = currentWord;
+
+    this.props.relearnWord(_id);
+  };
+
   render() {
-    const { words, relearnWord, currentLoadingNames, showNotification } = this.props;
+    const { currentLoadingNames, } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.learnWord);
-    const displayedWord = words && words[0];
+    const { currentWord, inputValue } = this.state;
 
     return (
       <div>
-        <Fade
-          in={loading}
-          style={{ transitionDelay: loading ? '300ms' : '' }}
-        >
-          <LinearProgress color='secondary'/>
-        </Fade>
-        <h3>{displayedWord && displayedWord.ru}</h3>
+        <TextFieldLoading
+          loading={loading}
+          onChange={this.onChangeInput}
+          label='Your option'
+          value={inputValue}
+        />
+        <h3>{currentWord && currentWord.ru}</h3>
         <div>
           <Button
-            onClick={() => showNotification('Wrong! 2 attempts left', notificationType.info)}
+            onClick={this.onCheckAnswer}
+            disabled={loading}
+            title='Submit my answer'
+            variant="fab"
+            mini
+          >
+            <Done/>
+          </Button>
+          <Button
+            onClick={this.onGiveAHint}
+            disabled={loading}
+            title='Give me a hint'
+            variant="fab"
+            mini
+          >
+            <RemoveRedEye/>
+          </Button>
+          <Button
+            onClick={this.onKnownWord}
+            disabled={loading}
             title='I know this word'
             variant="fab"
             mini
@@ -65,24 +165,17 @@ class LearnWords extends Component {
             <DoneAll/>
           </Button>
           <Button
-            title='Give me a hint'
-            variant="fab"
-            mini
-          >
-            <RemoveRedEye />
-          </Button>
-          <Button
-            onClick={() => relearnWord(displayedWord._id)}
-            title='I forgot this word, need to repeat'
+            onClick={this.onForgottenWord}
+            disabled={loading}
+            title='I forgot this word, show me the translation'
             variant="fab"
             mini
           >
             <ErrorOutline/>
           </Button>
-
         </div>
       </div>
-    )
+    );
   }
 }
 
