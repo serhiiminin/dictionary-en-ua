@@ -62,6 +62,8 @@ class LearnWords extends Component {
   onCheckAnswer = () => {
     const { showNotification, relearnWord, learnWord } = this.props;
     const { inputValue, currentWord, countOfTry } = this.state;
+
+    if (!currentWord) return null;
     const { en, _id } = currentWord;
 
     if (inputValue.toLowerCase() === en.toLowerCase()) {
@@ -75,88 +77,101 @@ class LearnWords extends Component {
         ...prevState,
         countOfTry: prevState.countOfTry + 1,
       }), () => {
-        showNotification(`You are wrong! ${3-this.state.countOfTry} attempts left`, notificationType.warning);
+        showNotification(`You are wrong! ${3 - this.state.countOfTry} attempts left`, notificationType.warning);
       });
     }
     if (countOfTry > 2) {
       this.resetCountOfTry();
-      relearnWord(_id)
+      relearnWord(_id);
     }
     return false;
   };
 
   onGiveAHint = () => {
     const { inputValue, currentWord } = this.state;
+
+    if (!currentWord) return null;
     const { en } = currentWord;
     const inputValueLength = inputValue.length;
 
-    if(inputValueLength < en.length) {
+    if (inputValueLength < en.length) {
       this.setState(prevState => ({
         ...prevState,
-        inputValue: en.slice(0, inputValueLength+1),
+        inputValue: en.slice(0, inputValueLength + 1),
       }));
-      return false;
+      return null;
     }
     return this.setState(prevState => ({
       ...prevState,
       inputValue: en.slice(0, inputValueLength),
-    }))
+    }));
+  };
+
+  onKnownWord = () => {
+    const { currentWord } = this.state;
+    const { _id } = currentWord;
+
+    this.props.learnWord(_id);
+  };
+
+  onForgottenWord = () => {
+    const { currentWord } = this.state;
+    const { _id } = currentWord;
+
+    this.props.relearnWord(_id);
   };
 
   render() {
-    const { currentLoadingNames, showNotification } = this.props;
+    const { currentLoadingNames, } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.learnWord);
     const { currentWord, inputValue } = this.state;
 
     return (
       <div>
-        <h3>{currentWord && currentWord.ru}</h3>
         <TextFieldLoading
           loading={loading}
           onChange={this.onChangeInput}
           label='Your option'
           value={inputValue}
         />
+        <h3>{currentWord && currentWord.ru}</h3>
         <div>
-          <div>
-            <Button
-              onClick={this.onCheckAnswer}
-              disabled={loading}
-              title='Submit my answer'
-              variant="fab"
-              mini
-            >
-              <Done/>
-            </Button>
-            <Button
-              onClick={this.onGiveAHint}
-              disabled={loading}
-              title='Give me a hint'
-              variant="fab"
-              mini
-            >
-              <RemoveRedEye/>
-            </Button>
-          </div>
-          <div>
-            <Button
-              onClick={() => showNotification('Wrong! 2 attempts left', notificationType.info)}
-              disabled={loading}
-              title='I know this word'
-              variant="fab"
-              mini
-            >
-              <DoneAll/>
-            </Button>
-            <Button
-              disabled={loading}
-              title='I forgot this word, show me the translation'
-              variant="fab"
-              mini
-            >
-              <ErrorOutline/>
-            </Button>
-          </div>
+          <Button
+            onClick={this.onCheckAnswer}
+            disabled={loading}
+            title='Submit my answer'
+            variant="fab"
+            mini
+          >
+            <Done/>
+          </Button>
+          <Button
+            onClick={this.onGiveAHint}
+            disabled={loading}
+            title='Give me a hint'
+            variant="fab"
+            mini
+          >
+            <RemoveRedEye/>
+          </Button>
+          <Button
+            onClick={this.onKnownWord}
+            disabled={loading}
+            title='I know this word'
+            variant="fab"
+            mini
+          >
+            <DoneAll/>
+          </Button>
+          <Button
+            onClick={this.onForgottenWord}
+            disabled={loading}
+            title='I forgot this word, show me the translation'
+            variant="fab"
+            mini
+          >
+            <ErrorOutline/>
+          </Button>
         </div>
       </div>
     );
