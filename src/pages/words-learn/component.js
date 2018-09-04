@@ -70,18 +70,19 @@ class LearnWords extends Component {
       this.resetCountOfTry();
       this.setState({ inputValue: '' });
       return learnWord(_id)
-        .then(() => showNotification('You are right!', notificationType.success));
+        .then(() => showNotification('You are right!', notificationType.info));
     }
     if (countOfTry <= 2) {
       this.setState(prevState => ({
         ...prevState,
         countOfTry: prevState.countOfTry + 1,
       }), () => {
-        showNotification(`You are wrong! ${3 - this.state.countOfTry} attempts left`, notificationType.warning);
+        showNotification(`You are wrong! ${4 - this.state.countOfTry} attempts left`, notificationType.info);
       });
     }
     if (countOfTry > 2) {
       this.resetCountOfTry();
+      showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
       relearnWord(_id);
     }
     return false;
