@@ -15,6 +15,7 @@ class LearnWords extends Component {
   static propTypes = {
     fetchWordsToLearn: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
+    learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
     currentLoadingNames: loadingNamesShape,
@@ -35,11 +36,11 @@ class LearnWords extends Component {
     return {
       ...prevState,
       currentWord: nextProps.words[0],
-    }
+    };
   }
 
   componentDidMount() {
-    this.props.fetchWordsToLearn()
+    this.props.fetchWordsToLearn();
   }
 
   componentWillUnmount() {
@@ -49,11 +50,42 @@ class LearnWords extends Component {
   onChangeInput = event => {
     const { value } = event.target;
 
-    this.setState({ inputValue: value })
+    this.setState({ inputValue: value });
+  };
+
+  resetCountOfTry = () =>
+    this.setState(prevState => ({
+      ...prevState,
+      countOfTry: 0,
+    }));
+
+  onCheckAnswer = () => {
+    const { showNotification, relearnWord, learnWord } = this.props;
+    const { inputValue, currentWord, countOfTry } = this.state;
+    const { en, _id } = currentWord;
+
+    if (inputValue.toLowerCase() === en.toLowerCase()) {
+      this.resetCountOfTry();
+      return learnWord(_id)
+        .then(() => showNotification('You are right!', notificationType.success));
+    }
+    if (countOfTry <= 2) {
+      this.setState(prevState => ({
+        ...prevState,
+        countOfTry: prevState.countOfTry + 1,
+      }), () => {
+        showNotification(`You are wrong! ${3-this.state.countOfTry} attempts left`, notificationType.warning);
+      });
+    }
+    if (countOfTry > 2) {
+      this.resetCountOfTry();
+      relearnWord(_id)
+    }
+    return false;
   };
 
   render() {
-    const { relearnWord, currentLoadingNames, showNotification } = this.props;
+    const { currentLoadingNames, showNotification } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.learnWord);
     const { currentWord } = this.state;
 
@@ -63,11 +95,12 @@ class LearnWords extends Component {
         <TextFieldLoading
           loading={loading}
           onChange={this.onChangeInput}
+          label='Your option'
         />
         <div>
           <div>
             <Button
-              onClick={() => showNotification('Wrong! 2 attempts left', notificationType.info)}
+              onClick={this.onCheckAnswer}
               disabled={loading}
               title='Submit my answer'
               variant="fab"
@@ -81,16 +114,7 @@ class LearnWords extends Component {
               variant="fab"
               mini
             >
-              <RemoveRedEye />
-            </Button>
-            <Button
-              onClick={() => relearnWord(currentWord._id)}
-              disabled={loading}
-              title='I forgot this word, need to repeat'
-              variant="fab"
-              mini
-            >
-              <ErrorOutline/>
+              <RemoveRedEye/>
             </Button>
           </div>
           <div>
@@ -114,7 +138,7 @@ class LearnWords extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
