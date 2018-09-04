@@ -66,6 +66,7 @@ class LearnWords extends Component {
 
     if (inputValue.toLowerCase() === en.toLowerCase()) {
       this.resetCountOfTry();
+      this.setState({ inputValue: '' });
       return learnWord(_id)
         .then(() => showNotification('You are right!', notificationType.success));
     }
@@ -84,10 +85,28 @@ class LearnWords extends Component {
     return false;
   };
 
+  onGiveAHint = () => {
+    const { inputValue, currentWord } = this.state;
+    const { en } = currentWord;
+    const inputValueLength = inputValue.length;
+
+    if(inputValueLength < en.length) {
+      this.setState(prevState => ({
+        ...prevState,
+        inputValue: en.slice(0, inputValueLength+1),
+      }));
+      return false;
+    }
+    return this.setState(prevState => ({
+      ...prevState,
+      inputValue: en.slice(0, inputValueLength),
+    }))
+  };
+
   render() {
     const { currentLoadingNames, showNotification } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.learnWord);
-    const { currentWord } = this.state;
+    const { currentWord, inputValue } = this.state;
 
     return (
       <div>
@@ -96,6 +115,7 @@ class LearnWords extends Component {
           loading={loading}
           onChange={this.onChangeInput}
           label='Your option'
+          value={inputValue}
         />
         <div>
           <div>
@@ -109,6 +129,7 @@ class LearnWords extends Component {
               <Done/>
             </Button>
             <Button
+              onClick={this.onGiveAHint}
               disabled={loading}
               title='Give me a hint'
               variant="fab"
