@@ -9,7 +9,7 @@ import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
 import loadingNames from '../../defaults/loading-names';
 import { Button } from '../../components-mui';
-import { TextFieldLoading } from '../../components';
+import { TextFieldLoading, ControlsSeparator } from '../../components';
 
 class LearnWords extends Component {
   static propTypes = {
@@ -136,7 +136,7 @@ class LearnWords extends Component {
           value={inputValue}
         />
         <h3>{currentWord && currentWord.ru}</h3>
-        <div>
+        <ControlsSeparator align='center'>
           <Button
             onClick={this.onCheckAnswer}
             disabled={loading}
@@ -173,7 +173,7 @@ class LearnWords extends Component {
           >
             <ErrorOutline/>
           </Button>
-        </div>
+        </ControlsSeparator>
       </div>
     );
   }
