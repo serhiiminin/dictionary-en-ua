@@ -6,6 +6,7 @@ export { default as ControlsSeparator } from './controls-separator';
 export { default as FormAddWord } from './form-add-word';
 export { default as FoundWordDescription } from './found-word-description';
 export { default as FoundWordExamples } from './found-word-examples';
+export { default as GuessedWordDescription } from './guessed-word-description';
 export { default as Header } from './header';
 export { default as HeaderNavigation } from './header-navigation';
 export { default as LineExplanation } from './line-explanation';
