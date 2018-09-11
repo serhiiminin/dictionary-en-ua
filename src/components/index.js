@@ -9,6 +9,7 @@ export { default as FoundWordExamples } from './found-word-examples';
 export { default as GuessedWordDescription } from './guessed-word-description';
 export { default as Header } from './header';
 export { default as HeaderNavigation } from './header-navigation';
+export { default as LearningBoard } from './learning-board';
 export { default as LineExplanation } from './line-explanation';
 export { default as ListOfClickableStrings } from './list-of-clickable-strings';
 export { default as NotificationItem } from './notification-item';

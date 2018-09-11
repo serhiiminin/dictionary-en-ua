@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Done from '@material-ui/icons/Done';
-import DoneAll from '@material-ui/icons/DoneAll';
-import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
-import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import { notificationType } from '../../components/notification-item/component';
 import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
 import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
-import { Button } from '../../components-mui';
-import { TextFieldLoading, ControlsSeparator, GuessedWordDescription } from '../../components';
+import { GuessedWordDescription, LearningBoard } from '../../components';
 import { classesShape } from '../../constants/shapes';
 
 class LearnWords extends Component {
@@ -132,53 +127,16 @@ class LearnWords extends Component {
             />
           )
           : (
-            <div>
-              <TextFieldLoading
-                loading={loading}
-                onChange={this.onChangeInput}
-                label='Your option'
-                value={inputValue}
-              />
-              <h3>{currentWord && currentWord.ru}</h3>
-              <ControlsSeparator align='center'>
-                <Button
-                  onClick={this.onCheckAnswer}
-                  disabled={loading}
-                  title='Submit my answer'
-                  variant="fab"
-                  mini
-                >
-                  <Done/>
-                </Button>
-                <Button
-                  onClick={this.onGiveAHint}
-                  disabled={loading}
-                  title='Give me a hint'
-                  variant="fab"
-                  mini
-                >
-                  <RemoveRedEye/>
-                </Button>
-                <Button
-                  onClick={this.onKnownWord}
-                  disabled={loading}
-                  title='I know this word'
-                  variant="fab"
-                  mini
-                >
-                  <DoneAll/>
-                </Button>
-                <Button
-                  onClick={this.onForgottenWord}
-                  disabled={loading}
-                  title='I forgot this word, show me the translation'
-                  variant="fab"
-                  mini
-                >
-                  <ErrorOutline/>
-                </Button>
-              </ControlsSeparator>
-            </div>
+            <LearningBoard
+              loading={loading}
+              onOptionChange={this.onChangeInput}
+              inputValue={inputValue}
+              currentWord={currentWord && currentWord.ru}
+              onCheckAnswer={this.onCheckAnswer}
+              onGiveAHint={this.onGiveAHint}
+              onKnownWord={this.onKnownWord}
+              onForgottenWord={this.onForgottenWord}
+            />
           )
         }
       </div>
