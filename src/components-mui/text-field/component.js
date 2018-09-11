@@ -1,8 +1,8 @@
 import { TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { classesDefaultProps } from '../../defaults/default-props';
-import { classesShape } from '../../defaults/shapes';
+import { classesDefaultProps } from '../../constants/default-props';
+import { classesShape } from '../../constants/shapes';
 
 const TextFieldCustomized = ({ classes, control, ...restProps }) => (
   <div className={control ? classes.textFieldControl : classes.textField}>

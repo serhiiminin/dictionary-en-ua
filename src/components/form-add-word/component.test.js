@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import FormAddWord from './component';
-import loadingNames  from '../../defaults/loading-names';
+import loadingNames  from '../../constants/loading-names';
 
 describe('Form add word', () => {
   let wrapper;

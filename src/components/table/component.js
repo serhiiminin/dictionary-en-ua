@@ -5,9 +5,9 @@ import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
 import { wordsInitialState } from '../../context/words';
 import { wordsListShape } from '../../context/words/shape';
-import loadingNames from '../../defaults/loading-names';
-import { classesDefaultProps } from '../../defaults/default-props';
-import { classesShape } from '../../defaults/shapes';
+import loadingNames from '../../constants/loading-names';
+import { classesDefaultProps } from '../../constants/default-props';
+import { classesShape } from '../../constants/shapes';
 import { TableBody, TableHead, Toolbar } from '../index';
 
 class TableCmp extends Component {

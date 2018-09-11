@@ -7,11 +7,11 @@ import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import { notificationType } from '../../components/notification-item/component';
 import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
-import { classesDefaultProps } from '../../defaults/default-props';
-import loadingNames from '../../defaults/loading-names';
+import { classesDefaultProps } from '../../constants/default-props';
+import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
 import { TextFieldLoading, ControlsSeparator, GuessedWordDescription } from '../../components';
-import { classesShape } from '../../defaults/shapes';
+import { classesShape } from '../../constants/shapes';
 
 class LearnWords extends Component {
   static propTypes = {
@@ -81,7 +81,7 @@ class LearnWords extends Component {
     if (countOfTry > 2) {
       this.resetCountOfTry();
       showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
-      relearnWord(_id);
+      return relearnWord(_id);
     }
     return false;
   };
