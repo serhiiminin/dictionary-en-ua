@@ -3,8 +3,8 @@ import List from '@material-ui/icons/List';
 import NoteAdd from '@material-ui/icons/NoteAdd';
 import Rowing from '@material-ui/icons/Rowing';
 import Search from '@material-ui/icons/Search';
-import { classesDefaultProps } from '../../defaults/default-props';
-import { classesShape } from '../../defaults/shapes';
+import { classesDefaultProps } from '../../constants/default-props';
+import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 import { ButtonWithRouter } from '../index';
 

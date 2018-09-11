@@ -1,4 +1,4 @@
-import { stylesVariables } from '../../defaults/styles-variables';
+import { stylesVariables } from '../../constants/styles-variables';
 
 const styles = {
   closeButton: {

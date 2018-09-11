@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import PropsTypes from 'prop-types';
 import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
-import { classesDefaultProps } from '../../defaults/default-props';
-import { classesShape } from '../../defaults/shapes';
+import { classesDefaultProps } from '../../constants/default-props';
+import { classesShape } from '../../constants/shapes';
 import { ListOfClickableStrings } from '../index';
 
 const FoundWordExamples = ({ foundWord, pushTextToInput, classes }) => {

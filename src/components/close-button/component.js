@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Close';
-import { classesDefaultProps } from '../../defaults/default-props';
-import { classesShape } from '../../defaults/shapes';
+import { classesDefaultProps } from '../../constants/default-props';
+import { classesShape } from '../../constants/shapes';
 
 const CloseButton = ({ classes, onClick }) => (
   <button

@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { api } from '../../api';
 import { notificationType } from '../../components/notification-item/component';
-import loadingNames from '../../defaults/loading-names';
+import loadingNames from '../../constants/loading-names';
 import { withFoundWord } from '../foundWord';
 import { withLoadingNames } from '../loading-names';
 import { withNotifications } from '../notifications';
 
 const WordsContext = createContext({});
 
-const wordsInitialState = {
-  words: [],
-};
+const wordsInitialState = { words: [] };
 
 class WordsProviderCmp extends Component {
   static propTypes = {
@@ -37,9 +35,8 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.wordsList))
       .then(() => api.getWordsList())
       .then(words => this.setState({ words }))
-      .then(() => stopLoading(loadingNames.wordsList))
       .catch(err => showNotification(err.message, notificationType.error))
-      .then(() => stopLoading(loadingNames.wordsList))
+      .finally(() => stopLoading(loadingNames.wordsList))
   };
 
   handleFetchWordsToLearn = () => {
@@ -48,9 +45,8 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.getWordsListToLearn())
       .then(words => this.setState({ words }))
-      .then(() => stopLoading(loadingNames.learnWord))
       .catch(err => showNotification(err.message, notificationType.error))
-      .then(() => stopLoading(loadingNames.learnWord))
+      .finally(() => stopLoading(loadingNames.learnWord))
   };
 
   handleSaveWord = data => {
@@ -58,10 +54,9 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.saveWord))
       .then(() => api.saveWord(data))
-      .then(() => stopLoading(loadingNames.saveWord))
       .then(() => showNotification('The word has been saved successfully', notificationType.success))
       .catch(err => showNotification(err.message, notificationType.error))
-      .then(() => stopLoading(loadingNames.saveWord))
+      .finally(() => stopLoading(loadingNames.saveWord))
   };
 
   handleDeleteWord = id => {
@@ -69,9 +64,8 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.deleteWord))
       .then(() => api.deleteWord(id))
-      .then(() => stopLoading(loadingNames.deleteWord))
       .catch(err => showNotification(err.message, notificationType.error))
-      .then(() => stopLoading(loadingNames.deleteWord))
+      .finally(() => stopLoading(loadingNames.deleteWord))
       .then(() => this.handleFetchWords());
   };
 
@@ -84,9 +78,8 @@ class WordsProviderCmp extends Component {
         this.setState(prevState => ({
             words: [...prevState.words.filter(word => word._id !== wordId)]
           })))
-      .then(() => stopLoading(loadingNames.learnWord))
       .catch(err => showNotification(err.message, notificationType.error))
-      .then(() => stopLoading(loadingNames.learnWord))
+      .finally(() => stopLoading(loadingNames.learnWord))
 
   };
 
@@ -109,9 +102,8 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.searchWord))
       .then(() => api.searchWord(params))
       .then(foundWord => setFoundWord(foundWord))
-      .then(() => stopLoading(loadingNames.searchWord))
       .catch(err => showNotification(err.message, notificationType.error))
-      .then(() => stopLoading(loadingNames.searchWord))
+      .finally(() => stopLoading(loadingNames.searchWord))
   };
 
   render() {

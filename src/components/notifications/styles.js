@@ -1,12 +1,11 @@
-import { stylesVariables } from '../../defaults/styles-variables';
+import { stylesVariables } from '../../constants/styles-variables';
 
 const styles = {
   notifications: {
     width: '300px',
     height: '0',
     position: 'fixed',
-    left: '50%',
-    transform: 'translate(-50%, 0)',
+    right: stylesVariables.padding.medium,
     top: stylesVariables.padding.medium,
     zIndex: stylesVariables.zIndex.notification,
     padding: 0,
