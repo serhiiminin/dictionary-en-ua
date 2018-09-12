@@ -18,7 +18,7 @@ const mergeArrays = (data, field) =>
       [])));
 
 const normalizeWord = (wordData = {}) => {
-  const { en = '', ru = '', transcription = '', results = [] } = wordData;
+  const { en, ru, transcription, results = [], ...rest } = wordData;
 
   const partOfSpeech = results && Array.from(new Set(results.map(item => item.partOfSpeech)));
   const examples = mergeArrays(results, 'examples')
@@ -28,7 +28,7 @@ const normalizeWord = (wordData = {}) => {
   const antonyms = mergeArrays(results, 'antonyms');
   const similarTo = mergeArrays(results, 'similarTo');
 
-  return { en, ru, transcription, examples, definitions, similarTo, synonyms, antonyms, partOfSpeech };
+  return { en, ru, transcription, examples, definitions, similarTo, synonyms, antonyms, partOfSpeech, ...rest };
 };
 
 class FoundWordProvider extends Component {

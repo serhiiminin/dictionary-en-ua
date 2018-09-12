@@ -101,6 +101,7 @@ class SearchWord extends Component {
     return (
       <main className={classes.searchWord}>
         <div>
+          {foundWord && <img src={foundWord.imageUrl} alt="name"/>}
           <TextFieldLoading
             label="Search a word"
             value={searchValue}

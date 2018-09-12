@@ -49,11 +49,11 @@ class WordsProviderCmp extends Component {
       .finally(() => stopLoading(loadingNames.learnWord))
   };
 
-  handleSaveWord = data => {
+  handleCreateWord = data => {
     const { showNotification, startLoading, stopLoading } = this.props;
 
     return Promise.resolve(startLoading(loadingNames.saveWord))
-      .then(() => api.saveWord(data))
+      .then(() => api.createWord(data))
       .then(() => showNotification('The word has been saved successfully', notificationType.success))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.saveWord))
@@ -116,7 +116,7 @@ class WordsProviderCmp extends Component {
           words,
           fetchWords: this.handleFetchWords,
           fetchWordsToLearn: this.handleFetchWordsToLearn,
-          saveWord: this.handleSaveWord,
+          saveWord: this.handleCreateWord,
           searchWord: this.handleSearchWord,
           learnWord: this.handleLearnWord,
           relearnWord: this.handleRelearnWord,
