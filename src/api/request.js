@@ -1,41 +1,34 @@
 import urljoin from 'url-join';
 
 const requests = url => ({
-  getEntity: wordId => ({
+  create: body => ({
+    endpoint: url,
+    method: 'POST',
+    body,
+  }),
+  get: wordId => ({
     endpoint: urljoin(url, wordId),
     method: 'GET',
   }),
-  getEntitiesList: () => ({
-    endpoint: url,
-    method: 'GET',
+  getList: (body = {}) => ({
+    endpoint: urljoin(url, 'list'),
+    method: 'POST',
+    body,
   }),
-  getEntitiesListToLearn: () => ({
-    endpoint: urljoin(url, 'list-learn'),
-    method: 'GET',
-  }),
-  learnEntity: wordId => ({
-    endpoint: urljoin(url, wordId, '_learn'),
+  update: (wordId, body) => ({
+    endpoint: urljoin(url, wordId),
     method: 'PUT',
+    body,
+  }),
+  delete: wordId => ({
+    endpoint: urljoin(url, wordId),
+    method: 'DELETE',
   }),
   search: body => ({
-    endpoint: urljoin(url, '_search'),
+    endpoint: urljoin(url, 'search-new'),
     method: 'POST',
     body
   }),
-  addEntity: body => ({
-    endpoint: url,
-    method: 'POST',
-    body,
-  }),
-  updateEntity: (wordId, body) => ({
-    endpoint: urljoin(url, wordId),
-    method: 'PUT',
-    body,
-  }),
-  deleteEntity: wordId => ({
-    endpoint: urljoin(url, wordId),
-    method: 'DELETE',
-  })
 });
 
 export { requests };
