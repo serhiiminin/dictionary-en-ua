@@ -3,7 +3,7 @@ import { stylesVariables } from '../../constants/styles-variables';
 const styles = {
   textFieldControl: {
     display: 'grid',
-    gridTemplateColumns: '5fr 1fr',
+    gridTemplateColumns: '100fr 1fr',
     rowGap: '0.5rem',
     columnGap: '1rem',
     justifyContent: 'space-between',
