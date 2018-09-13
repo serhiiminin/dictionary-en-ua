@@ -9,13 +9,13 @@ import loadingNames from '../../constants/loading-names';
 import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
 import { Button } from '../../components-mui';
-import { wordsInitialState } from '../../context/words';
 import routes from '../../routes';
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
 const initialState = {
   searchValue: '',
+  gif: '',
 };
 
 const composeSearchData = text => {
@@ -36,14 +36,12 @@ class SearchWord extends Component {
     cleanFoundWord: PropTypes.func.isRequired,
     onFillForm: PropTypes.func.isRequired,
     currentLoadingNames: loadingNamesShape,
-    gif: PropTypes.string,
   };
 
   static defaultProps = {
     currentLoadingNames: [],
     foundWord: foundWordInitialState,
     classes: classesDefaultProps,
-    gif: wordsInitialState.gif
   };
 
   state = initialState;
@@ -97,14 +95,14 @@ class SearchWord extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { classes, foundWord, currentLoadingNames, gif } = this.props;
+    const { classes, foundWord, currentLoadingNames } = this.props;
     const isEmpty = !Object.keys(foundWord).length;
     const loading = currentLoadingNames.includes(loadingNames.searchWord);
 
     return (
       <main className={classes.searchWord}>
         <div>
-          {gif && (<img src={gif} alt={searchValue}/>)}
+          {foundWord && foundWord.gif && (<img src={foundWord.gif} alt={searchValue}/>)}
           <TextFieldLoading
             label="Search a word"
             value={searchValue}
