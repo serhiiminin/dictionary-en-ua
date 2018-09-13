@@ -1,34 +1,29 @@
-import urljoin from 'url-join';
-
-const requests = url => ({
-  create: body => ({
+const requests = {
+  get: (url, params) => ({
+    endpoint: url,
+    method: 'GET',
+    ...params,
+  }),
+  post: (url, params) => ({
     endpoint: url,
     method: 'POST',
-    body,
+    ...params,
   }),
-  get: wordId => ({
-    endpoint: urljoin(url, wordId),
-    method: 'GET',
-  }),
-  getList: (body = {}) => ({
-    endpoint: urljoin(url, 'list'),
-    method: 'POST',
-    body,
-  }),
-  update: (wordId, body) => ({
-    endpoint: urljoin(url, wordId),
+  put: (url, params) => ({
+    endpoint: url,
     method: 'PUT',
-    body,
+    ...params,
   }),
-  delete: wordId => ({
-    endpoint: urljoin(url, wordId),
+  patch: (url, params) => ({
+    endpoint: url,
+    method: 'PATCH',
+    ...params,
+  }),
+  delete: (url, params) => ({
+    endpoint: url,
     method: 'DELETE',
+    ...params,
   }),
-  search: body => ({
-    endpoint: urljoin(url, 'search-new'),
-    method: 'POST',
-    body
-  }),
-});
+};
 
 export { requests };

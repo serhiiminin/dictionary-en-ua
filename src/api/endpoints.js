@@ -1,4 +1,4 @@
 const WORDS = 'https://api-words.herokuapp.com/words';
-// const WORDS = 'https://dictionary-api-gxbtqwtvfk.now.sh/api/words';
+const GIPHY = 'https://api.giphy.com/v1/gifs/';
 
-export { WORDS }
+export { WORDS, GIPHY }

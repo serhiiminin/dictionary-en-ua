@@ -10,7 +10,10 @@ import { withNotifications } from '../notifications';
 
 const WordsContext = createContext({});
 
-const wordsInitialState = { words: [] };
+const wordsInitialState = {
+  words: [],
+  gif: '',
+};
 
 class WordsProviderCmp extends Component {
   static propTypes = {
@@ -28,6 +31,23 @@ class WordsProviderCmp extends Component {
       ...prevState,
       words: wordsInitialState.words,
     }));
+
+  handleGetGif = params => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.getGifs))
+      .then(() => api.getGifs(params))
+      .then(gifs => {
+        const downsizedGifs = gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
+        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random()*downsizedGifs.length)];
+
+        return this.setState({
+          gif: randomGif
+        });
+      })
+      .catch(err => showNotification(err.message, notificationType.error))
+      .finally(() => stopLoading(loadingNames.getGifs))
+  };
 
   handleFetchWords = () => {
     const { showNotification, startLoading, stopLoading } = this.props;
@@ -100,20 +120,24 @@ class WordsProviderCmp extends Component {
     const { showNotification, startLoading, stopLoading, setFoundWord } = this.props;
 
     return Promise.resolve(startLoading(loadingNames.searchWord))
-      .then(() => api.searchWord(params))
-      .then(foundWord => setFoundWord(foundWord))
+      .then(() => Promise.all([
+          api.searchWord(params),
+          this.handleGetGif({ q: params.text })
+        ]))
+      .then(([foundWord]) => setFoundWord(foundWord))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.searchWord))
   };
 
   render() {
-    const { words } = this.state;
+    const { words, gif } = this.state;
     const { children } = this.props;
 
     return (
       <WordsContext.Provider
         value={{
           words,
+          gif,
           fetchWords: this.handleFetchWords,
           fetchWordsToLearn: this.handleFetchWordsToLearn,
           saveWord: this.handleCreateWord,
