@@ -11,11 +11,13 @@ const LearningBoard = props => {
   const {loading,
     onOptionChange,
     inputValue,
-    currentWord,
+    word,
+    timesLearnt,
     onCheckAnswer,
     onGiveAHint,
     onKnownWord,
     onForgottenWord } = props;
+  const textLearnt = `Learnt ${timesLearnt} time${timesLearnt > 1 ? 's' : ''} before`;
 
   return (
     <div>
@@ -26,7 +28,8 @@ const LearningBoard = props => {
         value={inputValue}
         disabled={loading}
       />
-      <h3>{currentWord}</h3>
+      <h3>{word}</h3>
+      <h5>{timesLearnt != null && textLearnt }</h5>
       <ControlsSeparator align='center'>
         <Button
           onClick={onCheckAnswer}
@@ -77,13 +80,15 @@ LearningBoard.propTypes = {
   onKnownWord: PropTypes.func.isRequired,
   onForgottenWord: PropTypes.func.isRequired,
   inputValue: PropTypes.string,
-  currentWord: PropTypes.string,
+  word: PropTypes.string,
+  timesLearnt: PropTypes.number,
 };
 
 LearningBoard.defaultProps = {
   loading: null,
   inputValue: null,
-  currentWord: null,
+  word: null,
+  timesLearnt: null,
 };
 
 export default LearningBoard;

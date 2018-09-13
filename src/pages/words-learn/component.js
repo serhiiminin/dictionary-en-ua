@@ -32,9 +32,9 @@ class LearnWords extends Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => ({
-    ...prevState,
-    currentWord: nextProps.words[0],
-  });
+      ...prevState,
+      currentWord: nextProps.words[0],
+    });
 
   componentDidMount() {
     this.props.fetchWordsToLearn();
@@ -131,7 +131,8 @@ class LearnWords extends Component {
               loading={loading}
               onOptionChange={this.onChangeInput}
               inputValue={inputValue}
-              currentWord={currentWord && currentWord.ru}
+              word={currentWord && currentWord.ru}
+              timesLearnt={currentWord && currentWord.timesLearnt}
               onCheckAnswer={this.onCheckAnswer}
               onGiveAHint={this.onGiveAHint}
               onKnownWord={this.onKnownWord}

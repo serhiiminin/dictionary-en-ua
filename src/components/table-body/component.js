@@ -60,7 +60,7 @@ TableBodyCmp.propTypes = {
 };
 
 TableBodyCmp.defaultProps = {
-  words: wordsInitialState,
+  words: wordsInitialState.words,
 };
 
 export default TableBodyCmp;

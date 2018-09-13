@@ -1,41 +1,29 @@
-import urljoin from 'url-join';
-
-const requests = url => ({
-  getEntity: wordId => ({
-    endpoint: urljoin(url, wordId),
-    method: 'GET',
-  }),
-  getEntitiesList: () => ({
+const requests = {
+  get: (url, params) => ({
     endpoint: url,
     method: 'GET',
+    ...params,
   }),
-  getEntitiesListToLearn: () => ({
-    endpoint: urljoin(url, 'list-learn'),
-    method: 'GET',
-  }),
-  learnEntity: wordId => ({
-    endpoint: urljoin(url, wordId, '_learn'),
-    method: 'PUT',
-  }),
-  search: body => ({
-    endpoint: urljoin(url, '_search'),
-    method: 'POST',
-    body
-  }),
-  addEntity: body => ({
+  post: (url, params) => ({
     endpoint: url,
     method: 'POST',
-    body,
+    ...params,
   }),
-  updateEntity: (wordId, body) => ({
-    endpoint: urljoin(url, wordId),
+  put: (url, params) => ({
+    endpoint: url,
     method: 'PUT',
-    body,
+    ...params,
   }),
-  deleteEntity: wordId => ({
-    endpoint: urljoin(url, wordId),
+  patch: (url, params) => ({
+    endpoint: url,
+    method: 'PATCH',
+    ...params,
+  }),
+  delete: (url, params) => ({
+    endpoint: url,
     method: 'DELETE',
-  })
-});
+    ...params,
+  }),
+};
 
 export { requests };

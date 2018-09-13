@@ -6,6 +6,7 @@ const loadingNames = {
   learnWord: `${NS}/learn-word`,
   searchWord: `${NS}/search-word`,
   deleteWord: `${NS}/deleteWord`,
+  getGifs: `${NS}/getGifs`,
 };
 
 export default loadingNames;

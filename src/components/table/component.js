@@ -21,7 +21,7 @@ class TableCmp extends Component {
   };
 
   static defaultProps = {
-    words: wordsInitialState,
+    words: wordsInitialState.words,
     currentLoadingNames: loadingNamesInitialState,
     classes: classesDefaultProps,
   };
