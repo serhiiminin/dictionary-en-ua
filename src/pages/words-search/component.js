@@ -103,8 +103,8 @@ class SearchWord extends Component {
 
     return (
       <main className={classes.searchWord}>
-        {gif && <img src={gif} alt=""/>}
         <div>
+          {gif && (<img src={gif} alt={searchValue}/>)}
           <TextFieldLoading
             label="Search a word"
             value={searchValue}

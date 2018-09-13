@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 import PropTypes from 'prop-types';
 import { ClickableWord } from '../index';
 
@@ -6,7 +7,7 @@ const ListOfClickableStrings = ({ items, onClick, delimiter }) => (
   <div>
     {items && items.map((item, index) =>
       <ClickableWord
-        key={item}
+        key={uuid()}
         onClick={onClick}
         word={item}
         delimiter={items.length - 1 > index ? delimiter : ''}

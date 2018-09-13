@@ -66,7 +66,7 @@ const api = {
   getGifs: searchParams => {
     const url = urljoin(GIPHY, `search?${joinSearchParams({
       api_key: GIPHY_API_KEY,
-      limit: 10,
+      limit: 20,
       ...searchParams
     })}`);
 
