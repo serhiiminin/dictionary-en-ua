@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 import PropTypes from 'prop-types';
-import { ClickableWord } from '../index';
+import { ClickableWord } from '..';
 
 const ListOfClickableStrings = ({ items, onClick, delimiter }) => (
   <div>

@@ -19,7 +19,7 @@ const TableBodyCmp = props => {
         .sort(getSorting(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map(word => {
-          const { en = '', ru = '', transcription = '', examples, dateCreated, _id } = word;
+          const { en = '', ru = '', transcription = '', dateCreated, _id } = word;
           const isSelectedCurrent = isSelected(_id);
 
           return (
@@ -38,7 +38,6 @@ const TableBodyCmp = props => {
               <TableCell>{en}</TableCell>
               <TableCell>{ru}</TableCell>
               <TableCell>{transcription}</TableCell>
-              <TableCell>{examples.length > 0 ? examples[0].example : '-'}</TableCell>
               <TableCell title={new Date(dateCreated).toLocaleString()}>
                 {moment(dateCreated).fromNow()}
               </TableCell>

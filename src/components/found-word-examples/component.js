@@ -4,7 +4,7 @@ import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
 import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
-import { ListOfClickableStrings } from '../index';
+import { ListOfClickableStrings } from '..';
 
 const FoundWordExamples = ({ foundWord, pushTextToInput, classes }) => {
   const { examples } = foundWord;
