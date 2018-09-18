@@ -11,13 +11,26 @@ const styles = {
     display: 'grid',
     rowGap: '1px',
   },
+  toolbar: {
+    listStyle: 'none',
+    display: 'grid',
+    gridTemplateColumns: '1fr 22fr 1fr',
+    alignContent: 'center',
+    background: stylesVariables.colors.background,
+    padding: '10px 10px',
+  },
+  toolbarButtons: {
+    display: 'grid',
+    justifyContent: 'center',
+  },
   word: {
     listStyle: 'none',
     display: 'grid',
-    gridTemplateColumns: '1fr 9fr 2fr',
+    gridTemplateColumns: '1fr 20fr 2fr 1fr',
     alignContent: 'center',
     background: stylesVariables.colors.background,
     padding: '5px 10px',
+    gap: '1rem',
   },
   wordChosen: {
     background: stylesVariables.colors.line,
