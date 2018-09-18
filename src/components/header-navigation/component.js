@@ -6,7 +6,7 @@ import Search from '@material-ui/icons/Search';
 import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
-import { ButtonWithRouter } from '../index';
+import { ButtonWithRouter } from '..';
 
 const HeaderNavigation = ({ classes }) => (
   <div className={classes.headerNavigation}>

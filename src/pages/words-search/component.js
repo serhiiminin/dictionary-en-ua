@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { ControlsSeparator, TextFieldLoading, FoundWordDescription, FoundWordExamples } from '../../components';
+import {
+  ControlsSeparator,
+  TextFieldLoading,
+  FoundWordDescription,
+  FoundWordExamples,
+  FoundImage
+} from '../../components';
 import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
 import { loadingNamesShape } from '../../context/loading-names/shape';
@@ -23,7 +29,7 @@ const composeSearchData = text => {
   const from = encodeURIComponent(translatingWord) === translatingWord ? 'en' : 'ru';
   const to = encodeURIComponent(translatingWord) === translatingWord ? 'ru' : 'en';
 
-  return { text: translatingWord, from, to }
+  return { text: translatingWord, from, to };
 };
 
 class SearchWord extends Component {
@@ -54,7 +60,7 @@ class SearchWord extends Component {
     clearTimeout(this.inputTimer);
     this.setState({ searchValue: text });
     this.inputTimer = setTimeout(() => {
-      this.props.searchWord(composeSearchData(text))
+      this.props.searchWord(composeSearchData(text));
     }, SEARCH_INPUT_TIMEOUT);
   };
 
@@ -64,13 +70,9 @@ class SearchWord extends Component {
 
     this.setState({ searchValue: value });
 
-    if (!value) {
-      const { searchValue } = initialState;
-
-      this.setState({ searchValue });
-      return;
-    }
-    this.handleSearchWord(value);
+    return !value
+      ? this.setState(prevState => ({ ...prevState, searchValue: '' }))
+      : this.handleSearchWord(value);
   };
 
   handleEditBeforeSaving = () => {
@@ -86,9 +88,7 @@ class SearchWord extends Component {
 
     return saveWord(foundWord)
       .then(() => {
-        const { searchValue } = initialState;
-
-        this.setState({ searchValue });
+        this.setState(prevState => ({ ...prevState }));
         cleanFoundWord();
       });
   };
@@ -102,23 +102,27 @@ class SearchWord extends Component {
     return (
       <main className={classes.searchWord}>
         <div>
-          {foundWord && foundWord.gif && (<img src={foundWord.gif} alt={searchValue}/>)}
           <TextFieldLoading
             label="Search a word"
             value={searchValue}
             onChange={this.handleOnChangeSearchInput}
             loading={loading}
           />
-          <ControlsSeparator>
+          <ControlsSeparator align='right'>
             <Button onClick={this.handleSaveWord} disabled={isEmpty}>Save to my words</Button>
             <Button onClick={this.handleEditBeforeSaving} disabled={isEmpty}>Edit before saving</Button>
           </ControlsSeparator>
+          <div className={classes.image}>
+            <FoundImage url={foundWord.gif}/>
+          </div>
+        </div>
+        <div>
           <FoundWordDescription
             foundWord={foundWord}
             pushTextToInput={this.handleSearchWord}
           />
         </div>
-        <div>
+        <div className={classes.examples}>
           <FoundWordExamples
             foundWord={foundWord}
             pushTextToInput={this.handleSearchWord}

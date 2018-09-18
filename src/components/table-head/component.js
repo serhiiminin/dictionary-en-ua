@@ -15,7 +15,6 @@ const TableHeadCmp = ({ numSelected, rowCount, onSelectAllClick }) => (
       <TableCell>English</TableCell>
       <TableCell>Russian</TableCell>
       <TableCell>Transcription</TableCell>
-      <TableCell>Example</TableCell>
       <TableCell>Date</TableCell>
     </TableRow>
   </TableHead>

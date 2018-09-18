@@ -4,7 +4,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { stylesVariables } from '../constants/styles-variables';
 import { Header, BlocksContainer, Notifications } from '../components';
 import { Main, MyWords, AddWord, SearchWord, PageNotFound, LearnWords } from '../pages';
-import StateProvider from '../context/index';
+import StateProvider from '../context';
 import routes from '../routes';
 
 const theme = createMuiTheme({

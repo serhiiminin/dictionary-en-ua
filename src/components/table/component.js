@@ -8,7 +8,7 @@ import { wordsListShape } from '../../context/words/shape';
 import loadingNames from '../../constants/loading-names';
 import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
-import { TableBody, TableHead, Toolbar } from '../index';
+import { TableBody, TableHead, Toolbar } from '..';
 
 class TableCmp extends Component {
   static propTypes = {
