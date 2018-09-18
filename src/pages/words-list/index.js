@@ -1,10 +1,14 @@
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import MyWords from './component';
+import { withLoadingNames } from '../../context/loading-names';
+import { withWords } from '../../context/words';
+import WordsList from './component';
 import styles from './styles';
 
 const enhance = compose(
+  withLoadingNames,
+  withWords,
   injectSheet(styles),
 );
 
-export default enhance(MyWords);
+export default enhance(WordsList);

@@ -4,7 +4,11 @@ const routes = {
   words: {
     add: '/add-word',
     learn: '/learn-words',
-    list: '/words-list',
+    list: {
+      root: '/words-list',
+      preview: '/words-list/:id',
+      edit: '/words-list/:id/edit',
+    },
     search: '/words-search',
   },
 };
