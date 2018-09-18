@@ -1,9 +1,9 @@
 import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
-import urljoin from 'url-join';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import urljoin from 'url-join';
 import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
@@ -20,8 +20,6 @@ class WordsList extends Component {
         ru: PropTypes.string,
         dateCreated: PropTypes.string,
       })),
-    fetchWords: PropTypes.func.isRequired,
-    cleanWords: PropTypes.func.isRequired,
     currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
   };
 
@@ -34,14 +32,6 @@ class WordsList extends Component {
   state = {
     checked: [],
   };
-
-  componentDidMount() {
-    this.props.fetchWords()
-  }
-
-  componentWillUnmount() {
-    this.props.cleanWords();
-  }
 
   handleOnCheck = id =>
     this.setState(prevState => ({

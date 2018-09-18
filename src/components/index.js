@@ -20,3 +20,4 @@ export { default as TableBody } from './table-body';
 export { default as TableHead } from './table-head';
 export { default as TextFieldLoading } from './text-field-loading';
 export { default as Toolbar } from './toolbar';
+export { default as WordsList } from './words-list';

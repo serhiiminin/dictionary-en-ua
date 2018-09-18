@@ -6,6 +6,7 @@ const routes = {
     learn: '/learn-words',
     list: {
       root: '/words-list',
+      all: '/words-list/all',
       preview: '/words-list/:id',
       edit: '/words-list/:id/edit',
     },

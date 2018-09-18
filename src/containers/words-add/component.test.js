@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Main from '.';
+import AddWord from './component';
 
-describe('Main page', () => {
+describe('MainContainer page', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <Main/>
+      <AddWord/>
     );
   });
   test('render', () => {
