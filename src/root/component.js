@@ -33,8 +33,8 @@ const theme = createMuiTheme({
 
 const Root = () => (
   <MuiThemeProvider theme={theme}>
-    <StateProvider>
-      <Router>
+    <Router>
+      <StateProvider>
         <Notifications>
           <BlocksContainer>
             <Header/>
@@ -49,8 +49,8 @@ const Root = () => (
             </Switch>
           </BlocksContainer>
         </Notifications>
-      </Router>
-    </StateProvider>
+      </StateProvider>
+    </Router>
   </MuiThemeProvider>
 );
 

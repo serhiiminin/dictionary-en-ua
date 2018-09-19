@@ -21,7 +21,13 @@ const styles = {
   },
   toolbarButtons: {
     display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
+    gap: '1rem',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  countPerPage: {
+    width: '150px',
   },
   word: {
     listStyle: 'none',

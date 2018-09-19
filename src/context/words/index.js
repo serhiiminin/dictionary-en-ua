@@ -1,9 +1,12 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { api } from '../../api';
 import { notificationType } from '../../components/notification-item/component';
 import loadingNames from '../../constants/loading-names';
+import { parseSearchParams } from '../../helpers/search-params';
 import { withFoundWord } from '../foundWord';
 import { withLoadingNames } from '../loading-names';
 import { withNotifications } from '../notifications';
@@ -22,17 +25,25 @@ class WordsProviderCmp extends Component {
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
     setFoundWord: PropTypes.func.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
   };
 
   state = wordsInitialState;
 
   cleanWords = () => this.setState({ words: wordsInitialState.words });
 
-  handleFetchWords = () => {
-    const { showNotification, startLoading, stopLoading } = this.props;
+  handleFetchWords = (params = {}) => {
+    const { showNotification, startLoading, stopLoading, location } = this.props;
+    const parsedParams = parseSearchParams(location.search);
+    const query = {
+      skip: (parsedParams.pagination - 1) * parsedParams.countPerPage || 0,
+      limit: parsedParams.countPerPage ? Number(parsedParams.countPerPage) : 10000,
+      sortBy: parsedParams.sortBy,
+      sortDirection: parsedParams.sortDirection === 'descend' ? -1 : 1,
+    };
 
     return Promise.resolve(startLoading(loadingNames.wordsList))
-      .then(() => api.getWordsList())
+      .then(() => api.getWordsList({ ...params, query }))
       .then(words => this.setState({ words }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.wordsList));
@@ -136,6 +147,7 @@ class WordsProviderCmp extends Component {
 }
 
 const WordsProvider = compose(
+  withRouter,
   withFoundWord,
   withLoadingNames,
   withNotifications,

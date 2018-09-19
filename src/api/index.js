@@ -1,17 +1,11 @@
 import urljoin from 'url-join';
+import { joinSearchParams } from '../helpers/search-params';
 import { GIPHY_API_KEY } from './credentials';
 import { WORDS, GIPHY } from './endpoints';
 import { createFetcherJson } from './fetcher';
 import { requests } from './request';
 
 const fetcher = createFetcherJson(window.fetch);
-
-const joinSearchParams = params => {
-  const searchParams = new URLSearchParams('');
-
-  Object.entries(params).forEach(param => searchParams.append(...param));
-  return searchParams.toString();
-};
 
 const api = {
   createWord: body => fetcher(requests.post(WORDS, { body })),
