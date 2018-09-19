@@ -32,7 +32,7 @@ const composeSearchData = text => {
   return { text: translatingWord, from, to };
 };
 
-class SearchWord extends Component {
+class SearchWordContainer extends Component {
   static propTypes = {
     classes: classesShape,
     foundWord: foundWordShape,
@@ -133,4 +133,4 @@ class SearchWord extends Component {
   }
 }
 
-export default SearchWord;
+export default SearchWordContainer;

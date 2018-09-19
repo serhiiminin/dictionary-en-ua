@@ -8,7 +8,7 @@ import loadingNames from '../../constants/loading-names';
 import { GuessedWordDescription, LearningBoard } from '../../components';
 import { classesShape } from '../../constants/shapes';
 
-class LearnWords extends Component {
+class LearnWordsContainer extends Component {
   static propTypes = {
     fetchWordsToLearn: PropTypes.func.isRequired,
     cleanWords: PropTypes.func.isRequired,
@@ -145,4 +145,4 @@ class LearnWords extends Component {
   }
 }
 
-export default LearnWords;
+export default LearnWordsContainer;

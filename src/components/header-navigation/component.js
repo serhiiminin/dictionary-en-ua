@@ -11,7 +11,7 @@ import { ButtonWithRouter } from '..';
 const HeaderNavigation = ({ classes }) => (
   <div className={classes.headerNavigation}>
     <ButtonWithRouter
-      to={routes.words.list}
+      to={routes.words.list.all}
       title='The list of my words'
       variant="fab"
       mini

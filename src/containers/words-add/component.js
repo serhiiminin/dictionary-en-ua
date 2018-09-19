@@ -3,18 +3,18 @@ import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
 import { FormAddWord } from '../../components';
 
-const AddWord = ({ classes }) => (
+const AddWordContainer = ({ classes }) => (
   <main className={classes.addWord}>
     <FormAddWord/>
   </main>
 );
 
-AddWord.propTypes = {
+AddWordContainer.propTypes = {
   classes: classesShape,
 };
 
-AddWord.defaultProps = {
+AddWordContainer.defaultProps = {
   classes: classesDefaultProps
 };
 
-export default AddWord;
+export default AddWordContainer;

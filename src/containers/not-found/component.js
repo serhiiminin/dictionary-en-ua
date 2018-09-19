@@ -4,7 +4,7 @@ import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 
-const PageNotFound = ({ classes }) => (
+const PageNotFoundContainer = ({ classes }) => (
   <div className={classes.notFound}>
     <h1>Page not found</h1>
     <ButtonWithRouter to={routes.root}>
@@ -13,12 +13,12 @@ const PageNotFound = ({ classes }) => (
   </div>
 );
 
-PageNotFound.propTypes = {
+PageNotFoundContainer.propTypes = {
   classes: classesShape,
 };
 
-PageNotFound.defaultProps = {
+PageNotFoundContainer.defaultProps = {
   classes: classesDefaultProps
 };
 
-export default PageNotFound;
+export default PageNotFoundContainer;

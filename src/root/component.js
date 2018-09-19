@@ -3,7 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { stylesVariables } from '../constants/styles-variables';
 import { Header, BlocksContainer, Notifications } from '../components';
-import { Main, MyWords, AddWord, SearchWord, PageNotFound, LearnWords } from '../pages';
+import {
+  MainContainer,
+  WordsListContainer,
+  AddWordContainer,
+  SearchWordContainer,
+  PageNotFoundContainer,
+  LearnWordsContainer
+} from '../containers';
 import StateProvider from '../context';
 import routes from '../routes';
 
@@ -26,24 +33,24 @@ const theme = createMuiTheme({
 
 const Root = () => (
   <MuiThemeProvider theme={theme}>
-    <StateProvider>
-      <Router>
+    <Router>
+      <StateProvider>
         <Notifications>
           <BlocksContainer>
             <Header/>
             <Switch>
-              <Route exact path={routes.root} component={Main}/>
+              <Route exact path={routes.root} component={MainContainer}/>
               <Route exact path={routes.login} render={() => 'login'}/>
-              <Route exact path={routes.words.add} component={AddWord}/>
-              <Route exact path={routes.words.learn} component={LearnWords}/>
-              <Route exact path={routes.words.list} component={MyWords}/>
-              <Route exact path={routes.words.search} component={SearchWord}/>
-              <Route component={PageNotFound}/>
+              <Route exact path={routes.words.add} component={AddWordContainer}/>
+              <Route exact path={routes.words.learn} component={LearnWordsContainer}/>
+              <Route path={routes.words.list.root} component={WordsListContainer}/>
+              <Route exact path={routes.words.search} component={SearchWordContainer}/>
+              <Route component={PageNotFoundContainer}/>
             </Switch>
           </BlocksContainer>
         </Notifications>
-      </Router>
-    </StateProvider>
+      </StateProvider>
+    </Router>
   </MuiThemeProvider>
 );
 

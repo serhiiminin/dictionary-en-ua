@@ -1,9 +1,12 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { api } from '../../api';
 import { notificationType } from '../../components/notification-item/component';
 import loadingNames from '../../constants/loading-names';
+import { parseSearchParams } from '../../helpers/search-params';
 import { withFoundWord } from '../foundWord';
 import { withLoadingNames } from '../loading-names';
 import { withNotifications } from '../notifications';
@@ -22,41 +25,28 @@ class WordsProviderCmp extends Component {
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
     setFoundWord: PropTypes.func.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
   };
 
   state = wordsInitialState;
 
-  cleanWords = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      words: wordsInitialState.words,
-    }));
+  cleanWords = () => this.setState({ words: wordsInitialState.words });
 
-  handleGetGif = params => {
-    const { showNotification, startLoading, stopLoading } = this.props;
-
-    return Promise.resolve(startLoading(loadingNames.getGifs))
-      .then(() => api.getGifs(params))
-      .then(gifs => {
-        const downsizedGifs = gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random()*downsizedGifs.length)];
-
-        return this.setState({
-          gif: randomGif
-        });
-      })
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.getGifs))
-  };
-
-  handleFetchWords = () => {
-    const { showNotification, startLoading, stopLoading } = this.props;
+  handleFetchWords = (params = {}) => {
+    const { showNotification, startLoading, stopLoading, location } = this.props;
+    const parsedParams = parseSearchParams(location.search);
+    const query = {
+      skip: (parsedParams.pagination - 1) * parsedParams.countPerPage || 0,
+      limit: parsedParams.countPerPage ? Number(parsedParams.countPerPage) : 10000,
+      sortBy: parsedParams.sortBy,
+      sortDirection: parsedParams.sortDirection === 'descend' ? -1 : 1,
+    };
 
     return Promise.resolve(startLoading(loadingNames.wordsList))
-      .then(() => api.getWordsList())
+      .then(() => api.getWordsList({ ...params, query }))
       .then(words => this.setState({ words }))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.wordsList))
+      .finally(() => stopLoading(loadingNames.wordsList));
   };
 
   handleFetchWordsToLearn = () => {
@@ -66,7 +56,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.getWordsListToLearn())
       .then(words => this.setState({ words }))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.learnWord))
+      .finally(() => stopLoading(loadingNames.learnWord));
   };
 
   handleCreateWord = data => {
@@ -76,7 +66,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.createWord(data))
       .then(() => showNotification('The word has been saved successfully', notificationType.success))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.saveWord))
+      .finally(() => stopLoading(loadingNames.saveWord));
   };
 
   handleDeleteWord = id => {
@@ -94,12 +84,11 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.learnWord(wordId))
-      .then(() =>
-        this.setState(prevState => ({
-            words: [...prevState.words.filter(word => word._id !== wordId)]
-          })))
+      .then(() => this.setState(prevState => ({
+        words: [...prevState.words.filter(word => word._id !== wordId)]
+      })))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.learnWord))
+      .finally(() => stopLoading(loadingNames.learnWord));
 
   };
 
@@ -113,7 +102,7 @@ class WordsProviderCmp extends Component {
           wordToRelearn,
         ]
       });
-    })
+    });
   };
 
   handleSearchWord = params => {
@@ -121,17 +110,17 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.searchWord))
       .then(() => Promise.all([
-          api.searchWord(params),
-          api.getGifs({ q: params.text })
-        ]))
+        api.searchWord(params),
+        api.getGifs({ q: params.text })
+      ]))
       .then(([foundWord, gifs]) => {
         const downsizedGifs = gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random()*downsizedGifs.length)];
+        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
         return setFoundWord({ ...foundWord, gif: randomGif });
       })
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.searchWord))
+      .finally(() => stopLoading(loadingNames.searchWord));
   };
 
   render() {
@@ -158,6 +147,7 @@ class WordsProviderCmp extends Component {
 }
 
 const WordsProvider = compose(
+  withRouter,
   withFoundWord,
   withLoadingNames,
   withNotifications,
