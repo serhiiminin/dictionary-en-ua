@@ -15,8 +15,8 @@ ShallowWrapper {
             "form": Object {
               "en": "",
               "examples": Array [],
-              "ru": "",
               "transcription": "",
+              "ua": "",
             },
           }
     }
@@ -47,7 +47,7 @@ ShallowWrapper {
                     value={undefined}
           />
           <WithStyles(TextFieldCustomized)
-                    label="Russian"
+                    label="Ukrainian"
                     onChange={[Function]}
                     value={undefined}
           />
@@ -115,7 +115,7 @@ ShallowWrapper {
               value={undefined}
 />,
             <WithStyles(TextFieldCustomized)
-              label="Russian"
+              label="Ukrainian"
               onChange={[Function]}
               value={undefined}
 />,
@@ -175,7 +175,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Russian",
+              "label": "Ukrainian",
               "onChange": [Function],
               "value": undefined,
             },
@@ -379,7 +379,7 @@ ShallowWrapper {
                         value={undefined}
             />
             <WithStyles(TextFieldCustomized)
-                        label="Russian"
+                        label="Ukrainian"
                         onChange={[Function]}
                         value={undefined}
             />
@@ -447,7 +447,7 @@ ShallowWrapper {
                 value={undefined}
 />,
               <WithStyles(TextFieldCustomized)
-                label="Russian"
+                label="Ukrainian"
                 onChange={[Function]}
                 value={undefined}
 />,
@@ -507,7 +507,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Russian",
+                "label": "Ukrainian",
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -763,7 +763,7 @@ ShallowWrapper {
                     value={undefined}
           />
           <WithStyles(TextFieldCustomized)
-                    label="Russian"
+                    label="Ukrainian"
                     onChange={[Function]}
                     value={undefined}
           />
@@ -846,7 +846,7 @@ ShallowWrapper {
               value={undefined}
 />,
             <WithStyles(TextFieldCustomized)
-              label="Russian"
+              label="Ukrainian"
               onChange={[Function]}
               value={undefined}
 />,
@@ -906,7 +906,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Russian",
+              "label": "Ukrainian",
               "onChange": [Function],
               "value": undefined,
             },
@@ -1146,7 +1146,7 @@ ShallowWrapper {
                         value={undefined}
             />
             <WithStyles(TextFieldCustomized)
-                        label="Russian"
+                        label="Ukrainian"
                         onChange={[Function]}
                         value={undefined}
             />
@@ -1229,7 +1229,7 @@ ShallowWrapper {
                 value={undefined}
 />,
               <WithStyles(TextFieldCustomized)
-                label="Russian"
+                label="Ukrainian"
                 onChange={[Function]}
                 value={undefined}
 />,
@@ -1289,7 +1289,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Russian",
+                "label": "Ukrainian",
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -1581,7 +1581,7 @@ ShallowWrapper {
                     value={undefined}
           />
           <WithStyles(TextFieldCustomized)
-                    label="Russian"
+                    label="Ukrainian"
                     onChange={[Function]}
                     value={undefined}
           />
@@ -1664,7 +1664,7 @@ ShallowWrapper {
               value={undefined}
 />,
             <WithStyles(TextFieldCustomized)
-              label="Russian"
+              label="Ukrainian"
               onChange={[Function]}
               value={undefined}
 />,
@@ -1724,7 +1724,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Russian",
+              "label": "Ukrainian",
               "onChange": [Function],
               "value": undefined,
             },
@@ -1964,7 +1964,7 @@ ShallowWrapper {
                         value={undefined}
             />
             <WithStyles(TextFieldCustomized)
-                        label="Russian"
+                        label="Ukrainian"
                         onChange={[Function]}
                         value={undefined}
             />
@@ -2047,7 +2047,7 @@ ShallowWrapper {
                 value={undefined}
 />,
               <WithStyles(TextFieldCustomized)
-                label="Russian"
+                label="Ukrainian"
                 onChange={[Function]}
                 value={undefined}
 />,
@@ -2107,7 +2107,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Russian",
+                "label": "Ukrainian",
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -2367,8 +2367,8 @@ ShallowWrapper {
             "form": Object {
               "en": "",
               "examples": Array [],
-              "ru": "",
               "transcription": "",
+              "ua": "",
             },
           }
     }
@@ -2399,7 +2399,7 @@ ShallowWrapper {
                     value={undefined}
           />
           <WithStyles(TextFieldCustomized)
-                    label="Russian"
+                    label="Ukrainian"
                     onChange={[Function]}
                     value={undefined}
           />
@@ -2467,7 +2467,7 @@ ShallowWrapper {
               value={undefined}
 />,
             <WithStyles(TextFieldCustomized)
-              label="Russian"
+              label="Ukrainian"
               onChange={[Function]}
               value={undefined}
 />,
@@ -2527,7 +2527,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Russian",
+              "label": "Ukrainian",
               "onChange": [Function],
               "value": undefined,
             },
@@ -2731,7 +2731,7 @@ ShallowWrapper {
                         value={undefined}
             />
             <WithStyles(TextFieldCustomized)
-                        label="Russian"
+                        label="Ukrainian"
                         onChange={[Function]}
                         value={undefined}
             />
@@ -2799,7 +2799,7 @@ ShallowWrapper {
                 value={undefined}
 />,
               <WithStyles(TextFieldCustomized)
-                label="Russian"
+                label="Ukrainian"
                 onChange={[Function]}
                 value={undefined}
 />,
@@ -2859,7 +2859,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Russian",
+                "label": "Ukrainian",
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -3799,8 +3799,8 @@ ShallowWrapper {
             "form": Object {
               "en": "",
               "examples": Array [],
-              "ru": "",
               "transcription": "",
+              "ua": "",
             },
           }
     }
@@ -3831,7 +3831,7 @@ ShallowWrapper {
                     value={undefined}
           />
           <WithStyles(TextFieldCustomized)
-                    label="Russian"
+                    label="Ukrainian"
                     onChange={[Function]}
                     value={undefined}
           />
@@ -3899,7 +3899,7 @@ ShallowWrapper {
               value={undefined}
 />,
             <WithStyles(TextFieldCustomized)
-              label="Russian"
+              label="Ukrainian"
               onChange={[Function]}
               value={undefined}
 />,
@@ -3959,7 +3959,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Russian",
+              "label": "Ukrainian",
               "onChange": [Function],
               "value": undefined,
             },
@@ -4163,7 +4163,7 @@ ShallowWrapper {
                         value={undefined}
             />
             <WithStyles(TextFieldCustomized)
-                        label="Russian"
+                        label="Ukrainian"
                         onChange={[Function]}
                         value={undefined}
             />
@@ -4231,7 +4231,7 @@ ShallowWrapper {
                 value={undefined}
 />,
               <WithStyles(TextFieldCustomized)
-                label="Russian"
+                label="Ukrainian"
                 onChange={[Function]}
                 value={undefined}
 />,
@@ -4291,7 +4291,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Russian",
+                "label": "Ukrainian",
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -4515,8 +4515,8 @@ ShallowWrapper {
             "form": Object {
               "en": "",
               "examples": Array [],
-              "ru": "",
               "transcription": "",
+              "ua": "",
             },
           }
     }
@@ -4547,7 +4547,7 @@ ShallowWrapper {
                     value={undefined}
           />
           <WithStyles(TextFieldCustomized)
-                    label="Russian"
+                    label="Ukrainian"
                     onChange={[Function]}
                     value={undefined}
           />
@@ -4615,7 +4615,7 @@ ShallowWrapper {
               value={undefined}
 />,
             <WithStyles(TextFieldCustomized)
-              label="Russian"
+              label="Ukrainian"
               onChange={[Function]}
               value={undefined}
 />,
@@ -4675,7 +4675,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "label": "Russian",
+              "label": "Ukrainian",
               "onChange": [Function],
               "value": undefined,
             },
@@ -4879,7 +4879,7 @@ ShallowWrapper {
                         value={undefined}
             />
             <WithStyles(TextFieldCustomized)
-                        label="Russian"
+                        label="Ukrainian"
                         onChange={[Function]}
                         value={undefined}
             />
@@ -4947,7 +4947,7 @@ ShallowWrapper {
                 value={undefined}
 />,
               <WithStyles(TextFieldCustomized)
-                label="Russian"
+                label="Ukrainian"
                 onChange={[Function]}
                 value={undefined}
 />,
@@ -5007,7 +5007,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "label": "Russian",
+                "label": "Ukrainian",
                 "onChange": [Function],
                 "value": undefined,
               },

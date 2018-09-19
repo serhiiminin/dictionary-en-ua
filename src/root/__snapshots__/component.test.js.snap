@@ -16,8 +16,8 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <StateProvider>
-        <BrowserRouter>
+      "children": <BrowserRouter>
+        <StateProvider>
                 <Jss(Component)>
                         <Jss(BlocksContainer)>
                                 <Jss(Header) />
@@ -44,7 +44,6 @@ ShallowWrapper {
                                         />
                                         <Route
                                                 component={[Function]}
-                                                exact={true}
                                                 path="/words-list"
                                         />
                                         <Route
@@ -58,8 +57,8 @@ ShallowWrapper {
                                 </Switch>
                         </Jss(BlocksContainer)>
                 </Jss(Component)>
-        </BrowserRouter>
-</StateProvider>,
+        </StateProvider>
+</BrowserRouter>,
       "theme": Object {
         "breakpoints": Object {
           "between": [Function],
@@ -318,9 +317,9 @@ ShallowWrapper {
     "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "function",
+      "nodeType": "class",
       "props": Object {
-        "children": <BrowserRouter>
+        "children": <StateProvider>
           <Jss(Component)>
                     <Jss(BlocksContainer)>
                               <Jss(Header) />
@@ -347,7 +346,6 @@ ShallowWrapper {
                                         />
                                         <Route
                                                   component={[Function]}
-                                                  exact={true}
                                                   path="/words-list"
                                         />
                                         <Route
@@ -361,13 +359,13 @@ ShallowWrapper {
                               </Switch>
                     </Jss(BlocksContainer)>
           </Jss(Component)>
-</BrowserRouter>,
+</StateProvider>,
       },
       "ref": null,
       "rendered": Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
           "children": <Jss(Component)>
             <Jss(BlocksContainer)>
@@ -395,7 +393,6 @@ ShallowWrapper {
                                     />
                                     <Route
                                                 component={[Function]}
-                                                exact={true}
                                                 path="/words-list"
                                     />
                                     <Route
@@ -441,7 +438,6 @@ ShallowWrapper {
                             />
                             <Route
                                           component={[Function]}
-                                          exact={true}
                                           path="/words-list"
                             />
                             <Route
@@ -486,7 +482,6 @@ ShallowWrapper {
                   />
                   <Route
                                     component={[Function]}
-                                    exact={true}
                                     path="/words-list"
                   />
                   <Route
@@ -539,7 +534,6 @@ ShallowWrapper {
 />,
                     <Route
                       component={[Function]}
-                      exact={true}
                       path="/words-list"
 />,
                     <Route
@@ -612,7 +606,6 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "component": [Function],
-                      "exact": true,
                       "path": "/words-list",
                     },
                     "ref": null,
@@ -663,8 +656,8 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <StateProvider>
-          <BrowserRouter>
+        "children": <BrowserRouter>
+          <StateProvider>
                     <Jss(Component)>
                               <Jss(BlocksContainer)>
                                         <Jss(Header) />
@@ -691,7 +684,6 @@ ShallowWrapper {
                                                   />
                                                   <Route
                                                             component={[Function]}
-                                                            exact={true}
                                                             path="/words-list"
                                                   />
                                                   <Route
@@ -705,8 +697,8 @@ ShallowWrapper {
                                         </Switch>
                               </Jss(BlocksContainer)>
                     </Jss(Component)>
-          </BrowserRouter>
-</StateProvider>,
+          </StateProvider>
+</BrowserRouter>,
         "theme": Object {
           "breakpoints": Object {
             "between": [Function],
@@ -965,9 +957,9 @@ ShallowWrapper {
       "rendered": Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "children": <BrowserRouter>
+          "children": <StateProvider>
             <Jss(Component)>
                         <Jss(BlocksContainer)>
                                     <Jss(Header) />
@@ -994,7 +986,6 @@ ShallowWrapper {
                                                 />
                                                 <Route
                                                             component={[Function]}
-                                                            exact={true}
                                                             path="/words-list"
                                                 />
                                                 <Route
@@ -1008,13 +999,13 @@ ShallowWrapper {
                                     </Switch>
                         </Jss(BlocksContainer)>
             </Jss(Component)>
-</BrowserRouter>,
+</StateProvider>,
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
             "children": <Jss(Component)>
               <Jss(BlocksContainer)>
@@ -1042,7 +1033,6 @@ ShallowWrapper {
                                           />
                                           <Route
                                                         component={[Function]}
-                                                        exact={true}
                                                         path="/words-list"
                                           />
                                           <Route
@@ -1088,7 +1078,6 @@ ShallowWrapper {
                                 />
                                 <Route
                                                 component={[Function]}
-                                                exact={true}
                                                 path="/words-list"
                                 />
                                 <Route
@@ -1133,7 +1122,6 @@ ShallowWrapper {
                     />
                     <Route
                                         component={[Function]}
-                                        exact={true}
                                         path="/words-list"
                     />
                     <Route
@@ -1186,7 +1174,6 @@ ShallowWrapper {
 />,
                       <Route
                         component={[Function]}
-                        exact={true}
                         path="/words-list"
 />,
                       <Route
@@ -1259,7 +1246,6 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "component": [Function],
-                        "exact": true,
                         "path": "/words-list",
                       },
                       "ref": null,

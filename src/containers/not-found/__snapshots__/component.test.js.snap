@@ -3,7 +3,7 @@
 exports[`Page not found render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <PageNotFound
+  Symbol(enzyme.__unrendered__): <PageNotFoundContainer
     classes={Object {}}
 />,
   Symbol(enzyme.__renderer__): Object {

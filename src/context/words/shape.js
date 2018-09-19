@@ -7,7 +7,7 @@ const exampleShape = PropTypes.shape({
 
 const wordShape = PropTypes.shape({
   en: PropTypes.string,
-  ru: PropTypes.string,
+  ua: PropTypes.string,
   transcription: PropTypes.string,
   dateCreated: PropTypes.string,
   dateLastUpdated: PropTypes.string,
