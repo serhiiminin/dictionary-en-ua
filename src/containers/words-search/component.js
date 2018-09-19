@@ -26,8 +26,8 @@ const initialState = {
 
 const composeSearchData = text => {
   const translatingWord = text.trim();
-  const from = encodeURIComponent(translatingWord) === translatingWord ? 'en' : 'ru';
-  const to = encodeURIComponent(translatingWord) === translatingWord ? 'ru' : 'en';
+  const from = encodeURIComponent(translatingWord) === translatingWord ? 'en' : 'uk';
+  const to = encodeURIComponent(translatingWord) === translatingWord ? 'uk' : 'en';
 
   return { text: translatingWord, from, to };
 };

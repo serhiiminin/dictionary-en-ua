@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const wordFormShape = PropTypes.shape({
   en: PropTypes.string,
-  ru: PropTypes.string,
+  ua: PropTypes.string,
   transcription: PropTypes.string,
   examples: PropTypes.arrayOf(
     PropTypes.shape({

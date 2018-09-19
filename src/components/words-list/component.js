@@ -26,7 +26,7 @@ class WordsList extends Component {
       PropTypes.shape({
         _id: PropTypes.string,
         en: PropTypes.string,
-        ru: PropTypes.string,
+        ua: PropTypes.string,
         transcription: PropTypes.string,
         dateCreated: PropTypes.string,
       })),
@@ -144,7 +144,7 @@ class WordsList extends Component {
                   onChange={event => this.handleOnChangeSelect(event, 'sortBy')}
                 >
                   <MenuItem value='en'>English</MenuItem>
-                  <MenuItem value='ru'>Russian</MenuItem>
+                  <MenuItem value='ua'>Ukrainian</MenuItem>
                   <MenuItem value='dateCreated'>Was added</MenuItem>
                   <MenuItem value='timesLearnt'>Was learnt times</MenuItem>
                   <MenuItem value='dateLastLearnt'>Was learnt last time</MenuItem>
@@ -170,7 +170,7 @@ class WordsList extends Component {
           </li>
           {words
             .map(word => {
-              const { _id, en, ru, transcription, dateCreated } = word;
+              const { _id, en, ua, transcription, dateCreated } = word;
               const linkToWord = urljoin(routes.words.list.root, _id);
               const isChecked = checked.includes(_id);
 
@@ -187,9 +187,10 @@ class WordsList extends Component {
                   </div>
                   <div className={classes.wordText}>
                     <span>
-                      <Link className={classes.linkToWord} to={linkToWord}>{en}</Link>
+                      {en && <Link className={classes.linkToWord} to={linkToWord}>{en}</Link>}
                     </span>
-                    {` - ${transcription} - ${ru}`}
+                    {transcription && ` - ${transcription}`}
+                    {ua && ` - ${ua}`}
                   </div>
                   <div className={classes.wordTime}>
                     {moment(dateCreated)

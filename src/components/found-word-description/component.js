@@ -7,7 +7,7 @@ import { classesShape } from '../../constants/shapes';
 import { LineExplanation, ListOfClickableStrings } from '..';
 
 const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
-  const { en, ru, transcription, partOfSpeech, antonyms, synonyms, similarTo } = foundWord;
+  const { en, ua, transcription, partOfSpeech, antonyms, synonyms, similarTo } = foundWord;
 
   return (
     <div className={classes.foundWordDescription}>
@@ -17,7 +17,7 @@ const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
           {partOfSpeech && partOfSpeech.join(', ')}
         </LineExplanation>
         <LineExplanation label='English'>{en}</LineExplanation>
-        <LineExplanation label='Russian'>{ru}</LineExplanation>
+        <LineExplanation label='Ukrainian'>{ua}</LineExplanation>
         <LineExplanation label='Transcription'>{transcription}</LineExplanation>
         <LineExplanation label='Synonyms'>
           <ListOfClickableStrings

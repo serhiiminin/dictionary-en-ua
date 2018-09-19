@@ -7,7 +7,7 @@ const WordFormContext = createContext({});
 const wordFormInitialState = {
   form: {
     en: '',
-    ru: '',
+    ua: '',
     transcription: '',
     examples: [],
   }

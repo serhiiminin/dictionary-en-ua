@@ -131,7 +131,7 @@ class LearnWordsContainer extends Component {
               loading={loading}
               onOptionChange={this.onChangeInput}
               inputValue={inputValue}
-              word={currentWord && currentWord.ru}
+              word={currentWord && currentWord.ua}
               timesLearnt={currentWord && currentWord.timesLearnt}
               onCheckAnswer={this.onCheckAnswer}
               onGiveAHint={this.onGiveAHint}

@@ -47,7 +47,7 @@ class FormAddWord extends Component {
   render() {
     const { form, onResetForm, onAddNewExample, onRemoveExample, classes,
       onExampleChange, onFormItemChange, currentLoadingNames } = this.props;
-    const { en, ru, transcription, examples } = form;
+    const { en, ua, transcription, examples } = form;
     const loading = currentLoadingNames.includes(loadingNames.saveWord);
 
     return (
@@ -62,9 +62,9 @@ class FormAddWord extends Component {
             onChange={e => onFormItemChange(e, 'en')}
           />
           <TextField
-            label="Russian"
-            value={ru}
-            onChange={e => onFormItemChange(e, 'ru')}
+            label="Ukrainian"
+            value={ua}
+            onChange={e => onFormItemChange(e, 'ua')}
           />
           <TextField
             label="Transcription"
