@@ -26,28 +26,7 @@ class WordsProviderCmp extends Component {
 
   state = wordsInitialState;
 
-  cleanWords = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      words: wordsInitialState.words,
-    }));
-
-  handleGetGif = params => {
-    const { showNotification, startLoading, stopLoading } = this.props;
-
-    return Promise.resolve(startLoading(loadingNames.getGifs))
-      .then(() => api.getGifs(params))
-      .then(gifs => {
-        const downsizedGifs = gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random()*downsizedGifs.length)];
-
-        return this.setState({
-          gif: randomGif
-        });
-      })
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.getGifs))
-  };
+  cleanWords = () => this.setState({ words: wordsInitialState.words });
 
   handleFetchWords = () => {
     const { showNotification, startLoading, stopLoading } = this.props;
@@ -56,7 +35,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.getWordsList())
       .then(words => this.setState({ words }))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.wordsList))
+      .finally(() => stopLoading(loadingNames.wordsList));
   };
 
   handleFetchWordsToLearn = () => {
@@ -66,7 +45,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.getWordsListToLearn())
       .then(words => this.setState({ words }))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.learnWord))
+      .finally(() => stopLoading(loadingNames.learnWord));
   };
 
   handleCreateWord = data => {
@@ -76,7 +55,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.createWord(data))
       .then(() => showNotification('The word has been saved successfully', notificationType.success))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.saveWord))
+      .finally(() => stopLoading(loadingNames.saveWord));
   };
 
   handleDeleteWord = id => {
@@ -94,12 +73,11 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.learnWord(wordId))
-      .then(() =>
-        this.setState(prevState => ({
-            words: [...prevState.words.filter(word => word._id !== wordId)]
-          })))
+      .then(() => this.setState(prevState => ({
+        words: [...prevState.words.filter(word => word._id !== wordId)]
+      })))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.learnWord))
+      .finally(() => stopLoading(loadingNames.learnWord));
 
   };
 
@@ -113,7 +91,7 @@ class WordsProviderCmp extends Component {
           wordToRelearn,
         ]
       });
-    })
+    });
   };
 
   handleSearchWord = params => {
@@ -121,17 +99,17 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.searchWord))
       .then(() => Promise.all([
-          api.searchWord(params),
-          api.getGifs({ q: params.text })
-        ]))
+        api.searchWord(params),
+        api.getGifs({ q: params.text })
+      ]))
       .then(([foundWord, gifs]) => {
         const downsizedGifs = gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random()*downsizedGifs.length)];
+        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
         return setFoundWord({ ...foundWord, gif: randomGif });
       })
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.searchWord))
+      .finally(() => stopLoading(loadingNames.searchWord));
   };
 
   render() {

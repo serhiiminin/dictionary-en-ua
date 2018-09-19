@@ -26,7 +26,7 @@ const styles = {
   word: {
     listStyle: 'none',
     display: 'grid',
-    gridTemplateColumns: '1fr 20fr 2fr 1fr',
+    gridTemplateColumns: '1fr 18fr 4fr 1fr',
     alignContent: 'center',
     background: stylesVariables.colors.background,
     padding: '5px 10px',

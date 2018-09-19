@@ -59,7 +59,7 @@ class WordsList extends Component {
     const { checked } = this.state;
     const { classes, words, currentLoadingNames } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
-    const isCheckedAll = checked.length === words.length;
+    const isCheckedAll = checked.length === words.length && checked.length > 0;
 
     return (
       <main className={classes.myWords}>
