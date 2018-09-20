@@ -7,8 +7,6 @@ import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import Edit from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
 import { classesDefaultProps } from '../../constants/default-props';
@@ -16,8 +14,8 @@ import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
 import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
-import { Button, Select, MenuItem, TextField } from '../../components-mui';
-import { ButtonWithRouter } from '..';
+import { Button, Select, MenuItem } from '../../components-mui';
+import { ButtonWithRouter, Pagination } from '..';
 
 class WordsList extends Component {
   static propTypes = {
@@ -99,12 +97,19 @@ class WordsList extends Component {
   ])
     .then(() => this.setState({ checked: [] }));
 
-  handleOnChangeSelect = (event, field) => this.setState({ [field]: event.target.value });
+  handleOnChangeSelect = (event, field) => this.setState({
+    pagination: 1,
+    [field]: event.target.value
+  });
 
   handleOnChangeDirection = () => this.setState(prevState => ({
     ...prevState,
     sortDirection: prevState.sortDirection === 'descend' ? 'ascend' : 'descend',
   }));
+
+  handleOnChangePage = pageNumber => this.setState({
+    pagination: pageNumber,
+  });
 
   render() {
     const { checked, countPerPage, sortBy, sortDirection, pagination } = this.state;
@@ -205,6 +210,7 @@ class WordsList extends Component {
                 label='Words per page'
                 onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
               >
+                <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={5}>5</MenuItem>
                 <MenuItem value={10}>10</MenuItem>
                 <MenuItem value={20}>20</MenuItem>
@@ -212,34 +218,11 @@ class WordsList extends Component {
                 <MenuItem value={100}>100</MenuItem>
               </Select>
             </div>
-            <div className={classes.pagination}>
-              <Button
-                onClick={() => pagination > 1 && this.setState({ pagination: parseInt(pagination, 10) - 1 })}
-                title='Previous page'
-                variant="fab"
-                mini
-              >
-                <KeyboardArrowLeft/>
-              </Button>
-              <div className={classes.paginationInput}>
-                <TextField
-                  label={wordsCount ? `Page ${pagination} of ${Math.ceil(wordsCount / countPerPage)}` : 'Page number'}
-                  onChange={e => this.setState({ pagination: e.target.value > 0 ? parseInt(e.target.value, 10) : 1 })}
-                  value={pagination}
-                  type='number'
-                  max={countPerPage ? Math.ceil(wordsCount / countPerPage) : 1}
-                  min={1}
-                />
-              </div>
-              <Button
-                onClick={() => this.setState({ pagination: parseInt(pagination, 10) + 1 })}
-                title='Next page'
-                variant="fab"
-                mini
-              >
-                <KeyboardArrowRight/>
-              </Button>
-            </div>
+            <Pagination
+              pageNumber={pagination}
+              maxPageCount={Math.ceil(wordsCount/countPerPage)}
+              onChangePage={this.handleOnChangePage}
+            />
           </div>
         </div>
       </main>
