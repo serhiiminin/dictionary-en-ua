@@ -7,6 +7,8 @@ import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import Edit from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
 import { classesDefaultProps } from '../../constants/default-props';
@@ -14,8 +16,8 @@ import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
 import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
-import { Button, Select, MenuItem } from '../../components-mui';
-import { ButtonWithRouter } from '../index';
+import { Button, Select, MenuItem, TextField } from '../../components-mui';
+import { ButtonWithRouter } from '..';
 
 class WordsList extends Component {
   static propTypes = {
@@ -30,6 +32,7 @@ class WordsList extends Component {
         transcription: PropTypes.string,
         dateCreated: PropTypes.string,
       })),
+    wordsCount: PropTypes.number,
     deleteWord: PropTypes.func.isRequired,
     currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
   };
@@ -37,6 +40,7 @@ class WordsList extends Component {
   static defaultProps = {
     classes: classesDefaultProps,
     words: null,
+    wordsCount: null,
     currentLoadingNames: null,
   };
 
@@ -103,8 +107,8 @@ class WordsList extends Component {
   }));
 
   render() {
-    const { checked, countPerPage, sortBy, sortDirection } = this.state;
-    const { classes, words, currentLoadingNames } = this.props;
+    const { checked, countPerPage, sortBy, sortDirection, pagination } = this.state;
+    const { classes, words, wordsCount, currentLoadingNames } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
     const isCheckedAll = checked.length === words.length && checked.length > 0;
 
@@ -116,8 +120,8 @@ class WordsList extends Component {
         >
           <LinearProgress color='secondary'/>
         </Fade>
-        <ul className={classes.wordsList}>
-          <li className={classes.toolbar}>
+        <div className={classes.wordsList}>
+          <div className={classes.toolbar}>
             <div>
               <Checkbox
                 onChange={() => this.handleOnAll()}
@@ -150,24 +154,11 @@ class WordsList extends Component {
                   <MenuItem value='dateLastLearnt'>Was learnt last time</MenuItem>
                 </Select>
               </div>
-              <div className={classes.countPerPage}>
-                <Select
-                  value={Number(countPerPage)}
-                  label='Words per page'
-                  onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
-                >
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={10}>10</MenuItem>
-                  <MenuItem value={20}>20</MenuItem>
-                  <MenuItem value={50}>50</MenuItem>
-                  <MenuItem value={100}>100</MenuItem>
-                </Select>
-              </div>
               <Button title='Delete' variant="fab" mini>
                 <Delete onClick={this.handleDeleteWord}/>
               </Button>
             </div>
-          </li>
+          </div>
           {words
             .map(word => {
               const { _id, en, ua, transcription, dateCreated } = word;
@@ -175,10 +166,7 @@ class WordsList extends Component {
               const isChecked = checked.includes(_id);
 
               return (
-                <li
-                  className={`${classes.word} ${isChecked ? classes.wordChosen : ''}`}
-                  key={_id}
-                >
+                <div className={`${classes.word} ${isChecked ? classes.wordChosen : ''}`} key={_id}>
                   <div>
                     <Checkbox
                       onChange={() => this.handleOnCheck(_id)}
@@ -206,10 +194,54 @@ class WordsList extends Component {
                       <Edit/>
                     </ButtonWithRouter>
                   </div>
-                </li>
+                </div>
               );
             })}
-        </ul>
+
+          <div className={classes.paginationPanel}>
+            <div className={classes.countPerPage}>
+              <Select
+                value={Number(countPerPage)}
+                label='Words per page'
+                onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
+              >
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={20}>20</MenuItem>
+                <MenuItem value={50}>50</MenuItem>
+                <MenuItem value={100}>100</MenuItem>
+              </Select>
+            </div>
+            <div className={classes.pagination}>
+              <Button
+                onClick={() => pagination > 1 && this.setState({ pagination: parseInt(pagination, 10) - 1 })}
+                title='Previous page'
+                variant="fab"
+                mini
+              >
+                <KeyboardArrowLeft/>
+              </Button>
+              <div className={classes.paginationInput}>
+                <TextField
+                  label={wordsCount ? `Page ${pagination} of ${Math.ceil(wordsCount / countPerPage)}` : 'Page number'}
+                  onChange={e => this.setState({ pagination: e.target.value > 0 ? parseInt(e.target.value, 10) : 1 })}
+                  value={pagination}
+                  type='number'
+                  max={countPerPage ? Math.ceil(wordsCount / countPerPage) : 1}
+                  min={1}
+                />
+              </div>
+              <Button
+                onClick={() => this.setState({ pagination: parseInt(pagination, 10) + 1 })}
+                title='Next page'
+                variant="fab"
+                mini
+              >
+                <KeyboardArrowRight/>
+              </Button>
+            </div>
+          </div>
+        </div>
       </main>
     );
   }

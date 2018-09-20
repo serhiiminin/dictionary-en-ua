@@ -15,6 +15,7 @@ const WordsContext = createContext({});
 
 const wordsInitialState = {
   words: [],
+  count: 0,
   gif: '',
 };
 
@@ -44,7 +45,7 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.wordsList))
       .then(() => api.getWordsList({ ...params, query }))
-      .then(words => this.setState({ words }))
+      .then(({ items, count}) => this.setState({ words: items, count }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.wordsList));
   };
@@ -124,13 +125,14 @@ class WordsProviderCmp extends Component {
   };
 
   render() {
-    const { words, gif } = this.state;
+    const { words, count, gif } = this.state;
     const { children } = this.props;
 
     return (
       <WordsContext.Provider
         value={{
           words,
+          wordsCount: count,
           gif,
           fetchWords: this.handleFetchWords,
           fetchWordsToLearn: this.handleFetchWordsToLearn,

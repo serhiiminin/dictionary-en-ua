@@ -6,12 +6,12 @@ import { wordShape } from '../../context/words/shape';
 import { ControlsSeparator } from '../index';
 
 const GuessedWordDescription = ({ word, onLearnNextWord }) => {
-  const { en, ru, transcription } = word;
+  const { en, ua, transcription } = word;
 
   return (
     <div>
       <div>{en}</div>
-      <div>{ru}</div>
+      <div>{ua}</div>
       <div>{transcription}</div>
       <ControlsSeparator align='center'>
         <Button
