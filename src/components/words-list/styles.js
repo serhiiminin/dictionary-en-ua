@@ -12,7 +12,6 @@ const styles = {
     rowGap: '1px',
   },
   toolbar: {
-    listStyle: 'none',
     display: 'grid',
     gridTemplateColumns: '1fr 22fr 1fr',
     alignContent: 'center',
@@ -23,7 +22,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
     gap: '1rem',
-    justifyContent: 'center',
+    justifyContent: 'start',
     alignItems: 'center',
   },
   countPerPage: {
@@ -52,6 +51,24 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  pagination: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 2fr 1fr',
+    gap: '1rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  paginationInput: {
+    width: '100px',
+  },
+  paginationPanel: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
+    justifyContent: 'end',
+    gap: '1rem',
+    background: stylesVariables.colors.background,
+    padding: '10px 10px',
   }
 };
 
