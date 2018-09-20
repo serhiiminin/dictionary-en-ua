@@ -52,17 +52,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-  pagination: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 2fr 1fr',
-    gap: '1rem',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  paginationInput: {
-    width: '100px',
-  },
-  paginationPanel: {
+  bottomPanel: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
     justifyContent: 'end',

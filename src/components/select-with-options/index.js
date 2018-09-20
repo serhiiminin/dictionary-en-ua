@@ -1,10 +1,10 @@
 import { compose } from 'recompose';
 import injectSheet from 'react-jss';
+import SelectWithOptions from './component';
 import styles from './styles';
-import ToolbarCmp from './component';
 
 const enhance = compose(
-  injectSheet(styles),
+  injectSheet(styles)
 );
 
-export default enhance(ToolbarCmp);
+export default enhance(SelectWithOptions);
