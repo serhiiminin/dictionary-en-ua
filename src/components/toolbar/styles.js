@@ -1,26 +1,20 @@
-const styles = theme => ({
-  root: {
-    paddingRight: theme.spacing.unit,
+import { stylesVariables } from '../../constants/styles-variables';
+
+const styles = {
+  toolbar: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 22fr 1fr',
+    alignContent: 'center',
+    background: stylesVariables.colors.background,
+    padding: '10px 10px',
   },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: theme.palette.secondary.light,
-      }
-      : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
-      },
-  spacer: {
-    flex: '1 1 100%',
+  toolbarButtons: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
+    gap: '1rem',
+    justifyContent: 'start',
+    alignItems: 'center',
   },
-  actions: {
-    color: theme.palette.text.secondary,
-  },
-  title: {
-    flex: '0 0 auto',
-  },
-});
+};
 
 export default styles;

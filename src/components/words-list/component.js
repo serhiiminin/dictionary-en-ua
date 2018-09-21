@@ -7,8 +7,6 @@ import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import Edit from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
 import { classesDefaultProps } from '../../constants/default-props';
@@ -16,8 +14,8 @@ import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
 import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
-import { Button, Select, MenuItem, TextField } from '../../components-mui';
-import { ButtonWithRouter } from '..';
+import { Button } from '../../components-mui';
+import { ButtonWithRouter, Pagination, SelectWithOptions, Toolbar } from '..';
 
 class WordsList extends Component {
   static propTypes = {
@@ -64,11 +62,8 @@ class WordsList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.countPerPage !== this.state.countPerPage ||
-      prevState.sortBy !== this.state.sortBy ||
-      prevState.sortDirection !== this.state.sortDirection ||
-      prevState.pagination !== this.state.pagination
-    ) {
+    if (prevState.countPerPage !== this.state.countPerPage || prevState.sortBy !== this.state.sortBy ||
+      prevState.sortDirection !== this.state.sortDirection || prevState.pagination !== this.state.pagination) {
       this.pushSearchParams();
     }
   }
@@ -99,12 +94,19 @@ class WordsList extends Component {
   ])
     .then(() => this.setState({ checked: [] }));
 
-  handleOnChangeSelect = (event, field) => this.setState({ [field]: event.target.value });
+  handleOnChangeSelect = (event, field) => this.setState({
+    pagination: 1,
+    [field]: event.target.value
+  });
 
   handleOnChangeDirection = () => this.setState(prevState => ({
     ...prevState,
     sortDirection: prevState.sortDirection === 'descend' ? 'ascend' : 'descend',
   }));
+
+  handleOnChangePage = pageNumber => this.setState({
+    pagination: pageNumber,
+  });
 
   render() {
     const { checked, countPerPage, sortBy, sortDirection, pagination } = this.state;
@@ -114,51 +116,42 @@ class WordsList extends Component {
 
     return (
       <main className={classes.myWords}>
-        <Fade
-          in={loading}
-          style={{ transitionDelay: loading ? '300ms' : '' }}
-        >
+        <Fade in={loading} style={{ transitionDelay: loading ? '300ms' : '' }}>
           <LinearProgress color='secondary'/>
         </Fade>
         <div className={classes.wordsList}>
-          <div className={classes.toolbar}>
-            <div>
-              <Checkbox
-                onChange={() => this.handleOnAll()}
-                checked={isCheckedAll}
+          <Toolbar checkAllControl={<Checkbox onChange={this.handleOnAll} checked={isCheckedAll} />}>
+            <Button
+              onClick={this.handleOnChangeDirection}
+              title='Sort direction'
+              variant="raised"
+              mini
+            >
+              {sortDirection === 'descend' ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
+            </Button>
+            <div className={classes.countPerPage}>
+              <SelectWithOptions
+                value={sortBy}
+                label='Sort by'
+                onChange={event => this.handleOnChangeSelect(event, 'sortBy')}
+                options={[
+                  { key: 'en', title: 'English'},
+                  { key: 'ua', title: 'Ukrainian'},
+                  { key: 'dateCreated', title: 'Was added'},
+                  { key: 'timesLearnt', title: 'Was learnt times'},
+                  { key: 'dateLastLearnt', title: 'Was learnt last time'},
+                ]}
               />
             </div>
-            <div className={classes.toolbarButtons}>
-              <div>
-                <Button
-                  onClick={this.handleOnChangeDirection}
-                  title='Sort direction'
-                  variant="raised"
-                  mini
-                >
-                  {sortDirection === 'descend'
-                    ? <KeyboardArrowDown/>
-                    : <KeyboardArrowUp/>}
-                </Button>
-              </div>
-              <div className={classes.countPerPage}>
-                <Select
-                  value={sortBy}
-                  label='Sort by'
-                  onChange={event => this.handleOnChangeSelect(event, 'sortBy')}
-                >
-                  <MenuItem value='en'>English</MenuItem>
-                  <MenuItem value='ua'>Ukrainian</MenuItem>
-                  <MenuItem value='dateCreated'>Was added</MenuItem>
-                  <MenuItem value='timesLearnt'>Was learnt times</MenuItem>
-                  <MenuItem value='dateLastLearnt'>Was learnt last time</MenuItem>
-                </Select>
-              </div>
-              <Button title='Delete' variant="fab" mini>
-                <Delete onClick={this.handleDeleteWord}/>
-              </Button>
-            </div>
-          </div>
+            <Button
+              disabled={checked.length === 0}
+              title='Delete'
+              variant="fab"
+              mini
+            >
+              <Delete onClick={this.handleDeleteWord}/>
+            </Button>
+          </Toolbar>
           {words
             .map(word => {
               const { _id, en, ua, transcription, dateCreated } = word;
@@ -197,49 +190,25 @@ class WordsList extends Component {
                 </div>
               );
             })}
-
-          <div className={classes.paginationPanel}>
-            <div className={classes.countPerPage}>
-              <Select
-                value={Number(countPerPage)}
-                label='Words per page'
-                onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
-              >
-                <MenuItem value={5}>5</MenuItem>
-                <MenuItem value={10}>10</MenuItem>
-                <MenuItem value={20}>20</MenuItem>
-                <MenuItem value={50}>50</MenuItem>
-                <MenuItem value={100}>100</MenuItem>
-              </Select>
-            </div>
-            <div className={classes.pagination}>
-              <Button
-                onClick={() => pagination > 1 && this.setState({ pagination: parseInt(pagination, 10) - 1 })}
-                title='Previous page'
-                variant="fab"
-                mini
-              >
-                <KeyboardArrowLeft/>
-              </Button>
-              <div className={classes.paginationInput}>
-                <TextField
-                  label={wordsCount ? `Page ${pagination} of ${Math.ceil(wordsCount / countPerPage)}` : 'Page number'}
-                  onChange={e => this.setState({ pagination: e.target.value > 0 ? parseInt(e.target.value, 10) : 1 })}
-                  value={pagination}
-                  type='number'
-                  max={countPerPage ? Math.ceil(wordsCount / countPerPage) : 1}
-                  min={1}
-                />
-              </div>
-              <Button
-                onClick={() => this.setState({ pagination: parseInt(pagination, 10) + 1 })}
-                title='Next page'
-                variant="fab"
-                mini
-              >
-                <KeyboardArrowRight/>
-              </Button>
-            </div>
+          <div className={classes.bottomPanel}>
+            <SelectWithOptions
+              onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
+              value={Number(countPerPage)}
+              label='Words per pages'
+              options={[
+                { key: 1, title: 1},
+                { key: 5, title: 5},
+                { key: 10, title: 10},
+                { key: 25, title: 25},
+                { key: 50, title: 50},
+                { key: 100, title: 100},
+              ]}
+            />
+            <Pagination
+              pageNumber={pagination}
+              maxPageCount={Math.ceil(wordsCount / countPerPage)}
+              onChangePage={this.handleOnChangePage}
+            />
           </div>
         </div>
       </main>
