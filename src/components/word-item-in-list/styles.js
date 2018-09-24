@@ -25,6 +25,10 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
+  wordLoading: {
+    background: stylesVariables.colors.background,
+    opacity: stylesVariables.opacity.disabled,
+  }
 };
 
 export default styles;

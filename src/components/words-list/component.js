@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import urljoin from 'url-join';
+import uuid from 'uuid';
 import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
@@ -144,25 +145,34 @@ class WordsList extends Component {
               <Delete onClick={this.handleDeleteWord}/>
             </Button>
           </Toolbar>
-          {words
+          {loading
+            ? Array(Number(countPerPage)).fill(null)
+              .map(() => (
+                <WordItemInList
+                  id={uuid()}
+                  key={uuid()}
+                  loading={loading}
+                />
+              ))
+            : words
             .map(word => {
               const { _id, en, ua, transcription, dateCreated } = word;
               const linkToWord = urljoin(routes.words.list.root, _id);
               const isChecked = checked.includes(_id);
 
               return (
-                <div className={`${classes.word} ${isChecked ? classes.wordChosen : ''}`} key={_id}>
-                  <WordItemInList
-                    _id={_id}
-                    en={en}
-                    ua={ua}
-                    transcription={transcription}
-                    linkToWord={linkToWord}
-                    dateCreated={dateCreated}
-                    onWordCheck={this.handleOnCheck}
-                    isChecked={isChecked}
-                  />
-                </div>
+                <WordItemInList
+                  id={_id}
+                  en={en}
+                  ua={ua}
+                  transcription={transcription}
+                  linkToWord={linkToWord}
+                  dateCreated={dateCreated}
+                  onWordCheck={this.handleOnCheck}
+                  isChecked={isChecked}
+                  loading={loading}
+                  key={_id}
+                />
               );
             })}
           <div className={classes.bottomPanel}>
