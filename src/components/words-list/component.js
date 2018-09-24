@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import urljoin from 'url-join';
@@ -7,15 +6,13 @@ import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import Edit from '@material-ui/icons/Edit';
-import { Link } from 'react-router-dom';
 import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
 import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 import { Button } from '../../components-mui';
-import { ButtonWithRouter, Pagination, SelectWithOptions, Toolbar } from '..';
+import { Pagination, SelectWithOptions, Toolbar, WordItemInList } from '..';
 
 class WordsList extends Component {
   static propTypes = {
@@ -115,7 +112,7 @@ class WordsList extends Component {
     const isCheckedAll = checked.length === words.length && checked.length > 0;
 
     return (
-      <main className={classes.myWords}>
+      <main>
         <Fade in={loading} style={{ transitionDelay: loading ? '300ms' : '' }}>
           <LinearProgress color='secondary'/>
         </Fade>
@@ -143,12 +140,7 @@ class WordsList extends Component {
                 ]}
               />
             </div>
-            <Button
-              disabled={checked.length === 0}
-              title='Delete'
-              variant="fab"
-              mini
-            >
+            <Button disabled={checked.length === 0} title='Delete' variant="fab" mini>
               <Delete onClick={this.handleDeleteWord}/>
             </Button>
           </Toolbar>
@@ -160,33 +152,16 @@ class WordsList extends Component {
 
               return (
                 <div className={`${classes.word} ${isChecked ? classes.wordChosen : ''}`} key={_id}>
-                  <div>
-                    <Checkbox
-                      onChange={() => this.handleOnCheck(_id)}
-                      checked={isChecked}
-                    />
-                  </div>
-                  <div className={classes.wordText}>
-                    <span>
-                      {en && <Link className={classes.linkToWord} to={linkToWord}>{en}</Link>}
-                    </span>
-                    {transcription && ` - ${transcription}`}
-                    {ua && ` - ${ua}`}
-                  </div>
-                  <div className={classes.wordTime}>
-                    {moment(dateCreated)
-                      .fromNow()}
-                  </div>
-                  <div>
-                    <ButtonWithRouter
-                      to={urljoin(routes.words.list.root, _id, 'edit')}
-                      title='Edit'
-                      variant="fab"
-                      mini
-                    >
-                      <Edit/>
-                    </ButtonWithRouter>
-                  </div>
+                  <WordItemInList
+                    _id={_id}
+                    en={en}
+                    ua={ua}
+                    transcription={transcription}
+                    linkToWord={linkToWord}
+                    dateCreated={dateCreated}
+                    onWordCheck={this.handleOnCheck}
+                    isChecked={isChecked}
+                  />
                 </div>
               );
             })}
@@ -194,7 +169,7 @@ class WordsList extends Component {
             <SelectWithOptions
               onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
               value={Number(countPerPage)}
-              label='Words per pages'
+              label='Words per page'
               options={[
                 { key: 1, title: 1},
                 { key: 5, title: 5},

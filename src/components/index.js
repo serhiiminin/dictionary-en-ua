@@ -19,4 +19,5 @@ export { default as Notifications } from './notifications';
 export { default as Pagination } from './pagination';
 export { default as TextFieldLoading } from './text-field-loading';
 export { default as Toolbar } from './toolbar';
+export { default as WordItemInList } from './word-item-in-list';
 export { default as WordsList } from './words-list';
