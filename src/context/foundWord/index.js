@@ -39,10 +39,9 @@ class FoundWordProvider extends Component {
   state = foundWordInitialState;
 
   cleanFoundWord = () =>
-    Promise.resolve(this.setState(prevState => ({
-      ...prevState,
+    Promise.resolve(this.setState({
       foundWord: foundWordInitialState.foundWord,
-    })));
+    }));
 
   handleSetFoundWord = foundWord =>
     Promise.resolve(this.setState({

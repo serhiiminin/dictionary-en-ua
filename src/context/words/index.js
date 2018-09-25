@@ -37,7 +37,7 @@ class WordsProviderCmp extends Component {
     const { showNotification, startLoading, stopLoading, location } = this.props;
     const parsedParams = parseSearchParams(location.search);
     const query = {
-      skip: (parsedParams.pagination - 1) * parsedParams.countPerPage || 0,
+      skip: (parsedParams.page - 1) * parsedParams.countPerPage || 0,
       limit: parsedParams.countPerPage ? Number(parsedParams.countPerPage) : 10000,
       sortBy: parsedParams.sortBy,
       sortDirection: parsedParams.sortDirection === 'descend' ? -1 : 1,
@@ -45,7 +45,7 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.wordsList))
       .then(() => api.getWordsList({ ...params, query }))
-      .then(({ items, count}) => this.setState({ words: items, count }))
+      .then(({ items, count }) => this.setState({ words: items, count }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.wordsList));
   };
@@ -55,7 +55,7 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.getWordsListToLearn())
-      .then(words => this.setState({ words }))
+      .then(({ items, count }) => this.setState({ words: items, count }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.learnWord));
   };

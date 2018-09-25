@@ -65,7 +65,6 @@ class LearnWordsContainer extends Component {
     }
     if (countOfTry <= 2) {
       this.setState(prevState => ({
-        ...prevState,
         countOfTry: prevState.countOfTry + 1,
       }), () => {
         const attemptLeft = 4 - this.state.countOfTry;
@@ -89,16 +88,14 @@ class LearnWordsContainer extends Component {
     const inputValueLength = inputValue.length;
 
     if (inputValueLength < en.length) {
-      this.setState(prevState => ({
-        ...prevState,
+      this.setState({
         inputValue: en.slice(0, inputValueLength + 1),
-      }));
+      });
       return null;
     }
-    return this.setState(prevState => ({
-      ...prevState,
+    return this.setState({
       inputValue: en.slice(0, inputValueLength),
-    }));
+    });
   };
 
   onKnownWord = () => this.props.learnWord(this.state.currentWord._id);

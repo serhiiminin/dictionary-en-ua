@@ -10,7 +10,7 @@ import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
-import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
+import { joinSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 import { Button } from '../../components-mui';
 import { Pagination, SelectWithOptions, Toolbar, WordItemInList } from '..';
@@ -19,7 +19,6 @@ class WordsList extends Component {
   static propTypes = {
     classes: classesShape,
     history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
     words: PropTypes.arrayOf(
       PropTypes.shape({
         _id: PropTypes.string,
@@ -44,70 +43,55 @@ class WordsList extends Component {
     checked: [],
     sortBy: 'dateCreated',
     sortDirection: 'descend',
-    pagination: 1,
+    page: 1,
     countPerPage: 10,
   };
 
-  componentDidMount() {
-    const { location } = this.props;
-    const parsedParams = parseSearchParams(location.search);
-
-    this.setState(prevState => ({
-      ...prevState,
-      ...parsedParams,
-    }));
-    this.pushSearchParams();
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevState.countPerPage !== this.state.countPerPage || prevState.sortBy !== this.state.sortBy ||
-      prevState.sortDirection !== this.state.sortDirection || prevState.pagination !== this.state.pagination) {
+      prevState.sortDirection !== this.state.sortDirection || prevState.page !== this.state.page) {
       this.pushSearchParams();
     }
   }
 
   pushSearchParams = () => {
-    const { sortBy, sortDirection, pagination, countPerPage } = this.state;
-    const searchQuery = joinSearchParams({ sortBy, sortDirection, pagination, countPerPage });
+    const { sortBy, sortDirection, page, countPerPage } = this.state;
+    const searchQuery = joinSearchParams({ sortBy, sortDirection, page, countPerPage });
 
     this.props.history.push(`${routes.words.list.all}?${searchQuery}`);
   };
 
   handleOnCheck = id => this.setState(prevState => ({
-    ...prevState,
     checked: prevState.checked.find(wordId => wordId === id)
       ? prevState.checked.filter(wordId => wordId !== id)
       : [...prevState.checked, id]
   }));
 
   handleOnAll = () => this.setState(prevState => ({
-    ...prevState,
     checked: prevState.checked.length !== this.props.words.length
       ? [...this.props.words.map(word => word._id)]
       : []
   }));
 
-  handleDeleteWord = () => this.state.checked.length > 0 && Promise.all([
-    ...this.state.checked.map(id => this.props.deleteWord(id))
-  ])
-    .then(() => this.setState({ checked: [] }));
+  handleDeleteWord = () => this.state.checked.length > 0 &&
+    Promise.all([
+      ...this.state.checked.map(id => this.props.deleteWord(id))
+    ])
+      .then(() => this.setState({ checked: [] }));
 
   handleOnChangeSelect = (event, field) => this.setState({
-    pagination: 1,
+    page: 1,
     [field]: event.target.value
   });
 
   handleOnChangeDirection = () => this.setState(prevState => ({
-    ...prevState,
     sortDirection: prevState.sortDirection === 'descend' ? 'ascend' : 'descend',
   }));
 
-  handleOnChangePage = pageNumber => this.setState({
-    pagination: pageNumber,
-  });
+  handleOnChangePage = pageNumber => this.setState({ page: pageNumber });
 
   render() {
-    const { checked, countPerPage, sortBy, sortDirection, pagination } = this.state;
+    const { checked, countPerPage, sortBy, sortDirection, page } = this.state;
     const { classes, words, wordsCount, currentLoadingNames } = this.props;
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
     const isCheckedAll = checked.length === words.length && checked.length > 0;
@@ -118,7 +102,7 @@ class WordsList extends Component {
           <LinearProgress color='secondary'/>
         </Fade>
         <div className={classes.wordsList}>
-          <Toolbar checkAllControl={<Checkbox onChange={this.handleOnAll} checked={isCheckedAll} />}>
+          <Toolbar checkAllControl={<Checkbox onChange={this.handleOnAll} checked={isCheckedAll}/>}>
             <Button
               onClick={this.handleOnChangeDirection}
               title='Sort direction'
@@ -133,11 +117,11 @@ class WordsList extends Component {
                 label='Sort by'
                 onChange={event => this.handleOnChangeSelect(event, 'sortBy')}
                 options={[
-                  { key: 'en', title: 'English'},
-                  { key: 'ua', title: 'Ukrainian'},
-                  { key: 'dateCreated', title: 'Was added'},
-                  { key: 'timesLearnt', title: 'Was learnt times'},
-                  { key: 'dateLastLearnt', title: 'Was learnt last time'},
+                  { key: 'en', title: 'English' },
+                  { key: 'ua', title: 'Ukrainian' },
+                  { key: 'dateCreated', title: 'Was added' },
+                  { key: 'timesLearnt', title: 'Was learnt times' },
+                  { key: 'dateLastLearnt', title: 'Was learnt last time' },
                 ]}
               />
             </div>
@@ -146,7 +130,7 @@ class WordsList extends Component {
             </Button>
           </Toolbar>
           {loading
-            ? Array(Number(countPerPage)).fill(null)
+            ? Array(countPerPage).fill(null)
               .map(() => (
                 <WordItemInList
                   id={uuid()}
@@ -155,42 +139,42 @@ class WordsList extends Component {
                 />
               ))
             : words
-            .map(word => {
-              const { _id, en, ua, transcription, dateCreated } = word;
-              const linkToWord = urljoin(routes.words.list.root, _id);
-              const isChecked = checked.includes(_id);
+              .map(word => {
+                const { _id, en, ua, transcription, dateCreated } = word;
+                const linkToWord = urljoin(routes.words.list.root, _id);
+                const isChecked = checked.includes(_id);
 
-              return (
-                <WordItemInList
-                  id={_id}
-                  en={en}
-                  ua={ua}
-                  transcription={transcription}
-                  linkToWord={linkToWord}
-                  dateCreated={dateCreated}
-                  onWordCheck={this.handleOnCheck}
-                  isChecked={isChecked}
-                  loading={loading}
-                  key={_id}
-                />
-              );
-            })}
+                return (
+                  <WordItemInList
+                    id={_id}
+                    en={en}
+                    ua={ua}
+                    transcription={transcription}
+                    linkToWord={linkToWord}
+                    dateCreated={dateCreated}
+                    onWordCheck={this.handleOnCheck}
+                    isChecked={isChecked}
+                    loading={loading}
+                    key={_id}
+                  />
+                );
+              })}
           <div className={classes.bottomPanel}>
             <SelectWithOptions
               onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
               value={Number(countPerPage)}
               label='Words per page'
               options={[
-                { key: 1, title: 1},
-                { key: 5, title: 5},
-                { key: 10, title: 10},
-                { key: 25, title: 25},
-                { key: 50, title: 50},
-                { key: 100, title: 100},
+                { key: 1, title: 1 },
+                { key: 5, title: 5 },
+                { key: 10, title: 10 },
+                { key: 25, title: 25 },
+                { key: 50, title: 50 },
+                { key: 100, title: 100 },
               ]}
             />
             <Pagination
-              pageNumber={pagination}
+              pageNumber={page}
               maxPageCount={Math.ceil(wordsCount / countPerPage)}
               onChangePage={this.handleOnChangePage}
             />

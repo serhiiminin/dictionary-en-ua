@@ -11,7 +11,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
   const nextPage = Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
 
   return (
-    <div className={classes.pagination}>
+    <div className={classes.page}>
       <Button
         onClick={() => onChangePage(prevPage)}
         title='Previous page'
