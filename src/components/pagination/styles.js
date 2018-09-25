@@ -1,7 +1,7 @@
 import { stylesVariables } from '../../constants/styles-variables';
 
 const styles = {
-  pagination: {
+  page: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, auto)',
     gap: '1rem',

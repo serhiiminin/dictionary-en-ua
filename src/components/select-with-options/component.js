@@ -5,17 +5,16 @@ import { classesDefaultProps } from '../../constants/default-props';
 import { classesShape } from '../../constants/shapes';
 
 const SelectWithOptions = ({ classes, label, value, onChange, options }) => (
-  <div className={classes.countPerPage}>
-    <Select
-      label={label}
-      value={value}
-      onChange={onChange}
-    >
-      {options.map(({ key, title }) => (
-          <MenuItem value={key} key={key}>{title}</MenuItem>
-        ))}
-    </Select>
-  </div>
+  <Select
+    label={label}
+    value={value}
+    onChange={onChange}
+    className={classes.selectWithOptions}
+  >
+    {options.map(({ key, title }) => (
+      <MenuItem value={key} key={key}>{title}</MenuItem>
+    ))}
+  </Select>
 );
 
 SelectWithOptions.propTypes = {

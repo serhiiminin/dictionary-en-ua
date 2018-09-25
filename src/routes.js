@@ -10,7 +10,7 @@ const routes = {
       preview: '/words-list/:id',
       edit: '/words-list/:id/edit',
     },
-    search: '/words-search',
+    search: '/search-words',
   },
 };
 

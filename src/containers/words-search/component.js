@@ -71,7 +71,7 @@ class SearchWordContainer extends Component {
     this.setState({ searchValue: value });
 
     return !value
-      ? this.setState(prevState => ({ ...prevState, searchValue: '' }))
+      ? this.setState({ searchValue: '' })
       : this.handleSearchWord(value);
   };
 
@@ -87,10 +87,7 @@ class SearchWordContainer extends Component {
     const { saveWord, foundWord, cleanFoundWord } = this.props;
 
     return saveWord(foundWord)
-      .then(() => {
-        this.setState(prevState => ({ ...prevState }));
-        cleanFoundWord();
-      });
+      .then(() => cleanFoundWord());
   };
 
   render() {

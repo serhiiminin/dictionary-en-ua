@@ -42,7 +42,6 @@ class WordFormProvider extends Component {
         .map(item => item.id === currentId ? ({ ...item, example: value, }) : item);
 
       return ({
-        ...prevState,
         form: {
           ...prevState.form,
           examples: updatedExamples,
@@ -53,22 +52,18 @@ class WordFormProvider extends Component {
 
   handleAddNewExample = () =>
     this.setState(prevState => ({
-      ...prevState,
       form: {
         ...prevState.form,
         examples: [
           ...prevState.form.examples,
-          {
-            id: uuid(),
-            example: ''
-          }
-        ]
+          { id: uuid(),
+            example: '' }
+        ],
       }
     }));
 
   handleRemoveExample = id =>
     this.setState(prevState => ({
-      ...prevState,
       form: {
         ...prevState.form,
         examples: [...prevState.form.examples].filter(example => example.id !== id),
@@ -76,12 +71,9 @@ class WordFormProvider extends Component {
     }));
 
   handleOnFormReset = () =>
-    this.setState(prevState => ({
-      ...prevState,
-      form: {
-        ...wordFormInitialState.form
-      }
-    }));
+    this.setState({
+      form: { ...wordFormInitialState.form }
+    });
 
   render() {
     const { form } = this.state;

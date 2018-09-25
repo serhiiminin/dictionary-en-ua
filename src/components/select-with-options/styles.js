@@ -1,6 +1,7 @@
 const styles = {
-  countPerPage: {
-    width: '150px',
+  selectWithOptions: {
+    minWidth: '130px',
+    width: '100%',
   },
 };
 
