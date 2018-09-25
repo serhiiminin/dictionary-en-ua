@@ -56,11 +56,9 @@ class WordFormProvider extends Component {
         ...prevState.form,
         examples: [
           ...prevState.form.examples,
-          {
-            id: uuid(),
-            example: ''
-          }
-        ]
+          { id: uuid(),
+            example: '' }
+        ],
       }
     }));
 

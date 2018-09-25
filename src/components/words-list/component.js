@@ -10,7 +10,7 @@ import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
 import { classesShape } from '../../constants/shapes';
-import { joinSearchParams } from '../../helpers/search-params';
+import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 import { Button } from '../../components-mui';
 import { Pagination, SelectWithOptions, Toolbar, WordItemInList } from '..';
@@ -19,6 +19,7 @@ class WordsList extends Component {
   static propTypes = {
     classes: classesShape,
     history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
     words: PropTypes.arrayOf(
       PropTypes.shape({
         _id: PropTypes.string,
@@ -44,8 +45,19 @@ class WordsList extends Component {
     sortBy: 'dateCreated',
     sortDirection: 'descend',
     page: 1,
-    countPerPage: 10,
+    countPerPage: 5,
   };
+
+  componentDidMount() {
+    const { location } = this.props;
+    const parsedParams = parseSearchParams(location.search);
+
+    this.setState(prevState => ({
+      ...prevState,
+      ...parsedParams,
+    }));
+    this.pushSearchParams();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.countPerPage !== this.state.countPerPage || prevState.sortBy !== this.state.sortBy ||
