@@ -21,10 +21,6 @@ class WordsList extends Component {
     words: PropTypes.arrayOf(
       PropTypes.shape({
         _id: PropTypes.string,
-        en: PropTypes.string,
-        ua: PropTypes.string,
-        transcription: PropTypes.string,
-        dateCreated: PropTypes.string,
       })),
     wordsCount: PropTypes.number,
     deleteWord: PropTypes.func.isRequired,
@@ -139,10 +135,10 @@ class WordsList extends Component {
             </Button>
           </Toolbar>
           {loading
-            ? Array(countPerPage).fill(null)
+            ? Array(countPerPage)
+              .fill(null)
               .map(() => (
                 <WordItemInList
-                  id={uuid()}
                   key={uuid()}
                   loading={loading}
                 />

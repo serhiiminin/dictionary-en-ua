@@ -52,13 +52,13 @@ const WordItemInList = props => {
 
 WordItemInList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
-  word: {
+  word: PropTypes.shape({
     _id: PropTypes.string,
     en: PropTypes.string,
     ua: PropTypes.string,
     transcription: PropTypes.string,
     dateCreated: PropTypes.string,
-  },
+  }),
   linkToWord: PropTypes.string,
   onWordCheck: PropTypes.func,
   isChecked: PropTypes.bool,
