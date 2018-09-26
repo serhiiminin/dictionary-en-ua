@@ -5,8 +5,6 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import CloseButton from '../close-button';
 
 export const notificationType = {
@@ -43,7 +41,7 @@ const NotificationItem = ({ classes, onClick, text, type }) => (
 );
 
 NotificationItem.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string,
   type: PropTypes.string,
@@ -52,7 +50,7 @@ NotificationItem.propTypes = {
 NotificationItem.defaultProps = {
   text: '',
   type: notificationType.error,
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default NotificationItem;

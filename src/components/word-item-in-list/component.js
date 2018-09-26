@@ -5,19 +5,18 @@ import Edit from '@material-ui/icons/Edit';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import urljoin from 'url-join';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
 
 const WordItemInList = props => {
-  const { classes, isChecked, id, onWordCheck, en, ua, transcription, linkToWord, dateCreated, loading } = props;
+  const { classes, isChecked, onWordCheck, word, linkToWord, loading } = props;
+  const { _id, en, ua, transcription, dateCreated } = word;
 
   return (
     <div className={`${classes.word} ${isChecked && classes.wordChosen} ${loading && classes.wordLoading}`}>
       <div>
         <Checkbox
-          onChange={() => onWordCheck(id)}
+          onChange={() => onWordCheck(_id)}
           checked={isChecked}
           disabled={loading}
         />
@@ -27,17 +26,18 @@ const WordItemInList = props => {
         {transcription && ` - ${transcription}`}
         {ua && ` - ${ua}`}
         {loading && (
-          <Fade in={loading} style={{ transitionDelay: loading ? '300ms' : '' }}>
-            <CircularProgress color='secondary' size={20} />
+          <Fade in={loading}>
+            <CircularProgress color='secondary' size={20}/>
           </Fade>
         )}
       </div>
       <div className={classes.wordTime}>
-        {(dateCreated && moment(dateCreated).fromNow()) || '–'}
+        {(dateCreated && moment(dateCreated)
+          .fromNow()) || '–'}
       </div>
       <div>
         <ButtonWithRouter
-          to={urljoin(routes.words.list.root, id, 'edit')}
+          to={urljoin(routes.words.list.root, _id, 'edit')}
           disabled={loading}
           title='Edit'
           variant="fab"
@@ -51,27 +51,32 @@ const WordItemInList = props => {
 };
 
 WordItemInList.propTypes = {
-  classes: classesShape,
-  id: PropTypes.string,
-  en: PropTypes.string,
-  ua: PropTypes.string,
-  transcription: PropTypes.string,
+  classes: PropTypes.objectOf(PropTypes.string),
+  word: {
+    _id: PropTypes.string,
+    en: PropTypes.string,
+    ua: PropTypes.string,
+    transcription: PropTypes.string,
+    dateCreated: PropTypes.string,
+  },
   linkToWord: PropTypes.string,
-  dateCreated: PropTypes.string,
   onWordCheck: PropTypes.func,
   isChecked: PropTypes.bool,
   loading: PropTypes.bool,
 };
 
 WordItemInList.defaultProps = {
-  classes: classesDefaultProps,
-  id: null,
-  en: null,
-  ua: null,
+  classes: {},
+  word: {
+    _id: '',
+    en: null,
+    ua: null,
+    transcription: null,
+    dateCreated: null,
+    onWordCheck: null,
+  },
   onWordCheck: null,
-  transcription: null,
   linkToWord: null,
-  dateCreated: null,
   isChecked: null,
   loading: null,
 };

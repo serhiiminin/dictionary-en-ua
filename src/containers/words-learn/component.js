@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { notificationType } from '../../components/notification-item/component';
 import { loadingNamesInitialState } from '../../context/loading-names';
 import { loadingNamesShape } from '../../context/loading-names/shape';
-import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
 import { GuessedWordDescription, LearningBoard } from '../../components';
-import { classesShape } from '../../constants/shapes';
 
 class LearnWordsContainer extends Component {
   static propTypes = {
@@ -16,12 +14,12 @@ class LearnWordsContainer extends Component {
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
     currentLoadingNames: loadingNamesShape,
-    classes: classesShape,
+    classes: PropTypes.objectOf(PropTypes.string),
   };
 
   static defaultProps = {
     currentLoadingNames: loadingNamesInitialState,
-    classes: classesDefaultProps,
+    classes: {},
   };
 
   state = {

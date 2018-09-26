@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { notificationInitialState } from '../../context/notifications';
 import { notificationsListShape } from '../../context/notifications/shape';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import { NotificationItem } from '..';
 
 const Notifications = ({ children, notifications, classes, hideNotification }) => (
@@ -25,7 +23,7 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
 );
 
 Notifications.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   notifications: notificationsListShape,
   hideNotification: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
@@ -33,7 +31,7 @@ Notifications.propTypes = {
 
 Notifications.defaultProps = {
   notifications: notificationInitialState,
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default Notifications;

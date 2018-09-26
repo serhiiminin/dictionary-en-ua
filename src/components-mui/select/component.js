@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormControl, InputLabel, Select } from '@material-ui/core';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const SelectCustomized = ({ children, label, classes, ...restProps }) => (
   <FormControl className={classes.selectWrapper}>
@@ -22,12 +20,12 @@ const SelectCustomized = ({ children, label, classes, ...restProps }) => (
 
 SelectCustomized.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   label: PropTypes.string,
 };
 
 SelectCustomized.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
   label: null,
 };
 

@@ -1,10 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import List from '@material-ui/icons/List';
 import NoteAdd from '@material-ui/icons/NoteAdd';
 import Rowing from '@material-ui/icons/Rowing';
 import Search from '@material-ui/icons/Search';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
 
@@ -46,11 +45,11 @@ const HeaderNavigation = ({ classes }) => (
 );
 
 HeaderNavigation.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
 };
 
 HeaderNavigation.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default HeaderNavigation;

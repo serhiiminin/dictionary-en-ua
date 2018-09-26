@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { Button, TextField } from '../../components-mui';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
   const prevPage = Number(pageNumber) > 1 ? Number(pageNumber) - 1 : 1;
@@ -47,14 +45,14 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
 };
 
 Pagination.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPageCount: PropTypes.number,
   onChangePage: PropTypes.func.isRequired,
 };
 
 Pagination.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
   pageNumber: null,
   maxPageCount: null,
 };

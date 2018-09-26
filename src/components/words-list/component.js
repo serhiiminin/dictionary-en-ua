@@ -7,9 +7,7 @@ import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import { classesDefaultProps } from '../../constants/default-props';
 import loadingNames from '../../constants/loading-names';
-import { classesShape } from '../../constants/shapes';
 import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 import { Button } from '../../components-mui';
@@ -17,7 +15,7 @@ import { Pagination, SelectWithOptions, Toolbar, WordItemInList } from '..';
 
 class WordsList extends Component {
   static propTypes = {
-    classes: classesShape,
+    classes: PropTypes.objectOf(PropTypes.string),
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     words: PropTypes.arrayOf(
@@ -34,7 +32,7 @@ class WordsList extends Component {
   };
 
   static defaultProps = {
-    classes: classesDefaultProps,
+    classes: {},
     words: null,
     wordsCount: null,
     currentLoadingNames: null,
@@ -52,10 +50,9 @@ class WordsList extends Component {
     const { location } = this.props;
     const parsedParams = parseSearchParams(location.search);
 
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       ...parsedParams,
-    }));
+    });
     this.pushSearchParams();
   }
 
@@ -110,7 +107,7 @@ class WordsList extends Component {
 
     return (
       <main>
-        <Fade in={loading} style={{ transitionDelay: loading ? '300ms' : '' }}>
+        <Fade in={loading}>
           <LinearProgress color='secondary'/>
         </Fade>
         <div className={classes.wordsList}>
@@ -152,18 +149,14 @@ class WordsList extends Component {
               ))
             : words
               .map(word => {
-                const { _id, en, ua, transcription, dateCreated } = word;
+                const { _id } = word;
                 const linkToWord = urljoin(routes.words.list.root, _id);
                 const isChecked = checked.includes(_id);
 
                 return (
                   <WordItemInList
-                    id={_id}
-                    en={en}
-                    ua={ua}
-                    transcription={transcription}
+                    word={word}
                     linkToWord={linkToWord}
-                    dateCreated={dateCreated}
                     onWordCheck={this.handleOnCheck}
                     isChecked={isChecked}
                     loading={loading}

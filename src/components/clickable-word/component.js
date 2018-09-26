@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { classesShape } from '../../constants/shapes';
+import PropTypes from 'prop-types';
 
 const ClickableWord = ({ word, delimiter, onClick, classes }) => (
   <a href="/"
@@ -16,7 +15,7 @@ const ClickableWord = ({ word, delimiter, onClick, classes }) => (
 ClickableWord.propTypes = {
   word: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   delimiter: PropTypes.string,
 };
 

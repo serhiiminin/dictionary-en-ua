@@ -1,8 +1,6 @@
 import { Fade, LinearProgress } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import { TextField } from '../../components-mui';
 
 const TextFieldLoading = ({ classes, loading, ...restProps }) => (
@@ -18,13 +16,13 @@ const TextFieldLoading = ({ classes, loading, ...restProps }) => (
 );
 
 TextFieldLoading.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   loading: PropTypes.bool,
 };
 
 TextFieldLoading.defaultProps = {
   loading: false,
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default TextFieldLoading;

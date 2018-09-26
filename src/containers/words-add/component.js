@@ -1,6 +1,5 @@
 import React from 'react';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
+import PropTypes from 'prop-types';
 import { FormAddWord } from '../../components';
 
 const AddWordContainer = ({ classes }) => (
@@ -10,11 +9,11 @@ const AddWordContainer = ({ classes }) => (
 );
 
 AddWordContainer.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
 };
 
 AddWordContainer.defaultProps = {
-  classes: classesDefaultProps
+  classes: {}
 };
 
 export default AddWordContainer;
