@@ -50,10 +50,9 @@ class WordsList extends Component {
     const { location } = this.props;
     const parsedParams = parseSearchParams(location.search);
 
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       ...parsedParams,
-    }));
+    });
     this.pushSearchParams();
   }
 
@@ -150,18 +149,14 @@ class WordsList extends Component {
               ))
             : words
               .map(word => {
-                const { _id, en, ua, transcription, dateCreated } = word;
+                const { _id } = word;
                 const linkToWord = urljoin(routes.words.list.root, _id);
                 const isChecked = checked.includes(_id);
 
                 return (
                   <WordItemInList
-                    id={_id}
-                    en={en}
-                    ua={ua}
-                    transcription={transcription}
+                    word={word}
                     linkToWord={linkToWord}
-                    dateCreated={dateCreated}
                     onWordCheck={this.handleOnCheck}
                     isChecked={isChecked}
                     loading={loading}
