@@ -1,7 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ButtonWithRouter } from '../../components';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 
 const PageNotFoundContainer = ({ classes }) => (
@@ -14,11 +13,11 @@ const PageNotFoundContainer = ({ classes }) => (
 );
 
 PageNotFoundContainer.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
 };
 
 PageNotFoundContainer.defaultProps = {
-  classes: classesDefaultProps
+  classes: {},
 };
 
 export default PageNotFoundContainer;

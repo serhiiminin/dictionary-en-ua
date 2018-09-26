@@ -1,8 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { HeaderNavigation } from '..';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 
 const Header = ({ classes }) => (
@@ -18,11 +17,11 @@ const Header = ({ classes }) => (
 );
 
 Header.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
 };
 
 Header.defaultProps = {
-  classes: classesDefaultProps
+  classes: {},
 };
 
 export default Header;

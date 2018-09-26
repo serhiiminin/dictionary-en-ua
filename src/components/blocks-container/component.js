@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const BlocksContainer = ({ classes, children }) => (
   <div className={classes.blocksContainer}>
@@ -10,12 +8,12 @@ const BlocksContainer = ({ classes, children }) => (
 );
 
 BlocksContainer.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   children: PropTypes.node.isRequired,
 };
 
 BlocksContainer.defaultProps = {
-  classes: classesDefaultProps
+  classes: {}
 };
 
 export default BlocksContainer;

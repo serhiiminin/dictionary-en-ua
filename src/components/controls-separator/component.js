@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
+import PropTypes from 'prop-types';
 
 const ControlsSeparator = ({ children, classes, align }) => (
   <div className={`${classes.alignControls} ${classes[align]}`}>
@@ -10,14 +8,14 @@ const ControlsSeparator = ({ children, classes, align }) => (
 );
 
 ControlsSeparator.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
 };
 
 ControlsSeparator.defaultProps = {
   align: 'left',
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default ControlsSeparator;

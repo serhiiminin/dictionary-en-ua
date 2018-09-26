@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Close';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const CloseButton = ({ classes, onClick }) => (
   <button
@@ -15,12 +13,12 @@ const CloseButton = ({ classes, onClick }) => (
 );
 
 CloseButton.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
 };
 
 CloseButton.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default CloseButton;

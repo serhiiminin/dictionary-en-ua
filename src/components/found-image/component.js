@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const FoundImage = ({ classes, url }) => (
   <div
@@ -13,12 +11,12 @@ const FoundImage = ({ classes, url }) => (
 );
 
 FoundImage.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   url: PropTypes.string,
 };
 
 FoundImage.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
   url: null,
 };
 

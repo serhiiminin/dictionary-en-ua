@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const ToolbarCmp = ({ classes, checkAllControl, children }) => (
   <div className={classes.toolbar}>
@@ -11,13 +9,13 @@ const ToolbarCmp = ({ classes, checkAllControl, children }) => (
 );
 
 ToolbarCmp.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   checkAllControl: PropTypes.node,
   children: PropTypes.node.isRequired,
 };
 
 ToolbarCmp.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
   checkAllControl: null,
 };
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem, Select } from '../../components-mui';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 
 const SelectWithOptions = ({ classes, label, value, onChange, options }) => (
   <Select
@@ -18,7 +16,7 @@ const SelectWithOptions = ({ classes, label, value, onChange, options }) => (
 );
 
 SelectWithOptions.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   label: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   options: PropTypes.arrayOf(PropTypes.object),
@@ -26,7 +24,7 @@ SelectWithOptions.propTypes = {
 };
 
 SelectWithOptions.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
   options: [],
   value: null,
   label: null,

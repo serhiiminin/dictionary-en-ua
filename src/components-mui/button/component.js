@@ -1,7 +1,6 @@
-import { Button } from '@material-ui/core';
 import React from 'react';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
+import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
 
 const ButtonCustomized = ({ classes, ...restProps }) => (
   <Button
@@ -14,11 +13,11 @@ const ButtonCustomized = ({ classes, ...restProps }) => (
 );
 
 ButtonCustomized.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
 };
 
 ButtonCustomized.defaultProps = {
-  classes: classesDefaultProps
+  classes: {},
 };
 
 export default ButtonCustomized;

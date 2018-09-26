@@ -5,8 +5,6 @@ import Edit from '@material-ui/icons/Edit';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import urljoin from 'url-join';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
 
@@ -27,7 +25,7 @@ const WordItemInList = props => {
         {transcription && ` - ${transcription}`}
         {ua && ` - ${ua}`}
         {loading && (
-          <Fade in={loading} style={{ transitionDelay: loading ? '300ms' : '' }}>
+          <Fade in={loading}>
             <CircularProgress color='secondary' size={20} />
           </Fade>
         )}
@@ -51,7 +49,7 @@ const WordItemInList = props => {
 };
 
 WordItemInList.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   id: PropTypes.string,
   en: PropTypes.string,
   ua: PropTypes.string,
@@ -64,7 +62,7 @@ WordItemInList.propTypes = {
 };
 
 WordItemInList.defaultProps = {
-  classes: classesDefaultProps,
+  classes: {},
   id: null,
   en: null,
   ua: null,

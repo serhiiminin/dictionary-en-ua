@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { foundWordInitialState } from '../../context/foundWord';
 import { foundWordShape } from '../../context/foundWord/shape';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import { LineExplanation, ListOfClickableStrings } from '..';
 
 const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
@@ -48,12 +46,12 @@ const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
 FoundWordDescription.propTypes = {
   foundWord: foundWordShape,
   pushTextToInput: PropTypes.func.isRequired,
-  classes: classesShape
+  classes: PropTypes.objectOf(PropTypes.string),
 };
 
 FoundWordDescription.defaultProps = {
   foundWord: foundWordInitialState,
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default FoundWordDescription;

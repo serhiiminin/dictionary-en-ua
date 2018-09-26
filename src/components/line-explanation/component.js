@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
+import PropTypes from 'prop-types';
 
 const LineExplanation = ({ classes, label, children }) => (
   <div className={classes.lineExplanation}>
@@ -11,14 +9,14 @@ const LineExplanation = ({ classes, label, children }) => (
 );
 
 LineExplanation.propTypes = {
-  classes: classesShape,
+  classes: PropTypes.objectOf(PropTypes.string),
   label: PropTypes.node.isRequired,
   children: PropTypes.node,
 };
 
 LineExplanation.defaultProps = {
   children: null,
-  classes: classesDefaultProps,
+  classes: {},
 };
 
 export default LineExplanation;

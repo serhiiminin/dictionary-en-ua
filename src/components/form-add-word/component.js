@@ -7,8 +7,6 @@ import { loadingNamesShape } from '../../context/loading-names/shape';
 import { wordFormInitialState } from '../../context/word-form';
 import { wordFormShape } from '../../context/word-form/shape';
 import loadingNames from '../../constants/loading-names';
-import { classesDefaultProps } from '../../constants/default-props';
-import { classesShape } from '../../constants/shapes';
 import { Button, TextField } from '../../components-mui';
 import { ControlsSeparator } from '..';
 
@@ -22,13 +20,13 @@ class FormAddWord extends Component {
     onExampleChange: PropTypes.func.isRequired,
     onFormItemChange: PropTypes.func.isRequired,
     saveWord: PropTypes.func.isRequired,
-    classes: classesShape,
+    classes: PropTypes.objectOf(PropTypes.string),
   };
 
   static defaultProps = {
     form: wordFormInitialState,
     currentLoadingNames: loadingNamesInitialState,
-    classes: classesDefaultProps,
+    classes: {},
   };
 
   componentWillUnmount() {
