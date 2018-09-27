@@ -17,6 +17,7 @@ export { default as ListOfClickableStrings } from './list-of-clickable-strings';
 export { default as NotificationItem } from './notification-item';
 export { default as Notifications } from './notifications';
 export { default as Pagination } from './pagination';
+export { default as PaginationPanel } from './pagination-panel';
 export { default as TextFieldLoading } from './text-field-loading';
 export { default as Toolbar } from './toolbar';
 export { default as WordItemInList } from './word-item-in-list';

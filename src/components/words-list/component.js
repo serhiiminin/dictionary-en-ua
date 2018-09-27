@@ -11,7 +11,7 @@ import loadingNames from '../../constants/loading-names';
 import { mergeSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 import { Button } from '../../components-mui';
-import { Pagination, SelectWithOptions, Toolbar, WordItemInList } from '..';
+import { PaginationPanel, SelectWithOptions, Toolbar, WordItemInList } from '..';
 
 class WordsList extends Component {
   static propTypes = {
@@ -148,26 +148,13 @@ class WordsList extends Component {
                   />
                 );
               })}
-          <div className={classes.bottomPanel}>
-            <SelectWithOptions
-              onChange={event => this.handleOnChangeSelect(event, 'countPerPage')}
-              value={Number(countPerPage)}
-              label='Words per page'
-              options={[
-                { key: 1, title: 1 },
-                { key: 5, title: 5 },
-                { key: 10, title: 10 },
-                { key: 25, title: 25 },
-                { key: 50, title: 50 },
-                { key: 100, title: 100 },
-              ]}
-            />
-            <Pagination
-              pageNumber={page}
-              maxPageCount={Math.ceil(wordsCount / countPerPage)}
-              onChangePage={this.handleOnChangePage}
-            />
-          </div>
+          <PaginationPanel
+            countPerPage={countPerPage}
+            page={page}
+            maxPageCount={Math.ceil(wordsCount / countPerPage)}
+            onChangeCount={event => this.handleOnChangeSelect(event, 'countPerPage')}
+            onChangePage={this.handleOnChangePage}
+          />
         </div>
       </main>
     );
