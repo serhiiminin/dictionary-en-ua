@@ -13,6 +13,13 @@ import { withNotifications } from '../notifications';
 
 const WordsContext = createContext({});
 
+const INITIAL_WORD_SORT_DATA = {
+  sortBy: 'dateCreated',
+  sortDirection: 'descend',
+  page: 1,
+  countPerPage: 5,
+};
+
 const wordsInitialState = {
   words: [],
   count: 0,
@@ -33,18 +40,32 @@ class WordsProviderCmp extends Component {
 
   cleanWords = () => this.setState({ words: wordsInitialState.words });
 
-  handleFetchWords = (params = {}) => {
-    const { showNotification, startLoading, stopLoading, location } = this.props;
+  getSearchParams = () => {
+    const { location } = this.props;
+    const { sortBy, sortDirection, page, countPerPage } = INITIAL_WORD_SORT_DATA;
     const parsedParams = parseSearchParams(location.search);
+
+    return {
+      sortBy: parsedParams.sortBy || sortBy,
+      sortDirection: parsedParams.sortDirection || sortDirection,
+      page: Number(parsedParams.page) || page,
+      countPerPage: Number(parsedParams.countPerPage) || countPerPage,
+    }
+
+  };
+
+  handleFetchWords = () => {
+    const { showNotification, startLoading, stopLoading, location } = this.props;
+    const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(location.search);
     const query = {
-      skip: (parsedParams.page - 1) * parsedParams.countPerPage || 0,
-      limit: parsedParams.countPerPage ? Number(parsedParams.countPerPage) : 10000,
-      sortBy: parsedParams.sortBy,
-      sortDirection: parsedParams.sortDirection === 'descend' ? -1 : 1,
+      skip: (page - 1) * countPerPage,
+      limit: Number(countPerPage),
+      sortDirection: sortDirection === 'descend' ? -1 : 1,
+      sortBy,
     };
 
     return Promise.resolve(startLoading(loadingNames.wordsList))
-      .then(() => api.getWordsList({ ...params, query }))
+      .then(() => api.getWordsList({ query }))
       .then(({ items, count }) => this.setState({ words: items, count }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.wordsList));
@@ -132,8 +153,9 @@ class WordsProviderCmp extends Component {
       <WordsContext.Provider
         value={{
           words,
-          wordsCount: count,
           gif,
+          wordsCount: count,
+          getWordsSearchParams: this.getSearchParams,
           fetchWords: this.handleFetchWords,
           fetchWordsToLearn: this.handleFetchWordsToLearn,
           saveWord: this.handleCreateWord,
@@ -158,4 +180,4 @@ const WordsProvider = compose(
 const withWords = Cmp => props =>
   <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>;
 
-export { WordsProvider, withWords, wordsInitialState };
+export { WordsProvider, withWords };

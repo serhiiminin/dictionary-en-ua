@@ -12,6 +12,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
     <div className={classes.page}>
       <Button
         onClick={() => onChangePage(prevPage)}
+        disabled={pageNumber === 1}
         title='Previous page'
         variant="fab"
         mini
@@ -23,7 +24,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
           label={maxPageCount ? `Page ${pageNumber} of ${maxPageCount}` : 'Page number'}
           onChange={event => {
             const { value } = event.target;
-            let numberPage = value;
+            let numberPage = parseInt(value, 10);
 
             if(value > maxPageCount) numberPage = maxPageCount;
             if(value < 1) numberPage = 1;
@@ -34,6 +35,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
       </div>
       <Button
         onClick={() => onChangePage(nextPage)}
+        disabled={maxPageCount === pageNumber}
         title='Next page'
         variant="fab"
         mini
