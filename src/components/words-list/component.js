@@ -8,7 +8,7 @@ import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import loadingNames from '../../constants/loading-names';
-import { joinSearchParams, parseSearchParams } from '../../helpers/search-params';
+import { mergeSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 import { Button } from '../../components-mui';
 import { Pagination, SelectWithOptions, Toolbar, WordItemInList } from '..';
@@ -24,6 +24,7 @@ class WordsList extends Component {
       })),
     wordsCount: PropTypes.number,
     deleteWord: PropTypes.func.isRequired,
+    getWordsSearchParams: PropTypes.func.isRequired,
     currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
   };
 
@@ -36,34 +37,6 @@ class WordsList extends Component {
 
   state = {
     checked: [],
-    sortBy: 'dateCreated',
-    sortDirection: 'descend',
-    page: 1,
-    countPerPage: 5,
-  };
-
-  componentDidMount() {
-    const { location } = this.props;
-    const parsedParams = parseSearchParams(location.search);
-
-    this.setState({
-      ...parsedParams,
-    });
-    this.pushSearchParams();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.countPerPage !== this.state.countPerPage || prevState.sortBy !== this.state.sortBy ||
-      prevState.sortDirection !== this.state.sortDirection || prevState.page !== this.state.page) {
-      this.pushSearchParams();
-    }
-  }
-
-  pushSearchParams = () => {
-    const { sortBy, sortDirection, page, countPerPage } = this.state;
-    const searchQuery = joinSearchParams({ sortBy, sortDirection, page, countPerPage });
-
-    this.props.history.push(`${routes.words.list.all}?${searchQuery}`);
   };
 
   handleOnCheck = id => this.setState(prevState => ({
@@ -72,32 +45,47 @@ class WordsList extends Component {
       : [...prevState.checked, id]
   }));
 
-  handleOnAll = () => this.setState(prevState => ({
+  handleOnCheckAll = () => this.setState(prevState => ({
     checked: prevState.checked.length !== this.props.words.length
       ? [...this.props.words.map(word => word._id)]
       : []
   }));
 
   handleDeleteWord = () => this.state.checked.length > 0 &&
-    Promise.all([
-      ...this.state.checked.map(id => this.props.deleteWord(id))
-    ])
+    Promise.resolve(this.state.checked.map(id => this.props.deleteWord(id)))
       .then(() => this.setState({ checked: [] }));
 
-  handleOnChangeSelect = (event, field) => this.setState({
-    page: 1,
-    [field]: event.target.value
-  });
+  generateUrl = (route, params) => urljoin(
+    route,
+    `?${mergeSearchParams(
+      { ...params },
+      this.props.location.search,
+    )}`
+  );
 
-  handleOnChangeDirection = () => this.setState(prevState => ({
-    sortDirection: prevState.sortDirection === 'descend' ? 'ascend' : 'descend',
-  }));
+  handleOnChangeSelect = (event, field) =>
+    this.props.history.push(this.generateUrl(
+      routes.words.list.all,
+      { page: 1, [field]: event.target.value }
+    ));
 
-  handleOnChangePage = pageNumber => this.setState({ page: pageNumber });
+  handleOnChangeDirection = () => this.props.history.push(
+    this.generateUrl(
+      routes.words.list.all,
+      { sortDirection: parseSearchParams(this.props.location.search).sortDirection === 'descend' ? 'ascend' : 'descend' },
+    ));
+
+  handleOnChangePage = pageNumber => this.props.history.push(
+    this.generateUrl(
+      routes.words.list.all,
+      { page: pageNumber },
+    )
+  );
 
   render() {
-    const { checked, countPerPage, sortBy, sortDirection, page } = this.state;
-    const { classes, words, wordsCount, currentLoadingNames } = this.props;
+    const { checked } = this.state;
+    const { classes, words, wordsCount, currentLoadingNames, getWordsSearchParams, location } = this.props;
+    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(location);
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
     const isCheckedAll = checked.length === words.length && checked.length > 0;
 
@@ -107,7 +95,7 @@ class WordsList extends Component {
           <LinearProgress color='secondary'/>
         </Fade>
         <div className={classes.wordsList}>
-          <Toolbar checkAllControl={<Checkbox onChange={this.handleOnAll} checked={isCheckedAll}/>}>
+          <Toolbar checkAllControl={<Checkbox onChange={this.handleOnCheckAll} checked={isCheckedAll}/>}>
             <Button
               onClick={this.handleOnChangeDirection}
               title='Sort direction'

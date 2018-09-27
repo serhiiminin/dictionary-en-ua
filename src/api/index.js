@@ -1,5 +1,5 @@
 import urljoin from 'url-join';
-import { joinSearchParams } from '../helpers/search-params';
+import { mergeSearchParams } from '../helpers/search-params';
 import { GIPHY_API_KEY } from './credentials';
 import { WORDS, GIPHY } from './endpoints';
 import { createFetcherJson } from './fetcher';
@@ -58,7 +58,7 @@ const api = {
     return fetcher(requests.post(url, { body: params }));
   },
   getGifs: searchParams => {
-    const url = urljoin(GIPHY, `search?${joinSearchParams({
+    const url = urljoin(GIPHY, `search?${mergeSearchParams({
       api_key: GIPHY_API_KEY,
       limit: 20,
       ...searchParams

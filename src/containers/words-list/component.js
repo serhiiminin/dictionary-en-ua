@@ -12,6 +12,10 @@ class WordsListContainer extends Component {
     location: ReactRouterPropTypes.location.isRequired,
   };
 
+  componentDidMount() {
+    this.props.fetchWords();
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
       this.props.fetchWords();
