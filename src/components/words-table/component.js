@@ -94,6 +94,7 @@ class WordsTable extends Component {
         <div className={classes.wordsList}>
           <Toolbar
             checkAllControl={<Checkbox onChange={this.handleOnCheckAll} checked={isCheckedAll}/>}
+            isAnyChecked={checked.length > 0}
             sortBy={sortBy}
             sortDirection={sortDirection}
             onChangeSortDirection={this.handleOnChangeDirection}
@@ -105,6 +106,7 @@ class WordsTable extends Component {
           </Toolbar>
           <WordsList
             words={words}
+            onWordCheck={this.handleOnCheck}
             loading={loading}
             countPerPage={countPerPage}
             checked={checked}

@@ -5,7 +5,7 @@ import uuid from 'uuid';
 import routes from '../../routes';
 import { WordItemInList } from '..';
 
-const WordsList = ({ words, loading, countPerPage, checked }) =>
+const WordsList = ({ words, loading, countPerPage, checked, onWordCheck }) =>
   loading
     ? Array(countPerPage)
       .fill(null)
@@ -25,7 +25,7 @@ const WordsList = ({ words, loading, countPerPage, checked }) =>
           <WordItemInList
             word={word}
             linkToWord={linkToWord}
-            onWordCheck={this.handleOnCheck}
+            onWordCheck={onWordCheck}
             isChecked={isChecked}
             loading={loading}
             key={_id}
@@ -34,13 +34,14 @@ const WordsList = ({ words, loading, countPerPage, checked }) =>
       });
 
 WordsList.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string),
   words: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
   })),
+  classes: PropTypes.objectOf(PropTypes.string),
   loading: PropTypes.bool,
   countPerPage: PropTypes.number,
   checked: PropTypes.arrayOf(PropTypes.string),
+  onWordCheck: PropTypes.func.isRequired,
 };
 
 WordsList.defaultProps = {

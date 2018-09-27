@@ -5,7 +5,7 @@ import { Button } from '../../components-mui';
 
 const ButtonWithRouter = ({ to, staticContext, history, ...restProps }) => (
   <Button
-    onClick={() => history.location.pathname !== to && history.push(to)}
+    onClick={() => history.push(to)}
     {...restProps}
   />
 );
