@@ -22,3 +22,4 @@ export { default as TextFieldLoading } from './text-field-loading';
 export { default as Toolbar } from './toolbar';
 export { default as WordItemInList } from './word-item-in-list';
 export { default as WordsList } from './words-list';
+export { default as WordsTable } from './words-table';
