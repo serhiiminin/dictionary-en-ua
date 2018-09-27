@@ -1,10 +1,10 @@
 import { compose } from 'recompose';
 import injectSheet from 'react-jss';
-import Toolbar from './component';
+import PaginationPanel from './component';
 import styles from './styles';
 
 const enhance = compose(
-  injectSheet(styles),
+  injectSheet(styles)
 );
 
-export default enhance(Toolbar);
+export default enhance(PaginationPanel);
