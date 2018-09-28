@@ -13,9 +13,8 @@ const styles = {
   wordChosen: {
     background: stylesVariables.colors.line,
   },
-  wordText: {
-    display: 'flex',
-    alignItems: 'center',
+  wordDescription: {
+    padding: '5px 0',
   },
   linkToWord: {
     color: stylesVariables.colors.button,
@@ -28,6 +27,17 @@ const styles = {
   wordLoading: {
     background: stylesVariables.colors.background,
     opacity: stylesVariables.opacity.disabled,
+  },
+  wordTitle: {
+    fontSize: '1.1em',
+  },
+  lastLearn: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
+    justifyContent: 'start',
+    fontSize: '0.9em',
+    opacity: stylesVariables.opacity.disabled,
+    gap: '0.25em',
   }
 };
 
