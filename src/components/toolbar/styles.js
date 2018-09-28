@@ -12,7 +12,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
     gap: '1rem',
-    justifyContent: 'start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 };
