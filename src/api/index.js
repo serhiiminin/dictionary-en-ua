@@ -1,11 +1,14 @@
 import urljoin from 'url-join';
 import { mergeSearchParams } from '../helpers/search-params';
-import { GIPHY_API_KEY } from './credentials';
+import generatorApiKeys from '../helpers/generator-api-key';
+import { GIPHY_API_KEYS } from './credentials';
 import { WORDS, GIPHY } from './endpoints';
 import { createFetcherJson } from './fetcher';
 import { requests } from './request';
 
 const fetcher = createFetcherJson(window.fetch);
+const getGiphyKey = generatorApiKeys(GIPHY_API_KEYS);
+const giphyKey = getGiphyKey.next();
 
 const api = {
   createWord: body => fetcher(requests.post(WORDS, { body })),
@@ -59,8 +62,8 @@ const api = {
   },
   getGifs: searchParams => {
     const url = urljoin(GIPHY, `search?${mergeSearchParams({
-      api_key: GIPHY_API_KEY,
-      limit: 20,
+      api_key: giphyKey.value,
+      limit: 100,
       ...searchParams
     })}`);
 
