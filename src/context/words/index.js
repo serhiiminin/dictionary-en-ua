@@ -33,6 +33,7 @@ class WordsProviderCmp extends Component {
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
     setFoundWord: PropTypes.func.isRequired,
+    setGif: PropTypes.func.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
   };
 
@@ -127,20 +128,25 @@ class WordsProviderCmp extends Component {
     });
   };
 
-  handleSearchWord = params => {
-    const { showNotification, startLoading, stopLoading, setFoundWord } = this.props;
+  handleFetchWordData = params =>
+    api.searchWord(params)
+      .then(this.props.setFoundWord);
 
-    return Promise.resolve(startLoading(loadingNames.searchWord))
-      .then(() => Promise.all([
-        api.searchWord(params),
-        api.getGifs({ q: params.text }),
-      ]))
-      .then(([foundWord, gifs]) => {
+  handleFetchGif = query =>
+    api.getGifs({ q: query })
+      .then(gifs => {
         const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
         const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
-        return setFoundWord({ ...foundWord, gif: randomGif });
-      })
+        return this.props.setGif(randomGif);
+      });
+
+  handleSearchWord = params => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.searchWord))
+      .then(() => this.handleFetchWordData(params))
+      .then(() => this.handleFetchGif(params.text))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.searchWord));
   };

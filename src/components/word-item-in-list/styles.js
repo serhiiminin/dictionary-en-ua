@@ -5,7 +5,7 @@ const styles = {
     listStyle: 'none',
     display: 'grid',
     gridTemplateColumns: '1fr 18fr 4fr 1fr',
-    alignContent: 'center',
+    alignItems: 'center',
     background: stylesVariables.colors.background,
     padding: '5px 10px',
     gap: '1rem',
