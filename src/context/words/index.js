@@ -133,10 +133,10 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.searchWord))
       .then(() => Promise.all([
         api.searchWord(params),
-        api.getGifs({ q: params.text })
+        api.getGifs({ q: params.text }),
       ]))
       .then(([foundWord, gifs]) => {
-        const downsizedGifs = gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
+        const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
         const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
         return setFoundWord({ ...foundWord, gif: randomGif });
