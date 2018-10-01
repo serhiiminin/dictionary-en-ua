@@ -9,7 +9,9 @@ function* generatorApiKeys(keys) {
     const currentKey = keysWithLastUsedTime[i];
     const currentTime = Date.now();
 
-    if (currentTime - currentKey.lastUsed < 500) return false;
+    if (currentTime - currentKey.lastUsed < 500) {
+      throw new Error('No free api keys');
+    }
     currentKey.lastUsed = currentTime;
     yield currentKey.key;
     if (keysWithLastUsedTime.length - 1 === i) i = -1;
