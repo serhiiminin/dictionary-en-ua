@@ -30,13 +30,6 @@ const createFetcherJson = fetcher =>
     return fetcher(request)
       .then(checkStatus)
       .then(parseJson)
-      .catch(error => {
-        console.log(error, error.status); // eslint-disable-line no-console
-        if (error.message === 'Failed to fetch' && !window.navigator.onLine) {
-          throw new Error('Check your internet connection');
-        }
-        throw new Error(error);
-      });
   };
 
 export { createFetcherJson };

@@ -1,3 +1,5 @@
+const getSearchParams = url => new URL(url).search;
+
 const parseSearchParams = searchString => {
   const searchParams = new URLSearchParams(searchString);
 
@@ -18,4 +20,4 @@ const mergeSearchParams = (params, initialSearchParams) => {
   return searchParams.toString();
 };
 
-export { mergeSearchParams, parseSearchParams };
+export { getSearchParams, mergeSearchParams, parseSearchParams };
