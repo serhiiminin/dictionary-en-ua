@@ -20,4 +20,18 @@ const mergeSearchParams = (params, initialSearchParams) => {
   return searchParams.toString();
 };
 
-export { getSearchParams, mergeSearchParams, parseSearchParams };
+const updateSearchParamsInUrl = (url, params) => {
+  const updatedUrl = new URL(url);
+  const updatedSearchParams = mergeSearchParams(params, updatedUrl.search);
+
+  updatedUrl.search = updatedSearchParams;
+
+  return updatedUrl.toString();
+}
+
+export {
+  getSearchParams,
+  mergeSearchParams,
+  parseSearchParams,
+  updateSearchParamsInUrl
+};
