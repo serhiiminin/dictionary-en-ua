@@ -1,8 +1,6 @@
-import urljoin from 'url-join';
 import generatorApiKeys from '../helpers/generator-api-key';
-import { mergeSearchParams } from '../helpers/search-params';
+import { updateSearchParamsInUrl } from '../helpers/search-params';
 import { GIPHY_API_KEYS } from './credentials';
-import { GIPHY } from './endpoints';
 import { createFetcherJson } from './fetcher';
 
 const checkStatus = response => {
@@ -17,45 +15,48 @@ const checkStatus = response => {
 
 const parseJson = response => response.json();
 
+const updateSearchParams = (params, newSearchParams) => ({
+  ...params,
+  endpoint: updateSearchParamsInUrl(
+    params.endpoint,
+    newSearchParams,
+  )
+});
+
 const fetcher = createFetcherJson(window.fetch);
 
-const fetchProxy = params => fetcher(params)
-  .then(checkStatus)
-  .then(parseJson)
-  .catch(error => {
-    if (error.message === 'Failed to fetch') {
-      if (!window.navigator.onLine) {
-        throw new Error('Check your internet connection');
+const fetchProxy = (params, generator) =>
+  fetcher(params)
+    .then(checkStatus)
+    .then(parseJson)
+    .catch(error => {
+      if (error.message === 'Failed to fetch') {
+        if (!window.navigator.onLine) {
+          throw new Error('Check your internet connection');
+        }
       }
-    }
-    throw error;
-  });
+      throw error;
+    })
+    .catch(error => {
+      if (error.message === 'Failed to fetch') {
+        return fetchProxy(updateSearchParams(
+          params,
+          { api_key: generator.next().value }
+        ), generator);
+      }
+      throw error;
+    });
 
 const createApiKeyProxy = apiKeys => {
-  const genGiphyKey = generatorApiKeys(apiKeys);
+  const genGiphyKeyGenerator = generatorApiKeys(apiKeys);
 
-  return (prepareRequest, params) => {
-    const composeUrlWithNewKey = () => {
-      const apiKey = genGiphyKey.next();
-
-      if (apiKey.done) {
-        throw new Error('Api key error');
-      }
-      return urljoin(GIPHY, `search?${mergeSearchParams({
-        api_key: apiKey.value,
-        limit: 100,
-        ...params
-      })}`);
-    };
-
-    return fetchProxy(prepareRequest(composeUrlWithNewKey()))
-      .catch(error => {
-        if (error.message === 'Failed to fetch') {
-          return fetchProxy(prepareRequest(composeUrlWithNewKey()));
-        }
-        return error;
-      });
-  };
+  return params => fetchProxy(
+    updateSearchParams(
+      params,
+      { api_key: genGiphyKeyGenerator.next().value }
+    ),
+    genGiphyKeyGenerator
+  );
 };
 
 const apiKeyGiphyProxy = createApiKeyProxy(GIPHY_API_KEYS);

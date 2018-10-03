@@ -1,3 +1,7 @@
+import { GIPHY_API_KEYS } from '../api/credentials';
+
+const TIME_KEYS_REPEAT = GIPHY_API_KEYS.length * 200;
+
 function* generatorApiKeys(keys) {
   const keysWithLastUsedTime = keys
     .map(apiKey => ({ key: apiKey, lastUsed: null }));
@@ -6,7 +10,7 @@ function* generatorApiKeys(keys) {
     const currentKey = keysWithLastUsedTime[i];
     const currentTime = Date.now();
 
-    if (currentTime - currentKey.lastUsed < 500) {
+    if (currentTime - currentKey.lastUsed < TIME_KEYS_REPEAT) {
       throw new Error('No free api keys');
     }
 

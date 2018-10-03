@@ -1,6 +1,7 @@
 import urljoin from 'url-join';
-import { WORDS } from './endpoints';
+import { WORDS, GIPHY } from './endpoints';
 import { fetchProxy, apiKeyGiphyProxy } from './fetch-proxy';
+import { updateSearchParamsInUrl } from '../helpers/search-params';
 import { requests } from './request';
 
 const api = {
@@ -53,7 +54,14 @@ const api = {
 
     return fetchProxy(requests.post(url, { body: params }));
   },
-  getGifs: searchParams => apiKeyGiphyProxy(requests.get, searchParams)
+  getGifs: searchParams => apiKeyGiphyProxy(
+    requests.get(updateSearchParamsInUrl(
+      GIPHY,
+      {
+        limit: 100,
+        ...searchParams
+      }))
+  )
 };
 
 export { api };

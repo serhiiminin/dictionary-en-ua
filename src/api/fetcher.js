@@ -1,7 +1,7 @@
 const createFetcherJson = fetcher =>
   params => {
     const { endpoint, body, headers, ...restParams } = params;
-
+    
     const request = new Request(
       endpoint,
       {
