@@ -19,33 +19,39 @@ const parseJson = response => response.json();
 
 const fetcher = createFetcherJson(window.fetch);
 
-const fetchProxy = params =>
-  fetcher(params)
-    .then(checkStatus)
-    .then(parseJson)
-    .catch(error => {
-      if (error.message === 'Failed to fetch') {
-        if (!window.navigator.onLine) {
-          throw new Error('Check your internet connection');
-        }
+const fetchProxy = params => fetcher(params)
+  .then(checkStatus)
+  .then(parseJson)
+  .catch(error => {
+    if (error.message === 'Failed to fetch') {
+      if (!window.navigator.onLine) {
+        throw new Error('Check your internet connection');
       }
-      throw error;
-    });
+    }
+    throw error;
+  });
 
 const createApiKeyProxy = apiKeys => {
   const genGiphyKey = generatorApiKeys(apiKeys);
 
   return (prepareRequest, params) => {
-    const composeUrlWithNewKey = () => urljoin(GIPHY, `search?${mergeSearchParams({
-      api_key: genGiphyKey.next().value,
-      limit: 100,
-      ...params
-    })}`);
+    const composeUrlWithNewKey = () => {
+      const apiKey = genGiphyKey.next();
+
+      if (apiKey.done) {
+        throw new Error('Api key error');
+      }
+      return urljoin(GIPHY, `search?${mergeSearchParams({
+        api_key: apiKey.value,
+        limit: 100,
+        ...params
+      })}`);
+    };
 
     return fetchProxy(prepareRequest(composeUrlWithNewKey()))
       .catch(error => {
         if (error.message === 'Failed to fetch') {
-          return fetchProxy(prepareRequest(composeUrlWithNewKey()))
+          return fetchProxy(prepareRequest(composeUrlWithNewKey()));
         }
         return error;
       });

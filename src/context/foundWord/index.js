@@ -48,6 +48,14 @@ class FoundWordProvider extends Component {
       foundWord: normalizeWord(foundWord)
     }));
 
+  handleSetGif = gif =>
+    Promise.resolve(this.setState(prevState => ({
+      foundWord: {
+        ...prevState.foundWord,
+        gif,
+      }
+    })));
+
   render() {
     const { foundWord } = this.state;
 
@@ -55,6 +63,7 @@ class FoundWordProvider extends Component {
       <FoundWordContext.Provider
         value={{
           foundWord,
+          setGif: this.handleSetGif,
           setFoundWord: this.handleSetFoundWord,
           cleanFoundWord: this.cleanFoundWord,
         }}
