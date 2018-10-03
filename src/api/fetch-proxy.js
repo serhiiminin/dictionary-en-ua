@@ -15,6 +15,14 @@ const checkStatus = response => {
 
 const parseJson = response => response.json();
 
+const updateSearchParams = (params, newSearchParams) => ({
+  ...params,
+  endpoint: updateSearchParamsInUrl(
+    params.endpoint,
+    newSearchParams,
+  )
+});
+
 const fetcher = createFetcherJson(window.fetch);
 
 const fetchProxy = (params, generator) =>
@@ -30,24 +38,25 @@ const fetchProxy = (params, generator) =>
       throw error;
     })
     .catch(error => {
-      const paramsWithNewApiKey = {
-        ...params,
-        endpoint: updateSearchParamsInUrl(
-          params.endpoint,
-          { api_key: generator.next().value}
-        )
-      }
-
       if (error.message === 'Failed to fetch') {
-        return fetchProxy(paramsWithNewApiKey, generator)
+        return fetchProxy(updateSearchParams(
+          params,
+          { api_key: generator.next().value }
+        ), generator);
       }
       throw error;
-    })
+    });
 
 const createApiKeyProxy = apiKeys => {
   const genGiphyKeyGenerator = generatorApiKeys(apiKeys);
 
-  return params => fetchProxy(params, genGiphyKeyGenerator)
+  return params => fetchProxy(
+    updateSearchParams(
+      params,
+      { api_key: genGiphyKeyGenerator.next().value }
+    ),
+    genGiphyKeyGenerator
+  );
 };
 
 const apiKeyGiphyProxy = createApiKeyProxy(GIPHY_API_KEYS);
