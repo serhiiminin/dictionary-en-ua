@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import { TextField } from '../../components-mui';
-import { MultipleInputs, ChipSet } from '..';
+import { MultipleInputs, InputsBlock, ChipSet } from '..';
 
 
 class WordForm extends Component {
@@ -45,6 +45,12 @@ class WordForm extends Component {
 
     return (
       <form>
+        <InputsBlock title="Parts of speech">
+          <ChipSet
+            items={partOfSpeech}
+            onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
+          />
+        </InputsBlock>
         <TextField
           label="English"
           value={en}
@@ -60,12 +66,7 @@ class WordForm extends Component {
           value={transcription}
           onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
         />
-        <ChipSet
-          items={partOfSpeech}
-          blockTitle='Parts of speech'
-          onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
-          onAddItem={this.handleAddItemToArray('partOfSpeech')}
-        />
+
         <ChipSet
           items={synonyms}
           blockTitle='Synonyms'

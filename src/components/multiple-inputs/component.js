@@ -11,7 +11,7 @@ const MultipleInputs = ({ classes, items, label, blockTitle, onAddItem, onRemove
       {items.map(({ id, value }) => (
         <TextField
           key={id}
-          label={label}
+          placeholder={label}
           value={value}
           control={
             <Button
