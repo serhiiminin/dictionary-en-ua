@@ -9,7 +9,6 @@ const styles = {
   headerLink: {
     color: stylesVariables.colors.text,
     textDecoration: 'none',
-    fontFamily: '"Lucida Console", Monaco, monospace',
     fontSize: '1.5rem',
   }
 };

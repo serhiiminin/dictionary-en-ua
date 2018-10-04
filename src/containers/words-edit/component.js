@@ -9,10 +9,11 @@ class WordEdit extends Component {
     fetchWord: PropTypes.func.isRequired,
     cleanWord: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
+    editWord: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    word: {}
+    word: {},
   };
 
   componentDidMount() {
@@ -24,11 +25,12 @@ class WordEdit extends Component {
   }
 
   render() {
-    const { word } = this.props;
+    const { word, editWord } = this.props;
 
     return (
       <WordForm
         word={word}
+        onSubmit={editWord}
       />
     )
   }

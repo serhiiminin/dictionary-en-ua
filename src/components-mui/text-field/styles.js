@@ -7,7 +7,6 @@ const styles = {
     columnGap: '1rem',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: stylesVariables.margin.medium,
     gridTemplateColumns: '100fr 1fr',
   },
   textField: {

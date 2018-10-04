@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Fade, LinearProgress } from '@material-ui/core';
 import uuid from 'uuid';
-import { TextField } from '../../components-mui';
-import { MultipleInputs, ChipSet } from '..';
+import { Button, TextField } from '../../components-mui';
+import { MultipleInputs, InputsBlock, ChipSet } from '..';
+import loadingNames from '../../constants/loading-names';
+import { loadingNamesInitialState } from '../../context/loading-names';
+import { loadingNamesShape } from '../../context/loading-names/shape';
 
 
 class WordForm extends Component {
+  static propTypes = {
+    currentLoadingNames: loadingNamesShape,
+    onSubmit: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    currentLoadingNames: loadingNamesInitialState,
+  };
+
   state = {
     word: {
       en: '',
@@ -31,54 +45,79 @@ class WordForm extends Component {
       }
     }));
 
-  handleAddItemToArray = fieldKey => () =>
+  handleAddItemToArray = fieldKey => value =>
     this.setState(prevState => ({
       word: {
         ...prevState.word,
-        [fieldKey]: [...prevState.word[fieldKey], { id: uuid(), value: '' }]
+        [fieldKey]: [{ id: uuid(), value }, ...prevState.word[fieldKey]],
       }
     }));
 
   render() {
+    const { currentLoadingNames, onSubmit } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
+    const loading = currentLoadingNames.includes(loadingNames.editWord);
 
     return (
-      <form>
-        <TextField
-          label="English"
-          value={en}
-          onChange={({ target }) => this.handleFieldChange({ 'en': target.value })}
-        />
-        <TextField
-          label="Ukrainian"
-          value={ua}
-          onChange={({ target }) => this.handleFieldChange({ 'ua': target.value })}
-        />
-        <TextField
-          label="Transcription"
-          value={transcription}
-          onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
-        />
-        <ChipSet
-          items={partOfSpeech}
-          blockTitle='Parts of speech'
-          onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
+      <form onSubmit={onSubmit}>
+        <Fade in={loading}>
+          <LinearProgress color='secondary' />
+        </Fade>
+        <InputsBlock title="Main information">
+          <TextField
+            label="English"
+            value={en}
+            onChange={({ target }) => this.handleFieldChange({ 'en': target.value })}
+          />
+          <TextField
+            label="Ukrainian"
+            value={ua}
+            onChange={({ target }) => this.handleFieldChange({ 'ua': target.value })}
+          />
+          <TextField
+            label="Transcription"
+            value={transcription}
+            onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
+          />
+        </InputsBlock>
+        <InputsBlock
           onAddItem={this.handleAddItemToArray('partOfSpeech')}
-        />
-        <ChipSet
-          items={synonyms}
-          blockTitle='Synonyms'
-          onRemoveItem={this.handleRemoveItemFromArray('synonyms')}
+          title="Parts of speech"
+          controlled
+        >
+          <ChipSet
+            items={partOfSpeech}
+            onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
+          />
+        </InputsBlock>
+        <InputsBlock
           onAddItem={this.handleAddItemToArray('synonyms')}
-        />
-        <MultipleInputs
-          items={examples}
-          label='Example'
-          blockTitle='Examples'
-          onRemoveItem={this.handleRemoveItemFromArray('examples')}
+          title="Synonyms"
+          controlled
+        >
+          <ChipSet
+            items={synonyms}
+            onRemoveItem={this.handleRemoveItemFromArray('synonyms')}
+          />
+        </InputsBlock>
+        <InputsBlock
           onAddItem={this.handleAddItemToArray('examples')}
-        />
+          title="Examples"
+          controlled
+        >
+          <MultipleInputs
+            items={examples}
+            placeholder='Example'
+            onRemoveItem={this.handleRemoveItemFromArray('examples')}
+          />
+        </InputsBlock>
+        <Button
+          onClick={() => onSubmit(word._id, word)}
+          title='Save'
+        >
+          Save
+        </Button>
       </form>
     );
   }
