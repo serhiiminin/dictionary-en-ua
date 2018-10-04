@@ -1,5 +1,6 @@
 export { default as BlocksContainer } from './blocks-container';
 export { default as ButtonWithRouter } from './button-with-router';
+export { default as ChipSet } from './chip-set';
 export { default as ClickableWord } from './clickable-word';
 export { default as CloseButton } from './close-button';
 export { default as SelectWithOptions } from './select-with-options';

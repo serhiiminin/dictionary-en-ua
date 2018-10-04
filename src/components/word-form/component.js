@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 import { TextField } from '../../components-mui';
-import { MultipleInputs } from "..";
+import { MultipleInputs, ChipSet } from '..';
 
 
 class WordForm extends Component {
@@ -22,9 +23,25 @@ class WordForm extends Component {
     word: { ...prevState.word, ...newData }
   }));
 
+  handleRemoveItemFromArray = fieldKey => id =>
+    this.setState(prevState => ({
+      word: {
+        ...prevState.word,
+        [fieldKey]: prevState.word[fieldKey].filter(item => item.id !== id)
+      }
+    }));
+
+  handleAddItemToArray = fieldKey => () =>
+    this.setState(prevState => ({
+      word: {
+        ...prevState.word,
+        [fieldKey]: [...prevState.word[fieldKey], { id: uuid(), value: '' }]
+      }
+    }));
+
   render() {
     const { word } = this.state;
-    const { en, ua, transcription, examples } = word;
+    const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
 
     return (
       <form>
@@ -43,10 +60,24 @@ class WordForm extends Component {
           value={transcription}
           onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
         />
+        <ChipSet
+          items={partOfSpeech}
+          blockTitle='Parts of speech'
+          onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
+          onAddItem={this.handleAddItemToArray('partOfSpeech')}
+        />
+        <ChipSet
+          items={synonyms}
+          blockTitle='Synonyms'
+          onRemoveItem={this.handleRemoveItemFromArray('synonyms')}
+          onAddItem={this.handleAddItemToArray('synonyms')}
+        />
         <MultipleInputs
           items={examples}
           label='Example'
           blockTitle='Examples'
+          onRemoveItem={this.handleRemoveItemFromArray('examples')}
+          onAddItem={this.handleAddItemToArray('examples')}
         />
       </form>
     );
