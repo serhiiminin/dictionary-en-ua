@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Route, Switch } from 'react-router-dom';
 import { WordsTable } from '../../components';
-import routes from '../../routes';
-import WordEdit from '../words-edit';
 
 class WordsListContainer extends Component {
   static propTypes = {
@@ -28,12 +25,9 @@ class WordsListContainer extends Component {
   }
 
   render() {
+
     return (
-      <Switch>
-        <Route exact path={routes.words.list.all} component={WordsTable}/>
-        <Route exact path={routes.words.list.preview} render={() => 'Preview'}/>
-        <Route exact path={routes.words.list.edit} component={WordEdit}/>
-      </Switch>
+      <WordsTable/>
     );
   }
 }
