@@ -1,4 +1,4 @@
-import { stylesVariables } from '../constants/styles-variables';
+import stylesVariables from '../constants/styles-variables';
 import texture from '../images/texture.png';
 
 const styles = {

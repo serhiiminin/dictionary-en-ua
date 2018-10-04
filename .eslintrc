@@ -19,51 +19,10 @@
     "jest": true
   },
   "rules": {
-    "import/exports-last": "off",
-    "import/first": "off",
-    "import/no-cycle": 0,
-    "import/no-useless-path-segments": 1,
-    "import/no-named-as-default-member": "off",
-    "import/prefer-default-export": "off",
-    "react/destructuring-assignment": 0,
     "react/jsx-filename-extension": 0,
-    "react/forbid-prop-types": 1,
-    "react/sort-comp": 1,
-    "react/prop-types": 1,
-    "react/no-access-state-in-setstate": 1,
-    "react/require-default-props": 1,
-    "react/no-unused-prop-types": 1,
-    "react/no-did-mount-set-state": "off",
-    "function-paren-newline": "off",
-    "jsx-a11y/href-no-hash": "off",
-    "no-unused-vars": 1,
-    "arrow-parens": [
-      "warn",
-      "as-needed"
-    ],
-    "max-len": [
-      "warn",
-      120,
-      2,
-      {
-        "ignoreUrls": true,
-        "ignoreComments": false,
-        "ignoreRegExpLiterals": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true
-      }
-    ],
-    "newline-after-var": [
-      "warn"
-    ],
     "no-underscore-dangle": "off",
-    "object-curly-newline": [
-      "warn",
-      {
-        "consistent": true
-      }
-    ],
-    "react/no-typos": "off"
+    "react/destructuring-assignment": 0,
+    "import/no-cycle": 0
   },
   "globals": {
     "document": true,

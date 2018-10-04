@@ -1,4 +1,4 @@
-import { requests } from './request';
+import requests from './request';
 
 describe('requests', () => {
   const url = 'http://example.com';

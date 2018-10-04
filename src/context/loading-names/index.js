@@ -26,6 +26,7 @@ class LoadingNamesProvider extends Component {
 
   render() {
     const { currentLoadingNames } = this.state;
+    const { children } = this.props;
 
     return (
       <LoadingNamesContext.Provider
@@ -34,7 +35,7 @@ class LoadingNamesProvider extends Component {
           startLoading: this.handleStartLoading,
           stopLoading: this.handleStopLoading,
         }}
-      >{this.props.children}</LoadingNamesContext.Provider>
+      >{children}</LoadingNamesContext.Provider>
     );
   }
 }
@@ -42,4 +43,4 @@ class LoadingNamesProvider extends Component {
 const withLoadingNames = Cmp => props =>
   <LoadingNamesContext.Consumer>{value => <Cmp {...value} {...props} />}</LoadingNamesContext.Consumer>;
 
-export { LoadingNamesProvider, withLoadingNames, loadingNamesInitialState };
+export { LoadingNamesProvider, withLoadingNames };

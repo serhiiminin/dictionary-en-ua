@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import { stylesVariables } from '../constants/styles-variables';
+import stylesVariables from '../constants/styles-variables';
 import { Header, BlocksContainer, Notifications } from '../components';
 import {
   MainContainer,
@@ -44,11 +44,9 @@ const Root = () => (
               <Route exact path={routes.login} render={() => 'login'}/>
               <Route exact path={routes.words.add} component={WordsAddContainer}/>
               <Route exact path={routes.words.learn} component={WordsLearnContainer}/>
-              <Switch>
-                <Route exact path={routes.words.list.all} component={WordsListContainer}/>
-                <Route exact path={routes.words.list.preview} render={() => 'Preview'}/>
-                <Route exact path={routes.words.list.edit} component={WordsEditContainer}/>
-              </Switch>
+              <Route exact path={routes.words.list.all} component={WordsListContainer}/>
+              <Route exact path={routes.words.list.preview} render={() => 'Preview'}/>
+              <Route exact path={routes.words.list.edit} component={WordsEditContainer}/>
               <Route exact path={routes.words.search} component={WordsSearchContainer}/>
               <Route component={PageNotFoundContainer}/>
             </Switch>

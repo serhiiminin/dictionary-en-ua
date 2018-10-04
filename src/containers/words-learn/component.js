@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { notificationType } from '../../components/notification-item/component';
-import { loadingNamesInitialState } from '../../context/loading-names';
-import { loadingNamesShape } from '../../context/loading-names/shape';
 import loadingNames from '../../constants/loading-names';
 import { GuessedWordDescription, LearningBoard } from '../../components';
 
@@ -13,12 +11,12 @@ class LearnWordsContainer extends Component {
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
-    currentLoadingNames: loadingNamesShape,
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     classes: PropTypes.objectOf(PropTypes.string),
   };
 
   static defaultProps = {
-    currentLoadingNames: loadingNamesInitialState,
+    currentLoadingNames: [],
     classes: {},
   };
 

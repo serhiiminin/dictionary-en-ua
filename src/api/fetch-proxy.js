@@ -1,7 +1,7 @@
 import generatorApiKeys from '../helpers/generator-api-key';
 import { updateSearchParamsInUrl } from '../helpers/search-params';
-import { GIPHY_API_KEYS } from './credentials';
-import { createFetcherJson } from './fetcher';
+import GIPHY_API_KEYS from './credentials';
+import createFetcherJson from './create-fetcher';
 
 const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {

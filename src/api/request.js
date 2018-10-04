@@ -26,4 +26,4 @@ const requests = {
   }),
 };
 
-export { requests };
+export default requests;

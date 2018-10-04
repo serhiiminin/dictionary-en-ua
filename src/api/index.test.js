@@ -1,4 +1,4 @@
-import { api } from '.';
+import api from '.';
 
 describe('api', () => {
   test('getWord', () => {

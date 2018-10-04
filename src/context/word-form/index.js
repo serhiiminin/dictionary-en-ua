@@ -98,4 +98,4 @@ class WordFormProvider extends Component {
 const withWordForm = Cmp => props =>
   <WordFormContext.Consumer>{value => <Cmp {...value} {...props} />}</WordFormContext.Consumer>;
 
-export { WordFormProvider, withWordForm, wordFormInitialState };
+export { WordFormProvider, withWordForm };

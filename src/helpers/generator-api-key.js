@@ -1,4 +1,4 @@
-import { GIPHY_API_KEYS } from '../api/credentials';
+import GIPHY_API_KEYS from '../api/credentials';
 
 const TIME_KEYS_REPEAT = GIPHY_API_KEYS.length * 200;
 
