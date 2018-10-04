@@ -104,6 +104,16 @@ class WordsProviderCmp extends Component {
       .finally(() => stopLoading(loadingNames.saveWord));
   };
 
+  handleEditWord = (wordId, data) => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.editWord))
+      .then(() => api.updateWord(wordId, data))
+      .then(() => showNotification('The word has been updated successfully', notificationType.success))
+      .catch(err => showNotification(err.message, notificationType.error))
+      .finally(() => stopLoading(loadingNames.editWord));
+  };
+
   handleDeleteWord = id => {
     const { showNotification, startLoading, stopLoading } = this.props;
 
@@ -174,6 +184,7 @@ class WordsProviderCmp extends Component {
           fetchWordsList: this.handleFetchWordsList,
           fetchWordsToLearn: this.handleFetchWordsToLearn,
           saveWord: this.handleCreateWord,
+          editWord: this.handleEditWord,
           searchWord: this.handleSearchWord,
           learnWord: this.handleLearnWord,
           relearnWord: this.handleRelearnWord,

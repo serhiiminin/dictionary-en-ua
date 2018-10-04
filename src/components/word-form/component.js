@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Fade, LinearProgress } from '@material-ui/core';
 import uuid from 'uuid';
-import { TextField } from '../../components-mui';
+import { Button, TextField } from '../../components-mui';
 import { MultipleInputs, InputsBlock, ChipSet } from '..';
 import loadingNames from '../../constants/loading-names';
 import { loadingNamesInitialState } from '../../context/loading-names';
@@ -11,6 +12,7 @@ import { loadingNamesShape } from '../../context/loading-names/shape';
 class WordForm extends Component {
   static propTypes = {
     currentLoadingNames: loadingNamesShape,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -52,13 +54,13 @@ class WordForm extends Component {
     }));
 
   render() {
-    const { currentLoadingNames } = this.props;
+    const { currentLoadingNames, onSubmit } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
     const loading = currentLoadingNames.includes(loadingNames.editWord);
 
     return (
-      <form>
+      <form onSubmit={onSubmit}>
         <Fade in={loading}>
           <LinearProgress color='secondary' />
         </Fade>
@@ -110,6 +112,12 @@ class WordForm extends Component {
             onRemoveItem={this.handleRemoveItemFromArray('examples')}
           />
         </InputsBlock>
+        <Button
+          onClick={() => onSubmit(word._id, word)}
+          title='Save'
+        >
+          Save
+        </Button>
       </form>
     );
   }
