@@ -31,7 +31,7 @@ class LearnWordsContainer extends Component {
 
   static getDerivedStateFromProps = (nextProps, prevState) => ({
       ...prevState,
-      currentWord: nextProps.words[0],
+      currentWord: nextProps.wordsList[0],
     });
 
   componentDidMount() {

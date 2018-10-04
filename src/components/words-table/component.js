@@ -12,7 +12,7 @@ import { PaginationPanel, Toolbar, WordsList } from '..';
 
 class WordsTable extends Component {
   static propTypes = {
-    words: PropTypes.arrayOf(
+    wordsList: PropTypes.arrayOf(
       PropTypes.shape({
         _id: PropTypes.string,
       })),
@@ -27,7 +27,7 @@ class WordsTable extends Component {
 
   static defaultProps = {
     classes: {},
-    words: null,
+    wordsList: null,
     wordsCount: null,
     currentLoadingNames: null,
   };
@@ -43,8 +43,8 @@ class WordsTable extends Component {
   }));
 
   handleOnCheckAll = () => this.setState(prevState => ({
-    checked: prevState.checked.length !== this.props.words.length
-      ? [...this.props.words.map(word => word._id)]
+    checked: prevState.checked.length !== this.props.wordsList.length
+      ? [...this.props.wordsList.map(word => word._id)]
       : []
   }));
 
@@ -81,10 +81,10 @@ class WordsTable extends Component {
 
   render() {
     const { checked } = this.state;
-    const { classes, words, wordsCount, currentLoadingNames, getWordsSearchParams, location } = this.props;
+    const { classes, wordsList, wordsCount, currentLoadingNames, getWordsSearchParams, location } = this.props;
     const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(location);
     const loading = currentLoadingNames.includes(loadingNames.wordsList);
-    const isCheckedAll = checked.length === words.length && checked.length > 0;
+    const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
 
     return (
       <main>
@@ -105,7 +105,7 @@ class WordsTable extends Component {
             </Button>
           </Toolbar>
           <WordsList
-            words={words}
+            wordsList={wordsList}
             onWordCheck={this.handleOnCheck}
             loading={loading}
             countPerPage={countPerPage}
