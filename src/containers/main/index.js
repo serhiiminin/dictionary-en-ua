@@ -1,11 +1,10 @@
-import React from 'react';
-import trident from '../../images/trident.svg';
+import { compose } from 'recompose';
+import injectSheet from 'react-jss';
+import MainContainer from './component';
+import styles from './styles';
 
-const MainContainer = () => (
-  <div>
-    <img src={trident} alt="trident"/>
-    <h3>Учітесь, читайте, І чужому научайтесь, Й свого не цурайтесь</h3>
-  </div>
+const enhance = compose(
+  injectSheet(styles)
 );
 
-export default MainContainer;
+export default enhance(MainContainer);
