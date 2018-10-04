@@ -12,7 +12,6 @@ const styles = {
   },
   '@global *': {
     boxSizing: 'border-box',
-    fontFamily: '"Times New Roman", Times, serif',
   },
 };
 

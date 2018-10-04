@@ -47,7 +47,7 @@ class WordForm extends Component {
     this.setState(prevState => ({
       word: {
         ...prevState.word,
-        [fieldKey]: [...prevState.word[fieldKey], { id: uuid(), value }]
+        [fieldKey]: [{ id: uuid(), value }, ...prevState.word[fieldKey]],
       }
     }));
 

@@ -23,19 +23,20 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    fontSize: '.9em',
   },
   wordLoading: {
     background: stylesVariables.colors.background,
     opacity: stylesVariables.opacity.disabled,
   },
   wordTitle: {
-    fontSize: '1.1em',
+    fontSize: '1em',
   },
   lastLearn: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
     justifyContent: 'start',
-    fontSize: '0.9em',
+    fontSize: '0.85em',
     opacity: stylesVariables.opacity.disabled,
     gap: '0.25em',
   }
