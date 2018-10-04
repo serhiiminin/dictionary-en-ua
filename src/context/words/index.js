@@ -7,7 +7,7 @@ import { api } from '../../api';
 import { notificationType } from '../../components/notification-item/component';
 import loadingNames from '../../constants/loading-names';
 import { parseSearchParams } from '../../helpers/search-params';
-import { withFoundWord } from '../foundWord';
+import { withFoundWord } from '../found-word';
 import { withLoadingNames } from '../loading-names';
 import { withNotifications } from '../notifications';
 

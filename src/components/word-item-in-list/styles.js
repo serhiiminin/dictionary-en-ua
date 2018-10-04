@@ -4,7 +4,7 @@ const styles = {
   word: {
     listStyle: 'none',
     display: 'grid',
-    gridTemplateColumns: '1fr 18fr 4fr 1fr',
+    gridTemplateColumns: '1fr 16fr 6fr 1fr',
     alignItems: 'center',
     background: stylesVariables.colors.background,
     padding: '5px 10px',

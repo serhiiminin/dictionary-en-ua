@@ -39,7 +39,7 @@ class WordFormProvider extends Component {
 
     this.setState(prevState => {
       const updatedExamples = [...prevState.form.examples]
-        .map(item => item.id === currentId ? ({ ...item, example: value, }) : item);
+        .map(item => item.id === currentId ? ({ ...item, value, }) : item);
 
       return ({
         form: {
@@ -57,7 +57,7 @@ class WordFormProvider extends Component {
         examples: [
           ...prevState.form.examples,
           { id: uuid(),
-            example: '' }
+            value: '' }
         ],
       }
     }));

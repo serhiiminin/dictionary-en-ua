@@ -1,7 +1,7 @@
 import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import { withFoundWord } from '../../context/foundWord';
+import { withFoundWord } from '../../context/found-word';
 import { withLoadingNames } from '../../context/loading-names';
 import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';

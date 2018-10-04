@@ -14,6 +14,7 @@ export { default as HeaderNavigation } from './header-navigation';
 export { default as LearningBoard } from './learning-board';
 export { default as LineExplanation } from './line-explanation';
 export { default as ListOfClickableStrings } from './list-of-clickable-strings';
+export { default as MultipleInputs } from './multiple-inputs';
 export { default as NotificationItem } from './notification-item';
 export { default as Notifications } from './notifications';
 export { default as Pagination } from './pagination';

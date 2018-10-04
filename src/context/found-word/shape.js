@@ -10,7 +10,7 @@ const foundWordShape = PropTypes.shape({
   examples: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      example: PropTypes.string,
+      value: PropTypes.string,
     })
   )
 });

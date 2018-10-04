@@ -8,8 +8,8 @@ import {
   FoundWordExamples,
   FoundImage
 } from '../../components';
-import { foundWordInitialState } from '../../context/foundWord';
-import { foundWordShape } from '../../context/foundWord/shape';
+import { foundWordInitialState } from '../../context/found-word';
+import { foundWordShape } from '../../context/found-word/shape';
 import { loadingNamesShape } from '../../context/loading-names/shape';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { foundWordInitialState } from '../../context/foundWord';
-import { foundWordShape } from '../../context/foundWord/shape';
+import { foundWordInitialState } from '../../context/found-word';
+import { foundWordShape } from '../../context/found-word/shape';
 import { LineExplanation, ListOfClickableStrings } from '..';
 
 const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {

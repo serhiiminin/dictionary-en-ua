@@ -9,7 +9,7 @@ import { GuessedWordDescription, LearningBoard } from '../../components';
 class LearnWordsContainer extends Component {
   static propTypes = {
     fetchWordsToLearn: PropTypes.func.isRequired,
-    cleanWords: PropTypes.func.isRequired,
+    cleanWordsList: PropTypes.func.isRequired,
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
@@ -39,7 +39,7 @@ class LearnWordsContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.props.cleanWords();
+    this.props.cleanWordsList();
   }
 
   onChangeInput = event => this.setState({ inputValue: event.target.value });
