@@ -1,28 +1,20 @@
-import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, TextField } from '../../components-mui';
+import { Chip } from '@material-ui/core';
+import TagFacesIcon from '@material-ui/icons/TagFaces';
+import { Button } from '../../components-mui';
 
-const MultipleInputs = ({ classes, items, label, blockTitle, onAddItem, onRemoveItem }) =>
+const ChipSet = ({ classes, items, blockTitle, onAddItem, onRemoveItem }) =>
   items.length > 0 && (
     <div className={classes.multipleInputs}>
       <h3 className={classes.blockTitle}>{blockTitle}</h3>
       {items.map(({ id, value }) => (
-        <TextField
+        <Chip
           key={id}
-          label={label}
-          value={value}
-          control={
-            <Button
-              onClick={() => onRemoveItem(id)}
-              title='Remove example'
-              variant="fab"
-              mini
-            >
-              <DeleteIcon/>
-            </Button>
-          }
+          label={value}
+          icon={<TagFacesIcon/>}
+          onDelete={() => onRemoveItem(id)}
         />
       ))}
       <Button
@@ -36,7 +28,7 @@ const MultipleInputs = ({ classes, items, label, blockTitle, onAddItem, onRemove
     </div>
   );
 
-MultipleInputs.propTypes = {
+ChipSet.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -48,11 +40,11 @@ MultipleInputs.propTypes = {
   onRemoveItem: PropTypes.func.isRequired,
 };
 
-MultipleInputs.defaultProps = {
+ChipSet.defaultProps = {
   classes: {},
   items: [],
   label: null,
   blockTitle: null,
 };
 
-export default MultipleInputs;
+export default ChipSet;
