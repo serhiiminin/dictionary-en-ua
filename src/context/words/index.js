@@ -21,7 +21,8 @@ const INITIAL_WORD_SORT_DATA = {
 };
 
 const wordsInitialState = {
-  words: [],
+  wordsList: [],
+  word: {},
   count: 0,
   gif: '',
 };
@@ -38,7 +39,9 @@ class WordsProviderCmp extends Component {
 
   state = wordsInitialState;
 
-  cleanWords = () => this.setState({ words: wordsInitialState.words });
+  cleanWordsList = () => this.setState({ wordsList: wordsInitialState.wordsList });
+
+  cleanWord = () => this.setState({ word: wordsInitialState.word });
 
   getSearchParams = () => {
     const { location } = this.props;
@@ -54,7 +57,17 @@ class WordsProviderCmp extends Component {
 
   };
 
-  handleFetchWords = () => {
+  handleFetchWord = wordId => {
+    const { showNotification, startLoading, stopLoading } = this.props;
+
+    return Promise.resolve(startLoading(loadingNames.editWord))
+      .then(() => api.getWord(wordId))
+      .then(word => this.setState({ word }))
+      .catch(err => showNotification(err.message, notificationType.error))
+      .finally(() => stopLoading(loadingNames.editWord));
+  };
+
+  handleFetchWordsList = () => {
     const { showNotification, startLoading, stopLoading, location } = this.props;
     const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(location.search);
     const query = {
@@ -66,7 +79,7 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.wordsList))
       .then(() => api.getWordsList({ query }))
-      .then(({ items, count }) => this.setState({ words: items, count }))
+      .then(({ items, count }) => this.setState({ wordsList: items, count }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.wordsList));
   };
@@ -76,7 +89,7 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.getWordsListToLearn())
-      .then(({ items, count }) => this.setState({ words: items, count }))
+      .then(({ items, count }) => this.setState({ wordsList: items, count }))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.learnWord));
   };
@@ -98,7 +111,7 @@ class WordsProviderCmp extends Component {
       .then(() => api.deleteWord(id))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.deleteWord))
-      .then(() => this.handleFetchWords());
+      .then(() => this.handleFetchWordsList());
   };
 
   handleLearnWord = wordId => {
@@ -107,7 +120,7 @@ class WordsProviderCmp extends Component {
     return Promise.resolve(startLoading(loadingNames.learnWord))
       .then(() => api.learnWord(wordId))
       .then(() => this.setState(prevState => ({
-        words: [...prevState.words.filter(word => word._id !== wordId)]
+        wordsList: [...prevState.wordsList.filter(word => word._id !== wordId)]
       })))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingNames.learnWord));
@@ -116,11 +129,11 @@ class WordsProviderCmp extends Component {
 
   handleRelearnWord = wordId => {
     this.setState(prevState => {
-      const wordToRelearn = prevState.words.find(word => word._id === wordId);
+      const wordToRelearn = prevState.wordsList.find(word => word._id === wordId);
 
       return ({
-        words: [
-          ...prevState.words.filter(word => word._id !== wordToRelearn._id),
+        wordsList: [
+          ...prevState.wordsList.filter(word => word._id !== wordToRelearn._id),
           wordToRelearn,
         ]
       });
@@ -146,24 +159,27 @@ class WordsProviderCmp extends Component {
   };
 
   render() {
-    const { words, count, gif } = this.state;
+    const { wordsList, word, count, gif } = this.state;
     const { children } = this.props;
 
     return (
       <WordsContext.Provider
         value={{
-          words,
+          word,
+          wordsList,
           gif,
           wordsCount: count,
           getWordsSearchParams: this.getSearchParams,
-          fetchWords: this.handleFetchWords,
+          fetchWord: this.handleFetchWord,
+          fetchWordsList: this.handleFetchWordsList,
           fetchWordsToLearn: this.handleFetchWordsToLearn,
           saveWord: this.handleCreateWord,
           searchWord: this.handleSearchWord,
           learnWord: this.handleLearnWord,
           relearnWord: this.handleRelearnWord,
           deleteWord: this.handleDeleteWord,
-          cleanWords: this.cleanWords,
+          cleanWordsList: this.cleanWordsList,
+          cleanWord: this.cleanWord,
         }}
       >{children}</WordsContext.Provider>
     );

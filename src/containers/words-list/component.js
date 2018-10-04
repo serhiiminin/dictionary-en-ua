@@ -4,26 +4,27 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Route, Switch } from 'react-router-dom';
 import { WordsTable } from '../../components';
 import routes from '../../routes';
+import WordEdit from '../words-edit';
 
 class WordsListContainer extends Component {
   static propTypes = {
-    fetchWords: PropTypes.func.isRequired,
-    cleanWords: PropTypes.func.isRequired,
+    fetchWordsList: PropTypes.func.isRequired,
+    cleanWordsList: PropTypes.func.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
   };
 
   componentDidMount() {
-    this.props.fetchWords();
+    this.props.fetchWordsList();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      this.props.fetchWords();
+      this.props.fetchWordsList();
     }
   }
 
   componentWillUnmount() {
-    this.props.cleanWords();
+    this.props.cleanWordsList();
   }
 
   render() {
@@ -31,7 +32,7 @@ class WordsListContainer extends Component {
       <Switch>
         <Route exact path={routes.words.list.all} component={WordsTable}/>
         <Route exact path={routes.words.list.preview} render={() => 'Preview'}/>
-        <Route exact path={routes.words.list.edit} render={() => 'Edit'}/>
+        <Route exact path={routes.words.list.edit} component={WordEdit}/>
       </Switch>
     );
   }

@@ -5,7 +5,7 @@ import uuid from 'uuid';
 import routes from '../../routes';
 import { WordItemInList } from '..';
 
-const WordsList = ({ words, loading, countPerPage, checked, onWordCheck }) =>
+const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck }) =>
   loading
     ? Array(countPerPage)
       .fill(null)
@@ -15,7 +15,7 @@ const WordsList = ({ words, loading, countPerPage, checked, onWordCheck }) =>
           loading={loading}
         />
       ))
-    : words
+    : wordsList
       .map(word => {
         const { _id } = word;
         const linkToWord = urljoin(routes.words.list.root, _id);
