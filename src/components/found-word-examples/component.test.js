@@ -18,7 +18,7 @@ describe('Clickable Word', () => {
     const wrapper = shallow(
       <FoundWordExample
         foundWord={{
-          examples: [{ example: 'example', id: '1'}]
+          examples: [{ value: 'example', id: '1'}]
         }}
         pushTextToInput={() => {}}
       />

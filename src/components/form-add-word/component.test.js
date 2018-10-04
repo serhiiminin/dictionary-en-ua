@@ -55,7 +55,7 @@ describe('Form add word', () => {
     wrapper.setProps({
       form: {
         examples: [{
-          example: 'example',
+          value: 'example',
           id: 'id',
         }],
       }
@@ -69,7 +69,7 @@ describe('Form add word', () => {
     wrapper.setProps({
       form: {
         examples: [{
-          example: 'example',
+          value: 'example',
           id: 'id',
         }],
       },

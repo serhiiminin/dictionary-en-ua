@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const exampleShape = PropTypes.shape({
-  example: PropTypes.string,
+  value: PropTypes.string,
   id: PropTypes.string,
 });
 

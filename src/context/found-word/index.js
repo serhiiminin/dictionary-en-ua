@@ -11,22 +11,24 @@ const foundWordInitialState = {
 const mergeArrays = (data, field) =>
   Array.from(
     new Set(
-      data && data.reduce((res, val) =>
-        val[field]
-          ? [...res, ...val[field]]
-          : [...res],
-      [])));
+      data.reduce(
+        (res, val) => val[field] ? [...res, ...val[field]] : [...res],
+        []
+      )
+    )
+  );
+
+const addIdForArrayItems = items => items.map(item => ({ value: item, id: uuid() }));
 
 const normalizeWord = (wordData = {}) => {
   const { en, ua, transcription, results = [], ...rest } = wordData;
 
-  const partOfSpeech = results && Array.from(new Set(results.map(item => item.partOfSpeech)));
-  const examples = mergeArrays(results, 'examples')
-    .map(example => ({ example, id: uuid() }));
-  const definitions = results && results.map(item => item.definition);
-  const synonyms = mergeArrays(results, 'synonyms');
-  const antonyms = mergeArrays(results, 'antonyms');
-  const similarTo = mergeArrays(results, 'similarTo');
+  const partOfSpeech = addIdForArrayItems(Array.from(new Set(results.map(item => item.partOfSpeech))));
+  const examples = addIdForArrayItems(mergeArrays(results, 'examples'));
+  const definitions = addIdForArrayItems(results.map(item => item.definition));
+  const synonyms = addIdForArrayItems(mergeArrays(results, 'synonyms'));
+  const antonyms = addIdForArrayItems(mergeArrays(results, 'antonyms'));
+  const similarTo = addIdForArrayItems(mergeArrays(results, 'similarTo'));
 
   return { en, ua, transcription, examples, definitions, similarTo, synonyms, antonyms, partOfSpeech, ...rest };
 };
