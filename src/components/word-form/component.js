@@ -31,11 +31,11 @@ class WordForm extends Component {
       }
     }));
 
-  handleAddItemToArray = fieldKey => () =>
+  handleAddItemToArray = fieldKey => value =>
     this.setState(prevState => ({
       word: {
         ...prevState.word,
-        [fieldKey]: [...prevState.word[fieldKey], { id: uuid(), value: '' }]
+        [fieldKey]: [...prevState.word[fieldKey], { id: uuid(), value }]
       }
     }));
 
@@ -45,41 +45,54 @@ class WordForm extends Component {
 
     return (
       <form>
-        <InputsBlock title="Parts of speech">
+        <InputsBlock title="Main information">
+          <TextField
+            label="English"
+            value={en}
+            onChange={({ target }) => this.handleFieldChange({ 'en': target.value })}
+          />
+          <TextField
+            label="Ukrainian"
+            value={ua}
+            onChange={({ target }) => this.handleFieldChange({ 'ua': target.value })}
+          />
+          <TextField
+            label="Transcription"
+            value={transcription}
+            onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
+          />
+        </InputsBlock>
+        <InputsBlock
+          onAddItem={this.handleAddItemToArray('partOfSpeech')}
+          title="Parts of speech"
+          controlled
+        >
           <ChipSet
             items={partOfSpeech}
             onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
           />
         </InputsBlock>
-        <TextField
-          label="English"
-          value={en}
-          onChange={({ target }) => this.handleFieldChange({ 'en': target.value })}
-        />
-        <TextField
-          label="Ukrainian"
-          value={ua}
-          onChange={({ target }) => this.handleFieldChange({ 'ua': target.value })}
-        />
-        <TextField
-          label="Transcription"
-          value={transcription}
-          onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
-        />
-
-        <ChipSet
-          items={synonyms}
-          blockTitle='Synonyms'
-          onRemoveItem={this.handleRemoveItemFromArray('synonyms')}
+        <InputsBlock
           onAddItem={this.handleAddItemToArray('synonyms')}
-        />
-        <MultipleInputs
-          items={examples}
-          label='Example'
-          blockTitle='Examples'
-          onRemoveItem={this.handleRemoveItemFromArray('examples')}
+          title="Synonyms"
+          controlled
+        >
+          <ChipSet
+            items={synonyms}
+            onRemoveItem={this.handleRemoveItemFromArray('synonyms')}
+          />
+        </InputsBlock>
+        <InputsBlock
           onAddItem={this.handleAddItemToArray('examples')}
-        />
+          title="Examples"
+          controlled
+        >
+          <MultipleInputs
+            items={examples}
+            placeholder='Example'
+            onRemoveItem={this.handleRemoveItemFromArray('examples')}
+          />
+        </InputsBlock>
       </form>
     );
   }

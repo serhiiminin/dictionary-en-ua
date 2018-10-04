@@ -2,6 +2,8 @@ import { stylesVariables } from '../../constants/styles-variables';
 
 const styles = {
   inputsBlock: {
+    display: 'grid',
+    rowGap: '1em',
     marginBottom: '10px',
     padding: '10px',
     border: `1px solid ${stylesVariables.colors.line}`,
@@ -12,6 +14,7 @@ const styles = {
     padding: '5px 0',
     gridTemplateColumns: 'repeat(2, 1fr)',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   blockTitle: {
     margin: 0,
