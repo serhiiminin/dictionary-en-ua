@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import { Fade, LinearProgress } from '@material-ui/core';
 import uuid from 'uuid';
 import { TextField } from '../../components-mui';
 import { MultipleInputs, InputsBlock, ChipSet } from '..';
+import loadingNames from '../../constants/loading-names';
+import { loadingNamesInitialState } from '../../context/loading-names';
+import { loadingNamesShape } from '../../context/loading-names/shape';
 
 
 class WordForm extends Component {
+  static propTypes = {
+    currentLoadingNames: loadingNamesShape,
+  };
+
+  static defaultProps = {
+    currentLoadingNames: loadingNamesInitialState,
+  };
+
   state = {
     word: {
       en: '',
@@ -40,11 +52,16 @@ class WordForm extends Component {
     }));
 
   render() {
+    const { currentLoadingNames } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
+    const loading = currentLoadingNames.includes(loadingNames.editWord);
 
     return (
       <form>
+        <Fade in={loading}>
+          <LinearProgress color='secondary' />
+        </Fade>
         <InputsBlock title="Main information">
           <TextField
             label="English"

@@ -6,10 +6,7 @@ import { TextField } from '../../components-mui';
 const TextFieldLoading = ({ classes, loading, ...restProps }) => (
   <div className={classes.textFieldLoading}>
     <TextField {...restProps} />
-    <Fade
-      in={loading}
-      style={{ transitionDelay: loading ? '300ms' : '' }}
-    >
+    <Fade in={loading}>
       <LinearProgress color='secondary' />
     </Fade>
   </div>
