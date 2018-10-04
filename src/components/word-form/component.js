@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextField } from '../../components-mui';
+import { MultipleInputs } from "..";
 
 
 class WordForm extends Component {
@@ -8,6 +9,7 @@ class WordForm extends Component {
       en: '',
       ua: '',
       transcription: '',
+      examples: [],
     }
   };
 
@@ -22,7 +24,7 @@ class WordForm extends Component {
 
   render() {
     const { word } = this.state;
-    const { en, ua, transcription } = word;
+    const { en, ua, transcription, examples } = word;
 
     return (
       <form>
@@ -40,6 +42,11 @@ class WordForm extends Component {
           label="Transcription"
           value={transcription}
           onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
+        />
+        <MultipleInputs
+          items={examples}
+          label='Example'
+          blockTitle='Examples'
         />
       </form>
     );

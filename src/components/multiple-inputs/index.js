@@ -1,13 +1,10 @@
-import React from 'react';
-import { TextField } from '../../components-mui';
+import { compose } from 'recompose';
+import injectSheet from 'react-jss';
+import MultipleInputs from './component';
+import styles from './styles';
 
-const MultipleInputs = ({ inputs }) =>
-  inputs.map(({ id, value }) => (
-    <TextField
-      key={id}
-      label="English"
-      value={value}
-    />
-  ));
+const enhance = compose(
+  injectSheet(styles)
+);
 
-export default MultipleInputs;
+export default enhance(MultipleInputs);
