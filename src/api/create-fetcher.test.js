@@ -1,4 +1,4 @@
-import { createFetcherJson } from './fetcher';
+import createFetcherJson from './create-fetcher';
 
 describe('fetcher', () => {
   test('Valid data', () => {

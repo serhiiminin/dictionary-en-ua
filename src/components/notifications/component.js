@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { notificationInitialState } from '../../context/notifications';
-import { notificationsListShape } from '../../context/notifications/shape';
 import { NotificationItem } from '..';
 
 const Notifications = ({ children, notifications, classes, hideNotification }) => (
@@ -24,13 +22,17 @@ const Notifications = ({ children, notifications, classes, hideNotification }) =
 
 Notifications.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
-  notifications: notificationsListShape,
+  notifications: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string,
+    type: PropTypes.string,
+  })),
   hideNotification: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 
 Notifications.defaultProps = {
-  notifications: notificationInitialState,
+  notifications: [],
   classes: {},
 };
 

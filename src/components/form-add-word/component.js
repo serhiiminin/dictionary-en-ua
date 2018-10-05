@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress, Fade } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { loadingNamesInitialState } from '../../context/loading-names';
-import { loadingNamesShape } from '../../context/loading-names/shape';
-import { wordFormInitialState } from '../../context/word-form';
-import { wordFormShape } from '../../context/word-form/shape';
 import loadingNames from '../../constants/loading-names';
 import { Button, TextField } from '../../components-mui';
 import { ControlsSeparator } from '..';
 
 class FormAddWord extends Component {
   static propTypes = {
-    form: wordFormShape,
-    currentLoadingNames: loadingNamesShape,
+    form: PropTypes.shape({
+      en: PropTypes.string,
+    }),
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     onAddNewExample: PropTypes.func.isRequired,
     onRemoveExample: PropTypes.func.isRequired,
     onResetForm: PropTypes.func.isRequired,
@@ -24,8 +22,8 @@ class FormAddWord extends Component {
   };
 
   static defaultProps = {
-    form: wordFormInitialState,
-    currentLoadingNames: loadingNamesInitialState,
+    form: {},
+    currentLoadingNames: [],
     classes: {},
   };
 

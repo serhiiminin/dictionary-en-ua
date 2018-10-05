@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { foundWordInitialState } from '../../context/found-word';
-import { foundWordShape } from '../../context/found-word/shape';
 import { ListOfClickableStrings } from '..';
 
 const FoundWordExamples = ({ foundWord, pushTextToInput, classes }) => {
@@ -28,13 +26,18 @@ const FoundWordExamples = ({ foundWord, pushTextToInput, classes }) => {
 };
 
 FoundWordExamples.propTypes = {
-  foundWord: foundWordShape,
+  foundWord: PropTypes.shape({
+    examples: PropTypes.arrayOf(PropTypes.shape({
+      example: PropTypes.string,
+      id: PropTypes.string.isRequired,
+    })),
+  }),
   pushTextToInput: PropTypes.func.isRequired,
   classes: PropTypes.objectOf(PropTypes.string),
 };
 
 FoundWordExamples.defaultProps = {
-  foundWord: foundWordInitialState,
+  foundWord: {},
   classes: {},
 };
 

@@ -60,6 +60,7 @@ class FoundWordProvider extends Component {
 
   render() {
     const { foundWord } = this.state;
+    const { children } = this.props;
 
     return (
       <FoundWordContext.Provider
@@ -69,7 +70,7 @@ class FoundWordProvider extends Component {
           setFoundWord: this.handleSetFoundWord,
           cleanFoundWord: this.cleanFoundWord,
         }}
-      >{this.props.children}</FoundWordContext.Provider>
+      >{children}</FoundWordContext.Provider>
     );
   }
 }
@@ -77,4 +78,4 @@ class FoundWordProvider extends Component {
 const withFoundWord = Cmp => props =>
   <FoundWordContext.Consumer>{value => <Cmp {...value} {...props} />}</FoundWordContext.Consumer>;
 
-export { FoundWordProvider, withFoundWord, foundWordInitialState };
+export { FoundWordProvider, withFoundWord };

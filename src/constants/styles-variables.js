@@ -40,4 +40,4 @@ const stylesVariables = {
   transition: '.3s'
 };
 
-export { stylesVariables };
+export default stylesVariables;

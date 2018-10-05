@@ -8,9 +8,6 @@ import {
   FoundWordExamples,
   FoundImage
 } from '../../components';
-import { foundWordInitialState } from '../../context/found-word';
-import { foundWordShape } from '../../context/found-word/shape';
-import { loadingNamesShape } from '../../context/loading-names/shape';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
 import routes from '../../routes';
@@ -33,18 +30,20 @@ const composeSearchData = text => {
 class SearchWordContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string),
-    foundWord: foundWordShape,
+    foundWord: PropTypes.shape({
+      en: PropTypes.string,
+    }),
     history: ReactRouterPropTypes.history.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     onFillForm: PropTypes.func.isRequired,
-    currentLoadingNames: loadingNamesShape,
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
     currentLoadingNames: [],
-    foundWord: foundWordInitialState,
+    foundWord: null,
     classes: {},
   };
 

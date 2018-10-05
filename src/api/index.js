@@ -2,7 +2,7 @@ import urljoin from 'url-join';
 import { WORDS, GIPHY } from './endpoints';
 import { fetchProxy, apiKeyGiphyProxy } from './fetch-proxy';
 import { updateSearchParamsInUrl } from '../helpers/search-params';
-import { requests } from './request';
+import requests from './request';
 
 const api = {
   createWord: body => fetchProxy(requests.post(WORDS, { body })),
@@ -64,4 +64,4 @@ const api = {
   )
 };
 
-export { api };
+export default api;

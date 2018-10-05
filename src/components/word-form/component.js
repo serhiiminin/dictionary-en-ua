@@ -5,18 +5,16 @@ import uuid from 'uuid';
 import { Button, TextField } from '../../components-mui';
 import { MultipleInputs, InputsBlock, ChipSet } from '..';
 import loadingNames from '../../constants/loading-names';
-import { loadingNamesInitialState } from '../../context/loading-names';
-import { loadingNamesShape } from '../../context/loading-names/shape';
 
 
 class WordForm extends Component {
   static propTypes = {
-    currentLoadingNames: loadingNamesShape,
+    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     onSubmit: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    currentLoadingNames: loadingNamesInitialState,
+    currentLoadingNames: [],
   };
 
   state = {
@@ -25,6 +23,8 @@ class WordForm extends Component {
       ua: '',
       transcription: '',
       examples: [],
+      partOfSpeech: [],
+      synonyms: [],
     }
   };
 
@@ -62,7 +62,7 @@ class WordForm extends Component {
     return (
       <form onSubmit={onSubmit}>
         <Fade in={loading}>
-          <LinearProgress color='secondary' />
+          <LinearProgress color='secondary'/>
         </Fade>
         <InputsBlock title="Main information">
           <TextField

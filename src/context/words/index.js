@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { api } from '../../api';
+import api from '../../api';
 import { notificationType } from '../../components/notification-item/component';
 import loadingNames from '../../constants/loading-names';
 import { parseSearchParams } from '../../helpers/search-params';

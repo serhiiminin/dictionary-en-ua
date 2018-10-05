@@ -57,4 +57,4 @@ class NotificationsProvider extends Component {
 const withNotifications = Cmp => props =>
   <NotificationsContext.Consumer>{value => <Cmp {...value} {...props} />}</NotificationsContext.Consumer>;
 
-export { NotificationsProvider, withNotifications, notificationInitialState };
+export { NotificationsProvider, withNotifications };

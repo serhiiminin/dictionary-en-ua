@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { foundWordInitialState } from '../../context/found-word';
-import { foundWordShape } from '../../context/found-word/shape';
 import { LineExplanation, ListOfClickableStrings } from '..';
 
 const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
@@ -44,13 +42,15 @@ const FoundWordDescription = ({ foundWord, pushTextToInput, classes }) => {
 };
 
 FoundWordDescription.propTypes = {
-  foundWord: foundWordShape,
+  foundWord: PropTypes.shape({
+    en: PropTypes.string,
+  }),
   pushTextToInput: PropTypes.func.isRequired,
   classes: PropTypes.objectOf(PropTypes.string),
 };
 
 FoundWordDescription.defaultProps = {
-  foundWord: foundWordInitialState,
+  foundWord: null,
   classes: {},
 };
 
