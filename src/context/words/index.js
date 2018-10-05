@@ -54,21 +54,27 @@ class WordsProviderCmp extends Component {
       page: Number(parsedParams.page) || page,
       countPerPage: Number(parsedParams.countPerPage) || countPerPage,
     }
-
   };
 
-  handleFetchWord = wordId => {
+  handleFetch = ({ loadingName, requestHandler, responseHandler }) => {
     const { showNotification, startLoading, stopLoading } = this.props;
 
-    return Promise.resolve(startLoading(loadingNames.editWord))
-      .then(() => api.getWord(wordId))
-      .then(word => this.setState({ word }))
+    return Promise.resolve(startLoading(loadingName))
+      .then(requestHandler || (response => response))
+      .then(responseHandler  || (response => response))
       .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.editWord));
+      .finally(() => stopLoading(loadingName));
   };
 
-  handleFetchWordsList = () => {
-    const { showNotification, startLoading, stopLoading, location } = this.props;
+  fetchWord = wordId =>
+    this.handleFetch({
+      loadingName: loadingNames.editWord,
+      requestHandler: () => api.getWord(wordId),
+      responseHandler: word => this.setState({ word }),
+    });
+
+  fetchWordsList = () => {
+    const { location } = this.props;
     const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(location.search);
     const query = {
       skip: (page - 1) * countPerPage,
@@ -76,68 +82,51 @@ class WordsProviderCmp extends Component {
       sortDirection: sortDirection === 'descend' ? -1 : 1,
       sortBy,
     };
-
-    return Promise.resolve(startLoading(loadingNames.wordsList))
-      .then(() => api.getWordsList({ query }))
-      .then(({ items, count }) => this.setState({ wordsList: items, count }))
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.wordsList));
+    return this.handleFetch({
+      loadingName: loadingNames.wordsList,
+      requestHandler: () => api.getWordsList({ query }),
+      responseHandler: ({ items, count }) => this.setState({ wordsList: items, count }),
+    });
   };
 
-  handleFetchWordsToLearn = () => {
-    const { showNotification, startLoading, stopLoading } = this.props;
+  fetchWordsToLearn = () =>
+    this.handleFetch({
+      loadingName: loadingNames.learnWord,
+      requestHandler: () => api.getWordsListToLearn(),
+      responseHandler: ({ items, count }) => this.setState({ wordsList: items, count }),
+    });
 
-    return Promise.resolve(startLoading(loadingNames.learnWord))
-      .then(() => api.getWordsListToLearn())
-      .then(({ items, count }) => this.setState({ wordsList: items, count }))
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.learnWord));
-  };
+  createWord = data =>
+    this.handleFetch({
+      loadingName: loadingNames.saveWord,
+      requestHandler: () => api.createWord(data),
+      responseHandler: () => this.props.showNotification('The word has been saved successfully', notificationType.success),
+    });
 
-  handleCreateWord = data => {
-    const { showNotification, startLoading, stopLoading } = this.props;
+  editWord = (wordId, data) =>
+    this.handleFetch({
+      loadingName: loadingNames.editWord,
+      requestHandler: () => api.updateWord(wordId, data),
+      responseHandler: () => this.props.showNotification('The word has been updated successfully', notificationType.success),
+    });
 
-    return Promise.resolve(startLoading(loadingNames.saveWord))
-      .then(() => api.createWord(data))
-      .then(() => showNotification('The word has been saved successfully', notificationType.success))
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.saveWord));
-  };
+  deleteWord = id =>
+    this.handleFetch({
+      loadingName: loadingNames.deleteWord,
+      requestHandler: () => api.deleteWord(id),
+      responseHandler: () => this.props.showNotification('The word has been deleted successfully', notificationType.success),
+    });
 
-  handleEditWord = (wordId, data) => {
-    const { showNotification, startLoading, stopLoading } = this.props;
-
-    return Promise.resolve(startLoading(loadingNames.editWord))
-      .then(() => api.updateWord(wordId, data))
-      .then(() => showNotification('The word has been updated successfully', notificationType.success))
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.editWord));
-  };
-
-  handleDeleteWord = id => {
-    const { showNotification, startLoading, stopLoading } = this.props;
-
-    return Promise.resolve(startLoading(loadingNames.deleteWord))
-      .then(() => api.deleteWord(id))
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.deleteWord))
-      .then(() => this.handleFetchWordsList());
-  };
-
-  handleLearnWord = wordId => {
-    const { showNotification, startLoading, stopLoading } = this.props;
-
-    return Promise.resolve(startLoading(loadingNames.learnWord))
-      .then(() => api.learnWord(wordId))
-      .then(() => this.setState(prevState => ({
+  learnWord = wordId =>
+    this.handleFetch({
+      loadingName: loadingNames.learnWord,
+      requestHandler: () => api.learnWord(wordId),
+      responseHandler: () => this.setState(prevState => ({
         wordsList: [...prevState.wordsList.filter(word => word._id !== wordId)]
-      })))
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.learnWord));
+      })),
+    });
 
-  };
-
-  handleRelearnWord = wordId => {
+  relearnWord = wordId => {
     this.setState(prevState => {
       const wordToRelearn = prevState.wordsList.find(word => word._id === wordId);
 
@@ -150,23 +139,20 @@ class WordsProviderCmp extends Component {
     });
   };
 
-  handleSearchWord = params => {
-    const { showNotification, startLoading, stopLoading } = this.props;
-
-    return Promise.resolve(startLoading(loadingNames.searchWord))
-      .then(() => Promise.all([
+  searchWord = params =>
+    this.handleFetch({
+      loadingName: loadingNames.searchWord,
+      requestHandler: () => Promise.all([
         api.searchWord(params),
         api.getGifs({ q: params.text }),
-      ]))
-      .then(([foundWord, gifs]) => {
+      ]),
+      responseHandler: ([foundWord, gifs]) => {
         const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
         const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
         return this.props.setFoundWord({ ...foundWord, gif: randomGif })
-      })
-      .catch(err => showNotification(err.message, notificationType.error))
-      .finally(() => stopLoading(loadingNames.searchWord));
-  };
+      },
+    });
 
   render() {
     const { wordsList, word, count, gif } = this.state;
@@ -180,15 +166,15 @@ class WordsProviderCmp extends Component {
           gif,
           wordsCount: count,
           getWordsSearchParams: this.getSearchParams,
-          fetchWord: this.handleFetchWord,
-          fetchWordsList: this.handleFetchWordsList,
-          fetchWordsToLearn: this.handleFetchWordsToLearn,
-          saveWord: this.handleCreateWord,
-          editWord: this.handleEditWord,
-          searchWord: this.handleSearchWord,
-          learnWord: this.handleLearnWord,
-          relearnWord: this.handleRelearnWord,
-          deleteWord: this.handleDeleteWord,
+          fetchWord: this.fetchWord,
+          fetchWordsList: this.fetchWordsList,
+          fetchWordsToLearn: this.fetchWordsToLearn,
+          saveWord: this.createWord,
+          editWord: this.editWord,
+          searchWord: this.searchWord,
+          learnWord: this.learnWord,
+          relearnWord: this.relearnWord,
+          deleteWord: this.deleteWord,
           cleanWordsList: this.cleanWordsList,
           cleanWord: this.cleanWord,
         }}
