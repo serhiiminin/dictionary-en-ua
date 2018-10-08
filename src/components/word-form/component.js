@@ -11,10 +11,20 @@ class WordForm extends Component {
   static propTypes = {
     currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     onSubmit: PropTypes.func.isRequired,
+    word: PropTypes.shape({
+      _id: PropTypes.string,
+      en: PropTypes.string,
+      ua: PropTypes.string,
+      transcription: PropTypes.string,
+      partOfSpeech: PropTypes.arrayOf(PropTypes.object),
+      synonyms: PropTypes.arrayOf(PropTypes.object),
+      examples: PropTypes.arrayOf(PropTypes.object),
+    }),
   };
 
   static defaultProps = {
     currentLoadingNames: [],
+    word: {},
   };
 
   state = {
@@ -22,8 +32,8 @@ class WordForm extends Component {
       en: '',
       ua: '',
       transcription: '',
-      examples: [],
       partOfSpeech: [],
+      examples: [],
       synonyms: [],
     }
   };
@@ -113,7 +123,7 @@ class WordForm extends Component {
           />
         </InputsBlock>
         <Button
-          onClick={() => onSubmit(word._id, word)}
+          onClick={() => onSubmit(word)}
           title='Save'
         >
           Save

@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormAddWord } from '../../components';
+import { WordForm } from '../../components';
 
-const AddWordContainer = ({ classes }) => (
+const AddWordContainer = ({ classes, saveWord }) => (
   <main className={classes.addWord}>
-    <FormAddWord/>
+    <WordForm onSubmit={word => saveWord(word)} />
   </main>
 );
 
 AddWordContainer.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
+  saveWord: PropTypes.func.isRequired,
 };
 
 AddWordContainer.defaultProps = {

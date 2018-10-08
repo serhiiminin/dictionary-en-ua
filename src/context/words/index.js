@@ -53,7 +53,7 @@ class WordsProviderCmp extends Component {
       sortDirection: parsedParams.sortDirection || sortDirection,
       page: Number(parsedParams.page) || page,
       countPerPage: Number(parsedParams.countPerPage) || countPerPage,
-    }
+    };
   };
 
   handleFetch = ({ loadingName, requestHandler, responseHandler }) => {
@@ -61,7 +61,7 @@ class WordsProviderCmp extends Component {
 
     return Promise.resolve(startLoading(loadingName))
       .then(requestHandler || (response => response))
-      .then(responseHandler  || (response => response))
+      .then(responseHandler || (response => response))
       .catch(err => showNotification(err.message, notificationType.error))
       .finally(() => stopLoading(loadingName));
   };
@@ -103,10 +103,10 @@ class WordsProviderCmp extends Component {
       responseHandler: () => this.props.showNotification('The word has been saved successfully', notificationType.success),
     });
 
-  editWord = (wordId, data) =>
+  editWord = word =>
     this.handleFetch({
       loadingName: loadingNames.editWord,
-      requestHandler: () => api.updateWord(wordId, data),
+      requestHandler: () => api.updateWord(word),
       responseHandler: () => this.props.showNotification('The word has been updated successfully', notificationType.success),
     });
 
@@ -114,7 +114,8 @@ class WordsProviderCmp extends Component {
     this.handleFetch({
       loadingName: loadingNames.deleteWord,
       requestHandler: () => api.deleteWord(id),
-      responseHandler: () => this.props.showNotification('The word has been deleted successfully', notificationType.success),
+      responseHandler: () => this.fetchWordsList()
+        .then(() => this.props.showNotification('The word has been deleted successfully', notificationType.success))
     });
 
   learnWord = wordId =>
@@ -150,7 +151,7 @@ class WordsProviderCmp extends Component {
         const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
         const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
-        return this.props.setFoundWord({ ...foundWord, gif: randomGif })
+        return this.props.setFoundWord({ ...foundWord, gif: randomGif });
       },
     });
 

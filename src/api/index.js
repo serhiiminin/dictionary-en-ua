@@ -28,10 +28,10 @@ const api = {
       }
     }));
   },
-  updateWord: (wordId, body) => {
-    const url = urljoin(WORDS, wordId);
+  updateWord: word => {
+    const url = urljoin(WORDS, word._id);
 
-    return fetchProxy(requests.put(url, { body }));
+    return fetchProxy(requests.put(url, { body: word }));
   },
   deleteWord: wordId => {
     const url = urljoin(WORDS, wordId);
