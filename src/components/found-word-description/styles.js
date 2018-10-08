@@ -1,13 +1,11 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   foundWordDescription: {
-    marginTop: stylesVariables.margin.medium,
+    marginTop: theme.main.margin.medium,
   },
   emptyDescription: {
     fontStyle: 'italic',
-    opacity: stylesVariables.opacity.disabled,
+    opacity: theme.main.opacity.disabled,
   }
-};
+});
 
 export default styles;

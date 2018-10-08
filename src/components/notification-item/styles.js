@@ -1,33 +1,32 @@
-import stylesVariables from '../../constants/styles-variables';
 import { notificationType } from './component';
 
-const styles = {
+const styles = theme => ({
   notification: {
     width: '100%',
-    borderRadius: stylesVariables.borderRadius.small,
-    padding: stylesVariables.padding.medium,
-    marginBottom: stylesVariables.margin.medium,
+    borderRadius: theme.main.borderRadius.small,
+    padding: theme.main.padding.medium,
+    marginBottom: theme.main.margin.medium,
     listStyle: 'none',
-    transition: `all ${stylesVariables.timeout.notification}ms ease-in-out`,
+    transition: `all ${theme.main.timeout.notification}ms ease-in-out`,
     opacity: '1 !important'
   },
   [notificationType.error]: {
-    background: stylesVariables.colors.notification.error,
+    background: theme.main.colors.notification.error,
   },
   [notificationType.success]: {
-    background: stylesVariables.colors.notification.success,
+    background: theme.main.colors.notification.success,
   },
   [notificationType.warning]: {
-    background: stylesVariables.colors.notification.warning,
+    background: theme.main.colors.notification.warning,
   },
   [notificationType.info]: {
-    background: stylesVariables.colors.notification.info,
+    background: theme.main.colors.notification.info,
   },
   topLine: {
     display: 'grid',
     alignItems: 'center',
     gridAutoFlow: 'column',
-    marginBottom: stylesVariables.margin.medium,
+    marginBottom: theme.main.margin.medium,
   },
   typeText: {
     fontWeight: 'bold',
@@ -35,6 +34,6 @@ const styles = {
   wrapperCloseButton: {
     textAlign: 'right',
   },
-};
+});
 
 export default styles;

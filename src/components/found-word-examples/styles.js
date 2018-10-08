@@ -1,20 +1,18 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   examplesTitle: {
-    margin: `0 0 ${stylesVariables.margin.medium}`,
+    margin: `0 0 ${theme.main.margin.medium}`,
     padding: 0,
   },
   exampleItem: {
-    background: stylesVariables.colors.line,
-    padding: stylesVariables.padding.medium,
-    marginBottom: stylesVariables.margin.small,
-    borderRadius: stylesVariables.borderRadius.small,
+    background: theme.main.colors.line,
+    padding: theme.main.padding.medium,
+    marginBottom: theme.main.margin.small,
+    borderRadius: theme.main.borderRadius.small,
   },
   noResults: {
     fontStyle: 'italic',
-    opacity: stylesVariables.opacity.disabled,
+    opacity: theme.main.opacity.disabled,
   }
-};
+});
 
 export default styles;

@@ -1,22 +1,20 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   root: {
-    background: stylesVariables.colors.button,
-    color: stylesVariables.colors.background,
+    background: theme.main.colors.button,
+    color: theme.main.colors.background,
     verticalAlign: 'bottom',
     textTransform: 'none',
-    transition: stylesVariables.transition,
+    transition: theme.main.transition,
     '&:hover': {
-      background: stylesVariables.colors.button,
-      opacity: stylesVariables.opacity.disabled,
+      background: theme.main.colors.button,
+      opacity: theme.main.opacity.disabled,
     },
   },
   disabled: {
-    opacity: stylesVariables.opacity.disabled,
-    background: stylesVariables.colors.button,
-    color: `${stylesVariables.colors.background} !important`,
+    opacity: theme.main.opacity.disabled,
+    background: theme.main.colors.button,
+    color: `${theme.main.colors.background} !important`,
   },
-};
+});
 
 export default styles;

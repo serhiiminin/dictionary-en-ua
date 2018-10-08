@@ -1,15 +1,13 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   wordsList: {
     margin: 0,
     padding: 0,
-    background: stylesVariables.colors.text,
+    background: theme.main.colors.text,
     borderRadius: '5px',
     overflow: 'hidden',
     display: 'grid',
     rowGap: '1px',
   },
-};
+});
 
 export default styles;

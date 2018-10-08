@@ -1,11 +1,9 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   alignControls: {
     display: 'grid',
     alignContent: 'center',
     gridAutoFlow: 'column',
-    padding: `${stylesVariables.padding.medium} 0`,
+    padding: `${theme.main.padding.medium} 0`,
     justifyContent: 'start',
     columnGap: '.5rem',
     rowGap: '.5rem',
@@ -19,6 +17,6 @@ const styles = {
   right: {
     justifyContent: 'end',
   }
-};
+});
 
 export default styles;

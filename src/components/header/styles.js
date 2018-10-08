@@ -1,16 +1,14 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   header: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
-    padding: `${stylesVariables.padding.large} 0`,
+    padding: `${theme.main.padding.large} 0`,
   },
   headerLink: {
-    color: stylesVariables.colors.text,
+    color: theme.main.colors.text,
     textDecoration: 'none',
     fontSize: '1.5rem',
   }
-};
+});
 
 export default styles;
