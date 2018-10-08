@@ -11,6 +11,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -23,11 +24,6 @@ ShallowWrapper {
         <WithStyles(TextFieldCustomized) />,
         <WithTheme(Fade)
           in={true}
-          style={
-                    Object {
-                              "transitionDelay": "300ms",
-                            }
-          }
 >
           <WithStyles(LinearProgress)
                     color="secondary"
@@ -56,9 +52,6 @@ ShallowWrapper {
             color="secondary"
 />,
           "in": true,
-          "style": Object {
-            "transitionDelay": "300ms",
-          },
         },
         "ref": null,
         "rendered": Object {
@@ -87,11 +80,6 @@ ShallowWrapper {
           <WithStyles(TextFieldCustomized) />,
           <WithTheme(Fade)
             in={true}
-            style={
-                        Object {
-                                    "transitionDelay": "300ms",
-                                  }
-            }
 >
             <WithStyles(LinearProgress)
                         color="secondary"
@@ -120,9 +108,6 @@ ShallowWrapper {
               color="secondary"
 />,
             "in": true,
-            "style": Object {
-              "transitionDelay": "300ms",
-            },
           },
           "ref": null,
           "rendered": Object {
@@ -175,6 +160,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -187,11 +173,6 @@ ShallowWrapper {
         <WithStyles(TextFieldCustomized) />,
         <WithTheme(Fade)
           in={false}
-          style={
-                    Object {
-                              "transitionDelay": "",
-                            }
-          }
 >
           <WithStyles(LinearProgress)
                     color="secondary"
@@ -220,9 +201,6 @@ ShallowWrapper {
             color="secondary"
 />,
           "in": false,
-          "style": Object {
-            "transitionDelay": "",
-          },
         },
         "ref": null,
         "rendered": Object {
@@ -251,11 +229,6 @@ ShallowWrapper {
           <WithStyles(TextFieldCustomized) />,
           <WithTheme(Fade)
             in={false}
-            style={
-                        Object {
-                                    "transitionDelay": "",
-                                  }
-            }
 >
             <WithStyles(LinearProgress)
                         color="secondary"
@@ -284,9 +257,6 @@ ShallowWrapper {
               color="secondary"
 />,
             "in": false,
-            "style": Object {
-              "transitionDelay": "",
-            },
           },
           "ref": null,
           "rendered": Object {

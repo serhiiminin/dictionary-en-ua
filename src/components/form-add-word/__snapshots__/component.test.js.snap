@@ -10,16 +10,7 @@ ShallowWrapper {
             "LOADING/save-word",
           ]
     }
-    form={
-        Object {
-            "form": Object {
-              "en": "",
-              "examples": Array [],
-              "transcription": "",
-              "ua": "",
-            },
-          }
-    }
+    form={Object {}}
     onAddNewExample={[Function]}
     onExampleChange={[Function]}
     onFormItemChange={[Function]}
@@ -31,6 +22,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -60,7 +52,7 @@ ShallowWrapper {
                     align="right"
           >
                     <WithStyles(ButtonCustomized)
-                              disabled={false}
+                              disabled={true}
                               type="submit"
                     >
                               <WithTheme(Fade)
@@ -78,11 +70,6 @@ ShallowWrapper {
                                         />
                               </WithTheme(Fade)>
                               Save word
-                    </WithStyles(ButtonCustomized)>
-                    <WithStyles(ButtonCustomized)
-                              onClick={[Function]}
-                    >
-                              Reset Form
                     </WithStyles(ButtonCustomized)>
           </Jss(ControlsSeparator)>
 </div>,
@@ -128,7 +115,7 @@ ShallowWrapper {
               align="right"
 >
               <WithStyles(ButtonCustomized)
-                            disabled={false}
+                            disabled={true}
                             type="submit"
               >
                             <WithTheme(Fade)
@@ -146,11 +133,6 @@ ShallowWrapper {
                                           />
                             </WithTheme(Fade)>
                             Save word
-              </WithStyles(ButtonCustomized)>
-              <WithStyles(ButtonCustomized)
-                            onClick={[Function]}
-              >
-                            Reset Form
               </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
           ],
@@ -204,7 +186,7 @@ ShallowWrapper {
               "align": "right",
               "children": Array [
                 <WithStyles(ButtonCustomized)
-                  disabled={false}
+                  disabled={true}
                   type="submit"
 >
                   <WithTheme(Fade)
@@ -223,11 +205,7 @@ ShallowWrapper {
                   </WithTheme(Fade)>
                   Save word
 </WithStyles(ButtonCustomized)>,
-                <WithStyles(ButtonCustomized)
-                  onClick={[Function]}
->
-                  Reset Form
-</WithStyles(ButtonCustomized)>,
+                false,
               ],
             },
             "ref": null,
@@ -254,7 +232,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                     "Save word",
                   ],
-                  "disabled": false,
+                  "disabled": true,
                   "type": "submit",
                 },
                 "ref": null,
@@ -293,18 +271,7 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Reset Form",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "Reset Form",
-                "type": [Function],
-              },
+              false,
             ],
             "type": [Function],
           },
@@ -392,7 +359,7 @@ ShallowWrapper {
                         align="right"
             >
                         <WithStyles(ButtonCustomized)
-                                    disabled={false}
+                                    disabled={true}
                                     type="submit"
                         >
                                     <WithTheme(Fade)
@@ -410,11 +377,6 @@ ShallowWrapper {
                                                 />
                                     </WithTheme(Fade)>
                                     Save word
-                        </WithStyles(ButtonCustomized)>
-                        <WithStyles(ButtonCustomized)
-                                    onClick={[Function]}
-                        >
-                                    Reset Form
                         </WithStyles(ButtonCustomized)>
             </Jss(ControlsSeparator)>
 </div>,
@@ -460,7 +422,7 @@ ShallowWrapper {
                 align="right"
 >
                 <WithStyles(ButtonCustomized)
-                                disabled={false}
+                                disabled={true}
                                 type="submit"
                 >
                                 <WithTheme(Fade)
@@ -478,11 +440,6 @@ ShallowWrapper {
                                                 />
                                 </WithTheme(Fade)>
                                 Save word
-                </WithStyles(ButtonCustomized)>
-                <WithStyles(ButtonCustomized)
-                                onClick={[Function]}
-                >
-                                Reset Form
                 </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
             ],
@@ -536,7 +493,7 @@ ShallowWrapper {
                 "align": "right",
                 "children": Array [
                   <WithStyles(ButtonCustomized)
-                    disabled={false}
+                    disabled={true}
                     type="submit"
 >
                     <WithTheme(Fade)
@@ -555,11 +512,7 @@ ShallowWrapper {
                     </WithTheme(Fade)>
                     Save word
 </WithStyles(ButtonCustomized)>,
-                  <WithStyles(ButtonCustomized)
-                    onClick={[Function]}
->
-                    Reset Form
-</WithStyles(ButtonCustomized)>,
+                  false,
                 ],
               },
               "ref": null,
@@ -586,7 +539,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                       "Save word",
                     ],
-                    "disabled": false,
+                    "disabled": true,
                     "type": "submit",
                   },
                   "ref": null,
@@ -625,18 +578,7 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Reset Form",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "Reset Form",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": [Function],
             },
@@ -730,8 +672,8 @@ ShallowWrapper {
         Object {
             "examples": Array [
               Object {
-                "example": "example",
                 "id": "id",
+                "value": "example",
               },
             ],
           }
@@ -747,6 +689,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -816,7 +759,7 @@ ShallowWrapper {
                     }
                     label="Example"
                     onChange={[Function]}
-                    value="example"
+                    value={undefined}
           />
           <Jss(ControlsSeparator)
                     align="left"
@@ -1062,7 +1005,7 @@ ShallowWrapper {
                 }
                 label="Example"
                 onChange={[Function]}
-                value="example"
+                value={undefined}
 />,
             ],
             <Jss(ControlsSeparator)
@@ -1093,7 +1036,7 @@ ShallowWrapper {
 </WithStyles(ButtonCustomized)>,
               "label": "Example",
               "onChange": [Function],
-              "value": "example",
+              "value": undefined,
             },
             "ref": null,
             "rendered": null,
@@ -1199,7 +1142,7 @@ ShallowWrapper {
                         }
                         label="Example"
                         onChange={[Function]}
-                        value="example"
+                        value={undefined}
             />
             <Jss(ControlsSeparator)
                         align="left"
@@ -1445,7 +1388,7 @@ ShallowWrapper {
                   }
                   label="Example"
                   onChange={[Function]}
-                  value="example"
+                  value={undefined}
 />,
               ],
               <Jss(ControlsSeparator)
@@ -1476,7 +1419,7 @@ ShallowWrapper {
 </WithStyles(ButtonCustomized)>,
                 "label": "Example",
                 "onChange": [Function],
-                "value": "example",
+                "value": undefined,
               },
               "ref": null,
               "rendered": null,
@@ -1548,8 +1491,8 @@ ShallowWrapper {
         Object {
             "examples": Array [
               Object {
-                "example": "example",
                 "id": "id",
+                "value": "example",
               },
             ],
           }
@@ -1565,6 +1508,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -1634,7 +1578,7 @@ ShallowWrapper {
                     }
                     label="Example"
                     onChange={[Function]}
-                    value="example"
+                    value={undefined}
           />
           <Jss(ControlsSeparator)
                     align="left"
@@ -1880,7 +1824,7 @@ ShallowWrapper {
                 }
                 label="Example"
                 onChange={[Function]}
-                value="example"
+                value={undefined}
 />,
             ],
             <Jss(ControlsSeparator)
@@ -1911,7 +1855,7 @@ ShallowWrapper {
 </WithStyles(ButtonCustomized)>,
               "label": "Example",
               "onChange": [Function],
-              "value": "example",
+              "value": undefined,
             },
             "ref": null,
             "rendered": null,
@@ -2017,7 +1961,7 @@ ShallowWrapper {
                         }
                         label="Example"
                         onChange={[Function]}
-                        value="example"
+                        value={undefined}
             />
             <Jss(ControlsSeparator)
                         align="left"
@@ -2263,7 +2207,7 @@ ShallowWrapper {
                   }
                   label="Example"
                   onChange={[Function]}
-                  value="example"
+                  value={undefined}
 />,
               ],
               <Jss(ControlsSeparator)
@@ -2294,7 +2238,7 @@ ShallowWrapper {
 </WithStyles(ButtonCustomized)>,
                 "label": "Example",
                 "onChange": [Function],
-                "value": "example",
+                "value": undefined,
               },
               "ref": null,
               "rendered": null,
@@ -2362,16 +2306,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <FormAddWord
     classes={Object {}}
     currentLoadingNames={Array []}
-    form={
-        Object {
-            "form": Object {
-              "en": "",
-              "examples": Array [],
-              "transcription": "",
-              "ua": "",
-            },
-          }
-    }
+    form={Object {}}
     onAddNewExample={[Function]}
     onExampleChange={[Function]}
     onFormItemChange={[Function]}
@@ -2383,6 +2318,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -2412,7 +2348,7 @@ ShallowWrapper {
                     align="right"
           >
                     <WithStyles(ButtonCustomized)
-                              disabled={false}
+                              disabled={true}
                               type="submit"
                     >
                               <WithTheme(Fade)
@@ -2430,11 +2366,6 @@ ShallowWrapper {
                                         />
                               </WithTheme(Fade)>
                               Save word
-                    </WithStyles(ButtonCustomized)>
-                    <WithStyles(ButtonCustomized)
-                              onClick={[Function]}
-                    >
-                              Reset Form
                     </WithStyles(ButtonCustomized)>
           </Jss(ControlsSeparator)>
 </div>,
@@ -2480,7 +2411,7 @@ ShallowWrapper {
               align="right"
 >
               <WithStyles(ButtonCustomized)
-                            disabled={false}
+                            disabled={true}
                             type="submit"
               >
                             <WithTheme(Fade)
@@ -2498,11 +2429,6 @@ ShallowWrapper {
                                           />
                             </WithTheme(Fade)>
                             Save word
-              </WithStyles(ButtonCustomized)>
-              <WithStyles(ButtonCustomized)
-                            onClick={[Function]}
-              >
-                            Reset Form
               </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
           ],
@@ -2556,7 +2482,7 @@ ShallowWrapper {
               "align": "right",
               "children": Array [
                 <WithStyles(ButtonCustomized)
-                  disabled={false}
+                  disabled={true}
                   type="submit"
 >
                   <WithTheme(Fade)
@@ -2575,11 +2501,7 @@ ShallowWrapper {
                   </WithTheme(Fade)>
                   Save word
 </WithStyles(ButtonCustomized)>,
-                <WithStyles(ButtonCustomized)
-                  onClick={[Function]}
->
-                  Reset Form
-</WithStyles(ButtonCustomized)>,
+                false,
               ],
             },
             "ref": null,
@@ -2606,7 +2528,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                     "Save word",
                   ],
-                  "disabled": false,
+                  "disabled": true,
                   "type": "submit",
                 },
                 "ref": null,
@@ -2645,18 +2567,7 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Reset Form",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "Reset Form",
-                "type": [Function],
-              },
+              false,
             ],
             "type": [Function],
           },
@@ -2744,7 +2655,7 @@ ShallowWrapper {
                         align="right"
             >
                         <WithStyles(ButtonCustomized)
-                                    disabled={false}
+                                    disabled={true}
                                     type="submit"
                         >
                                     <WithTheme(Fade)
@@ -2762,11 +2673,6 @@ ShallowWrapper {
                                                 />
                                     </WithTheme(Fade)>
                                     Save word
-                        </WithStyles(ButtonCustomized)>
-                        <WithStyles(ButtonCustomized)
-                                    onClick={[Function]}
-                        >
-                                    Reset Form
                         </WithStyles(ButtonCustomized)>
             </Jss(ControlsSeparator)>
 </div>,
@@ -2812,7 +2718,7 @@ ShallowWrapper {
                 align="right"
 >
                 <WithStyles(ButtonCustomized)
-                                disabled={false}
+                                disabled={true}
                                 type="submit"
                 >
                                 <WithTheme(Fade)
@@ -2830,11 +2736,6 @@ ShallowWrapper {
                                                 />
                                 </WithTheme(Fade)>
                                 Save word
-                </WithStyles(ButtonCustomized)>
-                <WithStyles(ButtonCustomized)
-                                onClick={[Function]}
-                >
-                                Reset Form
                 </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
             ],
@@ -2888,7 +2789,7 @@ ShallowWrapper {
                 "align": "right",
                 "children": Array [
                   <WithStyles(ButtonCustomized)
-                    disabled={false}
+                    disabled={true}
                     type="submit"
 >
                     <WithTheme(Fade)
@@ -2907,11 +2808,7 @@ ShallowWrapper {
                     </WithTheme(Fade)>
                     Save word
 </WithStyles(ButtonCustomized)>,
-                  <WithStyles(ButtonCustomized)
-                    onClick={[Function]}
->
-                    Reset Form
-</WithStyles(ButtonCustomized)>,
+                  false,
                 ],
               },
               "ref": null,
@@ -2938,7 +2835,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                       "Save word",
                     ],
-                    "disabled": false,
+                    "disabled": true,
                     "type": "submit",
                   },
                   "ref": null,
@@ -2977,18 +2874,7 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Reset Form",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "Reset Form",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": [Function],
             },
@@ -3794,16 +3680,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <FormAddWord
     classes={Object {}}
     currentLoadingNames={Array []}
-    form={
-        Object {
-            "form": Object {
-              "en": "",
-              "examples": Array [],
-              "transcription": "",
-              "ua": "",
-            },
-          }
-    }
+    form={Object {}}
     onAddNewExample={[Function]}
     onExampleChange={[Function]}
     onFormItemChange={[Function]}
@@ -3815,6 +3692,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -3844,7 +3722,7 @@ ShallowWrapper {
                     align="right"
           >
                     <WithStyles(ButtonCustomized)
-                              disabled={false}
+                              disabled={true}
                               type="submit"
                     >
                               <WithTheme(Fade)
@@ -3862,11 +3740,6 @@ ShallowWrapper {
                                         />
                               </WithTheme(Fade)>
                               Save word
-                    </WithStyles(ButtonCustomized)>
-                    <WithStyles(ButtonCustomized)
-                              onClick={[Function]}
-                    >
-                              Reset Form
                     </WithStyles(ButtonCustomized)>
           </Jss(ControlsSeparator)>
 </div>,
@@ -3912,7 +3785,7 @@ ShallowWrapper {
               align="right"
 >
               <WithStyles(ButtonCustomized)
-                            disabled={false}
+                            disabled={true}
                             type="submit"
               >
                             <WithTheme(Fade)
@@ -3930,11 +3803,6 @@ ShallowWrapper {
                                           />
                             </WithTheme(Fade)>
                             Save word
-              </WithStyles(ButtonCustomized)>
-              <WithStyles(ButtonCustomized)
-                            onClick={[Function]}
-              >
-                            Reset Form
               </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
           ],
@@ -3988,7 +3856,7 @@ ShallowWrapper {
               "align": "right",
               "children": Array [
                 <WithStyles(ButtonCustomized)
-                  disabled={false}
+                  disabled={true}
                   type="submit"
 >
                   <WithTheme(Fade)
@@ -4007,11 +3875,7 @@ ShallowWrapper {
                   </WithTheme(Fade)>
                   Save word
 </WithStyles(ButtonCustomized)>,
-                <WithStyles(ButtonCustomized)
-                  onClick={[Function]}
->
-                  Reset Form
-</WithStyles(ButtonCustomized)>,
+                false,
               ],
             },
             "ref": null,
@@ -4038,7 +3902,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                     "Save word",
                   ],
-                  "disabled": false,
+                  "disabled": true,
                   "type": "submit",
                 },
                 "ref": null,
@@ -4077,18 +3941,7 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Reset Form",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "Reset Form",
-                "type": [Function],
-              },
+              false,
             ],
             "type": [Function],
           },
@@ -4176,7 +4029,7 @@ ShallowWrapper {
                         align="right"
             >
                         <WithStyles(ButtonCustomized)
-                                    disabled={false}
+                                    disabled={true}
                                     type="submit"
                         >
                                     <WithTheme(Fade)
@@ -4194,11 +4047,6 @@ ShallowWrapper {
                                                 />
                                     </WithTheme(Fade)>
                                     Save word
-                        </WithStyles(ButtonCustomized)>
-                        <WithStyles(ButtonCustomized)
-                                    onClick={[Function]}
-                        >
-                                    Reset Form
                         </WithStyles(ButtonCustomized)>
             </Jss(ControlsSeparator)>
 </div>,
@@ -4244,7 +4092,7 @@ ShallowWrapper {
                 align="right"
 >
                 <WithStyles(ButtonCustomized)
-                                disabled={false}
+                                disabled={true}
                                 type="submit"
                 >
                                 <WithTheme(Fade)
@@ -4262,11 +4110,6 @@ ShallowWrapper {
                                                 />
                                 </WithTheme(Fade)>
                                 Save word
-                </WithStyles(ButtonCustomized)>
-                <WithStyles(ButtonCustomized)
-                                onClick={[Function]}
-                >
-                                Reset Form
                 </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
             ],
@@ -4320,7 +4163,7 @@ ShallowWrapper {
                 "align": "right",
                 "children": Array [
                   <WithStyles(ButtonCustomized)
-                    disabled={false}
+                    disabled={true}
                     type="submit"
 >
                     <WithTheme(Fade)
@@ -4339,11 +4182,7 @@ ShallowWrapper {
                     </WithTheme(Fade)>
                     Save word
 </WithStyles(ButtonCustomized)>,
-                  <WithStyles(ButtonCustomized)
-                    onClick={[Function]}
->
-                    Reset Form
-</WithStyles(ButtonCustomized)>,
+                  false,
                 ],
               },
               "ref": null,
@@ -4370,7 +4209,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                       "Save word",
                     ],
-                    "disabled": false,
+                    "disabled": true,
                     "type": "submit",
                   },
                   "ref": null,
@@ -4409,18 +4248,7 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Reset Form",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "Reset Form",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": [Function],
             },
@@ -4510,16 +4338,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <FormAddWord
     classes={Object {}}
     currentLoadingNames={Array []}
-    form={
-        Object {
-            "form": Object {
-              "en": "",
-              "examples": Array [],
-              "transcription": "",
-              "ua": "",
-            },
-          }
-    }
+    form={Object {}}
     onAddNewExample={[Function]}
     onExampleChange={[Function]}
     onFormItemChange={[Function]}
@@ -4531,6 +4350,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -4560,7 +4380,7 @@ ShallowWrapper {
                     align="right"
           >
                     <WithStyles(ButtonCustomized)
-                              disabled={false}
+                              disabled={true}
                               type="submit"
                     >
                               <WithTheme(Fade)
@@ -4578,11 +4398,6 @@ ShallowWrapper {
                                         />
                               </WithTheme(Fade)>
                               Save word
-                    </WithStyles(ButtonCustomized)>
-                    <WithStyles(ButtonCustomized)
-                              onClick={[Function]}
-                    >
-                              Reset Form
                     </WithStyles(ButtonCustomized)>
           </Jss(ControlsSeparator)>
 </div>,
@@ -4628,7 +4443,7 @@ ShallowWrapper {
               align="right"
 >
               <WithStyles(ButtonCustomized)
-                            disabled={false}
+                            disabled={true}
                             type="submit"
               >
                             <WithTheme(Fade)
@@ -4646,11 +4461,6 @@ ShallowWrapper {
                                           />
                             </WithTheme(Fade)>
                             Save word
-              </WithStyles(ButtonCustomized)>
-              <WithStyles(ButtonCustomized)
-                            onClick={[Function]}
-              >
-                            Reset Form
               </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
           ],
@@ -4704,7 +4514,7 @@ ShallowWrapper {
               "align": "right",
               "children": Array [
                 <WithStyles(ButtonCustomized)
-                  disabled={false}
+                  disabled={true}
                   type="submit"
 >
                   <WithTheme(Fade)
@@ -4723,11 +4533,7 @@ ShallowWrapper {
                   </WithTheme(Fade)>
                   Save word
 </WithStyles(ButtonCustomized)>,
-                <WithStyles(ButtonCustomized)
-                  onClick={[Function]}
->
-                  Reset Form
-</WithStyles(ButtonCustomized)>,
+                false,
               ],
             },
             "ref": null,
@@ -4754,7 +4560,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                     "Save word",
                   ],
-                  "disabled": false,
+                  "disabled": true,
                   "type": "submit",
                 },
                 "ref": null,
@@ -4793,18 +4599,7 @@ ShallowWrapper {
                 ],
                 "type": [Function],
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Reset Form",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "Reset Form",
-                "type": [Function],
-              },
+              false,
             ],
             "type": [Function],
           },
@@ -4892,7 +4687,7 @@ ShallowWrapper {
                         align="right"
             >
                         <WithStyles(ButtonCustomized)
-                                    disabled={false}
+                                    disabled={true}
                                     type="submit"
                         >
                                     <WithTheme(Fade)
@@ -4910,11 +4705,6 @@ ShallowWrapper {
                                                 />
                                     </WithTheme(Fade)>
                                     Save word
-                        </WithStyles(ButtonCustomized)>
-                        <WithStyles(ButtonCustomized)
-                                    onClick={[Function]}
-                        >
-                                    Reset Form
                         </WithStyles(ButtonCustomized)>
             </Jss(ControlsSeparator)>
 </div>,
@@ -4960,7 +4750,7 @@ ShallowWrapper {
                 align="right"
 >
                 <WithStyles(ButtonCustomized)
-                                disabled={false}
+                                disabled={true}
                                 type="submit"
                 >
                                 <WithTheme(Fade)
@@ -4978,11 +4768,6 @@ ShallowWrapper {
                                                 />
                                 </WithTheme(Fade)>
                                 Save word
-                </WithStyles(ButtonCustomized)>
-                <WithStyles(ButtonCustomized)
-                                onClick={[Function]}
-                >
-                                Reset Form
                 </WithStyles(ButtonCustomized)>
 </Jss(ControlsSeparator)>,
             ],
@@ -5036,7 +4821,7 @@ ShallowWrapper {
                 "align": "right",
                 "children": Array [
                   <WithStyles(ButtonCustomized)
-                    disabled={false}
+                    disabled={true}
                     type="submit"
 >
                     <WithTheme(Fade)
@@ -5055,11 +4840,7 @@ ShallowWrapper {
                     </WithTheme(Fade)>
                     Save word
 </WithStyles(ButtonCustomized)>,
-                  <WithStyles(ButtonCustomized)
-                    onClick={[Function]}
->
-                    Reset Form
-</WithStyles(ButtonCustomized)>,
+                  false,
                 ],
               },
               "ref": null,
@@ -5086,7 +4867,7 @@ ShallowWrapper {
 </WithTheme(Fade)>,
                       "Save word",
                     ],
-                    "disabled": false,
+                    "disabled": true,
                     "type": "submit",
                   },
                   "ref": null,
@@ -5125,18 +4906,7 @@ ShallowWrapper {
                   ],
                   "type": [Function],
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Reset Form",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "Reset Form",
-                  "type": [Function],
-                },
+                false,
               ],
               "type": [Function],
             },

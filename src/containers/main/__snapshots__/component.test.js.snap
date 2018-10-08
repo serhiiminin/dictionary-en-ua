@@ -3,36 +3,45 @@
 exports[`MainContainer page render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <MainContainer />,
+  Symbol(enzyme.__unrendered__): <Jss(MainContainer) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
-      "children": "Main page",
+      "classes": Object {
+        "mainPage": "MainContainer-mainPage-0-1-1",
+        "quoteAuthor": "MainContainer-quoteAuthor-0-1-3",
+        "quoteText": "MainContainer-quoteText-0-1-2",
+      },
     },
     "ref": null,
-    "rendered": "Main page",
-    "type": "div",
+    "rendered": null,
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
-        "children": "Main page",
+        "classes": Object {
+          "mainPage": "MainContainer-mainPage-0-1-1",
+          "quoteAuthor": "MainContainer-quoteAuthor-0-1-3",
+          "quoteText": "MainContainer-quoteText-0-1-2",
+        },
       },
       "ref": null,
-      "rendered": "Main page",
-      "type": "div",
+      "rendered": null,
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
