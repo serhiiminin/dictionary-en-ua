@@ -1,13 +1,11 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   inputsBlock: {
     display: 'grid',
     rowGap: '1em',
     marginBottom: '10px',
     padding: '10px',
-    border: `1px solid ${stylesVariables.colors.line}`,
-    borderRadius: stylesVariables.borderRadius.small,
+    border: `1px solid ${theme.main.colors.line}`,
+    borderRadius: theme.main.borderRadius.small,
   },
   topLine: {
     display: 'grid',
@@ -22,6 +20,6 @@ const styles = {
   blockItems: {
     minHeight: '2em',
   },
-};
+});
 
 export default styles;

@@ -7,7 +7,7 @@ import Root from './component';
 const enhance = compose(
   injectSheet({
     ...normalize,
-    ...styles
+    ...styles,
   }),
 );
 

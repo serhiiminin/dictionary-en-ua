@@ -1,6 +1,4 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   textFieldControl: {
     display: 'grid',
     rowGap: '0.5rem',
@@ -10,20 +8,20 @@ const styles = {
     gridTemplateColumns: '100fr 1fr',
   },
   textField: {
-    marginBottom: stylesVariables.margin.medium,
+    marginBottom: theme.main.margin.medium,
   },
   root: {
     width: '100%',
   },
   label: {
-    color: `${stylesVariables.colors.text} !important`,
+    color: `${theme.main.colors.text} !important`,
     opacity: 0.7,
   },
   underline: {
     '&:after': {
-      borderBottom: `${stylesVariables.colors.text} !important`,
+      borderBottom: `${theme.main.colors.text} !important`,
     },
   },
-};
+});
 
 export default styles;

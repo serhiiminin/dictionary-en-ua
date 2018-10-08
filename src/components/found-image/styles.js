@@ -1,7 +1,4 @@
-import stylesVariables from '../../constants/styles-variables';
-
-
-const styles = {
+const styles = theme => ({
   foundImage: {
     position: 'relative',
     width: '100%',
@@ -12,14 +9,14 @@ const styles = {
   },
   foundImageInner: {
     position: 'relative',
-    widht: '100%',
+    width: '100%',
     height: '100%',
-    backgroundColor: stylesVariables.colors.line,
-    opacity: stylesVariables.opacity.disabled,
+    backgroundColor: theme.main.colors.line,
+    opacity: theme.main.opacity.disabled,
     display: 'grid',
     alignContent: 'center',
     justifyContent: 'center',
   }
-};
+});
 
 export default styles;

@@ -1,15 +1,13 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   multipleInputs: {
     padding: '5px 10px',
-    border: `1px solid ${stylesVariables.colors.line}`,
-    borderRadius: stylesVariables.borderRadius.small,
+    border: `1px solid ${theme.main.colors.line}`,
+    borderRadius: theme.main.borderRadius.small,
   },
   blockTitle: {
     padding: '5px 0',
     margin: 0,
   },
-};
+});
 
 export default styles;

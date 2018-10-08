@@ -1,6 +1,4 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   page: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, auto)',
@@ -16,9 +14,9 @@ const styles = {
     gridTemplateColumns: 'repeat(auto-fit, minmax(0, auto))',
     justifyContent: 'end',
     gap: '1rem',
-    background: stylesVariables.colors.background,
+    background: theme.main.colors.background,
     padding: '10px 10px',
   }
-};
+});
 
 export default styles;

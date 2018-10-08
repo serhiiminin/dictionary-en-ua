@@ -1,12 +1,10 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   clickableWord: {
     display: 'inline-block',
-    marginRight: stylesVariables.margin.small,
-    color: stylesVariables.colors.text,
+    marginRight: theme.main.margin.small,
+    color: theme.main.colors.text,
     fontWeight: 'bolder',
   }
-};
+});
 
 export default styles;

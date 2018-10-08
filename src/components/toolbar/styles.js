@@ -1,11 +1,9 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   toolbar: {
     display: 'grid',
     gridTemplateColumns: '1fr 22fr 1fr',
     alignContent: 'center',
-    background: stylesVariables.colors.background,
+    background: theme.main.colors.background,
     padding: '10px 10px',
   },
   toolbarButtons: {
@@ -15,6 +13,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-};
+});
 
 export default styles;

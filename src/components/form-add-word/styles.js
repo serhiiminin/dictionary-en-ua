@@ -1,6 +1,4 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   formAdd: {
     display: 'grid',
     gridTemplateColumns: '3fr 5fr',
@@ -9,10 +7,10 @@ const styles = {
   },
   addExample: {
     display: 'grid',
-    padding: `${stylesVariables.padding.medium} 0`,
+    padding: `${theme.main.padding.medium} 0`,
     justifyContent: 'end',
     alignItems: 'center',
   }
-};
+});
 
 export default styles;

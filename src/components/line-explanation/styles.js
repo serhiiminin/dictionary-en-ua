@@ -1,14 +1,12 @@
-import stylesVariables from '../../constants/styles-variables';
-
-const styles = {
+const styles = theme => ({
   lineExplanation: {
     display: 'grid',
     gridTemplateColumns: '1fr 2fr',
-    background: stylesVariables.colors.line,
-    padding: stylesVariables.padding.medium,
-    marginBottom: stylesVariables.margin.medium,
-    borderRadius: stylesVariables.borderRadius.small,
+    background: theme.main.colors.line,
+    padding: theme.main.padding.medium,
+    marginBottom: theme.main.margin.medium,
+    borderRadius: theme.main.borderRadius.small,
   },
-};
+});
 
 export default styles;
