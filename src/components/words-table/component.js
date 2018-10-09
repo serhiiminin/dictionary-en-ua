@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import urljoin from 'url-join';
-import { Checkbox, Fade, LinearProgress } from '@material-ui/core';
+import { Checkbox, Fade } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import loadingNames from '../../constants/loading-names';
 import { mergeSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
-import { Button } from '../../components-mui';
+import { Button, LinearProgress } from '../../components-mui';
 import { PaginationPanel, Toolbar, WordsList } from '..';
 
 class WordsTable extends Component {
@@ -87,9 +87,6 @@ class WordsTable extends Component {
 
     return (
       <main>
-        <Fade in={loading}>
-          <LinearProgress color='secondary'/>
-        </Fade>
         <div className={classes.wordsList}>
           <Toolbar
             checkAllControl={<Checkbox onChange={this.handleOnCheckAll} checked={isCheckedAll}/>}
@@ -103,6 +100,9 @@ class WordsTable extends Component {
               <Delete onClick={this.handleDeleteWord}/>
             </Button>
           </Toolbar>
+          <Fade in={loading}>
+            <LinearProgress color='secondary' variant='query'/>
+          </Fade>
           <WordsList
             wordsList={wordsList}
             onWordCheck={this.handleOnCheck}
