@@ -24,14 +24,22 @@ class LoadingNamesProvider extends Component {
       currentLoadingNames: [...prevState.currentLoadingNames].filter(loadingName => loadingName !== name)
     }));
 
+  checkIsLoading = (currentLoadingNames = []) => (...loadingNamesToCheck) =>
+    currentLoadingNames
+      .some(currentLoadingName =>
+        loadingNamesToCheck.includes(currentLoadingName)
+      );
+
   render() {
     const { currentLoadingNames } = this.state;
     const { children } = this.props;
+    const checkIsLoading = this.checkIsLoading(currentLoadingNames);
 
     return (
       <LoadingNamesContext.Provider
         value={{
           currentLoadingNames,
+          checkIsLoading,
           startLoading: this.handleStartLoading,
           stopLoading: this.handleStopLoading,
         }}

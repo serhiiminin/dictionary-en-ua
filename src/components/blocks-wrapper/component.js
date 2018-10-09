@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const BlocksContainer = ({ classes, children }) => (
+const BlocksWrapper = ({ classes, children }) => (
   <div className={classes.blocksContainer}>
     {children}
   </div>
 );
 
-BlocksContainer.propTypes = {
+BlocksWrapper.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   children: PropTypes.node.isRequired,
 };
 
-BlocksContainer.defaultProps = {
+BlocksWrapper.defaultProps = {
   classes: {}
 };
 
-export default BlocksContainer;
+export default BlocksWrapper;

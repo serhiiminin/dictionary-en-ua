@@ -38,11 +38,10 @@ class SearchWordContainer extends Component {
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     onFillForm: PropTypes.func.isRequired,
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    checkIsLoading: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    currentLoadingNames: [],
     foundWord: null,
     classes: {},
   };
@@ -89,9 +88,9 @@ class SearchWordContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { classes, foundWord, currentLoadingNames } = this.props;
+    const { classes, foundWord, checkIsLoading } = this.props;
     const isEmpty = !Object.keys(foundWord).length;
-    const loading = currentLoadingNames.includes(loadingNames.searchWord);
+    const loading = checkIsLoading(loadingNames.searchWord);
 
     return (
       <main className={classes.searchWord}>
