@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import { Button, TextField } from '../../components-mui';
 import { MultipleInputs, InputsBlock, ChipSet } from '..';
 import loadingNames from '../../constants/loading-names';
+import isLoading from '../../helpers/loading';
 
 
 class WordForm extends Component {
@@ -67,7 +68,7 @@ class WordForm extends Component {
     const { currentLoadingNames, onSubmit } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
-    const loading = currentLoadingNames.includes(loadingNames.editWord);
+    const loading = isLoading(currentLoadingNames)(loadingNames.editWord, loadingNames.saveWord);
 
     return (
       <form onSubmit={onSubmit}>
