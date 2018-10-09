@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import BlocksContainer from './component';
+import BlocksWrapper from './component';
 
 describe('Blocks Container', () => {
   test('render', () => {
     const wrapper = shallow(
-      <BlocksContainer>
+      <BlocksWrapper>
         Anything
-      </BlocksContainer>
+      </BlocksWrapper>
     );
 
     expect(wrapper.contains('Anything')).toMatchSnapshot();

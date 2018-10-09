@@ -1,8 +1,8 @@
 import React from 'react';
+import { ThemeProvider } from 'react-jss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import { ThemeProvider } from 'react-jss';
-import { Header, BlocksContainer, Notifications } from '../components';
+import { Header, BlocksWrapper, Notifications } from '../components';
 import {
   MainContainer,
   WordsListContainer,
@@ -39,7 +39,7 @@ const Root = () => (
       <Router>
         <StateProvider>
           <Notifications>
-            <BlocksContainer>
+            <BlocksWrapper>
               <Header/>
               <Switch>
                 <Route exact path={routes.root} component={MainContainer}/>
@@ -52,7 +52,7 @@ const Root = () => (
                 <Route exact path={routes.words.search} component={WordsSearchContainer}/>
                 <Route component={PageNotFoundContainer}/>
               </Switch>
-            </BlocksContainer>
+            </BlocksWrapper>
           </Notifications>
         </StateProvider>
       </Router>
