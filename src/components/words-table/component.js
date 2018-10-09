@@ -22,14 +22,13 @@ class WordsTable extends Component {
     wordsCount: PropTypes.number,
     deleteWord: PropTypes.func.isRequired,
     getWordsSearchParams: PropTypes.func.isRequired,
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    checkIsLoading: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     classes: {},
     wordsList: null,
     wordsCount: null,
-    currentLoadingNames: null,
   };
 
   state = {
@@ -81,9 +80,9 @@ class WordsTable extends Component {
 
   render() {
     const { checked } = this.state;
-    const { classes, wordsList, wordsCount, currentLoadingNames, getWordsSearchParams, location } = this.props;
+    const { classes, wordsList, wordsCount, checkIsLoading, getWordsSearchParams, location } = this.props;
     const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(location);
-    const loading = currentLoadingNames.includes(loadingNames.wordsList);
+    const loading = checkIsLoading(loadingNames.wordsList);
     const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
 
     return (

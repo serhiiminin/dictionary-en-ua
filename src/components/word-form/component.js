@@ -5,12 +5,11 @@ import uuid from 'uuid';
 import { Button, TextField } from '../../components-mui';
 import { MultipleInputs, InputsBlock, ChipSet } from '..';
 import loadingNames from '../../constants/loading-names';
-import isLoading from '../../helpers/loading';
 
 
 class WordForm extends Component {
   static propTypes = {
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    checkIsLoading : PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     word: PropTypes.shape({
       _id: PropTypes.string,
@@ -24,7 +23,6 @@ class WordForm extends Component {
   };
 
   static defaultProps = {
-    currentLoadingNames: [],
     word: {},
   };
 
@@ -65,10 +63,10 @@ class WordForm extends Component {
     }));
 
   render() {
-    const { currentLoadingNames, onSubmit } = this.props;
+    const { onSubmit, checkIsLoading } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
-    const loading = isLoading(currentLoadingNames)(loadingNames.editWord, loadingNames.saveWord);
+    const loading = checkIsLoading(loadingNames.editWord, loadingNames.saveWord);
 
     return (
       <form onSubmit={onSubmit}>

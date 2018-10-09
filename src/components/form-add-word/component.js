@@ -11,7 +11,7 @@ class FormAddWord extends Component {
     form: PropTypes.shape({
       en: PropTypes.string,
     }),
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
+    checkIsLoading: PropTypes.func.isRequired,
     onAddNewExample: PropTypes.func.isRequired,
     onRemoveExample: PropTypes.func.isRequired,
     onResetForm: PropTypes.func.isRequired,
@@ -23,7 +23,6 @@ class FormAddWord extends Component {
 
   static defaultProps = {
     form: {},
-    currentLoadingNames: [],
     classes: {},
   };
 
@@ -42,9 +41,9 @@ class FormAddWord extends Component {
 
   render() {
     const { form, onResetForm, onAddNewExample, onRemoveExample, classes,
-      onExampleChange, onFormItemChange, currentLoadingNames } = this.props;
+      onExampleChange, onFormItemChange, checkIsLoading } = this.props;
     const { en, ua, transcription, examples } = form;
-    const loading = currentLoadingNames.includes(loadingNames.saveWord);
+    const loading = checkIsLoading(loadingNames.saveWord);
 
     return (
       <form

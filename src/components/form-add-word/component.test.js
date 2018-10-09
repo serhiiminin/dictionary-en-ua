@@ -9,7 +9,6 @@ describe('Form add word', () => {
   beforeEach(() => {
     wrapper = shallow(
       <FormAddWord
-        currentLoadingNames={[]}
         onAddNewExample={() => {}}
         onRemoveExample={() => {}}
         onExampleChange={() => {}}

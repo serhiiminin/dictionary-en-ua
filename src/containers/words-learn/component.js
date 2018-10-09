@@ -11,12 +11,11 @@ class LearnWordsContainer extends Component {
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
-    currentLoadingNames: PropTypes.arrayOf(PropTypes.string),
     classes: PropTypes.objectOf(PropTypes.string),
+    checkIsLoading: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    currentLoadingNames: [],
     classes: {},
   };
 
@@ -106,8 +105,8 @@ class LearnWordsContainer extends Component {
       }));
 
   render() {
-    const { currentLoadingNames, classes } = this.props;
-    const loading = currentLoadingNames.includes(loadingNames.learnWord);
+    const { checkIsLoading, classes } = this.props;
+    const loading = checkIsLoading(loadingNames.learnWord);
     const { currentWord, inputValue, guessed } = this.state;
 
     return (
