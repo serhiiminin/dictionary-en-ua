@@ -6,7 +6,6 @@ const ChipCustomized = ({ classes, ...restProps }) => (
   <Chip
     classes={{
       root: classes.root,
-      disabled: classes.disabled,
     }}
     {...restProps}
   />

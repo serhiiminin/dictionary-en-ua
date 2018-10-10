@@ -13,10 +13,11 @@ const EMPTY_VALUE = '-';
 const WordItemInList = props => {
   const { classes, isChecked, onWordCheck, word, linkToWord, loading } = props;
   const { _id, en, ua, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
-  const lastLearnt = dateLastLearnt && (dateLastLearnt === new Date(0).toISOString()
-    ? 'Never'
-    : moment(dateLastLearnt)
-      .fromNow());
+  const lastLearnt = dateLastLearnt && (
+    dateLastLearnt === new Date(0).toISOString()
+      ? 'Never'
+      : moment(dateLastLearnt).fromNow()
+  );
 
   return (
     <div className={`${classes.word} ${isChecked && classes.wordChosen} ${loading && classes.wordLoading}`}>
@@ -28,8 +29,9 @@ const WordItemInList = props => {
       <div className={classes.wordDescription}>
         <div className={classes.wordTitle}>
           {en && <Link className={classes.linkToWord} to={linkToWord}>{en}</Link>}
-          {[en && ' ', transcription, ua]
-            .filter(Boolean).join(' - ')}
+          {[en && ' ', transcription && `[${transcription}]`, ua]
+            .filter(Boolean)
+            .join(' - ')}
           {loading && (
             <Fade in={loading}>
               <CircularProgress color='secondary' size={20}/>
@@ -40,11 +42,13 @@ const WordItemInList = props => {
           {[
             timesLearnt != null && `Times learnt: ${timesLearnt}`,
             lastLearnt && `Last learnt: ${lastLearnt}`,
-          ].filter(Boolean).join(` · `)}
+          ].filter(Boolean)
+            .join(` · `)}
         </div>
       </div>
       <div className={classes.wordTime}>
-        {(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}
+        {(dateCreated && moment(dateCreated)
+          .fromNow()) || EMPTY_VALUE}
       </div>
       <ButtonWithRouter
         to={urljoin(routes.words.list.root, _id, 'edit')}
@@ -78,16 +82,16 @@ WordItemInList.defaultProps = {
   classes: {},
   word: {
     _id: '',
-    en: null,
-    ua: null,
-    transcription: null,
-    dateCreated: null,
-    onWordCheck: null,
+    en: '',
+    ua: '',
+    transcription: '',
+    dateCreated: '',
+    onWordCheck: '',
   },
-  onWordCheck: null,
-  linkToWord: null,
-  isChecked: null,
-  loading: null,
+  onWordCheck: () => {},
+  linkToWord: '',
+  isChecked: false,
+  loading: false,
 };
 
 export default WordItemInList;
