@@ -1,11 +1,10 @@
 const styles = theme => ({
   wordsList: {
+    display: 'grid',
     margin: 0,
     padding: 0,
-    background: theme.main.colors.text,
-    borderRadius: '5px',
+    borderRadius: theme.main.borderRadius.small,
     overflow: 'hidden',
-    display: 'grid',
     rowGap: '1px',
   },
 });

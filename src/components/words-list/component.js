@@ -5,36 +5,39 @@ import uuid from 'uuid';
 import routes from '../../routes';
 import { WordItemInList } from '..';
 
-const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck }) =>
-  loading
-    ? Array(countPerPage)
-      .fill(null)
-      .map(() => (
-        <WordItemInList
-          key={uuid()}
-          loading={loading}
-        />
-      ))
-    : wordsList
-      .map(word => {
-        const { _id } = word;
-        const linkToWord = urljoin(routes.words.list.root, _id);
-        const isChecked = checked.includes(_id);
-
-        return (
+const WordsList = ({ classes, wordsList, loading, countPerPage, checked, onWordCheck }) =>
+  <div className={classes.wordsList}>
+    {loading
+      ? Array(countPerPage)
+        .fill(null)
+        .map(() => (
           <WordItemInList
-            word={word}
-            linkToWord={linkToWord}
-            onWordCheck={onWordCheck}
-            isChecked={isChecked}
+            key={uuid()}
             loading={loading}
-            key={_id}
           />
-        );
-      });
+        ))
+      : wordsList
+        .map(word => {
+          const { _id } = word;
+          const linkToWord = urljoin(routes.words.list.root, _id);
+          const isChecked = checked.includes(_id);
+
+          return (
+            <WordItemInList
+              word={word}
+              linkToWord={linkToWord}
+              onWordCheck={onWordCheck}
+              isChecked={isChecked}
+              loading={loading}
+              key={_id}
+            />
+          );
+        })
+    }
+  </div>;
 
 WordsList.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.shape({
+  wordsList: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
   })),
   classes: PropTypes.objectOf(PropTypes.string),
@@ -46,7 +49,7 @@ WordsList.propTypes = {
 
 WordsList.defaultProps = {
   classes: {},
-  words: null,
+  wordsList: null,
   loading: null,
   countPerPage: null,
   checked: null,

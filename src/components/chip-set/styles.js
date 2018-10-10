@@ -1,13 +1,13 @@
 const styles = theme => ({
-  multipleInputs: {
-    padding: '5px 10px',
-    border: `1px solid ${theme.main.colors.line}`,
-    borderRadius: theme.main.borderRadius.small,
+  chipSet: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    transition: theme.main.transition
   },
-  blockTitle: {
-    padding: '5px 0',
-    margin: 0,
-  },
+  chip: {
+    marginBottom: theme.main.margin.small,
+    marginRight: theme.main.margin.small,
+  }
 });
 
 export default styles;

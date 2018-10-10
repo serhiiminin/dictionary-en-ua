@@ -27,6 +27,12 @@ const theme = {
       medium: '10px',
       large: '15px',
     },
+    borderWidth: {
+      base: '1px'
+    },
+    borderStyle: {
+      base: 'solid',
+    },
     borderRadius: {
       small: '5px',
       medium: '10px',
