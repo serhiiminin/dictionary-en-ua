@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ListOfClickableStrings from './component';
+import ListOfSearchableWords from './component';
 
 describe('List of clickable strings', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <ListOfClickableStrings
+      <ListOfSearchableWords
         items={['one', 'two']}
         onClick={() => {}}
       />

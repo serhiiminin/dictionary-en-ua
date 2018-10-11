@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Fade, LinearProgress } from '@material-ui/core';
-import { InputsBlock, LineExplanation } from '../../components';
+import { InputsBlock, LineExplanation, ListOfSearchableWords } from '../../components';
 import loadingNames from '../../constants/loading-names';
 
-const joinItemsByComma = items => items
+const mapValues = items => items
   .map(item => item.value)
-  .filter(Boolean)
-  .join(', ');
+  .filter(Boolean);
 
 class WordPreviewContainer extends Component {
   static propTypes = {
@@ -17,6 +16,28 @@ class WordPreviewContainer extends Component {
     match: ReactRouterPropTypes.match.isRequired,
     word: PropTypes.shape({
       en: PropTypes.string,
+      uk: PropTypes.string,
+      transcription: PropTypes.string,
+      examples: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        value: PropTypes.string,
+      })),
+      synonyms: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        value: PropTypes.string,
+      })),
+      antonyms: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        value: PropTypes.string,
+      })),
+      partOfSpeech: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        value: PropTypes.string,
+      })),
+      similarTo: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        value: PropTypes.string,
+      })),
     }),
   };
 
@@ -47,16 +68,24 @@ class WordPreviewContainer extends Component {
             {transcription && `[${transcription}]`}
           </LineExplanation>
           <LineExplanation label='Part of speech'>
-            {partOfSpeech && joinItemsByComma(partOfSpeech)}
+            <ListOfSearchableWords
+              items={partOfSpeech && mapValues(partOfSpeech)}
+            />
           </LineExplanation>
           <LineExplanation label='Synonyms'>
-            {synonyms && joinItemsByComma(synonyms)}
+            <ListOfSearchableWords
+              items={synonyms && mapValues(synonyms)}
+            />
           </LineExplanation>
           <LineExplanation label='Antonyms'>
-            {antonyms && joinItemsByComma(antonyms)}
+            <ListOfSearchableWords
+              items={antonyms && mapValues(antonyms)}
+            />
           </LineExplanation>
           <LineExplanation label='Similar to'>
-            {similarTo && joinItemsByComma(similarTo)}
+            <ListOfSearchableWords
+              items={similarTo && mapValues(similarTo)}
+            />
           </LineExplanation>
         </InputsBlock>
         <InputsBlock title="Examples">
@@ -66,7 +95,7 @@ class WordPreviewContainer extends Component {
                 {example.value}
               </LineExplanation>
             ))
-          : ''}
+            : ''}
         </InputsBlock>
       </div>
     );

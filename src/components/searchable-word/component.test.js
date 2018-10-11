@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ClickableWord from './component';
+import SearchableWord from './component';
 
 describe('Clickable Word', () => {
   test('render', () => {
     const wrapper = shallow(
-      <ClickableWord
+      <SearchableWord
         word='word'
         onClick={() => {}}
       />
@@ -17,7 +17,7 @@ describe('Clickable Word', () => {
   test('onClick', () => {
     const fn = jest.fn();
     const wrapper = shallow(
-      <ClickableWord
+      <SearchableWord
         word='word'
         onClick={fn}
       />
