@@ -8,7 +8,7 @@ import loadingNames from '../../constants/loading-names';
 const joinItemsByComma = items => items
   .map(item => item.value)
   .filter(Boolean)
-  .join(',');
+  .join(', ');
 
 class WordPreviewContainer extends Component {
   static propTypes = {

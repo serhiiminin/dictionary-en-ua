@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import {
-  ControlsSeparator,
-  TextFieldLoading,
-  FoundWordDescription,
-  FoundWordExamples,
-  FoundImage
-} from '../../components';
+import { ControlsSeparator, TextFieldLoading, FoundImage } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
 import routes from '../../routes';
@@ -37,7 +31,6 @@ class SearchWordContainer extends Component {
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
-    onFillForm: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
   };
 
@@ -72,10 +65,9 @@ class SearchWordContainer extends Component {
   };
 
   handleEditBeforeSaving = () => {
-    const { foundWord, onFillForm, history } = this.props;
+    const { history } = this.props;
 
-    this.setState({ ...initialState });
-    onFillForm(foundWord)
+    this.setState({ ...initialState })
       .then(history.push(routes.words.add));
   };
 
@@ -108,18 +100,6 @@ class SearchWordContainer extends Component {
           <div className={classes.image}>
             <FoundImage url={foundWord.gif}/>
           </div>
-        </div>
-        <div>
-          <FoundWordDescription
-            foundWord={foundWord}
-            pushTextToInput={this.handleSearchWord}
-          />
-        </div>
-        <div className={classes.examples}>
-          <FoundWordExamples
-            foundWord={foundWord}
-            pushTextToInput={this.handleSearchWord}
-          />
         </div>
       </main>
     );

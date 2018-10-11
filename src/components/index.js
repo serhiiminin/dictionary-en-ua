@@ -5,8 +5,6 @@ export { default as ClickableWord } from './clickable-word';
 export { default as CloseButton } from './close-button';
 export { default as ControlsSeparator } from './controls-separator';
 export { default as FoundImage } from './found-image';
-export { default as FoundWordDescription } from './found-word-description';
-export { default as FoundWordExamples } from './found-word-examples';
 export { default as GuessedWordDescription } from './guessed-word-description';
 export { default as Header } from './header';
 export { default as HeaderNavigation } from './header-navigation';
