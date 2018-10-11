@@ -22,12 +22,11 @@ const mergeSearchParams = (params, initialSearchParams) => {
 
 const updateSearchParamsInUrl = (url, params) => {
   const updatedUrl = new URL(url);
-  const updatedSearchParams = mergeSearchParams(params, updatedUrl.search);
 
-  updatedUrl.search = updatedSearchParams;
+  updatedUrl.search = mergeSearchParams(params, updatedUrl.search);
 
   return updatedUrl.toString();
-}
+};
 
 export {
   getSearchParams,
