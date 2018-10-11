@@ -11,6 +11,7 @@ import {
   PageNotFoundContainer,
   WordsLearnContainer,
   WordsEditContainer,
+  WordPreviewContainer,
 } from '../containers';
 import StateProvider from '../context';
 import routes from '../routes';
@@ -47,7 +48,7 @@ const Root = () => (
                 <Route exact path={routes.words.add} component={WordsAddContainer}/>
                 <Route exact path={routes.words.learn} component={WordsLearnContainer}/>
                 <Route exact path={routes.words.list.all} component={WordsListContainer}/>
-                <Route exact path={routes.words.list.preview} render={() => 'Preview'}/>
+                <Route exact path={routes.words.list.preview} component={WordPreviewContainer}/>
                 <Route exact path={routes.words.list.edit} component={WordsEditContainer}/>
                 <Route exact path={routes.words.search} component={WordsSearchContainer}/>
                 <Route component={PageNotFoundContainer}/>

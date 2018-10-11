@@ -1,12 +1,11 @@
-import { withRouter } from 'react-router-dom';
 import injectSheet from 'react-jss';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFoundWord } from '../../context/found-word';
 import { withLoadingNames } from '../../context/loading-names';
-import { withWordForm } from '../../context/word-form';
 import { withWords } from '../../context/words';
+import SearchWord from './container';
 import styles from './styles';
-import SearchWord from './component';
 
 const enhance = compose(
   injectSheet(styles),
@@ -14,7 +13,6 @@ const enhance = compose(
   withLoadingNames,
   withWords,
   withFoundWord,
-  withWordForm,
 );
 
 export default enhance(SearchWord);
