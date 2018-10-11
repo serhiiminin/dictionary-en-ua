@@ -5,12 +5,11 @@ import { SearchableWord } from '..';
 
 const ListOfSearchableWords = ({ items }) =>
   items && items.map((item, index) =>
-    <React.Fragment>
-      <SearchableWord
-        key={uuid()}
-        word={item}
-      />{index < items.length - 1 && ', '}
-    </React.Fragment>
+    <SearchableWord
+      key={uuid()}
+      word={item}
+      delimiter={index < items.length - 1 && ', '}
+    />
   );
 
 ListOfSearchableWords.propTypes = {
