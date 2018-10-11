@@ -68,7 +68,7 @@ class WordsProviderCmp extends Component {
 
   fetchWord = wordId =>
     this.handleFetch({
-      loadingName: loadingNames.editWord,
+      loadingName: loadingNames.fetchWord,
       requestHandler: () => api.getWord(wordId),
       responseHandler: word => this.setState({ word }),
     });
@@ -105,7 +105,7 @@ class WordsProviderCmp extends Component {
 
   editWord = word =>
     this.handleFetch({
-      loadingName: loadingNames.editWord,
+      loadingName: loadingNames.fetchWord,
       requestHandler: () => api.updateWord(word),
       responseHandler: () => this.props.showNotification('The word has been updated successfully', notificationType.success),
     });

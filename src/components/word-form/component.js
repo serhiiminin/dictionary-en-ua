@@ -66,7 +66,7 @@ class WordForm extends Component {
     const { onSubmit, checkIsLoading } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
-    const loading = checkIsLoading(loadingNames.editWord, loadingNames.saveWord);
+    const loading = checkIsLoading(loadingNames.fetchWord, loadingNames.saveWord);
 
     return (
       <form onSubmit={onSubmit}>

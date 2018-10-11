@@ -1,18 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SearchWord from './component';
+import WordsList from './container';
 
 describe('MainContainer page', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
-      <SearchWord
-        saveWord={() => {}}
-        searchWord={() => {}}
-        cleanFoundWord={() => {}}
-        onFillForm={() => {}}
-      />
+      <WordsList/>
     );
   });
   test('render', () => {

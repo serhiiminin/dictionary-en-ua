@@ -1,6 +1,6 @@
 import injectSheet from 'react-jss';
 import { compose } from 'recompose';
-import PageNotFound from './component';
+import PageNotFound from './container';
 import styles from './styles';
 
 const enhance = compose(

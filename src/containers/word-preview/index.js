@@ -1,16 +1,16 @@
-import { compose } from 'recompose';
 import injectSheet from 'react-jss';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 import { withLoadingNames } from '../../context/loading-names';
-import { withNotifications } from '../../context/notifications';
 import { withWords } from '../../context/words';
-import LearnWords from './container';
+import WordPreviewContainer from './container';
 import styles from './styles';
 
 const enhance = compose(
   injectSheet(styles),
+  withRouter,
   withLoadingNames,
-  withNotifications,
   withWords,
 );
 
-export default enhance(LearnWords);
+export default enhance(WordPreviewContainer);
