@@ -4,6 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { ControlsSeparator, TextFieldLoading, FoundImage } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
+import { parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 
 const SEARCH_INPUT_TIMEOUT = 500;
@@ -13,10 +14,13 @@ const initialState = {
   gif: '',
 };
 
+const EN = 'en';
+const UK = 'uk';
+
 const composeSearchData = text => {
   const translatingWord = text.trim();
-  const from = encodeURIComponent(translatingWord) === translatingWord ? 'en' : 'uk';
-  const to = encodeURIComponent(translatingWord) === translatingWord ? 'uk' : 'en';
+  const from = encodeURIComponent(translatingWord) === translatingWord ? EN : UK;
+  const to = encodeURIComponent(translatingWord) === translatingWord ? UK : EN;
 
   return { text: translatingWord, from, to };
 };
@@ -28,6 +32,7 @@ class SearchWordContainer extends Component {
       en: PropTypes.string,
     }),
     history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
@@ -41,11 +46,29 @@ class SearchWordContainer extends Component {
 
   state = initialState;
 
+  componentDidMount() {
+    const { location } = this.props;
+    const searchParams = parseSearchParams(location.search);
+
+    if (searchParams.query) {
+      this.searchWord(searchParams.query);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+    const searchParams = parseSearchParams(location.search);
+
+    if (this.props.location.search !== prevProps.location.search && searchParams.query) {
+      this.searchWord(searchParams.query);
+    }
+  }
+
   componentWillUnmount() {
     this.props.cleanFoundWord();
   }
 
-  handleSearchWord = text => {
+  searchWord = text => {
     clearTimeout(this.inputTimer);
     this.setState({ searchValue: text });
     this.inputTimer = setTimeout(() => {
@@ -59,9 +82,9 @@ class SearchWordContainer extends Component {
 
     this.setState({ searchValue: value });
 
-    return !value
-      ? this.setState({ searchValue: '' })
-      : this.handleSearchWord(value);
+    this.inputTimer = setTimeout(() => {
+      this.props.history.push(`${routes.words.search}?query=${value}`);
+    }, SEARCH_INPUT_TIMEOUT);
   };
 
   handleEditBeforeSaving = () => {

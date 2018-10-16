@@ -77,17 +77,17 @@ class WordForm extends Component {
           <TextField
             label="English"
             value={en}
-            onChange={({ target }) => this.handleFieldChange({ 'en': target.value })}
+            onChange={({ target }) => this.handleFieldChange({ en: target.value })}
           />
           <TextField
             label="Ukrainian"
             value={ua}
-            onChange={({ target }) => this.handleFieldChange({ 'ua': target.value })}
+            onChange={({ target }) => this.handleFieldChange({ ua: target.value })}
           />
           <TextField
             label="Transcription"
             value={transcription}
-            onChange={({ target }) => this.handleFieldChange({ 'transcription': target.value })}
+            onChange={({ target }) => this.handleFieldChange({ transcription: target.value })}
           />
         </InputsBlock>
         <InputsBlock
