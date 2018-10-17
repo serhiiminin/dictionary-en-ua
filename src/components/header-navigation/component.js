@@ -12,32 +12,24 @@ const HeaderNavigation = ({ classes }) => (
     <ButtonWithRouter
       to={routes.words.list.all}
       title='The list of my words'
-      variant="fab"
-      mini
     >
       <List />
     </ButtonWithRouter>
     <ButtonWithRouter
       to={routes.words.add}
       title='Add a new word'
-      variant="fab"
-      mini
     >
       <NoteAdd />
     </ButtonWithRouter>
     <ButtonWithRouter
       to={routes.words.search}
       title='Search a new word'
-      variant="fab"
-      mini
     >
       <Search />
     </ButtonWithRouter>
     <ButtonWithRouter
       to={routes.words.learn}
       title='Learn saved words'
-      variant="fab"
-      mini
     >
       <Rowing />
     </ButtonWithRouter>
