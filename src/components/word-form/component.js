@@ -9,7 +9,7 @@ import loadingNames from '../../constants/loading-names';
 
 class WordForm extends Component {
   static propTypes = {
-    checkIsLoading : PropTypes.func.isRequired,
+    checkIsLoading: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     word: PropTypes.shape({
       _id: PropTypes.string,
@@ -59,6 +59,18 @@ class WordForm extends Component {
       word: {
         ...prevState.word,
         [fieldKey]: [{ id: uuid(), value }, ...prevState.word[fieldKey]],
+      }
+    }));
+
+  handleOnChangeMultipleInputs = field => (id, value) =>
+    this.setState(prevState => ({
+      word: {
+        ...prevState.word,
+        [field]: prevState.word[field]
+          .map(item => item.id === id
+            ? { ...item, value, }
+            : item),
+
       }
     }));
 
@@ -118,6 +130,7 @@ class WordForm extends Component {
           <MultipleInputs
             items={examples}
             placeholder='Example'
+            onChange={this.handleOnChangeMultipleInputs('examples')}
             onRemoveItem={this.handleRemoveItemFromArray('examples')}
           />
         </InputsBlock>
