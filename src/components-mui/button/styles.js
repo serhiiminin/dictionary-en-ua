@@ -1,8 +1,5 @@
 const styles = theme => ({
   root: {
-    background: theme.main.colors.button,
-    color: theme.main.colors.background,
-    verticalAlign: 'bottom',
     textTransform: 'none',
     transition: theme.main.transition,
     '&:hover': {
@@ -15,6 +12,9 @@ const styles = theme => ({
     background: theme.main.colors.button,
     color: `${theme.main.colors.background} !important`,
   },
+  active: {
+    opacity: theme.main.opacity.disabled,
+  }
 });
 
 export default styles;

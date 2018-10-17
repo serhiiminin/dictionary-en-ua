@@ -96,7 +96,13 @@ class WordsTable extends Component {
             onChangeSortDirection={this.handleOnChangeDirection}
             onChangeSortBy={event => this.handleOnChangeSelect(event, 'sortBy')}
           >
-            <Button disabled={checked.length === 0} title='Delete' variant="fab" mini>
+            <Button
+              disabled={checked.length === 0}
+              color='primary'
+              title='Delete'
+              variant="fab"
+              mini
+            >
               <Delete onClick={this.handleDeleteWord}/>
             </Button>
           </Toolbar>
