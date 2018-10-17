@@ -28,6 +28,7 @@ const Toolbar = props => {
               <Button
                 onClick={onChangeSortDirection}
                 title='Sort direction'
+                color='primary'
                 variant="raised"
                 mini
               >

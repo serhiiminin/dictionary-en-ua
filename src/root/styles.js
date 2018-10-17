@@ -6,7 +6,7 @@ const styles = {
     overflowX: 'hidden',
     background: `${theme.main.colors.background} url(${texture}) center repeat`,
     color: theme.main.colors.text,
-    fontSize: '1rem',
+    fontSize: '1em',
   },
   '@global *': {
     boxSizing: 'border-box',

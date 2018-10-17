@@ -13,6 +13,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
       <Button
         onClick={() => onChangePage(prevPage)}
         disabled={pageNumber === 1}
+        color='primary'
         title='Previous page'
         variant="fab"
         mini
@@ -37,6 +38,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
         onClick={() => onChangePage(nextPage)}
         disabled={maxPageCount === pageNumber}
         title='Next page'
+        color='primary'
         variant="fab"
         mini
       >
