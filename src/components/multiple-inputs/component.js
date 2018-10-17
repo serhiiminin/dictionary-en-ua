@@ -3,10 +3,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PropTypes from 'prop-types';
 import { Button, TextField } from '../../components-mui';
 
-const MultipleInputs = ({ classes, items, placeholder, onRemoveItem }) =>
+const MultipleInputs = ({ classes, items, placeholder, onRemoveItem, onChange }) =>
   <div className={classes.multipleInputs}>
     {items.map(({id, value}) => (
     <TextField
+      onChange={event => onChange(id, event.target.value)}
       key={id}
       placeholder={placeholder}
       value={value}
@@ -32,6 +33,7 @@ MultipleInputs.propTypes = {
   })),
   placeholder: PropTypes.string,
   onRemoveItem: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 MultipleInputs.defaultProps = {
