@@ -19,10 +19,10 @@
     "jest": true
   },
   "rules": {
-    "react/jsx-filename-extension": 0,
+    "import/no-cycle": 0,
     "no-underscore-dangle": "off",
     "react/destructuring-assignment": 0,
-    "import/no-cycle": 0
+    "react/jsx-filename-extension": 0
   },
   "globals": {
     "document": true,

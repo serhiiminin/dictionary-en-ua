@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Fade, LinearProgress } from '@material-ui/core';
 import uuid from 'uuid';
-import { Button, TextField } from '../../components-mui';
-import { MultipleInputs, InputsBlock, ChipSet } from '..';
+import { TextField, Button } from '../../components-mui';
+import { MultipleInputs, InputsBlock, ChipSet, SelectWithOptions } from '..';
 import loadingNames from '../../constants/loading-names';
-
 
 class WordForm extends Component {
   static propTypes = {
@@ -70,7 +69,6 @@ class WordForm extends Component {
           .map(item => item.id === id
             ? { ...item, value, }
             : item),
-
       }
     }));
 
@@ -105,7 +103,25 @@ class WordForm extends Component {
         <InputsBlock
           onAddItem={this.handleAddItemToArray('partOfSpeech')}
           title="Parts of speech"
-          controlled
+          control={(
+            <SelectWithOptions
+              value='noun'
+              label='Sort by'
+              onChange={event => this.handleAddItemToArray('partOfSpeech')(event.target.value)}
+              options={[
+                { key: 'noun',         title: 'Noun' },
+                { key: 'pronoun',      title: 'Pronoun' },
+                { key: 'verb',         title: 'Verb' },
+                { key: 'adjective',    title: 'Adjective' },
+                { key: 'adverb',       title: 'Adverb' },
+                { key: 'preposition',  title: 'Preposition' },
+                { key: 'conjunction',  title: 'Conjunction' },
+                { key: 'interjection', title: 'Interjection' },
+                { key: 'article',      title: 'Article' },
+                { key: 'determiner',   title: 'Determiner' },
+              ]}
+            />
+          )}
         >
           <ChipSet
             items={partOfSpeech}
@@ -115,7 +131,7 @@ class WordForm extends Component {
         <InputsBlock
           onAddItem={this.handleAddItemToArray('synonyms')}
           title="Synonyms"
-          controlled
+          control
         >
           <ChipSet
             items={synonyms}
@@ -125,7 +141,7 @@ class WordForm extends Component {
         <InputsBlock
           onAddItem={this.handleAddItemToArray('examples')}
           title="Examples"
-          controlled
+          control
         >
           <MultipleInputs
             items={examples}
@@ -136,6 +152,8 @@ class WordForm extends Component {
         </InputsBlock>
         <Button
           onClick={() => onSubmit(word)}
+          variant='outlined'
+          color='primary'
           title='Save'
         >
           Save
