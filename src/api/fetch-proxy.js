@@ -1,5 +1,5 @@
 import generatorApiKeys from '../helpers/generator-api-key';
-import { updateSearchParamsInUrl } from '../helpers/search-params';
+import { joinUrl } from '../helpers/search-params';
 import GIPHY_API_KEYS from './credentials';
 import createFetcherJson from './create-fetcher';
 
@@ -17,10 +17,7 @@ const parseJson = response => response.json();
 
 const updateSearchParams = (params, newSearchParams) => ({
   ...params,
-  endpoint: updateSearchParamsInUrl(
-    params.endpoint,
-    newSearchParams,
-  )
+  endpoint: joinUrl(params.endpoint, null, newSearchParams),
 });
 
 const fetcher = createFetcherJson(window.fetch);

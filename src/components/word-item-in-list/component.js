@@ -4,7 +4,7 @@ import { Checkbox, Fade, CircularProgress } from '@material-ui/core';
 import Edit from '@material-ui/icons/Edit';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import urljoin from 'url-join';
+import { joinRoute } from '../../helpers/search-params';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
 
@@ -51,7 +51,7 @@ const WordItemInList = props => {
           .fromNow()) || EMPTY_VALUE}
       </div>
       <ButtonWithRouter
-        to={urljoin(routes.words.list.root, _id, 'edit')}
+        to={joinRoute(routes.words.list.root, null, [_id, 'edit'])}
         disabled={loading}
         title='Edit'
       >
