@@ -77,6 +77,21 @@ class WordForm extends Component {
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
     const loading = checkIsLoading(loadingNames.fetchWord, loadingNames.saveWord);
+    const freePartsOfSpeech = [
+      { key: 'noun', title: 'Noun' },
+      { key: 'pronoun', title: 'Pronoun' },
+      { key: 'verb', title: 'Verb' },
+      { key: 'adjective', title: 'Adjective' },
+      { key: 'adverb', title: 'Adverb' },
+      { key: 'preposition', title: 'Preposition' },
+      { key: 'conjunction', title: 'Conjunction' },
+      { key: 'interjection', title: 'Interjection' },
+      { key: 'article', title: 'Article' },
+      { key: 'determiner', title: 'Determiner' },
+    ].filter(option =>
+      !this.state.word.partOfSpeech
+        .map(part => part.value)
+        .includes(option.key));
 
     return (
       <form onSubmit={onSubmit}>
@@ -105,21 +120,10 @@ class WordForm extends Component {
           title="Parts of speech"
           control={(
             <SelectWithOptions
-              value='noun'
-              label='Sort by'
+              value={freePartsOfSpeech[0] ? freePartsOfSpeech[0].key : ''}
+              label='Parts of speech'
               onChange={event => this.handleAddItemToArray('partOfSpeech')(event.target.value)}
-              options={[
-                { key: 'noun',         title: 'Noun' },
-                { key: 'pronoun',      title: 'Pronoun' },
-                { key: 'verb',         title: 'Verb' },
-                { key: 'adjective',    title: 'Adjective' },
-                { key: 'adverb',       title: 'Adverb' },
-                { key: 'preposition',  title: 'Preposition' },
-                { key: 'conjunction',  title: 'Conjunction' },
-                { key: 'interjection', title: 'Interjection' },
-                { key: 'article',      title: 'Article' },
-                { key: 'determiner',   title: 'Determiner' },
-              ]}
+              options={freePartsOfSpeech}
             />
           )}
         >

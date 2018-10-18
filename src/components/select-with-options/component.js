@@ -9,9 +9,11 @@ const SelectWithOptions = ({ classes, label, value, onChange, options }) => (
     onChange={onChange}
     className={classes.selectWithOptions}
   >
-    {options.map(({ key, title }) => (
-      <MenuItem value={key} key={key}>{title}</MenuItem>
-    ))}
+    {options.length === 0
+      ? <MenuItem value='' disabled>There are no appropriate options</MenuItem>
+      : options.map(({ key, title }) => (
+        <MenuItem value={key} key={key}>{title}</MenuItem>
+      ))}
   </Select>
 );
 
