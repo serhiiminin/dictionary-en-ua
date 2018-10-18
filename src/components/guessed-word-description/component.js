@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TrendingFlat from '@material-ui/icons/TrendingFlat';
-import { Button } from '../../components-mui';
 import { wordShape } from '../../context/words/shape';
-import { ControlsSeparator } from '../index';
+import { ControlsSeparator, ButtonControl } from '..';
 
 const GuessedWordDescription = ({ word, onLearnNextWord }) => {
   const { en, ua, transcription } = word;
@@ -14,14 +13,12 @@ const GuessedWordDescription = ({ word, onLearnNextWord }) => {
       <div>{ua}</div>
       <div>{transcription}</div>
       <ControlsSeparator align='center'>
-        <Button
+        <ButtonControl
           onClick={onLearnNextWord}
           title='Submit my answer'
-          variant="fab"
-          mini
         >
           <TrendingFlat/>
-        </Button>
+        </ButtonControl>
       </ControlsSeparator>
     </div>
   );

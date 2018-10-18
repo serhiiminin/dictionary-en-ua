@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Button } from '../../components-mui';
+import { ButtonControl } from '..';
 
 const ButtonWithRouter = ({ to, staticContext, history, location, ...restProps }) => (
-  <Button
+  <ButtonControl
     color='primary'
     onClick={() => history.push(to)}
     isActive={location.pathname === to}

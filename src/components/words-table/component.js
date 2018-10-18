@@ -7,8 +7,8 @@ import Delete from '@material-ui/icons/Delete';
 import loadingNames from '../../constants/loading-names';
 import { mergeSearchParams, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
-import { Button, LinearProgress } from '../../components-mui';
-import { PaginationPanel, Toolbar, WordsList } from '..';
+import { LinearProgress } from '../../components-mui';
+import { PaginationPanel, Toolbar, WordsList, ButtonControl } from '..';
 
 class WordsTable extends Component {
   static propTypes = {
@@ -96,15 +96,13 @@ class WordsTable extends Component {
             onChangeSortDirection={this.handleOnChangeDirection}
             onChangeSortBy={event => this.handleOnChangeSelect(event, 'sortBy')}
           >
-            <Button
+            <ButtonControl
               disabled={checked.length === 0}
               color='primary'
               title='Delete'
-              variant="fab"
-              mini
             >
               <Delete onClick={this.handleDeleteWord}/>
-            </Button>
+            </ButtonControl>
           </Toolbar>
           <Fade in={loading}>
             <LinearProgress color='secondary' variant='query'/>

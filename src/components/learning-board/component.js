@@ -4,8 +4,7 @@ import Done from '@material-ui/icons/Done';
 import DoneAll from '@material-ui/icons/DoneAll';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
-import { Button } from '../../components-mui';
-import { ControlsSeparator, TextFieldLoading } from '../index';
+import { ControlsSeparator, TextFieldLoading, ButtonControl } from '..';
 
 const LearningBoard = props => {
   const {loading,
@@ -31,42 +30,34 @@ const LearningBoard = props => {
       <h3>{word}</h3>
       <h5>{timesLearnt != null && textLearnt }</h5>
       <ControlsSeparator align='center'>
-        <Button
+        <ButtonControl
           onClick={onCheckAnswer}
           disabled={loading}
           title='Submit my answer'
-          variant="fab"
-          mini
         >
           <Done/>
-        </Button>
-        <Button
+        </ButtonControl>
+        <ButtonControl
           onClick={onGiveAHint}
           disabled={loading}
           title='Give me a hint'
-          variant="fab"
-          mini
         >
           <RemoveRedEye/>
-        </Button>
-        <Button
+        </ButtonControl>
+        <ButtonControl
           onClick={onKnownWord}
           disabled={loading}
           title='I know this word'
-          variant="fab"
-          mini
         >
           <DoneAll/>
-        </Button>
-        <Button
+        </ButtonControl>
+        <ButtonControl
           onClick={onForgottenWord}
           disabled={loading}
           title='I forgot this word, show me the translation'
-          variant="fab"
-          mini
         >
           <ErrorOutline/>
-        </Button>
+        </ButtonControl>
       </ControlsSeparator>
     </div>
   );

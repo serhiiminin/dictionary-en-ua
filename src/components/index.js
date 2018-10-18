@@ -1,4 +1,5 @@
 export { default as BlocksWrapper } from './blocks-wrapper';
+export { default as ButtonControl } from './button-control';
 export { default as ButtonWithRouter } from './button-with-router';
 export { default as ChipSet } from './chip-set';
 export { default as CloseButton } from './close-button';

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import { Button, TextField } from '../../components-mui';
+import { TextField } from '../../components-mui';
+import { ButtonControl } from '..';
 
 const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
   const prevPage = Number(pageNumber) > 1 ? Number(pageNumber) - 1 : 1;
@@ -10,16 +11,14 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
 
   return (
     <div className={classes.page}>
-      <Button
+      <ButtonControl
         onClick={() => onChangePage(prevPage)}
         disabled={pageNumber === 1}
         color='primary'
         title='Previous page'
-        variant="fab"
-        mini
       >
         <KeyboardArrowLeft/>
-      </Button>
+      </ButtonControl>
       <div className={classes.paginationInput}>
         <TextField
           label={maxPageCount ? `Page ${pageNumber} of ${maxPageCount}` : 'Page number'}
@@ -34,16 +33,14 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
           value={pageNumber}
         />
       </div>
-      <Button
+      <ButtonControl
         onClick={() => onChangePage(nextPage)}
         disabled={maxPageCount === pageNumber}
         title='Next page'
         color='primary'
-        variant="fab"
-        mini
       >
         <KeyboardArrowRight/>
-      </Button>
+      </ButtonControl>
     </div>
   );
 };

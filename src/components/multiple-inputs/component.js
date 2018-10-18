@@ -1,7 +1,8 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PropTypes from 'prop-types';
-import { Button, TextField } from '../../components-mui';
+import { TextField } from '../../components-mui';
+import { ButtonControl } from '..';
 
 const MultipleInputs = ({ classes, items, placeholder, onRemoveItem, onChange }) =>
   <div className={classes.multipleInputs}>
@@ -12,14 +13,12 @@ const MultipleInputs = ({ classes, items, placeholder, onRemoveItem, onChange })
       placeholder={placeholder}
       value={value}
       control={
-        <Button
+        <ButtonControl
           onClick={() => onRemoveItem(id)}
           title='Remove example'
-          variant="fab"
-          mini
         >
           <DeleteIcon/>
-        </Button>
+        </ButtonControl>
       }
     />
     ))}

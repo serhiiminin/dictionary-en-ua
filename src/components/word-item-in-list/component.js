@@ -54,8 +54,6 @@ const WordItemInList = props => {
         to={urljoin(routes.words.list.root, _id, 'edit')}
         disabled={loading}
         title='Edit'
-        variant="fab"
-        mini
       >
         <Edit/>
       </ButtonWithRouter>
