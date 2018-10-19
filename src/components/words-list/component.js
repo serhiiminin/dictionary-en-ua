@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import urljoin from 'url-join';
 import uuid from 'uuid';
+import { joinRoute } from '../../helpers/search-params';
 import routes from '../../routes';
 import { WordItemInList } from '..';
 
@@ -19,7 +19,7 @@ const WordsList = ({ classes, wordsList, loading, countPerPage, checked, onWordC
       : wordsList
         .map(word => {
           const { _id } = word;
-          const linkToWord = urljoin(routes.words.list.root, _id);
+          const linkToWord = joinRoute(routes.words.list.root, null, [_id]);
           const isChecked = checked.includes(_id);
 
           return (

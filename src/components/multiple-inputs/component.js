@@ -14,6 +14,7 @@ const MultipleInputs = ({ classes, items, placeholder, onRemoveItem, onChange })
       value={value}
       control={
         <ButtonControl
+          color='primary'
           onClick={() => onRemoveItem(id)}
           title='Remove example'
         >

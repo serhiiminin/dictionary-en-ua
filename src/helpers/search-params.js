@@ -1,36 +1,38 @@
-const getSearchParams = url => new URL(url).search;
+const DELIMITER_PATH = '/';
+const DELIMITER_SEARCH_QUERY = '?';
 
-const parseSearchParams = searchString => {
-  const searchParams = new URLSearchParams(searchString);
+const parseSearchParams = searchString => Object.assign(
+  {},
+  ...Array.from(new URLSearchParams(searchString).entries())
+    .map(([key, value]) => ({ [key]: value }))
+);
 
-  return Object.assign(
-    {},
-    ...Array.from(searchParams.entries())
-      .map(([key, value]) => ({ [key]: value }))
-  );
-};
+const mergeSearchParams = (initialSearchQuery = '', params = {}) => Object.entries(params)
+  .reduce((acc, [key, value]) => {
+      acc.set(key, value);
+      return acc;
+    },
+    new URLSearchParams(initialSearchQuery))
+  .toString();
 
-const mergeSearchParams = (params, initialSearchParams) => {
-  const searchParams = new URLSearchParams(initialSearchParams);
-
-  Object.entries(params).forEach(([key, value]) => {
-    searchParams.set(key, value);
-  });
-
-  return searchParams.toString();
-};
-
-const updateSearchParamsInUrl = (url, params) => {
+const joinUrl = (url = '', paths = [], searchParams = {}) => {
   const updatedUrl = new URL(url);
 
-  updatedUrl.search = mergeSearchParams(params, updatedUrl.search);
+  updatedUrl.search = mergeSearchParams(updatedUrl.search, searchParams);
+  updatedUrl.pathname = [updatedUrl.pathname, ...paths].join(DELIMITER_PATH);
 
   return updatedUrl.toString();
 };
 
+const joinRoute = (pathname = '', search = '', paths = [], searchParams = {}) => {
+  const updatedRoute = [pathname, ...paths].join(DELIMITER_PATH);
+  const updatedSearchParams = mergeSearchParams(search, searchParams);
+
+  return [updatedRoute, updatedSearchParams].join(DELIMITER_SEARCH_QUERY);
+};
+
 export {
-  getSearchParams,
-  mergeSearchParams,
   parseSearchParams,
-  updateSearchParamsInUrl
+  joinUrl,
+  joinRoute,
 };
