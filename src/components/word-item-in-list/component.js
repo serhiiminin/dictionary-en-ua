@@ -51,7 +51,7 @@ const WordItemInList = props => {
           .fromNow()) || EMPTY_VALUE}
       </div>
       <ButtonWithRouter
-        to={joinRoute(routes.words.list.root, null, [_id, 'edit'])}
+        to={joinRoute(routes.words.list.root, [], [_id, 'edit'])}
         disabled={loading}
         title='Edit'
       >

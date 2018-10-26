@@ -19,7 +19,7 @@ const WordsList = ({ classes, wordsList, loading, countPerPage, checked, onWordC
       : wordsList
         .map(word => {
           const { _id } = word;
-          const linkToWord = joinRoute(routes.words.list.root, null, [_id]);
+          const linkToWord = joinRoute(routes.words.list.root, [], [_id]);
           const isChecked = checked.includes(_id);
 
           return (
