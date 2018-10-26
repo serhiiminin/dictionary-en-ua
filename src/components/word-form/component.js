@@ -156,7 +156,7 @@ class WordForm extends Component {
         </InputsBlock>
         <Button
           onClick={() => onSubmit(word)}
-          variant='outlined'
+          variant='contained'
           color='primary'
           title='Save'
         >

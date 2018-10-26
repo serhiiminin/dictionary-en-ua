@@ -7,6 +7,7 @@ import loadingNames from '../../constants/loading-names';
 class WordPreviewContainer extends Component {
   static propTypes = {
     fetchWord: PropTypes.func.isRequired,
+    cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
     word: PropTypes.shape({}),
@@ -20,6 +21,10 @@ class WordPreviewContainer extends Component {
     const { fetchWord, match } = this.props;
 
     fetchWord(match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.cleanWord();
   }
 
   render() {

@@ -8,6 +8,7 @@ export { default as FoundImage } from './found-image';
 export { default as GuessedWordDescription } from './guessed-word-description';
 export { default as Header } from './header';
 export { default as HeaderNavigation } from './header-navigation';
+export { default as Image } from './image';
 export { default as InputsBlock } from './inputs-block';
 export { default as LearningBoard } from './learning-board';
 export { default as LineExplanation } from './line-explanation';

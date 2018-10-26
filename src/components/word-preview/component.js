@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Fade, LinearProgress } from '@material-ui/core';
-import { InputsBlock, LineExplanation, ListOfSearchableWords } from '..';
+import { InputsBlock, LineExplanation, ListOfSearchableWords, Image } from '..';
 
 
 const mapValues = items => items
@@ -9,13 +9,14 @@ const mapValues = items => items
   .filter(Boolean);
 
 const WordPreview = ({ word, loading }) => {
-  const { en, ua, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples } = word;
+  const { en, ua, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples, gif } = word;
   return (
     <div>
       <Fade in={loading}>
         <LinearProgress color='secondary'/>
       </Fade>
       <InputsBlock title="Main information">
+        <Image src={gif} alt={en} />
         <LineExplanation label='English'>{en}</LineExplanation>
         <LineExplanation label='Ukrainian'>{ua}</LineExplanation>
         <LineExplanation label='Transcription'>
@@ -58,16 +59,17 @@ const WordPreview = ({ word, loading }) => {
 WordPreview.propTypes = {
   word: PropTypes.shape({
     en: PropTypes.string,
-      ua: PropTypes.string,
+    ua: PropTypes.string,
     transcription: PropTypes.string,
+    gif: PropTypes.string,
     partOfSpeech: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       value: PropTypes.string,
     })),
-     synonyms: PropTypes.arrayOf(PropTypes.shape({
-       id: PropTypes.string,
-       value: PropTypes.string,
-     })),
+    synonyms: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      value: PropTypes.string,
+    })),
     antonyms: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       value: PropTypes.string,
@@ -89,5 +91,5 @@ WordPreview.defaultProps = {
   loading: false,
 };
 
-export default WordPreview
+export default WordPreview;
 
