@@ -53,16 +53,17 @@ const api = {
 
     return fetchProxy(requests.post(url, { body: params }));
   },
-  getGifs: searchParams => apiKeyGiphyProxy(
-    requests.get(joinUrl(
-      GIPHY,
-      null,
-      {
-        limit: 100,
-        ...searchParams
-      }
-    )),
-  )
+  getGifs: searchParams =>
+    apiKeyGiphyProxy(
+      requests.get(joinUrl(
+        GIPHY,
+        [],
+        {
+          limit: 100,
+          ...searchParams
+        }
+      )),
+    )
 };
 
 export default api;
