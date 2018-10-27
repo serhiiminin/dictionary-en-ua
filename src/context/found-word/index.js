@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 
 const FoundWordContext = createContext({});
 
-const foundWordInitialState = {
-  foundWord: {}
-};
-
 const mergeArrays = (data, field) =>
   Array.from(
     new Set(
@@ -38,25 +34,19 @@ class FoundWordProvider extends Component {
     children: PropTypes.node.isRequired,
   };
 
-  state = foundWordInitialState;
+  state = {
+    foundWord: {}
+  };
 
   cleanFoundWord = () =>
     Promise.resolve(this.setState({
-      foundWord: foundWordInitialState.foundWord,
+      foundWord: {},
     }));
 
   handleSetFoundWord = foundWord =>
     Promise.resolve(this.setState({
       foundWord: normalizeWord(foundWord)
     }));
-
-  handleSetGif = gif =>
-    Promise.resolve(this.setState(prevState => ({
-      foundWord: {
-        ...prevState.foundWord,
-        gif,
-      }
-    })));
 
   render() {
     const { foundWord } = this.state;
@@ -66,7 +56,6 @@ class FoundWordProvider extends Component {
       <FoundWordContext.Provider
         value={{
           foundWord,
-          setGif: this.handleSetGif,
           setFoundWord: this.handleSetFoundWord,
           cleanFoundWord: this.cleanFoundWord,
         }}

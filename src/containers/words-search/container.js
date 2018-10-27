@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { ControlsSeparator, TextFieldLoading, FoundImage } from '../../components';
+import { ControlsSeparator, TextFieldLoading, WordPreview } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
 import { parseSearchParams } from '../../helpers/search-params';
@@ -11,7 +11,6 @@ const SEARCH_INPUT_TIMEOUT = 500;
 
 const initialState = {
   searchValue: '',
-  gif: '',
 };
 
 const EN = 'en';
@@ -40,7 +39,7 @@ class SearchWordContainer extends Component {
   };
 
   static defaultProps = {
-    foundWord: null,
+    foundWord: {},
     classes: {},
   };
 
@@ -90,8 +89,8 @@ class SearchWordContainer extends Component {
   handleEditBeforeSaving = () => {
     const { history } = this.props;
 
-    this.setState({ ...initialState })
-      .then(history.push(routes.words.add));
+    this.setState({ ...initialState });
+    history.push(routes.words.add);
   };
 
   handleSaveWord = () => {
@@ -109,7 +108,7 @@ class SearchWordContainer extends Component {
 
     return (
       <main className={classes.searchWord}>
-        <div>
+        <div className={classes.searchBlock}>
           <TextFieldLoading
             label="Search a word"
             value={searchValue}
@@ -117,13 +116,25 @@ class SearchWordContainer extends Component {
             loading={loading}
           />
           <ControlsSeparator align='right'>
-            <Button onClick={this.handleSaveWord} disabled={isEmpty}>Save to my words</Button>
-            <Button onClick={this.handleEditBeforeSaving} disabled={isEmpty}>Edit before saving</Button>
+            <Button
+              onClick={this.handleSaveWord}
+              disabled={isEmpty}
+              variant='contained'
+              color='primary'
+            >
+              Save to my words
+            </Button>
+            <Button
+              onClick={this.handleEditBeforeSaving}
+              disabled={isEmpty}
+              variant='contained'
+              color='primary'
+            >
+              Edit before saving
+            </Button>
           </ControlsSeparator>
-          <div className={classes.image}>
-            <FoundImage url={foundWord.gif}/>
-          </div>
         </div>
+        <WordPreview word={foundWord}/>
       </main>
     );
   }
