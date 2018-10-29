@@ -67,6 +67,8 @@ class SearchWordContainer extends Component {
     this.props.cleanFoundWord();
   }
 
+  cleanSearchValue = () => this.setState({ searchValue: '' });
+
   searchWord = text => {
     clearTimeout(this.inputTimer);
     this.setState({ searchValue: text });
@@ -97,7 +99,10 @@ class SearchWordContainer extends Component {
     const { saveWord, foundWord, cleanFoundWord } = this.props;
 
     return saveWord(foundWord)
-      .then(() => cleanFoundWord());
+      .then(() => {
+        this.cleanSearchValue();
+        return cleanFoundWord();
+      });
   };
 
   render() {
