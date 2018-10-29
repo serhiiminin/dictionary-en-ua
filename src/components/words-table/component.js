@@ -94,10 +94,11 @@ class WordsTable extends Component {
           >
             <ButtonControl
               disabled={checked.length === 0}
+              onClick={this.handleDeleteWord}
               color='primary'
               title='Delete'
             >
-              <Delete onClick={this.handleDeleteWord}/>
+              <Delete />
             </ButtonControl>
           </Toolbar>
           <Fade in={loading}>
