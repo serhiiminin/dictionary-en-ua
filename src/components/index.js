@@ -4,7 +4,6 @@ export { default as ButtonWithRouter } from './button-with-router';
 export { default as ChipSet } from './chip-set';
 export { default as CloseButton } from './close-button';
 export { default as ControlsSeparator } from './controls-separator';
-export { default as FoundImage } from './found-image';
 export { default as GuessedWordDescription } from './guessed-word-description';
 export { default as Header } from './header';
 export { default as HeaderNavigation } from './header-navigation';
