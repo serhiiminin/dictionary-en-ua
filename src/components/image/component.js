@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 
 const Image = ({ src, alt, classes }) => (
   <div className={classes.imageWrapper}>
-    <img
-      className={classes.image}
-      src={src}
-      alt={alt}
-    />
+    {src
+      ? (
+        <img
+          className={classes.image}
+          src={src}
+          alt={alt}
+        />
+      )
+      : 'There is no image'}
   </div>
 );
 
