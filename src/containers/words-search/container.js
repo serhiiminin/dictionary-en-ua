@@ -27,15 +27,14 @@ const composeSearchData = text => {
 class SearchWordContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string),
-    foundWord: PropTypes.shape({
-      en: PropTypes.string,
-    }),
+    foundWord: PropTypes.shape({}),
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
+    setEditingWord: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -92,10 +91,13 @@ class SearchWordContainer extends Component {
   };
 
   handleEditBeforeSaving = () => {
-    const { history } = this.props;
+    const { history, setEditingWord, foundWord } = this.props;
 
-    this.setState({ ...initialState });
-    history.push(routes.words.add);
+    return Promise.resolve(setEditingWord(foundWord))
+      .then(() => {
+        this.setState({ ...initialState });
+        history.push(routes.words.add);
+      });
   };
 
   handleSaveWord = () => {
