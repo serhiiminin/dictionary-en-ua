@@ -7,7 +7,8 @@ import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
 import { ControlsSeparator, TextFieldLoading, ButtonControl } from '..';
 
 const LearningBoard = props => {
-  const {loading,
+  const {
+    loading,
     onOptionChange,
     inputValue,
     word,
@@ -15,7 +16,8 @@ const LearningBoard = props => {
     onCheckAnswer,
     onGiveAHint,
     onKnownWord,
-    onForgottenWord } = props;
+    onForgottenWord
+  } = props;
   const textLearnt = `Learnt ${timesLearnt} time${timesLearnt > 1 ? 's' : ''} before`;
 
   return (
@@ -28,7 +30,7 @@ const LearningBoard = props => {
         disabled={loading}
       />
       <h3>{word}</h3>
-      <h5>{timesLearnt != null && textLearnt }</h5>
+      <h5>{timesLearnt != null && textLearnt}</h5>
       <ControlsSeparator align='center'>
         <ButtonControl
           onClick={onCheckAnswer}

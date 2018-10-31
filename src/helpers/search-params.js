@@ -15,7 +15,8 @@ const mergeSearchParams = (initialSearchQuery = '', params = {}) =>
         }
         return acc;
       },
-      new URLSearchParams(initialSearchQuery))
+      new URLSearchParams(initialSearchQuery)
+    )
     .toString();
 
 const joinUrl = ({ url = '', paths = [], searchParams = {} }) => {

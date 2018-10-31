@@ -89,13 +89,6 @@ class WordsProviderCmp extends Component {
     });
   };
 
-  fetchWordsToLearn = () =>
-    this.handleFetch({
-      loadingName: loadingNames.learnWord,
-      requestHandler: () => api.getWordsListToLearn(),
-      responseHandler: ({ items, count }) => this.setState({ wordsList: items, count }),
-    });
-
   createWord = data =>
     this.handleFetch({
       loadingName: loadingNames.saveWord,
@@ -117,28 +110,6 @@ class WordsProviderCmp extends Component {
       responseHandler: () => this.fetchWordsList()
         .then(() => this.props.showNotification('The word has been deleted successfully', notificationType.success))
     });
-
-  learnWord = wordId =>
-    this.handleFetch({
-      loadingName: loadingNames.learnWord,
-      requestHandler: () => api.learnWord(wordId),
-      responseHandler: () => this.setState(prevState => ({
-        wordsList: [...prevState.wordsList.filter(word => word._id !== wordId)]
-      })),
-    });
-
-  relearnWord = wordId => {
-    this.setState(prevState => {
-      const wordToRelearn = prevState.wordsList.find(word => word._id === wordId);
-
-      return ({
-        wordsList: [
-          ...prevState.wordsList.filter(word => word._id !== wordToRelearn._id),
-          wordToRelearn,
-        ]
-      });
-    });
-  };
 
   searchWord = params =>
     this.handleFetch({
@@ -167,12 +138,9 @@ class WordsProviderCmp extends Component {
           getWordsSearchParams: this.getSearchParams,
           fetchWord: this.fetchWord,
           fetchWordsList: this.fetchWordsList,
-          fetchWordsToLearn: this.fetchWordsToLearn,
           saveWord: this.createWord,
           editWord: this.editWord,
           searchWord: this.searchWord,
-          learnWord: this.learnWord,
-          relearnWord: this.relearnWord,
           deleteWord: this.deleteWord,
           cleanWordsList: this.cleanWordsList,
           cleanWord: this.cleanWord,

@@ -1,13 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '../../components-mui';
 import { notificationType } from '../../components/notification-item/component';
 import loadingNames from '../../constants/loading-names';
-import { GuessedWordDescription, LearningBoard } from '../../components';
+import { WordPreview, LearningBoard } from '../../components';
+
+const MAX_COUNT_ATTEMPTS = 3;
+
+const getIndexOfDiscrepancy = originString => stringToCompare =>
+  originString
+    .split('')
+    .findIndex((letter, index) => letter !== stringToCompare[index]);
 
 class LearnWordsContainer extends Component {
   static propTypes = {
     fetchWordsToLearn: PropTypes.func.isRequired,
-    cleanWordsList: PropTypes.func.isRequired,
+    cleanWordsToLearn: PropTypes.func.isRequired,
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
@@ -26,17 +34,20 @@ class LearnWordsContainer extends Component {
     currentWord: {}
   };
 
-  static getDerivedStateFromProps = (nextProps, prevState) => ({
-      ...prevState,
-      currentWord: nextProps.wordsList[0],
-    });
+  static getDerivedStateFromProps = (nextProps, prevState) =>
+    nextProps.wordsToLearn && nextProps.wordsToLearn.length > 0
+      ? {
+        ...prevState,
+        currentWord: nextProps.wordsToLearn[0],
+      }
+      : prevState;
 
   componentDidMount() {
     this.props.fetchWordsToLearn();
   }
 
   componentWillUnmount() {
-    this.props.cleanWordsList();
+    this.props.cleanWordsToLearn();
   }
 
   onChangeInput = event => this.setState({ inputValue: event.target.value });
@@ -45,52 +56,54 @@ class LearnWordsContainer extends Component {
 
   onCheckAnswer = () => {
     const { showNotification, relearnWord } = this.props;
-    const { inputValue, currentWord, countOfTry } = this.state;
+    const { inputValue, currentWord } = this.state;
 
-    if (!currentWord) return null;
-    const { en, _id } = currentWord;
+    if (currentWord && Object.keys(currentWord).length > 0) {
+      const { en, _id } = currentWord;
+      if (inputValue.toLowerCase() === en.toLowerCase()) {
+        this.setState({
+          guessed: true,
+          inputValue: '',
+          countOfTry: 0,
+        });
+        showNotification('You are right!', notificationType.info);
+      }
 
-    if (inputValue.toLowerCase() === en.toLowerCase()) {
-      this.resetCountOfTry();
-      this.setState({
-        guessed: true,
-        inputValue: '',
-      });
-      return showNotification('You are right!', notificationType.info);
-    }
-    if (countOfTry <= 2) {
       this.setState(prevState => ({
         countOfTry: prevState.countOfTry + 1,
       }), () => {
-        const attemptLeft = 4 - this.state.countOfTry;
-
-        showNotification(`You are wrong! ${attemptLeft} attempt${attemptLeft > 1 ? 's' : ''} left`, notificationType.info);
+        const { countOfTry } = this.state;
+        if (countOfTry < MAX_COUNT_ATTEMPTS) {
+          const attemptsLeft = MAX_COUNT_ATTEMPTS - this.state.countOfTry;
+          showNotification(`You are wrong! ${attemptsLeft} attempt${attemptsLeft > 1 ? 's' : ''} left`, notificationType.info);
+        } else {
+          this.setState({ countOfTry: 0 });
+          showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
+          relearnWord(_id);
+        }
       });
     }
-    if (countOfTry > 2) {
-      this.resetCountOfTry();
-      showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
-      return relearnWord(_id);
-    }
-    return false;
   };
 
   onGiveAHint = () => {
     const { inputValue, currentWord } = this.state;
 
-    if (!currentWord) return null;
-    const { en } = currentWord;
-    const inputValueLength = inputValue.length;
+    if (currentWord && Object.keys(currentWord).length > 0) {
+      const { en } = currentWord;
+      const discrepancyIndex = getIndexOfDiscrepancy(en)(inputValue);
+      const countOfHintsLetter = discrepancyIndex >= 0
+        ? discrepancyIndex
+        : en.length - 1;
 
-    if (inputValueLength < en.length) {
       this.setState({
-        inputValue: en.slice(0, inputValueLength + 1),
+        inputValue: en.slice(
+          0,
+          countOfHintsLetter < en.length
+            ? countOfHintsLetter + 1
+            : countOfHintsLetter
+        ),
       });
-      return null;
     }
-    return this.setState({
-      inputValue: en.slice(0, inputValueLength),
-    });
   };
 
   onKnownWord = () => this.props.learnWord(this.state.currentWord._id);
@@ -106,34 +119,39 @@ class LearnWordsContainer extends Component {
 
   render() {
     const { checkIsLoading, classes } = this.props;
-    const loading = checkIsLoading(loadingNames.learnWord);
     const { currentWord, inputValue, guessed } = this.state;
+    const loading = checkIsLoading(loadingNames.learnWord);
 
-    return (
-      <div className={classes.learnWord}>
-        {guessed
-          ? (
-            <GuessedWordDescription
-              word={currentWord}
-              onLearnNextWord={this.onLearnNextWord}
-            />
-          )
-          : (
-            <LearningBoard
-              loading={loading}
-              onOptionChange={this.onChangeInput}
-              inputValue={inputValue}
-              word={currentWord && currentWord.ua}
-              timesLearnt={currentWord && currentWord.timesLearnt}
-              onCheckAnswer={this.onCheckAnswer}
-              onGiveAHint={this.onGiveAHint}
-              onKnownWord={this.onKnownWord}
-              onForgottenWord={this.onForgottenWord}
-            />
-          )
-        }
-      </div>
-    );
+    return guessed
+      ? (
+        <Fragment>
+          <Button
+            onClick={this.onLearnNextWord}
+            variant='contained'
+            color='primary'
+          >
+            Learn the next word
+          </Button>
+          <WordPreview
+            word={currentWord}
+          />
+        </Fragment>
+      )
+      : (
+        <div className={classes.learnWord}>
+          <LearningBoard
+            loading={loading}
+            onOptionChange={this.onChangeInput}
+            inputValue={inputValue}
+            word={currentWord && currentWord.ua}
+            timesLearnt={currentWord && currentWord.timesLearnt}
+            onCheckAnswer={this.onCheckAnswer}
+            onGiveAHint={this.onGiveAHint}
+            onKnownWord={this.onKnownWord}
+            onForgottenWord={this.onForgottenWord}
+          />
+        </div>
+      );
   }
 }
 
