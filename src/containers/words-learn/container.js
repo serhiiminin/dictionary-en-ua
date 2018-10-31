@@ -8,7 +8,7 @@ import { WordPreview, LearningBoard } from '../../components';
 class LearnWordsContainer extends Component {
   static propTypes = {
     fetchWordsToLearn: PropTypes.func.isRequired,
-    cleanWordsList: PropTypes.func.isRequired,
+    cleanWordsToLearn: PropTypes.func.isRequired,
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
@@ -29,7 +29,7 @@ class LearnWordsContainer extends Component {
 
   static getDerivedStateFromProps = (nextProps, prevState) => ({
     ...prevState,
-    currentWord: nextProps.wordsList[0],
+    currentWord: nextProps.wordsToLearn[0],
   });
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class LearnWordsContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.props.cleanWordsList();
+    this.props.cleanWordsToLearn();
   }
 
   onChangeInput = event => this.setState({ inputValue: event.target.value });

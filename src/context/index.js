@@ -5,6 +5,7 @@ import { NotificationsProvider } from './notifications';
 import { WordsProvider } from './words';
 import { FoundWordProvider } from './found-word';
 import { EditingWordProvider } from './editing-word';
+import { WordsToLearnProvider } from './words-to-learn';
 
 
 const StateProvider = ({ children }) => (
@@ -13,7 +14,9 @@ const StateProvider = ({ children }) => (
       <EditingWordProvider>
         <FoundWordProvider>
           <WordsProvider>
-            {children}
+            <WordsToLearnProvider>
+              {children}
+            </WordsToLearnProvider>
           </WordsProvider>
         </FoundWordProvider>
       </EditingWordProvider>
