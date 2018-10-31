@@ -84,7 +84,10 @@ class SearchWordContainer extends Component {
     this.setState({ searchValue: value });
 
     this.inputTimer = setTimeout(() => {
-      this.props.history.push(joinRoute(routes.words.search, '', [], { query: value }));
+      this.props.history.push(joinRoute({
+        pathname: routes.words.search,
+        searchParams: { query: value }
+      }));
     }, SEARCH_INPUT_TIMEOUT);
   };
 

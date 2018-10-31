@@ -18,7 +18,7 @@ const mergeSearchParams = (initialSearchQuery = '', params = {}) =>
       new URLSearchParams(initialSearchQuery))
     .toString();
 
-const joinUrl = (url = '', paths = [], searchParams = {}) => {
+const joinUrl = ({ url = '', paths = [], searchParams = {} }) => {
   const updatedUrl = new URL(url);
 
   updatedUrl.search = mergeSearchParams(updatedUrl.search, searchParams);
@@ -27,7 +27,7 @@ const joinUrl = (url = '', paths = [], searchParams = {}) => {
   return updatedUrl.toString();
 };
 
-const joinRoute = (pathname = '', search = '', paths = [], searchParams = {}) => {
+const joinRoute = ({ pathname = '', search = '', paths = [], searchParams = {} }) => {
   const updatedRoute = [pathname, ...paths].join(DELIMITER_PATH);
   const updatedSearchParams = mergeSearchParams(search, searchParams);
 

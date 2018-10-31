@@ -17,7 +17,7 @@ const parseJson = response => response.json();
 
 const updateSearchParams = (params, newSearchParams) => ({
   ...params,
-  endpoint: joinUrl(params.endpoint, [], newSearchParams),
+  endpoint: joinUrl({ url: params.endpoint, searchParams: newSearchParams }),
 });
 
 const fetcher = createFetcherJson(window.fetch);
