@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { ControlsSeparator, TextFieldLoading, WordPreview } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
-import { parseSearchParams } from '../../helpers/search-params';
+import { joinRoute, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 
 const SEARCH_INPUT_TIMEOUT = 500;
@@ -84,7 +84,7 @@ class SearchWordContainer extends Component {
     this.setState({ searchValue: value });
 
     this.inputTimer = setTimeout(() => {
-      this.props.history.push(`${routes.words.search}?query=${value}`);
+      this.props.history.push(joinRoute(routes.words.search, '', [], { query: value }));
     }, SEARCH_INPUT_TIMEOUT);
   };
 

@@ -7,13 +7,16 @@ const parseSearchParams = searchString => Object.assign(
     .map(([key, value]) => ({ [key]: value }))
 );
 
-const mergeSearchParams = (initialSearchQuery = '', params = {}) => Object.entries(params)
-  .reduce((acc, [key, value]) => {
-      acc.set(key, value);
-      return acc;
-    },
-    new URLSearchParams(initialSearchQuery))
-  .toString();
+const mergeSearchParams = (initialSearchQuery = '', params = {}) =>
+  Object.entries(params)
+    .reduce((acc, [key, value]) => {
+        if (value) {
+          acc.set(key, value);
+        }
+        return acc;
+      },
+      new URLSearchParams(initialSearchQuery))
+    .toString();
 
 const joinUrl = (url = '', paths = [], searchParams = {}) => {
   const updatedUrl = new URL(url);

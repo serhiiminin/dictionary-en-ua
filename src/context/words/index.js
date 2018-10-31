@@ -143,16 +143,14 @@ class WordsProviderCmp extends Component {
   searchWord = params =>
     this.handleFetch({
       loadingName: loadingNames.searchWord,
-      requestHandler: () => Promise.all([
-        api.searchWord(params),
-        api.getGifs({ q: params.text }),
-      ]),
-      responseHandler: ([foundWord, gifs]) => {
-        const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+      requestHandler: () => api.searchWord(params),
+      responseHandler: foundWord => api.getGifs({ q: foundWord.en })
+          .then(gifs => {
+            const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
+            const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
-        return this.props.setFoundWord({ ...foundWord, gif: randomGif });
-      },
+            return this.props.setFoundWord({ ...foundWord, gif: randomGif });
+          }),
     });
 
   render() {
