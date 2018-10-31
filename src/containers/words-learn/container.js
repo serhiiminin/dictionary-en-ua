@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '../../components-mui';
 import { notificationType } from '../../components/notification-item/component';
 import loadingNames from '../../constants/loading-names';
-import { GuessedWordDescription, LearningBoard } from '../../components';
+import { WordPreview, LearningBoard } from '../../components';
 
 class LearnWordsContainer extends Component {
   static propTypes = {
@@ -27,9 +28,9 @@ class LearnWordsContainer extends Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) => ({
-      ...prevState,
-      currentWord: nextProps.wordsList[0],
-    });
+    ...prevState,
+    currentWord: nextProps.wordsList[0],
+  });
 
   componentDidMount() {
     this.props.fetchWordsToLearn();
@@ -109,31 +110,36 @@ class LearnWordsContainer extends Component {
     const loading = checkIsLoading(loadingNames.learnWord);
     const { currentWord, inputValue, guessed } = this.state;
 
-    return (
-      <div className={classes.learnWord}>
-        {guessed
-          ? (
-            <GuessedWordDescription
-              word={currentWord}
-              onLearnNextWord={this.onLearnNextWord}
-            />
-          )
-          : (
-            <LearningBoard
-              loading={loading}
-              onOptionChange={this.onChangeInput}
-              inputValue={inputValue}
-              word={currentWord && currentWord.ua}
-              timesLearnt={currentWord && currentWord.timesLearnt}
-              onCheckAnswer={this.onCheckAnswer}
-              onGiveAHint={this.onGiveAHint}
-              onKnownWord={this.onKnownWord}
-              onForgottenWord={this.onForgottenWord}
-            />
-          )
-        }
-      </div>
-    );
+    return guessed
+      ? (
+        <Fragment>
+          <Button
+            onClick={this.onLearnNextWord}
+            variant='contained'
+            color='primary'
+          >
+            Learn the next word
+          </Button>
+          <WordPreview
+            word={currentWord}
+          />
+        </Fragment>
+      )
+      : (
+        <div className={classes.learnWord}>
+          <LearningBoard
+            loading={loading}
+            onOptionChange={this.onChangeInput}
+            inputValue={inputValue}
+            word={currentWord && currentWord.ua}
+            timesLearnt={currentWord && currentWord.timesLearnt}
+            onCheckAnswer={this.onCheckAnswer}
+            onGiveAHint={this.onGiveAHint}
+            onKnownWord={this.onKnownWord}
+            onForgottenWord={this.onForgottenWord}
+          />
+        </div>
+      );
   }
 }
 
