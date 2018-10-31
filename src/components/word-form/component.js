@@ -37,9 +37,9 @@ class WordForm extends Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
-    prevState.word && prevState.word._id !== nextProps.word._id
+    Object.keys(nextProps.word).length > 0 && prevState.word.en !== nextProps.word.en
       ? { word: nextProps.word }
-      : null;
+      : prevState;
 
   handleFieldChange = newData => this.setState(prevState => ({
     word: { ...prevState.word, ...newData }
@@ -89,6 +89,7 @@ class WordForm extends Component {
       { key: 'article', title: 'Article' },
       { key: 'determiner', title: 'Determiner' },
     ].filter(option =>
+      this.state.word.partOfSpeech.length > 0 &&
       !this.state.word.partOfSpeech
         .map(part => part.value)
         .includes(option.key));
@@ -103,16 +104,19 @@ class WordForm extends Component {
             label="English"
             value={en}
             onChange={({ target }) => this.handleFieldChange({ en: target.value })}
+            disabled={loading}
           />
           <TextField
             label="Ukrainian"
             value={ua}
             onChange={({ target }) => this.handleFieldChange({ ua: target.value })}
+            disabled={loading}
           />
           <TextField
             label="Transcription"
             value={transcription}
             onChange={({ target }) => this.handleFieldChange({ transcription: target.value })}
+            disabled={loading}
           />
         </InputsBlock>
         <InputsBlock
@@ -124,12 +128,14 @@ class WordForm extends Component {
               label='Parts of speech'
               onChange={event => this.handleAddItemToArray('partOfSpeech')(event.target.value)}
               options={freePartsOfSpeech}
+              disabled={loading}
             />
           )}
         >
           <ChipSet
             items={partOfSpeech}
             onRemoveItem={this.handleRemoveItemFromArray('partOfSpeech')}
+            disabled={loading}
           />
         </InputsBlock>
         <InputsBlock
@@ -140,6 +146,7 @@ class WordForm extends Component {
           <ChipSet
             items={synonyms}
             onRemoveItem={this.handleRemoveItemFromArray('synonyms')}
+            disabled={loading}
           />
         </InputsBlock>
         <InputsBlock
@@ -152,10 +159,12 @@ class WordForm extends Component {
             placeholder='Example'
             onChange={this.handleOnChangeMultipleInputs('examples')}
             onRemoveItem={this.handleRemoveItemFromArray('examples')}
+            disabled={loading}
           />
         </InputsBlock>
         <Button
           onClick={() => onSubmit(word)}
+          disabled={loading}
           variant='contained'
           color='primary'
           title='Save'

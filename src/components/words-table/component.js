@@ -52,12 +52,11 @@ class WordsTable extends Component {
   generateUrl = params => {
     const { location } = this.props;
 
-    return joinRoute(
-      location.pathname,
-      location.search,
-      [],
-      params,
-    );
+    return joinRoute({
+      pathname: location.pathname,
+      search: location.search,
+      searchParams: params,
+    });
   };
 
   handleOnChangeSelect = (event, field) =>

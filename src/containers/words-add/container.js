@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { WordForm } from '../../components';
 
-const AddWordContainer = ({ classes, saveWord }) => (
-  <main className={classes.addWord}>
-    <WordForm onSubmit={word => saveWord(word)} />
-  </main>
-);
+class AddWordContainer extends Component {
+  componentWillUnmount() {
+    this.props.cleanEditingWord();
+  }
+
+  render() {
+    const { classes, saveWord, editingWord } = this.props;
+    return (
+      <main className={classes.addWord}>
+        <WordForm
+          word={editingWord}
+          onSubmit={word => saveWord(word)}
+        />
+      </main>
+    );
+  }
+};
 
 AddWordContainer.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   saveWord: PropTypes.func.isRequired,
+  cleanEditingWord: PropTypes.func.isRequired,
+  editingWord: PropTypes.shape({}),
 };
 
 AddWordContainer.defaultProps = {
-  classes: {}
+  classes: {},
+  editingWord: null,
 };
 
 export default AddWordContainer;

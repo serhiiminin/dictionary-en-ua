@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { ControlsSeparator, TextFieldLoading, WordPreview } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import { Button } from '../../components-mui';
-import { parseSearchParams } from '../../helpers/search-params';
+import { joinRoute, parseSearchParams } from '../../helpers/search-params';
 import routes from '../../routes';
 
 const SEARCH_INPUT_TIMEOUT = 500;
@@ -27,15 +27,14 @@ const composeSearchData = text => {
 class SearchWordContainer extends Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string),
-    foundWord: PropTypes.shape({
-      en: PropTypes.string,
-    }),
+    foundWord: PropTypes.shape({}),
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
+    setEditingWord: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -84,15 +83,21 @@ class SearchWordContainer extends Component {
     this.setState({ searchValue: value });
 
     this.inputTimer = setTimeout(() => {
-      this.props.history.push(`${routes.words.search}?query=${value}`);
+      this.props.history.push(joinRoute({
+        pathname: routes.words.search,
+        searchParams: { query: value }
+      }));
     }, SEARCH_INPUT_TIMEOUT);
   };
 
   handleEditBeforeSaving = () => {
-    const { history } = this.props;
+    const { history, setEditingWord, foundWord } = this.props;
 
-    this.setState({ ...initialState });
-    history.push(routes.words.add);
+    return Promise.resolve(setEditingWord(foundWord))
+      .then(() => {
+        this.setState({ ...initialState });
+        history.push(routes.words.add);
+      });
   };
 
   handleSaveWord = () => {

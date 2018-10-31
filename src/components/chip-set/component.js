@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import { Chip } from '../../components-mui';
 
-const ChipSet = ({ classes, items, onRemoveItem }) => (
+const ChipSet = ({ classes, items, onRemoveItem, disabled }) => (
   <div className={classes.chipSet}>
     {items.map(({ id, value }) => (
       <Chip
@@ -12,6 +12,7 @@ const ChipSet = ({ classes, items, onRemoveItem }) => (
         label={value}
         icon={<TagFacesIcon/>}
         onDelete={() => onRemoveItem(id)}
+        disabled={disabled}
       />
     ))}
   </div>
@@ -24,11 +25,13 @@ ChipSet.propTypes = {
     value: PropTypes.string.isRequired,
   })),
   onRemoveItem: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 ChipSet.defaultProps = {
   classes: {},
   items: [],
+  disabled: false,
 };
 
 export default ChipSet;

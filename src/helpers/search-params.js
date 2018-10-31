@@ -7,15 +7,18 @@ const parseSearchParams = searchString => Object.assign(
     .map(([key, value]) => ({ [key]: value }))
 );
 
-const mergeSearchParams = (initialSearchQuery = '', params = {}) => Object.entries(params)
-  .reduce((acc, [key, value]) => {
-      acc.set(key, value);
-      return acc;
-    },
-    new URLSearchParams(initialSearchQuery))
-  .toString();
+const mergeSearchParams = (initialSearchQuery = '', params = {}) =>
+  Object.entries(params)
+    .reduce((acc, [key, value]) => {
+        if (value) {
+          acc.set(key, value);
+        }
+        return acc;
+      },
+      new URLSearchParams(initialSearchQuery))
+    .toString();
 
-const joinUrl = (url = '', paths = [], searchParams = {}) => {
+const joinUrl = ({ url = '', paths = [], searchParams = {} }) => {
   const updatedUrl = new URL(url);
 
   updatedUrl.search = mergeSearchParams(updatedUrl.search, searchParams);
@@ -24,7 +27,7 @@ const joinUrl = (url = '', paths = [], searchParams = {}) => {
   return updatedUrl.toString();
 };
 
-const joinRoute = (pathname = '', search = '', paths = [], searchParams = {}) => {
+const joinRoute = ({ pathname = '', search = '', paths = [], searchParams = {} }) => {
   const updatedRoute = [pathname, ...paths].join(DELIMITER_PATH);
   const updatedSearchParams = mergeSearchParams(search, searchParams);
 

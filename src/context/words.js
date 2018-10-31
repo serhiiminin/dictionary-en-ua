@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import api from '../../api';
-import { notificationType } from '../../components/notification-item/component';
-import loadingNames from '../../constants/loading-names';
-import { parseSearchParams } from '../../helpers/search-params';
-import { withFoundWord } from '../found-word';
-import { withLoadingNames } from '../loading-names';
-import { withNotifications } from '../notifications';
+import api from '../api';
+import { notificationType } from '../components/notification-item/component';
+import loadingNames from '../constants/loading-names';
+import { parseSearchParams } from '../helpers/search-params';
+import { withFoundWord } from './found-word';
+import { withLoadingNames } from './loading-names';
+import { withNotifications } from './notifications';
 
 const WordsContext = createContext({});
 
@@ -23,6 +23,7 @@ const INITIAL_WORD_SORT_DATA = {
 const wordsInitialState = {
   wordsList: [],
   word: {},
+  editingWord: {},
   count: 0,
   gif: '',
 };
@@ -42,6 +43,10 @@ class WordsProviderCmp extends Component {
   cleanWordsList = () => this.setState({ wordsList: wordsInitialState.wordsList });
 
   cleanWord = () => this.setState({ word: wordsInitialState.word });
+
+  cleanEditingWord = () => this.setState({ editingWord: wordsInitialState.editingWord });
+
+  setEditingWord = editingWord => this.setState({ editingWord });
 
   getSearchParams = () => {
     const { location } = this.props;
@@ -143,20 +148,18 @@ class WordsProviderCmp extends Component {
   searchWord = params =>
     this.handleFetch({
       loadingName: loadingNames.searchWord,
-      requestHandler: () => Promise.all([
-        api.searchWord(params),
-        api.getGifs({ q: params.text }),
-      ]),
-      responseHandler: ([foundWord, gifs]) => {
-        const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-        const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+      requestHandler: () => api.searchWord(params),
+      responseHandler: foundWord => api.getGifs({ q: foundWord.en })
+          .then(gifs => {
+            const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
+            const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
-        return this.props.setFoundWord({ ...foundWord, gif: randomGif });
-      },
+            return this.props.setFoundWord({ ...foundWord, gif: randomGif });
+          }),
     });
 
   render() {
-    const { wordsList, word, count, gif } = this.state;
+    const { wordsList, word, count, gif, editingWord } = this.state;
     const { children } = this.props;
 
     return (
@@ -164,7 +167,10 @@ class WordsProviderCmp extends Component {
         value={{
           word,
           wordsList,
+          editingWord,
           gif,
+          setEditingWord: this.setEditingWord,
+          cleanEditingWord: this.cleanEditingWord,
           wordsCount: count,
           getWordsSearchParams: this.getSearchParams,
           fetchWord: this.fetchWord,
