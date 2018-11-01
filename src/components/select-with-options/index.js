@@ -3,8 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { MenuItem, Select } from "../../components-mui";
 
-const SelectWithOptions = styled(({ label, value, onChange, options }) => (
-  <Select label={label} value={value} onChange={onChange}>
+const CustomizedSelect = styled(props => <Select {...props} />)`
+  min-width: 130px;
+  width: 100%;
+`;
+
+const SelectWithOptions = ({ label, value, onChange, options }) => (
+  <CustomizedSelect label={label} value={value} onChange={onChange}>
     {options.length === 0 ? (
       <MenuItem value="" disabled>
         There are no appropriate options
@@ -16,11 +21,8 @@ const SelectWithOptions = styled(({ label, value, onChange, options }) => (
         </MenuItem>
       ))
     )}
-  </Select>
-))`
-  min-width: 130px;
-  width: 100%;
-`;
+  </CustomizedSelect>
+);
 
 SelectWithOptions.propTypes = {
   label: PropTypes.string,

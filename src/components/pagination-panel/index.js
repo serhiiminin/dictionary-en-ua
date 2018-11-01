@@ -9,7 +9,7 @@ const PaginationPanelWrapper = styled.div`
   justify-content: end;
   gap: 1rem;
   background: ${props => props.theme.main.colors.background};
-  padding: 10px 10px;
+  padding: ${props => props.theme.main.padding.medium};
 `;
 
 const PaginationPanel = ({

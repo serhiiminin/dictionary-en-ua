@@ -25,14 +25,10 @@ const CustomizedSelect = styled(props => (
   }
 `;
 
-const SelectCustomized = ({ children, label, ...restProps }) => (
+const SelectCustomized = ({ label, ...restProps }) => (
   <CustomizedFormControl>
     {label && <InputLabel htmlFor={label}>{label}</InputLabel>}
-    <CustomizedSelect
-      {...restProps}
-    >
-      {children}
-    </CustomizedSelect>
+    <CustomizedSelect {...restProps} />
   </CustomizedFormControl>
 );
 
