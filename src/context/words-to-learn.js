@@ -2,7 +2,7 @@ import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import api from '../api';
-import { notificationType } from '../components/notification-item/component';
+import { notificationType } from '../components/notification-item';
 import loadingNames from '../constants/loading-names';
 import { withLoadingNames } from './loading-names';
 import { withNotifications } from './notifications';

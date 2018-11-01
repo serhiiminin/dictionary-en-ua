@@ -1,10 +1,23 @@
-import { compose } from 'recompose';
-import injectSheet from 'react-jss';
-import styles from './styles';
-import TextFieldLoading from './component';
+import { Fade, LinearProgress } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { TextField } from '../../components-mui';
 
-const enhance = compose(
-  injectSheet(styles)
+const TextFieldLoading = ({ loading, ...restProps }) => (
+  <div>
+    <TextField {...restProps} />
+    <Fade in={loading}>
+      <LinearProgress color='secondary' />
+    </Fade>
+  </div>
 );
 
-export default enhance(TextFieldLoading);
+TextFieldLoading.propTypes = {
+  loading: PropTypes.bool,
+};
+
+TextFieldLoading.defaultProps = {
+  loading: false,
+};
+
+export default TextFieldLoading;
