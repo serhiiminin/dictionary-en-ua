@@ -1,14 +1,94 @@
-import injectSheet from 'react-jss';
-import normalize from 'normalize-jss';
-import { compose } from 'recompose';
-import styles from './styles';
-import Root from './component';
+import React, { Fragment } from "react";
+import { ThemeProvider } from "styled-components";
+import { Normalize } from "styled-normalize";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { Header, BlocksWrapper, Notifications } from "../components";
+import {
+  MainContainer,
+  WordsListContainer,
+  WordsAddContainer,
+  WordsSearchContainer,
+  PageNotFoundContainer,
+  WordsLearnContainer,
+  WordsEditContainer,
+  WordPreviewContainer
+} from "../containers";
+import StateProvider from "../context";
+import routes from "../routes";
+import theme from "./themes";
+import GlobalStyle from "./styles";
 
-const enhance = compose(
-  injectSheet({
-    ...normalize,
-    ...styles,
-  }),
+const muiTheme = createMuiTheme({
+  palette: {
+    primary: {
+      light: theme.main.colors.block,
+      main: theme.main.colors.button,
+      dark: theme.main.colors.button,
+      contrastText: theme.main.colors.background
+    },
+    secondary: {
+      light: theme.main.colors.block,
+      main: theme.main.colors.button,
+      dark: theme.main.colors.button,
+      contrastText: theme.main.colors.block
+    }
+  }
+});
+
+const Root = () => (
+  <ThemeProvider theme={theme}>
+    <Fragment>
+      <Normalize />
+      <GlobalStyle />
+      <MuiThemeProvider theme={muiTheme}>
+        <Router>
+          <StateProvider>
+            <Notifications>
+              <BlocksWrapper>
+                <Header />
+                <Switch>
+                  <Route exact path={routes.root} component={MainContainer} />
+                  <Route exact path={routes.login} render={() => "login"} />
+                  <Route
+                    exact
+                    path={routes.words.add}
+                    component={WordsAddContainer}
+                  />
+                  <Route
+                    exact
+                    path={routes.words.learn}
+                    component={WordsLearnContainer}
+                  />
+                  <Route
+                    exact
+                    path={routes.words.list.all}
+                    component={WordsListContainer}
+                  />
+                  <Route
+                    exact
+                    path={routes.words.list.preview}
+                    component={WordPreviewContainer}
+                  />
+                  <Route
+                    exact
+                    path={routes.words.list.edit}
+                    component={WordsEditContainer}
+                  />
+                  <Route
+                    exact
+                    path={routes.words.search}
+                    component={WordsSearchContainer}
+                  />
+                  <Route component={PageNotFoundContainer} />
+                </Switch>
+              </BlocksWrapper>
+            </Notifications>
+          </StateProvider>
+        </Router>
+      </MuiThemeProvider>
+    </Fragment>
+  </ThemeProvider>
 );
 
-export default enhance(Root);
+export default Root;

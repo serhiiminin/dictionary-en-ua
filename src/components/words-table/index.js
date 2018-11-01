@@ -1,16 +1,13 @@
-import { compose } from 'recompose';
-import injectSheet from 'react-jss';
-import { withRouter } from 'react-router-dom';
-import { withLoadingNames } from '../../context/loading-names';
-import { withWords } from '../../context/words';
-import WordsTable from './component';
-import styles from './styles';
+import { compose } from "recompose";
+import { withRouter } from "react-router-dom";
+import { withLoadingNames } from "../../context/loading-names";
+import { withWords } from "../../context/words";
+import WordsTable from "./component";
 
 const enhance = compose(
   withRouter,
   withLoadingNames,
-  withWords,
-  injectSheet(styles)
+  withWords
 );
 
 export default enhance(WordsTable);

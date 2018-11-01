@@ -1,6 +1,6 @@
 import { WORDS, GIPHY } from './endpoints';
 import { fetchProxy, apiKeyGiphyProxy } from './fetch-proxy';
-import { joinUrl } from '../helpers/search-params';
+import { joinUrl } from '../helpers/join-url';
 import requests from './request';
 
 const api = {

@@ -1,98 +1,54 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Checkbox, Fade, CircularProgress } from '@material-ui/core';
-import Edit from '@material-ui/icons/Edit';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-import { joinRoute } from '../../helpers/search-params';
-import routes from '../../routes';
-import { ButtonWithRouter } from '..';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const EMPTY_VALUE = '-';
+const WordItemWrapper = styled.div`
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 16fr 6fr 1fr;
+  align-items: center;
+  background: ${props =>
+    props.isChecked || props.wordLoading
+      ? props.theme.main.colors.line
+      : props.theme.main.colors.background};
+  opacity: ${props => (props.loading ? props.theme.main.opacity.disabled : 1)}
+  padding: 5px 10px;
+  gap: 1rem;
+`;
 
-const WordItemInList = props => {
-  const { classes, isChecked, onWordCheck, word, linkToWord, loading } = props;
-  const { _id, en, ua, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
-  const lastLearnt = dateLastLearnt && (
-    dateLastLearnt === new Date(0).toISOString()
-      ? 'Never'
-      : moment(dateLastLearnt).fromNow()
-  );
+const Description = styled.div`
+  padding: ${props => props.theme.main.padding.small} 0;
+`;
 
-  return (
-    <div className={`${classes.word} ${isChecked && classes.wordChosen} ${loading && classes.wordLoading}`}>
-      <Checkbox
-        onChange={() => onWordCheck(_id)}
-        checked={isChecked}
-        disabled={loading}
-      />
-      <div className={classes.wordDescription}>
-        <div className={classes.wordTitle}>
-          {en && <Link className={classes.linkToWord} to={linkToWord}>{en}</Link>}
-          {[en && ' ', transcription && `[${transcription}]`, ua]
-            .filter(Boolean)
-            .join(' - ')}
-          {loading && (
-            <Fade in={loading}>
-              <CircularProgress color='secondary' size={20}/>
-            </Fade>
-          )}
-        </div>
-        <div className={classes.lastLearn}>
-          {[
-            timesLearnt != null && `Times learnt: ${timesLearnt}`,
-            lastLearnt && `Last learnt: ${lastLearnt}`,
-          ].filter(Boolean)
-            .join(` · `)}
-        </div>
-      </div>
-      <div className={classes.wordTime}>
-        {(dateCreated && moment(dateCreated)
-          .fromNow()) || EMPTY_VALUE}
-      </div>
-      <ButtonWithRouter
-        to={joinRoute({
-          pathname: routes.words.list.root,
-          paths: [_id, 'edit']
-        })}
-        disabled={loading}
-        title='Edit'
-      >
-        <Edit/>
-      </ButtonWithRouter>
-    </div>
-  );
+const LinkToWords = styled(props => <Link {...props} />)`
+  color: ${props => props.theme.main.colors.button};
+`;
+
+const WordTitleWrapper = styled.div`
+  font-size: 1em;
+`;
+
+const WordTime = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.9em;
+`;
+
+const LastLearntWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, auto));
+  justify-content: start;
+  font-size: 0.85em;
+  opacity: ${props => props.theme.main.opacity.disabled};
+  gap: 0.25em;
+`;
+
+export {
+  WordItemWrapper,
+  Description,
+  LinkToWords,
+  WordTitleWrapper,
+  WordTime,
+  LastLearntWrapper
 };
-
-WordItemInList.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string),
-  word: PropTypes.shape({
-    _id: PropTypes.string,
-    en: PropTypes.string,
-    ua: PropTypes.string,
-    transcription: PropTypes.string,
-    dateCreated: PropTypes.string,
-  }),
-  linkToWord: PropTypes.string,
-  onWordCheck: PropTypes.func,
-  isChecked: PropTypes.bool,
-  loading: PropTypes.bool,
-};
-
-WordItemInList.defaultProps = {
-  classes: {},
-  word: {
-    _id: '',
-    en: '',
-    ua: '',
-    transcription: '',
-    dateCreated: '',
-    onWordCheck: '',
-  },
-  onWordCheck: () => {},
-  linkToWord: '',
-  isChecked: false,
-  loading: false,
-};
-
-export default WordItemInList;

@@ -1,5 +1,5 @@
 import generatorApiKeys from '../helpers/generator-api-key';
-import { joinUrl } from '../helpers/search-params';
+import { joinUrl } from '../helpers/join-url';
 import GIPHY_API_KEYS from './credentials';
 import createFetcherJson from './create-fetcher';
 

@@ -1,10 +1,73 @@
-import injectSheet from 'react-jss';
-import { compose } from 'recompose';
-import NotificationItem from './component';
-import styles from './styles';
+import React from "react";
+import PropTypes from "prop-types";
+import { Grow } from "@material-ui/core";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import ErrorIcon from "@material-ui/icons/Error";
+import InfoIcon from "@material-ui/icons/Info";
+import WarningIcon from "@material-ui/icons/Warning";
+import styled from "styled-components";
+import CloseButton from "../close-button";
 
-const enhance = compose(
-  injectSheet(styles),
+export const notificationType = {
+  success: "success",
+  warning: "warning",
+  error: "error",
+  info: "info"
+};
+
+const NotificationItemWrapper = styled.li`
+  width: 100%;
+  border-radius: ${props => props.theme.main.borderRadius.small};
+  padding: ${props => props.theme.main.padding.medium};
+  margin-bottom: ${props => props.theme.main.margin.medium};
+  list-style: none;
+  transition: ${props =>
+    `all ${props.theme.main.timeout.notification}ms ease-in-out`};
+  opacity: 1 !important;
+  background: ${props => props.theme.main.colors.notification[props.type]};
+`;
+
+const TopLine = styled.div`
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  margin-bottom: ${props => props.theme.main.margin.medium};
+`;
+
+const WrapperCloseButton = styled.div`
+  text-align: right;
+`;
+
+const icons = {
+  [notificationType.success]: <CheckCircleOutlineIcon />,
+  [notificationType.info]: <InfoIcon />,
+  [notificationType.warning]: <WarningIcon />,
+  [notificationType.error]: <ErrorIcon />
+};
+
+const NotificationItem = ({ onClick, text, type }) => (
+  <Grow in timeout={400}>
+    <NotificationItemWrapper type={type}>
+      <TopLine>
+        {icons[type]}
+        <WrapperCloseButton>
+          <CloseButton onClick={onClick} />
+        </WrapperCloseButton>
+      </TopLine>
+      <div>{text}</div>
+    </NotificationItemWrapper>
+  </Grow>
 );
 
-export default enhance(NotificationItem);
+NotificationItem.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  type: PropTypes.string
+};
+
+NotificationItem.defaultProps = {
+  text: "",
+  type: notificationType.error
+};
+
+export default NotificationItem;
