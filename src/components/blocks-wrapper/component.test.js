@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import BlocksWrapper from './component';
+import BlocksWrapper from '.';
 
 describe('Blocks Container', () => {
   test('render', () => {

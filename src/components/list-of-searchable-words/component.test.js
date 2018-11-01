@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ListOfSearchableWords from './component';
+import ListOfSearchableWords from '.';
 
 describe('List of clickable strings', () => {
   let wrapper;

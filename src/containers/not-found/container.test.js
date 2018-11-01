@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PageNotFound from './container';
+import PageNotFound from '.';
 
 describe('Page not found', () => {
   let wrapper;

@@ -1,7 +1,9 @@
-import generatorApiKeys from '../helpers/generator-api-key';
-import { joinUrl } from '../helpers/join-url';
-import GIPHY_API_KEYS from './credentials';
-import createFetcherJson from './create-fetcher';
+import generatorApiKeys from "../helpers/generator-api-key";
+import getGiphyApiKey from './get-api-keys';
+import { joinUrl } from "../helpers/join-url";
+import createFetcherJson from "./create-fetcher";
+
+const GIPHY_API_KEYS = getGiphyApiKey(process.env);
 
 const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
@@ -17,7 +19,7 @@ const parseJson = response => response.json();
 
 const updateSearchParams = (params, newSearchParams) => ({
   ...params,
-  endpoint: joinUrl({ url: params.endpoint, searchParams: newSearchParams }),
+  endpoint: joinUrl({ url: params.endpoint, searchParams: newSearchParams })
 });
 
 const fetcher = createFetcherJson(window.fetch);
@@ -27,19 +29,19 @@ const fetchProxy = (params, generator) =>
     .then(checkStatus)
     .then(parseJson)
     .catch(error => {
-      if (error.message === 'Failed to fetch') {
+      if (error.message === "Failed to fetch") {
         if (!window.navigator.onLine) {
-          throw new Error('Check your internet connection');
+          throw new Error("Check your internet connection");
         }
       }
       throw error;
     })
     .catch(error => {
-      if (error.message === 'Failed to fetch') {
-        return fetchProxy(updateSearchParams(
-          params,
-          { api_key: generator.next().value }
-        ), generator);
+      if (error.message === "Failed to fetch") {
+        return fetchProxy(
+          updateSearchParams(params, { api_key: generator.next().value }),
+          generator
+        );
       }
       throw error;
     });
@@ -47,13 +49,13 @@ const fetchProxy = (params, generator) =>
 const createApiKeyProxy = apiKeys => {
   const genGiphyKeyGenerator = generatorApiKeys(apiKeys);
 
-  return params => fetchProxy(
-    updateSearchParams(
-      params,
-      { api_key: genGiphyKeyGenerator.next().value }
-    ),
-    genGiphyKeyGenerator
-  );
+  return params =>
+    fetchProxy(
+      updateSearchParams(params, {
+        api_key: genGiphyKeyGenerator.next().value
+      }),
+      genGiphyKeyGenerator
+    );
 };
 
 const apiKeyGiphyProxy = createApiKeyProxy(GIPHY_API_KEYS);

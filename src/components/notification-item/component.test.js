@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NotificationItem from './component';
+import NotificationItem from '.';
 
 describe('Notification item', () => {
   test('render', () => {

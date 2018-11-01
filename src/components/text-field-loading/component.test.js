@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TextFieldLoading from './component';
+import TextFieldLoading from '.';
 
 describe('Text field loading', () => {
   let wrapper;

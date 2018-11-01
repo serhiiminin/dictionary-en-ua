@@ -2,6 +2,16 @@
   "name": "my-dictionary",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom --coverage",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
+    "lint:fix": "LINT_ARGS=--fix npm run lint",
+    "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' npm run lint"
+  },
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
@@ -18,16 +28,6 @@
     "styled-components": "^4.0.3",
     "styled-normalize": "^8.0.3",
     "uuid": "^3.3.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "test:coverage": "react-scripts test --env=jsdom --coverage",
-    "eject": "react-scripts eject",
-    "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
-    "lint:fix": "LINT_ARGS=--fix npm run lint",
-    "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' npm run lint"
   },
   "devDependencies": {
     "enzyme": "^3.5.0",

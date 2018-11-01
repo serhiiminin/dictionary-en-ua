@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LineExplanation from './component';
+import LineExplanation from '.';
 
 describe('Line explanation', () => {
   let wrapper;
