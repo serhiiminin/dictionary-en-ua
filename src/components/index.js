@@ -1,4 +1,5 @@
 export { default as BlocksWrapper } from './blocks-wrapper';
+export { default as Button } from './button';
 export { default as ButtonControl } from './button-control';
 export { default as ButtonWithRouter } from './button-with-router';
 export { default as ChipSet } from './chip-set';
@@ -17,7 +18,9 @@ export { default as Notifications } from './notifications';
 export { default as Pagination } from './pagination';
 export { default as PaginationPanel } from './pagination-panel';
 export { default as SearchableWord } from './searchable-word';
+export { default as Select } from './select';
 export { default as SelectWithOptions } from './select-with-options';
+export { default as TextField } from './text-field';
 export { default as TextFieldLoading } from './text-field-loading';
 export { default as Toolbar } from './toolbar';
 export { default as WordForm } from './word-form';

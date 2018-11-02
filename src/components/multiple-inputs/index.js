@@ -2,8 +2,7 @@ import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { TextField } from "../../components-mui";
-import { ButtonControl } from "..";
+import { ButtonControl, TextField } from "..";
 
 const MultipleInputsWrapper = styled.div`
   display: grid;

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Chip } from "@material-ui/core";
 import TagFacesIcon from "@material-ui/icons/TagFaces";
 import styled from "styled-components";
-import { Chip } from "../../components-mui";
 
 const ChipSetList = styled.div`
   display: flex;

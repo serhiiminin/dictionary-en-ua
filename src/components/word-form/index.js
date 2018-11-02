@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Fade, LinearProgress } from '@material-ui/core';
+import { Fade, LinearProgress, TextField } from '@material-ui/core';
 import uuid from 'uuid';
-import { TextField, Button } from '../../components-mui';
-import { MultipleInputs, InputsBlock, ChipSet, SelectWithOptions } from '..';
+import { Button, MultipleInputs, InputsBlock, ChipSet, SelectWithOptions } from '..';
 import loadingNames from '../../constants/loading-names';
 
 class WordForm extends Component {

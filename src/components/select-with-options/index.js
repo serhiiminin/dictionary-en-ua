@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { MenuItem, Select } from "../../components-mui";
+import { MenuItem } from '@material-ui/core';
+import { Select } from "..";
 
 const CustomizedSelect = styled(props => <Select {...props} />)`
   min-width: 130px;

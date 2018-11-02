@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Button } from "../../components-mui";
 import { notificationType } from "../../components/notification-item";
 import loadingNames from "../../constants/loading-names";
-import { WordPreview, LearningBoard } from "../../components";
+import { WordPreview, LearningBoard, Button } from "../../components";
 
 const MAX_COUNT_ATTEMPTS = 3;
 

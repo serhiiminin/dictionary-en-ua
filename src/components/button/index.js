@@ -6,25 +6,11 @@ import styled from "styled-components";
 const ButtonCustomized = styled(({ isActive, ...restProps }) => (
   <Button
     {...restProps}
-    classes={{
-      disabled: "disabled"
-    }}
   />
 ))`
   && {
-    text-transform: none;
-    transition: ${props => props.theme.main.transition};
     opacity: ${props =>
       props.isActive ? props.theme.main.opacity.disabled : 1};
-  }
-  &:hover {
-    background: ${props => props.theme.main.colors.button};
-    opacity: ${props => props.theme.main.opacity.disabled};
-  }
-  & .disabled {
-    opacity: ${props => props.theme.main.opacity.disabled};
-    background: ${props => props.theme.main.colors.button};
-    color: ${props => props.theme.main.colors.background} !important;
   }
 `;
 
