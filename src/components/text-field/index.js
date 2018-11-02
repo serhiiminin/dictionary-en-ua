@@ -1,6 +1,6 @@
-import { TextField } from "@material-ui/core";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+import { TextField } from "@material-ui/core";
 import styled from "styled-components";
 
 const TextFieldWrapper = styled.div`
@@ -14,36 +14,9 @@ const TextFieldWrapper = styled.div`
     props.control ? "initial" : props.theme.main.margin.medium};
 `;
 
-const StyledTextField = styled(props => (
-  <TextField
-    {...props}
-    InputProps={{
-      classes: {
-        underline: "underline"
-      }
-    }}
-    InputLabelProps={{
-      className: "label"
-    }}
-  />
-))`
-  && {
-    width: 100%;
-  }
-  & .label {
-    color: ${props => props.theme.main.colors.text} !important;
-    opacity: 0.7;
-  }
-  & .underline {
-    &:after {
-      border-bottom-color: ${props => props.theme.main.colors.text} !important;
-    }
-  }
-`;
-
 const TextFieldCustomized = ({ classes, control, ...restProps }) => (
   <TextFieldWrapper control={control}>
-    <StyledTextField {...restProps} />
+    <TextField {...restProps} />
     {control}
   </TextFieldWrapper>
 );

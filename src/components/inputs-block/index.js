@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
-import { Button, TextField } from "../../components-mui";
+import { TextField, Button } from "..";
 
 const InputsBlockWrapper = styled.div`
   display: grid;

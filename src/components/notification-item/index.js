@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grow } from "@material-ui/core";
+import { Slide } from "@material-ui/core";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ErrorIcon from "@material-ui/icons/Error";
 import InfoIcon from "@material-ui/icons/Info";
@@ -46,7 +46,7 @@ const icons = {
 };
 
 const NotificationItem = ({ onClick, text, type }) => (
-  <Grow in timeout={400}>
+  <Slide direction="up" in mountOnEnter unmountOnExit>
     <NotificationItemWrapper type={type}>
       <TopLine>
         {icons[type]}
@@ -56,7 +56,7 @@ const NotificationItem = ({ onClick, text, type }) => (
       </TopLine>
       <div>{text}</div>
     </NotificationItemWrapper>
-  </Grow>
+  </Slide>
 );
 
 NotificationItem.propTypes = {

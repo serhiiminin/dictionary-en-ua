@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp";
 import styled from "styled-components";
-import { Button } from "../../components-mui";
-import { SelectWithOptions } from "..";
+import { SelectWithOptions, Button } from "..";
 
 const ToolbarWrapper = styled.div`
   display: grid;

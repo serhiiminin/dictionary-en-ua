@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
-import { Checkbox, Fade } from "@material-ui/core";
+import { Checkbox, Fade, LinearProgress } from "@material-ui/core";
 import Delete from "@material-ui/icons/Delete";
 import styled from "styled-components";
 import loadingNames from "../../constants/loading-names";
 import { parseSearchParams, joinRoute } from "../../helpers/join-url";
-import { LinearProgress } from "../../components-mui";
 import { PaginationPanel, Toolbar, WordsList, ButtonControl } from "..";
 
 const WordsListWrapper = styled.div`

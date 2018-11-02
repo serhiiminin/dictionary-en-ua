@@ -1,7 +1,6 @@
-import { Fade, LinearProgress } from '@material-ui/core';
+import { Fade, LinearProgress, TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { TextField } from '../../components-mui';
 
 const TextFieldLoading = ({ loading, ...restProps }) => (
   <div>

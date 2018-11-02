@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
 import styled from "styled-components";
 import {
+  Button,
   ControlsSeparator,
   TextFieldLoading,
   WordPreview
 } from "../../components";
 import loadingNames from "../../constants/loading-names";
-import { Button } from "../../components-mui";
 import { joinRoute, parseSearchParams } from "../../helpers/join-url";
 import routes from "../../routes";
 

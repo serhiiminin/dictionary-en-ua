@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import styled from "styled-components";
-import { TextField } from "../../components-mui";
-import { ButtonControl } from "..";
+import { ButtonControl, TextField } from "..";
 
 const Page = styled.div`
   display: grid;
