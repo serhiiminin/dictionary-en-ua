@@ -9,8 +9,7 @@ const InputsBlockWrapper = styled.div`
   row-gap: 1em;
   margin-bottom: 10px;
   padding: 10px;
-  border: ${props =>
-    ["1px", "solid", props.theme.main.colors.line].filter(Boolean).join(" ")};
+  border: ${props => `1px solid ${props.theme.palette.primary.light}`};
   border-radius: ${props => props.theme.main.borderRadius.small};
 `;
 

@@ -16,7 +16,7 @@ const SearchableWordLink = styled(({ word }) => (
   </Link>
 ))`
   display: inline-block;
-  color: ${props => props.theme.main.colors.text};
+  color: ${props => props.theme.palette.text.primary};
   font-weight: bolder;
 `;
 

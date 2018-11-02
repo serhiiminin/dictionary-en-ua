@@ -11,7 +11,7 @@ const HeaderBlock = styled.div`
 `;
 
 const StyledRouterLink = styled(Link)`
-  color: ${props => props.theme.main.colors.text};
+  color: ${props => props.theme.palette.text.primary};
   text-decoration: none;
   font-size: 1.5rem;
 `;

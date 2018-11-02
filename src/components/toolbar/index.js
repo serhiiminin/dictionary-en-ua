@@ -1,17 +1,10 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+import { List, ListItem } from "@material-ui/core";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp";
 import styled from "styled-components";
 import { SelectWithOptions, Button } from "..";
-
-const ToolbarWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 22fr 1fr;
-  align-content: center;
-  background: ${props => props.theme.main.colors.background};
-  padding: 10px 10px;
-`;
 
 const ToolbarButtonsWrapper = styled.div`
   display: grid;
@@ -19,21 +12,20 @@ const ToolbarButtonsWrapper = styled.div`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
-const Toolbar = props => {
-  const {
-    checkAllControl,
-    sortBy,
-    sortDirection,
-    onChangeSortDirection,
-    onChangeSortBy,
-    isAnyChecked,
-    children
-  } = props;
-
-  return (
-    <ToolbarWrapper>
+const Toolbar = ({
+  checkAllControl,
+  sortBy,
+  sortDirection,
+  onChangeSortDirection,
+  onChangeSortBy,
+  isAnyChecked,
+  children
+}) => (
+  <List>
+    <ListItem divider>
       <div>{checkAllControl}</div>
       <ToolbarButtonsWrapper>
         {isAnyChecked ? (
@@ -44,7 +36,7 @@ const Toolbar = props => {
               onClick={onChangeSortDirection}
               title="Sort direction"
               color="primary"
-              variant="raised"
+              variant="contained"
               mini
             >
               {sortDirection === "descend" ? (
@@ -70,9 +62,9 @@ const Toolbar = props => {
           </Fragment>
         )}
       </ToolbarButtonsWrapper>
-    </ToolbarWrapper>
-  );
-};
+    </ListItem>
+  </List>
+);
 
 Toolbar.propTypes = {
   checkAllControl: PropTypes.node,

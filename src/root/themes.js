@@ -2,11 +2,11 @@ const theme = {
   main: {
     colors: {
       background: '#F6F0ED',
-      button: '#28536B',
       text: '#333333',
-      block: '#66D4CA',
-      line: '#BBB193',
-      important: '#C2948A',
+      main: '#28536B',
+      dark: '#66D4CA',
+      light: '#BBB193',
+      contrastText: '#C2948A',
       notification: {
         success: '#66D4CA',
         error: '#C2948A',

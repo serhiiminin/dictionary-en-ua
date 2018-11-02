@@ -15,6 +15,7 @@ const WordsListWrapper = styled.div`
   border-radius: ${props => props.theme.main.borderRadius.small};
   overflow: hidden;
   row-gap: 1px;
+  background: ${props => props.theme.palette.background.paper};
 `;
 class WordsTable extends Component {
   static propTypes = {
@@ -94,19 +95,10 @@ class WordsTable extends Component {
 
   render() {
     const { checked } = this.state;
-    const {
-      wordsList,
-      wordsCount,
-      checkIsLoading,
-      getWordsSearchParams,
-      location
-    } = this.props;
-    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(
-      location
-    );
+    const { wordsList, wordsCount, checkIsLoading, getWordsSearchParams, location } = this.props;
+    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(location);
     const loading = checkIsLoading(loadingNames.wordsList);
-    const isCheckedAll =
-      checked.length === wordsList.length && checked.length > 0;
+    const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
 
     return (
       <main>
@@ -147,9 +139,7 @@ class WordsTable extends Component {
             countPerPage={countPerPage}
             page={page}
             maxPageCount={Math.ceil(wordsCount / countPerPage)}
-            onChangeCount={event =>
-              this.handleOnChangeSelect(event, "countPerPage")
-            }
+            onChangeCount={event => this.handleOnChangeSelect(event, "countPerPage")}
             onChangePage={this.handleOnChangePage}
           />
         </WordsListWrapper>
