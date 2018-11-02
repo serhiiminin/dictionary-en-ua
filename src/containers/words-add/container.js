@@ -8,10 +8,14 @@ class AddWordContainer extends Component {
   }
 
   render() {
-    const { saveWord, editingWord } = this.props;
+    const { saveWord, editingWord, checkIsLoading } = this.props;
     return (
       <main>
-        <WordForm word={editingWord} onSubmit={word => saveWord(word)} />
+        <WordForm
+          word={editingWord}
+          checkIsLoading={checkIsLoading}
+          onSubmit={word => saveWord(word)}
+        />
       </main>
     );
   }
@@ -19,6 +23,7 @@ class AddWordContainer extends Component {
 
 AddWordContainer.propTypes = {
   saveWord: PropTypes.func.isRequired,
+  checkIsLoading: PropTypes.func.isRequired,
   cleanEditingWord: PropTypes.func.isRequired,
   editingWord: PropTypes.shape({})
 };
