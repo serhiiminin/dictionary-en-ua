@@ -88,7 +88,6 @@ class WordForm extends Component {
       { key: 'article', title: 'Article' },
       { key: 'determiner', title: 'Determiner' },
     ].filter(option =>
-      this.state.word.partOfSpeech.length > 0 &&
       !this.state.word.partOfSpeech
         .map(part => part.value)
         .includes(option.key));

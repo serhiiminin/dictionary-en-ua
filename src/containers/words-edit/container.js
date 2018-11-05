@@ -10,6 +10,7 @@ class WordEdit extends Component {
     cleanWord: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
     editWord: PropTypes.func.isRequired,
+    checkIsLoading: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -25,12 +26,13 @@ class WordEdit extends Component {
   }
 
   render() {
-    const { word, editWord } = this.props;
+    const { word, editWord, checkIsLoading } = this.props;
 
     return (
       <WordForm
         word={word}
         onSubmit={editWord}
+        checkIsLoading={checkIsLoading}
       />
     )
   }

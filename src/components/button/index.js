@@ -4,13 +4,16 @@ import { Button } from "@material-ui/core";
 import styled from "styled-components";
 
 const ButtonCustomized = styled(({ isActive, ...restProps }) => (
-  <Button
-    {...restProps}
-  />
+  <Button {...restProps} />
 ))`
   && {
     opacity: ${props =>
       props.isActive ? props.theme.main.opacity.disabled : 1};
+    color: ${props => props.theme.palette.background.paper};
+  }
+
+  & .disabled {
+    display: 'none';
   }
 `;
 
