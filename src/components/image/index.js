@@ -4,27 +4,32 @@ import styled from "styled-components";
 
 const ImageWrapper = styled.div`
   padding: ${props => props.theme.main.padding.medium} 0;
-  text-align: center;
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  border-radius: ${props => props.theme.main.borderRadius.small};
 `;
 
-const StyledImage = styled.img`
-  max-width: 100%;
-`;
-
-const Image = ({ src, alt }) => (
-  <ImageWrapper>
-    {src ? <StyledImage src={src} alt={alt} /> : "There is no image"}
-  </ImageWrapper>
+const Image = ({ src, width, height }) => (
+  <ImageWrapper
+    style={{ backgroundImage: `url(${src})` }}
+    width={width}
+    height={height}
+  />
 );
 
 Image.propTypes = {
   src: PropTypes.string,
-  alt: PropTypes.string
+  width: PropTypes.number,
+  height: PropTypes.number
 };
 
 Image.defaultProps = {
   src: "",
-  alt: ""
+  width: 300,
+  height: 200
 };
 
 export default Image;
