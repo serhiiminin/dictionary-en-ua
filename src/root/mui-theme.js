@@ -3,18 +3,27 @@ import theme from "./themes";
 
 const muiTheme = createMuiTheme({
   palette: {
+    background: {
+      paper: theme.main.colors.background,
+    },
     primary: {
-      light: theme.main.colors.block,
-      main: theme.main.colors.button,
-      dark: theme.main.colors.button,
-      contrastText: theme.main.colors.background
+      light: theme.main.colors.light,
+      main: theme.main.colors.main,
+      dark: theme.main.colors.dark,
+      contrastText: theme.main.colors.contrastText,
     },
     secondary: {
-      light: theme.main.colors.block,
-      main: theme.main.colors.button,
-      dark: theme.main.colors.button,
-      contrastText: theme.main.colors.block
+      light: theme.main.colors.light,
+      main: theme.main.colors.main,
+      dark: theme.main.colors.dark,
+      contrastText: theme.main.colors.contrastT
+    },
+    text: {
+      primary: theme.main.colors.text,
     }
+  },
+  typography: {
+    useNextVariants: true
   },
   overrides: {
     MuiButton: {
@@ -22,13 +31,13 @@ const muiTheme = createMuiTheme({
         textTransform: "none",
         transition: theme.main.transition,
         "&:hover": {
-          background: theme.main.colors.button,
+          background: theme.main.colors.background,
           opacity: theme.main.opacity.disabled
         }
       },
       disabled: {
         opacity: theme.main.opacity.disabled,
-        background: theme.main.colors.button,
+        background: theme.main.colors.light,
         color: `${theme.main.colors.background} !important`
       }
     },
@@ -36,57 +45,60 @@ const muiTheme = createMuiTheme({
       root: {
         fontSize: ".9em",
         background: "transparent",
-        border: `${theme.main.borderWidth.base} ${theme.main.borderStyle.base} ${theme.main.colors.text}`,
+        border: `${theme.main.borderWidth.base} ${
+          theme.main.borderStyle.base
+        } ${theme.main.colors.text}`,
         color: theme.main.colors.text,
         opacity: theme.main.opacity.disabled
       }
     },
     MuiFormControl: {
       root: {
-        width: '100%',
+        width: "100%"
       }
     },
     MuiLinearProgress: {
       root: {
-        background: theme.main.colors.background,
+        background: theme.main.colors.background
       }
     },
     MuiMenuItem: {
       root: {
-        width: '100%',
-        '&:hover': {
-          background: `${theme.main.colors.button} !important`,
+        width: "100%",
+        "&:hover": {
+          background: `${theme.main.colors.main} !important`,
           color: `${theme.main.colors.background} !important`
         }
       },
       selected: {
-        background: `${theme.main.colors.button} !important`,
+        background: `${theme.main.colors.main} !important`,
         color: `${theme.main.colors.background} !important`
       }
     },
     MuiSelect: {
       root: {
-        width: '100%',
+        width: "100%"
       },
       select: {
-        background: 'transparent !important',
+        background: "transparent !important"
       }
     },
     MuiTextField: {
       root: {
-        width: '100%',
+        width: "100%"
       },
       label: {
         color: `${theme.main.colors.text} !important`,
-        opacity: .7,
+        opacity: 0.7
       },
       underline: {
-        '&:after': {
-          borderBottomColor: `${theme.main.colors.text} !important`,
+        "&:after": {
+          borderBottomColor: `${theme.main.colors.text} !important`
         }
       }
     }
-  }
+  },
+  ...theme,
 });
 
 export default muiTheme;

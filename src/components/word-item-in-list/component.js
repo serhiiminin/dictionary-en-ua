@@ -1,31 +1,21 @@
 import React from "react";
+import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const WordItemWrapper = styled.div`
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 16fr 6fr 1fr;
-  align-items: center;
-  background: ${props =>
-    props.isChecked || props.wordLoading
-      ? props.theme.main.colors.line
-      : props.theme.main.colors.background};
-  opacity: ${props => (props.loading ? props.theme.main.opacity.disabled : 1)}
-  padding: 5px 10px;
-  gap: 1rem;
+const GridWordItemWrapper = styled(({ isChecked, isLoading, ...props }) => (
+  <Grid {...props} />
+))`
+  opacity: ${props =>
+    props.isLoading || props.isChecked ? props.theme.main.opacity.disabled : 1};
 `;
 
-const Description = styled.div`
+const Description = styled(Grid)`
   padding: ${props => props.theme.main.padding.small} 0;
 `;
 
 const LinkToWords = styled(props => <Link {...props} />)`
-  color: ${props => props.theme.main.colors.button};
-`;
-
-const WordTitleWrapper = styled.div`
-  font-size: 1em;
+  color: ${props => props.theme.palette.primary.main};
 `;
 
 const WordTime = styled.div`
@@ -35,20 +25,4 @@ const WordTime = styled.div`
   font-size: 0.9em;
 `;
 
-const LastLearntWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, auto));
-  justify-content: start;
-  font-size: 0.85em;
-  opacity: ${props => props.theme.main.opacity.disabled};
-  gap: 0.25em;
-`;
-
-export {
-  WordItemWrapper,
-  Description,
-  LinkToWords,
-  WordTitleWrapper,
-  WordTime,
-  LastLearntWrapper
-};
+export { GridWordItemWrapper, Description, LinkToWords, WordTime };

@@ -16,38 +16,37 @@ import {
 } from "../containers";
 import StateProvider from "../context";
 import routes from "../routes";
-import theme from "./themes";
 import muiTheme from "./mui-theme";
 import GlobalStyle from "./styles";
 
 const Root = () => (
-  <ThemeProvider theme={theme}>
-    <Fragment>
-      <Normalize />
-      <GlobalStyle />
-      <MuiThemeProvider theme={muiTheme}>
-        <Router>
-          <StateProvider>
-            <Notifications>
-              <BlocksWrapper>
-                <Header />
-                <Switch>
-                  <Route exact path={routes.root} component={MainContainer} />
-                  <Route exact path={routes.login} render={() => "login"} />
-                  <Route exact path={routes.words.add} component={WordsAddContainer} />
-                  <Route exact path={routes.words.learn} component={WordsLearnContainer} />
-                  <Route exact path={routes.words.list.all} component={WordsListContainer} />
-                  <Route exact path={routes.words.list.preview} component={WordPreviewContainer} />
-                  <Route exact path={routes.words.list.edit} component={WordsEditContainer} />
-                  <Route exact path={routes.words.search} component={WordsSearchContainer} />
-                  <Route component={PageNotFoundContainer} />
-                </Switch>
-              </BlocksWrapper>
-            </Notifications>
-          </StateProvider>
-        </Router>
-      </MuiThemeProvider>
-    </Fragment>
+  <ThemeProvider theme={muiTheme}>
+    <MuiThemeProvider theme={muiTheme}>
+      <Fragment>
+        <Normalize />
+        <GlobalStyle />
+          <Router>
+            <StateProvider>
+              <Notifications>
+                <BlocksWrapper>
+                  <Header />
+                  <Switch>
+                    <Route exact path={routes.root} component={MainContainer} />
+                    <Route exact path={routes.login} render={() => "login"} />
+                    <Route exact path={routes.words.add} component={WordsAddContainer} />
+                    <Route exact path={routes.words.learn} component={WordsLearnContainer} />
+                    <Route exact path={routes.words.list.all} component={WordsListContainer} />
+                    <Route exact path={routes.words.list.preview} component={WordPreviewContainer} />
+                    <Route exact path={routes.words.list.edit} component={WordsEditContainer} />
+                    <Route exact path={routes.words.search} component={WordsSearchContainer} />
+                    <Route component={PageNotFoundContainer} />
+                  </Switch>
+                </BlocksWrapper>
+              </Notifications>
+            </StateProvider>
+          </Router>
+      </Fragment>
+    </MuiThemeProvider>
   </ThemeProvider>
 );
 

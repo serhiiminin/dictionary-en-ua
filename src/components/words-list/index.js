@@ -1,29 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { List, ListItem } from "@material-ui/core";
 import uuid from "uuid";
 import styled from "styled-components";
 import { joinRoute } from "../../helpers/join-url";
 import routes from "../../routes";
 import { WordItemInList } from "..";
 
-const WordListWrapper = styled.div`
-  display: grid;
-  gap: 1px;
-  background: ${props => props.theme.main.colors.text};
+const CustomizedList = styled(({ loading, ...props}) => <List {...props} />)`
+  && {
+    background: ${props => props.loading ? props.theme.palette.background.paper : props.theme.palette.primary.light}    
+  }
 `;
 
-const WordsList = ({
-  wordsList,
-  loading,
-  countPerPage,
-  checked,
-  onWordCheck
-}) => (
-  <WordListWrapper>
+const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck }) => (
+  <CustomizedList loading>
     {loading
       ? Array(countPerPage)
           .fill(null)
-          .map(() => <WordItemInList key={uuid()} loading={loading} />)
+          .map(() => (
+            <ListItem key={uuid()} divider>
+              <WordItemInList loading={loading} />
+            </ListItem>
+          ))
       : wordsList.map(word => {
           const { _id } = word;
           const linkToWord = joinRoute({
@@ -33,17 +32,18 @@ const WordsList = ({
           const isChecked = checked.includes(_id);
 
           return (
-            <WordItemInList
-              word={word}
-              linkToWord={linkToWord}
-              onWordCheck={onWordCheck}
-              isChecked={isChecked}
-              loading={loading}
-              key={_id}
-            />
+            <ListItem key={_id} divider>
+              <WordItemInList
+                word={word}
+                linkToWord={linkToWord}
+                onWordCheck={onWordCheck}
+                isChecked={isChecked}
+                loading={loading}
+              />
+            </ListItem>
           );
         })}
-  </WordListWrapper>
+  </CustomizedList>
 );
 
 WordsList.propTypes = {

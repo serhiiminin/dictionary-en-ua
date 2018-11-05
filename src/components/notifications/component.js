@@ -9,7 +9,7 @@ const NotificationsItem = styled.ul`
   position: fixed;
   right: ${props => props.theme.main.padding.medium};
   top: ${props => props.theme.main.padding.medium};
-  z-index: ${props => props.theme.main.zIndex.notification};
+  z-index: ${props => props.theme.zIndex.tooltip};
   padding: 0;
   margin: 0;
 `;

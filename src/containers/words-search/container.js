@@ -67,10 +67,7 @@ class SearchWordContainer extends Component {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
 
-    if (
-      this.props.location.search !== prevProps.location.search &&
-      searchParams.query
-    ) {
+    if (this.props.location.search !== prevProps.location.search && searchParams.query) {
       this.searchWord(searchParams.query);
     }
   }

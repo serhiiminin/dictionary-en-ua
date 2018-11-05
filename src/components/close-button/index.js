@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   background: transparent;
-  color: ${props => props.theme.main.colors.text};
+  color: ${props => props.theme.palette.text.primary};
   padding: 0;
   border: 0;
   border-radius: 50%;

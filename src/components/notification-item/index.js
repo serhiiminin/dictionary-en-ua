@@ -24,7 +24,7 @@ const NotificationItemWrapper = styled.li`
   transition: ${props =>
     `all ${props.theme.main.timeout.notification}ms ease-in-out`};
   opacity: 1 !important;
-  background: ${props => props.theme.main.colors.notification[props.type]};
+  background: ${props => props.theme.main.notificationColor[props.type]};
 `;
 
 const TopLine = styled.div`
