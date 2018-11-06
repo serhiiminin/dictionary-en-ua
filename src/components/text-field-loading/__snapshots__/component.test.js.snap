@@ -4,13 +4,13 @@ exports[`Text field loading loading 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TextFieldLoading
-    classes={Object {}}
     loading={true}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -20,29 +20,29 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <WithStyles(TextFieldCustomized) />,
+        <TextField
+          required={false}
+          select={false}
+/>,
         <WithTheme(Fade)
           in={true}
-          style={
-                    Object {
-                              "transitionDelay": "300ms",
-                            }
-          }
 >
           <WithStyles(LinearProgress)
                     color="secondary"
           />
 </WithTheme(Fade)>,
       ],
-      "className": undefined,
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
+        "nodeType": "function",
+        "props": Object {
+          "required": false,
+          "select": false,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -56,9 +56,6 @@ ShallowWrapper {
             color="secondary"
 />,
           "in": true,
-          "style": Object {
-            "transitionDelay": "300ms",
-          },
         },
         "ref": null,
         "rendered": Object {
@@ -84,29 +81,29 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <WithStyles(TextFieldCustomized) />,
+          <TextField
+            required={false}
+            select={false}
+/>,
           <WithTheme(Fade)
             in={true}
-            style={
-                        Object {
-                                    "transitionDelay": "300ms",
-                                  }
-            }
 >
             <WithStyles(LinearProgress)
                         color="secondary"
             />
 </WithTheme(Fade)>,
         ],
-        "className": undefined,
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
+          "nodeType": "function",
+          "props": Object {
+            "required": false,
+            "select": false,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -120,9 +117,6 @@ ShallowWrapper {
               color="secondary"
 />,
             "in": true,
-            "style": Object {
-              "transitionDelay": "300ms",
-            },
           },
           "ref": null,
           "rendered": Object {
@@ -158,8 +152,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
@@ -168,13 +160,13 @@ exports[`Text field loading render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TextFieldLoading
-    classes={Object {}}
     loading={false}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -184,29 +176,29 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <WithStyles(TextFieldCustomized) />,
+        <TextField
+          required={false}
+          select={false}
+/>,
         <WithTheme(Fade)
           in={false}
-          style={
-                    Object {
-                              "transitionDelay": "",
-                            }
-          }
 >
           <WithStyles(LinearProgress)
                     color="secondary"
           />
 </WithTheme(Fade)>,
       ],
-      "className": undefined,
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
+        "nodeType": "function",
+        "props": Object {
+          "required": false,
+          "select": false,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -220,9 +212,6 @@ ShallowWrapper {
             color="secondary"
 />,
           "in": false,
-          "style": Object {
-            "transitionDelay": "",
-          },
         },
         "ref": null,
         "rendered": Object {
@@ -248,29 +237,29 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <WithStyles(TextFieldCustomized) />,
+          <TextField
+            required={false}
+            select={false}
+/>,
           <WithTheme(Fade)
             in={false}
-            style={
-                        Object {
-                                    "transitionDelay": "",
-                                  }
-            }
 >
             <WithStyles(LinearProgress)
                         color="secondary"
             />
 </WithTheme(Fade)>,
         ],
-        "className": undefined,
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
+          "nodeType": "function",
+          "props": Object {
+            "required": false,
+            "select": false,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -284,9 +273,6 @@ ShallowWrapper {
               color="secondary"
 />,
             "in": false,
-            "style": Object {
-              "transitionDelay": "",
-            },
           },
           "ref": null,
           "rendered": Object {
@@ -322,8 +308,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

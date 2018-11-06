@@ -3,8 +3,7 @@
 exports[`List of clickable strings render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ListOfClickableStrings
-    delimiter=""
+  Symbol(enzyme.__unrendered__): <ListOfSearchableWords
     items={
         Array [
             "one",
@@ -17,107 +16,46 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": undefined,
-    "nodeType": "host",
+    "key": "4b03f481-de1c-4799-96cd-fcad59636491",
+    "nodeType": "function",
     "props": Object {
-      "children": Array [
-        <Jss(ClickableWord)
-          delimiter=""
-          onClick={[Function]}
-          word="one"
-/>,
-        <Jss(ClickableWord)
-          delimiter=""
-          onClick={[Function]}
-          word="two"
-/>,
-      ],
+      "delimiter": ", ",
+      "word": "one",
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": "ef3e8bff-f212-40f6-bd9a-40acd659f6e4",
-        "nodeType": "class",
-        "props": Object {
-          "delimiter": "",
-          "onClick": [Function],
-          "word": "one",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": "97060d2e-af4d-4415-ac35-9aa0424af250",
-        "nodeType": "class",
-        "props": Object {
-          "delimiter": "",
-          "onClick": [Function],
-          "word": "two",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": "div",
+    "rendered": null,
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": undefined,
-      "nodeType": "host",
+      "key": "4b03f481-de1c-4799-96cd-fcad59636491",
+      "nodeType": "function",
       "props": Object {
-        "children": Array [
-          <Jss(ClickableWord)
-            delimiter=""
-            onClick={[Function]}
-            word="one"
-/>,
-          <Jss(ClickableWord)
-            delimiter=""
-            onClick={[Function]}
-            word="two"
-/>,
-        ],
+        "delimiter": ", ",
+        "word": "one",
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": "ef3e8bff-f212-40f6-bd9a-40acd659f6e4",
-          "nodeType": "class",
-          "props": Object {
-            "delimiter": "",
-            "onClick": [Function],
-            "word": "one",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "97060d2e-af4d-4415-ac35-9aa0424af250",
-          "nodeType": "class",
-          "props": Object {
-            "delimiter": "",
-            "onClick": [Function],
-            "word": "two",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": "div",
+      "rendered": null,
+      "type": [Function],
+    },
+    Object {
+      "instance": null,
+      "key": "ead081a7-c45f-4201-94c2-d7fa41310a96",
+      "nodeType": "function",
+      "props": Object {
+        "delimiter": false,
+        "word": "two",
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -136,8 +74,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

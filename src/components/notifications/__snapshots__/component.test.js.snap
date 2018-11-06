@@ -4,7 +4,6 @@ exports[`Notifications render empty 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Notifications
-    classes={Object {}}
     hideNotification={[Function]}
     notifications={Array []}
 >
@@ -14,6 +13,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -24,11 +24,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         "children",
-        <ul
-          className={undefined}
->
+        <Unknown>
           
-</ul>,
+</Unknown>,
       ],
     },
     "ref": null,
@@ -37,14 +35,45 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
           "children": Array [],
-          "className": undefined,
         },
         "ref": null,
         "rendered": Array [],
-        "type": "ul",
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": undefined,
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-eHgmQL",
+            "isStatic": false,
+            "rules": Array [
+              "
+  width: 300px;
+  height: 0;
+  position: fixed;
+  right: ",
+              [Function],
+              ";
+  top: ",
+              [Function],
+              ";
+  z-index: ",
+              [Function],
+              ";
+  padding: 0;
+  margin: 0;
+",
+            ],
+          },
+          "displayName": "styled.ul",
+          "render": [Function],
+          "styledComponentId": "sc-eHgmQL",
+          "target": "ul",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        },
       },
     ],
     "type": Symbol(react.fragment),
@@ -57,11 +86,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           "children",
-          <ul
-            className={undefined}
->
+          <Unknown>
             
-</ul>,
+</Unknown>,
         ],
       },
       "ref": null,
@@ -70,14 +97,45 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
             "children": Array [],
-            "className": undefined,
           },
           "ref": null,
           "rendered": Array [],
-          "type": "ul",
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": undefined,
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-eHgmQL",
+              "isStatic": false,
+              "rules": Array [
+                "
+  width: 300px;
+  height: 0;
+  position: fixed;
+  right: ",
+                [Function],
+                ";
+  top: ",
+                [Function],
+                ";
+  z-index: ",
+                [Function],
+                ";
+  padding: 0;
+  margin: 0;
+",
+              ],
+            },
+            "displayName": "styled.ul",
+            "render": [Function],
+            "styledComponentId": "sc-eHgmQL",
+            "target": "ul",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          },
         },
       ],
       "type": Symbol(react.fragment),
@@ -99,8 +157,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
@@ -109,7 +165,6 @@ exports[`Notifications render with one item 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Notifications
-    classes={Object {}}
     hideNotification={[Function]}
     notifications={
         Array [
@@ -127,6 +182,7 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
@@ -137,16 +193,14 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         "children",
-        <ul
-          className={undefined}
->
-          <Jss(NotificationItem)
+        <Unknown>
+          <NotificationItem
                     onClick={[Function]}
                     status="entering"
                     text="text"
                     type="success"
           />
-</ul>,
+</Unknown>,
       ],
     },
     "ref": null,
@@ -155,24 +209,23 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
           "children": Array [
-            <Jss(NotificationItem)
+            <NotificationItem
               onClick={[Function]}
               status="entering"
               text="text"
               type="success"
 />,
           ],
-          "className": undefined,
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
             "key": "id",
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
               "onClick": [Function],
               "status": "entering",
@@ -184,7 +237,39 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
-        "type": "ul",
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": undefined,
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-eHgmQL",
+            "isStatic": false,
+            "rules": Array [
+              "
+  width: 300px;
+  height: 0;
+  position: fixed;
+  right: ",
+              [Function],
+              ";
+  top: ",
+              [Function],
+              ";
+  z-index: ",
+              [Function],
+              ";
+  padding: 0;
+  margin: 0;
+",
+            ],
+          },
+          "displayName": "styled.ul",
+          "render": [Function],
+          "styledComponentId": "sc-eHgmQL",
+          "target": "ul",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        },
       },
     ],
     "type": Symbol(react.fragment),
@@ -197,16 +282,14 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           "children",
-          <ul
-            className={undefined}
->
-            <Jss(NotificationItem)
+          <Unknown>
+            <NotificationItem
                         onClick={[Function]}
                         status="entering"
                         text="text"
                         type="success"
             />
-</ul>,
+</Unknown>,
         ],
       },
       "ref": null,
@@ -215,24 +298,23 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
             "children": Array [
-              <Jss(NotificationItem)
+              <NotificationItem
                 onClick={[Function]}
                 status="entering"
                 text="text"
                 type="success"
 />,
             ],
-            "className": undefined,
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": "id",
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
                 "onClick": [Function],
                 "status": "entering",
@@ -244,7 +326,39 @@ ShallowWrapper {
               "type": [Function],
             },
           ],
-          "type": "ul",
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": undefined,
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-eHgmQL",
+              "isStatic": false,
+              "rules": Array [
+                "
+  width: 300px;
+  height: 0;
+  position: fixed;
+  right: ",
+                [Function],
+                ";
+  top: ",
+                [Function],
+                ";
+  z-index: ",
+                [Function],
+                ";
+  padding: 0;
+  margin: 0;
+",
+              ],
+            },
+            "displayName": "styled.ul",
+            "render": [Function],
+            "styledComponentId": "sc-eHgmQL",
+            "target": "ul",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          },
         },
       ],
       "type": Symbol(react.fragment),
@@ -266,8 +380,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

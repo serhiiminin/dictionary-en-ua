@@ -5,7 +5,6 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ControlsSeparator
     align="right"
-    classes={Object {}}
 >
     <button
         type="button"
@@ -22,14 +21,16 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
+      "align": "right",
       "children": Array [
         <button
           type="button"
@@ -42,7 +43,6 @@ ShallowWrapper {
           everything
 </button>,
       ],
-      "className": "undefined undefined",
     },
     "ref": null,
     "rendered": Array [
@@ -71,14 +71,44 @@ ShallowWrapper {
         "type": "button",
       },
     ],
-    "type": "div",
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": undefined,
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: grid;
+  align-content: center;
+  grid-auto-flow: column;
+  padding: ",
+          [Function],
+          " 0;
+  justify-content: ",
+          [Function],
+          ";
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
+        "align": "right",
         "children": Array [
           <button
             type="button"
@@ -91,7 +121,6 @@ ShallowWrapper {
             everything
 </button>,
         ],
-        "className": "undefined undefined",
       },
       "ref": null,
       "rendered": Array [
@@ -120,7 +149,36 @@ ShallowWrapper {
           "type": "button",
         },
       ],
-      "type": "div",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "rules": Array [
+            "
+  display: grid;
+  align-content: center;
+  grid-auto-flow: column;
+  padding: ",
+            [Function],
+            " 0;
+  justify-content: ",
+            [Function],
+            ";
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -139,8 +197,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
@@ -150,7 +206,6 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ControlsSeparator
     align="left"
-    classes={Object {}}
 >
     <button
         type="button"
@@ -167,14 +222,16 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
+      "align": "left",
       "children": Array [
         <button
           type="button"
@@ -187,7 +244,6 @@ ShallowWrapper {
           everything
 </button>,
       ],
-      "className": "undefined undefined",
     },
     "ref": null,
     "rendered": Array [
@@ -216,14 +272,44 @@ ShallowWrapper {
         "type": "button",
       },
     ],
-    "type": "div",
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": undefined,
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: grid;
+  align-content: center;
+  grid-auto-flow: column;
+  padding: ",
+          [Function],
+          " 0;
+  justify-content: ",
+          [Function],
+          ";
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
+        "align": "left",
         "children": Array [
           <button
             type="button"
@@ -236,7 +322,6 @@ ShallowWrapper {
             everything
 </button>,
         ],
-        "className": "undefined undefined",
       },
       "ref": null,
       "rendered": Array [
@@ -265,7 +350,36 @@ ShallowWrapper {
           "type": "button",
         },
       ],
-      "type": "div",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "rules": Array [
+            "
+  display: grid;
+  align-content: center;
+  grid-auto-flow: column;
+  padding: ",
+            [Function],
+            " 0;
+  justify-content: ",
+            [Function],
+            ";
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -284,8 +398,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

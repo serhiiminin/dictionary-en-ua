@@ -4,7 +4,6 @@ exports[`Line explanation render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <LineExplanation
-    classes={Object {}}
     label="label"
 >
     text
@@ -13,27 +12,23 @@ ShallowWrapper {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <div
-          className={undefined}
->
+        <div>
           label:
 </div>,
-        <div
-          className={undefined}
->
+        <div>
           text
 </div>,
       ],
-      "className": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -43,7 +38,6 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": "label:",
-          "className": undefined,
         },
         "ref": null,
         "rendered": "label:",
@@ -55,34 +49,62 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": "text",
-          "className": undefined,
         },
         "ref": null,
         "rendered": "text",
         "type": "div",
       },
     ],
-    "type": "div",
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": undefined,
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: grid;
+  grid-template-columns: ",
+          [Function],
+          ";
+  background: ",
+          [Function],
+          ";
+  padding: ",
+          [Function],
+          ";
+  margin-bottom: ",
+          [Function],
+          ";
+  border-radius: ",
+          [Function],
+          ";
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
-          <div
-            className={undefined}
->
+          <div>
             label:
 </div>,
-          <div
-            className={undefined}
->
+          <div>
             text
 </div>,
         ],
-        "className": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -92,7 +114,6 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "label:",
-            "className": undefined,
           },
           "ref": null,
           "rendered": "label:",
@@ -104,14 +125,47 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "text",
-            "className": undefined,
           },
           "ref": null,
           "rendered": "text",
           "type": "div",
         },
       ],
-      "type": "div",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "rules": Array [
+            "
+  display: grid;
+  grid-template-columns: ",
+            [Function],
+            ";
+  background: ",
+            [Function],
+            ";
+  padding: ",
+            [Function],
+            ";
+  margin-bottom: ",
+            [Function],
+            ";
+  border-radius: ",
+            [Function],
+            ";
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -130,8 +184,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
