@@ -25,7 +25,8 @@ const joinUrl = ({ url = '', paths = [], searchParams = {} }) => {
   updatedUrl.search = mergeSearchParams(updatedUrl.search, searchParams);
   updatedUrl.pathname = [updatedUrl.pathname, ...paths]
   .map(path => path.replace(/\/*$/, ''))
-  .join(DELIMITER_PATH);
+  .filter(Boolean)
+  .join(DELIMITER_PATH)
 
   return updatedUrl.toString();
 };
@@ -33,6 +34,7 @@ const joinUrl = ({ url = '', paths = [], searchParams = {} }) => {
 const joinRoute = ({ pathname = '', search = '', paths = [], searchParams = {} }) => {
   const updatedRoute = [pathname, ...paths]
   .map(path => path.replace(/\/*$/, ''))
+  .filter(Boolean)
   .join(DELIMITER_PATH);
   const updatedSearchParams = mergeSearchParams(search, searchParams);
 
