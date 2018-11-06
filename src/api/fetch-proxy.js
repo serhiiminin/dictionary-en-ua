@@ -3,7 +3,8 @@ import getGiphyApiKey from './get-api-keys';
 import { joinUrl } from "../helpers/join-url";
 import createFetcherJson from "./create-fetcher";
 
-const GIPHY_API_KEYS = getGiphyApiKey(process.env);
+const API_KEY_PREFIX = "REACT_APP_GIPHY_API_KEYS";
+const GIPHY_API_KEYS = getGiphyApiKey(API_KEY_PREFIX)(process.env);
 
 const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {

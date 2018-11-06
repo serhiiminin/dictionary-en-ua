@@ -2,91 +2,58 @@ import requests from './request';
 
 describe('requests', () => {
   const url = 'http://example.com';
-  const endpoints = requests(url);
+  const params = {
+    body: {
+      word: 'word', 
+    }
+  }
 
   test('test what function returns', () => {
-    expect(endpoints).toEqual({
-      addEntity: expect.any(Function),
-      deleteEntity: expect.any(Function),
-      getEntitiesList: expect.any(Function),
-      getEntitiesListToLearn: expect.any(Function),
-      getEntity: expect.any(Function),
-      search: expect.any(Function),
-      updateEntity: expect.any(Function),
-      learnEntity: expect.any(Function),
+    expect(requests).toEqual({
+      get: expect.any(Function),
+      post: expect.any(Function),
+      put: expect.any(Function),
+      patch: expect.any(Function),
+      delete: expect.any(Function),
     })
   });
 
-  test('get entity', () => {
-    const id = 'id';
-
-    expect(endpoints.getEntity(id)).toEqual({
-      endpoint: `${url}/${id}`,
-      method: 'GET'
-    })
-  });
-
-  test('get entities list', () => {
-    expect(endpoints.getEntitiesList()).toEqual({
+  test('get', () => {
+    expect(requests.get(url)).toEqual({
       endpoint: url,
       method: 'GET'
     })
   });
 
-  test('get entities list to learn', () => {
-    expect(endpoints.getEntitiesListToLearn()).toEqual({
-      endpoint: `${url}/list-learn`,
-      method: 'GET'
-    })
-  });
-
-  test('learn entity', () => {
-    const id = 'id';
-
-    expect(endpoints.learnEntity(id)).toEqual({
-      endpoint: `${url}/${id}/_learn`,
-      method: 'PUT',
-    })
-  });
-
-  test('search entity', () => {
-    const body = { en: 'english' };
-
-    expect(endpoints.search(body)).toEqual({
-      endpoint: `${url}/_search`,
-      method: 'POST',
-      body,
-    })
-  });
-
-  test('add entity', () => {
-    const body = { en: 'english' };
-
-    expect(endpoints.addEntity(body)).toEqual({
+  test('post', () => {
+    expect(requests.post(url, params)).toEqual({
       endpoint: url,
       method: 'POST',
-      body,
+      body: params.body,
     })
   });
 
-  test('update entity', () => {
-    const id = 'id';
-    const body = { en: 'english' };
-
-    expect(endpoints.updateEntity(id, body)).toEqual({
-      endpoint: `${url}/${id}`,
+  test('put', () => {
+    expect(requests.put(url, params)).toEqual({
+      endpoint: url,
       method: 'PUT',
-      body,
+      body: params.body,
     })
   });
 
-  test('update entity', () => {
-    const id = 'id';
+  test('patch', () => {
+    expect(requests.patch(url, params)).toEqual({
+      endpoint: url,
+      method: 'PATCH',
+      body: params.body,
+    })
+  });
 
-    expect(endpoints.deleteEntity(id)).toEqual({
-      endpoint: `${url}/${id}`,
+  test('delete', () => {
+    expect(requests.delete(url, params)).toEqual({
+      endpoint: url,
       method: 'DELETE',
+      body: params.body,
     })
   });
-
 });
