@@ -6,9 +6,9 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Notifications
     hideNotification={[Function]}
     notifications={Array []}
->
+  >
     children
-</Notifications>,
+  </Notifications>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -24,9 +24,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         "children",
-        <Unknown>
-          
-</Unknown>,
+        <ForwardRef />,
       ],
     },
     "ref": null,
@@ -86,9 +84,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           "children",
-          <Unknown>
-            
-</Unknown>,
+          <ForwardRef />,
         ],
       },
       "ref": null,
@@ -167,17 +163,17 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Notifications
     hideNotification={[Function]}
     notifications={
-        Array [
-            Object {
-              "id": "id",
-              "text": "text",
-              "type": "success",
-            },
-          ]
+      Array [
+        Object {
+          "id": "id",
+          "text": "text",
+          "type": "success",
+        },
+      ]
     }
->
+  >
     children
-</Notifications>,
+  </Notifications>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -193,14 +189,14 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         "children",
-        <Unknown>
+        <ForwardRef>
           <NotificationItem
-                    onClick={[Function]}
-                    status="entering"
-                    text="text"
-                    type="success"
+            onClick={[Function]}
+            status="entering"
+            text="text"
+            type="success"
           />
-</Unknown>,
+        </ForwardRef>,
       ],
     },
     "ref": null,
@@ -217,7 +213,7 @@ ShallowWrapper {
               status="entering"
               text="text"
               type="success"
-/>,
+            />,
           ],
         },
         "ref": null,
@@ -282,14 +278,14 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           "children",
-          <Unknown>
+          <ForwardRef>
             <NotificationItem
-                        onClick={[Function]}
-                        status="entering"
-                        text="text"
-                        type="success"
+              onClick={[Function]}
+              status="entering"
+              text="text"
+              type="success"
             />
-</Unknown>,
+          </ForwardRef>,
         ],
       },
       "ref": null,
@@ -306,7 +302,7 @@ ShallowWrapper {
                 status="entering"
                 text="text"
                 type="success"
-/>,
+              />,
             ],
           },
           "ref": null,

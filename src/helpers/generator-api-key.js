@@ -1,9 +1,5 @@
-import getGiphyApiKey from "../api/get-api-keys";
-
-const GIPHY_API_KEYS = getGiphyApiKey(process.env);
-const TIME_KEYS_REPEAT = GIPHY_API_KEYS.length * 200;
-
 function* generatorApiKeys(keys) {
+  const TIME_KEYS_REPEAT = keys.length * 200;
   const keysWithLastUsedTime = keys.map(apiKey => ({
     key: apiKey,
     lastUsed: null
@@ -12,7 +8,6 @@ function* generatorApiKeys(keys) {
   for (let i = 0; i < keysWithLastUsedTime.length; i += 1) {
     const currentKey = keysWithLastUsedTime[i];
     const currentTime = Date.now();
-
     if (currentTime - currentKey.lastUsed < TIME_KEYS_REPEAT) {
       throw new Error("No free api keys");
     }

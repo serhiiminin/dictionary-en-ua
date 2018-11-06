@@ -20,12 +20,12 @@ ShallowWrapper {
       "children": Array [
         <h1>
           Page not found
-</h1>,
+        </h1>,
         <withRouter(ButtonWithRouter)
           to="/"
->
+        >
           Home
-</withRouter(ButtonWithRouter)>,
+        </withRouter(ButtonWithRouter)>,
       ],
     },
     "ref": null,
@@ -87,12 +87,12 @@ ShallowWrapper {
         "children": Array [
           <h1>
             Page not found
-</h1>,
+          </h1>,
           <withRouter(ButtonWithRouter)
             to="/"
->
+          >
             Home
-</withRouter(ButtonWithRouter)>,
+          </withRouter(ButtonWithRouter)>,
         ],
       },
       "ref": null,
