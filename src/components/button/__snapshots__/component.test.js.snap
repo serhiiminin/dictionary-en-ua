@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Controls separator isActive 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Unknown
+    classes={Object {}}
+    isActive={true}
+>
+    Text
+</Unknown>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "Text",
+      "classes": Object {},
+      "forwardedClass": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "rules": Array [
+            "
+  && {
+    opacity: ",
+            [Function],
+            ";
+    color: ",
+            [Function],
+            ";
+  }
+
+  & .disabled {
+    display: 'none';
+  }
+",
+          ],
+        },
+        "defaultProps": Object {
+          "classes": Object {},
+          "isActive": false,
+        },
+        "displayName": "Styled(Component)",
+        "propTypes": Object {
+          "classes": [Function],
+          "isActive": [Function],
+        },
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": [Function],
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+        Symbol(Symbol.hasInstance): [Function],
+      },
+      "forwardedRef": null,
+      "isActive": true,
+    },
+    "ref": null,
+    "rendered": "Text",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "Text",
+        "classes": Object {},
+        "forwardedClass": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": undefined,
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bdVaJa",
+            "isStatic": false,
+            "rules": Array [
+              "
+  && {
+    opacity: ",
+              [Function],
+              ";
+    color: ",
+              [Function],
+              ";
+  }
+
+  & .disabled {
+    display: 'none';
+  }
+",
+            ],
+          },
+          "defaultProps": Object {
+            "classes": Object {},
+            "isActive": false,
+          },
+          "displayName": "Styled(Component)",
+          "propTypes": Object {
+            "classes": [Function],
+            "isActive": [Function],
+          },
+          "render": [Function],
+          "styledComponentId": "sc-bdVaJa",
+          "target": [Function],
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+          Symbol(Symbol.hasInstance): [Function],
+        },
+        "forwardedRef": null,
+        "isActive": true,
+      },
+      "ref": null,
+      "rendered": "Text",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Controls separator render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Unknown
+    classes={Object {}}
+    isActive={false}
+>
+    Text
+</Unknown>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": "Text",
+      "classes": Object {},
+      "forwardedClass": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "rules": Array [
+            "
+  && {
+    opacity: ",
+            [Function],
+            ";
+    color: ",
+            [Function],
+            ";
+  }
+
+  & .disabled {
+    display: 'none';
+  }
+",
+          ],
+        },
+        "defaultProps": Object {
+          "classes": Object {},
+          "isActive": false,
+        },
+        "displayName": "Styled(Component)",
+        "propTypes": Object {
+          "classes": [Function],
+          "isActive": [Function],
+        },
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": [Function],
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+        Symbol(Symbol.hasInstance): [Function],
+      },
+      "forwardedRef": null,
+      "isActive": false,
+    },
+    "ref": null,
+    "rendered": "Text",
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": "Text",
+        "classes": Object {},
+        "forwardedClass": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": undefined,
+          "componentStyle": ComponentStyle {
+            "componentId": "sc-bdVaJa",
+            "isStatic": false,
+            "rules": Array [
+              "
+  && {
+    opacity: ",
+              [Function],
+              ";
+    color: ",
+              [Function],
+              ";
+  }
+
+  & .disabled {
+    display: 'none';
+  }
+",
+            ],
+          },
+          "defaultProps": Object {
+            "classes": Object {},
+            "isActive": false,
+          },
+          "displayName": "Styled(Component)",
+          "propTypes": Object {
+            "classes": [Function],
+            "isActive": [Function],
+          },
+          "render": [Function],
+          "styledComponentId": "sc-bdVaJa",
+          "target": [Function],
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+          Symbol(Symbol.hasInstance): [Function],
+        },
+        "forwardedRef": null,
+        "isActive": false,
+      },
+      "ref": null,
+      "rendered": "Text",
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

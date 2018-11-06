@@ -3,34 +3,30 @@
 exports[`Header render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Header
-    classes={Object {}}
-/>,
+  Symbol(enzyme.__unrendered__): <Header />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <h1>
-          <Link
-                    className={undefined}
-                    replace={false}
+          <Unknown
                     to="/"
           >
                     The dictionary
-          </Link>
+          </Unknown>
 </h1>,
-        <Jss(HeaderNavigation) />,
+        <HeaderNavigation />,
       ],
-      "className": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -39,62 +35,102 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <Link
-            className={undefined}
-            replace={false}
+          "children": <Unknown
             to="/"
 >
             The dictionary
-</Link>,
+</Unknown>,
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
             "children": "The dictionary",
-            "className": undefined,
-            "replace": false,
             "to": "/",
           },
           "ref": null,
           "rendered": "The dictionary",
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": undefined,
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-eHgmQL",
+              "isStatic": false,
+              "rules": Array [
+                "
+  color: ",
+                [Function],
+                ";
+  text-decoration: none;
+  font-size: 1.5rem;
+",
+              ],
+            },
+            "displayName": "Styled(Link)",
+            "render": [Function],
+            "styledComponentId": "sc-eHgmQL",
+            "target": [Function],
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+            Symbol(Symbol.hasInstance): [Function],
+          },
         },
         "type": "h1",
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {},
         "ref": null,
         "rendered": null,
         "type": [Function],
       },
     ],
-    "type": "div",
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": undefined,
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-hSdWYo",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: ",
+          [Function],
+          " 0;
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "render": [Function],
+      "styledComponentId": "sc-hSdWYo",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <h1>
-            <Link
-                        className={undefined}
-                        replace={false}
+            <Unknown
                         to="/"
             >
                         The dictionary
-            </Link>
+            </Unknown>
 </h1>,
-          <Jss(HeaderNavigation) />,
+          <HeaderNavigation />,
         ],
-        "className": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -103,42 +139,85 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <Link
-              className={undefined}
-              replace={false}
+            "children": <Unknown
               to="/"
 >
               The dictionary
-</Link>,
+</Unknown>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
               "children": "The dictionary",
-              "className": undefined,
-              "replace": false,
               "to": "/",
             },
             "ref": null,
             "rendered": "The dictionary",
-            "type": [Function],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": undefined,
+              "componentStyle": ComponentStyle {
+                "componentId": "sc-eHgmQL",
+                "isStatic": false,
+                "rules": Array [
+                  "
+  color: ",
+                  [Function],
+                  ";
+  text-decoration: none;
+  font-size: 1.5rem;
+",
+                ],
+              },
+              "displayName": "Styled(Link)",
+              "render": [Function],
+              "styledComponentId": "sc-eHgmQL",
+              "target": [Function],
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+              Symbol(Symbol.hasInstance): [Function],
+            },
           },
           "type": "h1",
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {},
           "ref": null,
           "rendered": null,
           "type": [Function],
         },
       ],
-      "type": "div",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-hSdWYo",
+          "isStatic": false,
+          "rules": Array [
+            "
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: ",
+            [Function],
+            " 0;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "render": [Function],
+        "styledComponentId": "sc-hSdWYo",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -157,8 +236,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

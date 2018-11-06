@@ -3,20 +3,19 @@
 exports[`Page not found render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <PageNotFoundContainer
-    classes={Object {}}
-/>,
+  Symbol(enzyme.__unrendered__): <PageNotFoundContainer />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
     "render": [Function],
+    "simulateError": [Function],
     "simulateEvent": [Function],
     "unmount": [Function],
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <h1>
@@ -28,7 +27,6 @@ ShallowWrapper {
           Home
 </withRouter(ButtonWithRouter)>,
       ],
-      "className": undefined,
     },
     "ref": null,
     "rendered": Array [
@@ -56,13 +54,35 @@ ShallowWrapper {
         "type": [Function],
       },
     ],
-    "type": "div",
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": undefined,
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-cvbbAY",
+        "isStatic": true,
+        "rules": Array [
+          "
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "render": [Function],
+      "styledComponentId": "sc-cvbbAY",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <h1>
@@ -74,7 +94,6 @@ ShallowWrapper {
             Home
 </withRouter(ButtonWithRouter)>,
         ],
-        "className": undefined,
       },
       "ref": null,
       "rendered": Array [
@@ -102,7 +121,29 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": "div",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": undefined,
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-cvbbAY",
+          "isStatic": true,
+          "rules": Array [
+            "
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "render": [Function],
+        "styledComponentId": "sc-cvbbAY",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -121,8 +162,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;
