@@ -22,7 +22,7 @@
     "react-dom": "^16.6.0",
     "react-router-dom": "^4.3.1",
     "react-router-prop-types": "^1.0.4",
-    "react-scripts": "1.1.4",
+    "react-scripts": "2.1.1",
     "recompose": "^0.27.1",
     "styled-components": "^4.0.3",
     "styled-normalize": "^8.0.3",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
-    "eslint": "^5.6.1",
+    "eslint": "^5.6.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "^2.10.0",
     "eslint-plugin-import": "^2.14.0",
