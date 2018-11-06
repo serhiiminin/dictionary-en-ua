@@ -23,13 +23,17 @@ const joinUrl = ({ url = '', paths = [], searchParams = {} }) => {
   const updatedUrl = new URL(url);
 
   updatedUrl.search = mergeSearchParams(updatedUrl.search, searchParams);
-  updatedUrl.pathname = [updatedUrl.pathname, ...paths].join(DELIMITER_PATH);
+  updatedUrl.pathname = [updatedUrl.pathname, ...paths]
+  .map(path => path.replace(/\/*$/, ''))
+  .join(DELIMITER_PATH);
 
   return updatedUrl.toString();
 };
 
 const joinRoute = ({ pathname = '', search = '', paths = [], searchParams = {} }) => {
-  const updatedRoute = [pathname, ...paths].join(DELIMITER_PATH);
+  const updatedRoute = [pathname, ...paths]
+  .map(path => path.replace(/\/*$/, ''))
+  .join(DELIMITER_PATH);
   const updatedSearchParams = mergeSearchParams(search, searchParams);
 
   return [updatedRoute, updatedSearchParams].join(DELIMITER_SEARCH_QUERY);

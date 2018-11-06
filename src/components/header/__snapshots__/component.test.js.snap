@@ -19,12 +19,12 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <h1>
-          <Unknown
-                    to="/"
+          <ForwardRef
+            to="/"
           >
-                    The dictionary
-          </Unknown>
-</h1>,
+            The dictionary
+          </ForwardRef>
+        </h1>,
         <HeaderNavigation />,
       ],
     },
@@ -35,11 +35,11 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <Unknown
+          "children": <ForwardRef
             to="/"
->
+          >
             The dictionary
-</Unknown>,
+          </ForwardRef>,
         },
         "ref": null,
         "rendered": Object {
@@ -123,12 +123,12 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <h1>
-            <Unknown
-                        to="/"
+            <ForwardRef
+              to="/"
             >
-                        The dictionary
-            </Unknown>
-</h1>,
+              The dictionary
+            </ForwardRef>
+          </h1>,
           <HeaderNavigation />,
         ],
       },
@@ -139,11 +139,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <Unknown
+            "children": <ForwardRef
               to="/"
->
+            >
               The dictionary
-</Unknown>,
+            </ForwardRef>,
           },
           "ref": null,
           "rendered": Object {

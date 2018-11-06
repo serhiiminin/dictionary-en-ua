@@ -5,13 +5,13 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ListOfSearchableWords
     items={
-        Array [
-            "one",
-            "two",
-          ]
+      Array [
+        "one",
+        "two",
+      ]
     }
     onClick={[Function]}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -22,7 +22,7 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": "4b03f481-de1c-4799-96cd-fcad59636491",
+    "key": "d5161bc1-682c-4b4c-8ffe-dbd86dfd36bc",
     "nodeType": "function",
     "props": Object {
       "delimiter": ", ",
@@ -35,7 +35,7 @@ ShallowWrapper {
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": "4b03f481-de1c-4799-96cd-fcad59636491",
+      "key": "d5161bc1-682c-4b4c-8ffe-dbd86dfd36bc",
       "nodeType": "function",
       "props": Object {
         "delimiter": ", ",
@@ -47,7 +47,7 @@ ShallowWrapper {
     },
     Object {
       "instance": null,
-      "key": "ead081a7-c45f-4201-94c2-d7fa41310a96",
+      "key": "22d1d3db-f2bc-4821-b6e5-d393730fe189",
       "nodeType": "function",
       "props": Object {
         "delimiter": false,
