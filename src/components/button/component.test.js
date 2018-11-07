@@ -1,19 +1,25 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import muiTheme from '../../root/mui-theme';
 import Button from '.';
 
-describe('Controls separator', () => {
+describe('Button', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Button>
+    wrapper = mount(
+      <Button theme={muiTheme}>
         Text
       </Button>
     );
   });
 
-  test.only('render', () => {
+  test('render button', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('render link', () => {
+    wrapper.setProps({ href: 'https://google.com' });
     expect(wrapper).toMatchSnapshot();
   });
 

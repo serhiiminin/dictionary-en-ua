@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const BlocksContainer = styled.div`
+export const BlocksContainer = styled.div`
   width: 300px;
   margin: 0 auto;
   @media (min-width: 480px) {
