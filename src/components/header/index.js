@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import { HeaderNavigation } from '..';
 import routes from '../../routes';
 
-const HeaderBlock = styled.div`
+export const HeaderBlock = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: ${props => props.theme.main.padding.medium} 0;
 `;
 
-const StyledRouterLink = styled(Link)`
+export const StyledRouterLink = styled(Link)`
   color: ${props => props.theme.palette.text.primary};
   text-decoration: none;
   font-size: 1.5rem;

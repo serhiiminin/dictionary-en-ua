@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CloseIcon from "@material-ui/icons/Close";
 import styled from "styled-components";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   background: transparent;
   color: ${props => props.theme.palette.text.primary};
   padding: 0;
