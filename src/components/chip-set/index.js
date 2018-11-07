@@ -4,13 +4,13 @@ import { Chip } from "@material-ui/core";
 import TagFacesIcon from "@material-ui/icons/TagFaces";
 import styled from "styled-components";
 
-const ChipSetList = styled.div`
+export const ChipSetList = styled.div`
   display: flex;
   flex-flow: row wrap;
   transition: ${props => props.theme.main.transition};
 `;
 
-const StyledChip = styled(Chip)`
+export const StyledChip = styled(Chip)`
   margin-bottom: ${props => props.theme.main.margin.small};
   margin-right: ${props => props.theme.main.margin.small};
 `;

@@ -1,27 +1,15 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import ButtonWithRouter  from './component';
+import React from "react";
+import { mount } from "enzyme";
+import ButtonWithRouter from "./component";
 
-describe('Button with Router', () => {
+describe("Button with Router", () => {
   let wrapper;
-  const push = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(
-      <ButtonWithRouter
-        to='/anywhere'
-        history={{ push, }}
-      >Anywhere</ButtonWithRouter>
-    )
+    wrapper = mount(<ButtonWithRouter to="/anywhere" title="anything" />);
   });
 
-  test('render', () => {
+  test("render", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  test('onClick', () => {
-    wrapper.simulate('click');
-    expect(wrapper).toMatchSnapshot();
-    expect(push).toHaveBeenCalled();
   });
 });
