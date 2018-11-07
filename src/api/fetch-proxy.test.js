@@ -1,31 +1,70 @@
-import { fetchProxy } from './fetch-proxy';
+import { createApiKeyProxy } from "./fetch-proxy";
 
-describe('fetch proxy', () => {
-  test('Valid data', () => {
-    const fetcher = jest.fn(() => Promise.resolve(new Response('')));
-    const fetcherJSON = fetchProxy(fetcher);
+function* generateKey() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
 
-    expect.assertions(1);
+describe("fetch api proxy", () => {
+  let generator;
 
-    return fetcherJSON({ headers: {} })
-      .then(() => {
-        const request = fetcher.mock.calls[0][0];
+  beforeAll(() => {
+    generator = generateKey();
+  });
+  
+  test("resolved with passed params", () => {
+    const fetcher = jest.fn(() => Promise.resolve(new Response("")));
+    const headers = {
+      method: "POST"
+    };
+    const body = {
+      _id: "1"
+    };
+    const params = {
+      endpoint: "http://google.com",
+      headers,
+      body
+    };
+    expect.assertions(2);
 
-        expect(request.headers).toEqual({});
-      })
+    return createApiKeyProxy(generator)(fetcher)(params).then(() => {
+      const request = fetcher.mock.calls[0][0];
+
+      expect(request.headers).toEqual(headers);
+      expect(request.body).toEqual(body);
+    });
   });
 
-  test('Forbidden', () => {
-    const fetcher = jest.fn(() => Promise.resolve(new Response(new Blob(), { status: 403 })));
-    const fetcherJSON = fetchProxy(fetcher);
+  test("rejected with some error", () => {
+    const ERROR_MESSAGE = 'Unauthorized';
+    const fetcher = jest.fn(() => Promise.reject(new Error(ERROR_MESSAGE)));
+    const params = {
+      endpoint: "http://google.com",
+      headers: {
+        method: 'GET',
+      },
+    };
 
-    expect.assertions(1);
+    return createApiKeyProxy(generator)(fetcher)(params)
+    .catch(error => {
+      expect(error.message).toEqual(ERROR_MESSAGE);
+    });
+  });
 
-    return fetcherJSON({ headers: {} })
-      .then(() => {
-        const request = fetcher.mock.calls[0][0];
+  test("rejected with error `failed to fetch`", () => {
+    const ERROR_MESSAGE = 'Failed to fetch';
+    const fetcher = jest.fn(() => Promise.reject(new Error(ERROR_MESSAGE)));
+    const params = {
+      endpoint: "http://google.com",
+      headers: {
+        method: 'GET',
+      },
+    };
 
-        expect(request.headers).toEqual({});
-      })
+    return createApiKeyProxy(generator)(fetcher)(params)
+    .catch(error => {
+      expect(error.message).toEqual(ERROR_MESSAGE);
+    });
   });
 });

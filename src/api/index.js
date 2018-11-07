@@ -1,30 +1,31 @@
-import { fetchProxy, apiKeyGiphyProxy } from "./fetch-proxy";
+import { apiKeyGiphyProxy } from "./fetch-proxy";
 import { joinUrl } from "../helpers/join-url";
 import requests from "./request";
+import createFetcherJson from "./create-fetcher";
 
 const { 
-  REACT_APP_ENDPOINT_WORDS: WORDS, 
-  REACT_APP_ENDPOINT_GIPHY: GIPHY
+  REACT_APP_ENDPOINT_WORDS, 
+  REACT_APP_ENDPOINT_GIPHY
  } = process.env;
 
-const api = {
-  createWord: body => fetchProxy(requests.post(WORDS, { body })),
+export const createApiMethods = ({ words = '', giphy = '' }) => fetcher => ({
+  createWord: body => fetcher(requests.post(words, { body })),
   getWord: wordId => {
-    const url = joinUrl({ url: WORDS, paths: [wordId] });
+    const url = joinUrl({ url: words, paths: [wordId] });
 
-    return fetchProxy(requests.get(url));
+    return fetcher(requests.get(url));
   },
   getWordsList: body => {
-    const url = joinUrl({ url: WORDS, paths: ["list"] });
+    const url = joinUrl({ url: words, paths: ["list"] });
 
-    return fetchProxy(requests.post(url, { body }));
+    return fetcher(requests.post(url, { body }));
   },
   getWordsListToLearn: () => {
-    const url = joinUrl({ url: WORDS, paths: ["list"] });
+    const url = joinUrl({ url: words, paths: ["list"] });
     const yesterday = new Date();
 
     yesterday.setDate(yesterday.getDate() - 1);
-    return fetchProxy(
+    return fetcher(
       requests.post(url, {
         body: {
           timesLearnt: { $gte: 0, $lte: 5 },
@@ -34,19 +35,19 @@ const api = {
     );
   },
   updateWord: word => {
-    const url = joinUrl({ url: WORDS, paths: [word._id] });
+    const url = joinUrl({ url: words, paths: [word._id] });
 
-    return fetchProxy(requests.put(url, { body: word }));
+    return fetcher(requests.put(url, { body: word }));
   },
   deleteWord: wordId => {
-    const url = joinUrl({ url: WORDS, paths: [wordId] });
+    const url = joinUrl({ url: words, paths: [wordId] });
 
-    return fetchProxy(requests.delete(url));
+    return fetcher(requests.delete(url));
   },
   learnWord: wordId => {
-    const url = joinUrl({ url: WORDS, paths: [wordId] });
+    const url = joinUrl({ url: words, paths: [wordId] });
 
-    return fetchProxy(
+    return fetcher(
       requests.put(url, {
         body: {
           dateLastLearnt: new Date(Date.now()).toISOString(),
@@ -56,15 +57,15 @@ const api = {
     );
   },
   searchWord: params => {
-    const url = joinUrl({ url: WORDS, paths: ["search-new"] });
+    const url = joinUrl({ url: words, paths: ["search-new"] });
 
-    return fetchProxy(requests.post(url, { body: params }));
+    return fetcher(requests.post(url, { body: params }));
   },
   getGifs: searchParams =>
     apiKeyGiphyProxy(
       requests.get(
         joinUrl({
-          url: GIPHY,
+          url: giphy,
           searchParams: {
             limit: 100,
             ...searchParams
@@ -72,6 +73,11 @@ const api = {
         })
       )
     )
-};
+});
+
+const api = createApiMethods({
+  words: REACT_APP_ENDPOINT_WORDS, 
+  giphy: REACT_APP_ENDPOINT_GIPHY,
+})(createFetcherJson(window.fetch));
 
 export default api;
