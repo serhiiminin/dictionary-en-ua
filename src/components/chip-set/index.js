@@ -14,7 +14,7 @@ export const StyledChip = styled(Chip)`
   margin-bottom: ${props => props.theme.main.margin.small};
   margin-right: ${props => props.theme.main.margin.small};
 `;
-
+  
 const ChipSet = ({ items, onRemoveItem, disabled }) => (
   <ChipSetList>
     {items.map(({ id, value }) => (

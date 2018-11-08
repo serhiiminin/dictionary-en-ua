@@ -12,17 +12,11 @@ describe("Chip set list", () => {
 
 describe("StyledChip", () => {
   let wrapper;
-  const id = 'id';
-  const value = 'value';
+  const id = "id";
+  const value = "value";
 
   beforeEach(() => {
-    wrapper = mount(
-      <StyledChip
-        theme={muiTheme}
-        key={id}
-        label={value}
-      />
-    );
+    wrapper = mount(<StyledChip theme={muiTheme} key={id} label={value} />);
   });
 
   test("render", () => {
@@ -30,7 +24,7 @@ describe("StyledChip", () => {
   });
 
   test("disabled", () => {
-    wrapper.setProps({ disabled: true })
+    wrapper.setProps({ disabled: true });
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -38,7 +32,7 @@ describe("StyledChip", () => {
     const onDelete = jest.fn();
     const onDeleteHandler = jest.fn(() => onDelete(id));
     wrapper.setProps({ onDelete: onDeleteHandler });
-    wrapper.find('svg').simulate('click');
+    wrapper.find("svg").simulate("click");
     expect(onDelete).toBeCalledWith(id);
   });
 });
