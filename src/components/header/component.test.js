@@ -5,29 +5,21 @@ import muiTheme from "../../root/mui-theme";
 import Header, { HeaderBlock, StyledRouterLink } from ".";
 
 describe("HeaderBlock", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = mount(<HeaderBlock theme={muiTheme}>anything</HeaderBlock>);
-  });
-
   test("render", () => {
+    const wrapper = mount(<HeaderBlock theme={muiTheme}>anything</HeaderBlock>);
     expect(wrapper).toMatchSnapshot();
   });
 });
 
 describe("StyledRouterLink", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = mount(
+  test("render", () => {
+    const wrapper = mount(
       <Router>
-        <StyledRouterLink theme={muiTheme} to='/'>anything</StyledRouterLink>
+        <StyledRouterLink theme={muiTheme} to="/">
+          anything
+        </StyledRouterLink>
       </Router>
     );
-  });
-
-  test("render", () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
