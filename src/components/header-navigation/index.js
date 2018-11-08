@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
 
-const NavigationWrapper = styled.div`
+export const NavigationWrapper = styled.div`
     display: grid;
     align-content: center;
     justify-content: end;

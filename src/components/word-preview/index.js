@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Fade, LinearProgress } from '@material-ui/core';
 import { InputsBlock, LineExplanation, ListOfSearchableWords, Image } from '..';
 
-
 const mapValues = items => items
   .map(item => item.value)
   .filter(Boolean);
