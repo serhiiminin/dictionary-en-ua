@@ -1,5 +1,6 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
+import { mountWithTheme } from "../../helpers/enzyme";
 import muiTheme from "../../root/mui-theme";
 import ChipSet, { ChipSetList, StyledChip } from ".";
 
@@ -41,7 +42,7 @@ describe("Chip set", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = mountWithTheme(
       <ChipSet
         theme={muiTheme}
         items={[
@@ -53,7 +54,8 @@ describe("Chip set", () => {
         onRemoveItem={() => {}}
       >
         Text
-      </ChipSet>
+      </ChipSet>,
+      muiTheme
     );
   });
 
@@ -64,5 +66,12 @@ describe("Chip set", () => {
   test("disabled", () => {
     wrapper.setProps({ disabled: true });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  test("onDelete", () => {
+    const onRemoveItem = jest.fn();
+    wrapper.setProps({ onRemoveItem });
+    wrapper.find('svg').simulate('click');
+    expect(onRemoveItem).toHaveBeenCalled();
   });
 });

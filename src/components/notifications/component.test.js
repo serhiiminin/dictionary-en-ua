@@ -1,32 +1,46 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import Notifications from './component';
+import React from "react";
+import muiTheme from "../../root/mui-theme";
+import { mountWithTheme } from "../../helpers/enzyme";
+import Notifications, { NotificationsItem } from "./component";
 
-describe('Notifications', () => {
+describe("Notifications components", () => {
+  test("NotificationsItem", () => {
+    const wrapper = mountWithTheme(
+      <NotificationsItem>Anything</NotificationsItem>,
+      muiTheme
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+});
+
+describe("Notifications components", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Notifications
-        notifications={[]}
-        hideNotification={() => {}}
-      >
+    wrapper = mountWithTheme(
+      <Notifications notifications={[]} hideNotification={() => {}}>
         children
-      </Notifications>
+      </Notifications>,
+      muiTheme
     );
   });
-  test('render empty', () => {
+  test("render empty", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('render with one item', () => {
+  test("render with one item simulate and to hide", () => {
+    const hideNotification = jest.fn();
     wrapper.setProps({
-      notifications: [{
-        id: 'id',
-        text: 'text',
-        type: 'success',
-      }]
+      notifications: [
+        {
+          id: "id",
+          text: "text",
+          type: "success"
+        }
+      ],
+      hideNotification
     });
-    expect(wrapper).toMatchSnapshot();
-  })
+    wrapper.find("button").simulate("click");
+    expect(hideNotification).toHaveBeenCalled();
+  });
 });

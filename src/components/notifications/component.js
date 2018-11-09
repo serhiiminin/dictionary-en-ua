@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { NotificationItem } from "..";
 import styled from "styled-components";
 
-const NotificationsItem = styled.ul`
+export const NotificationsItem = styled.ul`
   width: 300px;
   height: 0;
   position: fixed;
