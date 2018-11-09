@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const LineExplanationWrapper = styled.div`
+export const LineExplanationWrapper = styled.div`
   display: grid;
   grid-template-columns: ${props => (props.label ? "1fr 2fr" : "1fr")};
   background: ${props => props.theme.palette.primary.light};

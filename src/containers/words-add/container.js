@@ -9,6 +9,7 @@ class AddWordContainer extends Component {
 
   render() {
     const { saveWord, editingWord, checkIsLoading } = this.props;
+    
     return (
       <main>
         <WordForm

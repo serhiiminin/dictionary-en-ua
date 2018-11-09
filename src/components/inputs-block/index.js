@@ -4,7 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
 import { TextField, Button } from "..";
 
-const InputsBlockWrapper = styled.div`
+export const InputsBlockWrapper = styled.div`
   display: grid;
   row-gap: 1em;
   margin-bottom: 10px;
@@ -13,7 +13,7 @@ const InputsBlockWrapper = styled.div`
   border-radius: ${props => props.theme.main.borderRadius.small};
 `;
 
-const TopLine = styled.div`
+export const TopLine = styled.div`
   display: grid;
   padding: 5px 0;
   grid-template-columns: repeat(2, 1fr);
@@ -21,11 +21,11 @@ const TopLine = styled.div`
   align-items: center;
 `;
 
-const BlockTitle = styled.h3`
+export const BlockTitle = styled.h3`
   margin: 0;
 `;
 
-const BlockItems = styled.div`
+export const BlockItems = styled.div`
   min-height: 2em;
 `;
 class InputsBlock extends Component {

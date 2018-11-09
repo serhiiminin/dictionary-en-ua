@@ -15,7 +15,7 @@ export const notificationType = {
   info: "info"
 };
 
-const NotificationItemWrapper = styled.li`
+export const NotificationItemWrapper = styled.li`
   width: 100%;
   border-radius: ${props => props.theme.main.borderRadius.small};
   padding: ${props => props.theme.main.padding.medium};
@@ -27,14 +27,14 @@ const NotificationItemWrapper = styled.li`
   background: ${props => props.theme.main.colors.notification[props.type]};
 `;
 
-const TopLine = styled.div`
+export const TopLine = styled.div`
   display: grid;
   align-items: center;
   grid-auto-flow: column;
   margin-bottom: ${props => props.theme.main.margin.medium};
 `;
 
-const WrapperCloseButton = styled.div`
+export const WrapperCloseButton = styled.div`
   text-align: right;
 `;
 

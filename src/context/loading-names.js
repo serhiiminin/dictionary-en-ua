@@ -1,34 +1,39 @@
-import React, { Component, createContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, createContext } from "react";
+import PropTypes from "prop-types";
 
 const LoadingNamesContext = createContext({});
 
 const loadingNamesInitialState = {
-  currentLoadingNames: [],
+  currentLoadingNames: {}
 };
 
 class LoadingNamesProvider extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
   };
 
   state = loadingNamesInitialState;
 
   handleStartLoading = name =>
     this.setState(prevState => ({
-      currentLoadingNames: [...prevState.currentLoadingNames, name]
+      currentLoadingNames: {
+        [name]: (prevState.currentLoadingNames[name] || 0) + 1
+      }
     }));
 
   handleStopLoading = name =>
     this.setState(prevState => ({
-      currentLoadingNames: [...prevState.currentLoadingNames].filter(loadingName => loadingName !== name)
+      currentLoadingNames: {
+        [name]: prevState.currentLoadingNames[name] - 1
+      }
     }));
 
-  checkIsLoading = (currentLoadingNames = []) => (...loadingNamesToCheck) =>
-    currentLoadingNames
-      .some(currentLoadingName =>
-        loadingNamesToCheck.includes(currentLoadingName)
-      );
+  checkIsLoading = (currentLoadingNames = {}) => (...loadingNamesToCheck) =>
+    Object.entries(currentLoadingNames).some(
+      currentLoadingName =>
+        loadingNamesToCheck.includes(currentLoadingName[0]) &&
+        currentLoadingName[1] > 0
+    );
 
   render() {
     const { currentLoadingNames } = this.state;
@@ -38,17 +43,21 @@ class LoadingNamesProvider extends Component {
     return (
       <LoadingNamesContext.Provider
         value={{
-          currentLoadingNames,
           checkIsLoading,
           startLoading: this.handleStartLoading,
-          stopLoading: this.handleStopLoading,
+          stopLoading: this.handleStopLoading
         }}
-      >{children}</LoadingNamesContext.Provider>
+      >
+        {children}
+      </LoadingNamesContext.Provider>
     );
   }
 }
 
-const withLoadingNames = Cmp => props =>
-  <LoadingNamesContext.Consumer>{value => <Cmp {...value} {...props} />}</LoadingNamesContext.Consumer>;
+const withLoadingNames = Cmp => props => (
+  <LoadingNamesContext.Consumer>
+    {value => <Cmp {...value} {...props} />}
+  </LoadingNamesContext.Consumer>
+);
 
 export { LoadingNamesProvider, withLoadingNames };
