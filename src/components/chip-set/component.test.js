@@ -16,7 +16,7 @@ describe("StyledChip", () => {
   const value = "value";
 
   beforeEach(() => {
-    wrapper = mount(<StyledChip theme={muiTheme} key={id} label={value} />);
+    wrapper = mount(<StyledChip theme={muiTheme} label={value} />);
   });
 
   test("render", () => {

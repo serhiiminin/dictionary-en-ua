@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LearningBoard loading 1`] = `
+<div>
+  <TextFieldLoading
+    disabled={true}
+    label="Your option"
+    loading={true}
+    onChange={[Function]}
+    value={null}
+  />
+  <h3 />
+  <h5 />
+  <ControlsSeparator
+    align="center"
+  >
+    <ButtonControl
+      disabled={true}
+      onClick={[Function]}
+      title="Submit my answer"
+    >
+      <pure(Done) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={true}
+      onClick={[Function]}
+      title="Give me a hint"
+    >
+      <pure(RemoveRedEye) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={true}
+      onClick={[Function]}
+      title="I know this word"
+    >
+      <pure(DoneAll) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={true}
+      onClick={[Function]}
+      title="I forgot this word, show me the translation"
+    >
+      <pure(ErrorOutline) />
+    </ButtonControl>
+  </ControlsSeparator>
+</div>
+`;
+
+exports[`LearningBoard render 1`] = `
+<div>
+  <TextFieldLoading
+    disabled={null}
+    label="Your option"
+    loading={null}
+    onChange={[Function]}
+    value={null}
+  />
+  <h3 />
+  <h5 />
+  <ControlsSeparator
+    align="center"
+  >
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="Submit my answer"
+    >
+      <pure(Done) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="Give me a hint"
+    >
+      <pure(RemoveRedEye) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="I know this word"
+    >
+      <pure(DoneAll) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="I forgot this word, show me the translation"
+    >
+      <pure(ErrorOutline) />
+    </ButtonControl>
+  </ControlsSeparator>
+</div>
+`;
+
+exports[`LearningBoard times learnt is more then 1 1`] = `
+<div>
+  <TextFieldLoading
+    disabled={null}
+    label="Your option"
+    loading={null}
+    onChange={[Function]}
+    value={null}
+  />
+  <h3 />
+  <h5>
+    Learnt 2 times before
+  </h5>
+  <ControlsSeparator
+    align="center"
+  >
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="Submit my answer"
+    >
+      <pure(Done) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="Give me a hint"
+    >
+      <pure(RemoveRedEye) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="I know this word"
+    >
+      <pure(DoneAll) />
+    </ButtonControl>
+    <ButtonControl
+      disabled={null}
+      onClick={[Function]}
+      title="I forgot this word, show me the translation"
+    >
+      <pure(ErrorOutline) />
+    </ButtonControl>
+  </ControlsSeparator>
+</div>
+`;

@@ -15,6 +15,7 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
+    "enzyme": "^3.7.0",
     "i": "^0.3.6",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
@@ -29,7 +30,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
     "eslint-config-airbnb": "17.1.0",

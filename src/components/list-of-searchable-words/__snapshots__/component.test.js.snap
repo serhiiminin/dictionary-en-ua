@@ -1,79 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List of clickable strings render 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ListOfSearchableWords
-    items={
-      Array [
-        "one",
-        "two",
-      ]
-    }
-    onClick={[Function]}
+Array [
+  <SearchableWord
+    delimiter=", "
+    key="caf5c9aa-5c8a-415c-8bed-a30e3d2f2625"
+    word="one"
   />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": "d5161bc1-682c-4b4c-8ffe-dbd86dfd36bc",
-    "nodeType": "function",
-    "props": Object {
-      "delimiter": ", ",
-      "word": "one",
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": "d5161bc1-682c-4b4c-8ffe-dbd86dfd36bc",
-      "nodeType": "function",
-      "props": Object {
-        "delimiter": ", ",
-        "word": "one",
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-    Object {
-      "instance": null,
-      "key": "22d1d3db-f2bc-4821-b6e5-d393730fe189",
-      "nodeType": "function",
-      "props": Object {
-        "delimiter": false,
-        "word": "two",
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+  <SearchableWord
+    delimiter={false}
+    key="26f241a1-2856-4aa4-94d3-cc10459cef26"
+    word="two"
+  />,
+]
 `;

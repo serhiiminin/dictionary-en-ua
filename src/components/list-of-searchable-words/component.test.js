@@ -1,20 +1,22 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import ListOfSearchableWords from '.';
+import React from "react";
+import { shallow } from "enzyme";
+import muiTheme from "../../root/mui-theme";
+import ListOfSearchableWords from ".";
 
-describe('List of clickable strings', () => {
+describe("List of clickable strings", () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(
       <ListOfSearchableWords
-        items={['one', 'two']}
+        theme={muiTheme}
+        items={["one", "two"]}
         onClick={() => {}}
       />
     );
   });
 
-  test('render', () => {
+  test("render", () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

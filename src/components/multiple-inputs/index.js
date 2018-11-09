@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ButtonControl, TextField } from "..";
 
-const MultipleInputsWrapper = styled.div`
+export const MultipleInputsWrapper = styled.div`
   display: grid;
   row-gap: 1em;
 `;
