@@ -11,7 +11,7 @@ import muiTheme from "../../root/mui-theme";
 
 describe("Inputs block (sub-components)", () => {
   test("InputsBlockWrapper", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <InputsBlockWrapper theme={muiTheme}>anything</InputsBlockWrapper>
     );
     expect(wrapper).toMatchSnapshot();
