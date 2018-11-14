@@ -4,7 +4,7 @@ import { List, ListItem } from '@material-ui/core';
 import { Pagination, SelectWithOptions } from "..";
 import styled from "styled-components";
 
-const PaginationPanelWrapper = styled.div`
+export const PaginationPanelWrapper = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(0, auto));
@@ -55,9 +55,9 @@ PaginationPanel.propTypes = {
 };
 
 PaginationPanel.defaultProps = {
-  countPerPage: null,
-  page: null,
-  maxPageCount: null
+  countPerPage: 5,
+  page: 1,
+  maxPageCount: 0
 };
 
 export default PaginationPanel;
