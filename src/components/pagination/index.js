@@ -5,7 +5,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import styled from "styled-components";
 import { ButtonControl, TextField } from "..";
 
-const Page = styled.div`
+export const Page = styled.div`
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 1rem;
@@ -13,14 +13,13 @@ const Page = styled.div`
   align-items: center;
 `;
 
-const PaginationInput = styled.div`
+export const PaginationInput = styled.div`
   width: 100px;
 `;
 
 const Pagination = ({ pageNumber, maxPageCount, onChangePage }) => {
   const prevPage = Number(pageNumber) > 1 ? Number(pageNumber) - 1 : 1;
-  const nextPage =
-    Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
+  const nextPage = Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
 
   return (
     <Page>
@@ -69,8 +68,8 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
-  pageNumber: null,
-  maxPageCount: null
+  pageNumber: 1,
+  maxPageCount: 0
 };
 
 export default Pagination;
