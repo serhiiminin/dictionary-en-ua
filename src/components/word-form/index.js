@@ -72,8 +72,8 @@ class WordForm extends Component {
     this.setState(prevState => ({
       word: {
         ...prevState.word,
-        [field]: prevState.word[field].map(
-          item => (item.id === id ? { ...item, value } : item)
+        [field]: prevState.word[field].map(item =>
+          item.id === id ? { ...item, value } : item
         )
       }
     }));
@@ -117,25 +117,19 @@ class WordForm extends Component {
           <TextField
             label="English"
             value={en}
-            onChange={({ target }) =>
-              this.handleFieldChange({ en: target.value })
-            }
+            onChange={({ target }) => this.handleFieldChange({ en: target.value })}
             disabled={loading}
           />
           <TextField
             label="Ukrainian"
             value={ua}
-            onChange={({ target }) =>
-              this.handleFieldChange({ ua: target.value })
-            }
+            onChange={({ target }) => this.handleFieldChange({ ua: target.value })}
             disabled={loading}
           />
           <TextField
             label="Transcription"
             value={transcription}
-            onChange={({ target }) =>
-              this.handleFieldChange({ transcription: target.value })
-            }
+            onChange={({ target }) => this.handleFieldChange({ transcription: target.value })}
             disabled={loading}
           />
         </InputsBlock>

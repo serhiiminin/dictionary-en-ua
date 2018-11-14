@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { MenuItem } from '@material-ui/core';
+import { MenuItem } from "@material-ui/core";
 import { Select } from "..";
 
-const CustomizedSelect = styled(props => <Select {...props} />)`
+export const CustomizedSelect = styled(props => <Select {...props} />)`
   min-width: 130px;
   width: 100%;
 `;
@@ -34,7 +34,7 @@ SelectWithOptions.propTypes = {
 
 SelectWithOptions.defaultProps = {
   options: [],
-  value: null,
+  value: "",
   label: null
 };
 
