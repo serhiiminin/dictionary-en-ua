@@ -27,19 +27,20 @@ describe("WordForm", () => {
   });
 
   test("class methods", () => {
-    wrapper.instance().handleFieldChange({ en: "en" });
-    wrapper.instance().handleRemoveItemFromArray("synonyms")("1");
-    wrapper.instance().handleAddItemToArray("synonyms")("evening");
-    wrapper.instance().handleOnChangeMultipleInputs("synonyms")(
-      "34",
-      "evening"
-    );
+    wrapper.instance().handleFieldChange("en", 'value');
+    wrapper.instance().handleRemoveItemFromArray("synonyms", "1");
+    wrapper.instance().handleAddItemToArray("synonyms", "value");
+    wrapper
+      .instance()
+      .handleOnChangeMultipleInputs("synonyms", "34", "evening");
   });
 
-  test("change English input", () => {
+  test("select part of speech", () => {
     const mockedEvent = { target: { value: "day" } };
-    const spy = jest.spyOn(wrapper.instance(), "handleFieldChange");
-    wrapper.find('[label="English"]').simulate("change", mockedEvent);
+    const spy = jest.spyOn(wrapper.instance(), "handleAddItemToArray");
+    wrapper
+      .find('SelectWithOptions[label="Parts of speech"]')
+      .simulate("change", mockedEvent);
     expect(spy).toHaveBeenCalled();
   });
 });

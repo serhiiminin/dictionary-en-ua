@@ -375,7 +375,7 @@ exports[`WordForm render 1`] = `
     </WithTheme(Fade)>
     <InputsBlock
       control={false}
-      onAddItem={null}
+      onAddItem={[Function]}
       title="Main information"
     >
       <styled.div>
