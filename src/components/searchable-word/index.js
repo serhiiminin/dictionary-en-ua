@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { joinRoute } from "../../helpers/join-url";
 import routes from "../../routes";
 
-const SearchableWordLink = styled(({ word }) => (
+export const SearchableWordLink = styled(({ word }) => (
   <Link
     to={joinRoute({
       pathname: routes.words.search,
