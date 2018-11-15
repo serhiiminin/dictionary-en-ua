@@ -38,7 +38,7 @@ class InputsBlock extends Component {
 
   static defaultProps = {
     title: null,
-    onAddItem: null,
+    onAddItem: () => {},
     control: false
   };
 

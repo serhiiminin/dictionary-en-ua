@@ -1,29 +1,25 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import SearchableWord from '.';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { shallow } from "enzyme";
+import SearchableWord, { SearchableWordLink } from ".";
+import muiTheme from "../../root/mui-theme";
+import { mountWithTheme } from "../../helpers/enzyme";
 
-describe('Clickable Word', () => {
-  test('render', () => {
-    const wrapper = shallow(
-      <SearchableWord
-        word='word'
-        onClick={() => {}}
-      />
+describe("Searchable Word components", () => {
+  test("render", () => {
+    const wrapper = mountWithTheme(
+      <Router>
+        <SearchableWordLink word="word" />
+      </Router>,
+      muiTheme
     );
-
-    expect(wrapper.text()).toEqual('word');
+    expect(wrapper).toMatchSnapshot();
   });
+});
 
-  test('onClick', () => {
-    const fn = jest.fn();
-    const wrapper = shallow(
-      <SearchableWord
-        word='word'
-        onClick={fn}
-      />
-    );
-
-    wrapper.simulate('click', { preventDefault() {} });
-    expect(fn).toHaveBeenCalled();
+describe("Searchable Word", () => {
+  test("render", () => {
+    const wrapper = shallow(<SearchableWord word="word" />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

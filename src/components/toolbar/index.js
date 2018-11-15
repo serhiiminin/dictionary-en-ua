@@ -6,7 +6,7 @@ import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp";
 import styled from "styled-components";
 import { SelectWithOptions, Button } from "..";
 
-const ToolbarButtonsWrapper = styled.div`
+export const ToolbarButtonsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, auto));
   gap: 1rem;
@@ -78,9 +78,9 @@ Toolbar.propTypes = {
 
 Toolbar.defaultProps = {
   checkAllControl: null,
-  sortBy: null,
-  sortDirection: null,
-  isAnyChecked: null
+  sortBy: 'dateCreated',
+  sortDirection: 'ascend',
+  isAnyChecked: false
 };
 
 export default Toolbar;
