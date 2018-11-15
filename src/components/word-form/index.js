@@ -7,6 +7,7 @@ import {
   MultipleInputs,
   InputsBlock,
   ChipSet,
+  ControlsSeparator,
   SelectWithOptions
 } from "..";
 import loadingNames from "../../constants/loading-names";
@@ -18,7 +19,7 @@ const WORD_INITIAL_STATE = {
   partOfSpeech: [],
   examples: [],
   synonyms: []
-}; 
+};
 class WordForm extends Component {
   static propTypes = {
     checkIsLoading: PropTypes.func.isRequired,
@@ -67,10 +68,7 @@ class WordForm extends Component {
     this.setState(prevState => ({
       word: {
         ...prevState.word,
-        [fieldKey]: [
-          { id: uuid(), value },
-          ...prevState.word[fieldKey]
-        ]
+        [fieldKey]: [{ id: uuid(), value }, ...prevState.word[fieldKey]]
       }
     }));
 
@@ -83,6 +81,11 @@ class WordForm extends Component {
         )
       }
     }));
+
+  onResetForm = () =>
+    this.setState({
+      word: this.props.word
+    });
 
   render() {
     const { onSubmit, checkIsLoading } = this.props;
@@ -135,18 +138,21 @@ class WordForm extends Component {
           <TextField
             label="Transcription"
             value={transcription}
-            onChange={event => this.handleFieldChange("transcription", event.target.value)}
+            onChange={event =>
+              this.handleFieldChange("transcription", event.target.value)
+            }
             disabled={loading}
           />
         </InputsBlock>
         <InputsBlock
-          onAddItem={value => this.handleAddItemToArray("partOfSpeech", value)}
           title="Parts of speech"
           control={
             <SelectWithOptions
               value={freePartsOfSpeech[0] ? freePartsOfSpeech[0].key : ""}
               label="Parts of speech"
-              onChange={event => this.handleAddItemToArray("partOfSpeech", event.target.value)}
+              onChange={event =>
+                this.handleAddItemToArray("partOfSpeech", event.target.value)
+              } 
               options={freePartsOfSpeech}
               disabled={loading}
             />
@@ -154,7 +160,9 @@ class WordForm extends Component {
         >
           <ChipSet
             items={partOfSpeech}
-            onRemoveItem={id => this.handleRemoveItemFromArray("partOfSpeech", id)}
+            onRemoveItem={id =>
+              this.handleRemoveItemFromArray("partOfSpeech", id)
+            }
             disabled={loading}
           />
         </InputsBlock>
@@ -177,20 +185,33 @@ class WordForm extends Component {
           <MultipleInputs
             items={examples}
             placeholder="Example"
-            onChange={(id, value) => this.handleOnChangeMultipleInputs("examples", id, value)}
+            onChange={(id, value) =>
+              this.handleOnChangeMultipleInputs("examples", id, value)
+            }
             onRemoveItem={id => this.handleRemoveItemFromArray("examples", id)}
             disabled={loading}
           />
         </InputsBlock>
-        <Button
-          onClick={() => onSubmit(word)}
-          disabled={loading}
-          variant="contained"
-          color="primary"
-          title="Save"
-        >
-          Save
-        </Button>
+        <ControlsSeparator align="right">
+          <Button
+            onClick={this.onResetForm}
+            disabled={loading}
+            variant="contained"
+            color="primary"
+            title="Save"
+          >
+            Reset changes
+          </Button>
+          <Button
+            onClick={() => onSubmit(word)}
+            disabled={loading}
+            variant="contained"
+            color="primary"
+            title="Save"
+          >
+            Save
+          </Button>
+        </ControlsSeparator>
       </form>
     );
   }

@@ -787,7 +787,7 @@ exports[`Inputs block (sub-components) TopLine 1`] = `
 exports[`Inputs block render 1`] = `
 <InputsBlock
   control={false}
-  onAddItem={null}
+  onAddItem={[Function]}
   title={null}
 >
   <styled.div>
@@ -821,7 +821,7 @@ exports[`Inputs block render 1`] = `
 exports[`Inputs block render with control 1`] = `
 <InputsBlock
   control={true}
-  onAddItem={null}
+  onAddItem={[Function]}
   title={null}
 >
   <styled.div>
