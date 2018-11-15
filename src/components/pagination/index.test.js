@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme } from "../../__test-helpers__/enzyme";
 import Pagination, { Page, PaginationInput } from ".";
 
 describe("Pagination components", () => {

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Searchable Word components render 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Styled(Component)
+      word="word"
+    >
+      <Component
+        className="sc-bdVaJa iiQdxD"
+        word="word"
+      >
+        <Link
+          replace={false}
+          to="/search-words?query=word"
+        >
+          <a
+            href="/search-words?query=word"
+            onClick={[Function]}
+          >
+            word
+          </a>
+        </Link>
+      </Component>
+    </Styled(Component)>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Searchable Word render 1`] = `
+<Fragment>
+  <Styled(Component)
+    word="word"
+  />
+</Fragment>
+`;
