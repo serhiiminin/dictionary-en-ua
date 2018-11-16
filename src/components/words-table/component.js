@@ -8,7 +8,7 @@ import loadingNames from "../../constants/loading-names";
 import { parseSearchParams, joinRoute } from "../../helpers/join-url";
 import { PaginationPanel, Toolbar, WordsList, ButtonControl } from "..";
 
-const WordsListWrapper = styled.div`
+export const WordsListWrapper = styled.div`
   display: grid;
   margin: 0;
   padding: 0;

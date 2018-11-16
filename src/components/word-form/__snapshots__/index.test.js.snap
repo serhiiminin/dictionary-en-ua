@@ -2633,7 +2633,7 @@ exports[`WordForm render 1`] = `
             color="primary"
             isActive={false}
             onClick={[Function]}
-            title="Save"
+            title="Reset"
             variant="contained"
           >
             <Component
@@ -2642,7 +2642,7 @@ exports[`WordForm render 1`] = `
               color="primary"
               isActive={false}
               onClick={[Function]}
-              title="Save"
+              title="Reset"
               variant="contained"
             >
               <WithStyles(Button)
@@ -2650,7 +2650,7 @@ exports[`WordForm render 1`] = `
                 classes={Object {}}
                 color="primary"
                 onClick={[Function]}
-                title="Save"
+                title="Reset"
                 variant="contained"
               >
                 <Button
@@ -2693,7 +2693,7 @@ exports[`WordForm render 1`] = `
                   mini={false}
                   onClick={[Function]}
                   size="medium"
-                  title="Save"
+                  title="Reset"
                   type="button"
                   variant="contained"
                 >
@@ -2704,7 +2704,7 @@ exports[`WordForm render 1`] = `
                     focusRipple={true}
                     focusVisibleClassName="MuiButton-focusVisible-99"
                     onClick={[Function]}
-                    title="Save"
+                    title="Reset"
                     type="button"
                   >
                     <ButtonBase
@@ -2725,7 +2725,7 @@ exports[`WordForm render 1`] = `
                       focusVisibleClassName="MuiButton-focusVisible-99"
                       onClick={[Function]}
                       tabIndex="0"
-                      title="Save"
+                      title="Reset"
                       type="button"
                     >
                       <button
@@ -2743,7 +2743,7 @@ exports[`WordForm render 1`] = `
                         onTouchMove={[Function]}
                         onTouchStart={[Function]}
                         tabIndex="0"
-                        title="Save"
+                        title="Reset"
                         type="button"
                       >
                         <span

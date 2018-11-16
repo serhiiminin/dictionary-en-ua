@@ -1,21 +1,22 @@
 import React from "react";
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme } from "../../__test-helpers__/enzyme";
 import WordForm from ".";
 
 describe("WordForm", () => {
   let wrapper;
+  const word = {
+    _id: "1",
+    synonyms: [{ id: "34", value: "day" }],
+    partOfSpeech: [{ id: "55", value: "noun" }]
+  }; 
 
   beforeEach(() => {
     wrapper = mountWithTheme(
       <WordForm
         checkIsLoading={() => {}}
         onSubmit={() => {}}
-        word={{
-          _id: "1",
-          synonyms: [{ id: "34", value: "day" }],
-          partOfSpeech: [{ id: "55", value: "noun" }]
-        }}
+        word={word}
       >
         Anything
       </WordForm>,
@@ -36,7 +37,7 @@ describe("WordForm", () => {
       .handleOnChangeMultipleInputs("synonyms", "34", "evening");
   });
 
-  test("select part of speech", () => {
+  test("simulate handleFieldChange", () => {
     const mockedEvent = { target: { value: "day" } };
     const spy = jest.spyOn(wrapper.instance(), "handleFieldChange");
 
@@ -46,14 +47,12 @@ describe("WordForm", () => {
     expect(spy).toBeCalledTimes(3);
   });
 
-  // test("select part of speech", () => {
-  //   const mockedEvent = { target: { value: "day" } };
-  //   const spy = jest.spyOn(wrapper.instance(), "handleAddItemToArray");
-  //   console.log(wrapper.find('SelectWithOptions[label="Parts of speech"]').find('Select').debug());
+  test("simulate onSubmit", () => {
+    const onSubmit = jest.fn();
+    wrapper.setProps({ onSubmit })
 
-  //   wrapper
-  //     .find('SelectWithOptions[label="Parts of speech"]')
-  //     .simulate("click", mockedEvent);
-  //   expect(spy).toHaveBeenCalled();
-  // });
+    wrapper.find('button[title="Save"]').simulate("click");
+    expect(onSubmit).toBeCalledWith(word);
+  });
 });
+

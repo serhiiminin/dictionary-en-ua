@@ -1,5 +1,5 @@
 /src/registerServiceWorker.js
 /src/setupTests.js
-/src/helpers/enzyme.js
+/src/__test-helpers__
 /coverage
 /build

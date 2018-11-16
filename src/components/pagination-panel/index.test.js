@@ -1,6 +1,6 @@
 import React from "react";
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme, shallowWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme, shallowWithTheme } from "../../__test-helpers__/enzyme";
 import PaginationPanel, { PaginationPanelWrapper } from ".";
 
 describe("Pagination panel components", () => {

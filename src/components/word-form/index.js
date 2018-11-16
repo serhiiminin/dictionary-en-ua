@@ -198,7 +198,7 @@ class WordForm extends Component {
             disabled={loading}
             variant="contained"
             color="primary"
-            title="Save"
+            title="Reset"
           >
             Reset changes
           </Button>

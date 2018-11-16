@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WordTable components WordsListWrapper 1`] = `
+<div
+  className="sc-eHgmQL bYYnQm"
+>
+  Anything
+</div>
+`;

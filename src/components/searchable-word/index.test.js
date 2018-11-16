@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { shallow } from "enzyme";
 import SearchableWord, { SearchableWordLink } from ".";
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme } from "../../__test-helpers__/enzyme";
 
 describe("Searchable Word components", () => {
   test("render", () => {

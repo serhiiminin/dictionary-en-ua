@@ -6,7 +6,7 @@ import InputsBlock, {
   BlockTitle,
   BlockItems
 } from ".";
-import { mountWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme } from "../../__test-helpers__/enzyme";
 import muiTheme from "../../root/mui-theme";
 
 describe("Inputs block (sub-components)", () => {

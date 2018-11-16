@@ -1,9 +1,20 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from "@material-ui/core";
-import Edit from "@material-ui/icons/Edit";
 import moment from "moment";
-import { GridWordItemWrapper, Description, LinkToWords, WordTime } from "./component";
+import Edit from "@material-ui/icons/Edit";
+import {
+  Checkbox,
+  Fade,
+  CircularProgress,
+  Grid,
+  ListItemText
+} from "@material-ui/core";
+import {
+  GridWordItemWrapper,
+  Description,
+  LinkToWords,
+  WordTime
+} from "./component";
 import { joinRoute } from "../../helpers/join-url";
 import routes from "../../routes";
 import { ButtonWithRouter } from "..";
@@ -12,7 +23,15 @@ const EMPTY_VALUE = "-";
 
 const WordItemInList = props => {
   const { isChecked, onWordCheck, word, linkToWord, loading } = props;
-  const { _id, en, ua, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
+  const {
+    _id,
+    en,
+    ua,
+    transcription,
+    dateCreated,
+    dateLastLearnt,
+    timesLearnt
+  } = word;
   const lastLearnt =
     dateLastLearnt && dateLastLearnt === new Date(0).toISOString()
       ? "Never"
@@ -35,8 +54,8 @@ const WordItemInList = props => {
       </Grid>
       <Description item xs={7}>
         <ListItemText
-          primary={loading 
-            ? (
+          primary={
+            loading ? (
               <Fade in={loading}>
                 <CircularProgress color="secondary" size={20} />
               </Fade>

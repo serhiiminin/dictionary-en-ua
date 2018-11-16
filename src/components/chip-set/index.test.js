@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { mountWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme } from "../../__test-helpers__/enzyme";
 import muiTheme from "../../root/mui-theme";
 import ChipSet, { ChipSetList, StyledChip } from ".";
 

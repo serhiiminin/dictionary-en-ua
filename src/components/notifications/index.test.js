@@ -1,6 +1,6 @@
 import React from "react";
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../helpers/enzyme";
+import { mountWithTheme } from "../../__test-helpers__/enzyme";
 import Notifications, { NotificationsItem } from "./component";
 
 describe("Notifications components", () => {
