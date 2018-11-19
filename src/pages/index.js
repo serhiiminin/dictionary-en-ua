@@ -1,3 +1,4 @@
+export { default as LoginContainer } from './login';
 export { default as MainContainer } from './main';
 export { default as PageNotFoundContainer } from './not-found';
 export { default as WordsAddContainer } from './words-add';
