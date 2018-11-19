@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.4",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "^2.10.0",
