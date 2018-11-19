@@ -1,6 +1,7 @@
 const routes = {
   root: '/',
   login: '/login',
+  logout: '/logout',
   words: {
     add: '/add-word',
     learn: '/learn-words',
