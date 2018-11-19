@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core";
 import { Header, BlocksWrapper, Notifications } from "../components";
 import {
+  LoginContainer,
   MainContainer,
   WordsListContainer,
   WordsAddContainer,
@@ -13,7 +14,7 @@ import {
   WordsLearnContainer,
   WordsEditContainer,
   WordPreviewContainer
-} from "../containers";
+} from "../pages";
 import StateProvider from "../context";
 import routes from "../routes";
 import muiTheme from "./mui-theme";
@@ -32,7 +33,7 @@ const Root = () => (
                   <Header />
                   <Switch>
                     <Route exact path={routes.root} component={MainContainer} />
-                    <Route exact path={routes.login} render={() => "login"} />
+                    <Route exact path={routes.login} component={LoginContainer} />
                     <Route exact path={routes.words.add} component={WordsAddContainer} />
                     <Route exact path={routes.words.learn} component={WordsLearnContainer} />
                     <Route exact path={routes.words.list.all} component={WordsListContainer} />
