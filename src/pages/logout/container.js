@@ -5,6 +5,7 @@ import { GoogleLogout } from "react-google-login";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
 import routes from "../../routes";
+import { notificationType } from "../../components/notification-item";
 
 const StyledGoogleLogout = styled(GoogleLogout)`
   background: ${props => props.theme.palette.primary.main};
@@ -16,11 +17,13 @@ const StyledGoogleLogout = styled(GoogleLogout)`
 class Logout extends Component {
   static propTypes = {
     cleanGoogleToken: PropTypes.func.isRequired,
+    showNotification: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired
   };
 
   onSuccess = response =>
     Promise.resolve(this.props.cleanGoogleToken(response))
+    .then(() => this.props.showNotification('You were successfully logged out!', notificationType.success))
     .then(() => this.props.history.push(routes.login));
 
   render() {

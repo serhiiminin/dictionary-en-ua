@@ -9,7 +9,8 @@ class TokensProvider extends Component {
   };
 
   state = {
-    tokens: {}
+    tokens: {},
+    isLoggedIn: false,
   };
 
   componentDidMount() {
@@ -26,7 +27,8 @@ class TokensProvider extends Component {
           tokens: {
             ...prevState.tokens,
             google: tokenData
-          }
+          },
+          isLoggedIn: true,
         }))
       )
       .then(() => window.localStorage.setItem("google", JSON.stringify(tokenData)));
@@ -39,18 +41,20 @@ class TokensProvider extends Component {
       tokens: {
         ...prevState.tokens,
         google: null
-      }
+      },
+      isLoggedIn: false,
     }));
   };
 
   render() {
-    const { tokens } = this.state;
+    const { tokens, isLoggedIn } = this.state;
     const { children } = this.props;
 
     return (
       <TokensContext.Provider
         value={{
           tokens,
+          isUserLoggedIn: isLoggedIn,
           getGoogleToken: this.getGoogleToken,
           setGoogleToken: this.setGoogleToken,
           cleanGoogleToken: this.cleanGoogleToken

@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { BrowserRouter as Router } from "react-router-dom";
-import HeaderNavigation, { NavigationWrapper } from ".";
+import HeaderNavigation, { NavigationWrapper } from "./component";
 import muiTheme from "../../root/mui-theme";
 
 describe("NavigationWrapper", () => {
