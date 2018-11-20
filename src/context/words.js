@@ -83,7 +83,7 @@ class WordsProviderCmp extends Component {
       .catch(err => {
         if (err.message === "Unauthorized") {
           history.push(routes.login);
-          return showNotification('You are not authorized! Please, use your google account', notificationType.error);
+          return showNotification('You are not authorized! Please, use your google account', notificationType.info);
         }
         return showNotification(err.message, notificationType.error);
       })

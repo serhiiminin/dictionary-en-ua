@@ -6,6 +6,7 @@ import { MuiThemeProvider } from "@material-ui/core";
 import { Header, BlocksWrapper, Notifications } from "../components";
 import {
   LoginContainer,
+  LogoutContainer,
   MainContainer,
   WordsListContainer,
   WordsAddContainer,
@@ -34,6 +35,7 @@ const Root = () => (
                   <Switch>
                     <Route exact path={routes.root} component={MainContainer} />
                     <Route exact path={routes.login} component={LoginContainer} />
+                    <Route exact path={routes.logout} component={LogoutContainer} />
                     <Route exact path={routes.words.add} component={WordsAddContainer} />
                     <Route exact path={routes.words.learn} component={WordsLearnContainer} />
                     <Route exact path={routes.words.list.all} component={WordsListContainer} />
