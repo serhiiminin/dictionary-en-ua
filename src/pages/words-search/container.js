@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
-import styled from "styled-components";
 import {
   Button,
   ControlsSeparator,
@@ -11,18 +10,14 @@ import {
 import loadingNames from "../../constants/loading-names";
 import { joinRoute, parseSearchParams } from "../../helpers/join-url";
 import routes from "../../routes";
+import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
+import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
 const initialState = {
   searchValue: ""
 };
-
-const SearchBlock = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
-`;
 
 const EN = "en";
 const UK = "uk";
@@ -45,11 +40,13 @@ class SearchWordContainer extends Component {
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
-    setEditingWord: PropTypes.func.isRequired
+    setEditingWord: PropTypes.func.isRequired,
+    classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
-    foundWord: {}
+    foundWord: {},
+    classes: {},
   };
 
   state = initialState;
@@ -122,13 +119,13 @@ class SearchWordContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { foundWord, checkIsLoading } = this.props;
+    const { foundWord, checkIsLoading, classes } = this.props;
     const isEmpty = !Object.keys(foundWord).length;
     const loading = checkIsLoading(loadingNames.searchWord);
 
     return (
       <main>
-        <SearchBlock>
+        <div className={classes.searchBlock}>
           <TextFieldLoading
             label="Search a word"
             value={searchValue}
@@ -153,7 +150,7 @@ class SearchWordContainer extends Component {
               Edit before saving
             </Button>
           </ControlsSeparator>
-        </SearchBlock>
+        </div>
         <WordPreview word={foundWord} />
       </main>
     );

@@ -1,48 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
-import { mountWithTheme } from "../../__test-helpers__/enzyme";
 import muiTheme from "../../root/mui-theme";
-import ChipSet, { ChipSetList, StyledChip } from ".";
-
-describe("Chip set list", () => {
-  test("render", () => {
-    const wrapper = mount(<ChipSetList theme={muiTheme}>Text</ChipSetList>);
-    expect(wrapper).toMatchSnapshot();
-  });
-});
-
-describe("StyledChip", () => {
-  let wrapper;
-  const id = "id";
-  const value = "value";
-
-  beforeEach(() => {
-    wrapper = mount(<StyledChip theme={muiTheme} label={value} />);
-  });
-
-  test("render", () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test("disabled", () => {
-    wrapper.setProps({ disabled: true });
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test("onDelete", () => {
-    const onDelete = jest.fn();
-    const onDeleteHandler = jest.fn(() => onDelete(id));
-    wrapper.setProps({ onDelete: onDeleteHandler });
-    wrapper.find("svg").simulate("click");
-    expect(onDelete).toBeCalledWith(id);
-  });
-});
+import ChipSet from "./component";
 
 describe("Chip set", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mountWithTheme(
+    wrapper = mount(
       <ChipSet
         theme={muiTheme}
         items={[

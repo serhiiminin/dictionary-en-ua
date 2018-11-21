@@ -1,27 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
-import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../__test-helpers__/enzyme";
-import Toolbar, { ToolbarButtonsWrapper } from ".";
-
-describe("Toolbar components", () => {
-  test("ToolbarButtonsWrapper", () => {
-    const wrapper = shallow(
-      <ToolbarButtonsWrapper>anything</ToolbarButtonsWrapper>
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+import { mount } from "enzyme";
+import Toolbar from "./component";
 
 describe("Toolbar", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mountWithTheme(
+    wrapper = mount(
       <Toolbar onChangeSortBy={() => {}} onChangeSortDirection={() => {}}>
-        <div className='test-example'>anything</div>
-      </Toolbar>,
-      muiTheme
+        <div className="test-example">anything</div>
+      </Toolbar>
     );
   });
   test("render", () => {
@@ -29,10 +17,10 @@ describe("Toolbar", () => {
   });
   test("isAnyChecked = true", () => {
     wrapper.setProps({ isAnyChecked: true });
-    expect(wrapper.exists('.test-example')).toBeTruthy();
+    expect(wrapper.exists(".test-example")).toBeTruthy();
   });
   test("sortDirection = descend", () => {
-    wrapper.setProps({ sortDirection: 'descend' })
-    expect(wrapper.exists('KeyboardArrowDown')).toBeTruthy();
+    wrapper.setProps({ sortDirection: "descend" });
+    expect(wrapper.exists("KeyboardArrowDown")).toBeTruthy();
   });
 });

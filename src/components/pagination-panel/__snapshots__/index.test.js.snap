@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pagination panel components PaginationPanelWrapper 1`] = `
-<div
-  className="sc-eHgmQL hmRQZu"
->
-  Anything
-</div>
-`;
-
 exports[`Pagination panel render 1`] = `
 <PaginationPanel
   countPerPage={5}

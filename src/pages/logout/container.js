@@ -3,23 +3,22 @@ import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { GoogleLogout } from "react-google-login";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import styled from "styled-components";
 import routes from "../../routes";
 import notificationType from "../../constants/notifications-type";
-
-const StyledGoogleLogout = styled(GoogleLogout)`
-  background: ${props => props.theme.palette.primary.main};
-  &:hover {
-    cursor: pointer;
-  }
-`;
+import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
+import styles from './styles';
 
 class Logout extends Component {
   static propTypes = {
     cleanGoogleToken: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
-    history: ReactRouterPropTypes.history.isRequired
+    history: ReactRouterPropTypes.history.isRequired,
+    classes: composeClassesPropTypes(styles),
   };
+
+  static defaultProps = {
+    classes: {}
+  }
 
   onSuccess = () => 
     Promise.resolve(() => this.props.cleanGoogleToken())
@@ -27,12 +26,15 @@ class Logout extends Component {
     .then(() => this.props.history.push(routes.login));
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <StyledGoogleLogout
+      <GoogleLogout
+      className={classes.logoutButton}
         onLogoutSuccess={this.onSuccess}
       >
         <AccountCircle />
-      </StyledGoogleLogout>
+      </GoogleLogout>
     );
   }
 }

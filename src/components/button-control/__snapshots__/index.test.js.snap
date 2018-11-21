@@ -1,23 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button control isActive 1`] = `
-<Styled(Component)
-  classes={Object {}}
+<Jss(ButtonCustomized)
   isActive={true}
   mini={true}
   variant="fab"
 >
   Text
-</Styled(Component)>
+</Jss(ButtonCustomized)>
 `;
 
 exports[`Button control render 1`] = `
-<Styled(Component)
-  classes={Object {}}
+<Jss(ButtonCustomized)
   isActive={false}
   mini={true}
   variant="fab"
 >
   Text
-</Styled(Component)>
+</Jss(ButtonCustomized)>
 `;

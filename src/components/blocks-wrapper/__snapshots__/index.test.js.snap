@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Blocks Container render 1`] = `
-<styled.div>
+<BlocksWrapper
+  classes={
+    Object {
+      "blocksWrapper": "BlocksWrapper-blocksWrapper-0-1-1",
+    }
+  }
+>
   Anything
-</styled.div>
+</BlocksWrapper>
 `;

@@ -1,16 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
-import Image, { ImageWrapper } from ".";
 import muiTheme from "../../root/mui-theme";
-
-describe("ImageWrapper", () => {
-  test("render", () => {
-    const wrapper = mount(
-      <ImageWrapper theme={muiTheme}>anything</ImageWrapper>
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+import Image from "./component";
 
 describe("HeaderNavigation", () => {
   test("render", () => {

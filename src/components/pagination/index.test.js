@@ -1,25 +1,13 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../__test-helpers__/enzyme";
-import Pagination, { Page, PaginationInput } from ".";
-
-describe("Pagination components", () => {
-  test("Page", () => {
-    const wrapper = shallow(<Page>Anything</Page>);
-    expect(wrapper).toMatchSnapshot();
-  });
-});
-test("PaginationInput", () => {
-  const wrapper = shallow(<PaginationInput>Anything</PaginationInput>);
-  expect(wrapper).toMatchSnapshot();
-});
+import Pagination from "./component";
 
 describe("Pagination", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mountWithTheme(
+    wrapper = mount(
       <Pagination onChangePage={() => {}}>children</Pagination>,
       muiTheme
     );

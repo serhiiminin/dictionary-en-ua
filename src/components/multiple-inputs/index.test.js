@@ -1,22 +1,12 @@
 import React from "react";
-import { shallow } from "enzyme";
-import { mountWithTheme } from '../../__test-helpers__/enzyme';
+import { mount } from "enzyme";
 import muiTheme from "../../root/mui-theme";
-import MultipleInputs, { MultipleInputsWrapper } from ".";
-
-describe("Multiple Inputs Wrapper", () => {
-  test("render", () => {
-    const wrapper = shallow(
-      <MultipleInputsWrapper theme={muiTheme}>text</MultipleInputsWrapper>
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+import MultipleInputs from "./component";
 
 describe("Multiple Inputs", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mountWithTheme(
+    wrapper = mount(
       <MultipleInputs onRemoveItem={() => {}} onChange={() => {}}>
         text
       </MultipleInputs>,

@@ -1,42 +1,12 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
-import InputsBlock, {
-  InputsBlockWrapper,
-  TopLine,
-  BlockTitle,
-  BlockItems
-} from ".";
-import { mountWithTheme } from "../../__test-helpers__/enzyme";
+import { mount } from "enzyme";
+import InputsBlock from "./component";
 import muiTheme from "../../root/mui-theme";
-
-describe("Inputs block (sub-components)", () => {
-  test("InputsBlockWrapper", () => {
-    const wrapper = mount(
-      <InputsBlockWrapper theme={muiTheme}>anything</InputsBlockWrapper>
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test("TopLine", () => {
-    const wrapper = shallow(<TopLine theme={muiTheme}>anything</TopLine>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test("BlockTitle", () => {
-    const wrapper = shallow(<BlockTitle theme={muiTheme}>anything</BlockTitle>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  test("BlockItems", () => {
-    const wrapper = mount(<BlockItems theme={muiTheme}>anything</BlockItems>);
-    expect(wrapper).toMatchSnapshot();
-  });
-});
 
 describe("Inputs block", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mountWithTheme(<InputsBlock>anything</InputsBlock>, muiTheme);
+    wrapper = mount(<InputsBlock>anything</InputsBlock>, muiTheme);
   });
   test("render", () => {
     expect(wrapper).toMatchSnapshot();
