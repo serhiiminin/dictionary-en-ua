@@ -4,7 +4,7 @@ import ReactRouterPropTypes from "react-router-prop-types";
 import { GoogleLogin } from "react-google-login";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
-import { notificationType } from "../../components/notification-item";
+import notificationType from "../../constants/notifications-type";
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 

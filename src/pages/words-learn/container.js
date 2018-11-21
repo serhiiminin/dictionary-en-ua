@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { notificationType } from "../../components/notification-item";
+import notificationType from "../../constants/notifications-type";
 import loadingNames from "../../constants/loading-names";
 import { WordPreview, LearningBoard, Button } from "../../components";
 

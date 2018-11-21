@@ -5,7 +5,7 @@ import { GoogleLogout } from "react-google-login";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
 import routes from "../../routes";
-import { notificationType } from "../../components/notification-item";
+import notificationType from "../../constants/notifications-type";
 
 const StyledGoogleLogout = styled(GoogleLogout)`
   background: ${props => props.theme.palette.primary.main};

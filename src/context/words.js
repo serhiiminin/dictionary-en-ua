@@ -4,7 +4,7 @@ import ReactRouterPropTypes from "react-router-prop-types";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import api from "../api";
-import { notificationType } from "../components/notification-item";
+import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { parseSearchParams } from "../helpers/join-url";
 import { withFoundWord } from "./found-word";
