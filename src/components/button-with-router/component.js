@@ -6,9 +6,9 @@ import { ButtonControl } from "..";
 
 const ButtonWithRouter = ({ location, to, staticContext, ...restProps }) => (
   <ButtonControl
+    to={to}
     color="primary"
     component={Link}
-    to={to}
     isActive={location.pathname === to}
     {...restProps}
   />

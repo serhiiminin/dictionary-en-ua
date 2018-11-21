@@ -1,32 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CloseIcon from "@material-ui/icons/Close";
-import styled from "styled-components";
+import { compose } from 'recompose';
+import injectSheet from 'react-jss';
+import CloseButton from './component';
+import styles from './styles';
 
-export const StyledButton = styled.button`
-  background: transparent;
-  color: ${props => props.theme.palette.text.primary};
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  font-size: 0.81em;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const CloseButton = ({ onClick }) => (
-  <StyledButton
-    type="button"
-    onClick={onClick}
-  >
-    <CloseIcon />
-  </StyledButton>
+const enhance = compose(
+  injectSheet(styles)
 );
 
-CloseButton.propTypes = {
-  onClick: PropTypes.func.isRequired
-};
-
-export default CloseButton;
+export default enhance(CloseButton);
