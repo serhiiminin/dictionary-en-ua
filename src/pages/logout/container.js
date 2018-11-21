@@ -21,8 +21,8 @@ class Logout extends Component {
     history: ReactRouterPropTypes.history.isRequired
   };
 
-  onSuccess = response =>
-    Promise.resolve(this.props.cleanGoogleToken(response))
+  onSuccess = () => 
+    Promise.resolve(() => this.props.cleanGoogleToken())
     .then(() => this.props.showNotification('You were successfully logged out!', notificationType.success))
     .then(() => this.props.history.push(routes.login));
 

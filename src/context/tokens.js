@@ -9,51 +9,40 @@ class TokensProvider extends Component {
   };
 
   state = {
-    tokens: {},
-    isLoggedIn: false,
+    googleToken: JSON.parse(window.localStorage.getItem("google")),
+    isLoggedIn: !!(JSON.parse(window.localStorage.getItem("google"))),
   };
 
-  componentDidMount() {
-    Promise.resolve(JSON.parse(window.localStorage.getItem("google")))
-      .then(this.setGoogleToken)
+  componentWillUnmount() {
+    this.cleanGoogleToken();
   }
-
-  getGoogleToken = () => this.state.tokens.google;
 
   setGoogleToken = tokenData => {
     if (tokenData) {
-      return Promise.resolve(
-        this.setState(prevState => ({
-          tokens: {
-            ...prevState.tokens,
-            google: tokenData
-          },
-          isLoggedIn: true,
-        }))
-      )
-      .then(() => window.localStorage.setItem("google", JSON.stringify(tokenData)));
+      this.setState({
+        googleToken: tokenData,
+        isLoggedIn: true
+      });
+      window.localStorage.setItem("google", JSON.stringify(tokenData));
     }
-    return null;
   };
 
   cleanGoogleToken = () => {
-    this.setState(prevState => ({
-      tokens: {
-        ...prevState.tokens,
-        google: null
-      },
-      isLoggedIn: false,
-    }));
+    this.setState({
+      googleToken: null,
+      isLoggedIn: false
+    });
+    window.localStorage.clear("google");
   };
 
   render() {
-    const { tokens, isLoggedIn } = this.state;
+    const { googleToken, isLoggedIn } = this.state;
     const { children } = this.props;
-
+      
     return (
       <TokensContext.Provider
         value={{
-          tokens,
+          googleToken,
           isUserLoggedIn: isLoggedIn,
           getGoogleToken: this.getGoogleToken,
           setGoogleToken: this.setGoogleToken,

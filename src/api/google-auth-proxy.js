@@ -1,9 +1,10 @@
-const createGoogleAuthProxy = fetcher => (params, tokens) =>
+
+const createGoogleAuthProxy = fetcher => (params, googleToken) =>
   fetcher({
     ...params,
     headers: {
       ...params.headers,
-      authorization: tokens.google && `Bearer ${tokens.google.accessToken}`
+      authorization: googleToken && `Bearer ${googleToken.accessToken}`,
     }
   }).catch(error => {
     if (error.message === "Forbidden") {
