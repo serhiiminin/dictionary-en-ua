@@ -15,8 +15,8 @@ const getIndexOfDiscrepancy = originString => stringToCompare =>
 
 class LearnWordsContainer extends Component {
   static propTypes = {
-    fetchWordsToLearn: PropTypes.func.isRequired,
-    cleanWordsToLearn: PropTypes.func.isRequired,
+    fetchWordsList: PropTypes.func.isRequired,
+    cleanWordsList: PropTypes.func.isRequired,
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
@@ -36,19 +36,19 @@ class LearnWordsContainer extends Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
-    nextProps.wordsToLearn && nextProps.wordsToLearn.length > 0
+    nextProps.wordsList && nextProps.wordsList.length > 0
       ? {
           ...prevState,
-          currentWord: nextProps.wordsToLearn[0]
+          currentWord: nextProps.wordsList[0]
         }
       : prevState;
 
   componentDidMount() {
-    this.props.fetchWordsToLearn();
+    this.props.fetchWordsList();
   }
 
   componentWillUnmount() {
-    this.props.cleanWordsToLearn();
+    this.props.cleanWordsList();
   }
 
   onChangeInput = event => this.setState({ inputValue: event.target.value });
@@ -79,9 +79,7 @@ class LearnWordsContainer extends Component {
           if (countOfTry < MAX_COUNT_ATTEMPTS) {
             const attemptsLeft = MAX_COUNT_ATTEMPTS - this.state.countOfTry;
             showNotification(
-              `You are wrong! ${attemptsLeft} attempt${
-                attemptsLeft > 1 ? "s" : ""
-              } left`,
+              `You are wrong! ${attemptsLeft} attempt${attemptsLeft > 1 ? "s" : ""} left`,
               notificationType.info
             );
           } else {

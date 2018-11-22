@@ -7,6 +7,7 @@ const GlobalStyle = {
     background: `${theme.main.colors.background} url(${texture}) center repeat`,
     color: theme.main.colors.text,
     fontSize: '1em',
+    margin: 0,
   },
   '@global *': {
     boxSizing: 'border-box',

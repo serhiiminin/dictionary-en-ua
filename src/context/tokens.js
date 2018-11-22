@@ -9,8 +9,7 @@ class TokensProvider extends Component {
   };
 
   state = {
-    googleToken: JSON.parse(window.localStorage.getItem("google")),
-    isLoggedIn: !!(JSON.parse(window.localStorage.getItem("google"))),
+    googleToken: JSON.parse(window.localStorage.getItem("google"))
   };
 
   componentWillUnmount() {
@@ -19,31 +18,26 @@ class TokensProvider extends Component {
 
   setGoogleToken = tokenData => {
     if (tokenData) {
-      this.setState({
-        googleToken: tokenData,
-        isLoggedIn: true
-      });
+      this.setState({ googleToken: tokenData });
       window.localStorage.setItem("google", JSON.stringify(tokenData));
     }
   };
 
   cleanGoogleToken = () => {
-    this.setState({
-      googleToken: null,
-      isLoggedIn: false
-    });
+    this.setState({ googleToken: null });
     window.localStorage.clear("google");
   };
-
+  
   render() {
-    const { googleToken, isLoggedIn } = this.state;
+    const { googleToken } = this.state;
     const { children } = this.props;
-      
+    const isUserLoggedIn = googleToken && googleToken.tokenObj.expires_at > Date.now();
+
     return (
       <TokensContext.Provider
         value={{
           googleToken,
-          isUserLoggedIn: isLoggedIn,
+          isUserLoggedIn,
           getGoogleToken: this.getGoogleToken,
           setGoogleToken: this.setGoogleToken,
           cleanGoogleToken: this.cleanGoogleToken
