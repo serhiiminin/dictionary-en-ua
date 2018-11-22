@@ -1,32 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import { compose } from 'recompose';
+import injectSheet from 'react-jss';
+import Image from './component';
+import styles from './styles';
 
-export const ImageWrapper = styled.div`
-  padding: ${props => props.theme.main.padding.medium} 0;
-  width: ${props => props.width}px;
-  height: ${props => props.height}px;
-  background-image: ${props => `url(${props.backgroundImage})`};
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: ${props => props.theme.main.borderRadius.small};
-`;
-
-const Image = ({ src, width, height }) => (
-  <ImageWrapper backgroundImage={src} width={width} height={height} />
+const enhance = compose(
+  injectSheet(styles)
 );
 
-Image.propTypes = {
-  src: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number
-};
-
-Image.defaultProps = {
-  src: "",
-  width: 300,
-  height: 200
-};
-
-export default Image;
+export default enhance(Image);

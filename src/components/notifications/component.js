@@ -1,23 +1,13 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { NotificationItem } from "..";
-import styled from "styled-components";
+import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
+import styles from './styles';
 
-export const NotificationsItem = styled.ul`
-  width: 300px;
-  height: 0;
-  position: fixed;
-  right: ${props => props.theme.main.padding.medium};
-  top: ${props => props.theme.main.padding.medium};
-  z-index: ${props => props.theme.zIndex.tooltip};
-  padding: 0;
-  margin: 0;
-`;
-
-const Notifications = ({ children, notifications, hideNotification }) => (
+const Notifications = ({ classes, children, notifications, hideNotification }) => (
   <Fragment>
     {children}
-    <NotificationsItem>
+    <ul className={classes.notifications}>
       {notifications.map(({ id, text, type }) => (
         <NotificationItem
           type={type}
@@ -27,7 +17,7 @@ const Notifications = ({ children, notifications, hideNotification }) => (
           onClick={() => hideNotification(id)}
         />
       ))}
-    </NotificationsItem>
+    </ul>
   </Fragment>
 );
 
@@ -40,11 +30,13 @@ Notifications.propTypes = {
     })
   ),
   hideNotification: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  classes: composeClassesPropTypes(styles),
 };
 
 Notifications.defaultProps = {
-  notifications: []
+  notifications: [],
+  classes: {},
 };
 
 export default Notifications;

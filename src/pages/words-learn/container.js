@@ -1,16 +1,12 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { notificationType } from "../../components/notification-item";
+import notificationType from "../../constants/notifications-type";
 import loadingNames from "../../constants/loading-names";
 import { WordPreview, LearningBoard, Button } from "../../components";
+import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
+import styles from './styles';
 
 const MAX_COUNT_ATTEMPTS = 3;
-
-const LearnWord = styled.div`
-  width: 300px;
-  margin: 0 auto;
-`;
 
 const getIndexOfDiscrepancy = originString => stringToCompare =>
   originString
@@ -24,14 +20,19 @@ class LearnWordsContainer extends Component {
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired
+    checkIsLoading: PropTypes.func.isRequired,
+    classes: composeClassesPropTypes(styles),
   };
+
+  static defaultProps = {
+    classes: {}
+  }
 
   state = {
     countOfTry: 0,
     guessed: false,
     inputValue: "",
-    currentWord: {}
+    currentWord: {},
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
@@ -129,7 +130,7 @@ class LearnWordsContainer extends Component {
     );
 
   render() {
-    const { checkIsLoading } = this.props;
+    const { checkIsLoading, classes } = this.props;
     const { currentWord, inputValue, guessed } = this.state;
     const loading = checkIsLoading(loadingNames.learnWord);
 
@@ -145,7 +146,7 @@ class LearnWordsContainer extends Component {
         <WordPreview word={currentWord} />
       </Fragment>
     ) : (
-      <LearnWord>
+      <div className={classes.learnWord}>
         <LearningBoard
           loading={loading}
           onOptionChange={this.onChangeInput}
@@ -157,7 +158,7 @@ class LearnWordsContainer extends Component {
           onKnownWord={this.onKnownWord}
           onForgottenWord={this.onForgottenWord}
         />
-      </LearnWord>
+      </div>
     );
   }
 }

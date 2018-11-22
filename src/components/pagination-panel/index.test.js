@@ -1,21 +1,11 @@
 import React from "react";
+import { mount } from 'enzyme';
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme, shallowWithTheme } from "../../__test-helpers__/enzyme";
-import PaginationPanel, { PaginationPanelWrapper } from ".";
-
-describe("Pagination panel components", () => {
-  test("PaginationPanelWrapper", () => {
-    const wrapper = shallowWithTheme(
-      <PaginationPanelWrapper>Anything</PaginationPanelWrapper>,
-      muiTheme
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+import PaginationPanel from "./component";
 
 describe("Pagination panel", () => {
   test("render", () => {
-    const wrapper = mountWithTheme(
+    const wrapper = mount(
       <PaginationPanel onChangeCount={() => {}} onChangePage={() => {}}>
         children
       </PaginationPanel>,

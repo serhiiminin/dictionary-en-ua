@@ -1,23 +1,13 @@
 import React from "react";
+import { mount } from 'enzyme';
 import muiTheme from "../../root/mui-theme";
-import { mountWithTheme } from "../../__test-helpers__/enzyme";
-import Notifications, { NotificationsItem } from "./component";
-
-describe("Notifications components", () => {
-  test("NotificationsItem", () => {
-    const wrapper = mountWithTheme(
-      <NotificationsItem>Anything</NotificationsItem>,
-      muiTheme
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+import Notifications from "./component";
 
 describe("Notifications components", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mountWithTheme(
+    wrapper = mount(
       <Notifications notifications={[]} hideNotification={() => {}}>
         children
       </Notifications>,

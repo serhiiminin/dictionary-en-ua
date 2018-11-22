@@ -1,54 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Notification item render 1`] = `
-<WithTheme(Slide)
-  direction="up"
+<WithTheme(Grow)
   in={true}
-  mountOnEnter={true}
-  unmountOnExit={true}
+  timeout={400}
 >
-  <styled.li
-    type="error"
-  >
-    <styled.div>
+  <li>
+    <div>
       <pure(Error) />
-      <styled.div>
-        <CloseButton
+      <div>
+        <Jss(CloseButton)
           onClick={[Function]}
         />
-      </styled.div>
-    </styled.div>
+      </div>
+    </div>
     <div />
-  </styled.li>
-</WithTheme(Slide)>
-`;
-
-exports[`Notification item styled components NotificationItemWrapper 1`] = `
-<styled.li>
-  <li
-    className="sc-bwzfXH cTRMmO"
-  >
-    Anything
   </li>
-</styled.li>
-`;
-
-exports[`Notification item styled components TopLine 1`] = `
-<styled.div>
-  <div
-    className="sc-htpNat laVTDq"
-  >
-    Anything
-  </div>
-</styled.div>
-`;
-
-exports[`Notification item styled components WrapperCloseButton 1`] = `
-<styled.div>
-  <div
-    className="sc-bxivhb gJaspy"
-  >
-    Anything
-  </div>
-</styled.div>
+</WithTheme(Grow)>
 `;

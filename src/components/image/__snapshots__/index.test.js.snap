@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ImageWrapper render 1`] = `
-<styled.div
+exports[`HeaderNavigation render 1`] = `
+<Image
+  classes={Object {}}
+  height="200"
+  src="src"
   theme={
     Object {
       "breakpoints": Object {
@@ -375,11 +378,10 @@ exports[`ImageWrapper render 1`] = `
       },
     }
   }
+  width="300"
 >
   <div
-    className="sc-bdVaJa kewxFI"
-  >
-    anything
-  </div>
-</styled.div>
+    className="undefined src300200"
+  />
+</Image>
 `;

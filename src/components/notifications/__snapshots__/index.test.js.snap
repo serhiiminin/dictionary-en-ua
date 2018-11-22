@@ -1,25 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Notifications components NotificationsItem 1`] = `
-<styled.ul>
-  <ul
-    className="sc-eHgmQL eZDeDE"
-  >
-    Anything
-  </ul>
-</styled.ul>
-`;
-
 exports[`Notifications components render empty 1`] = `
 <Notifications
+  classes={Object {}}
   hideNotification={[Function]}
   notifications={Array []}
 >
   children
-  <styled.ul>
-    <ul
-      className="sc-eHgmQL eZDeDE"
-    />
-  </styled.ul>
+  <ul />
 </Notifications>
 `;

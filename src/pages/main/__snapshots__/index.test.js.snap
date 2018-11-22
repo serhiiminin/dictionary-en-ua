@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainContainer page render 1`] = `
+<MainContainer
+  classes={
+    Object {
+      "mainPage": "MainContainer-mainPage-0-1-1",
+      "quoteAuthor": "MainContainer-quoteAuthor-0-1-3",
+      "quoteText": "MainContainer-quoteText-0-1-2",
+    }
+  }
+/>
+`;

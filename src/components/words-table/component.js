@@ -3,20 +3,12 @@ import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { Checkbox, Fade, LinearProgress } from "@material-ui/core";
 import Delete from "@material-ui/icons/Delete";
-import styled from "styled-components";
 import loadingNames from "../../constants/loading-names";
 import { parseSearchParams, joinRoute } from "../../helpers/join-url";
 import { PaginationPanel, Toolbar, WordsList, ButtonControl } from "..";
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
-export const WordsListWrapper = styled.div`
-  display: grid;
-  margin: 0;
-  padding: 0;
-  border-radius: ${props => props.theme.main.borderRadius.small};
-  overflow: hidden;
-  row-gap: 1px;
-  background: ${props => props.theme.palette.background.paper};
-`;
 class WordsTable extends Component {
   static propTypes = {
     wordsList: PropTypes.arrayOf(
@@ -29,12 +21,14 @@ class WordsTable extends Component {
     wordsCount: PropTypes.number,
     deleteWord: PropTypes.func.isRequired,
     getWordsSearchParams: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired
+    checkIsLoading: PropTypes.func.isRequired,
+    classes: composeClassesPropTypes(styles)
   };
 
   static defaultProps = {
     wordsList: null,
-    wordsCount: null
+    wordsCount: 0,
+    classes: {}
   };
 
   state = {
@@ -95,14 +89,24 @@ class WordsTable extends Component {
 
   render() {
     const { checked } = this.state;
-    const { wordsList, wordsCount, checkIsLoading, getWordsSearchParams, location } = this.props;
-    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(location);
+    const {
+      wordsList,
+      wordsCount,
+      checkIsLoading,
+      getWordsSearchParams,
+      location,
+      classes
+    } = this.props;
+    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(
+      location
+    );
     const loading = checkIsLoading(loadingNames.wordsList);
-    const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
+    const isCheckedAll =
+      checked.length === wordsList.length && checked.length > 0;
 
     return (
       <main>
-        <WordsListWrapper>
+        <div className={classes.wordsTableWrapper}>
           <Toolbar
             checkAllControl={
               <Checkbox
@@ -139,10 +143,12 @@ class WordsTable extends Component {
             countPerPage={countPerPage}
             page={page}
             maxPageCount={Math.ceil(wordsCount / countPerPage)}
-            onChangeCount={event => this.handleOnChangeSelect(event, "countPerPage")}
+            onChangeCount={event =>
+              this.handleOnChangeSelect(event, "countPerPage")
+            }
             onChangePage={this.handleOnChangePage}
           />
-        </WordsListWrapper>
+        </div>
       </main>
     );
   }

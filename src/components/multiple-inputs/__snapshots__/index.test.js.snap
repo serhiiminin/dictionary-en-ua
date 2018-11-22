@@ -1,41 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Multiple Inputs Wrapper render 1`] = `
-<div
-  className="sc-eHgmQL jHvLYq"
->
-  text
-</div>
-`;
-
 exports[`Multiple Inputs disabled 1`] = `
 <MultipleInputs
+  classes={Object {}}
   disabled={true}
   items={Array []}
   onChange={[Function]}
   onRemoveItem={[Function]}
   placeholder={null}
 >
-  <styled.div>
-    <div
-      className="sc-eHgmQL jHvLYq"
-    />
-  </styled.div>
+  <div />
 </MultipleInputs>
 `;
 
 exports[`Multiple Inputs render 1`] = `
 <MultipleInputs
+  classes={Object {}}
   disabled={false}
   items={Array []}
   onChange={[Function]}
   onRemoveItem={[Function]}
   placeholder={null}
 >
-  <styled.div>
-    <div
-      className="sc-eHgmQL jHvLYq"
-    />
-  </styled.div>
+  <div />
 </MultipleInputs>
 `;

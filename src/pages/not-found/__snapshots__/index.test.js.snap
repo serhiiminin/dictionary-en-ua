@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page not found render 1`] = `
+<PageNotFoundContainer
+  classes={
+    Object {
+      "notFoundWrapper": "PageNotFoundContainer-notFoundWrapper-0-1-1",
+    }
+  }
+/>
+`;

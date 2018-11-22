@@ -1,39 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { joinRoute } from "../../helpers/join-url";
-import routes from "../../routes";
+import { compose } from 'recompose';
+import injectSheet from 'react-jss';
+import SearchableWord from './component';
+import styles from './styles';
 
-export const SearchableWordLink = styled(({ word }) => (
-  <Link
-    to={joinRoute({
-      pathname: routes.words.search,
-      searchParams: { query: word }
-    })}
-  >
-    {word}
-  </Link>
-))`
-  display: inline-block;
-  color: ${props => props.theme.palette.text.primary};
-  font-weight: bolder;
-`;
-
-const SearchableWord = ({ word, delimiter }) => (
-  <React.Fragment>
-    <SearchableWordLink word={word} />
-    {delimiter}
-  </React.Fragment>
+const enhance = compose(
+  injectSheet(styles),
 );
 
-SearchableWord.propTypes = {
-  word: PropTypes.string.isRequired,
-  delimiter: PropTypes.node
-};
-
-SearchableWord.defaultProps = {
-  delimiter: null
-};
-
-export default SearchableWord;
+export default enhance(SearchableWord);

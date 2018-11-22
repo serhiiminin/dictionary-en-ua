@@ -6,21 +6,13 @@ import Rowing from "@material-ui/icons/Rowing";
 import Search from "@material-ui/icons/Search";
 import Input from "@material-ui/icons/Input";
 import ExitToApp from "@material-ui/icons/ExitToApp";
-import styled from "styled-components";
 import routes from "../../routes";
 import { ButtonWithRouter } from "..";
-
-export const NavigationWrapper = styled.div`
-  display: grid;
-  align-content: center;
-  justify-content: end;
-  grid-auto-flow: column;
-  row-gap: 1rem;
-  column-gap: 0.5rem;
-`;
-
-const HeaderNavigation = ({ isUserLoggedIn }) => (
-  <NavigationWrapper>
+import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
+import styles from './styles';
+ 
+const HeaderNavigation = ({ isUserLoggedIn, classes }) => (
+  <div className={classes.headerNavigation}>
     <ButtonWithRouter to={routes.words.list.all} title="The list of my words">
       <List />
     </ButtonWithRouter>
@@ -42,15 +34,17 @@ const HeaderNavigation = ({ isUserLoggedIn }) => (
         <Input />
       </ButtonWithRouter>
     )}
-  </NavigationWrapper>
+  </div>
 );
 
 HeaderNavigation.propTypes = {
+  classes: composeClassesPropTypes(styles),
   isUserLoggedIn: PropTypes.bool,
 }
 
 HeaderNavigation.defaultProps = {
   isUserLoggedIn: false,
+  classes: {},
 }
 
 export default HeaderNavigation;

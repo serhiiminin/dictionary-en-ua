@@ -6,18 +6,17 @@ import ErrorOutline from "@material-ui/icons/ErrorOutline";
 import RemoveRedEye from "@material-ui/icons/RemoveRedEye";
 import { ControlsSeparator, TextFieldLoading, ButtonControl } from "..";
 
-const LearningBoard = props => {
-  const {
-    loading,
-    onOptionChange,
-    inputValue,
-    word,
-    timesLearnt,
-    onCheckAnswer,
-    onGiveAHint,
-    onKnownWord,
-    onForgottenWord
-  } = props;
+const LearningBoard = ({
+  loading,
+  onOptionChange,
+  inputValue,
+  word,
+  timesLearnt,
+  onCheckAnswer,
+  onGiveAHint,
+  onKnownWord,
+  onForgottenWord
+}) => {
   const textLearnt = `Learnt ${timesLearnt} time${
     timesLearnt > 1 ? "s" : ""
   } before`;
