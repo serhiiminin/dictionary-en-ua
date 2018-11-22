@@ -47,19 +47,9 @@ class WordsProviderCmp extends Component {
 
   state = wordsInitialState;
 
-  cleanWordsList = () =>
-    this.setState({ wordsList: wordsInitialState.wordsList });
-
-  cleanWord = () => this.setState({ word: wordsInitialState.word });
-
   getSearchParams = () => {
     const { location } = this.props;
-    const {
-      sortBy,
-      sortDirection,
-      page,
-      countPerPage
-    } = INITIAL_WORD_SORT_DATA;
+    const { sortBy, sortDirection, page, countPerPage } = INITIAL_WORD_SORT_DATA;
     const parsedParams = parseSearchParams(location.search);
 
     return {
@@ -69,17 +59,23 @@ class WordsProviderCmp extends Component {
       countPerPage: Number(parsedParams.countPerPage) || countPerPage
     };
   };
+  
+  cleanWordsList = () => this.setState({ wordsList: wordsInitialState.wordsList });
+  
+  cleanWord = () => this.setState({ word: wordsInitialState.word });
 
+  setWordToState = word => this.setState({ word });
+  
   handleFetch = ({ loadingName, requestHandler, responseHandler }) => {
     const { showNotification, startLoading, stopLoading, googleToken, history } = this.props;
 
     return Promise.resolve(startLoading(loadingName))
-      .then(() => requestHandler(googleToken) || (response => response))
-      .then(responseHandler || (response => response))
+      .then(() => requestHandler(googleToken))
+      .then(responseHandler)
       .catch(err => {
         if (err.message === "Unauthorized") {
           history.push(routes.login);
-          return showNotification('You are not authorized! Please, use your google account', notificationType.info);
+          return showNotification("You are not authorized! Please, use your google account", notificationType.info);
         }
         return showNotification(err.message, notificationType.error);
       })
@@ -95,15 +91,14 @@ class WordsProviderCmp extends Component {
 
   fetchWordsList = () => {
     const { location } = this.props;
-    const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(
-      location.search
-    );
+    const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(location.search);
     const query = {
       skip: (page - 1) * countPerPage,
       limit: Number(countPerPage),
       sortDirection: sortDirection === "descend" ? -1 : 1,
       sortBy
     };
+
     return this.handleFetch({
       loadingName: loadingNames.wordsList,
       requestHandler: token => api.getWordsList({ query }, token),
@@ -117,10 +112,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.saveWord,
       requestHandler: token => api.createWord(data, token),
       responseHandler: () =>
-        this.props.showNotification(
-          "The word has been saved successfully",
-          notificationType.success
-        )
+        this.props.showNotification("The word has been saved successfully", notificationType.success)
     });
 
   editWord = word =>
@@ -128,10 +120,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.fetchWord,
       requestHandler: token => api.updateWord(word, token),
       responseHandler: () =>
-        this.props.showNotification(
-          "The word has been updated successfully",
-          notificationType.success
-        )
+        this.props.showNotification("The word has been updated successfully", notificationType.success)
     });
 
   deleteWord = id =>
@@ -140,10 +129,7 @@ class WordsProviderCmp extends Component {
       requestHandler: token => api.deleteWord(id, token),
       responseHandler: () => this.fetchWordsList()
     }).then(() =>
-      this.props.showNotification(
-        "The word has been deleted successfully",
-        notificationType.success
-      )
+      this.props.showNotification("The word has been deleted successfully", notificationType.success)
     );
 
   searchWord = params =>
@@ -164,6 +150,38 @@ class WordsProviderCmp extends Component {
         })
     });
 
+  fetchWordsToLearn = () =>
+    this.handleFetch({
+      loadingName: loadingNames.learnWord,
+      requestHandler: token => api.getWordsListToLearn(token),
+      responseHandler: ({ items, count }) => this.setState({ wordsList: items, count })
+    });
+
+  learnWord = wordId =>
+    this.handleFetch({
+      loadingName: loadingNames.learnWord,
+      requestHandler: token => api.learnWord(wordId, token),
+      responseHandler: () =>
+        this.setState(prevState => ({
+          wordsList: [
+            ...prevState.wordsList.filter(word => word._id !== wordId)
+          ]
+        }))
+    });
+
+  relearnWord = wordId => {
+    this.setState(prevState => {
+      const wordToRelearn = prevState.wordsList.find(word => word._id === wordId);
+
+      return {
+        wordsList: [
+          ...prevState.wordsList.filter(word => word._id !== wordToRelearn._id),
+          wordToRelearn
+        ]
+      };
+    });
+  };
+
   render() {
     const { wordsList, word, count, gif } = this.state;
     const { children } = this.props;
@@ -171,19 +189,23 @@ class WordsProviderCmp extends Component {
     return (
       <WordsContext.Provider
         value={{
+          gif,
           word,
           wordsList,
-          gif,
           wordsCount: count,
           getWordsSearchParams: this.getSearchParams,
+          setWordToState: this.setWordToState,
+          cleanWord: this.cleanWord,
+          cleanWordsList: this.cleanWordsList,
           fetchWord: this.fetchWord,
           fetchWordsList: this.fetchWordsList,
-          saveWord: this.createWord,
+          fetchWordsToLearn: this.fetchWordsToLearn,
           editWord: this.editWord,
-          searchWord: this.searchWord,
           deleteWord: this.deleteWord,
-          cleanWordsList: this.cleanWordsList,
-          cleanWord: this.cleanWord
+          learnWord: this.learnWord,
+          relearnWord: this.relearnWord,
+          saveWord: this.createWord,
+          searchWord: this.searchWord,
         }}
       >
         {children}

@@ -4,20 +4,18 @@ import { WordForm } from "../../components";
 
 class AddWordContainer extends Component {
   componentWillUnmount() {
-    this.props.cleanEditingWord();
+    this.props.cleanWord();
   }
 
   render() {
-    const { saveWord, editingWord, checkIsLoading } = this.props;
+    const { saveWord, word, checkIsLoading } = this.props;
     
     return (
-      <main>
-        <WordForm
-          word={editingWord}
-          checkIsLoading={checkIsLoading}
-          onSubmit={word => saveWord(word)}
-        />
-      </main>
+      <WordForm
+        word={word}
+        checkIsLoading={checkIsLoading}
+        onSubmit={saveWord}
+      />
     );
   }
 }
@@ -25,12 +23,12 @@ class AddWordContainer extends Component {
 AddWordContainer.propTypes = {
   saveWord: PropTypes.func.isRequired,
   checkIsLoading: PropTypes.func.isRequired,
-  cleanEditingWord: PropTypes.func.isRequired,
-  editingWord: PropTypes.shape({})
+  cleanWord: PropTypes.func.isRequired,
+  word: PropTypes.shape({})
 };
 
 AddWordContainer.defaultProps = {
-  editingWord: null
+  word: null
 };
 
 export default AddWordContainer;

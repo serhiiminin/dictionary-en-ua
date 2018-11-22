@@ -5,20 +5,14 @@ import { NotificationsProvider } from "./notifications";
 import { TokensProvider } from "./tokens";
 import { WordsProvider } from "./words";
 import { FoundWordProvider } from "./found-word";
-import { EditingWordProvider } from "./editing-word";
-import { WordsToLearnProvider } from "./words-to-learn";
 
 const StateProvider = ({ children }) => (
   <TokensProvider>
     <LoadingNamesProvider>
       <NotificationsProvider>
-        <EditingWordProvider>
-          <FoundWordProvider>
-            <WordsProvider>
-              <WordsToLearnProvider>{children}</WordsToLearnProvider>
-            </WordsProvider>
-          </FoundWordProvider>
-        </EditingWordProvider>
+        <FoundWordProvider>
+          <WordsProvider>{children}</WordsProvider>
+        </FoundWordProvider>
       </NotificationsProvider>
     </LoadingNamesProvider>
   </TokensProvider>

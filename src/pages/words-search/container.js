@@ -40,7 +40,7 @@ class SearchWordContainer extends Component {
     searchWord: PropTypes.func.isRequired,
     cleanFoundWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
-    setEditingWord: PropTypes.func.isRequired,
+    setWordToState: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
@@ -67,10 +67,6 @@ class SearchWordContainer extends Component {
     if (this.props.location.search !== prevProps.location.search && searchParams.query) {
       this.searchWord(searchParams.query);
     }
-  }
-
-  componentWillUnmount() {
-    this.props.cleanFoundWord();
   }
 
   cleanSearchValue = () => this.setState({ searchValue: "" });
@@ -100,9 +96,9 @@ class SearchWordContainer extends Component {
   };
 
   handleEditBeforeSaving = () => {
-    const { history, setEditingWord, foundWord } = this.props;
+    const { history, setWordToState, foundWord } = this.props;
 
-    return Promise.resolve(setEditingWord(foundWord)).then(() => {
+    return Promise.resolve(setWordToState(foundWord)).then(() => {
       this.setState({ ...initialState });
       history.push(routes.words.add);
     });

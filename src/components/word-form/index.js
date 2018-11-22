@@ -20,6 +20,8 @@ const WORD_INITIAL_STATE = {
   examples: [],
   synonyms: []
 };
+
+const compareWords = (prev, next) => prev && next && Object.values(prev).join('') !== Object.values(next).join('');
 class WordForm extends Component {
   static propTypes = {
     checkIsLoading: PropTypes.func.isRequired,
@@ -44,7 +46,7 @@ class WordForm extends Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
-    nextProps.word && nextProps.word._id !== prevState.word._id
+    compareWords(prevState.word, nextProps.word)
       ? { word: nextProps.word }
       : prevState;
 
@@ -82,22 +84,12 @@ class WordForm extends Component {
       }
     }));
 
-  onResetForm = () =>
-    this.setState({
-      word: this.props.word
-    });
+  onResetForm = () => this.setState({ word: this.props.word });
 
   render() {
     const { onSubmit, checkIsLoading } = this.props;
     const { word } = this.state;
-    const {
-      en = "",
-      ua = "",
-      transcription = "",
-      examples = [],
-      partOfSpeech = [],
-      synonyms = []
-    } = word;
+    const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
     const loading = checkIsLoading(
       loadingNames.fetchWord,
       loadingNames.saveWord
@@ -114,9 +106,12 @@ class WordForm extends Component {
       { key: "article", title: "Article" },
       { key: "determiner", title: "Determiner" }
     ].filter(
-      option => !partOfSpeech.map(part => part.value).includes(option.key)
+      option =>
+        !(
+          partOfSpeech &&
+          partOfSpeech.map(part => part.value).includes(option.key)
+        )
     );
-
     return (
       <form onSubmit={onSubmit}>
         <Fade in={loading}>
@@ -152,7 +147,7 @@ class WordForm extends Component {
               label="Parts of speech"
               onChange={event =>
                 this.handleAddItemToArray("partOfSpeech", event.target.value)
-              } 
+              }
               options={freePartsOfSpeech}
               disabled={loading}
             />
