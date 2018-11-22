@@ -28,7 +28,6 @@ const wordsInitialState = {
   count: 0,
   gif: ""
 };
-
 class WordsProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -188,7 +187,7 @@ class WordsProviderCmp extends Component {
   render() {
     const { wordsList, word, count, gif } = this.state;
     const { children } = this.props;
-    
+
     return (
       <WordsContext.Provider
         value={{

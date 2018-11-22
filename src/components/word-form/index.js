@@ -11,17 +11,8 @@ import {
   SelectWithOptions
 } from "..";
 import loadingNames from "../../constants/loading-names";
+import WORD_INITIAL_VALUES from "../../constants/word-initial-values";
 
-const WORD_INITIAL_STATE = {
-  en: "",
-  ua: "",
-  transcription: "",
-  partOfSpeech: [],
-  examples: [],
-  synonyms: []
-};
-
-const compareWords = (prev, next) => prev && next && Object.values(prev).join('') !== Object.values(next).join('');
 class WordForm extends Component {
   static propTypes = {
     checkIsLoading: PropTypes.func.isRequired,
@@ -38,15 +29,15 @@ class WordForm extends Component {
   };
 
   static defaultProps = {
-    word: null
+    word: {}
   };
 
   state = {
-    word: WORD_INITIAL_STATE
+    word: WORD_INITIAL_VALUES
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
-    compareWords(prevState.word, nextProps.word)
+    nextProps.word && nextProps.word._id !== prevState.word._id
       ? { word: nextProps.word }
       : prevState;
 

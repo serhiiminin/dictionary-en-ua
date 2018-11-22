@@ -24,8 +24,7 @@ const UK = "uk";
 
 const composeSearchData = text => {
   const translatingWord = text.trim();
-  const from =
-    encodeURIComponent(translatingWord) === translatingWord ? EN : UK;
+  const from = encodeURIComponent(translatingWord) === translatingWord ? EN : UK;
   const to = encodeURIComponent(translatingWord) === translatingWord ? UK : EN;
 
   return { text: translatingWord, from, to };

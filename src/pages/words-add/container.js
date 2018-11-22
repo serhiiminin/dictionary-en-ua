@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { WordForm } from "../../components";
+import wordShape from '../../constants/shapes';
 
 class AddWordContainer extends Component {
   componentWillUnmount() {
@@ -24,11 +25,11 @@ AddWordContainer.propTypes = {
   saveWord: PropTypes.func.isRequired,
   checkIsLoading: PropTypes.func.isRequired,
   cleanWord: PropTypes.func.isRequired,
-  word: PropTypes.shape({})
+  word: wordShape(PropTypes),
 };
 
 AddWordContainer.defaultProps = {
-  word: null
+  word: {}
 };
 
 export default AddWordContainer;
