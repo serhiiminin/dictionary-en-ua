@@ -29,4 +29,6 @@ const normalizeWord = (wordData = {}) => {
   };
 };
 
-export { mergeArrays, addIdForArrayItems, normalizeWord };
+const denormalizeWord = ({ _id, ...wordWithoutId }) => wordWithoutId;
+
+export { mergeArrays, addIdForArrayItems, normalizeWord, denormalizeWord };

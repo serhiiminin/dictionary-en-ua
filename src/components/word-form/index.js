@@ -37,7 +37,7 @@ class WordForm extends Component {
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
-    nextProps.word && nextProps.word._id !== prevState.word._id
+    nextProps.word._id !== prevState.word._id
       ? { word: nextProps.word }
       : prevState;
 
