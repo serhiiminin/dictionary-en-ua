@@ -16,7 +16,7 @@ import styles from './styles';
 const SEARCH_INPUT_TIMEOUT = 500;
 
 const initialState = {
-  searchValue: ""
+  searchValue: "",
 };
 
 const EN = "en";
@@ -33,19 +33,19 @@ const composeSearchData = text => {
 
 class SearchWordContainer extends Component {
   static propTypes = {
-    foundWord: PropTypes.shape({}),
+    word: PropTypes.shape({}),
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     saveWord: PropTypes.func.isRequired,
     searchWord: PropTypes.func.isRequired,
-    cleanFoundWord: PropTypes.func.isRequired,
+    cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     setWordToState: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
-    foundWord: {},
+    word: {},
     classes: {},
   };
 
@@ -54,12 +54,12 @@ class SearchWordContainer extends Component {
   componentDidMount() {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
-
+    
     if (searchParams.query) {
       this.searchWord(searchParams.query);
     }
   }
-
+  
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
@@ -96,27 +96,29 @@ class SearchWordContainer extends Component {
   };
 
   handleEditBeforeSaving = () => {
-    const { history, setWordToState, foundWord } = this.props;
+    const { history, setWordToState, word } = this.props;
 
-    return Promise.resolve(setWordToState(foundWord)).then(() => {
+    return Promise.resolve(setWordToState(word))
+    .then(() => {
       this.setState({ ...initialState });
       history.push(routes.words.add);
     });
   };
 
   handleSaveWord = () => {
-    const { saveWord, foundWord, cleanFoundWord } = this.props;
+    const { saveWord, word, cleanWord } = this.props;
 
-    return saveWord(foundWord).then(() => {
-      this.cleanSearchValue();
-      return cleanFoundWord();
-    });
+    return saveWord(word)
+      .then(() => {
+        this.cleanSearchValue();
+        return cleanWord();
+      });
   };
 
   render() {
     const { searchValue } = this.state;
-    const { foundWord, checkIsLoading, classes } = this.props;
-    const isEmpty = !Object.keys(foundWord).length;
+    const { word, checkIsLoading, classes } = this.props;
+    const isEmpty = !Object.keys(word).length;
     const loading = checkIsLoading(loadingNames.searchWord);
 
     return (
@@ -147,7 +149,7 @@ class SearchWordContainer extends Component {
             </Button>
           </ControlsSeparator>
         </div>
-        <WordPreview word={foundWord} />
+        <WordPreview word={word} />
       </main>
     );
   }

@@ -7,7 +7,7 @@ import api from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { parseSearchParams } from "../helpers/join-url";
-import { withFoundWord } from "./found-word";
+import { normalizeWord } from "../helpers/word-utils";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
 import { withTokens } from "./tokens";
@@ -35,7 +35,6 @@ class WordsProviderCmp extends Component {
     showNotification: PropTypes.func.isRequired,
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
-    setFoundWord: PropTypes.func.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     googleToken: PropTypes.shape({})
@@ -146,7 +145,11 @@ class WordsProviderCmp extends Component {
             downsizedGifs &&
             downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
-          return this.props.setFoundWord({ ...foundWord, gif: randomGif });
+          this.setState({ 
+            word: {
+            ...normalizeWord(foundWord), 
+            gif: randomGif, 
+          }});
         })
     });
 
@@ -185,7 +188,7 @@ class WordsProviderCmp extends Component {
   render() {
     const { wordsList, word, count, gif } = this.state;
     const { children } = this.props;
-
+    
     return (
       <WordsContext.Provider
         value={{
@@ -217,7 +220,6 @@ class WordsProviderCmp extends Component {
 const WordsProvider = compose(
   withRouter,
   withTokens,
-  withFoundWord,
   withLoadingNames,
   withNotifications
 )(WordsProviderCmp);
