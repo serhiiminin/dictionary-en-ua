@@ -23,11 +23,13 @@ class TokensProvider extends Component {
     }
   };
 
-  cleanGoogleToken = () => {
-    this.setState({ googleToken: null });
-    window.localStorage.clear("google");
+  cleanGoogleToken = callback => {
+    this.setState({ googleToken: null }, () => {
+      window.localStorage.clear("google");
+      callback();
+    });
   };
-  
+
   render() {
     const { googleToken } = this.state;
     const { children } = this.props;

@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { GoogleLogin } from "react-google-login";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { Button } from "../../components";
 import notificationType from "../../constants/notifications-type";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 class Login extends Component {
@@ -13,16 +14,17 @@ class Login extends Component {
     setGoogleToken: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
-    classes: composeClassesPropTypes(styles),
+    classes: composeClassesPropTypes(styles)
   };
 
   static defaultProps = {
     classes: {}
-  }
+  };
 
   onSuccess = response =>
-    Promise.resolve(this.props.setGoogleToken(response))
-    .then(() => this.props.history.goBack());
+    Promise.resolve(this.props.setGoogleToken(response)).then(() =>
+      this.props.history.goBack()
+    );
 
   onFailure = error => {
     this.props.showNotification(error.message, notificationType.console.error);
@@ -37,9 +39,18 @@ class Login extends Component {
         clientId={REACT_APP_GOOGLE_CLIENT_ID}
         onSuccess={this.onSuccess}
         onFailure={this.onFailure}
-      >
-        <AccountCircle />
-      </GoogleLogin>
+        color="primary"
+        render={renderProps => (
+          <Button
+            onClick={renderProps.onClick}
+            color="secondary"
+            variant="contained"
+            title="Login with google account"
+          >
+            <AccountCircle /> Login with google account
+          </Button>
+        )}
+      />
     );
   }
 }
