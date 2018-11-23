@@ -15,7 +15,7 @@ const getIndexOfDiscrepancy = originString => stringToCompare =>
 
 class LearnWordsContainer extends Component {
   static propTypes = {
-    fetchWordsList: PropTypes.func.isRequired,
+    fetchWordsToLearn: PropTypes.func.isRequired,
     cleanWordsList: PropTypes.func.isRequired,
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
@@ -44,7 +44,7 @@ class LearnWordsContainer extends Component {
       : prevState;
 
   componentDidMount() {
-    this.props.fetchWordsList();
+    this.props.fetchWordsToLearn();
   }
 
   componentWillUnmount() {
