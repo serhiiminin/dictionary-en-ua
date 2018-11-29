@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
-import { Checkbox, Fade, LinearProgress } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 import Delete from "@material-ui/icons/Delete";
 import loadingNames from "../../constants/loading-names";
 import { parseSearchParams, joinRoute } from "../../helpers/join-url";
@@ -129,9 +129,6 @@ class WordsTable extends Component {
               <Delete />
             </ButtonControl>
           </Toolbar>
-          <Fade in={loading}>
-            <LinearProgress color="secondary" variant="query" />
-          </Fade>
           <WordsList
             wordsList={wordsList}
             onWordCheck={this.handleOnCheck}
