@@ -7,7 +7,7 @@ import api from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { parseSearchParams } from "../helpers/join-url";
-import { normalizeWord, denormalizeWord } from "../helpers/word-utils";
+import { normalizeWord } from "../helpers/word-utils";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
 import { withTokens } from "./tokens";

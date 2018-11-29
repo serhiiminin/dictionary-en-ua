@@ -22,9 +22,7 @@ class Login extends Component {
   };
 
   onSuccess = response =>
-    Promise.resolve(this.props.setGoogleToken(response)).then(() =>
-      this.props.history.goBack()
-    );
+    this.props.setGoogleToken(response, () => this.props.history.goBack());
 
   onFailure = error => {
     this.props.showNotification(error.message, notificationType.console.error);
