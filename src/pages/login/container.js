@@ -45,7 +45,8 @@ class Login extends Component {
             variant="contained"
             title="Login with google account"
           >
-            <AccountCircle /> Login with google account
+            <AccountCircle />
+            Login with google account
           </Button>
         )}
       />

@@ -71,14 +71,8 @@ class WordsProviderCmp extends Component {
   setWordToState = word => this.setState({ word });
 
   handleFetch = ({ loadingName, requestHandler, responseHandler }) => {
-    const {
-      showNotification,
-      startLoading,
-      stopLoading,
-      googleToken,
-      history
-    } = this.props;
-
+    const { showNotification, startLoading, stopLoading, googleToken, history } = this.props;
+    
     return Promise.resolve(startLoading(loadingName))
       .then(() => requestHandler(googleToken))
       .then(responseHandler)
@@ -117,7 +111,7 @@ class WordsProviderCmp extends Component {
     return this.handleFetch({
       loadingName: loadingNames.wordsList,
       requestHandler: token =>
-        api.getWordsList({ query, googleId: token.googleId }, token),
+        api.getWordsList({ query, googleId: token && token.googleId }, token),
       responseHandler: ({ items, count }) =>
         this.setState({ wordsList: items, count })
     });
@@ -131,7 +125,7 @@ class WordsProviderCmp extends Component {
         api.createWord(
           {
             ...word,
-            googleId: tokenData.googleId
+            googleId: tokenData && tokenData.googleId
           },
           tokenData
         ),
