@@ -7,7 +7,7 @@ import api from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { parseSearchParams } from "../helpers/join-url";
-import { normalizeWord } from "../helpers/word-utils";
+import { normalizeWord, denormalizeWord } from "../helpers/word-utils";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
 import { withTokens } from "./tokens";
@@ -28,7 +28,6 @@ const wordsInitialState = {
   count: 0,
   gif: ""
 };
-
 class WordsProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -106,10 +105,10 @@ class WordsProviderCmp extends Component {
     });
   };
 
-  createWord = data =>
+  createWord = word =>
     this.handleFetch({
       loadingName: loadingNames.saveWord,
-      requestHandler: token => api.createWord(data, token),
+      requestHandler: token => api.createWord(denormalizeWord(word), token),
       responseHandler: () =>
         this.props.showNotification("The word has been saved successfully", notificationType.success)
     });
@@ -188,7 +187,7 @@ class WordsProviderCmp extends Component {
   render() {
     const { wordsList, word, count, gif } = this.state;
     const { children } = this.props;
-    
+
     return (
       <WordsContext.Provider
         value={{

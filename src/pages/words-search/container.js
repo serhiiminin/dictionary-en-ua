@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
+import uuid from "uuid";
 import {
   Button,
   ControlsSeparator,
@@ -10,22 +11,18 @@ import {
 import loadingNames from "../../constants/loading-names";
 import { joinRoute, parseSearchParams } from "../../helpers/join-url";
 import routes from "../../routes";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import wordShape from '../../constants/shapes';
+import styles from "./styles";
 
 const SEARCH_INPUT_TIMEOUT = 500;
-
-const initialState = {
-  searchValue: "",
-};
 
 const EN = "en";
 const UK = "uk";
 
 const composeSearchData = text => {
   const translatingWord = text.trim();
-  const from =
-    encodeURIComponent(translatingWord) === translatingWord ? EN : UK;
+  const from = encodeURIComponent(translatingWord) === translatingWord ? EN : UK;
   const to = encodeURIComponent(translatingWord) === translatingWord ? UK : EN;
 
   return { text: translatingWord, from, to };
@@ -33,7 +30,7 @@ const composeSearchData = text => {
 
 class SearchWordContainer extends Component {
   static propTypes = {
-    word: PropTypes.shape({}),
+    word: wordShape(PropTypes),
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     saveWord: PropTypes.func.isRequired,
@@ -41,31 +38,40 @@ class SearchWordContainer extends Component {
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     setWordToState: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles),
+    classes: composeClassesPropTypes(styles)
   };
 
   static defaultProps = {
     word: {},
-    classes: {},
+    classes: {}
   };
 
-  state = initialState;
+  state = {
+    searchValue: "",
+    isToEditMode: false
+  };
 
   componentDidMount() {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
-    
+
     if (searchParams.query) {
       this.searchWord(searchParams.query);
     }
   }
-  
+
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
 
     if (this.props.location.search !== prevProps.location.search && searchParams.query) {
       this.searchWord(searchParams.query);
+    }
+  }
+
+  componentWillUnmount() {
+    if (!this.state.isToEditMode) {
+      this.props.cleanWord();
     }
   }
 
@@ -97,10 +103,11 @@ class SearchWordContainer extends Component {
 
   handleEditBeforeSaving = () => {
     const { history, setWordToState, word } = this.props;
-
-    return Promise.resolve(setWordToState(word))
-    .then(() => {
-      this.setState({ ...initialState });
+    this.setState({
+      isToEditMode: true,
+      searchValue: ""
+    }, () => {
+      setWordToState({ ...word, _id: uuid() });
       history.push(routes.words.add);
     });
   };
@@ -108,11 +115,10 @@ class SearchWordContainer extends Component {
   handleSaveWord = () => {
     const { saveWord, word, cleanWord } = this.props;
 
-    return saveWord(word)
-      .then(() => {
-        this.cleanSearchValue();
-        return cleanWord();
-      });
+    return saveWord(word).then(() => {
+      this.cleanSearchValue();
+      return cleanWord();
+    });
   };
 
   render() {
