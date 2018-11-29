@@ -18,7 +18,7 @@ const icons = {
 };
 
 const NotificationItem = ({ classes, onClick, text, type }) => (
-  <Grow in timeout={400}>
+  <Grow in={!!text}>
     <li className={classes.notification}>
       <div className={classes.topLine}>
         {icons[type]}

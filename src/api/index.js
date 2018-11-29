@@ -24,7 +24,7 @@ export const createApiMethods = ({ words = '', giphy = '' }) => fetcher => {
         
       return googleAuthProxy(requests.post(url, { body }), tokens);
     },
-    getWordsListToLearn: tokens => {
+    getWordsListToLearn: (params, tokens) => {
       const url = joinUrl({ url: words, paths: ["list"] });
       const yesterday = new Date();
 
@@ -33,7 +33,8 @@ export const createApiMethods = ({ words = '', giphy = '' }) => fetcher => {
         requests.post(url, {
           body: {
             timesLearnt: { $gte: 0, $lte: 5 },
-            dateLastLearnt: { $gte: new Date(0), $lte: yesterday }
+            dateLastLearnt: { $gte: new Date(0), $lte: yesterday },
+            ...params,
           }
         }),
         tokens

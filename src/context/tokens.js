@@ -16,18 +16,20 @@ class TokensProvider extends Component {
     this.cleanGoogleToken();
   }
 
-  setGoogleToken = tokenData => {
+  setGoogleToken = (tokenData, callback) => {
     if (tokenData) {
-      this.setState({ googleToken: tokenData });
+      this.setState({ googleToken: tokenData }, () => { callback(); });
       window.localStorage.setItem("google", JSON.stringify(tokenData));
     }
   };
 
-  cleanGoogleToken = () => {
-    this.setState({ googleToken: null });
-    window.localStorage.clear("google");
+  cleanGoogleToken = callback => {
+    this.setState({ googleToken: null }, () => {
+      window.localStorage.clear("google");
+      callback();
+    });
   };
-  
+
   render() {
     const { googleToken } = this.state;
     const { children } = this.props;
