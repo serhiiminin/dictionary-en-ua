@@ -8,10 +8,10 @@ const theme = {
       light: '#BBB193',
       contrastText: '#C2948A',
       notification: {
-        success: '#66D4CA',
-        error: '#C2948A',
-        warning: '#BBB193',
-        info: '#CBE5F6',
+        success: '#83F570',
+        error: '#F21600',
+        warning: '#FAE639',
+        info: '#A9D9E4',
       }
     },
     opacity: {
