@@ -31,7 +31,7 @@ const muiTheme = createMuiTheme({
         textTransform: "none",
         transition: theme.main.transition,
         "&:hover": {
-          background: theme.main.colors.background,
+          background: theme.main.colors.main,
           opacity: theme.main.opacity.disabled
         }
       },

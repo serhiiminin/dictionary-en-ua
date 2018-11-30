@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { List, ListItem } from "@material-ui/core";
+import { List, ListItem, Zoom } from "@material-ui/core";
 import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp";
 import { SelectWithOptions, Button } from "..";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const Toolbar = ({
   checkAllControl,
@@ -15,14 +15,14 @@ const Toolbar = ({
   onChangeSortBy,
   isAnyChecked,
   children,
-  classes,
+  classes
 }) => (
   <List>
     <ListItem divider>
       <div>{checkAllControl}</div>
       <div className={classes.toolbarWrapper}>
         {isAnyChecked ? (
-          children
+          <Zoom in={isAnyChecked}>{children}</Zoom>
         ) : (
           <Fragment>
             <Button
@@ -67,15 +67,15 @@ Toolbar.propTypes = {
   onChangeSortBy: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   isAnyChecked: PropTypes.bool,
-  classes: composeClassesPropTypes(styles),
+  classes: composeClassesPropTypes(styles)
 };
 
 Toolbar.defaultProps = {
   checkAllControl: null,
-  sortBy: 'dateCreated',
-  sortDirection: 'ascend',
+  sortBy: "dateCreated",
+  sortDirection: "ascend",
   isAnyChecked: false,
-  classes: {},
+  classes: {}
 };
 
 export default Toolbar;
