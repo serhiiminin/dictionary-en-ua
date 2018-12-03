@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactRouterPropTypes from 'react-router-prop-types'
+import ReactRouterPropTypes from "react-router-prop-types";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import List from "@material-ui/icons/List";
 import Home from "@material-ui/icons/Home";
@@ -16,28 +16,40 @@ import styles from "./styles";
 const createLinks = isUserLoggedIn => [
   {
     path: routes.root,
-    icon: <Home />
+    icon: <Home />,
+    placeholder: "Home"
   },
   {
     path: routes.words.list.all,
-    icon: <List />
+    icon: <List />,
+    placeholder: "My words"
   },
   {
     path: routes.words.add,
-    icon: <NoteAdd />
+    icon: <NoteAdd />,
+    placeholder: "Add a word"
   },
   {
     path: routes.words.search,
-    icon: <Search />
+    icon: <Search />,
+    placeholder: "Search a word"
   },
   {
     path: routes.words.learn,
-    icon: <Rowing />
+    icon: <Rowing />,
+    placeholder: "Learn words"
   },
-  {
-    path: isUserLoggedIn ? routes.logout : routes.login,
-    icon: isUserLoggedIn ? <ExitToApp /> : <Input />
-  }
+  isUserLoggedIn
+    ? {
+        path: routes.logout,
+        icon: <ExitToApp />,
+        placeholder: "Logout"
+      }
+    : {
+        path: routes.login,
+        icon: <Input />,
+        placeholder: "Login"
+      }
 ];
 
 const HeaderNavigation = ({ isUserLoggedIn, classes, history, location }) => (
@@ -47,8 +59,14 @@ const HeaderNavigation = ({ isUserLoggedIn, classes, history, location }) => (
     onChange={(_, value) => history.push(value)}
     className={classes.root}
   >
-    {createLinks(isUserLoggedIn).map(({ icon, path }) => (
-      <BottomNavigationAction key={path} value={path} icon={icon} />
+    {createLinks(isUserLoggedIn).map(({ icon, path, placeholder }) => (
+      <BottomNavigationAction
+        key={path}
+        value={path}
+        icon={icon}
+        label={placeholder}
+        showLabel
+      />
     ))}
   </BottomNavigation>
 );
@@ -56,7 +74,7 @@ const HeaderNavigation = ({ isUserLoggedIn, classes, history, location }) => (
 HeaderNavigation.propTypes = {
   classes: composeClassesPropTypes(styles),
   isUserLoggedIn: PropTypes.bool,
-  history: ReactRouterPropTypes.history.isRequired, 
+  history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired
 };
 
