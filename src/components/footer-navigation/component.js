@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ReactRouterPropTypes from 'react-router-prop-types'
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import List from "@material-ui/icons/List";
+import Home from "@material-ui/icons/Home";
 import NoteAdd from "@material-ui/icons/NoteAdd";
 import Rowing from "@material-ui/icons/Rowing";
 import Search from "@material-ui/icons/Search";
@@ -13,6 +14,10 @@ import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import styles from "./styles";
 
 const createLinks = isUserLoggedIn => [
+  {
+    path: routes.root,
+    icon: <Home />
+  },
   {
     path: routes.words.list.all,
     icon: <List />
