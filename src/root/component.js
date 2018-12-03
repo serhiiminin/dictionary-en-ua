@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "react-jss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core";
-import { Header, BlocksWrapper, Notifications } from "../components";
+import { Header, BlocksWrapper, Notifications, Footer } from "../components";
 import {
   LoginContainer,
   LogoutContainer,
@@ -39,6 +39,7 @@ const Root = () => (
                 <Route exact path={routes.words.search} component={WordsSearchContainer} />
                 <Route component={PageNotFoundContainer} />
               </Switch>
+              <Footer />
             </BlocksWrapper>
           </Notifications>
         </StateProvider>

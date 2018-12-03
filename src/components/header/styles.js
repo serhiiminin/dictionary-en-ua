@@ -1,8 +1,9 @@
 const styles = theme => ({
   header: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
     padding: `${theme.main.padding.large} 0`,
+  },
+  headerLinkWrapper: {
+    margin: 0,
   },
   headerLink: {
     color: theme.palette.text.primary,

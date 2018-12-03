@@ -25,7 +25,7 @@ class Login extends Component {
     this.props.setGoogleToken(response, () => this.props.history.goBack());
 
   onFailure = error => {
-    this.props.showNotification(error.message, notificationType.console.error);
+    this.props.showNotification(error.message, notificationType.error);
   };
 
   render() {
