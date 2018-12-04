@@ -1,25 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const ButtonCustomized = ({ classes, isActive, ...restProps }) => (
-  <Button
-    classes={{ root: classes.button }}
-    {...restProps}
-  />
+  <Button classes={{ root: classes.button }} {...restProps} />
 );
 
 ButtonCustomized.propTypes = {
   isActive: PropTypes.bool,
-  classes: composeClassesPropTypes(styles),
+  classes: composeClassesPropTypes(styles)
 };
 
 ButtonCustomized.defaultProps = {
   isActive: false,
-  classes: {},
+  classes: {}
 };
-
 
 export default ButtonCustomized;

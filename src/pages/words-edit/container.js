@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { WordForm } from '../../components';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
+import { WordForm } from "../../components";
 
 class WordEdit extends Component {
   static propTypes = {
@@ -10,31 +10,25 @@ class WordEdit extends Component {
     cleanWord: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
     editWord: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
+    checkIsLoading: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    word: {},
+    word: {}
   };
 
   componentDidMount() {
-    this.props.fetchWord(this.props.match.params.id)
+    this.props.fetchWord(this.props.match.params.id);
   }
 
   componentWillUnmount() {
-    this.props.cleanWord()
+    this.props.cleanWord();
   }
 
   render() {
     const { word, editWord, checkIsLoading } = this.props;
 
-    return (
-      <WordForm
-        word={word}
-        onSubmit={editWord}
-        checkIsLoading={checkIsLoading}
-      />
-    )
+    return <WordForm word={word} onSubmit={editWord} checkIsLoading={checkIsLoading} />;
   }
 }
 

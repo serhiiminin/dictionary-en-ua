@@ -3,15 +3,13 @@ import PropTypes from "prop-types";
 import notificationType from "../../constants/notifications-type";
 import loadingNames from "../../constants/loading-names";
 import { WordPreview, LearningBoard, Button } from "../../components";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const MAX_COUNT_ATTEMPTS = 3;
 
 const getIndexOfDiscrepancy = originString => stringToCompare =>
-  originString
-    .split("")
-    .findIndex((letter, index) => letter !== stringToCompare[index]);
+  originString.split("").findIndex((letter, index) => letter !== stringToCompare[index]);
 
 class LearnWordsContainer extends Component {
   static propTypes = {
@@ -21,18 +19,18 @@ class LearnWordsContainer extends Component {
     relearnWord: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles),
+    classes: composeClassesPropTypes(styles)
   };
 
   static defaultProps = {
     classes: {}
-  }
+  };
 
   state = {
     countOfTry: 0,
     guessed: false,
     inputValue: "",
-    currentWord: {},
+    currentWord: {}
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
@@ -84,10 +82,7 @@ class LearnWordsContainer extends Component {
             );
           } else {
             this.setState({ countOfTry: 0 });
-            showNotification(
-              `You don't remember this word. Keep learning it!`,
-              notificationType.warning
-            );
+            showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
             relearnWord(_id);
           }
         }
@@ -101,16 +96,10 @@ class LearnWordsContainer extends Component {
     if (currentWord && Object.keys(currentWord).length > 0) {
       const { en } = currentWord;
       const discrepancyIndex = getIndexOfDiscrepancy(en)(inputValue);
-      const countOfHintsLetter =
-        discrepancyIndex >= 0 ? discrepancyIndex : en.length - 1;
+      const countOfHintsLetter = discrepancyIndex >= 0 ? discrepancyIndex : en.length - 1;
 
       this.setState({
-        inputValue: en.slice(
-          0,
-          countOfHintsLetter < en.length
-            ? countOfHintsLetter + 1
-            : countOfHintsLetter
-        )
+        inputValue: en.slice(0, countOfHintsLetter < en.length ? countOfHintsLetter + 1 : countOfHintsLetter)
       });
     }
   };
@@ -134,11 +123,7 @@ class LearnWordsContainer extends Component {
 
     return guessed ? (
       <Fragment>
-        <Button
-          onClick={this.onLearnNextWord}
-          variant="contained"
-          color="primary"
-        >
+        <Button onClick={this.onLearnNextWord} variant="contained" color="primary">
           Learn the next word
         </Button>
         <WordPreview word={currentWord} />

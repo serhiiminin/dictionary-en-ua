@@ -21,8 +21,7 @@ class Login extends Component {
     classes: {}
   };
 
-  onSuccess = response =>
-    this.props.setGoogleToken(response, () => this.props.history.goBack());
+  onSuccess = response => this.props.setGoogleToken(response, () => this.props.history.goBack());
 
   onFailure = error => {
     this.props.showNotification(error.message, notificationType.error);
@@ -39,12 +38,7 @@ class Login extends Component {
         onFailure={this.onFailure}
         color="primary"
         render={renderProps => (
-          <Button
-            onClick={renderProps.onClick}
-            color="secondary"
-            variant="contained"
-            title="Login with google account"
-          >
+          <Button onClick={renderProps.onClick} color="secondary" variant="contained" title="Login with google account">
             <AccountCircle />
             Login with google account
           </Button>

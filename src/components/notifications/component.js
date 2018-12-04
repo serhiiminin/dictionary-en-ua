@@ -5,18 +5,10 @@ import { SnackbarContent } from "..";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import styles from "./styles";
 
-const Notifications = ({
-  classes,
-  children,
-  notifications,
-  hideNotification
-}) => (
+const Notifications = ({ classes, children, notifications, hideNotification }) => (
   <Fragment>
     {children}
-    <Snackbar
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      open={notifications.length > 0}
-    >
+    <Snackbar anchorOrigin={{ vertical: "bottom", horizontal: "right" }} open={notifications.length > 0}>
       <div>
         {notifications
           .reduceRight((acc, cur) => acc.concat(cur), [])

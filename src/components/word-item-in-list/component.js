@@ -1,52 +1,27 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import moment from "moment";
 import Edit from "@material-ui/icons/Edit";
-import {
-  Checkbox,
-  Fade,
-  CircularProgress,
-  Grid,
-  ListItemText
-} from "@material-ui/core";
+import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from "@material-ui/core";
 import { joinRoute } from "../../helpers/join-url";
 import routes from "../../routes";
 import { ButtonWithRouter } from "..";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const EMPTY_VALUE = "-";
 
 const WordItemInList = props => {
   const { isChecked, onWordCheck, word, linkToWord, loading, classes } = props;
-  const {
-    _id,
-    en,
-    ua,
-    transcription,
-    dateCreated,
-    dateLastLearnt,
-    timesLearnt
-  } = word;
+  const { _id, en, ua, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
   const lastLearnt =
-    dateLastLearnt && dateLastLearnt === new Date(0).toISOString()
-      ? "Never"
-      : moment(dateLastLearnt).fromNow();
+    dateLastLearnt && dateLastLearnt === new Date(0).toISOString() ? "Never" : moment(dateLastLearnt).fromNow();
 
   return (
-    <Grid
-      container
-      spacing={16}
-      alignItems="center"
-      className={classes.wordItemWrapper}
-    >
+    <Grid container spacing={16} alignItems="center" className={classes.wordItemWrapper}>
       <Grid item xs={1}>
-        <Checkbox
-          onChange={() => onWordCheck(_id)}
-          checked={isChecked}
-          disabled={loading}
-        />
+        <Checkbox onChange={() => onWordCheck(_id)} checked={isChecked} disabled={loading} />
       </Grid>
       <Grid item xs={7} className={classes.description}>
         <ListItemText
@@ -57,25 +32,22 @@ const WordItemInList = props => {
               </Fade>
             ) : (
               <Fragment>
-                {en && <Link className={classes.wordLink} to={linkToWord}>{en}</Link>}
-                {[en && " ", transcription && `[${transcription}]`, ua]
-                  .filter(Boolean)
-                  .join(" - ")}
+                {en && (
+                  <Link className={classes.wordLink} to={linkToWord}>
+                    {en}
+                  </Link>
+                )}
+                {[en && " ", transcription && `[${transcription}]`, ua].filter(Boolean).join(" - ")}
               </Fragment>
             )
           }
-          secondary={[
-            timesLearnt != null && `Times learnt: ${timesLearnt}`,
-            lastLearnt && `Last learnt: ${lastLearnt}`
-          ]
+          secondary={[timesLearnt != null && `Times learnt: ${timesLearnt}`, lastLearnt && `Last learnt: ${lastLearnt}`]
             .filter(Boolean)
             .join(` · `)}
         />
       </Grid>
       <Grid item xs={3}>
-        <div className={classes.wordTime}>
-          {(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}
-        </div>
+        <div className={classes.wordTime}>{(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}</div>
       </Grid>
       <Grid item xs={1}>
         <ButtonWithRouter
@@ -105,7 +77,7 @@ WordItemInList.propTypes = {
   onWordCheck: PropTypes.func,
   isChecked: PropTypes.bool,
   loading: PropTypes.bool,
-  classes: composeClassesPropTypes(styles),
+  classes: composeClassesPropTypes(styles)
 };
 
 WordItemInList.defaultProps = {
@@ -120,7 +92,7 @@ WordItemInList.defaultProps = {
   linkToWord: "",
   isChecked: false,
   loading: false,
-  classes: {},
+  classes: {}
 };
 
 export default WordItemInList;
