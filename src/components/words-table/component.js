@@ -45,16 +45,12 @@ class WordsTable extends Component {
   handleOnCheckAll = () =>
     this.setState(prevState => ({
       checked:
-        prevState.checked.length !== this.props.wordsList.length
-          ? [...this.props.wordsList.map(word => word._id)]
-          : []
+        prevState.checked.length !== this.props.wordsList.length ? [...this.props.wordsList.map(word => word._id)] : []
     }));
 
   handleDeleteWord = () =>
     this.state.checked.length > 0 &&
-    Promise.resolve(
-      this.state.checked.map(id => this.props.deleteWord(id))
-    ).then(() => this.setState({ checked: [] }));
+    Promise.resolve(this.state.checked.map(id => this.props.deleteWord(id))).then(() => this.setState({ checked: [] }));
 
   generateUrl = params => {
     const { location } = this.props;
@@ -67,53 +63,32 @@ class WordsTable extends Component {
   };
 
   handleOnChangeSelect = (event, field) =>
-    this.props.history.push(
-      this.generateUrl({ page: 1, [field]: event.target.value })
-    );
+    this.props.history.push(this.generateUrl({ page: 1, [field]: event.target.value }));
 
   handleOnChangeDirection = () => {
     const { location, history } = this.props;
 
     return history.push(
       this.generateUrl({
-        sortDirection:
-          parseSearchParams(location.search).sortDirection === "descend"
-            ? "ascend"
-            : "descend"
+        sortDirection: parseSearchParams(location.search).sortDirection === "descend" ? "ascend" : "descend"
       })
     );
   };
 
-  handleOnChangePage = pageNumber =>
-    this.props.history.push(this.generateUrl({ page: pageNumber }));
+  handleOnChangePage = pageNumber => this.props.history.push(this.generateUrl({ page: pageNumber }));
 
   render() {
     const { checked } = this.state;
-    const {
-      wordsList,
-      wordsCount,
-      checkIsLoading,
-      getWordsSearchParams,
-      location,
-      classes
-    } = this.props;
-    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(
-      location
-    );
+    const { wordsList, wordsCount, checkIsLoading, getWordsSearchParams, location, classes } = this.props;
+    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(location);
     const loading = checkIsLoading(loadingNames.wordsList);
-    const isCheckedAll =
-      checked.length === wordsList.length && checked.length > 0;
+    const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
 
     return (
       <main>
         <div className={classes.wordsTableWrapper}>
           <Toolbar
-            checkAllControl={
-              <Checkbox
-                onChange={this.handleOnCheckAll}
-                checked={isCheckedAll}
-              />
-            }
+            checkAllControl={<Checkbox onChange={this.handleOnCheckAll} checked={isCheckedAll} />}
             isAnyChecked={checked.length > 0}
             sortBy={sortBy}
             sortDirection={sortDirection}
@@ -140,9 +115,7 @@ class WordsTable extends Component {
             countPerPage={countPerPage}
             page={page}
             maxPageCount={Math.ceil(wordsCount / countPerPage)}
-            onChangeCount={event =>
-              this.handleOnChangeSelect(event, "countPerPage")
-            }
+            onChangeCount={event => this.handleOnChangeSelect(event, "countPerPage")}
             onChangePage={this.handleOnChangePage}
           />
         </div>

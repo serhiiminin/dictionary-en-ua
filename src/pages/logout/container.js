@@ -23,10 +23,7 @@ class Logout extends Component {
 
   onSuccess = () =>
     this.props.cleanGoogleToken(() => {
-      this.props.showNotification(
-        "You were successfully logged out!",
-        notificationType.success
-      );
+      this.props.showNotification("You were successfully logged out!", notificationType.success);
       this.props.history.push(routes.login);
     });
 
@@ -38,12 +35,7 @@ class Logout extends Component {
         className={classes.logoutButton}
         onLogoutSuccess={this.onSuccess}
         render={renderProps => (
-          <Button
-            onClick={renderProps.onClick}
-            color="secondary"
-            variant="contained"
-            title="Logout"
-          >
+          <Button onClick={renderProps.onClick} color="secondary" variant="contained" title="Logout">
             <AccountCircle /> Logout
           </Button>
         )}

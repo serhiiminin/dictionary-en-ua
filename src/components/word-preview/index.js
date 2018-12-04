@@ -6,17 +6,7 @@ import { InputsBlock, LineExplanation, ListOfSearchableWords, Image } from "..";
 export const mapValues = items => items.map(item => item.value).filter(Boolean);
 
 const WordPreview = ({ word, loading }) => {
-  const {
-    en,
-    ua,
-    transcription,
-    partOfSpeech,
-    synonyms,
-    antonyms,
-    similarTo,
-    examples,
-    gif
-  } = word;
+  const { en, ua, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples, gif } = word;
   return (
     <div>
       <Fade in={loading}>
@@ -26,13 +16,9 @@ const WordPreview = ({ word, loading }) => {
         <Image src={gif} alt={en} />
         <LineExplanation label="English">{en}</LineExplanation>
         <LineExplanation label="Ukrainian">{ua}</LineExplanation>
-        <LineExplanation label="Transcription">
-          {transcription && `[${transcription}]`}
-        </LineExplanation>
+        <LineExplanation label="Transcription">{transcription && `[${transcription}]`}</LineExplanation>
         <LineExplanation label="Part of speech">
-          <ListOfSearchableWords
-            items={partOfSpeech && mapValues(partOfSpeech)}
-          />
+          <ListOfSearchableWords items={partOfSpeech && mapValues(partOfSpeech)} />
         </LineExplanation>
         <LineExplanation label="Synonyms">
           <ListOfSearchableWords items={synonyms && mapValues(synonyms)} />
@@ -45,13 +31,7 @@ const WordPreview = ({ word, loading }) => {
         </LineExplanation>
       </InputsBlock>
       <InputsBlock title="Examples">
-        {examples
-          ? examples.map(example => (
-              <LineExplanation key={example.id}>
-                {example.value}
-              </LineExplanation>
-            ))
-          : ""}
+        {examples ? examples.map(example => <LineExplanation key={example.id}>{example.value}</LineExplanation>) : ""}
       </InputsBlock>
     </div>
   );

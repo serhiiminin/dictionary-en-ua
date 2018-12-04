@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const LineExplanation = ({ classes, label, children }) => (
   <div className={classes.lineExplanation}>
@@ -13,13 +13,13 @@ const LineExplanation = ({ classes, label, children }) => (
 LineExplanation.propTypes = {
   label: PropTypes.node,
   children: PropTypes.node,
-  classes: composeClassesPropTypes(styles),
+  classes: composeClassesPropTypes(styles)
 };
 
 LineExplanation.defaultProps = {
   label: null,
   children: null,
-  classes: {},
+  classes: {}
 };
 
 export default LineExplanation;

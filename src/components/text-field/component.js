@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TextField } from "@material-ui/core";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const TextFieldCustomized = ({ classes, control, ...restProps }) => (
   <div className={classes.textFieldControl}>
@@ -26,7 +26,7 @@ const TextFieldCustomized = ({ classes, control, ...restProps }) => (
 
 TextFieldCustomized.propTypes = {
   classes: composeClassesPropTypes(styles),
-  control: PropTypes.node,
+  control: PropTypes.node
 };
 
 TextFieldCustomized.defaultProps = {

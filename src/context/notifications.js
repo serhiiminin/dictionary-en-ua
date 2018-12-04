@@ -1,39 +1,35 @@
-import React, { Component, createContext } from 'react';
-import PropTypes from 'prop-types';
-import uuid from 'uuid';
+import React, { Component, createContext } from "react";
+import PropTypes from "prop-types";
+import uuid from "uuid";
 
 const NotificationsContext = createContext({});
 
 const NOTIFICATION_TIMEOUT = 5000;
 
 const notificationInitialState = {
-  notifications: [],
+  notifications: []
 };
 
 class NotificationsProvider extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
   };
 
   state = notificationInitialState;
 
   hideNotification = currentId => {
     this.setState(prevState => ({
-      notifications: [...prevState.notifications]
-          .filter(({ id }) => id !== currentId)
+      notifications: [...prevState.notifications].filter(({ id }) => id !== currentId)
     }));
   };
 
-  showNotification = (text, type, autoHide=true) => {
+  showNotification = (text, type, autoHide = true) => {
     const id = uuid();
 
     this.setState(prevState => ({
-      notifications: [
-        ...prevState.notifications,
-        { id, text, type },
-      ]
+      notifications: [...prevState.notifications, { id, text, type }]
     }));
-    if(autoHide) {
+    if (autoHide) {
       setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
     }
   };
@@ -47,14 +43,17 @@ class NotificationsProvider extends Component {
         value={{
           notifications,
           showNotification: this.showNotification,
-          hideNotification: this.hideNotification,
+          hideNotification: this.hideNotification
         }}
-      >{children}</NotificationsContext.Provider>
-    )
+      >
+        {children}
+      </NotificationsContext.Provider>
+    );
   }
 }
 
-const withNotifications = Cmp => props =>
-  <NotificationsContext.Consumer>{value => <Cmp {...value} {...props} />}</NotificationsContext.Consumer>;
+const withNotifications = Cmp => props => (
+  <NotificationsContext.Consumer>{value => <Cmp {...value} {...props} />}</NotificationsContext.Consumer>
+);
 
 export { NotificationsProvider, withNotifications };

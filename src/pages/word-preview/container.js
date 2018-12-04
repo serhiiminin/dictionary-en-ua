@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { WordPreview } from '../../components';
-import loadingNames from '../../constants/loading-names';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
+import { WordPreview } from "../../components";
+import loadingNames from "../../constants/loading-names";
 
 class WordPreviewContainer extends Component {
   static propTypes = {
@@ -10,11 +10,11 @@ class WordPreviewContainer extends Component {
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
-    word: PropTypes.shape({}),
+    word: PropTypes.shape({})
   };
 
   static defaultProps = {
-    word: {},
+    word: {}
   };
 
   componentDidMount() {
@@ -31,12 +31,7 @@ class WordPreviewContainer extends Component {
     const { word, checkIsLoading } = this.props;
     const loading = checkIsLoading(loadingNames.fetchWord);
 
-    return (
-      <WordPreview
-        loading={loading}
-        word={word}
-      />
-    );
+    return <WordPreview loading={loading} word={word} />;
   }
 }
 

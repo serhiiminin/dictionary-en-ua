@@ -18,7 +18,9 @@ class TokensProvider extends Component {
 
   setGoogleToken = (tokenData, callback) => {
     if (tokenData) {
-      this.setState({ googleToken: tokenData }, () => { callback(); });
+      this.setState({ googleToken: tokenData }, () => {
+        callback();
+      });
       window.localStorage.setItem("google", JSON.stringify(tokenData));
     }
   };
@@ -52,9 +54,7 @@ class TokensProvider extends Component {
 }
 
 const withTokens = Cmp => props => (
-  <TokensContext.Consumer>
-    {value => <Cmp {...value} {...props} />}
-  </TokensContext.Consumer>
+  <TokensContext.Consumer>{value => <Cmp {...value} {...props} />}</TokensContext.Consumer>
 );
 
 export { TokensProvider, withTokens };

@@ -17,9 +17,7 @@ const LearningBoard = ({
   onKnownWord,
   onForgottenWord
 }) => {
-  const textLearnt = `Learnt ${timesLearnt} time${
-    timesLearnt > 1 ? "s" : ""
-  } before`;
+  const textLearnt = `Learnt ${timesLearnt} time${timesLearnt > 1 ? "s" : ""} before`;
 
   return (
     <div>
@@ -33,32 +31,16 @@ const LearningBoard = ({
       <h3>{word}</h3>
       <h5>{timesLearnt != null && textLearnt}</h5>
       <ControlsSeparator align="center">
-        <ButtonControl
-          onClick={onCheckAnswer}
-          disabled={loading}
-          title="Submit my answer"
-        >
+        <ButtonControl onClick={onCheckAnswer} disabled={loading} title="Submit my answer">
           <Done />
         </ButtonControl>
-        <ButtonControl
-          onClick={onGiveAHint}
-          disabled={loading}
-          title="Give me a hint"
-        >
+        <ButtonControl onClick={onGiveAHint} disabled={loading} title="Give me a hint">
           <RemoveRedEye />
         </ButtonControl>
-        <ButtonControl
-          onClick={onKnownWord}
-          disabled={loading}
-          title="I know this word"
-        >
+        <ButtonControl onClick={onKnownWord} disabled={loading} title="I know this word">
           <DoneAll />
         </ButtonControl>
-        <ButtonControl
-          onClick={onForgottenWord}
-          disabled={loading}
-          title="I forgot this word, show me the translation"
-        >
+        <ButtonControl onClick={onForgottenWord} disabled={loading} title="I forgot this word, show me the translation">
           <ErrorOutline />
         </ButtonControl>
       </ControlsSeparator>

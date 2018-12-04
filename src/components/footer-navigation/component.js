@@ -60,13 +60,7 @@ const HeaderNavigation = ({ isUserLoggedIn, classes, history, location }) => (
     className={classes.root}
   >
     {createLinks(isUserLoggedIn).map(({ icon, path, placeholder }) => (
-      <BottomNavigationAction
-        key={path}
-        value={path}
-        icon={icon}
-        label={placeholder}
-        showLabel
-      />
+      <BottomNavigationAction key={path} value={path} icon={icon} label={placeholder} showLabel />
     ))}
   </BottomNavigation>
 );

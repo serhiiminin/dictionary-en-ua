@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
 import { TextField, Button } from "..";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 class InputsBlock extends Component {
   static propTypes = {
@@ -54,12 +54,7 @@ class InputsBlock extends Component {
                 onChange={event => this.handleOnChange(event)}
                 onKeyPress={this.handleEnterPress}
                 control={
-                  <Button
-                    onClick={this.handleOnAddItem}
-                    title="Add new option"
-                    disabled={!input}
-                    mini
-                  >
+                  <Button onClick={this.handleOnAddItem} title="Add new option" disabled={!input} mini>
                     <AddIcon />
                   </Button>
                 }

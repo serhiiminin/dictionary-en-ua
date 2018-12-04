@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import composeClassesPropTypes from '../../helpers/compose-classes-prop-types';
-import styles from './styles';
+import classnames from "classnames";
+import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import styles from "./styles";
 
 const ControlsSeparator = ({ children, classes, align }) => (
-  <div className={`${classes.alignControls} ${align}`}>
-    {children}
-  </div>
+  <div className={classnames(classes.alignControls, align)}>{children}</div>
 );
 
 ControlsSeparator.propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FormControl, InputLabel, Select } from "@material-ui/core";
 
 const SelectBlock = ({ label, ...restProps }) => (
-  <FormControl color='primary'>
+  <FormControl color="primary">
     {label && <InputLabel htmlFor={label}>{label}</InputLabel>}
     <Select {...restProps} />
   </FormControl>

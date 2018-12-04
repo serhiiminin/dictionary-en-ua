@@ -5,14 +5,7 @@ import { Pagination, SelectWithOptions } from "..";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import styles from "./styles";
 
-const PaginationPanel = ({
-  countPerPage,
-  page,
-  maxPageCount,
-  onChangePage,
-  onChangeCount,
-  classes
-}) => (
+const PaginationPanel = ({ countPerPage, page, maxPageCount, onChangePage, onChangeCount, classes }) => (
   <List>
     <ListItem>
       <div className={classes.paginationPanel}>
@@ -29,11 +22,7 @@ const PaginationPanel = ({
             { key: 100, title: 100 }
           ]}
         />
-        <Pagination
-          pageNumber={page}
-          maxPageCount={maxPageCount}
-          onChangePage={onChangePage}
-        />
+        <Pagination pageNumber={page} maxPageCount={maxPageCount} onChangePage={onChangePage} />
       </div>
     </ListItem>
   </List>
