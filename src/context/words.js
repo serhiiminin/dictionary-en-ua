@@ -10,7 +10,7 @@ import { parseSearchParams } from "../helpers/join-url";
 import { normalizeWord } from "../helpers/word-utils";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
-import { withTokens } from "./tokens";
+import { withUser } from "./user";
 import routes from "../routes";
 
 const WordsContext = createContext({});
@@ -214,7 +214,7 @@ class WordsProviderCmp extends Component {
 
 const WordsProvider = compose(
   withRouter,
-  withTokens,
+  withUser,
   withLoadingNames,
   withNotifications
 )(WordsProviderCmp);

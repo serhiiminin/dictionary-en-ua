@@ -5,7 +5,8 @@ const styles = theme => ({
     marginBottom: "10px",
     padding: "10px",
     border: `1px solid ${theme.palette.primary.light}`,
-    borderRadius: theme.main.borderRadius.small
+    borderRadius: theme.main.borderRadius.small,
+    background: theme.palette.background.paper,
   },
   topLine: {
     display: "grid",
