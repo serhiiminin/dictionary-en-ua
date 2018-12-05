@@ -7,15 +7,15 @@ import { WordsProvider } from "./words";
 import { UserProvider } from "./user";
 
 const StateProvider = ({ children }) => (
-  <TokensProvider>
-    <LoadingNamesProvider>
-      <NotificationsProvider>
+  <LoadingNamesProvider>
+    <NotificationsProvider>
+      <TokensProvider>
         <UserProvider>
           <WordsProvider>{children}</WordsProvider>
         </UserProvider>
-      </NotificationsProvider>
-    </LoadingNamesProvider>
-  </TokensProvider>
+      </TokensProvider>
+    </NotificationsProvider>
+  </LoadingNamesProvider>
 );
 
 StateProvider.propTypes = {

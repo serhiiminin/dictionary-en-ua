@@ -52,10 +52,9 @@ class UserProviderCmp extends Component {
       .finally(() => stopLoading(loadingName));
   };
 
-  fetchUser = userId =>
-    this.handleFetch({
+  fetchUser = googleId => this.handleFetch({
       loadingName: loadingNames.fetchWord,
-      requestHandler: token => apiUsers.get(userId, token),
+      requestHandler: token => apiUsers.get(googleId, token),
       responseHandler: user => this.setState({ user })
     });
 
