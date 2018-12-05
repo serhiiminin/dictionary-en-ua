@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from "react-router-prop-types";
 import { compose } from "recompose";
-import api from "../api";
+import { apiUsers } from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { withLoadingNames } from "./loading-names";
@@ -55,7 +55,7 @@ class UserProviderCmp extends Component {
   fetchUser = userId =>
     this.handleFetch({
       loadingName: loadingNames.fetchWord,
-      requestHandler: token => api.getWord(userId, token),
+      requestHandler: token => apiUsers.get(userId, token),
       responseHandler: user => this.setState({ user })
     });
 
@@ -64,7 +64,7 @@ class UserProviderCmp extends Component {
       loadingName: loadingNames.saveWord,
 
       requestHandler: tokenData =>
-        api.createWord(
+        apiUsers.create(
           {
             ...user,
             googleId: tokenData && tokenData.googleId
@@ -78,7 +78,7 @@ class UserProviderCmp extends Component {
   editUser = word =>
     this.handleFetch({
       loadingName: loadingNames.fetchWord,
-      requestHandler: token => api.updateWord(word, token),
+      requestHandler: token => apiUsers.update(word, token),
       responseHandler: () =>
         this.props.showNotification("The user has been updated successfully", notificationType.success)
     });
@@ -86,7 +86,7 @@ class UserProviderCmp extends Component {
   deleteUser = id =>
     this.handleFetch({
       loadingName: loadingNames.deleteWord,
-      requestHandler: token => api.deleteWord(id, token),
+      requestHandler: token => apiUsers.delete(id, token),
       responseHandler: () => this.fetchWordsList()
     }).then(() => this.props.showNotification("The user has been deleted successfully", notificationType.success));
 

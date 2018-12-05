@@ -1,4 +1,4 @@
-import { createApiKeyProxy } from "./fetch-proxy";
+import { createApiKeyProxy } from "./proxies";
 
 function* generateKey() {
   yield 1;
