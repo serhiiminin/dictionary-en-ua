@@ -7,8 +7,8 @@ const { REACT_APP_ENDPOINT_USERS } = process.env;
 
 export const createApiMethodsUsers = endpoint => fetcher => ({
   create: (body, tokens) => fetcher(requests.post(endpoint, { body }), tokens),
-  get: (id, tokens) =>
-    fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), tokens),
+  get: (googleId, tokens) =>
+    fetcher(requests.get(joinUrl({ url: endpoint, paths: [googleId] })), tokens),
   update: (data, tokens) =>
     fetcher(requests.put(joinUrl({ url: endpoint, paths: [data._id] }), { body: data }), tokens),
   delete: (id, tokens) =>

@@ -24,6 +24,7 @@ export { default as SnackbarContent } from './snackbar-content';
 export { default as TextField } from './text-field';
 export { default as TextFieldLoading } from './text-field-loading';
 export { default as Toolbar } from './toolbar';
+export { default as UserIcon } from './user-icon';
 export { default as WordForm } from './word-form';
 export { default as WordItemInList } from './word-item-in-list';
 export { default as WordPreview } from './word-preview';

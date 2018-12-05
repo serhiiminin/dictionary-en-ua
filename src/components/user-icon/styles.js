@@ -1,10 +1,6 @@
 const styles = theme => ({
   header: {
     padding: `${theme.main.padding.large} 0`,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    
   },
   headerLinkWrapper: {
     margin: 0,
