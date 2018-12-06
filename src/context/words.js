@@ -109,7 +109,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.saveWord,
 
       requestHandler: tokenData =>
-        apiWords.createWord(
+        apiWords.create(
           {
             ...word,
             googleId: tokenData && tokenData.googleId
