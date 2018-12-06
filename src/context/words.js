@@ -204,8 +204,7 @@ class WordsProviderCmp extends Component {
           relearnWord: this.relearnWord,
           saveWord: this.createWord,
           searchWord: this.searchWord
-        }}
-      >
+        }}>
         {children}
       </WordsContext.Provider>
     );
