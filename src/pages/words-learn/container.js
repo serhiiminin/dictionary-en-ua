@@ -119,7 +119,7 @@ class LearnWordsContainer extends Component {
   render() {
     const { checkIsLoading, classes } = this.props;
     const { currentWord, inputValue, guessed } = this.state;
-    const loading = checkIsLoading(loadingNames.learnWord);
+    const loading = checkIsLoading(loadingNames.words.learn);
 
     return guessed ? (
       <Fragment>

@@ -17,6 +17,7 @@ class LoadingNamesProvider extends Component {
   handleStartLoading = name =>
     this.setState(prevState => ({
       currentLoadingNames: {
+        ...prevState.currentLoadingNames,
         [name]: (prevState.currentLoadingNames[name] || 0) + 1
       }
     }));
@@ -24,7 +25,8 @@ class LoadingNamesProvider extends Component {
   handleStopLoading = name =>
     this.setState(prevState => ({
       currentLoadingNames: {
-        [name]: prevState.currentLoadingNames[name] - 1
+        ...prevState.currentLoadingNames,
+        [name]: (prevState.currentLoadingNames[name] || 1) - 1
       }
     }));
 
@@ -37,15 +39,14 @@ class LoadingNamesProvider extends Component {
     const { currentLoadingNames } = this.state;
     const { children } = this.props;
     const checkIsLoading = this.checkIsLoading(currentLoadingNames);
-
+    
     return (
       <LoadingNamesContext.Provider
         value={{
           checkIsLoading,
           startLoading: this.handleStartLoading,
           stopLoading: this.handleStopLoading
-        }}
-      >
+        }}>
         {children}
       </LoadingNamesContext.Provider>
     );

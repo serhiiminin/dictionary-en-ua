@@ -10,7 +10,7 @@ import { parseSearchParams } from "../helpers/join-url";
 import { normalizeWord } from "../helpers/word-utils";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
-import { withTokens } from "./tokens";
+import { withUser } from "./user";
 import routes from "../routes";
 
 const WordsContext = createContext({});
@@ -82,7 +82,7 @@ class WordsProviderCmp extends Component {
 
   fetchWord = wordId =>
     this.handleFetch({
-      loadingName: loadingNames.fetchWord,
+      loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWords.get(wordId, token),
       responseHandler: word => this.setState({ word })
     });
@@ -98,7 +98,7 @@ class WordsProviderCmp extends Component {
     };
 
     return this.handleFetch({
-      loadingName: loadingNames.wordsList,
+      loadingName: loadingNames.words.list,
       requestHandler: token => apiWords.getList({ query, googleId: token && token.googleId }, token),
       responseHandler: ({ items, count }) => this.setState({ wordsList: items, count })
     });
@@ -106,10 +106,10 @@ class WordsProviderCmp extends Component {
 
   createWord = word =>
     this.handleFetch({
-      loadingName: loadingNames.saveWord,
+      loadingName: loadingNames.words.save,
 
       requestHandler: tokenData =>
-        apiWords.createWord(
+        apiWords.create(
           {
             ...word,
             googleId: tokenData && tokenData.googleId
@@ -122,7 +122,7 @@ class WordsProviderCmp extends Component {
 
   editWord = word =>
     this.handleFetch({
-      loadingName: loadingNames.fetchWord,
+      loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWords.update(word, token),
       responseHandler: () =>
         this.props.showNotification("The word has been updated successfully", notificationType.success)
@@ -130,14 +130,14 @@ class WordsProviderCmp extends Component {
 
   deleteWord = id =>
     this.handleFetch({
-      loadingName: loadingNames.deleteWord,
+      loadingName: loadingNames.words.delete,
       requestHandler: token => apiWords.delete(id, token),
       responseHandler: () => this.fetchWordsList()
     }).then(() => this.props.showNotification("The word has been deleted successfully", notificationType.success));
 
   searchWord = params =>
     this.handleFetch({
-      loadingName: loadingNames.searchWord,
+      loadingName: loadingNames.words.search,
       requestHandler: token => apiWords.search(params, token),
       responseHandler: foundWord =>
         apiGifs.get({ q: foundWord.en }).then(gifs => {
@@ -155,14 +155,14 @@ class WordsProviderCmp extends Component {
 
   fetchWordsToLearn = () =>
     this.handleFetch({
-      loadingName: loadingNames.learnWord,
-      requestHandler: token => apiWords.getListToLearn({ googleId: token.googleId }, token),
+      loadingName: loadingNames.words.learn,
+      requestHandler: token => apiWords.getListToLearn({ googleId: token && token.googleId }, token),
       responseHandler: ({ items, count }) => this.setState({ wordsList: items, count })
     });
 
   learnWord = wordId =>
     this.handleFetch({
-      loadingName: loadingNames.learnWord,
+      loadingName: loadingNames.words.learn,
       requestHandler: token => apiWords.learn(wordId, token),
       responseHandler: () =>
         this.setState(prevState => ({
@@ -204,8 +204,7 @@ class WordsProviderCmp extends Component {
           relearnWord: this.relearnWord,
           saveWord: this.createWord,
           searchWord: this.searchWord
-        }}
-      >
+        }}>
         {children}
       </WordsContext.Provider>
     );
@@ -214,7 +213,7 @@ class WordsProviderCmp extends Component {
 
 const WordsProvider = compose(
   withRouter,
-  withTokens,
+  withUser,
   withLoadingNames,
   withNotifications
 )(WordsProviderCmp);
