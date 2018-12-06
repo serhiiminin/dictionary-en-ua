@@ -1,16 +1,16 @@
 import { compose } from "recompose";
-import injectSheet from 'react-jss';
+import injectSheet from "react-jss";
 import { withRouter } from "react-router-dom";
-import { withTokens } from "../../context/tokens";
+import { withUser } from "../../context/user";
 import { withNotifications } from "../../context/notifications";
 import LogoutCmp from "./container";
-import styles from './styles';
+import styles from "./styles";
 
 const Logout = compose(
   injectSheet(styles),
   withRouter,
-  withTokens,
-  withNotifications,
+  withUser,
+  withNotifications
 )(LogoutCmp);
 
 export default Logout;

@@ -125,7 +125,7 @@ class SearchWordContainer extends Component {
     const { searchValue } = this.state;
     const { word, checkIsLoading, classes } = this.props;
     const isEmpty = !Object.keys(word).length;
-    const loading = checkIsLoading(loadingNames.searchWord);
+    const loading = checkIsLoading(loadingNames.words.search);
 
     return (
       <main>
