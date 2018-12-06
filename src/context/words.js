@@ -10,6 +10,7 @@ import { parseSearchParams } from "../helpers/join-url";
 import { normalizeWord } from "../helpers/word-utils";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
+import createHandleFetch from "../helpers/handle-fetch";
 import { withUser } from "./user";
 import routes from "../routes";
 
@@ -37,15 +38,30 @@ class WordsProviderCmp extends Component {
     location: ReactRouterPropTypes.location.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     googleToken: PropTypes.shape({}),
-    user: PropTypes.shape({}),
+    user: PropTypes.shape({})
   };
 
   static defaultProps = {
     googleToken: null,
-    user: null,
+    user: null
   };
 
   state = wordsInitialState;
+
+  handleFetch = createHandleFetch({
+    startLoading: this.props.startLoading,
+    stopLoading: this.props.stopLoading,
+    errorHandler: err => {
+      if (err.message === "Unauthorized") {
+        this.props.history.push(routes.login);
+        return this.props.showNotification(
+          "You are not authorized! Please, use your google account",
+          notificationType.info
+        );
+      }
+      return this.props.showNotification(err.message, notificationType.error);
+    }
+  });
 
   getSearchParams = () => {
     const { location } = this.props;
@@ -66,24 +82,9 @@ class WordsProviderCmp extends Component {
 
   setWordToState = word => this.setState({ word });
 
-  handleFetch = ({ loadingName, requestHandler, responseHandler }) => {
-    const { showNotification, startLoading, stopLoading, googleToken, history } = this.props;
-
-    return Promise.resolve(startLoading(loadingName))
-      .then(() => requestHandler(googleToken))
-      .then(responseHandler)
-      .catch(err => {
-        if (err.message === "Unauthorized") {
-          history.push(routes.login);
-          return showNotification("You are not authorized! Please, use your google account", notificationType.info);
-        }
-        return showNotification(err.message, notificationType.error);
-      })
-      .finally(() => stopLoading(loadingName));
-  };
-
   fetchWord = wordId =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWords.get(wordId, token),
       responseHandler: word => this.setState({ word })
@@ -100,6 +101,7 @@ class WordsProviderCmp extends Component {
     };
 
     return this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.list,
       requestHandler: token => apiWords.getList({ query, googleId: token && token.googleId }, token),
       responseHandler: ({ items, count }) => this.setState({ wordsList: items, count })
@@ -108,22 +110,17 @@ class WordsProviderCmp extends Component {
 
   createWord = (word, ownerId) =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.save,
-      requestHandler: tokenData =>
-        apiWords.create(
-          {
-            ...word,
-            googleId: tokenData && tokenData.googleId,
-            ownerId
-          },
-          tokenData
-        ),
+      requestHandler: token =>
+        apiWords.create({ ...word, googleId: token && token.googleId, ownerId }, token),
       responseHandler: () =>
         this.props.showNotification("The word has been saved successfully", notificationType.success)
     });
 
   editWord = word =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWords.update(word, token),
       responseHandler: () =>
@@ -132,6 +129,7 @@ class WordsProviderCmp extends Component {
 
   deleteWord = id =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.delete,
       requestHandler: token => apiWords.delete(id, token),
       responseHandler: () => this.fetchWordsList()
@@ -139,6 +137,7 @@ class WordsProviderCmp extends Component {
 
   searchWord = params =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.search,
       requestHandler: token => apiWords.search(params, token),
       responseHandler: foundWord =>
@@ -157,6 +156,7 @@ class WordsProviderCmp extends Component {
 
   fetchWordsToLearn = () =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.learn,
       requestHandler: token => apiWords.getListToLearn({ googleId: token && token.googleId }, token),
       responseHandler: ({ items, count }) => this.setState({ wordsList: items, count })
@@ -164,6 +164,7 @@ class WordsProviderCmp extends Component {
 
   learnWord = wordId =>
     this.handleFetch({
+      googleToken: this.props.googleToken,
       loadingName: loadingNames.words.learn,
       requestHandler: token => apiWords.learn(wordId, token),
       responseHandler: () =>
