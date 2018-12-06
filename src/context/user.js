@@ -78,13 +78,13 @@ class UserProviderCmp extends Component {
 
   fetchUser = (googleId, token) =>
     this.handleFetch({
-      loadingName: loadingNames.fetchWord,
+      loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUsers.get(googleId, token)
     });
 
   createUser = (user, token) =>
     this.handleFetch({
-      loadingName: loadingNames.saveWord,
+      loadingName: loadingNames.user.fetch,
 
       requestHandler: () => apiUsers.create({ ...user }, token),
       responseHandler: () =>
@@ -93,7 +93,7 @@ class UserProviderCmp extends Component {
 
   editUser = (word, token) =>
     this.handleFetch({
-      loadingName: loadingNames.fetchWord,
+      loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUsers.update(word, token),
       responseHandler: () =>
         this.props.showNotification("The user has been updated successfully", notificationType.success)
@@ -101,7 +101,7 @@ class UserProviderCmp extends Component {
 
   deleteUser = (id, token) =>
     this.handleFetch({
-      loadingName: loadingNames.deleteWord,
+      loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUsers.delete(id, token),
       responseHandler: () => this.fetchWordsList()
     }).then(() => this.props.showNotification("The user has been deleted successfully", notificationType.success));

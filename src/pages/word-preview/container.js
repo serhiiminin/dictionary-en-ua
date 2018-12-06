@@ -29,7 +29,7 @@ class WordPreviewContainer extends Component {
 
   render() {
     const { word, checkIsLoading } = this.props;
-    const loading = checkIsLoading(loadingNames.fetchWord);
+    const loading = checkIsLoading(loadingNames.words.fetch);
 
     return <WordPreview loading={loading} word={word} />;
   }

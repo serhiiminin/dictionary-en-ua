@@ -70,7 +70,7 @@ class WordForm extends Component {
     const { onSubmit, checkIsLoading } = this.props;
     const { word } = this.state;
     const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
-    const loading = checkIsLoading(loadingNames.fetchWord, loadingNames.saveWord);
+    const loading = checkIsLoading(loadingNames.words.fetch, loadingNames.words.save);
     const freePartsOfSpeech = [
       { key: "noun", title: "Noun" },
       { key: "pronoun", title: "Pronoun" },
