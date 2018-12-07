@@ -11,7 +11,9 @@ class AddWordContainer extends Component {
   render() {
     const { saveWord, word, checkIsLoading } = this.props;
 
-    return <WordForm word={word} checkIsLoading={checkIsLoading} onSubmit={saveWord} />;
+    return (
+      <WordForm word={word} checkIsLoading={checkIsLoading} onSubmit={saveWord} />
+    );
   }
 }
 
@@ -19,11 +21,11 @@ AddWordContainer.propTypes = {
   saveWord: PropTypes.func.isRequired,
   checkIsLoading: PropTypes.func.isRequired,
   cleanWord: PropTypes.func.isRequired,
-  word: wordShape(PropTypes)
+  word: wordShape(PropTypes),
 };
 
 AddWordContainer.defaultProps = {
-  word: {}
+  word: {},
 };
 
 export default AddWordContainer;

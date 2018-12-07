@@ -8,6 +8,7 @@ import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
+import createHandleFetch from "../helpers/handle-fetch";
 import routes from "../routes";
 
 const UserContext = createContext({});
@@ -27,9 +28,31 @@ class UserProviderCmp extends Component {
 
   state = userInitialState;
 
+  handleFetch = createHandleFetch({
+    startLoading: this.props.startLoading,
+    stopLoading: this.props.stopLoading,
+    errorHandler: err => {
+      if (err.message === "Unauthorized") {
+        this.props.history.push(routes.login);
+        return this.props.showNotification(
+          "You are not authorized! Please, use your google account",
+          notificationType.info
+        );
+      }
+      return this.props.showNotification(err.message, notificationType.error);
+    }
+  });
+
   componentDidMount() {
     this.handleFetchUser();
   }
+
+  handleFetchUser = () => {
+    const { googleToken } = this.state;
+    return this.fetchUser((googleToken && googleToken.googleId) || "", googleToken)
+      .then(user => user || this.createUser(googleToken && googleToken.profileObj, googleToken))
+      .then(this.setUserToState);
+  };
 
   cleanUser = () => this.setState({ user: userInitialState.user });
 
@@ -40,52 +63,27 @@ class UserProviderCmp extends Component {
     });
   };
 
-  handleFetchUser = () => {
-    const { googleToken } = this.state;
-    return this.fetchUser((googleToken && googleToken.googleId) || "", googleToken)
-      .then(user => (!user ? this.createUser(googleToken && googleToken.profileObj, googleToken) : user))
-      .then(this.setUserToState);
-  };
-
-  setGoogleToken = (googleToken, callback) => {
-    if (googleToken) {
-      this.fetchUser(googleToken.googleId, googleToken).then(user =>
-        this.setState({ user, googleToken }, () => {
-          callback();
-          window.localStorage.setItem("google", JSON.stringify(googleToken));
-        })
-      );
-    }
-  };
+  setGoogleToken = (googleToken, callback) =>
+    this.fetchUser(googleToken.googleId, googleToken).then(user =>
+      this.setState({ user, googleToken }, () => {
+        callback();
+        window.localStorage.setItem("google", JSON.stringify(googleToken));
+      })
+    );
 
   setUserToState = user => this.setState({ user });
 
-  handleFetch = ({ loadingName, requestHandler, responseHandler }) => {
-    const { showNotification, startLoading, stopLoading, history } = this.props;
-
-    return Promise.resolve(startLoading(loadingName))
-      .then(requestHandler || (r => r))
-      .then(responseHandler || (r => r))
-      .catch(err => {
-        if (err.message === "Unauthorized") {
-          history.push(routes.login);
-          return showNotification("You are not authorized! Please, use your google account", notificationType.info);
-        }
-        return showNotification(err.message, notificationType.error);
-      })
-      .finally(() => stopLoading(loadingName));
-  };
-
   fetchUser = (googleId, token) =>
     this.handleFetch({
+      googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUsers.get(googleId, token)
     });
 
   createUser = (user, token) =>
     this.handleFetch({
+      googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-
       requestHandler: () => apiUsers.create({ ...user }, token),
       responseHandler: () =>
         this.props.showNotification("The user has been saved successfully", notificationType.success)
@@ -93,6 +91,7 @@ class UserProviderCmp extends Component {
 
   editUser = (word, token) =>
     this.handleFetch({
+      googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUsers.update(word, token),
       responseHandler: () =>
@@ -101,6 +100,7 @@ class UserProviderCmp extends Component {
 
   deleteUser = (id, token) =>
     this.handleFetch({
+      googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUsers.delete(id, token),
       responseHandler: () => this.fetchWordsList()
@@ -125,8 +125,7 @@ class UserProviderCmp extends Component {
           createUser: this.createUser,
           editUser: this.editUser,
           deleteUser: this.deleteUser
-        }}
-      >
+        }}>
         {children}
       </UserContext.Provider>
     );
