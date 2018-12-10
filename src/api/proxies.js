@@ -2,6 +2,7 @@ import generatorApiKeys from "../helpers/generator-api-key";
 import getGiphyApiKey from "../helpers/get-api-keys";
 import { joinUrl } from "../helpers/join-url";
 import createFetcherJson from "./create-fetcher";
+import { getErrorType } from "../helpers/handle-errors";
 
 const updateSearchParams = (params, newSearchParams) => ({
   ...params,
@@ -32,8 +33,9 @@ const createGoogleAuthProxy = fetcher => (params, googleToken) =>
       authorization: googleToken && `Bearer ${googleToken.accessToken}`
     }
   }).catch(error => {
-    if (error.message === "Forbidden") {
-      throw new Error("Unauthorized", error);
+    const errorType = getErrorType(error);
+    if (errorType === 'forbidden') {
+      throw new Error(errorType);
     }
   });
 

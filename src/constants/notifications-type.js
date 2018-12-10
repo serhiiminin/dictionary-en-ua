@@ -1,8 +1,16 @@
 const notificationType = {
   success: "success",
   warning: "warning",
-  error: "error",
-  info: "info"
+  info: "info",
+  error: {
+    clientError: 'clientError',
+    default: 'error',
+    disconnect: 'disconnect',
+    redirect: 'redirect',
+    serverError: 'serverError',
+    unknown: 'unknown',
+    forbidden: 'forbidden',
+  },
 };
 
 export default notificationType;

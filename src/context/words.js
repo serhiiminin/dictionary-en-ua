@@ -17,7 +17,7 @@ import routes from "../routes";
 const WordsContext = createContext({});
 
 const INITIAL_WORD_SORT_DATA = {
-  sortBy: "dateCreated",
+  sortBy: "dateCreated", 
   sortDirection: "descend",
   page: 1,
   countPerPage: 5
@@ -59,7 +59,7 @@ class WordsProviderCmp extends Component {
           notificationType.info
         );
       }
-      return this.props.showNotification(err.message, notificationType.error);
+      return this.props.showNotification(err.message, notificationType.error.default);
     }
   });
 
@@ -104,7 +104,7 @@ class WordsProviderCmp extends Component {
       googleToken: this.props.googleToken,
       loadingName: loadingNames.words.list,
       requestHandler: token => apiWords.getList({ query, googleId: token && token.googleId }, token),
-      responseHandler: ({ items, count }) => this.setState({ wordsList: items, count })
+      responseHandler: ({ items = [], count = 0 } = {}) => this.setState({ wordsList: items, count })
     });
   };
 
@@ -112,8 +112,7 @@ class WordsProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.props.googleToken,
       loadingName: loadingNames.words.save,
-      requestHandler: token =>
-        apiWords.create({ ...word, googleId: token && token.googleId, ownerId }, token),
+      requestHandler: token => apiWords.create({ ...word, googleId: token && token.googleId, ownerId }, token),
       responseHandler: () =>
         this.props.showNotification("The word has been saved successfully", notificationType.success)
     });

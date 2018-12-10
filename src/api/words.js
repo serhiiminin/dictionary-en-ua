@@ -7,10 +7,8 @@ const { REACT_APP_ENDPOINT_WORDS } = process.env;
 
 export const createApiMethodsWords = endpoint => fetcher => ({
   create: (body, tokens) => fetcher(requests.post(endpoint, { body }), tokens),
-  get: (id, tokens) =>
-    fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), tokens),
-  getList: (body, tokens) =>
-    fetcher(requests.post(joinUrl({ url: endpoint, paths: ["list"] }), { body }), tokens),
+  get: (id, tokens) => fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), tokens),
+  getList: (body, tokens) => fetcher(requests.post(joinUrl({ url: endpoint, paths: ["list"] }), { body }), tokens),
   getListToLearn: (params, tokens) => {
     const url = joinUrl({ url: endpoint, paths: ["list"] });
     const yesterday = new Date();
@@ -29,8 +27,7 @@ export const createApiMethodsWords = endpoint => fetcher => ({
   },
   update: (word, tokens) =>
     fetcher(requests.put(joinUrl({ url: endpoint, paths: [word._id] }), { body: word }), tokens),
-  delete: (wordId, tokens) =>
-    fetcher(requests.delete(joinUrl({ url: endpoint, paths: [wordId] })), tokens),
+  delete: (wordId, tokens) => fetcher(requests.delete(joinUrl({ url: endpoint, paths: [wordId] })), tokens),
   learn: (wordId, tokens) =>
     fetcher(
       requests.put(joinUrl({ url: endpoint, paths: [wordId] }), {

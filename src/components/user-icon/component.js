@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Avatar, Tooltip, CircularProgress } from "@material-ui/core";
 
 const UserIcon = ({ user, isLoading }) =>
-  isLoading || (user && Object.keys(user).length === 0) ? (
+  isLoading || Object.keys(user).length === 0 ? (
     <CircularProgress />
   ) : (
     <Tooltip title={user.name}>
@@ -20,7 +20,7 @@ UserIcon.propTypes = {
 };
 
 UserIcon.defaultProps = {
-  user: null,
+  user: {},
   googleToken: null,
   isLoading: false
 };

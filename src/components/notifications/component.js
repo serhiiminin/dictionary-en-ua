@@ -10,18 +10,16 @@ const Notifications = ({ classes, children, notifications, hideNotification }) =
     {children}
     <Snackbar anchorOrigin={{ vertical: "bottom", horizontal: "right" }} open={notifications.length > 0}>
       <div>
-        {notifications
-          .reduceRight((acc, cur) => acc.concat(cur), [])
-          .map(({ id, text, type }) => (
-            <Slide in={!!text} direction="up" key={id}>
-              <SnackbarContent
-                className={classes.margin}
-                onClose={() => hideNotification(id)}
-                variant={type}
-                message={text}
-              />
-            </Slide>
-          ))}
+        {notifications.reduceRight((acc, cur) => acc.concat(cur), []).map(({ id, text, type }) => (
+          <Slide in={!!text} direction="up" key={id}>
+            <SnackbarContent
+              className={classes.margin}
+              onClose={() => hideNotification(id)}
+              variant={type}
+              message={text}
+            />
+          </Slide>
+        ))}
       </div>
     </Snackbar>
   </Fragment>

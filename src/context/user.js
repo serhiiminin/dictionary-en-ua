@@ -32,14 +32,14 @@ class UserProviderCmp extends Component {
     startLoading: this.props.startLoading,
     stopLoading: this.props.stopLoading,
     errorHandler: err => {
-      if (err.message === "Unauthorized") {
+      if (err.message === notificationType.error.forbidden) {
         this.props.history.push(routes.login);
         return this.props.showNotification(
           "You are not authorized! Please, use your google account",
           notificationType.info
         );
       }
-      return this.props.showNotification(err.message, notificationType.error);
+      return this.props.showNotification(err.message, notificationType.error.default);
     }
   });
 
