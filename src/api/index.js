@@ -1,3 +1,3 @@
-export { default as apiWords } from './words';
-export { default as apiUsers } from './users';
-export { default as apiGifs } from './gifs';
+export { default as apiWord } from './word';
+export { default as apiUser } from './user';
+export { default as apiGif } from './gif';

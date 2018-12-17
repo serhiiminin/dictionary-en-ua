@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { compose } from "recompose";
-import { apiUsers } from "../api";
+import { apiUser } from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { withLoadingNames } from "./loading-names";
@@ -77,14 +77,14 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.get(googleId, token)
+      requestHandler: () => apiUser.get(googleId, token)
     });
 
   createUser = (user, token) =>
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.create({ ...user }, token),
+      requestHandler: () => apiUser.create({ ...user }, token),
       responseHandler: () =>
         this.props.showNotification("The user has been saved successfully", notificationType.success)
     });
@@ -93,7 +93,7 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.update(word, token),
+      requestHandler: () => apiUser.update(word, token),
       responseHandler: () =>
         this.props.showNotification("The user has been updated successfully", notificationType.success)
     });
@@ -102,7 +102,7 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.delete(id, token),
+      requestHandler: () => apiUser.delete(id, token),
       responseHandler: () => this.fetchWordsList()
     }).then(() => this.props.showNotification("The user has been deleted successfully", notificationType.success));
 
