@@ -10,6 +10,7 @@ const notificationType = {
     serverError: 'serverError',
     unknown: 'unknown',
     forbidden: 'forbidden',
+    notFound: 'notFound',
   },
 };
 

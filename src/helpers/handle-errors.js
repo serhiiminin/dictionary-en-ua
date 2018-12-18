@@ -26,6 +26,10 @@ const createGetterErrorType = notificationsMessages => error => {
     return notificationsMessages.error.forbidden;
   }
 
+  if (errorCode === 404) {
+    return notificationsMessages.error.notFound;
+  }
+
   if (errorCode >= 400 && errorCode < 500) {
     return notificationsMessages.error.clientError;
   }
@@ -39,16 +43,17 @@ const createGetterErrorType = notificationsMessages => error => {
 
 const createGetErrorMessages = notificationType => errorType =>
   ({
-    [notificationType.error.clientError]: "You are not authorized! Please, use your google account",
+    [notificationType.error.clientError]: "Client error",
     [notificationType.error.default]: "Something went wrong",
-    [notificationType.error.disconnect]: "You are not authorized! Please, use your google account",
+    [notificationType.error.disconnect]: "You are disconnected!",
     [notificationType.error.forbidden]: "You are not authorized! Please, use your google account",
-    [notificationType.error.redirect]: "You are not authorized! Please, use your google account",
-    [notificationType.error.serverError]: "You are not authorized! Please, use your google account",
-    [notificationType.error.unknown]: "You are not authorized! Please, use your google account"
+    [notificationType.error.redirect]: "You will be redirected",
+    [notificationType.error.serverError]: "Server error",
+    [notificationType.error.notFound]: "Not found",
+    [notificationType.error.unknown]: "Unknown error"
   }[errorType.message]);
 
-const getErrorMessage = createGetErrorMessages(notificationsTypes);
-const getErrorType = createGetterErrorType(notificationsTypes);
+  const getErrorType = createGetterErrorType(notificationsTypes);
+  const getErrorMessage = createGetErrorMessages(notificationsTypes);
 
 export { getErrorType, getErrorMessage };

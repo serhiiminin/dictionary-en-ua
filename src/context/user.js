@@ -1,15 +1,13 @@
 import React, { Component, createContext } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import ReactRouterPropTypes from "react-router-prop-types";
 import { compose } from "recompose";
-import { apiUsers } from "../api";
+import { apiUser } from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
 import createHandleFetch from "../helpers/handle-fetch";
-import routes from "../routes";
+import { withErrors } from "./errors";
 
 const UserContext = createContext({});
 
@@ -23,7 +21,7 @@ class UserProviderCmp extends Component {
     showNotification: PropTypes.func.isRequired,
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
-    history: ReactRouterPropTypes.history.isRequired
+    handleError: PropTypes.func.isRequired,
   };
 
   state = userInitialState;
@@ -31,16 +29,7 @@ class UserProviderCmp extends Component {
   handleFetch = createHandleFetch({
     startLoading: this.props.startLoading,
     stopLoading: this.props.stopLoading,
-    errorHandler: err => {
-      if (err.message === notificationType.error.forbidden) {
-        this.props.history.push(routes.login);
-        return this.props.showNotification(
-          "You are not authorized! Please, use your google account",
-          notificationType.info
-        );
-      }
-      return this.props.showNotification(err.message, notificationType.error.default);
-    }
+    errorHandler: this.props.handleError,
   });
 
   componentDidMount() {
@@ -77,14 +66,14 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.get(googleId, token)
+      requestHandler: () => apiUser.get(googleId, token)
     });
 
   createUser = (user, token) =>
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.create({ ...user }, token),
+      requestHandler: () => apiUser.create({ ...user }, token),
       responseHandler: () =>
         this.props.showNotification("The user has been saved successfully", notificationType.success)
     });
@@ -93,7 +82,7 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.update(word, token),
+      requestHandler: () => apiUser.update(word, token),
       responseHandler: () =>
         this.props.showNotification("The user has been updated successfully", notificationType.success)
     });
@@ -102,7 +91,7 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUsers.delete(id, token),
+      requestHandler: () => apiUser.delete(id, token),
       responseHandler: () => this.fetchWordsList()
     }).then(() => this.props.showNotification("The user has been deleted successfully", notificationType.success));
 
@@ -133,9 +122,9 @@ class UserProviderCmp extends Component {
 }
 
 const UserProvider = compose(
-  withRouter,
   withLoadingNames,
-  withNotifications
+  withNotifications,
+  withErrors,
 )(UserProviderCmp);
 
 const withUser = Cmp => props => <UserContext.Consumer>{value => <Cmp {...value} {...props} />}</UserContext.Consumer>;
