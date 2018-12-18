@@ -48,7 +48,7 @@ const createGetErrorMessages = notificationType => errorType =>
     [notificationType.error.unknown]: "Unknown error"
   }[errorType.message]);
 
-const getErrorMessage = createGetErrorMessages(notificationsTypes);
-const getErrorType = createGetterErrorType(notificationsTypes);
+  const getErrorType = createGetterErrorType(notificationsTypes);
+  const getErrorMessage = createGetErrorMessages(notificationsTypes);
 
 export { getErrorType, getErrorMessage };

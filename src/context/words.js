@@ -12,13 +12,12 @@ import { withLoadingNames } from "./loading-names";
 import { withNotifications } from "./notifications";
 import createHandleFetch from "../helpers/handle-fetch";
 import { withUser } from "./user";
-import routes from "../routes";
-import { getErrorMessage } from "../helpers/handle-errors";
+import { withErrors } from "./errors";
 
 const WordsContext = createContext({});
 
 const INITIAL_WORD_SORT_DATA = {
-  sortBy: "dateCreated", 
+  sortBy: "dateCreated",
   sortDirection: "descend",
   page: 1,
   countPerPage: 5
@@ -36,8 +35,8 @@ class WordsProviderCmp extends Component {
     showNotification: PropTypes.func.isRequired,
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
+    handleError: PropTypes.func.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
-    history: ReactRouterPropTypes.history.isRequired,
     googleToken: PropTypes.shape({}),
     user: PropTypes.shape({})
   };
@@ -52,17 +51,7 @@ class WordsProviderCmp extends Component {
   handleFetch = createHandleFetch({
     startLoading: this.props.startLoading,
     stopLoading: this.props.stopLoading,
-    errorHandler: err => {
-      getErrorMessage(err);
-      if (err.message === "Unauthorized") {
-        this.props.history.push(routes.login);
-        return this.props.showNotification(
-          "You are not authorized! Please, use your google account",
-          notificationType.info
-        );
-      }
-      return this.props.showNotification(err.message, notificationType.error.default);
-    }
+    errorHandler: this.props.handleError,
   });
 
   getSearchParams = () => {
@@ -219,7 +208,8 @@ const WordsProvider = compose(
   withRouter,
   withUser,
   withLoadingNames,
-  withNotifications
+  withNotifications,
+  withErrors,
 )(WordsProviderCmp);
 
 const withWords = Cmp => props => (

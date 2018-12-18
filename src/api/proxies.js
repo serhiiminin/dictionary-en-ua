@@ -33,10 +33,7 @@ const createGoogleAuthProxy = fetcher => (params, googleToken) =>
       authorization: googleToken && `Bearer ${googleToken.accessToken}`
     }
   }).catch(error => {
-    const errorType = getErrorType(error);
-    if (errorType === 'forbidden') {
-      throw new Error(errorType);
-    }
+      throw new Error(getErrorType(error));
   });
 
 export { apiKeyGiphyProxy, createApiKeyProxy, createGoogleAuthProxy };
