@@ -35,7 +35,7 @@ const muiTheme = createMuiTheme({
           opacity: theme.main.opacity.disabled
         }
       },
-      disabled: {
+      '&$disabled': {
         opacity: theme.main.opacity.disabled,
         background: theme.main.colors.light,
         color: `${theme.main.colors.background} !important`
@@ -70,7 +70,7 @@ const muiTheme = createMuiTheme({
           color: `${theme.main.colors.background} !important`
         }
       },
-      selected: {
+      '&$selected': {
         background: `${theme.main.colors.main} !important`,
         color: `${theme.main.colors.background} !important`
       }

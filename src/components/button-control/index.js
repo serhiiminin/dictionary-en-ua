@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "..";
+import { Fab } from '@material-ui/core';
 
-const ButtonControl = props => <Button variant="fab" mini {...props} />;
+const ButtonControl = props => <Fab size='small' {...props} />;
 
 export default ButtonControl;

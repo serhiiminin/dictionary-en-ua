@@ -9,6 +9,7 @@ import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import styles from "./styles";
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
+
 class Login extends Component {
   static propTypes = {
     setGoogleToken: PropTypes.func.isRequired,

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Fab } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import ReactRouterPropTypes from "react-router-prop-types";
-import { ButtonControl } from "..";
 
 const ButtonWithRouter = ({ location, to, staticContext, ...restProps }) => (
-  <ButtonControl to={to} color="primary" component={Link} isActive={location.pathname === to} {...restProps} />
+  <Fab size='small' to={to} color="primary" component={Link} isActive={location.pathname === to} {...restProps} />
 );
 
 ButtonWithRouter.propTypes = {
