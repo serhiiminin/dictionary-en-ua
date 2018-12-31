@@ -33,13 +33,14 @@ const muiTheme = createMuiTheme({
         "&:hover": {
           background: theme.main.colors.main,
           opacity: theme.main.opacity.disabled
+        },
+        '&$disabled': {
+          opacity: theme.main.opacity.disabled,
+          background: theme.main.colors.light,
+          color: `${theme.main.colors.background} !important`
         }
       },
-      '&$disabled': {
-        opacity: theme.main.opacity.disabled,
-        background: theme.main.colors.light,
-        color: `${theme.main.colors.background} !important`
-      }
+      
     },
     MuiChip: {
       root: {
