@@ -4,7 +4,6 @@ import ReactRouterPropTypes from "react-router-prop-types";
 import { GoogleLogin } from "react-google-login";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { Button } from "../../components";
-import notificationType from "../../constants/notifications-type";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import styles from "./styles";
 
@@ -13,7 +12,7 @@ const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 class Login extends Component {
   static propTypes = {
     setGoogleToken: PropTypes.func.isRequired,
-    showNotification: PropTypes.func.isRequired,
+    handleError: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     classes: composeClassesPropTypes(styles)
   };
@@ -24,9 +23,7 @@ class Login extends Component {
 
   onSuccess = response => this.props.setGoogleToken(response, () => this.props.history.goBack());
 
-  onFailure = error => {
-    this.props.showNotification(error.message, notificationType.error);
-  };
+  onFailure = error => this.props.handleError(error);
 
   render() {
     const { classes } = this.props;
