@@ -24,13 +24,16 @@ class NotificationsProvider extends Component {
   };
 
   showNotification = (text, type, autoHide = true) => {
-    const id = uuid();
-
-    this.setState(prevState => ({
-      notifications: [...prevState.notifications, { id, text, type }]
-    }));
-    if (autoHide) {
-      setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
+    const currentNotificationsText = this.state.notifications.map(n => n.text);
+    const isTheSameNotificationExist = currentNotificationsText.includes(text);
+    if (!isTheSameNotificationExist) {
+      const id = uuid();
+      this.setState(prevState => ({
+        notifications: [...prevState.notifications, { id, text, type }]
+      }));
+      if (autoHide) {
+        setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
+      }
     }
   };
 
@@ -44,8 +47,7 @@ class NotificationsProvider extends Component {
           notifications,
           showNotification: this.showNotification,
           hideNotification: this.hideNotification
-        }}
-      >
+        }}>
         {children}
       </NotificationsContext.Provider>
     );
