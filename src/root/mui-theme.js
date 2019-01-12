@@ -69,12 +69,12 @@ const muiTheme = createMuiTheme({
         "&:hover": {
           background: `${theme.main.colors.main} !important`,
           color: `${theme.main.colors.background} !important`
+        },
+        '&$selected': {
+          background: `${theme.main.colors.main} !important`,
+          color: `${theme.main.colors.background} !important`
         }
       },
-      '&$selected': {
-        background: `${theme.main.colors.main} !important`,
-        color: `${theme.main.colors.background} !important`
-      }
     },
     MuiSelect: {
       root: {

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { joinRoute } from "../../helpers/join-url";
+import { joinRoute } from "url-joiner";
 import routes from "../../routes";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import styles from "./styles";

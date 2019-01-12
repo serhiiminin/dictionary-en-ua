@@ -1,4 +1,4 @@
-import { joinUrl } from "../helpers/join-url";
+import { joinUrl } from "url-joiner";
 import requests from "./request";
 import { apiKeyGiphyProxy } from "./proxies";
 
