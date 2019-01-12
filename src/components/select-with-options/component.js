@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem } from "@material-ui/core";
 import { Select } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const SelectWithOptions = ({ classes, label, value, onChange, options }) => (

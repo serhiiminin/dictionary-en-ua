@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from "prop-types";
 import { TextField, Button } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 class InputsBlock extends Component {

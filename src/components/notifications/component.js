@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Snackbar, Slide } from "@material-ui/core";
 import { SnackbarContent } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const Notifications = ({ classes, children, notifications, hideNotification }) => (

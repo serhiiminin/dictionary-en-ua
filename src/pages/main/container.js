@@ -1,6 +1,6 @@
 import React from "react";
 import trident from "../../images/trident.svg";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const MainContainer = ({ classes }) => (

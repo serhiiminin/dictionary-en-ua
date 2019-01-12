@@ -1,6 +1,6 @@
 import React from "react";
 import { FooterNavigation } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const Footer = ({ classes }) => (

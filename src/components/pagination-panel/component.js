@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { List, ListItem } from "@material-ui/core";
 import { Pagination, SelectWithOptions } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const PaginationPanel = ({ countPerPage, page, maxPageCount, onChangePage, onChangeCount, classes }) => (

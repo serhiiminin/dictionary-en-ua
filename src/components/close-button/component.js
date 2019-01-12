@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CloseIcon from "@material-ui/icons/Close";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const CloseButton = ({ onClick, classes }) => (

@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonWithRouter } from "../../components";
 import routes from "../../routes";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const PageNotFoundContainer = ({ classes }) => (
