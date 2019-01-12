@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { List, ListItem } from "@material-ui/core";
 import uuid from "uuid";
-import { joinRoute } from "../../helpers/join-url";
+import { joinRoute } from "url-joiner";
 import routes from "../../routes";
 import { WordItemInList } from "..";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";

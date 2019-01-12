@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
+import { joinRoute, parseSearchParams } from "url-joiner";
 import uuid from "uuid";
 import {
   Button,
@@ -9,7 +10,6 @@ import {
   WordPreview
 } from "../../components";
 import loadingNames from "../../constants/loading-names";
-import { joinRoute, parseSearchParams } from "../../helpers/join-url";
 import routes from "../../routes";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
 import wordShape from '../../constants/shapes';

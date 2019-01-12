@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import Edit from "@material-ui/icons/Edit";
 import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from "@material-ui/core";
-import { joinRoute } from "../../helpers/join-url";
+import { joinRoute } from "url-joiner";
 import routes from "../../routes";
 import { ButtonWithRouter } from "..";
 import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
