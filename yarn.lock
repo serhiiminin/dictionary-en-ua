@@ -225,7 +225,7 @@
 
 "@babel/helpers@^7.1.0", "@babel/helpers@^7.2.0":
   version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.2.0.tgz#8335f3140f3144270dc63c4732a4f8b0a50b7a21"
+  resolved "https://registry.yarnpkg.com/@babel/modules/-/helpers-7.2.0.tgz#8335f3140f3144270dc63c4732a4f8b0a50b7a21"
   integrity sha512-Fr07N+ea0dMcMN8nFpuK6dUIT7/ivt9yKQdEEnjVS83tG2pHwPi03gYmk/tyuwONnZ+sY+GFFPlWGgCtW1hF9A==
   dependencies:
     "@babel/template" "^7.1.2"

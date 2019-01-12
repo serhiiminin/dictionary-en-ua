@@ -1,8 +1,8 @@
 import { joinUrl } from "url-joiner";
-import generatorApiKeys from "../helpers/generator-api-key";
-import getGiphyApiKey from "../helpers/get-api-keys";
+import generatorApiKeys from "../modules/generator-api-key";
+import getGiphyApiKey from "../modules/get-api-keys";
 import createFetcherJson from "./create-fetcher";
-import { getErrorType } from "../helpers/handle-errors";
+import { getErrorType } from "../modules/handle-errors";
 
 const updateSearchParams = (params, newSearchParams) => ({
   ...params,

@@ -5,7 +5,7 @@ import uuid from "uuid";
 import { joinRoute } from "url-joiner";
 import routes from "../../routes";
 import { WordItemInList } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, classes }) => (

@@ -7,7 +7,7 @@ import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from "@material-
 import { joinRoute } from "url-joiner";
 import routes from "../../routes";
 import { ButtonWithRouter } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const EMPTY_VALUE = "-";

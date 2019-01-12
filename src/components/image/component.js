@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const Image = ({ src, width, height, classes }) => <div className={`${classes.imageBlock} ${src}${width}${height}`} />;

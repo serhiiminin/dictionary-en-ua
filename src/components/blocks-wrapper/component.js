@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const BlocksWrapper = ({ children, classes }) => <div className={classes.blocksWrapper}>{children}</div>;

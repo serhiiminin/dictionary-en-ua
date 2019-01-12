@@ -6,7 +6,7 @@ import Delete from "@material-ui/icons/Delete";
 import { parseSearchParams, joinRoute } from "url-joiner";
 import loadingNames from "../../constants/loading-names";
 import { PaginationPanel, Toolbar, WordsList, ButtonControl } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 class WordsTable extends Component {

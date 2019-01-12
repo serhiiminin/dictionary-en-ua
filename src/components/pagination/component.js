@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { TextField, ButtonControl } from "..";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {

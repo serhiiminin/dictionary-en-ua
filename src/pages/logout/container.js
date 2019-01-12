@@ -6,7 +6,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import { Button } from "../../components";
 import routes from "../../routes";
 import notificationType from "../../constants/notifications-type";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 class Logout extends Component {

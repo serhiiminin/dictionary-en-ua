@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import composeClassesPropTypes from "../../helpers/compose-classes-prop-types";
+import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
 import styles from "./styles";
 
 const ControlsSeparator = ({ children, classes, align }) => (
