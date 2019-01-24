@@ -22,7 +22,7 @@ import muiTheme from "./mui-theme";
 const Root = () => (
   <ThemeProvider theme={muiTheme}>
     <MuiThemeProvider theme={muiTheme}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <StateProvider>
           <Notifications>
             <BlocksWrapper>

@@ -2,6 +2,7 @@
   "name": "my-dictionary",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/dictionary-en-ua",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
