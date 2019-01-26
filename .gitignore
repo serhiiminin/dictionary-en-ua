@@ -25,3 +25,5 @@ yarn-error.log*
 .idea/
 /src/api/credentials.js
 .cache/
+
+/scripts
