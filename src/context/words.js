@@ -1,24 +1,24 @@
-import React, { Component, createContext } from "react";
-import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
-import { withRouter } from "react-router-dom";
-import { compose } from "recompose";
-import { parseSearchParams } from "url-joiner";
-import { apiWord, apiGif } from "../api";
-import notificationType from "../constants/notifications-type";
-import loadingNames from "../constants/loading-names";
-import { normalizeWord } from "../modules/word-utils";
-import { withLoadingNames } from "./loading-names";
-import { withNotifications } from "./notifications";
-import createHandleFetch from "../modules/handle-fetch";
-import { withUser } from "./user";
-import { withErrors } from "./errors";
+import React, { Component, createContext } from 'react';
+import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { parseSearchParams } from 'url-joiner';
+import { apiWord, apiGif } from '../api';
+import notificationType from '../constants/notifications-type';
+import loadingNames from '../constants/loading-names';
+import { normalizeWord } from '../modules/word-utils';
+import { withLoadingNames } from './loading-names';
+import { withNotifications } from './notifications';
+import createHandleFetch from '../modules/handle-fetch';
+import { withUser } from './user';
+import { withErrors } from './errors';
 
 const WordsContext = createContext({});
 
 const INITIAL_WORD_SORT_DATA = {
-  sortBy: "dateCreated",
-  sortDirection: "descend",
+  sortBy: 'dateCreated',
+  sortDirection: 'descend',
   page: 1,
   countPerPage: 5
 };
@@ -27,8 +27,9 @@ const wordsInitialState = {
   wordsList: [],
   word: {},
   count: 0,
-  gif: ""
+  gif: ''
 };
+
 class WordsProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -87,7 +88,7 @@ class WordsProviderCmp extends Component {
     const query = {
       skip: (page - 1) * countPerPage,
       limit: Number(countPerPage),
-      sortDirection: sortDirection === "descend" ? -1 : 1,
+      sortDirection: sortDirection === 'descend' ? -1 : 1,
       sortBy
     };
 
@@ -105,7 +106,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.save,
       requestHandler: token => apiWord.create({ ...word, googleId: token && token.googleId, ownerId }, token),
       responseHandler: () =>
-        this.props.showNotification("The word has been saved successfully", notificationType.success)
+        this.props.showNotification('The word has been saved successfully', notificationType.success)
     });
 
   editWord = word =>
@@ -114,7 +115,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWord.update(word, token),
       responseHandler: () =>
-        this.props.showNotification("The word has been updated successfully", notificationType.success)
+        this.props.showNotification('The word has been updated successfully', notificationType.success)
     });
 
   deleteWord = id =>
@@ -123,15 +124,16 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.delete,
       requestHandler: token => apiWord.delete(id, token),
       responseHandler: () => this.fetchWordsList()
-    }).then(() => this.props.showNotification("The word has been deleted successfully", notificationType.success));
+    })
+      .then(() => this.props.showNotification('The word has been deleted successfully', notificationType.success));
 
   searchWord = params =>
     this.handleFetch({
       googleToken: this.props.googleToken,
       loadingName: loadingNames.words.search,
       requestHandler: token => apiWord.search(params, token),
-      responseHandler: foundWord =>
-        apiGif.get({ q: foundWord.en }).then(gifs => {
+      responseHandler: foundWord => apiGif.get({ q: foundWord.word })
+        .then(gifs => {
           const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
           const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 

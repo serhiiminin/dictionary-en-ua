@@ -6,16 +6,15 @@ import { InputsBlock, LineExplanation, ListOfSearchableWords, Image } from "..";
 export const mapValues = items => items.map(item => item.value).filter(Boolean);
 
 const WordPreview = ({ word, loading }) => {
-  const { en, ua, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples, gif } = word;
+  const { word: wordText, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples, gif } = word;
   return (
     <div>
       <Fade in={loading}>
         <LinearProgress color="secondary" />
       </Fade>
       <InputsBlock title="Main information">
-        <Image src={gif} alt={en} />
-        <LineExplanation label="English">{en}</LineExplanation>
-        <LineExplanation label="Ukrainian">{ua}</LineExplanation>
+        <Image src={gif} alt={wordText} />
+        <LineExplanation label="Word">{wordText}</LineExplanation>
         <LineExplanation label="Transcription">{transcription && `[${transcription}]`}</LineExplanation>
         <LineExplanation label="Part of speech">
           <ListOfSearchableWords items={partOfSpeech && mapValues(partOfSpeech)} />
@@ -39,8 +38,7 @@ const WordPreview = ({ word, loading }) => {
 
 WordPreview.propTypes = {
   word: PropTypes.shape({
-    en: PropTypes.string,
-    ua: PropTypes.string,
+    word: PropTypes.string,
     transcription: PropTypes.string,
     gif: PropTypes.string,
     partOfSpeech: PropTypes.arrayOf(
