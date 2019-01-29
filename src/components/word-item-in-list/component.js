@@ -14,7 +14,7 @@ const EMPTY_VALUE = "-";
 
 const WordItemInList = props => {
   const { isChecked, onWordCheck, word, linkToWord, loading, classes } = props;
-  const { _id, en, ua, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
+  const { _id, word: wordText, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
   const lastLearnt =
     dateLastLearnt && dateLastLearnt === new Date(0).toISOString() ? "Never" : moment(dateLastLearnt).fromNow();
 
@@ -32,12 +32,12 @@ const WordItemInList = props => {
               </Fade>
             ) : (
               <Fragment>
-                {en && (
+                {wordText && (
                   <Link className={classes.wordLink} to={linkToWord}>
-                    {en}
+                    {wordText}
                   </Link>
                 )}
-                {[en && " ", transcription && `[${transcription}]`, ua].filter(Boolean).join(" - ")}
+                {[wordText && " ", transcription && `[${transcription}]`].filter(Boolean).join(" - ")}
               </Fragment>
             )
           }
@@ -68,8 +68,7 @@ const WordItemInList = props => {
 WordItemInList.propTypes = {
   word: PropTypes.shape({
     _id: PropTypes.string,
-    en: PropTypes.string,
-    ua: PropTypes.string,
+    word: PropTypes.string,
     transcription: PropTypes.string,
     dateCreated: PropTypes.string
   }),
@@ -83,8 +82,7 @@ WordItemInList.propTypes = {
 WordItemInList.defaultProps = {
   word: {
     _id: "",
-    en: "",
-    ua: "",
+    word: "",
     transcription: "",
     dateCreated: ""
   },

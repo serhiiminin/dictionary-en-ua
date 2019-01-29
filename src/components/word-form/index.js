@@ -12,8 +12,7 @@ class WordForm extends Component {
     onSubmit: PropTypes.func.isRequired,
     word: PropTypes.shape({
       _id: PropTypes.string,
-      en: PropTypes.string,
-      ua: PropTypes.string,
+      word: PropTypes.string,
       transcription: PropTypes.string,
       partOfSpeech: PropTypes.arrayOf(PropTypes.object),
       synonyms: PropTypes.arrayOf(PropTypes.object),
@@ -69,7 +68,7 @@ class WordForm extends Component {
   render() {
     const { onSubmit, checkIsLoading } = this.props;
     const { word } = this.state;
-    const { en, ua, transcription, examples, partOfSpeech, synonyms } = word;
+    const { word: wordText, transcription, examples, partOfSpeech, synonyms } = word;
     const loading = checkIsLoading(loadingNames.words.fetch, loadingNames.words.save);
     const freePartsOfSpeech = [
       { key: "noun", title: "Noun" },
@@ -90,15 +89,9 @@ class WordForm extends Component {
         </Fade>
         <InputsBlock title="Main information">
           <TextField
-            label="English"
-            value={en}
-            onChange={event => this.handleFieldChange("en", event.target.value)}
-            disabled={loading}
-          />
-          <TextField
-            label="Ukrainian"
-            value={ua}
-            onChange={event => this.handleFieldChange("ua", event.target.value)}
+            label="Word"
+            value={wordText}
+            onChange={event => this.handleFieldChange("word", event.target.value)}
             disabled={loading}
           />
           <TextField

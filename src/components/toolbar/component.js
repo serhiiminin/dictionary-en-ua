@@ -34,8 +34,7 @@ const Toolbar = ({
                 label="Sort by"
                 onChange={onChangeSortBy}
                 options={[
-                  { key: "en", title: "English" },
-                  { key: "ua", title: "Ukrainian" },
+                  { key: "word", title: "Word" },
                   { key: "dateCreated", title: "Was added" },
                   { key: "timesLearnt", title: "Was learnt times" },
                   { key: "dateLastLearnt", title: "Was learnt last time" }

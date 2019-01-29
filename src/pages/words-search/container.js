@@ -17,17 +17,6 @@ import styles from "./styles";
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
-const EN = "en";
-const UK = "uk";
-
-const composeSearchData = text => {
-  const translatingWord = text.trim();
-  const from = encodeURIComponent(translatingWord) === translatingWord ? EN : UK;
-  const to = encodeURIComponent(translatingWord) === translatingWord ? UK : EN;
-
-  return { text: translatingWord, from, to };
-};
-
 class SearchWordContainer extends Component {
   static propTypes = {
     word: wordShape(PropTypes),
@@ -77,11 +66,11 @@ class SearchWordContainer extends Component {
 
   cleanSearchValue = () => this.setState({ searchValue: "" });
 
-  searchWord = text => {
+  searchWord = word => {
     clearTimeout(this.inputTimer);
-    this.setState({ searchValue: text });
+    this.setState({ searchValue: word });
     this.inputTimer = setTimeout(() => {
-      this.props.searchWord(composeSearchData(text));
+      this.props.searchWord({ word });
     }, SEARCH_INPUT_TIMEOUT);
   };
 
