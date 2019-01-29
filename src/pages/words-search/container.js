@@ -19,7 +19,7 @@ const SEARCH_INPUT_TIMEOUT = 500;
 
 class SearchWordContainer extends Component {
   static propTypes = {
-    word: wordShape(PropTypes),
+    wordItem: wordShape(PropTypes),
     history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     saveWord: PropTypes.func.isRequired,
@@ -31,7 +31,7 @@ class SearchWordContainer extends Component {
   };
 
   static defaultProps = {
-    word: {},
+    wordItem: null,
     classes: {}
   };
 
@@ -91,20 +91,20 @@ class SearchWordContainer extends Component {
   };
 
   handleEditBeforeSaving = () => {
-    const { history, setWordToState, word } = this.props;
+    const { history, setWordToState, wordItem } = this.props;
     this.setState({
       isToEditMode: true,
       searchValue: ""
     }, () => {
-      setWordToState({ ...word, _id: uuid() });
+      setWordToState({ ...wordItem, _id: uuid() });
       history.push(routes.words.add);
     });
   };
 
   handleSaveWord = () => {
-    const { saveWord, word, cleanWord } = this.props;
+    const { saveWord, wordItem, cleanWord } = this.props;
 
-    return saveWord(word).then(() => {
+    return saveWord(wordItem).then(() => {
       this.cleanSearchValue();
       return cleanWord();
     });
@@ -112,8 +112,8 @@ class SearchWordContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { word, checkIsLoading, classes } = this.props;
-    const isEmpty = !Object.keys(word).length;
+    const { wordItem, checkIsLoading, classes } = this.props;
+    const isEmpty = !Object.keys(wordItem).length;
     const loading = checkIsLoading(loadingNames.words.search);
 
     return (
@@ -144,7 +144,7 @@ class SearchWordContainer extends Component {
             </Button>
           </ControlsSeparator>
         </div>
-        <WordPreview word={word} />
+        <WordPreview wordItem={wordItem} />
       </main>
     );
   }

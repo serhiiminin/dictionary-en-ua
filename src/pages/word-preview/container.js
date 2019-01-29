@@ -10,11 +10,11 @@ class WordPreviewContainer extends Component {
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
-    word: PropTypes.shape({})
+    wordItem: PropTypes.shape({})
   };
 
   static defaultProps = {
-    word: {}
+    wordItem: {}
   };
 
   componentDidMount() {
@@ -28,10 +28,10 @@ class WordPreviewContainer extends Component {
   }
 
   render() {
-    const { word, checkIsLoading } = this.props;
+    const { wordItem, checkIsLoading } = this.props;
     const loading = checkIsLoading(loadingNames.words.fetch);
 
-    return <WordPreview loading={loading} word={word} />;
+    return <WordPreview loading={loading} wordItem={wordItem} />;
   }
 }
 

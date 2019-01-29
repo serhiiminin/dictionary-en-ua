@@ -1,43 +1,44 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import moment from "moment";
-import Edit from "@material-ui/icons/Edit";
-import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from "@material-ui/core";
-import { joinRoute } from "url-joiner";
-import routes from "../../routes";
-import { ButtonWithRouter } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import Edit from '@material-ui/icons/Edit';
+import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from '@material-ui/core';
+import { joinRoute } from 'url-joiner';
+import routes from '../../routes';
+import { ButtonWithRouter } from '..';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
-const EMPTY_VALUE = "-";
+const EMPTY_VALUE = '-';
 
 const WordItemInList = props => {
-  const { isChecked, onWordCheck, word, linkToWord, loading, classes } = props;
-  const { _id, word: wordText, transcription, dateCreated, dateLastLearnt, timesLearnt } = word;
+  const { isChecked, onWordCheck, wordItem, linkToWord, loading, classes } = props;
+  const { _id, word, transcription, dateCreated, dateLastLearnt, timesLearnt } = wordItem;
   const lastLearnt =
-    dateLastLearnt && dateLastLearnt === new Date(0).toISOString() ? "Never" : moment(dateLastLearnt).fromNow();
+    dateLastLearnt && dateLastLearnt === new Date(0).toISOString() ? 'Never' : moment(dateLastLearnt).fromNow();
 
   return (
     <Grid container spacing={16} alignItems="center" className={classes.wordItemWrapper}>
       <Grid item xs={1}>
-        <Checkbox onChange={() => onWordCheck(_id)} checked={isChecked} disabled={loading} />
+        <Checkbox onChange={() => onWordCheck(_id)} checked={isChecked} disabled={loading}/>
       </Grid>
       <Grid item xs={7} className={classes.description}>
         <ListItemText
           primary={
             loading ? (
               <Fade in={loading}>
-                <CircularProgress color="secondary" size={20} />
+                <CircularProgress color="secondary" size={20}/>
               </Fade>
             ) : (
               <Fragment>
-                {wordText && (
+                {word && (
                   <Link className={classes.wordLink} to={linkToWord}>
-                    {wordText}
+                    {word}
                   </Link>
                 )}
-                {[wordText && " ", transcription && `[${transcription}]`].filter(Boolean).join(" - ")}
+                {[word && ' ', transcription && `[${transcription}]`].filter(Boolean)
+                  .join(' - ')}
               </Fragment>
             )
           }
@@ -47,18 +48,19 @@ const WordItemInList = props => {
         />
       </Grid>
       <Grid item xs={3}>
-        <div className={classes.wordTime}>{(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}</div>
+        <div className={classes.wordTime}>{(dateCreated && moment(dateCreated)
+          .fromNow()) || EMPTY_VALUE}</div>
       </Grid>
       <Grid item xs={1}>
         <ButtonWithRouter
           to={joinRoute({
             pathname: routes.words.list.root,
-            paths: [_id, "edit"]
+            paths: [_id, 'edit']
           })}
           disabled={loading}
           title="Edit"
         >
-          <Edit />
+          <Edit/>
         </ButtonWithRouter>
       </Grid>
     </Grid>
@@ -66,7 +68,7 @@ const WordItemInList = props => {
 };
 
 WordItemInList.propTypes = {
-  word: PropTypes.shape({
+  wordItem: PropTypes.shape({
     _id: PropTypes.string,
     word: PropTypes.string,
     transcription: PropTypes.string,
@@ -80,14 +82,15 @@ WordItemInList.propTypes = {
 };
 
 WordItemInList.defaultProps = {
-  word: {
-    _id: "",
-    word: "",
-    transcription: "",
-    dateCreated: ""
+  wordItem: {
+    _id: '',
+    word: '',
+    transcription: '',
+    dateCreated: ''
   },
-  onWordCheck: () => {},
-  linkToWord: "",
+  onWordCheck: () => {
+  },
+  linkToWord: '',
   isChecked: false,
   loading: false,
   classes: {}

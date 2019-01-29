@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Fade, LinearProgress, TextField } from "@material-ui/core";
-import uuid from "uuid";
-import { Button, MultipleInputs, InputsBlock, ChipSet, ControlsSeparator, SelectWithOptions } from "..";
-import loadingNames from "../../constants/loading-names";
-import WORD_INITIAL_VALUES from "../../constants/word-initial-values";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Fade, LinearProgress, TextField } from '@material-ui/core';
+import uuid from 'uuid';
+import { Button, MultipleInputs, InputsBlock, ChipSet, ControlsSeparator, SelectWithOptions } from '..';
+import loadingNames from '../../constants/loading-names';
+import WORD_INITIAL_VALUES from '../../constants/word-initial-values';
 
 class WordForm extends Component {
   static propTypes = {
     checkIsLoading: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    word: PropTypes.shape({
+    wordItem: PropTypes.shape({
       _id: PropTypes.string,
       word: PropTypes.string,
       transcription: PropTypes.string,
@@ -21,20 +21,23 @@ class WordForm extends Component {
   };
 
   static defaultProps = {
-    word: {}
+    wordItem: null
   };
 
   state = {
-    word: WORD_INITIAL_VALUES
+    wordItem: WORD_INITIAL_VALUES
   };
 
   static getDerivedStateFromProps = (nextProps, prevState) =>
-    nextProps.word._id !== prevState.word._id ? { word: nextProps.word } : prevState;
+    (nextProps.wordItem && nextProps.wordItem._id) !==
+    (prevState.wordItem && prevState.wordItem._id)
+      ? { wordItem: nextProps.wordItem }
+      : prevState;
 
   handleFieldChange = (fieldKey, value) =>
     this.setState(prevState => ({
-      word: {
-        ...prevState.word,
+      wordItem: {
+        ...prevState.wordItem,
         [fieldKey]: value
       }
     }));
@@ -49,55 +52,56 @@ class WordForm extends Component {
 
   handleAddItemToArray = (fieldKey, value) =>
     this.setState(prevState => ({
-      word: {
-        ...prevState.word,
-        [fieldKey]: [{ id: uuid(), value }, ...prevState.word[fieldKey]]
+      wordItem: {
+        ...prevState.wordItem,
+        [fieldKey]: [{ id: uuid(), value }, ...prevState.wordItem[fieldKey]]
       }
     }));
 
   handleOnChangeMultipleInputs = (fieldKey, id, value) =>
     this.setState(prevState => ({
-      word: {
-        ...prevState.word,
-        [fieldKey]: prevState.word[fieldKey].map(item => (item.id === id ? { ...item, value } : item))
+      wordItem: {
+        ...prevState.wordItem,
+        [fieldKey]: prevState.wordItem[fieldKey].map(item => (item.id === id ? { ...item, value } : item))
       }
     }));
 
-  onResetForm = () => this.setState({ word: this.props.word });
+  onResetForm = () => this.setState({ wordItem: this.props.wordItem });
 
   render() {
     const { onSubmit, checkIsLoading } = this.props;
-    const { word } = this.state;
-    const { word: wordText, transcription, examples, partOfSpeech, synonyms } = word;
+    const { wordItem } = this.state;
+    const { word, transcription, examples, partOfSpeech, synonyms } = wordItem;
     const loading = checkIsLoading(loadingNames.words.fetch, loadingNames.words.save);
     const freePartsOfSpeech = [
-      { key: "noun", title: "Noun" },
-      { key: "pronoun", title: "Pronoun" },
-      { key: "verb", title: "Verb" },
-      { key: "adjective", title: "Adjective" },
-      { key: "adverb", title: "Adverb" },
-      { key: "preposition", title: "Preposition" },
-      { key: "conjunction", title: "Conjunction" },
-      { key: "interjection", title: "Interjection" },
-      { key: "article", title: "Article" },
-      { key: "determiner", title: "Determiner" }
-    ].filter(option => !(partOfSpeech && partOfSpeech.map(part => part.value).includes(option.key)));
+      { key: 'noun', title: 'Noun' },
+      { key: 'pronoun', title: 'Pronoun' },
+      { key: 'verb', title: 'Verb' },
+      { key: 'adjective', title: 'Adjective' },
+      { key: 'adverb', title: 'Adverb' },
+      { key: 'preposition', title: 'Preposition' },
+      { key: 'conjunction', title: 'Conjunction' },
+      { key: 'interjection', title: 'Interjection' },
+      { key: 'article', title: 'Article' },
+      { key: 'determiner', title: 'Determiner' }
+    ].filter(option => !(partOfSpeech && partOfSpeech.map(part => part.value)
+      .includes(option.key)));
     return (
       <form onSubmit={onSubmit}>
         <Fade in={loading}>
-          <LinearProgress color="secondary" />
+          <LinearProgress color="secondary"/>
         </Fade>
         <InputsBlock title="Main information">
           <TextField
             label="Word"
-            value={wordText}
-            onChange={event => this.handleFieldChange("word", event.target.value)}
+            value={word}
+            onChange={event => this.handleFieldChange('word', event.target.value)}
             disabled={loading}
           />
           <TextField
             label="Transcription"
             value={transcription}
-            onChange={event => this.handleFieldChange("transcription", event.target.value)}
+            onChange={event => this.handleFieldChange('transcription', event.target.value)}
             disabled={loading}
           />
         </InputsBlock>
@@ -105,9 +109,9 @@ class WordForm extends Component {
           title="Parts of speech"
           control={
             <SelectWithOptions
-              value={freePartsOfSpeech[0] ? freePartsOfSpeech[0].key : ""}
+              value={freePartsOfSpeech[0] ? freePartsOfSpeech[0].key : ''}
               label="Parts of speech"
-              onChange={event => this.handleAddItemToArray("partOfSpeech", event.target.value)}
+              onChange={event => this.handleAddItemToArray('partOfSpeech', event.target.value)}
               options={freePartsOfSpeech}
               disabled={loading}
             />
@@ -115,23 +119,23 @@ class WordForm extends Component {
         >
           <ChipSet
             items={partOfSpeech}
-            onRemoveItem={id => this.handleRemoveItemFromArray("partOfSpeech", id)}
+            onRemoveItem={id => this.handleRemoveItemFromArray('partOfSpeech', id)}
             disabled={loading}
           />
         </InputsBlock>
-        <InputsBlock onAddItem={value => this.handleAddItemToArray("synonyms", value)} title="Synonyms" control>
+        <InputsBlock onAddItem={value => this.handleAddItemToArray('synonyms', value)} title="Synonyms" control>
           <ChipSet
             items={synonyms}
-            onRemoveItem={id => this.handleRemoveItemFromArray("synonyms", id)}
+            onRemoveItem={id => this.handleRemoveItemFromArray('synonyms', id)}
             disabled={loading}
           />
         </InputsBlock>
-        <InputsBlock onAddItem={value => this.handleAddItemToArray("examples", value)} title="Examples" control>
+        <InputsBlock onAddItem={value => this.handleAddItemToArray('examples', value)} title="Examples" control>
           <MultipleInputs
             items={examples}
             placeholder="Example"
-            onChange={(id, value) => this.handleOnChangeMultipleInputs("examples", id, value)}
-            onRemoveItem={id => this.handleRemoveItemFromArray("examples", id)}
+            onChange={(id, value) => this.handleOnChangeMultipleInputs('examples', id, value)}
+            onRemoveItem={id => this.handleRemoveItemFromArray('examples', id)}
             disabled={loading}
           />
         </InputsBlock>
@@ -139,7 +143,8 @@ class WordForm extends Component {
           <Button onClick={this.onResetForm} disabled={loading} variant="contained" color="primary" title="Reset">
             Reset changes
           </Button>
-          <Button onClick={() => onSubmit(word)} disabled={loading} variant="contained" color="primary" title="Save">
+          <Button onClick={() => onSubmit(wordItem)} disabled={loading} variant="contained" color="primary"
+                  title="Save">
             Save
           </Button>
         </ControlsSeparator>

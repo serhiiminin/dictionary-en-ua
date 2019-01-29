@@ -25,7 +25,7 @@ const INITIAL_WORD_SORT_DATA = {
 
 const wordsInitialState = {
   wordsList: [],
-  word: {},
+  wordItem: {},
   count: 0,
   gif: ''
 };
@@ -70,16 +70,16 @@ class WordsProviderCmp extends Component {
 
   cleanWordsList = () => this.setState({ wordsList: wordsInitialState.wordsList });
 
-  cleanWord = () => this.setState({ word: wordsInitialState.word });
+  cleanWord = () => this.setState({ wordItem: wordsInitialState.wordItem });
 
-  setWordToState = word => this.setState({ word });
+  setWordToState = wordItem => this.setState({ wordItem });
 
   fetchWord = wordId =>
     this.handleFetch({
       googleToken: this.props.googleToken,
       loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWord.get(wordId, token),
-      responseHandler: word => this.setState({ word })
+      responseHandler: wordItem => this.setState({ wordItem })
     });
 
   fetchWordsList = () => {
@@ -138,7 +138,7 @@ class WordsProviderCmp extends Component {
           const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
           this.setState({
-            word: {
+            wordItem: {
               ...normalizeWord(foundWord),
               gif: randomGif
             }
@@ -176,14 +176,14 @@ class WordsProviderCmp extends Component {
   };
 
   render() {
-    const { wordsList, word, count, gif } = this.state;
+    const { wordsList, wordItem, count, gif } = this.state;
     const { children, user } = this.props;
 
     return (
       <WordsContext.Provider
         value={{
           gif,
-          word,
+          wordItem,
           wordsList,
           wordsCount: count,
           getWordsSearchParams: this.getSearchParams,

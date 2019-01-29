@@ -126,7 +126,7 @@ class LearnWordsContainer extends Component {
         <Button onClick={this.onLearnNextWord} variant="contained" color="primary">
           Learn the next word
         </Button>
-        <WordPreview word={currentWord} />
+        <WordPreview wordItem={currentWord} />
       </Fragment>
     ) : (
       <div className={classes.learnWord}>
@@ -134,7 +134,7 @@ class LearnWordsContainer extends Component {
           loading={loading}
           onOptionChange={this.onChangeInput}
           inputValue={inputValue}
-          word={currentWord && currentWord.ua}
+          word={currentWord && currentWord.word}
           timesLearnt={currentWord && currentWord.timesLearnt}
           onCheckAnswer={this.onCheckAnswer}
           onGiveAHint={this.onGiveAHint}

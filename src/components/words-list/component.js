@@ -18,8 +18,8 @@ const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, cla
               <WordItemInList loading={loading} />
             </ListItem>
           ))
-      : wordsList.map(word => {
-          const { _id } = word;
+      : wordsList.map(wordItem => {
+          const { _id } = wordItem;
           const linkToWord = joinRoute({
             pathname: routes.words.list.root,
             paths: [_id]
@@ -29,7 +29,7 @@ const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, cla
           return (
             <ListItem key={_id} divider>
               <WordItemInList
-                word={word}
+                wordItem={wordItem}
                 linkToWord={linkToWord}
                 onWordCheck={onWordCheck}
                 isChecked={isChecked}
