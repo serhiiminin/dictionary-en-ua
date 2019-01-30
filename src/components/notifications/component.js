@@ -1,29 +1,46 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
-import { Snackbar, Slide } from "@material-ui/core";
-import { SnackbarContent } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { Snackbar, Slide, IconButton } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import { NOTIFICATION_TIMEOUT } from '../../context/notifications';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import { NotificationMessage } from '..';
+import styles from './styles';
 
-const Notifications = ({ classes, children, notifications, hideNotification }) => (
-  <Fragment>
-    {children}
-    <Snackbar anchorOrigin={{ vertical: "bottom", horizontal: "right" }} open={notifications.length > 0}>
-      <div>
-        {notifications.reduceRight((acc, cur) => acc.concat(cur), []).map(({ id, text, type }) => (
-          <Slide in={!!text} direction="up" key={id}>
-            <SnackbarContent
-              className={classes.margin}
-              onClose={() => hideNotification(id)}
-              variant={type}
-              message={text}
-            />
-          </Slide>
-        ))}
-      </div>
-    </Snackbar>
-  </Fragment>
-);
+const Notifications = ({ classes, children, notifications, hideNotification }) => {
+  const { text, id, type } = notifications[0] || {};
+
+  return (
+    <Fragment>
+      {children}
+      <Snackbar
+        className={classes.margin}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={notifications.length > 0}
+        autoHideDuration={NOTIFICATION_TIMEOUT}
+        TransitionComponent={Slide}
+        onClose={() => hideNotification(id)}
+        transitionDuration={200}
+        message={(
+          <NotificationMessage
+            text={text}
+            type={type}
+          />
+        )}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            onClick={() => hideNotification(id)}
+          >
+            <Close />
+          </IconButton>,
+        ]}
+      />
+    </Fragment>
+  );
+};
 
 Notifications.propTypes = {
   notifications: PropTypes.arrayOf(

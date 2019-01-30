@@ -29,7 +29,7 @@ class NotificationsProvider extends Component {
     if (!isTheSameNotificationExist) {
       const id = uuid();
       this.setState(prevState => ({
-        notifications: [...prevState.notifications, { id, text, type }]
+        notifications: [{ id, text, type }, ...prevState.notifications]
       }));
       if (autoHide) {
         setTimeout(() => this.hideNotification(id), NOTIFICATION_TIMEOUT);
@@ -58,4 +58,4 @@ const withNotifications = Cmp => props => (
   <NotificationsContext.Consumer>{value => <Cmp {...value} {...props} />}</NotificationsContext.Consumer>
 );
 
-export { NotificationsProvider, withNotifications };
+export { NotificationsProvider, withNotifications, NOTIFICATION_TIMEOUT };

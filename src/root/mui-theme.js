@@ -109,6 +109,11 @@ const muiTheme = createMuiTheme({
           borderBottomColor: `${theme.main.colors.text} !important`
         }
       }
+    },
+    MuiSnackbar: {
+      anchorOriginTopRight: {
+        opacity: 0.9
+      }
     }
   },
   ...theme,

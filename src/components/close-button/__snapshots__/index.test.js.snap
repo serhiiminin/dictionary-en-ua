@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Close Button render 1`] = `
-<styled.button
-  type="button"
->
-  <pure(Close) />
-</styled.button>
-`;
