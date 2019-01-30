@@ -1,4 +1,4 @@
-import createFetcherJson from './create-fetcher';
+import createFetcherJson from '../create-fetcher';
 
 describe('fetcher', () => {
   test('Valid data', () => {
@@ -11,8 +11,9 @@ describe('fetcher', () => {
       .then(() => {
         const request = fetcher.mock.calls[0][0];
 
-        expect(request.headers).toEqual({});
-      })
+        expect(request.headers)
+          .toEqual({});
+      });
   });
 
   test('Forbidden', () => {
@@ -25,7 +26,8 @@ describe('fetcher', () => {
       .then(() => {
         const request = fetcher.mock.calls[0][0];
 
-        expect(request.headers).toEqual({});
-      })
+        expect(request.headers)
+          .toEqual({});
+      });
   });
 });

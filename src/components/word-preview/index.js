@@ -5,8 +5,8 @@ import { InputsBlock, LineExplanation, ListOfSearchableWords, Image } from "..";
 
 export const mapValues = items => items.map(item => item.value).filter(Boolean);
 
-const WordPreview = ({ word, loading }) => {
-  const { word: wordText, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples, gif } = word;
+const WordPreview = ({ wordItem, loading }) => {
+  const { word: wordText, transcription, partOfSpeech, synonyms, antonyms, similarTo, examples, gif } = wordItem;
   return (
     <div>
       <Fade in={loading}>
@@ -37,7 +37,7 @@ const WordPreview = ({ word, loading }) => {
 };
 
 WordPreview.propTypes = {
-  word: PropTypes.shape({
+  wordItem: PropTypes.shape({
     word: PropTypes.string,
     transcription: PropTypes.string,
     gif: PropTypes.string,
@@ -76,7 +76,7 @@ WordPreview.propTypes = {
 };
 
 WordPreview.defaultProps = {
-  word: {},
+  wordItem: null,
   loading: false
 };
 

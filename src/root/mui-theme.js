@@ -16,14 +16,26 @@ const muiTheme = createMuiTheme({
       light: theme.main.colors.light,
       main: theme.main.colors.main,
       dark: theme.main.colors.dark,
-      contrastText: theme.main.colors.contrastT
+      contrastText: theme.main.colors.contrastText,
     },
     text: {
       primary: theme.main.colors.text,
     }
   },
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
   overrides: {
     MuiButton: {
@@ -40,7 +52,7 @@ const muiTheme = createMuiTheme({
           color: `${theme.main.colors.background} !important`
         }
       },
-      
+
     },
     MuiChip: {
       root: {

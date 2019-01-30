@@ -5,7 +5,7 @@ import { WordForm } from "../../components";
 
 class WordEdit extends Component {
   static propTypes = {
-    word: PropTypes.shape({}),
+    wordItem: PropTypes.shape({}),
     fetchWord: PropTypes.func.isRequired,
     cleanWord: PropTypes.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
@@ -14,7 +14,7 @@ class WordEdit extends Component {
   };
 
   static defaultProps = {
-    word: {}
+    wordItem: null
   };
 
   componentDidMount() {
@@ -26,9 +26,9 @@ class WordEdit extends Component {
   }
 
   render() {
-    const { word, editWord, checkIsLoading } = this.props;
+    const { wordItem, editWord, checkIsLoading } = this.props;
 
-    return <WordForm word={word} onSubmit={editWord} checkIsLoading={checkIsLoading} />;
+    return <WordForm wordItem={wordItem} onSubmit={editWord} checkIsLoading={checkIsLoading} />;
   }
 }
 
