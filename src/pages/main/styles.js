@@ -1,7 +1,7 @@
 const styles = {
   mainPage: {
     display: 'grid',
-    gridTemplateColumns: '1fr 2fr',
+    gridTemplateColumns: '1fr',
     gap: '1rem',
   },
   quoteText: {
@@ -13,6 +13,6 @@ const styles = {
     fontSize: '1.2em',
     margin: '0.5em 0'
   }
-}
+};
 
 export default styles;
