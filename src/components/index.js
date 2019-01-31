@@ -13,8 +13,6 @@ export { default as LearningBoard } from './learning-board';
 export { default as LineExplanation } from './line-explanation';
 export { default as ListOfSearchableWords } from './list-of-searchable-words';
 export { default as MultipleInputs } from './multiple-inputs';
-export { default as NotificationMessage } from './notification-message';
-export { default as Notifications } from './notifications';
 export { default as Pagination } from './pagination';
 export { default as PaginationPanel } from './pagination-panel';
 export { default as SearchableWord } from './searchable-word';

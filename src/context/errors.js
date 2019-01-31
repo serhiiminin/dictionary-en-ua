@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { compose } from "recompose";
 import { withRouter } from 'react-router-dom';
-import { withNotifications } from "./notifications";
+import { withSnackbar } from 'notistack';
 import notificationType from "../constants/notifications-type";
 import routes from "../routes";
 import { getErrorMessage } from "../modules/handle-errors";
@@ -14,16 +14,16 @@ class ErrorsProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
-    showNotification: PropTypes.func.isRequired,
+    enqueueSnackbar: PropTypes.func.isRequired,
   };
 
   handleError = error => {
-    const { history, showNotification } = this.props;
+    const { history, enqueueSnackbar } = this.props;
     if(error.message === notificationType.error.forbidden) {
       history.push(routes.login);
     }
-    showNotification(getErrorMessage(error), notificationType.info)
-  }
+    enqueueSnackbar(getErrorMessage(error), { variant: notificationType.info })
+  };
 
   componentDidCatch(error, info) {
     // eslint-disable-next-line
@@ -45,7 +45,7 @@ class ErrorsProviderCmp extends Component {
 }
 
 const ErrorProvider = compose(
-  withNotifications,
+  withSnackbar,
   withRouter,
 )(ErrorsProviderCmp);
 
