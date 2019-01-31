@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { withSnackbar } from 'notistack';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -9,7 +10,6 @@ import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
 import { normalizeWord } from '../modules/word-utils';
 import { withLoadingNames } from './loading-names';
-import { withNotifications } from './notifications';
 import createHandleFetch from '../modules/handle-fetch';
 import { withUser } from './user';
 import { withErrors } from './errors';
@@ -33,7 +33,7 @@ const wordsInitialState = {
 class WordsProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    showNotification: PropTypes.func.isRequired,
+    enqueueSnackbar: PropTypes.func.isRequired,
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
@@ -106,7 +106,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.save,
       requestHandler: token => apiWord.create({ ...word, googleId: token && token.googleId, ownerId }, token),
       responseHandler: () =>
-        this.props.showNotification('The word has been saved successfully', notificationType.success)
+        this.props.enqueueSnackbar('The word has been saved successfully', { variant: notificationType.success })
     });
 
   editWord = word =>
@@ -115,7 +115,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.fetch,
       requestHandler: token => apiWord.update(word, token),
       responseHandler: () =>
-        this.props.showNotification('The word has been updated successfully', notificationType.success)
+        this.props.enqueueSnackbar('The word has been updated successfully', { variant: notificationType.success })
     });
 
   deleteWord = id =>
@@ -125,7 +125,10 @@ class WordsProviderCmp extends Component {
       requestHandler: token => apiWord.delete(id, token),
       responseHandler: () => this.fetchWordsList()
     })
-      .then(() => this.props.showNotification('The word has been deleted successfully', notificationType.success));
+      .then(() => this.props.enqueueSnackbar(
+        'The word has been deleted successfully',
+        { variant: notificationType.success }
+        ));
 
   searchWord = params =>
     this.handleFetch({
@@ -210,7 +213,7 @@ const WordsProvider = compose(
   withRouter,
   withUser,
   withLoadingNames,
-  withNotifications,
+  withSnackbar,
   withErrors,
 )(WordsProviderCmp);
 

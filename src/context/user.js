@@ -1,11 +1,11 @@
 import React, { Component, createContext } from "react";
 import PropTypes from "prop-types";
 import { compose } from "recompose";
+import { withSnackbar } from 'notistack';
 import { apiUser } from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
 import { withLoadingNames } from "./loading-names";
-import { withNotifications } from "./notifications";
 import createHandleFetch from "../modules/handle-fetch";
 import { withErrors } from "./errors";
 
@@ -18,7 +18,7 @@ const userInitialState = {
 class UserProviderCmp extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    showNotification: PropTypes.func.isRequired,
+    enqueueSnackbar: PropTypes.func.isRequired,
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
@@ -75,7 +75,7 @@ class UserProviderCmp extends Component {
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.create({ ...user }, token),
       responseHandler: () =>
-        this.props.showNotification("The user has been saved successfully", notificationType.success)
+        this.props.enqueueSnackbar("The user has been saved successfully", { variant: notificationType.success })
     });
 
   editUser = (word, token) =>
@@ -84,7 +84,7 @@ class UserProviderCmp extends Component {
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.update(word, token),
       responseHandler: () =>
-        this.props.showNotification("The user has been updated successfully", notificationType.success)
+        this.props.enqueueSnackbar("The user has been updated successfully", { variant: notificationType.success })
     });
 
   deleteUser = (id, token) =>
@@ -93,7 +93,10 @@ class UserProviderCmp extends Component {
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.delete(id, token),
       responseHandler: () => this.fetchWordsList()
-    }).then(() => this.props.showNotification("The user has been deleted successfully", notificationType.success));
+    }).then(() => this.props.enqueueSnackbar(
+      "The user has been deleted successfully",
+      { variant: notificationType.success }
+      ));
 
   render() {
     const { user, googleToken } = this.state;
@@ -123,7 +126,7 @@ class UserProviderCmp extends Component {
 
 const UserProvider = compose(
   withLoadingNames,
-  withNotifications,
+  withSnackbar,
   withErrors,
 )(UserProviderCmp);
 

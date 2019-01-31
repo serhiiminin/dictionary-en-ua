@@ -7038,6 +7038,11 @@ normalize-url@^3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
+notistack@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.4.1.tgz#1f1367a0f4d9542641aed300dd332985a1d0047a"
+  integrity sha512-o+cU7jGZW6fKtW0LRD9jHloC1h4heRgG0BIaWeWZ2nvZLbQVGKrpYmZmvdwATjUzu+bdMW+O3yaOrYTKHBL9hA==
+
 npm-bundled@^1.0.1:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.5.tgz#3c1732b7ba936b3a10325aef616467c0ccbcc979"
@@ -10287,10 +10292,10 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-url-joiner@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/url-joiner/-/url-joiner-0.0.5.tgz#00f97860816612456d33b0d297d7cba6d1bbc60a"
-  integrity sha512-CZ9dk3Pc5Gbok613a+GfSSjTqTPKdbYtVm/AlcwnqrKtkViyV4XHfSkwGnPrWn++OY+LIc3ZpO2geCGBEGI47Q==
+url-joiner@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/url-joiner/-/url-joiner-0.0.7.tgz#19fd6521353cbf883f6bb1c63669da9fea4fc3e9"
+  integrity sha512-0vT68/jgNQ44bpI92jc+w6FJhoEquydBMm3/9aZAA51NJ7rGKyvE0CJy9Hq3+wEYIrWevoOnrY1qmgBgTJsggw==
 
 url-loader@1.1.1:
   version "1.1.1"

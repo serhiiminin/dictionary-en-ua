@@ -17,7 +17,7 @@ class LearnWordsContainer extends Component {
     cleanWordsList: PropTypes.func.isRequired,
     learnWord: PropTypes.func.isRequired,
     relearnWord: PropTypes.func.isRequired,
-    showNotification: PropTypes.func.isRequired,
+    enqueueSnackbar: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles)
   };
@@ -54,7 +54,7 @@ class LearnWordsContainer extends Component {
   resetCountOfTry = () => this.setState({ countOfTry: 0 });
 
   onCheckAnswer = () => {
-    const { showNotification, relearnWord } = this.props;
+    const { enqueueSnackbar, relearnWord } = this.props;
     const { inputValue, currentWord } = this.state;
 
     if (currentWord && Object.keys(currentWord).length > 0) {
@@ -65,7 +65,7 @@ class LearnWordsContainer extends Component {
           inputValue: "",
           countOfTry: 0
         });
-        showNotification("You are right!", notificationType.info);
+        enqueueSnackbar("You are right!", { variant: notificationType.info });
       }
 
       this.setState(
@@ -76,13 +76,16 @@ class LearnWordsContainer extends Component {
           const { countOfTry } = this.state;
           if (countOfTry < MAX_COUNT_ATTEMPTS) {
             const attemptsLeft = MAX_COUNT_ATTEMPTS - this.state.countOfTry;
-            showNotification(
+            enqueueSnackbar(
               `You are wrong! ${attemptsLeft} attempt${attemptsLeft > 1 ? "s" : ""} left`,
-              notificationType.info
+              { variant: notificationType.info }
             );
           } else {
             this.setState({ countOfTry: 0 });
-            showNotification(`You don't remember this word. Keep learning it!`, notificationType.warning);
+            enqueueSnackbar(
+              `You don't remember this word. Keep learning it!`,
+              { variant: notificationType.warning }
+              );
             relearnWord(_id);
           }
         }

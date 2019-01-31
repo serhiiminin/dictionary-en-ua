@@ -12,7 +12,7 @@ import styles from "./styles";
 class Logout extends Component {
   static propTypes = {
     cleanGoogleToken: PropTypes.func.isRequired,
-    showNotification: PropTypes.func.isRequired,
+    enqueueSnackbar: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     classes: composeClassesPropTypes(styles)
   };
@@ -23,7 +23,7 @@ class Logout extends Component {
 
   onSuccess = () =>
     this.props.cleanGoogleToken(() => {
-      this.props.showNotification("You were successfully logged out!", notificationType.success);
+      this.props.enqueueSnackbar("You were successfully logged out!", { variant: notificationType.success });
       this.props.history.push(routes.login);
     });
 
