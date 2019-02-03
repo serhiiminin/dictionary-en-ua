@@ -2,6 +2,7 @@ import React, { Component, createContext } from "react";
 import PropTypes from "prop-types";
 import { compose } from "recompose";
 import { withSnackbar } from 'notistack';
+import Cookies from 'js-cookie';
 import { apiUser } from "../api";
 import notificationType from "../constants/notifications-type";
 import loadingNames from "../constants/loading-names";
@@ -9,10 +10,12 @@ import { withLoadingNames } from "./loading-names";
 import createHandleFetch from "../modules/handle-fetch";
 import { withErrors } from "./errors";
 
+const GOOGLE_TOKEN = 'google';
+
 const UserContext = createContext({});
 
 const userInitialState = {
-  googleToken: JSON.parse(window.localStorage.getItem("google")),
+  googleToken: Cookies.get(GOOGLE_TOKEN) && JSON.parse(Cookies.get(GOOGLE_TOKEN)),
   user: {}
 };
 class UserProviderCmp extends Component {
@@ -39,7 +42,7 @@ class UserProviderCmp extends Component {
   handleFetchUser = () => {
     const { googleToken } = this.state;
     return this.fetchUser((googleToken && googleToken.googleId) || "", googleToken)
-      .then(user => user || this.createUser(googleToken && googleToken.profileObj, googleToken))
+      .then(user => user || this.createUser(googleToken && googleToken.profile, googleToken))
       .then(this.setUserToState);
   };
 
@@ -47,7 +50,7 @@ class UserProviderCmp extends Component {
 
   cleanGoogleToken = callback => {
     this.setState({ googleToken: null }, () => {
-      window.localStorage.clear("google");
+      Cookies.remove(GOOGLE_TOKEN);
       callback();
     });
   };
@@ -56,7 +59,7 @@ class UserProviderCmp extends Component {
     this.fetchUser(googleToken.googleId, googleToken).then(user =>
       this.setState({ user, googleToken }, () => {
         callback();
-        window.localStorage.setItem("google", JSON.stringify(googleToken));
+        Cookies.set(GOOGLE_TOKEN, JSON.stringify({ token: googleToken.Zi, profile: googleToken.profileObj }));
       })
     );
 
@@ -101,7 +104,7 @@ class UserProviderCmp extends Component {
   render() {
     const { user, googleToken } = this.state;
     const { children } = this.props;
-    const isUserLoggedIn = googleToken && googleToken.tokenObj.expires_at > Date.now();
+    const isUserLoggedIn = googleToken && googleToken.token && googleToken.token.expires_at > Date.now();
 
     return (
       <UserContext.Provider
