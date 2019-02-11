@@ -1,8 +1,8 @@
-import React from "react";
-import { shallow } from "enzyme";
-import ControlsSeparator from "./component";
+import React from 'react';
+import { shallow } from 'enzyme';
+import ControlsSeparator from './component';
 
-describe("Controls separator", () => {
+describe('Controls separator', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -14,12 +14,12 @@ describe("Controls separator", () => {
     );
   });
 
-  test("render", () => {
+  test('render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("align right", () => {
-    wrapper.setProps({ align: "right" });
+  test('align right', () => {
+    wrapper.setProps({ align: 'right' });
     expect(wrapper).toMatchSnapshot();
   });
 });

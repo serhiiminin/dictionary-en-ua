@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { FormControl, InputLabel, Select } from "@material-ui/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormControl, InputLabel, Select } from '@material-ui/core';
 
 const SelectBlock = ({ label, ...restProps }) => (
   <FormControl color="primary">
@@ -11,11 +11,11 @@ const SelectBlock = ({ label, ...restProps }) => (
 
 SelectBlock.propTypes = {
   children: PropTypes.node.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
 };
 
 SelectBlock.defaultProps = {
-  label: null
+  label: null,
 };
 
 export default SelectBlock;

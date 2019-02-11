@@ -8,7 +8,7 @@ import styles from './styles';
 const enhance = compose(
   injectSheet(styles),
   withRouter,
-  withUser,
+  withUser
 );
 
 export default enhance(HeaderNavigation);

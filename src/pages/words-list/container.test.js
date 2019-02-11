@@ -6,9 +6,7 @@ describe('MainContainer page', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <WordsList/>
-    );
+    wrapper = shallow(<WordsList />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();

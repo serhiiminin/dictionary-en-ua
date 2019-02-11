@@ -2,7 +2,7 @@ const createHandleFetch = ({ startLoading, stopLoading, errorHandler }) => ({
   loadingName,
   requestHandler,
   responseHandler,
-  googleToken
+  googleToken,
 }) =>
   Promise.resolve(startLoading(loadingName))
     .then(() => requestHandler(googleToken) || (r => r))

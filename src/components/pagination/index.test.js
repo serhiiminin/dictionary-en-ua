@@ -1,9 +1,9 @@
-import React from "react";
-import { mount } from "enzyme";
-import muiTheme from "../../root/mui-theme";
-import Pagination from "./component";
+import React from 'react';
+import { mount } from 'enzyme';
+import muiTheme from '../../root/mui-theme';
+import Pagination from './component';
 
-describe("Pagination", () => {
+describe('Pagination', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -12,52 +12,52 @@ describe("Pagination", () => {
       muiTheme
     );
   });
-  test("render", () => {
+  test('render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("page number > 1", () => {
+  test('page number > 1', () => {
     wrapper.setProps({ pageNumber: 2, maxPageCount: 10 });
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("click on prev page", () => {
+  test('click on prev page', () => {
     const onChangePage = jest.fn();
     wrapper
       .setProps({ onChangePage, pageNumber: 2 })
       .find("button[title='Previous page']")
-      .simulate("click");
+      .simulate('click');
     expect(onChangePage).toBeCalledWith(1);
   });
 
-  test("click on prev page", () => {
+  test('click on prev page', () => {
     const onChangePage = jest.fn();
     wrapper
       .setProps({ onChangePage, pageNumber: 2, maxPageCount: 10 })
       .find("button[title='Next page']")
-      .simulate("click");
+      .simulate('click');
     expect(onChangePage).toBeCalledWith(3);
   });
 
-  test("on change input with min and max value", () => {
+  test('on change input with min and max value', () => {
     const onChangePage = jest.fn();
-    wrapper.setProps({ onChangePage, maxPageCount: 10 })
-    const mockedEventMin = { 
+    wrapper.setProps({ onChangePage, maxPageCount: 10 });
+    const mockedEventMin = {
       target: {
         value: 0,
-      }
-    }
-    const mockedEventMax = { 
+      },
+    };
+    const mockedEventMax = {
       target: {
         value: 20,
-      }
-    }
-    const input = wrapper.find("input");
-    
-    input.simulate("change", mockedEventMin);
-    expect(onChangePage).toBeCalledWith(1); 
-    
-    input.simulate("change", mockedEventMax);
+      },
+    };
+    const input = wrapper.find('input');
+
+    input.simulate('change', mockedEventMin);
+    expect(onChangePage).toBeCalledWith(1);
+
+    input.simulate('change', mockedEventMax);
     expect(onChangePage).toBeCalledWith(10);
   });
 });

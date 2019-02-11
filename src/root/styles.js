@@ -1,5 +1,5 @@
-import texture from "../images/texture.png";
-import theme from "./mui-theme";
+import texture from '../images/texture.png';
+import theme from './mui-theme';
 
 const GlobalStyle = {
   '@global body': {

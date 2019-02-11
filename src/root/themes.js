@@ -12,10 +12,10 @@ const theme = {
         error: '#F21600',
         warning: '#FAE639',
         info: '#A9D9E4',
-      }
+      },
     },
     opacity: {
-      disabled: .7,
+      disabled: 0.7,
     },
     margin: {
       small: '5px',
@@ -28,7 +28,7 @@ const theme = {
       large: '15px',
     },
     borderWidth: {
-      base: '1px'
+      base: '1px',
     },
     borderStyle: {
       base: 'solid',
@@ -44,8 +44,8 @@ const theme = {
     timeout: {
       notification: 300,
     },
-    transition: '.3s'
-  }
+    transition: '.3s',
+  },
 };
 
 export default theme;

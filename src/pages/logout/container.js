@@ -1,29 +1,31 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
-import { GoogleLogout } from "react-google-login";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import { Button } from "../../components";
-import routes from "../../routes";
-import notificationType from "../../constants/notifications-type";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { GoogleLogout } from 'react-google-login';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { Button } from '../../components';
+import routes from '../../routes';
+import notificationType from '../../constants/notifications-type';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 class Logout extends Component {
   static propTypes = {
     cleanGoogleToken: PropTypes.func.isRequired,
     enqueueSnackbar: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
-    classes: composeClassesPropTypes(styles)
+    classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
-    classes: {}
+    classes: {},
   };
 
   onSuccess = () =>
     this.props.cleanGoogleToken(() => {
-      this.props.enqueueSnackbar("You were successfully logged out!", { variant: notificationType.success });
+      this.props.enqueueSnackbar('You were successfully logged out!', {
+        variant: notificationType.success,
+      });
       this.props.history.push(routes.login);
     });
 
@@ -35,7 +37,12 @@ class Logout extends Component {
         className={classes.logoutButton}
         onLogoutSuccess={this.onSuccess}
         render={renderProps => (
-          <Button onClick={renderProps.onClick} color="secondary" variant="contained" title="Logout">
+          <Button
+            onClick={renderProps.onClick}
+            color="secondary"
+            variant="contained"
+            title="Logout"
+          >
             <AccountCircle /> Logout
           </Button>
         )}

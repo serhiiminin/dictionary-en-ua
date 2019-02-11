@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
-import { GoogleLogin } from "react-google-login";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import { Button } from "../../components";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { GoogleLogin } from 'react-google-login';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { Button } from '../../components';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
@@ -14,14 +14,15 @@ class Login extends Component {
     setGoogleToken: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
-    classes: composeClassesPropTypes(styles)
+    classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
-    classes: {}
+    classes: {},
   };
 
-  onSuccess = response => this.props.setGoogleToken(response, () => this.props.history.goBack());
+  onSuccess = response =>
+    this.props.setGoogleToken(response, () => this.props.history.goBack());
 
   onFailure = error => this.props.handleError(error);
 
@@ -36,7 +37,12 @@ class Login extends Component {
         onFailure={this.onFailure}
         color="primary"
         render={renderProps => (
-          <Button onClick={renderProps.onClick} color="secondary" variant="contained" title="Login with google account">
+          <Button
+            onClick={renderProps.onClick}
+            color="secondary"
+            variant="contained"
+            title="Login with google account"
+          >
             <AccountCircle />
             Login with google account
           </Button>

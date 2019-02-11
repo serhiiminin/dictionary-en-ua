@@ -1,12 +1,12 @@
-import React, { Component, createContext } from "react";
-import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
-import { compose } from "recompose";
+import React, { Component, createContext } from 'react';
+import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withSnackbar } from 'notistack';
-import notificationType from "../constants/notifications-type";
-import routes from "../routes";
-import { getErrorMessage } from "../modules/handle-errors";
+import notificationType from '../constants/notifications-type';
+import routes from '../routes';
+import { getErrorMessage } from '../modules/handle-errors';
 
 const ErrorsContext = createContext({});
 
@@ -19,10 +19,10 @@ class ErrorsProviderCmp extends Component {
 
   handleError = error => {
     const { history, enqueueSnackbar } = this.props;
-    if(error.message === notificationType.error.forbidden) {
+    if (error.message === notificationType.error.forbidden) {
       history.push(routes.login);
     }
-    enqueueSnackbar(getErrorMessage(error), { variant: notificationType.info })
+    enqueueSnackbar(getErrorMessage(error), { variant: notificationType.info });
   };
 
   componentDidCatch(error, info) {
@@ -37,7 +37,8 @@ class ErrorsProviderCmp extends Component {
       <ErrorsContext.Provider
         value={{
           handleError: this.handleError,
-        }}>
+        }}
+      >
         {children}
       </ErrorsContext.Provider>
     );
@@ -46,11 +47,13 @@ class ErrorsProviderCmp extends Component {
 
 const ErrorProvider = compose(
   withSnackbar,
-  withRouter,
+  withRouter
 )(ErrorsProviderCmp);
 
 const withErrors = Cmp => props => (
-  <ErrorsContext.Consumer>{value => <Cmp {...value} {...props} />}</ErrorsContext.Consumer>
+  <ErrorsContext.Consumer>
+    {value => <Cmp {...value} {...props} />}
+  </ErrorsContext.Consumer>
 );
 
 export { ErrorProvider, withErrors };

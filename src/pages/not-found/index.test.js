@@ -6,9 +6,7 @@ describe('Page not found', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <PageNotFound/>
-    );
+    wrapper = shallow(<PageNotFound />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();

@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
-import { joinRoute, parseSearchParams } from "url-joiner";
-import uuid from "uuid";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { joinRoute, parseSearchParams } from 'url-joiner';
+import uuid from 'uuid';
 import {
   Button,
   ControlsSeparator,
   TextFieldLoading,
-  WordPreview
-} from "../../components";
-import loadingNames from "../../constants/loading-names";
-import routes from "../../routes";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
+  WordPreview,
+} from '../../components';
+import loadingNames from '../../constants/loading-names';
+import routes from '../../routes';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import wordShape from '../../constants/shapes';
-import styles from "./styles";
+import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
@@ -27,17 +27,17 @@ class SearchWordContainer extends Component {
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     setWordToState: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles)
+    classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
     wordItem: null,
-    classes: {}
+    classes: {},
   };
 
   state = {
-    searchValue: "",
-    isToEditMode: false
+    searchValue: '',
+    isToEditMode: false,
   };
 
   componentDidMount() {
@@ -53,7 +53,10 @@ class SearchWordContainer extends Component {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
 
-    if (this.props.location.search !== prevProps.location.search && searchParams.query) {
+    if (
+      this.props.location.search !== prevProps.location.search &&
+      searchParams.query
+    ) {
       this.searchWord(searchParams.query);
     }
   }
@@ -64,7 +67,7 @@ class SearchWordContainer extends Component {
     }
   }
 
-  cleanSearchValue = () => this.setState({ searchValue: "" });
+  cleanSearchValue = () => this.setState({ searchValue: '' });
 
   searchWord = word => {
     clearTimeout(this.inputTimer);
@@ -84,7 +87,7 @@ class SearchWordContainer extends Component {
       this.props.history.push(
         joinRoute({
           pathname: routes.words.search,
-          searchParams: { query: value }
+          searchParams: { query: value },
         })
       );
     }, SEARCH_INPUT_TIMEOUT);
@@ -92,13 +95,16 @@ class SearchWordContainer extends Component {
 
   handleEditBeforeSaving = () => {
     const { history, setWordToState, wordItem } = this.props;
-    this.setState({
-      isToEditMode: true,
-      searchValue: ""
-    }, () => {
-      setWordToState({ ...wordItem, _id: uuid() });
-      history.push(routes.words.add);
-    });
+    this.setState(
+      {
+        isToEditMode: true,
+        searchValue: '',
+      },
+      () => {
+        setWordToState({ ...wordItem, _id: uuid() });
+        history.push(routes.words.add);
+      }
+    );
   };
 
   handleSaveWord = () => {

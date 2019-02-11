@@ -7,7 +7,7 @@ import WordPreviewContainer from './container';
 const enhance = compose(
   withRouter,
   withLoadingNames,
-  withWords,
+  withWords
 );
 
 export default enhance(WordPreviewContainer);

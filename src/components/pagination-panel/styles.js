@@ -7,7 +7,7 @@ const styles = theme => ({
     background: theme.palette.background.paper,
     padding: '10px 10px',
     width: '100%',
-  }
+  },
 });
 
 export default styles;

@@ -1,7 +1,7 @@
-import React from "react";
-import { FooterNavigation } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import { FooterNavigation } from '..';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const Footer = ({ classes }) => (
   <div className={classes.footer}>
@@ -10,11 +10,11 @@ const Footer = ({ classes }) => (
 );
 
 Footer.propTypes = {
-  classes: composeClassesPropTypes(styles)
+  classes: composeClassesPropTypes(styles),
 };
 
 Footer.defaultProps = {
-  classes: {}
+  classes: {},
 };
 
 export default Footer;

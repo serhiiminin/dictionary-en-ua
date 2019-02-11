@@ -1,14 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { List, ListItem } from "@material-ui/core";
-import uuid from "uuid";
-import { joinRoute } from "url-joiner";
-import routes from "../../routes";
-import { WordItemInList } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { List, ListItem } from '@material-ui/core';
+import uuid from 'uuid';
+import { joinRoute } from 'url-joiner';
+import routes from '../../routes';
+import { WordItemInList } from '..';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
-const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, classes }) => (
+const WordsList = ({
+  wordsList,
+  loading,
+  countPerPage,
+  checked,
+  onWordCheck,
+  classes,
+}) => (
   <List className={classes.wordsList} classes={{ root: classes.wordsList }}>
     {loading
       ? Array(countPerPage)
@@ -22,7 +29,7 @@ const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, cla
           const { _id } = wordItem;
           const linkToWord = joinRoute({
             pathname: routes.words.list.root,
-            paths: [_id]
+            paths: [_id],
           });
           const isChecked = checked.includes(_id);
 
@@ -44,14 +51,14 @@ const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, cla
 WordsList.propTypes = {
   wordsList: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired
+      _id: PropTypes.string.isRequired,
     })
   ),
   loading: PropTypes.bool,
   countPerPage: PropTypes.number,
   checked: PropTypes.arrayOf(PropTypes.string),
   onWordCheck: PropTypes.func.isRequired,
-  classes: composeClassesPropTypes(styles)
+  classes: composeClassesPropTypes(styles),
 };
 
 WordsList.defaultProps = {
@@ -59,7 +66,7 @@ WordsList.defaultProps = {
   loading: null,
   countPerPage: null,
   checked: null,
-  classes: {}
+  classes: {},
 };
 
 export default WordsList;
