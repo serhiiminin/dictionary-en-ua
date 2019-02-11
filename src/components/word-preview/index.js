@@ -43,13 +43,10 @@ const WordPreview = ({ wordItem, loading }) => {
         </LineExplanation>
       </InputsBlock>
       <InputsBlock title="Examples">
-        {examples
-          ? examples.map(example => (
-              <LineExplanation key={example.id}>
-                {example.value}
-              </LineExplanation>
-            ))
-          : ''}
+        {examples &&
+          examples.map(example => (
+            <LineExplanation key={example.id}>{example.value}</LineExplanation>
+          ))}
       </InputsBlock>
     </div>
   );

@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "react-app",
+  "extends": ["airbnb", "prettier", "prettier/react"],
   "plugins": ["prettier"],
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -16,6 +16,10 @@
     "jest": true
   },
   "rules": {
+    "import/no-cycle": 0,
+    "no-underscore-dangle": "off",
+    "react/destructuring-assignment": 0,
+    "react/jsx-filename-extension": 0,
     "prettier/prettier": "error"
   },
   "globals": {

@@ -43,7 +43,8 @@ class Logout extends Component {
             variant="contained"
             title="Logout"
           >
-            <AccountCircle /> Logout
+            <AccountCircle />
+            Logout
           </Button>
         )}
       >
