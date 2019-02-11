@@ -1,4 +1,4 @@
-import uuid from "uuid";
+import uuid from 'uuid';
 
 const mergeArrays = (data, field) =>
   Array.from(
@@ -17,15 +17,15 @@ const normalizeWord = (wordData = {}) => {
   const { results = [], ...rest } = wordData;
 
   return {
-    examples: addIdForArrayItems(mergeArrays(results, "examples")),
+    examples: addIdForArrayItems(mergeArrays(results, 'examples')),
     definitions: addIdForArrayItems(results.map(item => item.definition)),
-    similarTo: addIdForArrayItems(mergeArrays(results, "similarTo")),
-    synonyms: addIdForArrayItems(mergeArrays(results, "synonyms")),
-    antonyms: addIdForArrayItems(mergeArrays(results, "antonyms")),
+    similarTo: addIdForArrayItems(mergeArrays(results, 'similarTo')),
+    synonyms: addIdForArrayItems(mergeArrays(results, 'synonyms')),
+    antonyms: addIdForArrayItems(mergeArrays(results, 'antonyms')),
     partOfSpeech: addIdForArrayItems(
       Array.from(new Set(results.map(item => item.partOfSpeech)))
     ),
-    ...rest
+    ...rest,
   };
 };
 

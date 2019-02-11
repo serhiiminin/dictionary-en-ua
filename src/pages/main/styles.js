@@ -11,8 +11,8 @@ const styles = {
   quoteAuthor: {
     textAlign: 'right',
     fontSize: '1.2em',
-    margin: '0.5em 0'
-  }
+    margin: '0.5em 0',
+  },
 };
 
 export default styles;

@@ -6,9 +6,7 @@ describe('Root', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Root/>
-    );
+    wrapper = shallow(<Root />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();

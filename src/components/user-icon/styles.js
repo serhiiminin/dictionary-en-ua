@@ -9,7 +9,7 @@ const styles = theme => ({
     color: theme.palette.text.primary,
     textDecoration: 'none',
     fontSize: '1.6rem',
-  }
+  },
 });
 
 export default styles;

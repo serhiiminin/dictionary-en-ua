@@ -1,22 +1,23 @@
-import React, { Component, createContext } from "react";
-import PropTypes from "prop-types";
-import { compose } from "recompose";
+import React, { Component, createContext } from 'react';
+import PropTypes from 'prop-types';
+import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
-import { apiUser } from "../api";
-import notificationType from "../constants/notifications-type";
-import loadingNames from "../constants/loading-names";
-import { withLoadingNames } from "./loading-names";
-import createHandleFetch from "../modules/handle-fetch";
-import { withErrors } from "./errors";
+import { apiUser } from '../api';
+import notificationType from '../constants/notifications-type';
+import loadingNames from '../constants/loading-names';
+import { withLoadingNames } from './loading-names';
+import createHandleFetch from '../modules/handle-fetch';
+import { withErrors } from './errors';
 
 const GOOGLE_TOKEN = 'google';
 
 const UserContext = createContext({});
 
 const userInitialState = {
-  googleToken: Cookies.get(GOOGLE_TOKEN) && JSON.parse(Cookies.get(GOOGLE_TOKEN)),
-  user: {}
+  googleToken:
+    Cookies.get(GOOGLE_TOKEN) && JSON.parse(Cookies.get(GOOGLE_TOKEN)),
+  user: {},
 };
 class UserProviderCmp extends Component {
   static propTypes = {
@@ -41,8 +42,15 @@ class UserProviderCmp extends Component {
 
   handleFetchUser = () => {
     const { googleToken } = this.state;
-    return this.fetchUser((googleToken && googleToken.googleId) || "", googleToken)
-      .then(user => user || this.createUser(googleToken && googleToken.profile, googleToken))
+    return this.fetchUser(
+      (googleToken && googleToken.googleId) || '',
+      googleToken
+    )
+      .then(
+        user =>
+          user ||
+          this.createUser(googleToken && googleToken.profile, googleToken)
+      )
       .then(this.setUserToState);
   };
 
@@ -59,7 +67,13 @@ class UserProviderCmp extends Component {
     this.fetchUser(googleToken.googleId, googleToken).then(user =>
       this.setState({ user, googleToken }, () => {
         callback();
-        Cookies.set(GOOGLE_TOKEN, JSON.stringify({ token: googleToken.Zi, profile: googleToken.profileObj }));
+        Cookies.set(
+          GOOGLE_TOKEN,
+          JSON.stringify({
+            token: googleToken.Zi,
+            profile: googleToken.profileObj,
+          })
+        );
       })
     );
 
@@ -69,7 +83,7 @@ class UserProviderCmp extends Component {
     this.handleFetch({
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
-      requestHandler: () => apiUser.get(googleId, token)
+      requestHandler: () => apiUser.get(googleId, token),
     });
 
   createUser = (user, token) =>
@@ -78,7 +92,9 @@ class UserProviderCmp extends Component {
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.create({ ...user }, token),
       responseHandler: () =>
-        this.props.enqueueSnackbar("The user has been saved successfully", { variant: notificationType.success })
+        this.props.enqueueSnackbar('The user has been saved successfully', {
+          variant: notificationType.success,
+        }),
     });
 
   editUser = (word, token) =>
@@ -87,7 +103,9 @@ class UserProviderCmp extends Component {
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.update(word, token),
       responseHandler: () =>
-        this.props.enqueueSnackbar("The user has been updated successfully", { variant: notificationType.success })
+        this.props.enqueueSnackbar('The user has been updated successfully', {
+          variant: notificationType.success,
+        }),
     });
 
   deleteUser = (id, token) =>
@@ -95,16 +113,20 @@ class UserProviderCmp extends Component {
       googleToken: this.state.googleToken,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.delete(id, token),
-      responseHandler: () => this.fetchWordsList()
-    }).then(() => this.props.enqueueSnackbar(
-      "The user has been deleted successfully",
-      { variant: notificationType.success }
-      ));
+      responseHandler: () => this.fetchWordsList(),
+    }).then(() =>
+      this.props.enqueueSnackbar('The user has been deleted successfully', {
+        variant: notificationType.success,
+      })
+    );
 
   render() {
     const { user, googleToken } = this.state;
     const { children } = this.props;
-    const isUserLoggedIn = googleToken && googleToken.token && googleToken.token.expires_at > Date.now();
+    const isUserLoggedIn =
+      googleToken &&
+      googleToken.token &&
+      googleToken.token.expires_at > Date.now();
 
     return (
       <UserContext.Provider
@@ -119,8 +141,9 @@ class UserProviderCmp extends Component {
           fetchUser: this.fetchUser,
           createUser: this.createUser,
           editUser: this.editUser,
-          deleteUser: this.deleteUser
-        }}>
+          deleteUser: this.deleteUser,
+        }}
+      >
         {children}
       </UserContext.Provider>
     );
@@ -130,9 +153,13 @@ class UserProviderCmp extends Component {
 const UserProvider = compose(
   withLoadingNames,
   withSnackbar,
-  withErrors,
+  withErrors
 )(UserProviderCmp);
 
-const withUser = Cmp => props => <UserContext.Consumer>{value => <Cmp {...value} {...props} />}</UserContext.Consumer>;
+const withUser = Cmp => props => (
+  <UserContext.Consumer>
+    {value => <Cmp {...value} {...props} />}
+  </UserContext.Consumer>
+);
 
 export { UserProvider, withUser };

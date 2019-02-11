@@ -1,14 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { TextField, ButtonControl } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { TextField, ButtonControl } from '..';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
   const prevPage = Number(pageNumber) > 1 ? Number(pageNumber) - 1 : 1;
-  const nextPage = Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
+  const nextPage =
+    Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
 
   return (
     <div className={classes.page}>
@@ -22,7 +23,11 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
       </ButtonControl>
       <div className={classes.paginationInput}>
         <TextField
-          label={maxPageCount ? `Page ${pageNumber} of ${maxPageCount}` : "Page number"}
+          label={
+            maxPageCount
+              ? `Page ${pageNumber} of ${maxPageCount}`
+              : 'Page number'
+          }
           onChange={event => {
             const { value } = event.target;
             let numberPage = parseInt(value, 10);
@@ -50,13 +55,13 @@ Pagination.propTypes = {
   classes: composeClassesPropTypes(styles),
   pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPageCount: PropTypes.number,
-  onChangePage: PropTypes.func.isRequired
+  onChangePage: PropTypes.func.isRequired,
 };
 
 Pagination.defaultProps = {
   classes: {},
   pageNumber: 1,
-  maxPageCount: 0
+  maxPageCount: 0,
 };
 
 export default Pagination;

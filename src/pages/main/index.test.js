@@ -6,9 +6,7 @@ describe('MainContainer page', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <Main/>
-    );
+    wrapper = shallow(<Main />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();

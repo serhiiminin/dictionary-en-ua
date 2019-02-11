@@ -1,8 +1,8 @@
-import React from "react";
-import { mount } from "enzyme";
-import Toolbar from "./component";
+import React from 'react';
+import { mount } from 'enzyme';
+import Toolbar from './component';
 
-describe("Toolbar", () => {
+describe('Toolbar', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -12,15 +12,15 @@ describe("Toolbar", () => {
       </Toolbar>
     );
   });
-  test("render", () => {
+  test('render', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  test("isAnyChecked = true", () => {
+  test('isAnyChecked = true', () => {
     wrapper.setProps({ isAnyChecked: true });
-    expect(wrapper.exists(".test-example")).toBeTruthy();
+    expect(wrapper.exists('.test-example')).toBeTruthy();
   });
-  test("sortDirection = descend", () => {
-    wrapper.setProps({ sortDirection: "descend" });
-    expect(wrapper.exists("KeyboardArrowDown")).toBeTruthy();
+  test('sortDirection = descend', () => {
+    wrapper.setProps({ sortDirection: 'descend' });
+    expect(wrapper.exists('KeyboardArrowDown')).toBeTruthy();
   });
 });

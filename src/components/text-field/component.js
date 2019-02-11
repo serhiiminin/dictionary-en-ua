@@ -1,23 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { TextField } from "@material-ui/core";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { TextField } from '@material-ui/core';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const TextFieldCustomized = ({ classes, control, ...restProps }) => (
   <div className={classes.textFieldControl}>
     <TextField
       {...restProps}
       classes={{
-        root: classes.root
+        root: classes.root,
       }}
       InputProps={{
         classes: {
-          underline: classes.underline
-        }
+          underline: classes.underline,
+        },
       }}
       InputLabelProps={{
-        className: classes.label
+        className: classes.label,
       }}
     />
     {control}
@@ -26,12 +26,12 @@ const TextFieldCustomized = ({ classes, control, ...restProps }) => (
 
 TextFieldCustomized.propTypes = {
   classes: composeClassesPropTypes(styles),
-  control: PropTypes.node
+  control: PropTypes.node,
 };
 
 TextFieldCustomized.defaultProps = {
   control: null,
-  classes: {}
+  classes: {},
 };
 
 export default TextFieldCustomized;

@@ -3,8 +3,6 @@ import { compose } from 'recompose';
 import styles from './styles';
 import Footer from './component';
 
-const enhance = compose(
-  injectSheet(styles),
-);
+const enhance = compose(injectSheet(styles));
 
 export default enhance(Footer);

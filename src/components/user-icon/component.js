@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Avatar, Tooltip, CircularProgress } from "@material-ui/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Avatar, Tooltip, CircularProgress } from '@material-ui/core';
 
 const UserIcon = ({ user, isLoading }) =>
   isLoading || Object.keys(user).length === 0 ? (
@@ -13,16 +13,16 @@ const UserIcon = ({ user, isLoading }) =>
 
 UserIcon.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string
+    name: PropTypes.string,
   }),
   googleToken: PropTypes.shape({}),
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
 };
 
 UserIcon.defaultProps = {
   user: {},
   googleToken: null,
-  isLoading: false
+  isLoading: false,
 };
 
 export default UserIcon;

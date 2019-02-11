@@ -1,6 +1,6 @@
 const WORD_INITIAL_VALUES = {
-  word: "",
-  transcription: "",
+  word: '',
+  transcription: '',
   partOfSpeech: [],
   examples: [],
   synonyms: [],

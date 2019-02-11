@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactRouterPropTypes from "react-router-prop-types";
-import { WordsTable } from "../../components";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { WordsTable } from '../../components';
 
 class WordsListContainer extends Component {
   static propTypes = {
     fetchWordsList: PropTypes.func.isRequired,
     cleanWordsList: PropTypes.func.isRequired,
-    location: ReactRouterPropTypes.location.isRequired
+    location: ReactRouterPropTypes.location.isRequired,
   };
 
   componentDidMount() {

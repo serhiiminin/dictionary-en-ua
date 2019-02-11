@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const composeClassesWithProTypes = propTypes => styles =>
   propTypes.shape(
     Object.assign(
       {},
       ...Object.keys(styles).map(className => ({
-        [className]: propTypes.string.isRequired
+        [className]: propTypes.string.isRequired,
       }))
     )
   );

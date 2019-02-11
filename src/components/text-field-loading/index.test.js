@@ -6,9 +6,7 @@ describe('Text field loading', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <TextFieldLoading/>
-    )
+    wrapper = shallow(<TextFieldLoading />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();
@@ -17,6 +15,5 @@ describe('Text field loading', () => {
   test('loading', () => {
     wrapper.setProps({ loading: true });
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 });
-

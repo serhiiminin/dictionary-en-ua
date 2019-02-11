@@ -7,7 +7,7 @@ import WordsList from './container';
 const enhance = compose(
   withRouter,
   withLoadingNames,
-  withWords,
+  withWords
 );
 
 export default enhance(WordsList);

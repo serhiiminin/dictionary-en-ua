@@ -5,7 +5,7 @@ import { withLoadingNames } from '../../context/loading-names';
 
 const enhance = compose(
   withLoadingNames,
-  withWords,
+  withWords
 );
 
 export default enhance(AddWord);

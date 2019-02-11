@@ -1,17 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
-const BlocksWrapper = ({ children, classes }) => <div className={classes.blocksWrapper}>{children}</div>;
+const BlocksWrapper = ({ children, classes }) => (
+  <div className={classes.blocksWrapper}>{children}</div>
+);
 
 BlocksWrapper.propTypes = {
   classes: composeClassesPropTypes(styles),
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 BlocksWrapper.defaultProps = {
-  classes: {}
+  classes: {},
 };
 
 export default BlocksWrapper;

@@ -15,7 +15,7 @@ import {
   PageNotFoundContainer,
   WordsLearnContainer,
   WordsEditContainer,
-  WordPreviewContainer
+  WordPreviewContainer,
 } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
@@ -28,7 +28,7 @@ const snackbarConfig = {
     vertical: 'top',
     horizontal: 'right',
   },
-  action: [<Close key="close"/>],
+  action: [<Close key="close" />],
 };
 
 const Root = () => (
@@ -38,20 +38,44 @@ const Root = () => (
         <SnackbarProvider {...snackbarConfig}>
           <StateProvider>
             <BlocksWrapper>
-              <Header/>
+              <Header />
               <Switch>
-                <Route exact path={routes.root} component={MainContainer}/>
-                <Route exact path={routes.login} component={LoginContainer}/>
-                <Route exact path={routes.logout} component={LogoutContainer}/>
-                <Route exact path={routes.words.add} component={WordsAddContainer}/>
-                <Route exact path={routes.words.learn} component={WordsLearnContainer}/>
-                <Route exact path={routes.words.list.all} component={WordsListContainer}/>
-                <Route exact path={routes.words.list.preview} component={WordPreviewContainer}/>
-                <Route exact path={routes.words.list.edit} component={WordsEditContainer}/>
-                <Route exact path={routes.words.search} component={WordsSearchContainer}/>
-                <Route component={PageNotFoundContainer}/>
+                <Route exact path={routes.root} component={MainContainer} />
+                <Route exact path={routes.login} component={LoginContainer} />
+                <Route exact path={routes.logout} component={LogoutContainer} />
+                <Route
+                  exact
+                  path={routes.words.add}
+                  component={WordsAddContainer}
+                />
+                <Route
+                  exact
+                  path={routes.words.learn}
+                  component={WordsLearnContainer}
+                />
+                <Route
+                  exact
+                  path={routes.words.list.all}
+                  component={WordsListContainer}
+                />
+                <Route
+                  exact
+                  path={routes.words.list.preview}
+                  component={WordPreviewContainer}
+                />
+                <Route
+                  exact
+                  path={routes.words.list.edit}
+                  component={WordsEditContainer}
+                />
+                <Route
+                  exact
+                  path={routes.words.search}
+                  component={WordsSearchContainer}
+                />
+                <Route component={PageNotFoundContainer} />
               </Switch>
-              <Footer/>
+              <Footer />
             </BlocksWrapper>
           </StateProvider>
         </SnackbarProvider>

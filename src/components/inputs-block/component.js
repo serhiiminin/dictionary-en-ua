@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import AddIcon from "@material-ui/icons/Add";
-import PropTypes from "prop-types";
-import { TextField, Button } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React, { Component } from 'react';
+import AddIcon from '@material-ui/icons/Add';
+import PropTypes from 'prop-types';
+import { TextField, Button } from '..';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 class InputsBlock extends Component {
   static propTypes = {
@@ -11,25 +11,25 @@ class InputsBlock extends Component {
     children: PropTypes.node.isRequired,
     title: PropTypes.string,
     control: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
-    onAddItem: PropTypes.func
+    onAddItem: PropTypes.func,
   };
 
   static defaultProps = {
     classes: {},
     title: null,
     onAddItem: () => {},
-    control: false
+    control: false,
   };
 
   state = {
-    input: ""
+    input: '',
   };
 
   handleOnChange = event => this.setState({ input: event.target.value });
 
   handleOnAddItem = () => {
     this.props.onAddItem(this.state.input);
-    this.setState({ input: "" });
+    this.setState({ input: '' });
   };
 
   handleEnterPress = event => {
@@ -54,7 +54,12 @@ class InputsBlock extends Component {
                 onChange={event => this.handleOnChange(event)}
                 onKeyPress={this.handleEnterPress}
                 control={
-                  <Button onClick={this.handleOnAddItem} title="Add new option" disabled={!input} mini>
+                  <Button
+                    onClick={this.handleOnAddItem}
+                    title="Add new option"
+                    disabled={!input}
+                    mini
+                  >
                     <AddIcon />
                   </Button>
                 }

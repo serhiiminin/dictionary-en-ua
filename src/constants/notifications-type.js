@@ -1,7 +1,7 @@
 const notificationType = {
-  success: "success",
-  warning: "warning",
-  info: "info",
+  success: 'success',
+  warning: 'warning',
+  info: 'info',
   error: {
     clientError: 'clientError',
     default: 'error',

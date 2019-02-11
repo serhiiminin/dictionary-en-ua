@@ -1,9 +1,9 @@
-import React from "react";
-import { shallow } from "enzyme";
-import LearningBoard from ".";
-import muiTheme from "../../root/mui-theme";
+import React from 'react';
+import { shallow } from 'enzyme';
+import LearningBoard from '.';
+import muiTheme from '../../root/mui-theme';
 
-describe("LearningBoard", () => {
+describe('LearningBoard', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
@@ -19,14 +19,14 @@ describe("LearningBoard", () => {
       </LearningBoard>
     );
   });
-  test("render", () => {
+  test('render', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  test("loading", () => {
+  test('loading', () => {
     wrapper.setProps({ loading: true });
     expect(wrapper).toMatchSnapshot();
   });
-  test("times learnt is more then 1", () => {
+  test('times learnt is more then 1', () => {
     wrapper.setProps({ timesLearnt: 2 });
     expect(wrapper).toMatchSnapshot();
   });

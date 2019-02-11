@@ -1,6 +1,6 @@
-import React from "react";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const MainContainer = ({ classes }) => (
   <div className={classes.mainPage}>
@@ -9,11 +9,11 @@ const MainContainer = ({ classes }) => (
 );
 
 MainContainer.propTypes = {
-  classes: composeClassesPropTypes(styles)
+  classes: composeClassesPropTypes(styles),
 };
 
 MainContainer.defaultProps = {
-  classes: {}
+  classes: {},
 };
 
 export default MainContainer;

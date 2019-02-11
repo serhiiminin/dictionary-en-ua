@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Fade, LinearProgress } from "@material-ui/core";
-import { TextField } from "..";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Fade, LinearProgress } from '@material-ui/core';
+import { TextField } from '..';
 
 const TextFieldLoading = ({ loading, ...restProps }) => (
   <div>
@@ -13,11 +13,11 @@ const TextFieldLoading = ({ loading, ...restProps }) => (
 );
 
 TextFieldLoading.propTypes = {
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 TextFieldLoading.defaultProps = {
-  loading: false
+  loading: false,
 };
 
 export default TextFieldLoading;

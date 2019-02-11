@@ -1,8 +1,8 @@
-import React from "react";
-import { ButtonWithRouter } from "../../components";
-import routes from "../../routes";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React from 'react';
+import { ButtonWithRouter } from '../../components';
+import routes from '../../routes';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const PageNotFoundContainer = ({ classes }) => (
   <div className={classes.notFoundWrapper}>
@@ -12,11 +12,11 @@ const PageNotFoundContainer = ({ classes }) => (
 );
 
 PageNotFoundContainer.propTypes = {
-  classes: composeClassesPropTypes(styles)
+  classes: composeClassesPropTypes(styles),
 };
 
 PageNotFoundContainer.defaultProps = {
-  classes: {}
+  classes: {},
 };
 
 export default PageNotFoundContainer;

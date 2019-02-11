@@ -1,23 +1,23 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { mount } from "enzyme";
-import WordPreview, { mapValues } from ".";
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { mount } from 'enzyme';
+import WordPreview, { mapValues } from '.';
 
-describe("mapValues", () => {
-  test("correct data", () => {
-    const arr = [{ id: "1", value: "text" }];
-    expect(mapValues(arr)).toEqual(["text"]);
+describe('mapValues', () => {
+  test('correct data', () => {
+    const arr = [{ id: '1', value: 'text' }];
+    expect(mapValues(arr)).toEqual(['text']);
   });
 });
 
-describe("WordForm", () => {
+describe('WordForm', () => {
   let wrapper;
   const word = {
-    _id: "1",
-    transcription: "transcription",
-    synonyms: [{ id: "34", value: "day" }],
-    partOfSpeech: [{ id: "55", value: "noun" }],
-    examples: [{ id: "8", value: "example" }]
+    _id: '1',
+    transcription: 'transcription',
+    synonyms: [{ id: '34', value: 'day' }],
+    partOfSpeech: [{ id: '55', value: 'noun' }],
+    examples: [{ id: '8', value: 'example' }],
   };
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe("WordForm", () => {
       </Router>
     );
   });
-  test("render", () => {
+  test('render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

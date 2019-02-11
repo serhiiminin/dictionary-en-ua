@@ -10,7 +10,7 @@ const enhance = compose(
   injectSheet(styles),
   withRouter,
   withLoadingNames,
-  withWords,
+  withWords
 );
 
 export default enhance(SearchWord);

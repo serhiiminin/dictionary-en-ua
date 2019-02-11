@@ -1,18 +1,18 @@
-import React from "react";
-import { mount } from "enzyme";
-import { BrowserRouter as Router } from "react-router-dom";
-import WordItemInList from "./component";
+import React from 'react';
+import { mount } from 'enzyme';
+import { BrowserRouter as Router } from 'react-router-dom';
+import WordItemInList from './component';
 
-describe("WordItemInList", () => {
+describe('WordItemInList', () => {
   const word = {
-    _id: "_id",
-    en: "en",
-    uk: "uk",
-    transcription: "transcription",
-    dateCreated: "2000-02-02",
-    dateLastLearnt: "2000-02-02"
+    _id: '_id',
+    en: 'en',
+    uk: 'uk',
+    transcription: 'transcription',
+    dateCreated: '2000-02-02',
+    dateLastLearnt: '2000-02-02',
   };
-  test("render", () => {
+  test('render', () => {
     const wrapper = mount(
       <Router>
         <WordItemInList word={word}>Anything</WordItemInList>
@@ -20,7 +20,7 @@ describe("WordItemInList", () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
-  test("loading", () => {
+  test('loading', () => {
     const wrapper = mount(
       <Router>
         <WordItemInList loading word={word}>

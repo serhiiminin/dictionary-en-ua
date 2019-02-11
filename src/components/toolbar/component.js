@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
-import { List, ListItem, Zoom } from "@material-ui/core";
-import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUp";
-import { SelectWithOptions, Button } from "..";
-import composeClassesPropTypes from "../../modules/compose-classes-prop-types";
-import styles from "./styles";
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { List, ListItem, Zoom } from '@material-ui/core';
+import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
+import { SelectWithOptions, Button } from '..';
+import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import styles from './styles';
 
 const Toolbar = ({
   checkAllControl,
@@ -15,7 +15,7 @@ const Toolbar = ({
   onChangeSortBy,
   isAnyChecked,
   children,
-  classes
+  classes,
 }) => (
   <List>
     <ListItem divider>
@@ -25,8 +25,18 @@ const Toolbar = ({
           <Zoom in={isAnyChecked}>{children}</Zoom>
         ) : (
           <Fragment>
-            <Button onClick={onChangeSortDirection} title="Sort direction" color="primary" variant="contained" mini>
-              {sortDirection === "descend" ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+            <Button
+              onClick={onChangeSortDirection}
+              title="Sort direction"
+              color="primary"
+              variant="contained"
+              mini
+            >
+              {sortDirection === 'descend' ? (
+                <KeyboardArrowDown />
+              ) : (
+                <KeyboardArrowUp />
+              )}
             </Button>
             <div>
               <SelectWithOptions
@@ -34,10 +44,10 @@ const Toolbar = ({
                 label="Sort by"
                 onChange={onChangeSortBy}
                 options={[
-                  { key: "word", title: "Word" },
-                  { key: "dateCreated", title: "Was added" },
-                  { key: "timesLearnt", title: "Was learnt times" },
-                  { key: "dateLastLearnt", title: "Was learnt last time" }
+                  { key: 'word', title: 'Word' },
+                  { key: 'dateCreated', title: 'Was added' },
+                  { key: 'timesLearnt', title: 'Was learnt times' },
+                  { key: 'dateLastLearnt', title: 'Was learnt last time' },
                 ]}
               />
             </div>
@@ -56,15 +66,15 @@ Toolbar.propTypes = {
   onChangeSortBy: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   isAnyChecked: PropTypes.bool,
-  classes: composeClassesPropTypes(styles)
+  classes: composeClassesPropTypes(styles),
 };
 
 Toolbar.defaultProps = {
   checkAllControl: null,
-  sortBy: "dateCreated",
-  sortDirection: "ascend",
+  sortBy: 'dateCreated',
+  sortDirection: 'ascend',
   isAnyChecked: false,
-  classes: {}
+  classes: {},
 };
 
 export default Toolbar;

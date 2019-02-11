@@ -1,4 +1,4 @@
-const NS = "LOADING";
+const NS = 'LOADING';
 const WORDS = `${NS}/WORDS`;
 const USER = `${NS}/USER`;
 const GIF = `${NS}/GIF`;
@@ -10,14 +10,14 @@ const loadingNames = {
     fetch: `${WORDS}/fetch`,
     learn: `${WORDS}/learn`,
     search: `${WORDS}/search`,
-    delete: `${WORDS}/delete`
+    delete: `${WORDS}/delete`,
   },
   user: {
-    fetch: `${USER}/fetch`
+    fetch: `${USER}/fetch`,
   },
   gif: {
-    fetch: `${GIF}/fetch`
-  }
+    fetch: `${GIF}/fetch`,
+  },
 };
 
 export default loadingNames;

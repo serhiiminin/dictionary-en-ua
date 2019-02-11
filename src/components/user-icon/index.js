@@ -6,7 +6,7 @@ import UserIcon from './component';
 
 const enhance = compose(
   injectSheet(styles),
-  withUser,
+  withUser
 );
 
 export default enhance(UserIcon);

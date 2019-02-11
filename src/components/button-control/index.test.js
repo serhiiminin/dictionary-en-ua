@@ -1,19 +1,19 @@
-import React from "react";
-import { shallow } from "enzyme";
-import ButtonControl from ".";
+import React from 'react';
+import { shallow } from 'enzyme';
+import ButtonControl from '.';
 
-describe("Button control", () => {
+describe('Button control', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(<ButtonControl>Text</ButtonControl>);
   });
 
-  test("render", () => {
+  test('render', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("isActive", () => {
+  test('isActive', () => {
     wrapper.setProps({ isActive: true });
     expect(wrapper).toMatchSnapshot();
   });

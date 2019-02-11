@@ -1,9 +1,9 @@
-import React from "react";
-import { mount } from "enzyme";
-import muiTheme from "../../root/mui-theme";
-import ChipSet from "./component";
+import React from 'react';
+import { mount } from 'enzyme';
+import muiTheme from '../../root/mui-theme';
+import ChipSet from './component';
 
-describe("Chip set", () => {
+describe('Chip set', () => {
   let wrapper;
 
   beforeEach(() => {
@@ -12,9 +12,9 @@ describe("Chip set", () => {
         theme={muiTheme}
         items={[
           {
-            value: "one",
-            id: "1"
-          }
+            value: 'one',
+            id: '1',
+          },
         ]}
         onRemoveItem={() => {}}
       >
@@ -24,16 +24,16 @@ describe("Chip set", () => {
     );
   });
 
-  test("render button", () => {
+  test('render button', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("disabled", () => {
+  test('disabled', () => {
     wrapper.setProps({ disabled: true });
     expect(wrapper).toMatchSnapshot();
   });
 
-  test("onDelete", () => {
+  test('onDelete', () => {
     const onRemoveItem = jest.fn();
     wrapper.setProps({ onRemoveItem });
     wrapper.find('svg').simulate('click');

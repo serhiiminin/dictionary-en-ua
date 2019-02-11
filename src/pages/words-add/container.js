@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { WordForm } from "../../components";
-import wordShape from "../../constants/shapes";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { WordForm } from '../../components';
+import wordShape from '../../constants/shapes';
 
 class AddWordContainer extends Component {
   componentWillUnmount() {
@@ -12,7 +12,11 @@ class AddWordContainer extends Component {
     const { saveWord, wordItem, checkIsLoading } = this.props;
 
     return (
-      <WordForm wordItem={wordItem} checkIsLoading={checkIsLoading} onSubmit={saveWord} />
+      <WordForm
+        wordItem={wordItem}
+        checkIsLoading={checkIsLoading}
+        onSubmit={saveWord}
+      />
     );
   }
 }

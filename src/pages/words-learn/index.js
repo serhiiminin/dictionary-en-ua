@@ -10,7 +10,7 @@ const enhance = compose(
   injectSheet(styles),
   withLoadingNames,
   withSnackbar,
-  withWords,
+  withWords
 );
 
 export default enhance(LearnWords);

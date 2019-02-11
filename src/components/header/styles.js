@@ -4,7 +4,6 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    
   },
   headerLinkWrapper: {
     margin: 0,
@@ -13,7 +12,7 @@ const styles = theme => ({
     color: theme.palette.text.primary,
     textDecoration: 'none',
     fontSize: '1.6rem',
-  }
+  },
 });
 
 export default styles;
