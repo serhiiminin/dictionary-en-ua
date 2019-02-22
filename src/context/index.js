@@ -4,13 +4,16 @@ import { LoadingNamesProvider } from './loading-names';
 import { WordsProvider } from './words';
 import { UserProvider } from './user';
 import { ErrorProvider } from './errors';
+import { AuthProvider } from './auth';
 
 const StateProvider = ({ children }) => (
   <ErrorProvider>
     <LoadingNamesProvider>
-      <UserProvider>
-        <WordsProvider>{children}</WordsProvider>
-      </UserProvider>
+      <AuthProvider>
+        <UserProvider>
+          <WordsProvider>{children}</WordsProvider>
+        </UserProvider>
+      </AuthProvider>
     </LoadingNamesProvider>
   </ErrorProvider>
 );

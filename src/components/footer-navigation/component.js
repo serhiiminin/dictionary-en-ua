@@ -48,7 +48,7 @@ const createLinks = isUserLoggedIn => [
     : {
         path: routes.login,
         icon: <Input />,
-        placeholder: 'Login',
+        placeholder: 'Signup',
       },
 ];
 

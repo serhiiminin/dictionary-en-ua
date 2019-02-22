@@ -9,9 +9,9 @@ import styles from './styles';
 const email = value =>
   value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
-class Login extends Component {
+class Signup extends Component {
   static propTypes = {
-    handleLogin: PropTypes.func.isRequired,
+    handleSignUp: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     classes: composeClassesPropTypes(styles),
@@ -42,7 +42,7 @@ class Login extends Component {
 
   handleSubmit = () => {
     const { login, password } = this.state;
-    const { handleLogin } = this.props;
+    const { handleSignUp } = this.props;
     const isMailValid = Boolean(email(login));
     if (isMailValid) {
       this.setState(
@@ -51,7 +51,7 @@ class Login extends Component {
           isMailValid: true,
         }),
         () => {
-          handleLogin({ login, password });
+          handleSignUp({ login, password });
         }
       );
     } else {
@@ -67,7 +67,7 @@ class Login extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.loginButton}>
+      <div className={classes.signupButton}>
         <form>
           <TextField
             error={!isMailValid}
@@ -105,4 +105,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;

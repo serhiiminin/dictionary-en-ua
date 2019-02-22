@@ -1,5 +1,6 @@
 export { default as LoginContainer } from './login';
 export { default as LogoutContainer } from './logout';
+export { default as SignupContainer } from './signup';
 export { default as MainContainer } from './main';
 export { default as PageNotFoundContainer } from './not-found';
 export { default as WordsAddContainer } from './words-add';

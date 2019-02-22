@@ -6,11 +6,11 @@ import LoginCmp from './container';
 import styles from './styles';
 import { withErrors } from '../../context/errors';
 
-const Login = compose(
+const Signup = compose(
   injectSheet(styles),
   withRouter,
   withAuth,
   withErrors
 )(LoginCmp);
 
-export default Login;
+export default Signup;

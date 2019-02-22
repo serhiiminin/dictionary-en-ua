@@ -10,13 +10,11 @@ import { withLoadingNames } from './loading-names';
 import createHandleFetch from '../modules/handle-fetch';
 import { withErrors } from './errors';
 
-const GOOGLE_TOKEN = 'google';
+const ACCESS_TOKEN = 'access_token';
 
 const UserContext = createContext({});
 
 const userInitialState = {
-  googleToken:
-    Cookies.get(GOOGLE_TOKEN) && JSON.parse(Cookies.get(GOOGLE_TOKEN)),
   user: {},
 };
 class UserProviderCmp extends Component {
@@ -36,44 +34,30 @@ class UserProviderCmp extends Component {
     errorHandler: this.props.handleError,
   });
 
-  componentDidMount() {
-    this.handleFetchUser();
-  }
+  // componentDidMount() {
+  //   this.handleFetchUser();
+  // }
 
   handleFetchUser = () => {
-    const { googleToken } = this.state;
-    return this.fetchUser(
-      (googleToken && googleToken.googleId) || '',
-      googleToken
-    )
-      .then(
-        user =>
-          user ||
-          this.createUser(googleToken && googleToken.profile, googleToken)
-      )
+    return this.fetchUser(this.state.token || '', this.state.token)
+      .then(user => user || this.createUser(this.state.token, this.state.token))
       .then(this.setUserToState);
   };
 
   cleanUser = () => this.setState({ user: userInitialState.user });
 
   cleanGoogleToken = callback => {
-    this.setState({ googleToken: null }, () => {
-      Cookies.remove(GOOGLE_TOKEN);
+    this.setState({ token: null }, () => {
+      Cookies.remove(ACCESS_TOKEN);
       callback();
     });
   };
 
-  setGoogleToken = (googleToken, callback) =>
-    this.fetchUser(googleToken.googleId, googleToken).then(user =>
-      this.setState({ user, googleToken }, () => {
+  setGoogleToken = (token, callback) =>
+    this.fetchUser(token).then(user =>
+      this.setState({ user, token }, () => {
         callback();
-        Cookies.set(
-          GOOGLE_TOKEN,
-          JSON.stringify({
-            token: googleToken.Zi,
-            profile: googleToken.profileObj,
-          })
-        );
+        Cookies.set(ACCESS_TOKEN, token);
       })
     );
 
@@ -81,14 +65,14 @@ class UserProviderCmp extends Component {
 
   fetchUser = (googleId, token) =>
     this.handleFetch({
-      googleToken: this.state.googleToken,
+      token: this.state.token,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.get(googleId, token),
     });
 
   createUser = (user, token) =>
     this.handleFetch({
-      googleToken: this.state.googleToken,
+      token: this.state.token,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.create({ ...user }, token),
       responseHandler: () =>
@@ -99,7 +83,7 @@ class UserProviderCmp extends Component {
 
   editUser = (word, token) =>
     this.handleFetch({
-      googleToken: this.state.googleToken,
+      token: this.state.token,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.update(word, token),
       responseHandler: () =>
@@ -110,7 +94,7 @@ class UserProviderCmp extends Component {
 
   deleteUser = (id, token) =>
     this.handleFetch({
-      googleToken: this.state.googleToken,
+      token: this.state.token,
       loadingName: loadingNames.user.fetch,
       requestHandler: () => apiUser.delete(id, token),
       responseHandler: () => this.fetchWordsList(),
@@ -121,19 +105,15 @@ class UserProviderCmp extends Component {
     );
 
   render() {
-    const { user, googleToken } = this.state;
+    const { user, token } = this.state;
     const { children } = this.props;
-    const isUserLoggedIn =
-      googleToken &&
-      googleToken.token &&
-      googleToken.token.expires_at > Date.now();
 
     return (
       <UserContext.Provider
         value={{
           user,
-          googleToken,
-          isUserLoggedIn,
+          token,
+          isUserLoggedIn: token,
           setGoogleToken: this.setGoogleToken,
           cleanGoogleToken: this.cleanGoogleToken,
           setUserToState: this.setUserToState,

@@ -1,5 +1,5 @@
 const styles = {
-  loginButton: {
+  signupButton: {
     width: '300px',
   },
 };
