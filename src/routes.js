@@ -1,7 +1,10 @@
 const routes = {
   root: '/',
-  login: '/login',
-  logout: '/logout',
+  auth: {
+    login: '/login',
+    logout: '/logout',
+    signup: '/signup',
+  },
   words: {
     add: '/add-word',
     learn: '/learn-words',

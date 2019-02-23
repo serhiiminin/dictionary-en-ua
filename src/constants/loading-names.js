@@ -1,6 +1,7 @@
 const NS = 'LOADING';
 const WORDS = `${NS}/WORDS`;
 const USER = `${NS}/USER`;
+const AUTH = `${NS}/AUTH`;
 const GIF = `${NS}/GIF`;
 
 const loadingNames = {
@@ -14,6 +15,10 @@ const loadingNames = {
   },
   user: {
     fetch: `${USER}/fetch`,
+  },
+  auth: {
+    login: `${AUTH}/login`,
+    signup: `${AUTH}/signup`,
   },
   gif: {
     fetch: `${GIF}/fetch`,
