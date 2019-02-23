@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Button } from '../../components';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import routes from '../../routes';
 import styles from './styles';
 
 const email = value =>
   value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
-class Login extends Component {
+class Signup extends Component {
   static propTypes = {
-    handleLogin: PropTypes.func.isRequired,
+    handleSignUp: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
   state = {
+    name: '',
+    gender: '',
+    age: '',
     login: '',
     password: '',
+    repeatPassword: '',
     isPasswordVisible: false,
     isMailValid: true,
   };
@@ -42,7 +48,7 @@ class Login extends Component {
 
   handleSubmit = () => {
     const { login, password } = this.state;
-    const { handleLogin } = this.props;
+    const { handleSignUp } = this.props;
     const isMailValid = Boolean(email(login));
     if (isMailValid) {
       this.setState(
@@ -51,7 +57,7 @@ class Login extends Component {
           isMailValid: true,
         }),
         () => {
-          handleLogin({ login, password });
+          handleSignUp({ login, password });
         }
       );
     } else {
@@ -63,12 +69,37 @@ class Login extends Component {
   };
 
   render() {
-    const { login, password, isPasswordVisible, isMailValid } = this.state;
+    const {
+      login,
+      name,
+      gender,
+      age,
+      password,
+      repeatPassword,
+      isPasswordVisible,
+      isMailValid,
+    } = this.state;
     const { classes } = this.props;
 
     return (
-      <div className={classes.loginButton}>
+      <div className={classes.signupButton}>
+        <h1>Sign up</h1>
         <form>
+          <TextField
+            label="Name"
+            value={name}
+            onChange={this.handleInputChange('name')}
+          />
+          <TextField
+            label="Gender"
+            value={gender}
+            onChange={this.handleInputChange('gender')}
+          />
+          <TextField
+            label="Age"
+            value={age}
+            onChange={this.handleInputChange('age')}
+          />
           <TextField
             error={!isMailValid}
             label="Email"
@@ -80,6 +111,12 @@ class Login extends Component {
             value={password}
             type={isPasswordVisible ? 'text' : 'password'}
             onChange={this.handleInputChange('password')}
+          />
+          <TextField
+            label="Repeat password"
+            value={repeatPassword}
+            type={isPasswordVisible ? 'text' : 'password'}
+            onChange={this.handleInputChange('repeatPassword')}
           />
           <FormControlLabel
             control={
@@ -100,9 +137,10 @@ class Login extends Component {
             </Button>
           </div>
         </form>
+        <Link to={routes.auth.login}>Already have an account? Log in</Link>
       </div>
     );
   }
 }
 
-export default Login;
+export default Signup;

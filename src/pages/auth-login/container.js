@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Button } from '../../components';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import routes from '../../routes';
 import styles from './styles';
 
 const email = value =>
   value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
-class Signup extends Component {
+class Login extends Component {
   static propTypes = {
-    handleSignUp: PropTypes.func.isRequired,
+    handleLogin: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     classes: composeClassesPropTypes(styles),
@@ -42,7 +44,7 @@ class Signup extends Component {
 
   handleSubmit = () => {
     const { login, password } = this.state;
-    const { handleSignUp } = this.props;
+    const { handleLogin } = this.props;
     const isMailValid = Boolean(email(login));
     if (isMailValid) {
       this.setState(
@@ -51,7 +53,7 @@ class Signup extends Component {
           isMailValid: true,
         }),
         () => {
-          handleSignUp({ login, password });
+          handleLogin({ login, password });
         }
       );
     } else {
@@ -67,7 +69,8 @@ class Signup extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.signupButton}>
+      <div className={classes.loginButton}>
+        <h1>Login</h1>
         <form>
           <TextField
             error={!isMailValid}
@@ -100,9 +103,10 @@ class Signup extends Component {
             </Button>
           </div>
         </form>
+        <Link to={routes.auth.signup}>Don't have an account yet? Sign up</Link>
       </div>
     );
   }
 }
 
-export default Signup;
+export default Login;

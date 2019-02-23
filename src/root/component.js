@@ -42,9 +42,21 @@ const Root = () => (
               <Header />
               <Switch>
                 <Route exact path={routes.root} component={MainContainer} />
-                <Route exact path={routes.login} component={LoginContainer} />
-                <Route exact path={routes.logout} component={LogoutContainer} />
-                <Route exact path={routes.signup} component={SignupContainer} />
+                <Route
+                  exact
+                  path={routes.auth.login}
+                  component={LoginContainer}
+                />
+                <Route
+                  exact
+                  path={routes.auth.logout}
+                  component={LogoutContainer}
+                />
+                <Route
+                  exact
+                  path={routes.auth.signup}
+                  component={SignupContainer}
+                />
                 <Route
                   exact
                   path={routes.words.add}

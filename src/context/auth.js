@@ -1,11 +1,14 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
 import { apiAuth } from '../api';
 import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
+import routes from '../routes';
 import { withLoadingNames } from './loading-names';
 import createHandleFetch from '../modules/handle-fetch';
 import { withErrors } from './errors';
@@ -25,6 +28,7 @@ class AuthProviderCmp extends Component {
     startLoading: PropTypes.func.isRequired,
     stopLoading: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
+    history: ReactRouterPropTypes.history.isRequired,
   };
 
   state = authInitialState;
@@ -63,6 +67,12 @@ class AuthProviderCmp extends Component {
         }),
     });
 
+  handleLogout = () =>
+    this.setState({ token: null }, () => {
+      Cookies.remove(ACCESS_TOKEN);
+      this.props.history.push(routes.root);
+    });
+
   handleSignUp = ({ login, password }) =>
     this.handleFetch({
       loadingName: loadingNames.auth.signup,
@@ -91,6 +101,7 @@ class AuthProviderCmp extends Component {
           setToken: this.setToken,
           cleanToken: this.cleanToken,
           handleLogin: this.handleLogin,
+          handleLogout: this.handleLogout,
           handleSignUp: this.handleSignUp,
         }}
       >
@@ -101,6 +112,7 @@ class AuthProviderCmp extends Component {
 }
 
 const AuthProvider = compose(
+  withRouter,
   withLoadingNames,
   withSnackbar,
   withErrors

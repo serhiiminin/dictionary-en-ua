@@ -41,12 +41,12 @@ const createLinks = isUserLoggedIn => [
   },
   isUserLoggedIn
     ? {
-        path: routes.logout,
+        path: routes.auth.logout,
         icon: <ExitToApp />,
         placeholder: 'Logout',
       }
     : {
-        path: routes.login,
+        path: routes.auth.login,
         icon: <Input />,
         placeholder: 'Signup',
       },
