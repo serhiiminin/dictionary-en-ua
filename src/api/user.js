@@ -1,7 +1,7 @@
 import { joinUrl } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
-import { createGoogleAuthProxy } from './proxies';
+import { createAuthProxy } from './proxies';
 
 const { REACT_APP_ENDPOINT_USERS } = process.env;
 
@@ -28,7 +28,7 @@ export const createApiMethodsUsers = endpoint => fetcher => ({
 });
 
 const apiMethodsUsers = createApiMethodsUsers(REACT_APP_ENDPOINT_USERS)(
-  createGoogleAuthProxy(createFetcherJson(window.fetch))
+  createAuthProxy(createFetcherJson(window.fetch))
 );
 
 export default apiMethodsUsers;

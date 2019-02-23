@@ -1,14 +1,14 @@
 import injectSheet from 'react-jss';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import HeaderNavigation from './component';
-import { withUser } from '../../context/user';
+import FooterNavigation from './component';
+import { withAuth } from '../../context/auth';
 import styles from './styles';
 
 const enhance = compose(
   injectSheet(styles),
   withRouter,
-  withUser
+  withAuth
 );
 
-export default enhance(HeaderNavigation);
+export default enhance(FooterNavigation);

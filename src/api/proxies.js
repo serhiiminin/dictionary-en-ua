@@ -29,7 +29,7 @@ const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(GIPHY_API_KEYS))(
   createFetcherJson(window.fetch)
 );
 
-const createGoogleAuthProxy = fetcher => (params, token) =>
+const createAuthProxy = fetcher => (params, token) =>
   fetcher({
     ...params,
     headers: {
@@ -40,4 +40,4 @@ const createGoogleAuthProxy = fetcher => (params, token) =>
     throw new Error(getErrorType(error));
   });
 
-export { apiKeyGiphyProxy, createApiKeyProxy, createGoogleAuthProxy };
+export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy };

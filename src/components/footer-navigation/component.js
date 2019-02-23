@@ -13,7 +13,7 @@ import routes from '../../routes';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
-const createLinks = isUserLoggedIn => [
+const createLinks = (isUserLoggedIn, logOut) => [
   {
     path: routes.root,
     icon: <Home />,
@@ -41,46 +41,55 @@ const createLinks = isUserLoggedIn => [
   },
   isUserLoggedIn
     ? {
-        path: routes.auth.logout,
-        icon: <ExitToApp />,
+        path: routes.auth.login,
+        icon: <ExitToApp onClick={logOut} />,
         placeholder: 'Logout',
       }
     : {
         path: routes.auth.login,
         icon: <Input />,
-        placeholder: 'Signup',
+        placeholder: 'Login',
       },
 ];
 
-const HeaderNavigation = ({ isUserLoggedIn, classes, history, location }) => (
+const FooterNavigation = ({
+  isLoggedIn,
+  handleLogout,
+  classes,
+  history,
+  location,
+}) => (
   <BottomNavigation
     classes={{ root: classes.bottomNavigation }}
     value={location.pathname}
     onChange={(_, value) => history.push(value)}
     className={classes.root}
   >
-    {createLinks(isUserLoggedIn).map(({ icon, path, placeholder }) => (
-      <BottomNavigationAction
-        key={path}
-        value={path}
-        icon={icon}
-        label={placeholder}
-        showLabel
-      />
-    ))}
+    {createLinks(isLoggedIn, handleLogout).map(
+      ({ icon, path, placeholder }) => (
+        <BottomNavigationAction
+          key={path}
+          value={path}
+          icon={icon}
+          label={placeholder}
+          showLabel
+        />
+      )
+    )}
   </BottomNavigation>
 );
 
-HeaderNavigation.propTypes = {
+FooterNavigation.propTypes = {
   classes: composeClassesPropTypes(styles),
-  isUserLoggedIn: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
+  handleLogout: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-HeaderNavigation.defaultProps = {
-  isUserLoggedIn: false,
+FooterNavigation.defaultProps = {
+  isLoggedIn: false,
   classes: {},
 };
 
-export default HeaderNavigation;
+export default FooterNavigation;
