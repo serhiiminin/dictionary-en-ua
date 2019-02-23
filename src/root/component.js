@@ -7,7 +7,6 @@ import { Close } from '@material-ui/icons';
 import { Header, BlocksWrapper, Footer } from '../components';
 import {
   LoginContainer,
-  LogoutContainer,
   SignupContainer,
   MainContainer,
   WordsListContainer,
@@ -46,11 +45,6 @@ const Root = () => (
                   exact
                   path={routes.auth.login}
                   component={LoginContainer}
-                />
-                <Route
-                  exact
-                  path={routes.auth.logout}
-                  component={LogoutContainer}
                 />
                 <Route
                   exact

@@ -9,9 +9,9 @@ import { apiWord, apiGif } from '../api';
 import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
 import { normalizeWord } from '../modules/word-utils';
+import { withAuth } from './auth';
 import { withLoadingNames } from './loading-names';
 import createHandleFetch from '../modules/handle-fetch';
-import { withUser } from './user';
 import { withErrors } from './errors';
 
 const WordsContext = createContext({});
@@ -38,12 +38,17 @@ class WordsProviderCmp extends Component {
     stopLoading: PropTypes.func.isRequired,
     handleError: PropTypes.func.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
-    googleToken: PropTypes.shape({}),
+    tokenData: PropTypes.shape({
+      token: PropTypes.string,
+      _id: PropTypes.string,
+      email: PropTypes.string,
+      expiresAt: PropTypes.number,
+    }),
     user: PropTypes.shape({}),
   };
 
   static defaultProps = {
-    googleToken: null,
+    tokenData: null,
     user: null,
   };
 
@@ -82,9 +87,9 @@ class WordsProviderCmp extends Component {
 
   fetchWord = wordId =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.fetch,
-      requestHandler: token => apiWord.get(wordId, token),
+      requestHandler: tokenData => apiWord.get(wordId, tokenData.token),
       responseHandler: wordItem => this.setState({ wordItem }),
     });
 
@@ -101,24 +106,24 @@ class WordsProviderCmp extends Component {
     };
 
     return this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.list,
-      requestHandler: token =>
-        apiWord.getList({ query, googleId: token && token.googleId }, token),
+      requestHandler: () =>
+        apiWord.getList(
+          { query, ownerId: this.props.tokenData && this.props.tokenData._id },
+          this.props.tokenData && this.props.tokenData.token
+        ),
       responseHandler: ({ items = [], count = 0 } = {}) =>
         this.setState({ wordsList: items, count }),
     });
   };
 
-  createWord = (word, ownerId) =>
+  createWord = word =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.save,
-      requestHandler: token =>
-        apiWord.create(
-          { ...word, googleId: token && token.googleId, ownerId },
-          token
-        ),
+      requestHandler: tokenData =>
+        apiWord.create({ ...word, ownerId: tokenData._id }, tokenData.token),
       responseHandler: () =>
         this.props.enqueueSnackbar('The word has been saved successfully', {
           variant: notificationType.success,
@@ -127,9 +132,9 @@ class WordsProviderCmp extends Component {
 
   editWord = word =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.fetch,
-      requestHandler: token => apiWord.update(word, token),
+      requestHandler: tokenData => apiWord.update(word, tokenData.token),
       responseHandler: () =>
         this.props.enqueueSnackbar('The word has been updated successfully', {
           variant: notificationType.success,
@@ -138,9 +143,9 @@ class WordsProviderCmp extends Component {
 
   deleteWord = id =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.delete,
-      requestHandler: token => apiWord.delete(id, token),
+      requestHandler: tokenData => apiWord.delete(id, tokenData.token),
       responseHandler: () => this.fetchWordsList(),
     }).then(() =>
       this.props.enqueueSnackbar('The word has been deleted successfully', {
@@ -150,9 +155,9 @@ class WordsProviderCmp extends Component {
 
   searchWord = params =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.search,
-      requestHandler: token => apiWord.search(params, token),
+      requestHandler: tokenData => apiWord.search(params, tokenData.token),
       responseHandler: foundWord =>
         apiGif.get({ q: foundWord.word }).then(gifs => {
           const downsizedGifs =
@@ -174,19 +179,19 @@ class WordsProviderCmp extends Component {
 
   fetchWordsToLearn = () =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.learn,
-      requestHandler: token =>
-        apiWord.getListToLearn({ googleId: token && token.googleId }, token),
+      requestHandler: tokenData =>
+        apiWord.getListToLearn({ ownerId: tokenData._id }, tokenData.token),
       responseHandler: ({ items, count }) =>
         this.setState({ wordsList: items, count }),
     });
 
   learnWord = wordId =>
     this.handleFetch({
-      googleToken: this.props.googleToken,
+      token: this.props.tokenData || {},
       loadingName: loadingNames.words.learn,
-      requestHandler: token => apiWord.learn(wordId, token),
+      requestHandler: tokenData => apiWord.learn(wordId, tokenData.token),
       responseHandler: () =>
         this.setState(prevState => ({
           wordsList: [
@@ -212,7 +217,7 @@ class WordsProviderCmp extends Component {
 
   render() {
     const { wordsList, wordItem, count, gif } = this.state;
-    const { children, user } = this.props;
+    const { children } = this.props;
 
     return (
       <WordsContext.Provider
@@ -232,7 +237,7 @@ class WordsProviderCmp extends Component {
           deleteWord: this.deleteWord,
           learnWord: this.learnWord,
           relearnWord: this.relearnWord,
-          saveWord: w => this.createWord(w, user._id),
+          saveWord: this.createWord,
           searchWord: this.searchWord,
         }}
       >
@@ -244,7 +249,7 @@ class WordsProviderCmp extends Component {
 
 const WordsProvider = compose(
   withRouter,
-  withUser,
+  withAuth,
   withLoadingNames,
   withSnackbar,
   withErrors

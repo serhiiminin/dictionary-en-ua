@@ -1,13 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
-import HeaderNavigation from './component';
+import FooterNavigation from './component';
 
-describe('HeaderNavigation', () => {
+describe('FooterNavigation', () => {
   test('render', () => {
     const wrapper = mount(
       <Router>
-        <HeaderNavigation>anything</HeaderNavigation>
+        <FooterNavigation>anything</FooterNavigation>
       </Router>
     );
     expect(wrapper).toMatchSnapshot();

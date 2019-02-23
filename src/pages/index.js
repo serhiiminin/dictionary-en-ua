@@ -1,5 +1,4 @@
 export { default as LoginContainer } from './auth-login';
-export { default as LogoutContainer } from './auth-logout';
 export { default as SignupContainer } from './auth-signup';
 export { default as MainContainer } from './main';
 export { default as PageNotFoundContainer } from './not-found';

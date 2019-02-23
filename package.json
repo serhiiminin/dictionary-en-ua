@@ -16,6 +16,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
+    "classnames": "^2.2.6",
     "js-cookie": "^2.2.0",
     "moment": "^2.22.2",
     "notistack": "^0.4.1",
@@ -25,8 +26,9 @@
     "react-jss": "^8.6.1",
     "react-router-dom": "^4.3.1",
     "react-router-prop-types": "^1.0.4",
-    "react-scripts": "2.1.1",
+    "react-scripts": "^2.1.5",
     "recompose": "^0.27.1",
+    "typescript": "^3.3.3333",
     "url-joiner": "^0.0.7",
     "uuid": "^3.3.2"
   },

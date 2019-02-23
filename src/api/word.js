@@ -1,20 +1,20 @@
 import { joinUrl } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
-import { createGoogleAuthProxy } from './proxies';
+import { createAuthProxy } from './proxies';
 
 const { REACT_APP_ENDPOINT_WORDS } = process.env;
 
 export const createApiMethodsWords = endpoint => fetcher => ({
-  create: (body, tokens) => fetcher(requests.post(endpoint, { body }), tokens),
-  get: (id, tokens) =>
-    fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), tokens),
-  getList: (body, tokens) =>
+  create: (body, token) => fetcher(requests.post(endpoint, { body }), token),
+  get: (id, token) =>
+    fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), token),
+  getList: (body, token) =>
     fetcher(
       requests.post(joinUrl({ url: endpoint, paths: ['list'] }), { body }),
-      tokens
+      token
     ),
-  getListToLearn: (params, tokens) => {
+  getListToLearn: (params, token) => {
     const url = joinUrl({ url: endpoint, paths: ['list'] });
     const yesterday = new Date();
 
@@ -27,22 +27,22 @@ export const createApiMethodsWords = endpoint => fetcher => ({
           ...params,
         },
       }),
-      tokens
+      token
     );
   },
-  update: (word, tokens) =>
+  update: (word, token) =>
     fetcher(
       requests.put(joinUrl({ url: endpoint, paths: [word._id] }), {
         body: word,
       }),
-      tokens
+      token
     ),
-  delete: (wordId, tokens) =>
+  delete: (wordId, token) =>
     fetcher(
       requests.delete(joinUrl({ url: endpoint, paths: [wordId] })),
-      tokens
+      token
     ),
-  learn: (wordId, tokens) =>
+  learn: (wordId, token) =>
     fetcher(
       requests.put(joinUrl({ url: endpoint, paths: [wordId] }), {
         body: {
@@ -50,19 +50,19 @@ export const createApiMethodsWords = endpoint => fetcher => ({
           $inc: { timesLearnt: 1 },
         },
       }),
-      tokens
+      token
     ),
-  search: (params, tokens) =>
+  search: (params, token) =>
     fetcher(
       requests.post(joinUrl({ url: endpoint, paths: ['search-new'] }), {
         body: params,
       }),
-      tokens
+      token
     ),
 });
 
 const apiMethodsWords = createApiMethodsWords(REACT_APP_ENDPOINT_WORDS)(
-  createGoogleAuthProxy(createFetcherJson(window.fetch))
+  createAuthProxy(createFetcherJson(window.fetch))
 );
 
 export default apiMethodsWords;

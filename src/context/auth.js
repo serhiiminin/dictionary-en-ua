@@ -18,8 +18,10 @@ const ACCESS_TOKEN = 'access_token';
 const AuthContext = createContext({});
 
 const authInitialState = {
-  token: Cookies.get(ACCESS_TOKEN),
+  tokenData: JSON.parse(Cookies.get(ACCESS_TOKEN) || null),
 };
+
+const { PUBLIC_URL } = process.env;
 
 class AuthProviderCmp extends Component {
   static propTypes = {
@@ -40,38 +42,37 @@ class AuthProviderCmp extends Component {
   });
 
   cleanToken = callback => {
-    this.setState({ token: null }, () => {
+    this.setState({ tokenData: null }, () => {
       Cookies.remove(ACCESS_TOKEN);
       callback();
     });
   };
 
-  setToken = ({ token }) =>
-    this.setState({ token }, () => {
-      Cookies.set(ACCESS_TOKEN, token);
+  setToken = tokenData =>
+    this.setState({ tokenData }, () => {
+      Cookies.set(ACCESS_TOKEN, JSON.stringify(tokenData), {
+        expires: 1,
+        path: PUBLIC_URL,
+      });
     });
 
   handleLogin = ({ login, password }) =>
     this.handleFetch({
       loadingName: loadingNames.auth.login,
       requestHandler: () =>
-        apiAuth
-          .logIn({
-            login,
-            password,
-          })
-          .then(this.setToken),
+        apiAuth.logIn({ login, password }).then(this.setToken),
       responseHandler: () =>
         this.props.enqueueSnackbar('Successfully authorized', {
           variant: notificationType.success,
         }),
     });
 
-  handleLogout = () =>
-    this.setState({ token: null }, () => {
+  handleLogout = () => {
+    this.setState({ tokenData: null }, () => {
       Cookies.remove(ACCESS_TOKEN);
       this.props.history.push(routes.root);
     });
+  };
 
   handleSignUp = ({ login, password }) =>
     this.handleFetch({
@@ -91,13 +92,15 @@ class AuthProviderCmp extends Component {
     });
 
   render() {
-    const { token } = this.state;
+    const { tokenData } = this.state;
     const { children } = this.props;
+    const isLoggedIn = tokenData && tokenData.expiresAt - Date.now() > 0;
 
     return (
       <AuthContext.Provider
         value={{
-          token,
+          tokenData,
+          isLoggedIn,
           setToken: this.setToken,
           cleanToken: this.cleanToken,
           handleLogin: this.handleLogin,
