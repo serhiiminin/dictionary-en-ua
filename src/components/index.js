@@ -15,6 +15,7 @@ export { default as ListOfSearchableWords } from './list-of-searchable-words';
 export { default as MultipleInputs } from './multiple-inputs';
 export { default as Pagination } from './pagination';
 export { default as PaginationPanel } from './pagination-panel';
+export { default as PrivateRoute } from './private-route';
 export { default as SearchableWord } from './searchable-word';
 export { default as Select } from './select';
 export { default as SelectWithOptions } from './select-with-options';

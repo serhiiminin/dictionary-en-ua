@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import { MuiThemeProvider, Zoom } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import { Header, BlocksWrapper, Footer } from '../components';
+import { PrivateRoute, Header, BlocksWrapper, Footer } from '../components';
 import {
   LoginContainer,
   SignupContainer,
@@ -51,27 +51,27 @@ const Root = () => (
                   path={routes.auth.signup}
                   component={SignupContainer}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path={routes.words.add}
                   component={WordsAddContainer}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path={routes.words.learn}
                   component={WordsLearnContainer}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path={routes.words.list.all}
                   component={WordsListContainer}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path={routes.words.list.preview}
                   component={WordPreviewContainer}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path={routes.words.list.edit}
                   component={WordsEditContainer}
