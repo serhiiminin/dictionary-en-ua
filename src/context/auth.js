@@ -100,7 +100,7 @@ class AuthProviderCmp extends Component {
       <AuthContext.Provider
         value={{
           tokenData,
-          isLoggedIn,
+          isLoggedIn: Boolean(isLoggedIn),
           setToken: this.setToken,
           cleanToken: this.cleanToken,
           handleLogin: this.handleLogin,
