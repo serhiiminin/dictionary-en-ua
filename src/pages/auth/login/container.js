@@ -100,7 +100,7 @@ class Login extends Component {
             </Button>
           </div>
         </form>
-        <Link to={routes.auth.signup}>Don't have an account yet? Sign up</Link>
+        <Link to={routes.auth.signup}>Do not have an account yet? Sign up</Link>
       </div>
     );
   }
