@@ -16,13 +16,16 @@ export const createApiMethodsUsers = endpoint => fetcher => ({
       requests.get(joinUrl({ url: endpoint, paths: [googleId] })),
       tokens
     ),
-  update: (data, tokens) =>
-    fetcher(
-      requests.put(joinUrl({ url: endpoint, paths: [data._id] }), {
+  update: (data, tokens) => {
+    const { _id: id } = data;
+
+    return fetcher(
+      requests.put(joinUrl({ url: endpoint, paths: [id] }), {
         body: data,
       }),
       tokens
-    ),
+    );
+  },
   delete: (id, tokens) =>
     fetcher(requests.delete(joinUrl({ url: endpoint, paths: [id] })), tokens),
 });

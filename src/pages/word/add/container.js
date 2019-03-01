@@ -5,7 +5,9 @@ import wordShape from '../../../constants/shapes';
 
 class AddWordContainer extends Component {
   componentWillUnmount() {
-    this.props.cleanWord();
+    const { cleanWord } = this.props;
+
+    cleanWord();
   }
 
   render() {

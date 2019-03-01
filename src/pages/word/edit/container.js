@@ -18,11 +18,15 @@ class WordEdit extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchWord(this.props.match.params.id);
+    const { fetchWord, match } = this.props;
+
+    fetchWord(match.params.id);
   }
 
   componentWillUnmount() {
-    this.props.cleanWord();
+    const { cleanWord } = this.props;
+
+    cleanWord();
   }
 
   render() {

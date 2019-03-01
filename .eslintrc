@@ -16,8 +16,6 @@
     "jest": true
   },
   "rules": {
-    "no-underscore-dangle": "off",
-    "react/destructuring-assignment": 0,
     "react/jsx-filename-extension": 0,
     "prettier/prettier": "error"
   },

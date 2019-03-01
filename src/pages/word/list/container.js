@@ -11,17 +11,22 @@ class WordsListContainer extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchWordsList();
+    const { fetchWordsList } = this.props;
+
+    fetchWordsList();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location.search !== prevProps.location.search) {
-      this.props.fetchWordsList();
+    const { location, fetchWordsList } = this.props;
+    if (location.search !== prevProps.location.search) {
+      fetchWordsList();
     }
   }
 
   componentWillUnmount() {
-    this.props.cleanWordsList();
+    const { cleanWordsList } = this.props;
+
+    cleanWordsList();
   }
 
   render() {

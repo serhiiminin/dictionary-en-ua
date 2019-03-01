@@ -35,11 +35,15 @@ class AuthProviderCmp extends Component {
 
   state = authInitialState;
 
-  handleFetch = createHandleFetch({
-    startLoading: this.props.startLoading,
-    stopLoading: this.props.stopLoading,
-    errorHandler: this.props.handleError,
-  });
+  handleFetch = () => {
+    const { startLoading, stopLoading, handleError } = this.props;
+
+    return createHandleFetch({
+      startLoading,
+      stopLoading,
+      errorHandler: handleError,
+    });
+  };
 
   cleanToken = callback => {
     this.setState({ tokenData: null }, () => {
@@ -56,40 +60,43 @@ class AuthProviderCmp extends Component {
       });
     });
 
-  handleLogin = ({ login, password }) =>
-    this.handleFetch({
-      loadingName: loadingNames.auth.login,
-      requestHandler: () =>
-        apiAuth.logIn({ login, password }).then(this.setToken),
-      responseHandler: () =>
-        this.props.enqueueSnackbar('Successfully authorized', {
-          variant: notificationType.success,
-        }),
-    });
+  handleLogin = ({ login, password }) => {
+    const { enqueueSnackbar } = this.props;
 
-  handleLogout = () => {
-    this.setState({ tokenData: null }, () => {
-      Cookies.remove(ACCESS_TOKEN);
-      this.props.history.push(routes.root);
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.login,
+      apiHandler: apiAuth
+        .logIn({ login, password })
+        .then(this.setToken)
+        .then(() =>
+          enqueueSnackbar('Successfully authorized', {
+            variant: notificationType.success,
+          })
+        ),
     });
   };
 
-  handleSignUp = ({ login, password }) =>
-    this.handleFetch({
-      loadingName: loadingNames.auth.signup,
-      requestHandler: () =>
-        apiAuth.signUp({
-          login,
-          password,
-        }),
-      responseHandler: () =>
-        this.props.enqueueSnackbar(
-          'Welcome! You have been signed up successfully',
-          {
-            variant: notificationType.success,
-          }
-        ),
+  handleLogout = () => {
+    const { history } = this.props;
+
+    this.setState({ tokenData: null }, () => {
+      Cookies.remove(ACCESS_TOKEN);
+      history.push(routes.root);
     });
+  };
+
+  handleSignUp = ({ login, password }) => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.signup,
+      apiHandler: apiAuth.signUp({ login, password }).then(() =>
+        enqueueSnackbar('Welcome! You have been signed up successfully', {
+          variant: notificationType.success,
+        })
+      ),
+    });
+  };
 
   render() {
     const { tokenData } = this.state;

@@ -54,11 +54,15 @@ class WordsProviderCmp extends Component {
 
   state = wordsInitialState;
 
-  handleFetch = createHandleFetch({
-    startLoading: this.props.startLoading,
-    stopLoading: this.props.stopLoading,
-    errorHandler: this.props.handleError,
-  });
+  handleFetch = () => {
+    const { startLoading, stopLoading, handleError } = this.props;
+
+    return createHandleFetch({
+      startLoading,
+      stopLoading,
+      errorHandler: handleError,
+    });
+  };
 
   getSearchParams = () => {
     const { location } = this.props;
@@ -85,16 +89,21 @@ class WordsProviderCmp extends Component {
 
   setWordToState = wordItem => this.setState({ wordItem });
 
-  fetchWord = wordId =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  fetchWord = wordId => {
+    const { tokenData } = this.props;
+    const { token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.fetch,
-      requestHandler: tokenData => apiWord.get(wordId, tokenData.token),
-      responseHandler: wordItem => this.setState({ wordItem }),
+      apiHandler: apiWord
+        .get(wordId, token)
+        .then(wordItem => this.setState({ wordItem })),
     });
+  };
 
   fetchWordsList = () => {
-    const { location } = this.props;
+    const { location, tokenData } = this.props;
+    const { _id: ownerId, token } = tokenData || {};
     const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(
       location.search
     );
@@ -105,60 +114,65 @@ class WordsProviderCmp extends Component {
       sortBy,
     };
 
-    return this.handleFetch({
-      token: this.props.tokenData || {},
+    return this.handleFetch()({
       loadingName: loadingNames.words.list,
-      requestHandler: () =>
-        apiWord.getList(
-          { query, ownerId: this.props.tokenData && this.props.tokenData._id },
-          this.props.tokenData && this.props.tokenData.token
+      apiHandler: apiWord
+        .getList({ query, ownerId }, token)
+        .then(({ items = [], count = 0 } = {}) =>
+          this.setState({ wordsList: items, count })
         ),
-      responseHandler: ({ items = [], count = 0 } = {}) =>
-        this.setState({ wordsList: items, count }),
     });
   };
 
-  createWord = word =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  createWord = word => {
+    const { tokenData, enqueueSnackbar } = this.props;
+    const { _id: ownerId, token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.save,
-      requestHandler: tokenData =>
-        apiWord.create({ ...word, ownerId: tokenData._id }, tokenData.token),
-      responseHandler: () =>
-        this.props.enqueueSnackbar('The word has been saved successfully', {
+      apiHandler: apiWord.create({ ...word, ownerId }, token).then(() =>
+        enqueueSnackbar('The word has been saved successfully', {
           variant: notificationType.success,
-        }),
+        })
+      ),
     });
+  };
 
-  editWord = word =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  editWord = word => {
+    const { tokenData, enqueueSnackbar } = this.props;
+    const { token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.fetch,
-      requestHandler: tokenData => apiWord.update(word, tokenData.token),
-      responseHandler: () =>
-        this.props.enqueueSnackbar('The word has been updated successfully', {
+      apiHandler: apiWord.update(word, token).then(() =>
+        enqueueSnackbar('The word has been updated successfully', {
           variant: notificationType.success,
-        }),
+        })
+      ),
     });
+  };
 
-  deleteWord = id =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  deleteWord = id => {
+    const { tokenData, enqueueSnackbar } = this.props || {};
+    const { token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.delete,
-      requestHandler: tokenData => apiWord.delete(id, tokenData.token),
-      responseHandler: () => this.fetchWordsList(),
+      apiHandler: apiWord.delete(id, token).then(this.fetchWordsList),
     }).then(() =>
-      this.props.enqueueSnackbar('The word has been deleted successfully', {
+      enqueueSnackbar('The word has been deleted successfully', {
         variant: notificationType.success,
       })
     );
+  };
 
-  searchWord = params =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  searchWord = params => {
+    const { tokenData } = this.props;
+    const { token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.search,
-      requestHandler: tokenData => apiWord.search(params, tokenData.token),
-      responseHandler: foundWord =>
+      apiHandler: apiWord.search(params, token).then(foundWord =>
         apiGif.get({ q: foundWord.word }).then(gifs => {
           const downsizedGifs =
             gifs &&
@@ -174,41 +188,50 @@ class WordsProviderCmp extends Component {
               gif: randomGif,
             },
           });
-        }),
+        })
+      ),
     });
+  };
 
-  fetchWordsToLearn = () =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  fetchWordsToLearn = () => {
+    const { tokenData } = this.props;
+    const { _id: ownerId, token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.learn,
-      requestHandler: tokenData =>
-        apiWord.getListToLearn({ ownerId: tokenData._id }, tokenData.token),
-      responseHandler: ({ items, count }) =>
-        this.setState({ wordsList: items, count }),
+      apiHandler: apiWord
+        .getListToLearn({ ownerId }, token)
+        .then(({ items, count }) => this.setState({ wordsList: items, count })),
     });
+  };
 
-  learnWord = wordId =>
-    this.handleFetch({
-      token: this.props.tokenData || {},
+  learnWord = wordId => {
+    const { tokenData } = this.props;
+    const { token } = tokenData || {};
+
+    return this.handleFetch()({
       loadingName: loadingNames.words.learn,
-      requestHandler: tokenData => apiWord.learn(wordId, tokenData.token),
-      responseHandler: () =>
+      apiHandler: apiWord.learn(wordId, token).then(() =>
         this.setState(prevState => ({
           wordsList: [
-            ...prevState.wordsList.filter(word => word._id !== wordId),
+            ...prevState.wordsList.filter(({ _id: id }) => id !== wordId),
           ],
-        })),
+        }))
+      ),
     });
+  };
 
   relearnWord = wordId => {
     this.setState(prevState => {
-      const wordToRelearn = prevState.wordsList.find(
-        word => word._id === wordId
-      );
+      const wordToRelearn =
+        prevState.wordsList.find(({ _id: id }) => id === wordId) || {};
+      const { _id: wordToRelearnId } = wordToRelearn;
 
       return {
         wordsList: [
-          ...prevState.wordsList.filter(word => word._id !== wordToRelearn._id),
+          ...prevState.wordsList.filter(
+            ({ _id: id }) => id !== wordToRelearnId
+          ),
           wordToRelearn,
         ],
       };

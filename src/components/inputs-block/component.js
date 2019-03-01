@@ -28,7 +28,9 @@ class InputsBlock extends Component {
   handleOnChange = event => this.setState({ input: event.target.value });
 
   handleOnAddItem = () => {
-    this.props.onAddItem(this.state.input);
+    const { onAddItem } = this.props;
+    const { input } = this.state;
+    onAddItem(input);
     this.setState({ input: '' });
   };
 
