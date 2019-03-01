@@ -35,11 +35,12 @@ class WordForm extends Component {
     wordItem: WORD_INITIAL_VALUES,
   };
 
-  static getDerivedStateFromProps = (nextProps, prevState) =>
-    (nextProps.wordItem && nextProps.wordItem._id) !==
-    (prevState.wordItem && prevState.wordItem._id)
-      ? { wordItem: nextProps.wordItem }
-      : prevState;
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    const { _id: nextId } = nextProps.wordItem || {};
+    const { _id: prevId } = prevState.wordItem || {};
+
+    return nextId !== prevId ? { wordItem: nextProps.wordItem } : prevState;
+  };
 
   handleFieldChange = (fieldKey, value) =>
     this.setState(prevState => ({
@@ -75,7 +76,11 @@ class WordForm extends Component {
       },
     }));
 
-  onResetForm = () => this.setState({ wordItem: this.props.wordItem });
+  onResetForm = () => {
+    const { wordItem } = this.props;
+
+    return this.setState({ wordItem });
+  };
 
   render() {
     const { onSubmit, checkIsLoading } = this.props;

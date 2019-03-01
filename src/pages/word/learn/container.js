@@ -44,11 +44,15 @@ class LearnWordsContainer extends Component {
       : prevState;
 
   componentDidMount() {
-    this.props.fetchWordsToLearn();
+    const { fetchWordsToLearn } = this.props;
+
+    fetchWordsToLearn();
   }
 
   componentWillUnmount() {
-    this.props.cleanWordsList();
+    const { cleanWordsList } = this.props;
+
+    cleanWordsList();
   }
 
   onChangeInput = event => this.setState({ inputValue: event.target.value });
@@ -77,7 +81,7 @@ class LearnWordsContainer extends Component {
         () => {
           const { countOfTry } = this.state;
           if (countOfTry < MAX_COUNT_ATTEMPTS) {
-            const attemptsLeft = MAX_COUNT_ATTEMPTS - this.state.countOfTry;
+            const attemptsLeft = MAX_COUNT_ATTEMPTS - countOfTry;
             enqueueSnackbar(
               `You are wrong! ${attemptsLeft} attempt${
                 attemptsLeft > 1 ? 's' : ''
@@ -116,17 +120,34 @@ class LearnWordsContainer extends Component {
     }
   };
 
-  onKnownWord = () => this.props.learnWord(this.state.currentWord._id);
+  onKnownWord = () => {
+    const { learnWord } = this.props;
+    const { currentWord } = this.state;
+    const { _id: id } = currentWord;
 
-  onForgottenWord = () => this.props.relearnWord(this.state.currentWord._id);
+    return learnWord(id);
+  };
 
-  onLearnNextWord = () =>
-    this.props.learnWord(this.state.currentWord._id).then(() =>
+  onForgottenWord = () => {
+    const { relearnWord } = this.props;
+    const { currentWord } = this.state;
+    const { _id: id } = currentWord;
+
+    return relearnWord(id);
+  };
+
+  onLearnNextWord = () => {
+    const { learnWord } = this.props;
+    const { currentWord } = this.state;
+    const { _id: id } = currentWord;
+
+    return learnWord(id).then(() =>
       this.setState({
         countOfTry: 0,
         guessed: false,
       })
     );
+  };
 
   render() {
     const { checkIsLoading, classes } = this.props;

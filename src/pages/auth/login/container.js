@@ -17,52 +17,72 @@ class Login extends Component {
   };
 
   state = {
-    login: '',
-    password: '',
-    isPasswordVisible: false,
-    isMailValid: true,
+    login: {
+      value: '',
+      isValid: true,
+      invalidText: 'Your mail does not match pattern',
+    },
+    password: {
+      value: '',
+      isVisible: false,
+    },
   };
 
   static defaultProps = {
     classes: {},
   };
 
-  handleInputChange = key => event =>
-    this.setState({
-      [key]: event.target.value,
-      isMailValid: true,
-    });
+  handleInputChange = key => event => {
+    const { value } = event.target;
+
+    this.setState(prevState => ({
+      [key]: {
+        ...prevState[key],
+        value,
+      },
+    }));
+  };
 
   passwordVisibleToggle = () =>
     this.setState(prevState => ({
-      ...prevState,
-      isPasswordVisible: !prevState.isPasswordVisible,
+      password: {
+        ...prevState.password,
+        isVisible: !prevState.password.isVisible,
+      },
     }));
 
   handleSubmit = () => {
     const { login, password } = this.state;
     const { handleLogin } = this.props;
-    const isMailValid = Boolean(email(login));
+    const isMailValid = Boolean(email(login.value));
+
     if (isMailValid) {
       this.setState(
         prevState => ({
-          ...prevState,
-          isMailValid: true,
+          login: {
+            ...prevState.login,
+            isValid: true,
+          },
         }),
         () => {
-          handleLogin({ login, password });
+          handleLogin({
+            login: login.value,
+            password: password.value,
+          });
         }
       );
     } else {
       this.setState(prevState => ({
-        ...prevState,
-        isMailValid: false,
+        login: {
+          ...prevState.login,
+          isValid: false,
+        },
       }));
     }
   };
 
   render() {
-    const { login, password, isPasswordVisible, isMailValid } = this.state;
+    const { login, password } = this.state;
     const { classes } = this.props;
 
     return (
@@ -70,21 +90,22 @@ class Login extends Component {
         <h1>Login</h1>
         <form>
           <TextField
-            error={!isMailValid}
             label="Email"
-            value={login}
+            value={login.value}
+            error={!login.isValid}
+            helperText={login.isValid ? '' : login.invalidText}
             onChange={this.handleInputChange('login')}
           />
           <TextField
             label="Password"
-            value={password}
-            type={isPasswordVisible ? 'text' : 'password'}
+            value={password.value}
+            type={password.isVisible ? 'text' : 'password'}
             onChange={this.handleInputChange('password')}
           />
           <FormControlLabel
             control={
               <Checkbox
-                checked={isPasswordVisible}
+                checked={password.isVisible}
                 onChange={this.passwordVisibleToggle}
               />
             }
@@ -100,7 +121,7 @@ class Login extends Component {
             </Button>
           </div>
         </form>
-        <Link to={routes.auth.signup}>Don't have an account yet? Sign up</Link>
+        <Link to={routes.auth.signup}>Do not have an account yet? Sign up</Link>
       </div>
     );
   }

@@ -30,13 +30,15 @@ export const createApiMethodsWords = endpoint => fetcher => ({
       token
     );
   },
-  update: (word, token) =>
-    fetcher(
-      requests.put(joinUrl({ url: endpoint, paths: [word._id] }), {
+  update: (word, token) => {
+    const { _id: id } = word;
+    return fetcher(
+      requests.put(joinUrl({ url: endpoint, paths: [id] }), {
         body: word,
       }),
       token
-    ),
+    );
+  },
   delete: (wordId, token) =>
     fetcher(
       requests.delete(joinUrl({ url: endpoint, paths: [wordId] })),

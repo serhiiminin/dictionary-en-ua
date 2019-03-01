@@ -53,38 +53,41 @@ class MainContainer extends Component {
     const { location } = this.props;
     const searchParams = parseSearchParams(location.search);
 
-    if (
-      this.props.location.search !== prevProps.location.search &&
-      searchParams.query
-    ) {
+    if (location.search !== prevProps.location.search && searchParams.query) {
       this.searchWord(searchParams.query);
     }
   }
 
   componentWillUnmount() {
-    if (!this.state.isToEditMode) {
-      this.props.cleanWord();
+    const { cleanWord } = this.props;
+    const { isToEditMode } = this.state;
+
+    if (!isToEditMode) {
+      cleanWord();
     }
   }
 
   cleanSearchValue = () => this.setState({ searchValue: '' });
 
   searchWord = word => {
+    const { searchWord } = this.props;
+
     clearTimeout(this.inputTimer);
     this.setState({ searchValue: word });
     this.inputTimer = setTimeout(() => {
-      this.props.searchWord({ word });
+      searchWord({ word });
     }, SEARCH_INPUT_TIMEOUT);
   };
 
   handleOnChangeSearchInput = event => {
     clearTimeout(this.inputTimer);
+    const { history } = this.props;
     const { value } = event.target;
 
     this.setState({ searchValue: value });
 
     this.inputTimer = setTimeout(() => {
-      this.props.history.push(`/?query=${value}`);
+      history.push(`/?query=${value}`);
     }, SEARCH_INPUT_TIMEOUT);
   };
 

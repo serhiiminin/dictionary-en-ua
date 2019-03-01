@@ -42,19 +42,28 @@ class WordsTable extends Component {
         : [...prevState.checked, id],
     }));
 
-  handleOnCheckAll = () =>
-    this.setState(prevState => ({
+  handleOnCheckAll = () => {
+    const { wordsList } = this.props;
+
+    return this.setState(prevState => ({
       checked:
-        prevState.checked.length !== this.props.wordsList.length
-          ? [...this.props.wordsList.map(word => word._id)]
+        prevState.checked.length !== wordsList.length
+          ? [...wordsList.map(({ _id: id }) => id)]
           : [],
     }));
+  };
 
-  handleDeleteWord = () =>
-    this.state.checked.length > 0 &&
-    Promise.resolve(
-      this.state.checked.map(id => this.props.deleteWord(id))
-    ).then(() => this.setState({ checked: [] }));
+  handleDeleteWord = () => {
+    const { deleteWord } = this.props;
+    const { checked } = this.state;
+
+    return (
+      checked.length > 0 &&
+      Promise.resolve(checked.map(deleteWord)).then(() =>
+        this.setState({ checked: [] })
+      )
+    );
+  };
 
   generateUrl = params => {
     const { location } = this.props;
@@ -66,10 +75,13 @@ class WordsTable extends Component {
     });
   };
 
-  handleOnChangeSelect = (event, field) =>
-    this.props.history.push(
+  handleOnChangeSelect = (event, field) => {
+    const { history } = this.props;
+
+    return history.push(
       this.generateUrl({ page: 1, [field]: event.target.value })
     );
+  };
 
   handleOnChangeDirection = () => {
     const { location, history } = this.props;
@@ -84,8 +96,11 @@ class WordsTable extends Component {
     );
   };
 
-  handleOnChangePage = pageNumber =>
-    this.props.history.push(this.generateUrl({ page: pageNumber }));
+  handleOnChangePage = pageNumber => {
+    const { history } = this.props;
+
+    return history.push(this.generateUrl({ page: pageNumber }));
+  };
 
   render() {
     const { checked } = this.state;

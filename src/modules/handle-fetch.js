@@ -1,12 +1,9 @@
 const createHandleFetch = ({ startLoading, stopLoading, errorHandler }) => ({
   loadingName,
-  requestHandler,
-  responseHandler,
-  token,
+  apiHandler,
 }) =>
   Promise.resolve(startLoading(loadingName))
-    .then(() => requestHandler(token) || (r => r))
-    .then(responseHandler || (r => r))
+    .then(() => apiHandler)
     .catch(errorHandler)
     .finally(() => stopLoading(loadingName));
 
