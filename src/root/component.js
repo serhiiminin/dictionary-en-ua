@@ -11,7 +11,6 @@ import {
   MainContainer,
   WordsListContainer,
   WordsAddContainer,
-  WordsSearchContainer,
   PageNotFoundContainer,
   WordsLearnContainer,
   WordsEditContainer,
@@ -63,23 +62,18 @@ const Root = () => (
                 />
                 <PrivateRoute
                   exact
-                  path={routes.words.list.all}
+                  path={routes.words.list}
                   component={WordsListContainer}
                 />
                 <PrivateRoute
                   exact
-                  path={routes.words.list.preview}
+                  path={routes.words.preview}
                   component={WordPreviewContainer}
                 />
                 <PrivateRoute
                   exact
-                  path={routes.words.list.edit}
+                  path={routes.words.edit}
                   component={WordsEditContainer}
-                />
-                <Route
-                  exact
-                  path={routes.words.search}
-                  component={WordsSearchContainer}
                 />
                 <Route component={PageNotFoundContainer} />
               </Switch>

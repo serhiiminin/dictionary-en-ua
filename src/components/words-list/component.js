@@ -28,7 +28,7 @@ const WordsList = ({
       : wordsList.map(wordItem => {
           const { _id } = wordItem;
           const linkToWord = joinRoute({
-            pathname: routes.words.list.root,
+            pathname: routes.words.list,
             paths: [_id],
           });
           const isChecked = checked.includes(_id);

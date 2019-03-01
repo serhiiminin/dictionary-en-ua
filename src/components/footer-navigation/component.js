@@ -20,7 +20,7 @@ const createLinks = (isUserLoggedIn, logOut) => [
     placeholder: 'Home',
   },
   {
-    path: routes.words.list.all,
+    path: routes.words.list,
     icon: <List />,
     placeholder: 'My words',
   },

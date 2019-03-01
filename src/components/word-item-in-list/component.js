@@ -18,15 +18,14 @@ import styles from './styles';
 
 const EMPTY_VALUE = '-';
 
-const WordItemInList = props => {
-  const {
-    isChecked,
-    onWordCheck,
-    wordItem,
-    linkToWord,
-    loading,
-    classes,
-  } = props;
+const WordItemInList = ({
+  isChecked,
+  onWordCheck,
+  wordItem,
+  linkToWord,
+  loading,
+  classes,
+}) => {
   const {
     _id,
     word,
@@ -90,7 +89,7 @@ const WordItemInList = props => {
       <Grid item xs={1}>
         <ButtonWithRouter
           to={joinRoute({
-            pathname: routes.words.list.root,
+            pathname: routes.words.root,
             paths: [_id, 'edit'],
           })}
           disabled={loading}

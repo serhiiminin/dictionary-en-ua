@@ -1,17 +1,8 @@
 const styles = {
-  mainPage: {
+  searchBlock: {
     display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: '1rem',
-  },
-  quoteText: {
-    fontSize: '1.3em',
-    fontWeight: 'bolder',
-  },
-  quoteAuthor: {
-    textAlign: 'right',
-    fontSize: '1.2em',
-    margin: '0.5em 0',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '1em',
   },
 };
 

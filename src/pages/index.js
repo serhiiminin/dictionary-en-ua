@@ -7,4 +7,3 @@ export { default as WordsEditContainer } from './word/edit';
 export { default as WordsLearnContainer } from './word/learn';
 export { default as WordsListContainer } from './word/list';
 export { default as WordPreviewContainer } from './word/preview';
-export { default as WordsSearchContainer } from './word/search';
