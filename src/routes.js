@@ -1,3 +1,5 @@
+const words = '/words';
+
 const routes = {
   root: '/',
   auth: {
@@ -6,15 +8,12 @@ const routes = {
     signup: '/signup',
   },
   words: {
-    add: '/add-word',
-    learn: '/learn-words',
-    list: {
-      root: '/words-list',
-      all: '/words-list/all',
-      preview: '/words-list/:id',
-      edit: '/words-list/:id/edit',
-    },
-    search: '/search-words',
+    root: words,
+    add: `${words}/add`,
+    edit: `${words}/:id/edit`,
+    learn: `${words}/learn`,
+    list: `${words}/list`,
+    preview: `${words}/:id`,
   },
 };
 

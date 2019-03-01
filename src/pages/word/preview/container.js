@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { WordPreview } from '../../components';
-import loadingNames from '../../constants/loading-names';
+import { WordPreview } from '../../../components';
+import loadingNames from '../../../constants/loading-names';
 
 class WordPreviewContainer extends Component {
   static propTypes = {

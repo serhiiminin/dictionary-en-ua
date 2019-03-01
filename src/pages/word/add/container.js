@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { WordForm } from '../../components';
-import wordShape from '../../constants/shapes';
+import { WordForm } from '../../../components';
+import wordShape from '../../../constants/shapes';
 
 class AddWordContainer extends Component {
   componentWillUnmount() {
