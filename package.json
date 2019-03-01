@@ -11,7 +11,8 @@
     "test:coverage": "react-scripts test --env=jsdom --coverage",
     "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
     "lint:fix": "LINT_ARGS=--fix yarn run lint",
-    "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' yarn run lint"
+    "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' yarn run lint",
+    "pre-commit": "yarn run lint"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.1",
@@ -60,7 +61,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn run pre-commit"
     }
   },
   "lint-staged": {

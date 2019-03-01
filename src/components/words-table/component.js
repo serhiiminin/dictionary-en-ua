@@ -123,17 +123,17 @@ class WordsTable extends Component {
       <main>
         <div className={classes.wordsTableWrapper}>
           <Toolbar
+            isAnyChecked={checked.length > 0}
+            sortBy={sortBy}
+            sortDirection={sortDirection}
+            onChangeSortDirection={this.handleOnChangeDirection}
+            onChangeSortBy={event => this.handleOnChangeSelect(event, 'sortBy')}
             checkAllControl={
               <Checkbox
                 onChange={this.handleOnCheckAll}
                 checked={isCheckedAll}
               />
             }
-            isAnyChecked={checked.length > 0}
-            sortBy={sortBy}
-            sortDirection={sortDirection}
-            onChangeSortDirection={this.handleOnChangeDirection}
-            onChangeSortBy={event => this.handleOnChangeSelect(event, 'sortBy')}
           >
             <ButtonControl
               disabled={checked.length === 0}
