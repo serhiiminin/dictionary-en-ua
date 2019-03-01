@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
-import { Button } from '../../components';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import routes from '../../routes';
+import { Button } from '../../../components';
+import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
+import routes from '../../../routes';
 import styles from './styles';
 
 const email = value =>
@@ -14,8 +13,6 @@ const email = value =>
 class Signup extends Component {
   static propTypes = {
     handleSignUp: PropTypes.func.isRequired,
-    handleError: PropTypes.func.isRequired,
-    history: ReactRouterPropTypes.history.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 

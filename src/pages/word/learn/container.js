@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import notificationType from '../../constants/notifications-type';
-import loadingNames from '../../constants/loading-names';
-import { WordPreview, LearningBoard, Button } from '../../components';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import notificationType from '../../../constants/notifications-type';
+import loadingNames from '../../../constants/loading-names';
+import { WordPreview, LearningBoard, Button } from '../../../components';
+import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import styles from './styles';
 
 const MAX_COUNT_ATTEMPTS = 3;

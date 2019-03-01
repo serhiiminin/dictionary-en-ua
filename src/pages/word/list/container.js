@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { WordsTable } from '../../components';
+import { WordsTable } from '../../../components';
 
 class WordsListContainer extends Component {
   static propTypes = {

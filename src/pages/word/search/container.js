@@ -8,11 +8,11 @@ import {
   ControlsSeparator,
   TextFieldLoading,
   WordPreview,
-} from '../../components';
-import loadingNames from '../../constants/loading-names';
-import routes from '../../routes';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import wordShape from '../../constants/shapes';
+} from '../../../components';
+import loadingNames from '../../../constants/loading-names';
+import routes from '../../../routes';
+import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
+import wordShape from '../../../constants/shapes';
 import styles from './styles';
 
 const SEARCH_INPUT_TIMEOUT = 500;
