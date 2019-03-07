@@ -14,9 +14,7 @@ import { withLoadingNames } from './loading-names';
 import createHandleFetch from '../modules/handle-fetch';
 import { withErrors } from './errors';
 
-const WordsContext = createContext({});
-
-const INITIAL_WORD_SORT_DATA = {
+const INITIAL_SORT_DATA = {
   sortBy: 'dateCreated',
   sortDirection: 'descend',
   page: 1,
@@ -29,6 +27,7 @@ const wordsInitialState = {
   count: 0,
   gif: '',
 };
+const WordsContext = createContext({});
 
 class WordsProviderCmp extends Component {
   static propTypes = {
@@ -66,12 +65,7 @@ class WordsProviderCmp extends Component {
 
   getSearchParams = () => {
     const { location } = this.props;
-    const {
-      sortBy,
-      sortDirection,
-      page,
-      countPerPage,
-    } = INITIAL_WORD_SORT_DATA;
+    const { sortBy, sortDirection, page, countPerPage } = INITIAL_SORT_DATA;
     const parsedParams = parseSearchParams(location.search);
 
     return {
@@ -102,11 +96,14 @@ class WordsProviderCmp extends Component {
   };
 
   fetchWordsList = () => {
-    const { location, tokenData } = this.props;
+    const {
+      sortBy,
+      sortDirection,
+      page,
+      countPerPage,
+    } = this.getSearchParams();
+    const { tokenData } = this.props;
     const { _id: ownerId, token } = tokenData || {};
-    const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams(
-      location.search
-    );
     const query = {
       skip: (page - 1) * countPerPage,
       limit: Number(countPerPage),
@@ -118,9 +115,9 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.list,
       apiHandler: apiWord
         .getList({ query, ownerId }, token)
-        .then(({ items = [], count = 0 } = {}) =>
-          this.setState({ wordsList: items, count })
-        ),
+        .then(({ items, count }) => {
+          this.setState({ wordsList: items, count });
+        }),
     });
   };
 
@@ -153,17 +150,20 @@ class WordsProviderCmp extends Component {
   };
 
   deleteWord = id => {
-    const { tokenData, enqueueSnackbar } = this.props || {};
+    const { tokenData, enqueueSnackbar } = this.props;
     const { token } = tokenData || {};
 
     return this.handleFetch()({
       loadingName: loadingNames.words.delete,
-      apiHandler: apiWord.delete(id, token).then(this.fetchWordsList),
-    }).then(() =>
-      enqueueSnackbar('The word has been deleted successfully', {
-        variant: notificationType.success,
-      })
-    );
+      apiHandler: apiWord
+        .delete(id, token)
+        .then(this.fetchWordsList)
+        .then(() =>
+          enqueueSnackbar('The word has been deleted successfully', {
+            variant: notificationType.success,
+          })
+        ),
+    });
   };
 
   searchWord = params => {

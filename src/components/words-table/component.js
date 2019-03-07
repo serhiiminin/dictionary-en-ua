@@ -109,12 +109,14 @@ class WordsTable extends Component {
       wordsCount,
       checkIsLoading,
       getWordsSearchParams,
-      location,
       classes,
     } = this.props;
-    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams(
-      location
-    );
+    const {
+      countPerPage,
+      sortBy,
+      sortDirection,
+      page,
+    } = getWordsSearchParams();
     const loading = checkIsLoading(loadingNames.words.list);
     const isCheckedAll =
       checked.length === wordsList.length && checked.length > 0;
