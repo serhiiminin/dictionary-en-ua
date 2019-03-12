@@ -12,7 +12,6 @@ import {
   WordsListContainer,
   WordsAddContainer,
   PageNotFoundContainer,
-  WordsLearnContainer,
   WordsEditContainer,
   WordPreviewContainer,
 } from '../pages';
@@ -54,11 +53,6 @@ const Root = () => (
                   exact
                   path={routes.words.add}
                   component={WordsAddContainer}
-                />
-                <PrivateRoute
-                  exact
-                  path={routes.words.learn}
-                  component={WordsLearnContainer}
                 />
                 <PrivateRoute
                   exact

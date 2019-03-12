@@ -11,7 +11,6 @@ const routes = {
     root: words,
     add: `${words}/add`,
     edit: `${words}/:id/edit`,
-    learn: `${words}/learn`,
     list: `${words}/list`,
     preview: `${words}/:id`,
   },

@@ -4,6 +4,5 @@ export { default as MainContainer } from './main';
 export { default as PageNotFoundContainer } from './not-found';
 export { default as WordsAddContainer } from './word/add';
 export { default as WordsEditContainer } from './word/edit';
-export { default as WordsLearnContainer } from './word/learn';
 export { default as WordsListContainer } from './word/list';
 export { default as WordPreviewContainer } from './word/preview';
