@@ -1,4 +1,4 @@
-import generatorApiKeys from './generator-api-key';
+import generatorApiKeys from '../generator-api-key';
 
 describe('generatorApiKeys', () => {
   const keys = ['key1', 'key2'];
