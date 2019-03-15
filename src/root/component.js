@@ -18,6 +18,7 @@ import {
 import StateProvider from '../context';
 import routes from '../routes';
 import muiTheme from './mui-theme';
+import config from '../config';
 
 const snackbarConfig = {
   TransitionComponent: Zoom,
@@ -32,7 +33,7 @@ const snackbarConfig = {
 const Root = () => (
   <ThemeProvider theme={muiTheme}>
     <MuiThemeProvider theme={muiTheme}>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router basename={config.publicUrl}>
         <SnackbarProvider {...snackbarConfig}>
           <StateProvider>
             <BlocksWrapper>

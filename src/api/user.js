@@ -2,8 +2,7 @@ import { joinUrl } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
 import { createAuthProxy } from './proxies';
-
-const { REACT_APP_ENDPOINT_USERS } = process.env;
+import config from '../config';
 
 export const createApiMethodsUsers = endpoint => fetcher => ({
   create: (body, tokens) =>
@@ -30,7 +29,7 @@ export const createApiMethodsUsers = endpoint => fetcher => ({
     fetcher(requests.delete(joinUrl({ url: endpoint, paths: [id] })), tokens),
 });
 
-const apiMethodsUsers = createApiMethodsUsers(REACT_APP_ENDPOINT_USERS)(
+const apiMethodsUsers = createApiMethodsUsers(config.endpoints.users)(
   createAuthProxy(createFetcherJson(window.fetch))
 );
 

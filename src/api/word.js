@@ -2,8 +2,7 @@ import { joinUrl } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
 import { createAuthProxy } from './proxies';
-
-const { REACT_APP_ENDPOINT_WORDS } = process.env;
+import config from '../config';
 
 export const createApiMethodsWords = endpoint => fetcher => ({
   create: (body, token) => fetcher(requests.post(endpoint, { body }), token),
@@ -63,7 +62,7 @@ export const createApiMethodsWords = endpoint => fetcher => ({
     ),
 });
 
-const apiMethodsWords = createApiMethodsWords(REACT_APP_ENDPOINT_WORDS)(
+const apiMethodsWords = createApiMethodsWords(config.endpoints.words)(
   createAuthProxy(createFetcherJson(window.fetch))
 );
 

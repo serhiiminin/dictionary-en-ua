@@ -1,8 +1,7 @@
 import { joinUrl } from 'url-joiner';
 import requests from './request';
 import { apiKeyGiphyProxy } from './proxies';
-
-const { REACT_APP_ENDPOINT_GIPHY } = process.env;
+import config from '../config';
 
 export const createApiMethodsGifs = endpoint => fetcher => ({
   get: searchParams =>
@@ -19,7 +18,7 @@ export const createApiMethodsGifs = endpoint => fetcher => ({
     ),
 });
 
-const apiMethodsGifs = createApiMethodsGifs(REACT_APP_ENDPOINT_GIPHY)(
+const apiMethodsGifs = createApiMethodsGifs(config.endpoints.giphy)(
   apiKeyGiphyProxy
 );
 
