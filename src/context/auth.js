@@ -12,6 +12,7 @@ import routes from '../routes';
 import { withLoadingNames } from './loading-names';
 import createHandleFetch from '../modules/handle-fetch';
 import { withErrors } from './errors';
+import config from '../config';
 
 const ACCESS_TOKEN = 'access_token';
 
@@ -20,8 +21,6 @@ const AuthContext = createContext({});
 const authInitialState = {
   tokenData: JSON.parse(Cookies.get(ACCESS_TOKEN) || null),
 };
-
-const { PUBLIC_URL } = process.env;
 
 class AuthProviderCmp extends Component {
   static propTypes = {
@@ -56,7 +55,7 @@ class AuthProviderCmp extends Component {
     this.setState({ tokenData }, () => {
       Cookies.set(ACCESS_TOKEN, JSON.stringify(tokenData), {
         expires: 1,
-        path: PUBLIC_URL,
+        path: config.publicUrl,
       });
     });
 

@@ -1,8 +1,7 @@
 import { joinUrl } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
-
-const { REACT_APP_ENDPOINT_AUTH } = process.env;
+import config from '../config';
 
 export const createApiMethodsAuth = endpoint => fetcher => ({
   logIn: body =>
@@ -15,7 +14,7 @@ export const createApiMethodsAuth = endpoint => fetcher => ({
     ),
 });
 
-const apiMethodsAuth = createApiMethodsAuth(REACT_APP_ENDPOINT_AUTH)(
+const apiMethodsAuth = createApiMethodsAuth(config.endpoints.auth)(
   createFetcherJson(window.fetch)
 );
 

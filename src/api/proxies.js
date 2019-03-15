@@ -1,8 +1,8 @@
 import { joinUrl } from 'url-joiner';
 import generatorApiKeys from '../modules/generator-api-key';
-import getGiphyApiKey from '../modules/get-api-keys';
 import createFetcherJson from './create-fetcher';
 import { getErrorType } from '../modules/handle-errors';
+import config from '../config';
 
 const updateSearchParams = (params, newSearchParams) => ({
   ...params,
@@ -23,11 +23,9 @@ const createApiKeyProxy = generator => fetcher => params =>
     throw error;
   });
 
-const API_KEY_PREFIX = 'REACT_APP_GIPHY_API_KEYS';
-const GIPHY_API_KEYS = getGiphyApiKey(API_KEY_PREFIX)(process.env);
-const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(GIPHY_API_KEYS))(
-  createFetcherJson(window.fetch)
-);
+const apiKeyGiphyProxy = createApiKeyProxy(
+  generatorApiKeys(config.auth.giphy.apiKeys)
+)(createFetcherJson(window.fetch));
 
 const createAuthProxy = fetcher => (params, token) =>
   fetcher({

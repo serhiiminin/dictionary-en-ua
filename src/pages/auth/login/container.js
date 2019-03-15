@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Button } from '../../../components';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import routes from '../../../routes';
+import config from '../../../config';
 import styles from './styles';
 
 const email = value =>
@@ -88,6 +90,7 @@ class Login extends Component {
     return (
       <div className={classes.loginButton}>
         <h1>Login</h1>
+        <GoogleLogin clientId={config.auth.google.clientId} />
         <form>
           <TextField
             label="Email"
