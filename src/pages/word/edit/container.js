@@ -32,13 +32,7 @@ class WordEdit extends Component {
   render() {
     const { wordItem, editWord, checkIsLoading } = this.props;
 
-    return (
-      <WordForm
-        wordItem={wordItem}
-        onSubmit={editWord}
-        checkIsLoading={checkIsLoading}
-      />
-    );
+    return <WordForm wordItem={wordItem} onSubmit={editWord} checkIsLoading={checkIsLoading} />;
   }
 }
 

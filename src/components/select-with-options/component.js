@@ -6,12 +6,7 @@ import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
 const SelectWithOptions = ({ classes, label, value, onChange, options }) => (
-  <Select
-    label={label}
-    value={value}
-    onChange={onChange}
-    className={classes.selectWithOptions}
-  >
+  <Select label={label} value={value} onChange={onChange} className={classes.selectWithOptions}>
     {options.length === 0 ? (
       <MenuItem value="" disabled>
         There are no appropriate options

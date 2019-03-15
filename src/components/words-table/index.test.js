@@ -9,10 +9,7 @@ describe('WordForm', () => {
   const wordsList = [{ _id: '1' }, { _id: '2' }];
   beforeEach(() => {
     wrapper = mount(
-      <Router
-        initialEntries={['/one', '/two', { pathname: '/three' }]}
-        initialIndex={1}
-      >
+      <Router initialEntries={['/one', '/two', { pathname: '/three' }]} initialIndex={1}>
         <WordTable
           wordsList={wordsList}
           wordsCount={2}

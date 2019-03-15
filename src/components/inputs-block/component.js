@@ -56,12 +56,7 @@ class InputsBlock extends Component {
                 onChange={event => this.handleOnChange(event)}
                 onKeyPress={this.handleEnterPress}
                 control={
-                  <Button
-                    onClick={this.handleOnAddItem}
-                    title="Add new option"
-                    disabled={!input}
-                    mini
-                  >
+                  <Button onClick={this.handleOnAddItem} title="Add new option" disabled={!input} mini>
                     <AddIcon />
                   </Button>
                 }

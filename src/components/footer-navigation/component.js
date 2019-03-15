@@ -36,30 +36,16 @@ const createLinks = (isUserLoggedIn, logOut) => [
       },
 ];
 
-const FooterNavigation = ({
-  isLoggedIn,
-  handleLogout,
-  classes,
-  history,
-  location,
-}) => (
+const FooterNavigation = ({ isLoggedIn, handleLogout, classes, history, location }) => (
   <BottomNavigation
     classes={{ root: classes.bottomNavigation }}
     value={location.pathname}
     onChange={(_, value) => history.push(value)}
     className={classes.root}
   >
-    {createLinks(isLoggedIn, handleLogout).map(
-      ({ icon, path, placeholder }) => (
-        <BottomNavigationAction
-          key={path}
-          value={path}
-          icon={icon}
-          label={placeholder}
-          showLabel
-        />
-      )
-    )}
+    {createLinks(isLoggedIn, handleLogout).map(({ icon, path, placeholder }) => (
+      <BottomNavigationAction key={path} value={path} icon={icon} label={placeholder} showLabel />
+    ))}
   </BottomNavigation>
 );
 

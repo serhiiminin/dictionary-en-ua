@@ -15,9 +15,7 @@ describe('fetcher', () => {
   });
 
   test('Forbidden', () => {
-    const fetcher = jest.fn(() =>
-      Promise.resolve(new Response(new Blob(), { status: 403 }))
-    );
+    const fetcher = jest.fn(() => Promise.resolve(new Response(new Blob(), { status: 403 })));
     const fetcherJSON = createFetcherJson(fetcher);
 
     expect.assertions(1);

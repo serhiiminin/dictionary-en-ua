@@ -13,13 +13,7 @@ class AddWordContainer extends Component {
   render() {
     const { saveWord, wordItem, checkIsLoading } = this.props;
 
-    return (
-      <WordForm
-        wordItem={wordItem}
-        checkIsLoading={checkIsLoading}
-        onSubmit={saveWord}
-      />
-    );
+    return <WordForm wordItem={wordItem} checkIsLoading={checkIsLoading} onSubmit={saveWord} />;
   }
 }
 

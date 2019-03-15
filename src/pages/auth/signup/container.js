@@ -7,8 +7,7 @@ import composeClassesPropTypes from '../../../modules/compose-classes-prop-types
 import routes from '../../../routes';
 import styles from './styles';
 
-const email = value =>
-  value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
+const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
 class Signup extends Component {
   static propTypes = {
@@ -66,43 +65,17 @@ class Signup extends Component {
   };
 
   render() {
-    const {
-      login,
-      name,
-      gender,
-      age,
-      password,
-      repeatPassword,
-      isPasswordVisible,
-      isMailValid,
-    } = this.state;
+    const { login, name, gender, age, password, repeatPassword, isPasswordVisible, isMailValid } = this.state;
     const { classes } = this.props;
 
     return (
       <div className={classes.signupButton}>
         <h1>Sign up</h1>
         <form>
-          <TextField
-            label="Name"
-            value={name}
-            onChange={this.handleInputChange('name')}
-          />
-          <TextField
-            label="Gender"
-            value={gender}
-            onChange={this.handleInputChange('gender')}
-          />
-          <TextField
-            label="Age"
-            value={age}
-            onChange={this.handleInputChange('age')}
-          />
-          <TextField
-            error={!isMailValid}
-            label="Email"
-            value={login}
-            onChange={this.handleInputChange('login')}
-          />
+          <TextField label="Name" value={name} onChange={this.handleInputChange('name')} />
+          <TextField label="Gender" value={gender} onChange={this.handleInputChange('gender')} />
+          <TextField label="Age" value={age} onChange={this.handleInputChange('age')} />
+          <TextField error={!isMailValid} label="Email" value={login} onChange={this.handleInputChange('login')} />
           <TextField
             label="Password"
             value={password}
@@ -116,20 +89,11 @@ class Signup extends Component {
             onChange={this.handleInputChange('repeatPassword')}
           />
           <FormControlLabel
-            control={
-              <Checkbox
-                checked={isPasswordVisible}
-                onChange={this.passwordVisibleToggle}
-              />
-            }
+            control={<Checkbox checked={isPasswordVisible} onChange={this.passwordVisibleToggle} />}
             label="Show password"
           />
           <div>
-            <Button
-              onClick={this.handleSubmit}
-              color="secondary"
-              variant="contained"
-            >
+            <Button onClick={this.handleSubmit} color="secondary" variant="contained">
               Submit
             </Button>
           </div>

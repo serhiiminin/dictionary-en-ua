@@ -52,9 +52,7 @@ const ErrorProvider = compose(
 )(ErrorsProviderCmp);
 
 const withErrors = Cmp => props => (
-  <ErrorsContext.Consumer>
-    {value => <Cmp {...value} {...props} />}
-  </ErrorsContext.Consumer>
+  <ErrorsContext.Consumer>{value => <Cmp {...value} {...props} />}</ErrorsContext.Consumer>
 );
 
 export { ErrorProvider, withErrors };

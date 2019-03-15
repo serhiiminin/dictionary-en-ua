@@ -25,18 +25,8 @@ const Toolbar = ({
           <Zoom in={isAnyChecked}>{children}</Zoom>
         ) : (
           <Fragment>
-            <Button
-              onClick={onChangeSortDirection}
-              title="Sort direction"
-              color="primary"
-              variant="contained"
-              mini
-            >
-              {sortDirection === 'descend' ? (
-                <KeyboardArrowDown />
-              ) : (
-                <KeyboardArrowUp />
-              )}
+            <Button onClick={onChangeSortDirection} title="Sort direction" color="primary" variant="contained" mini>
+              {sortDirection === 'descend' ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </Button>
             <div>
               <SelectWithOptions

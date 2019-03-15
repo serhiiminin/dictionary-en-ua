@@ -9,8 +9,7 @@ import routes from '../../../routes';
 import config from '../../../config';
 import styles from './styles';
 
-const email = value =>
-  value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
+const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
 class Login extends Component {
   static propTypes = {
@@ -106,20 +105,11 @@ class Login extends Component {
             onChange={this.handleInputChange('password')}
           />
           <FormControlLabel
-            control={
-              <Checkbox
-                checked={password.isVisible}
-                onChange={this.passwordVisibleToggle}
-              />
-            }
+            control={<Checkbox checked={password.isVisible} onChange={this.passwordVisibleToggle} />}
             label="Show password"
           />
           <div>
-            <Button
-              onClick={this.handleSubmit}
-              color="secondary"
-              variant="contained"
-            >
+            <Button onClick={this.handleSubmit} color="secondary" variant="contained">
               Submit
             </Button>
           </div>

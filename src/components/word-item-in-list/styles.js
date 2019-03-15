@@ -1,7 +1,6 @@
 const styles = theme => ({
   wordItemWrapper: {
-    opacity: props =>
-      props.isLoading || props.isChecked ? theme.main.opacity.disabled : 1,
+    opacity: props => (props.isLoading || props.isChecked ? theme.main.opacity.disabled : 1),
   },
   description: {
     padding: `${theme.main.padding.small} 0`,

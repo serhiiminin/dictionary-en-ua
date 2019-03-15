@@ -8,14 +8,7 @@ import { WordItemInList } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
-const WordsList = ({
-  wordsList,
-  loading,
-  countPerPage,
-  checked,
-  onWordCheck,
-  classes,
-}) => (
+const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, classes }) => (
   <List className={classes.wordsList} classes={{ root: classes.wordsList }}>
     {loading
       ? Array(countPerPage)

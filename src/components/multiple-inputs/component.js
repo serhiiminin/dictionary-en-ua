@@ -5,14 +5,7 @@ import { ButtonControl, TextField } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
-const MultipleInputs = ({
-  classes,
-  items,
-  placeholder,
-  onRemoveItem,
-  onChange,
-  disabled,
-}) => (
+const MultipleInputs = ({ classes, items, placeholder, onRemoveItem, onChange, disabled }) => (
   <div className={classes.multipleInputs}>
     {items.map(({ id, value }) => (
       <TextField
@@ -22,12 +15,7 @@ const MultipleInputs = ({
         value={value}
         disabled={disabled}
         control={
-          <ButtonControl
-            color="primary"
-            onClick={() => onRemoveItem(id)}
-            title="Remove example"
-            disabled={disabled}
-          >
+          <ButtonControl color="primary" onClick={() => onRemoveItem(id)} title="Remove example" disabled={disabled}>
             <DeleteIcon />
           </ButtonControl>
         }

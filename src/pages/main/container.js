@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { parseSearchParams } from 'url-joiner';
 import uuid from 'uuid';
-import {
-  Button,
-  ControlsSeparator,
-  TextFieldLoading,
-  WordPreview,
-} from '../../components';
+import { Button, ControlsSeparator, TextFieldLoading, WordPreview } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import routes from '../../routes';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
@@ -131,20 +126,10 @@ class MainContainer extends Component {
             loading={loading}
           />
           <ControlsSeparator align="right">
-            <Button
-              onClick={this.handleSaveWord}
-              disabled={isEmpty}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={this.handleSaveWord} disabled={isEmpty} variant="contained" color="primary">
               Save to my words
             </Button>
-            <Button
-              onClick={this.handleEditBeforeSaving}
-              disabled={isEmpty}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={this.handleEditBeforeSaving} disabled={isEmpty} variant="contained" color="primary">
               Edit before saving
             </Button>
           </ControlsSeparator>

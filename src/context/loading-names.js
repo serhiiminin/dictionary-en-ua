@@ -32,9 +32,7 @@ class LoadingNamesProvider extends Component {
 
   checkIsLoading = (currentLoadingNames = {}) => (...loadingNamesToCheck) =>
     Object.entries(currentLoadingNames).some(
-      currentLoadingName =>
-        loadingNamesToCheck.includes(currentLoadingName[0]) &&
-        currentLoadingName[1] > 0
+      currentLoadingName => loadingNamesToCheck.includes(currentLoadingName[0]) && currentLoadingName[1] > 0
     );
 
   render() {
@@ -57,9 +55,7 @@ class LoadingNamesProvider extends Component {
 }
 
 const withLoadingNames = Cmp => props => (
-  <LoadingNamesContext.Consumer>
-    {value => <Cmp {...value} {...props} />}
-  </LoadingNamesContext.Consumer>
+  <LoadingNamesContext.Consumer>{value => <Cmp {...value} {...props} />}</LoadingNamesContext.Consumer>
 );
 
 export { LoadingNamesProvider, withLoadingNames };
