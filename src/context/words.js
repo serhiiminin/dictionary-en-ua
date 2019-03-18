@@ -76,8 +76,7 @@ class WordsProviderCmp extends Component {
     };
   };
 
-  cleanWordsList = () =>
-    this.setState({ wordsList: wordsInitialState.wordsList });
+  cleanWordsList = () => this.setState({ wordsList: wordsInitialState.wordsList });
 
   cleanWord = () => this.setState({ wordItem: wordsInitialState.wordItem });
 
@@ -89,19 +88,12 @@ class WordsProviderCmp extends Component {
 
     return this.handleFetch()({
       loadingName: loadingNames.words.fetch,
-      apiHandler: apiWord
-        .get(wordId, token)
-        .then(wordItem => this.setState({ wordItem })),
+      apiHandler: apiWord.get(wordId, token).then(wordItem => this.setState({ wordItem })),
     });
   };
 
   fetchWordsList = () => {
-    const {
-      sortBy,
-      sortDirection,
-      page,
-      countPerPage,
-    } = this.getSearchParams();
+    const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams();
     const { tokenData } = this.props;
     const { _id: ownerId, token } = tokenData || {};
     const query = {
@@ -113,11 +105,9 @@ class WordsProviderCmp extends Component {
 
     return this.handleFetch()({
       loadingName: loadingNames.words.list,
-      apiHandler: apiWord
-        .getList({ query, ownerId }, token)
-        .then(({ items, count }) => {
-          this.setState({ wordsList: items, count });
-        }),
+      apiHandler: apiWord.getList({ query, ownerId }, token).then(({ items, count }) => {
+        this.setState({ wordsList: items, count });
+      }),
     });
   };
 
@@ -174,13 +164,8 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.search,
       apiHandler: apiWord.search(params, token).then(foundWord =>
         apiGif.get({ q: foundWord.word }).then(gifs => {
-          const downsizedGifs =
-            gifs &&
-            gifs.data &&
-            gifs.data.map(gif => gif.images.downsized_large.url);
-          const randomGif =
-            downsizedGifs &&
-            downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+          const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
+          const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
           this.setState({
             wordItem: {
@@ -213,9 +198,7 @@ class WordsProviderCmp extends Component {
       loadingName: loadingNames.words.learn,
       apiHandler: apiWord.learn(wordId, token).then(() =>
         this.setState(prevState => ({
-          wordsList: [
-            ...prevState.wordsList.filter(({ _id: id }) => id !== wordId),
-          ],
+          wordsList: [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)],
         }))
       ),
     });
@@ -223,17 +206,11 @@ class WordsProviderCmp extends Component {
 
   relearnWord = wordId => {
     this.setState(prevState => {
-      const wordToRelearn =
-        prevState.wordsList.find(({ _id: id }) => id === wordId) || {};
+      const wordToRelearn = prevState.wordsList.find(({ _id: id }) => id === wordId) || {};
       const { _id: wordToRelearnId } = wordToRelearn;
 
       return {
-        wordsList: [
-          ...prevState.wordsList.filter(
-            ({ _id: id }) => id !== wordToRelearnId
-          ),
-          wordToRelearn,
-        ],
+        wordsList: [...prevState.wordsList.filter(({ _id: id }) => id !== wordToRelearnId), wordToRelearn],
       };
     });
   };
@@ -279,9 +256,7 @@ const WordsProvider = compose(
 )(WordsProviderCmp);
 
 const withWords = Cmp => props => (
-  <WordsContext.Consumer>
-    {value => <Cmp {...value} {...props} />}
-  </WordsContext.Consumer>
+  <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>
 );
 
 export { WordsProvider, withWords };

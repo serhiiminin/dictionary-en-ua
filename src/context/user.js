@@ -60,13 +60,11 @@ class UserProviderCmp extends Component {
 
     return this.handleFetch()({
       loadingName: loadingNames.user.fetch,
-      apiHandler: apiUser
-        .create({ ...user }, tokenData && tokenData.token)
-        .then(() =>
-          enqueueSnackbar('The user has been saved successfully', {
-            variant: notificationType.success,
-          })
-        ),
+      apiHandler: apiUser.create({ ...user }, tokenData && tokenData.token).then(() =>
+        enqueueSnackbar('The user has been saved successfully', {
+          variant: notificationType.success,
+        })
+      ),
     });
   };
 
@@ -88,9 +86,7 @@ class UserProviderCmp extends Component {
 
     return this.handleFetch()({
       loadingName: loadingNames.user.fetch,
-      apiHandler: apiUser
-        .delete(id, tokenData && tokenData.token)
-        .then(this.fetchWordsList),
+      apiHandler: apiUser.delete(id, tokenData && tokenData.token).then(this.fetchWordsList),
     }).then(() =>
       enqueueSnackbar('The user has been deleted successfully', {
         variant: notificationType.success,
@@ -127,10 +123,6 @@ const UserProvider = compose(
   withErrors
 )(UserProviderCmp);
 
-const withUser = Cmp => props => (
-  <UserContext.Consumer>
-    {value => <Cmp {...value} {...props} />}
-  </UserContext.Consumer>
-);
+const withUser = Cmp => props => <UserContext.Consumer>{value => <Cmp {...value} {...props} />}</UserContext.Consumer>;
 
 export { UserProvider, withUser };

@@ -127,10 +127,6 @@ const AuthProvider = compose(
   withErrors
 )(AuthProviderCmp);
 
-const withAuth = Cmp => props => (
-  <AuthContext.Consumer>
-    {value => <Cmp {...value} {...props} />}
-  </AuthContext.Consumer>
-);
+const withAuth = Cmp => props => <AuthContext.Consumer>{value => <Cmp {...value} {...props} />}</AuthContext.Consumer>;
 
 export { AuthProvider, withAuth };

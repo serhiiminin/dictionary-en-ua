@@ -46,10 +46,7 @@ class WordsTable extends Component {
     const { wordsList } = this.props;
 
     return this.setState(prevState => ({
-      checked:
-        prevState.checked.length !== wordsList.length
-          ? [...wordsList.map(({ _id: id }) => id)]
-          : [],
+      checked: prevState.checked.length !== wordsList.length ? [...wordsList.map(({ _id: id }) => id)] : [],
     }));
   };
 
@@ -57,12 +54,7 @@ class WordsTable extends Component {
     const { deleteWord } = this.props;
     const { checked } = this.state;
 
-    return (
-      checked.length > 0 &&
-      Promise.resolve(checked.map(deleteWord)).then(() =>
-        this.setState({ checked: [] })
-      )
-    );
+    return checked.length > 0 && Promise.resolve(checked.map(deleteWord)).then(() => this.setState({ checked: [] }));
   };
 
   generateUrl = params => {
@@ -78,9 +70,7 @@ class WordsTable extends Component {
   handleOnChangeSelect = (event, field) => {
     const { history } = this.props;
 
-    return history.push(
-      this.generateUrl({ page: 1, [field]: event.target.value })
-    );
+    return history.push(this.generateUrl({ page: 1, [field]: event.target.value }));
   };
 
   handleOnChangeDirection = () => {
@@ -88,10 +78,7 @@ class WordsTable extends Component {
 
     return history.push(
       this.generateUrl({
-        sortDirection:
-          parseSearchParams(location.search).sortDirection === 'descend'
-            ? 'ascend'
-            : 'descend',
+        sortDirection: parseSearchParams(location.search).sortDirection === 'descend' ? 'ascend' : 'descend',
       })
     );
   };
@@ -104,22 +91,10 @@ class WordsTable extends Component {
 
   render() {
     const { checked } = this.state;
-    const {
-      wordsList,
-      wordsCount,
-      checkIsLoading,
-      getWordsSearchParams,
-      classes,
-    } = this.props;
-    const {
-      countPerPage,
-      sortBy,
-      sortDirection,
-      page,
-    } = getWordsSearchParams();
+    const { wordsList, wordsCount, checkIsLoading, getWordsSearchParams, classes } = this.props;
+    const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams();
     const loading = checkIsLoading(loadingNames.words.list);
-    const isCheckedAll =
-      checked.length === wordsList.length && checked.length > 0;
+    const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
 
     return (
       <main>
@@ -130,12 +105,7 @@ class WordsTable extends Component {
             sortDirection={sortDirection}
             onChangeSortDirection={this.handleOnChangeDirection}
             onChangeSortBy={event => this.handleOnChangeSelect(event, 'sortBy')}
-            checkAllControl={
-              <Checkbox
-                onChange={this.handleOnCheckAll}
-                checked={isCheckedAll}
-              />
-            }
+            checkAllControl={<Checkbox onChange={this.handleOnCheckAll} checked={isCheckedAll} />}
           >
             <ButtonControl
               disabled={checked.length === 0}
@@ -157,9 +127,7 @@ class WordsTable extends Component {
             countPerPage={countPerPage}
             page={page}
             maxPageCount={Math.ceil(wordsCount / countPerPage)}
-            onChangeCount={event =>
-              this.handleOnChangeSelect(event, 'countPerPage')
-            }
+            onChangeCount={event => this.handleOnChangeSelect(event, 'countPerPage')}
             onChangePage={this.handleOnChangePage}
           />
         </div>

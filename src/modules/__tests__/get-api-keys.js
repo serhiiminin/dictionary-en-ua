@@ -1,4 +1,4 @@
-import getGiphyApiKey from './get-api-keys';
+import getGiphyApiKey from '../get-api-keys';
 
 describe('getGiphyApiKey', () => {
   test('pass object with params', () => {

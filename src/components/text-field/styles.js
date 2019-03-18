@@ -6,8 +6,7 @@ const styles = theme => ({
     justifyContent: props => (props.control ? 'space-between' : 'initial'),
     alignItems: props => (props.control ? 'center' : 'initial'),
     gridTemplateColumns: props => (props.control ? '100fr 1fr' : 'initial'),
-    marginBottom: props =>
-      props.control ? 'initial' : theme.main.margin.medium,
+    marginBottom: props => (props.control ? 'initial' : theme.main.margin.medium),
   },
   textField: {
     marginBottom: theme.main.margin.medium,

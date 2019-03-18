@@ -6,13 +6,8 @@ import config from '../config';
 
 export const createApiMethodsWords = endpoint => fetcher => ({
   create: (body, token) => fetcher(requests.post(endpoint, { body }), token),
-  get: (id, token) =>
-    fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), token),
-  getList: (body, token) =>
-    fetcher(
-      requests.post(joinUrl({ url: endpoint, paths: ['list'] }), { body }),
-      token
-    ),
+  get: (id, token) => fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), token),
+  getList: (body, token) => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['list'] }), { body }), token),
   getListToLearn: (params, token) => {
     const url = joinUrl({ url: endpoint, paths: ['list'] });
     const yesterday = new Date();
@@ -38,11 +33,7 @@ export const createApiMethodsWords = endpoint => fetcher => ({
       token
     );
   },
-  delete: (wordId, token) =>
-    fetcher(
-      requests.delete(joinUrl({ url: endpoint, paths: [wordId] })),
-      token
-    ),
+  delete: (wordId, token) => fetcher(requests.delete(joinUrl({ url: endpoint, paths: [wordId] })), token),
   learn: (wordId, token) =>
     fetcher(
       requests.put(joinUrl({ url: endpoint, paths: [wordId] }), {
@@ -62,8 +53,6 @@ export const createApiMethodsWords = endpoint => fetcher => ({
     ),
 });
 
-const apiMethodsWords = createApiMethodsWords(config.endpoints.words)(
-  createAuthProxy(createFetcherJson(window.fetch))
-);
+const apiMethodsWords = createApiMethodsWords(config.endpoints.words)(createAuthProxy(createFetcherJson(window.fetch)));
 
 export default apiMethodsWords;

@@ -18,8 +18,6 @@ export const createApiMethodsGifs = endpoint => fetcher => ({
     ),
 });
 
-const apiMethodsGifs = createApiMethodsGifs(config.endpoints.giphy)(
-  apiKeyGiphyProxy
-);
+const apiMethodsGifs = createApiMethodsGifs(config.endpoints.giphy)(apiKeyGiphyProxy);
 
 export default apiMethodsGifs;

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
-const Image = ({ src, width, height, classes }) => (
-  <div className={`${classes.imageBlock} ${src}${width}${height}`} />
-);
+const Image = ({ src, width, height, classes }) => <div className={`${classes.imageBlock} ${src}${width}${height}`} />;
 
 Image.propTypes = {
   src: PropTypes.string,

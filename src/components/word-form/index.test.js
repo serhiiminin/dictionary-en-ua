@@ -26,9 +26,7 @@ describe('WordForm', () => {
     wrapper.instance().handleRemoveItemFromArray('synonyms', '1');
     wrapper.instance().handleAddItemToArray('synonyms', 'value');
     wrapper.instance().onResetForm();
-    wrapper
-      .instance()
-      .handleOnChangeMultipleInputs('synonyms', '34', 'evening');
+    wrapper.instance().handleOnChangeMultipleInputs('synonyms', '34', 'evening');
   });
 
   test('simulate handleFieldChange', () => {

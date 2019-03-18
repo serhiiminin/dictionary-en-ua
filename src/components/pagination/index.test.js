@@ -7,10 +7,7 @@ describe('Pagination', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(
-      <Pagination onChangePage={() => {}}>children</Pagination>,
-      muiTheme
-    );
+    wrapper = mount(<Pagination onChangePage={() => {}}>children</Pagination>, muiTheme);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();

@@ -8,8 +8,7 @@ import styles from './styles';
 
 const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
   const prevPage = Number(pageNumber) > 1 ? Number(pageNumber) - 1 : 1;
-  const nextPage =
-    Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
+  const nextPage = Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
 
   return (
     <div className={classes.page}>
@@ -23,11 +22,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
       </ButtonControl>
       <div className={classes.paginationInput}>
         <TextField
-          label={
-            maxPageCount
-              ? `Page ${pageNumber} of ${maxPageCount}`
-              : 'Page number'
-          }
+          label={maxPageCount ? `Page ${pageNumber} of ${maxPageCount}` : 'Page number'}
           onChange={event => {
             const { value } = event.target;
             let numberPage = parseInt(value, 10);

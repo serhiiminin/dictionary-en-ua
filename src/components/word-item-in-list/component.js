@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Edit from '@material-ui/icons/Edit';
-import {
-  Checkbox,
-  Fade,
-  CircularProgress,
-  Grid,
-  ListItemText,
-} from '@material-ui/core';
+import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from '@material-ui/core';
 import { joinRoute } from 'url-joiner';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
@@ -18,40 +12,15 @@ import styles from './styles';
 
 const EMPTY_VALUE = '-';
 
-const WordItemInList = ({
-  isChecked,
-  onWordCheck,
-  wordItem,
-  linkToWord,
-  loading,
-  classes,
-}) => {
-  const {
-    _id,
-    word,
-    transcription,
-    dateCreated,
-    dateLastLearnt,
-    timesLearnt,
-  } = wordItem;
+const WordItemInList = ({ isChecked, onWordCheck, wordItem, linkToWord, loading, classes }) => {
+  const { _id, word, transcription, dateCreated, dateLastLearnt, timesLearnt } = wordItem;
   const lastLearnt =
-    dateLastLearnt && dateLastLearnt === new Date(0).toISOString()
-      ? 'Never'
-      : moment(dateLastLearnt).fromNow();
+    dateLastLearnt && dateLastLearnt === new Date(0).toISOString() ? 'Never' : moment(dateLastLearnt).fromNow();
 
   return (
-    <Grid
-      container
-      spacing={16}
-      alignItems="center"
-      className={classes.wordItemWrapper}
-    >
+    <Grid container spacing={16} alignItems="center" className={classes.wordItemWrapper}>
       <Grid item xs={1}>
-        <Checkbox
-          onChange={() => onWordCheck(_id)}
-          checked={isChecked}
-          disabled={loading}
-        />
+        <Checkbox onChange={() => onWordCheck(_id)} checked={isChecked} disabled={loading} />
       </Grid>
       <Grid item xs={7} className={classes.description}>
         <ListItemText
@@ -67,24 +36,17 @@ const WordItemInList = ({
                     {word}
                   </Link>
                 )}
-                {[word && ' ', transcription && `[${transcription}]`]
-                  .filter(Boolean)
-                  .join(' - ')}
+                {[word && ' ', transcription && `[${transcription}]`].filter(Boolean).join(' - ')}
               </Fragment>
             )
           }
-          secondary={[
-            timesLearnt != null && `Times learnt: ${timesLearnt}`,
-            lastLearnt && `Last learnt: ${lastLearnt}`,
-          ]
+          secondary={[timesLearnt != null && `Times learnt: ${timesLearnt}`, lastLearnt && `Last learnt: ${lastLearnt}`]
             .filter(Boolean)
             .join(` · `)}
         />
       </Grid>
       <Grid item xs={3}>
-        <div className={classes.wordTime}>
-          {(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}
-        </div>
+        <div className={classes.wordTime}>{(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}</div>
       </Grid>
       <Grid item xs={1}>
         <ButtonWithRouter

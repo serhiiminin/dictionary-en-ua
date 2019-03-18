@@ -7,13 +7,7 @@ describe('List of clickable strings', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <ListOfSearchableWords
-        theme={muiTheme}
-        items={['one', 'two']}
-        onClick={() => {}}
-      />
-    );
+    wrapper = shallow(<ListOfSearchableWords theme={muiTheme} items={['one', 'two']} onClick={() => {}} />);
   });
 
   test('render', () => {

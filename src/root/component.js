@@ -40,36 +40,12 @@ const Root = () => (
               <Header />
               <Switch>
                 <Route exact path={routes.root} component={MainContainer} />
-                <Route
-                  exact
-                  path={routes.auth.login}
-                  component={LoginContainer}
-                />
-                <Route
-                  exact
-                  path={routes.auth.signup}
-                  component={SignupContainer}
-                />
-                <PrivateRoute
-                  exact
-                  path={routes.words.add}
-                  component={WordsAddContainer}
-                />
-                <PrivateRoute
-                  exact
-                  path={routes.words.list}
-                  component={WordsListContainer}
-                />
-                <PrivateRoute
-                  exact
-                  path={routes.words.preview}
-                  component={WordPreviewContainer}
-                />
-                <PrivateRoute
-                  exact
-                  path={routes.words.edit}
-                  component={WordsEditContainer}
-                />
+                <Route exact path={routes.auth.login} component={LoginContainer} />
+                <Route exact path={routes.auth.signup} component={SignupContainer} />
+                <PrivateRoute exact path={routes.words.add} component={WordsAddContainer} />
+                <PrivateRoute exact path={routes.words.list} component={WordsListContainer} />
+                <PrivateRoute exact path={routes.words.preview} component={WordPreviewContainer} />
+                <PrivateRoute exact path={routes.words.edit} component={WordsEditContainer} />
                 <Route component={PageNotFoundContainer} />
               </Switch>
               <Footer />

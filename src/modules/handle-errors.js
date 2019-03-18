@@ -8,10 +8,7 @@ const createGetterErrorType = notificationsMessages => error => {
     return notificationsMessages.error.unknown;
   }
 
-  if (
-    ['Failed to fetch', 'Network request failed'].includes(error.message) &&
-    !navigator.onLine
-  ) {
+  if (['Failed to fetch', 'Network request failed'].includes(error.message) && !navigator.onLine) {
     return notificationsMessages.error.disconnect;
   }
 
@@ -49,8 +46,7 @@ const createGetErrorMessages = notificationType => errorType =>
     [notificationType.error.clientError]: 'Client error',
     [notificationType.error.default]: 'Something went wrong',
     [notificationType.error.disconnect]: 'You are disconnected!',
-    [notificationType.error.forbidden]:
-      'You are not authorized! Please, use your google account',
+    [notificationType.error.forbidden]: 'You are not authorized! Please, use your google account',
     [notificationType.error.redirect]: 'You will be redirected',
     [notificationType.error.serverError]: 'Server error',
     [notificationType.error.notFound]: 'Not found',
