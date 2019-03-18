@@ -42,7 +42,8 @@ class Signup extends Component {
       isPasswordVisible: !prevState.isPasswordVisible,
     }));
 
-  handleSubmit = () => {
+  handleSubmit = event => {
+    event.preventDefault();
     const { login, password } = this.state;
     const { handleSignUp } = this.props;
     const isMailValid = Boolean(email(login));
@@ -71,7 +72,7 @@ class Signup extends Component {
     return (
       <div className={classes.signupButton}>
         <h1>Sign up</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <TextField label="Name" value={name} onChange={this.handleInputChange('name')} />
           <TextField label="Gender" value={gender} onChange={this.handleInputChange('gender')} />
           <TextField label="Age" value={age} onChange={this.handleInputChange('age')} />
@@ -93,7 +94,7 @@ class Signup extends Component {
             label="Show password"
           />
           <div>
-            <Button onClick={this.handleSubmit} color="secondary" variant="contained">
+            <Button type="submit" color="secondary" variant="contained">
               Submit
             </Button>
           </div>

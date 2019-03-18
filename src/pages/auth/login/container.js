@@ -52,7 +52,8 @@ class Login extends Component {
       },
     }));
 
-  handleSubmit = () => {
+  handleSubmit = event => {
+    event.preventDefault();
     const { login, password } = this.state;
     const { handleLogin } = this.props;
     const isMailValid = Boolean(email(login.value));
@@ -90,7 +91,7 @@ class Login extends Component {
       <div className={classes.loginButton}>
         <h1>Login</h1>
         <GoogleLogin clientId={config.auth.google.clientId} />
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <TextField
             label="Email"
             value={login.value}
@@ -109,7 +110,7 @@ class Login extends Component {
             label="Show password"
           />
           <div>
-            <Button onClick={this.handleSubmit} color="secondary" variant="contained">
+            <Button type="submit" color="secondary" variant="contained">
               Submit
             </Button>
           </div>
