@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { withSnackbar } from 'notistack';
 import notificationType from '../constants/notifications-type';
 import routes from '../routes';
-import { getErrorMessage } from '../modules/handle-errors';
+import { getErrorMessage, getErrorType } from '../modules/handle-errors';
 
 const ErrorsContext = createContext({});
 
@@ -22,7 +22,7 @@ class ErrorsProviderCmp extends Component {
     if (error.message === notificationType.error.forbidden) {
       history.push(routes.auth.login);
     }
-    const errorMessage = getErrorMessage(error);
+    const errorMessage = getErrorMessage(getErrorType(error));
     enqueueSnackbar(errorMessage, { variant: notificationType.info });
   };
 
