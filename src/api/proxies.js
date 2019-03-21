@@ -1,7 +1,6 @@
 import { joinUrl } from 'url-joiner';
 import generatorApiKeys from '../modules/generator-api-key';
 import createFetcherJson from './create-fetcher';
-import { getErrorType } from '../modules/handle-errors';
 import config from '../config';
 
 const updateSearchParams = (params, newSearchParams) => ({
@@ -32,8 +31,6 @@ const createAuthProxy = fetcher => (params, token) =>
       ...params.headers,
       authorization: `Bearer ${token}`,
     },
-  }).catch(error => {
-    throw new Error(getErrorType(error));
   });
 
 export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy };
