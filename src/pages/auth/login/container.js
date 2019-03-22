@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Button } from '../../../components';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
@@ -91,6 +92,7 @@ class Login extends Component {
       <div className={classes.loginButton}>
         <h1>Login</h1>
         <GoogleLogin clientId={config.auth.google.clientId} />
+        <FacebookLogin appId={config.auth.facebook.appId} autoLoad fields="name,email,picture" />
         <form onSubmit={this.handleSubmit}>
           <TextField
             label="Email"
