@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import { Button } from '../../../components';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
@@ -13,7 +14,9 @@ const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.tes
 
 class Login extends Component {
   static propTypes = {
-    handleLogin: PropTypes.func.isRequired,
+    handleBasicLogIn: PropTypes.func.isRequired,
+    handleGoogleLogIn: PropTypes.func.isRequired,
+    handleFacebookLogIn: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
@@ -55,7 +58,7 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { login, password } = this.state;
-    const { handleLogin } = this.props;
+    const { handleBasicLogIn } = this.props;
     const isMailValid = Boolean(email(login.value));
 
     if (isMailValid) {
@@ -67,7 +70,7 @@ class Login extends Component {
           },
         }),
         () => {
-          handleLogin({
+          handleBasicLogIn({
             login: login.value,
             password: password.value,
           });
@@ -83,6 +86,20 @@ class Login extends Component {
     }
   };
 
+  handleGoogle = tokenData => {
+    const { accessToken } = tokenData;
+    const { handleGoogleLogIn } = this.props;
+
+    return handleGoogleLogIn(accessToken);
+  };
+
+  handleFacebook = tokenData => {
+    const { accessToken } = tokenData;
+    const { handleFacebookLogIn } = this.props;
+
+    return handleFacebookLogIn(accessToken);
+  };
+
   render() {
     const { login, password } = this.state;
     const { classes } = this.props;
@@ -90,7 +107,8 @@ class Login extends Component {
     return (
       <div className={classes.loginButton}>
         <h1>Login</h1>
-        <GoogleLogin clientId={config.auth.google.clientId} />
+        <GoogleLogin clientId={config.auth.google.clientId} onSuccess={this.handleGoogle} />
+        <FacebookLogin appId={config.auth.facebook.appId} fields="name,email,picture" callback={this.handleFacebook} />
         <form onSubmit={this.handleSubmit}>
           <TextField
             label="Email"
