@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
-import { apiAuth } from '../api';
+import { apiMethodsBasicAuth } from '../api';
 import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
 import routes from '../routes';
@@ -64,7 +64,7 @@ class AuthProviderCmp extends Component {
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
-      apiHandler: apiAuth
+      apiHandler: apiMethodsBasicAuth
         .logIn({ login, password })
         .then(this.setToken)
         .then(() =>
@@ -89,7 +89,7 @@ class AuthProviderCmp extends Component {
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.signup,
-      apiHandler: apiAuth.signUp({ login, password }).then(() =>
+      apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() =>
         enqueueSnackbar('Welcome! You have been signed up successfully', {
           variant: notificationType.success,
         })
