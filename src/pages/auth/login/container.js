@@ -36,12 +36,11 @@ class Login extends Component {
     classes: {},
   };
 
-  handleInputChange = key => event => {
-    const { value } = event.target;
-
+  handleInputChange = event => {
+    const { value, name } = event.target;
     this.setState(prevState => ({
-      [key]: {
-        ...prevState[key],
+      [name]: {
+        ...prevState[name],
         value,
       },
     }));
@@ -108,20 +107,22 @@ class Login extends Component {
       <div className={classes.loginButton}>
         <h1>Login</h1>
         <GoogleLogin clientId={config.auth.google.clientId} onSuccess={this.handleGoogle} />
-        <FacebookLogin appId={config.auth.facebook.appId} fields="name,email,picture" callback={this.handleFacebook} />
+        <FacebookLogin appId={config.auth.facebook.appId} callback={this.handleFacebook} />
         <form onSubmit={this.handleSubmit}>
           <TextField
             label="Email"
+            name="login"
             value={login.value}
             error={!login.isValid}
             helperText={login.isValid ? '' : login.invalidText}
-            onChange={this.handleInputChange('login')}
+            onChange={this.handleInputChange}
           />
           <TextField
             label="Password"
+            name="password"
             value={password.value}
             type={password.isVisible ? 'text' : 'password'}
-            onChange={this.handleInputChange('password')}
+            onChange={this.handleInputChange}
           />
           <FormControlLabel
             control={<Checkbox checked={password.isVisible} onChange={this.passwordVisibleToggle} />}

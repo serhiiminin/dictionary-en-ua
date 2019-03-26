@@ -60,104 +60,113 @@ class AuthProviderCmp extends Component {
     });
 
   handleBasicLogIn = ({ login, password }) => {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
       apiHandler: apiMethodsBasicAuth
         .logIn({ login, password })
         .then(this.setToken)
-        .then(() =>
-          enqueueSnackbar('Successfully authorized', {
+        .then(() => {
+          history.push(routes.words.list);
+          return enqueueSnackbar('Successfully authorized', {
             variant: notificationType.success,
-          })
-        ),
+          });
+        }),
     });
   };
 
   handleBasicSignUp = ({ login, password }) => {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.signup,
-      apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() =>
-        enqueueSnackbar('Welcome! You have been signed up successfully', {
+      apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() => {
+        history.push(routes.words.list);
+        return enqueueSnackbar('Welcome! You have been signed up successfully', {
           variant: notificationType.success,
-        })
-      ),
+        });
+      }),
     });
   };
 
   handleGoogleLogIn = token => {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
       apiHandler: apiMethodsGoogleAuth
         .logIn(token)
         .then(this.setToken)
-        .then(() =>
-          enqueueSnackbar('Successfully authorized', {
+        .then(() => {
+          history.push(routes.words.list);
+          return enqueueSnackbar('Successfully authorized', {
             variant: notificationType.success,
-          })
-        ),
+          });
+        }),
     });
   };
 
   handleGoogleSignUp = token => {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
       apiHandler: apiMethodsGoogleAuth
         .signUp(token)
         .then(this.setToken)
-        .then(() =>
-          enqueueSnackbar('Successfully authorized', {
+        .then(() => {
+          history.push(routes.words.list);
+          return enqueueSnackbar('Successfully authorized', {
             variant: notificationType.success,
-          })
-        ),
+          });
+        }),
     });
   };
 
   handleFacebookLogIn = token => {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
       apiHandler: apiMethodsFacebookAuth
         .logIn(token)
         .then(this.setToken)
-        .then(() =>
-          enqueueSnackbar('Successfully authorized', {
+        .then(() => {
+          history.push(routes.words.list);
+          return enqueueSnackbar('Successfully authorized', {
             variant: notificationType.success,
-          })
-        ),
+          });
+        }),
     });
   };
 
   handleFacebookSignUp = token => {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
       apiHandler: apiMethodsFacebookAuth
         .signUp(token)
         .then(this.setToken)
-        .then(() =>
-          enqueueSnackbar('Successfully authorized', {
+        .then(() => {
+          history.push(routes.words.list);
+          return enqueueSnackbar('Successfully authorized', {
             variant: notificationType.success,
-          })
-        ),
+          });
+        }),
     });
   };
 
   handleLogout = () => {
-    const { history } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     this.setState({ tokenData: null }, () => {
       Cookies.remove(ACCESS_TOKEN);
-      history.push(routes.root);
+      history.push(routes.auth.login);
+      enqueueSnackbar('Successfully logged out', {
+        variant: notificationType.success,
+      });
     });
   };
 
