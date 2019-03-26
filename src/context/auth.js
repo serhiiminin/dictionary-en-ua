@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
-import { apiMethodsBasicAuth } from '../api';
+import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
 import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
 import routes from '../routes';
@@ -59,13 +59,90 @@ class AuthProviderCmp extends Component {
       });
     });
 
-  handleLogin = ({ login, password }) => {
+  handleBasicLogIn = ({ login, password }) => {
     const { enqueueSnackbar } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.login,
       apiHandler: apiMethodsBasicAuth
         .logIn({ login, password })
+        .then(this.setToken)
+        .then(() =>
+          enqueueSnackbar('Successfully authorized', {
+            variant: notificationType.success,
+          })
+        ),
+    });
+  };
+
+  handleBasicSignUp = ({ login, password }) => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.signup,
+      apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() =>
+        enqueueSnackbar('Welcome! You have been signed up successfully', {
+          variant: notificationType.success,
+        })
+      ),
+    });
+  };
+
+  handleGoogleLogIn = token => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.login,
+      apiHandler: apiMethodsGoogleAuth
+        .logIn(token)
+        .then(this.setToken)
+        .then(() =>
+          enqueueSnackbar('Successfully authorized', {
+            variant: notificationType.success,
+          })
+        ),
+    });
+  };
+
+  handleGoogleSignUp = token => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.login,
+      apiHandler: apiMethodsGoogleAuth
+        .signUp(token)
+        .then(this.setToken)
+        .then(() =>
+          enqueueSnackbar('Successfully authorized', {
+            variant: notificationType.success,
+          })
+        ),
+    });
+  };
+
+  handleFacebookLogIn = token => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.login,
+      apiHandler: apiMethodsFacebookAuth
+        .logIn(token)
+        .then(this.setToken)
+        .then(() =>
+          enqueueSnackbar('Successfully authorized', {
+            variant: notificationType.success,
+          })
+        ),
+    });
+  };
+
+  handleFacebookSignUp = token => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.login,
+      apiHandler: apiMethodsFacebookAuth
+        .signUp(token)
         .then(this.setToken)
         .then(() =>
           enqueueSnackbar('Successfully authorized', {
@@ -84,19 +161,6 @@ class AuthProviderCmp extends Component {
     });
   };
 
-  handleSignUp = ({ login, password }) => {
-    const { enqueueSnackbar } = this.props;
-
-    return this.handleFetch()({
-      loadingName: loadingNames.auth.signup,
-      apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() =>
-        enqueueSnackbar('Welcome! You have been signed up successfully', {
-          variant: notificationType.success,
-        })
-      ),
-    });
-  };
-
   render() {
     const { tokenData } = this.state;
     const { children } = this.props;
@@ -109,9 +173,13 @@ class AuthProviderCmp extends Component {
           isLoggedIn: Boolean(isLoggedIn),
           setToken: this.setToken,
           cleanToken: this.cleanToken,
-          handleLogin: this.handleLogin,
+          handleBasicLogIn: this.handleBasicLogIn,
+          handleBasicSignUp: this.handleBasicSignUp,
+          handleGoogleLogIn: this.handleGoogleLogIn,
+          handleGoogleSignUp: this.handleGoogleSignUp,
+          handleFacebookLogIn: this.handleFacebookLogIn,
+          handleFacebookSignUp: this.handleFacebookSignUp,
           handleLogout: this.handleLogout,
-          handleSignUp: this.handleSignUp,
         }}
       >
         {children}

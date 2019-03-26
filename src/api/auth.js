@@ -10,13 +10,13 @@ const createApiMethodsBasicAuth = endpoint => fetcher => ({
 });
 
 const createApiMethodsGoogleAuth = endpoint => fetcher => ({
-  logIn: token => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['google/log-in'] })), token),
-  signUp: token => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['google/sign-up'] })), token),
+  logIn: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['google/log-in'] })), token),
+  signUp: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['google/sign-up'] })), token),
 });
 
 const createApiMethodsFacebookAuth = endpoint => fetcher => ({
-  logIn: token => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['facebook/log-in'] })), token),
-  signUp: token => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['facebook/sign-up'] })), token),
+  logIn: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['facebook/log-in'] })), token),
+  signUp: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['facebook/sign-up'] })), token),
 });
 
 const apiMethodsBasicAuth = createApiMethodsBasicAuth(config.endpoints.auth)(createFetcherJson(window.fetch));
