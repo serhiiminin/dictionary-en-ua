@@ -1,12 +1,18 @@
 const styles = {
   blocksWrapper: {
-    width: '300px',
+    width: '100%',
     margin: '0 auto',
-    '@media (min-width: 480px)': {
-      width: '470px',
+    '@media (min-width: 576px)': {
+      maxWidth: '540px',
     },
     '@media (min-width: 768px)': {
-      width: '750px',
+      maxWidth: '720px',
+    },
+    '@media (min-width: 992px)': {
+      maxWidth: '960px',
+    },
+    '@media (min-width: 1200px)': {
+      maxWidth: '1140px',
     },
   },
 };
