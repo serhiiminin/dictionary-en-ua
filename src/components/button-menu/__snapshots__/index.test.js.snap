@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button control isActive 1`] = `
+<Jss(ButtonCustomized)
+  isActive={true}
+  mini={true}
+  variant="fab"
+>
+  Text
+</Jss(ButtonCustomized)>
+`;
+
+exports[`Button control render 1`] = `
+<Jss(ButtonCustomized)
+  isActive={false}
+  mini={true}
+  variant="fab"
+>
+  Text
+</Jss(ButtonCustomized)>
+`;
