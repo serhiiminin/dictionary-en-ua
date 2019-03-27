@@ -163,7 +163,7 @@ class AuthProviderCmp extends Component {
 
     this.setState({ tokenData: null }, () => {
       Cookies.remove(ACCESS_TOKEN);
-      history.push(routes.auth.login);
+      history.push(routes.auth.logIn);
       enqueueSnackbar('Successfully logged out', {
         variant: notificationType.success,
       });

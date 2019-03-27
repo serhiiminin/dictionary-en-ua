@@ -20,7 +20,7 @@ class ErrorsProviderCmp extends Component {
   handleError = error => {
     const { history, enqueueSnackbar } = this.props;
     if (error.message === notificationType.error.forbidden) {
-      history.push(routes.auth.login);
+      history.push(routes.auth.logIn);
     }
     const errorMessage = getErrorMessage(getErrorType(error));
     enqueueSnackbar(errorMessage, { variant: notificationType.info });
