@@ -1,7 +1,7 @@
 const theme = {
   main: {
     colors: {
-      background: '#EEE2DC',
+      background: '#E5E5E5',
       text: '#333333',
       main: '#123C69',
       dark: '#EDC7B7',
@@ -34,9 +34,9 @@ const theme = {
       base: 'solid',
     },
     borderRadius: {
-      small: '5px',
-      medium: '10px',
-      large: '15px',
+      small: '4px',
+      medium: '8px',
+      large: '12px',
     },
     zIndex: {
       notification: 1000,

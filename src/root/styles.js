@@ -1,4 +1,3 @@
-import texture from '../images/texture.png';
 import theme from './mui-theme';
 import cairoRegularWoff from '../fonts/cairo-regular.woff';
 import cairoRegularWoff2 from '../fonts/cairo-regular.woff2';
@@ -6,7 +5,7 @@ import cairoRegularWoff2 from '../fonts/cairo-regular.woff2';
 const GlobalStyle = {
   '@global body': {
     overflowX: 'hidden',
-    background: `${theme.main.colors.background} url(${texture}) center repeat`,
+    background: theme.main.colors.background,
     color: theme.main.colors.text,
     fontSize: '1em',
     margin: 0,

@@ -6,7 +6,7 @@ import styles from './styles';
 const ButtonMenu = props => {
   const { classes, ...rest } = props;
 
-  return <ButtonWithRouter className={classes.buttonMenu} variant="outlined" {...rest} />;
+  return <ButtonWithRouter className={classes.buttonMenu} {...rest} />;
 };
 
 ButtonMenu.propTypes = {

@@ -18,29 +18,32 @@ const buttonsData = {
   },
 };
 
-const Header = ({ classes, isUserLoggedIn }) => {
-  const authButtonData = isUserLoggedIn ? buttonsData.signIn : buttonsData.signOut;
+const Header = ({ classes, isLoggedIn }) => {
+  const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
 
   return (
     <div className={classes.header}>
       <Link to={routes.root} className={classes.headerLink}>
         <Logo className={classes.logo} />
       </Link>
-      <ButtonMenu variant="outlined" to={authButtonData.href}>
-        {authButtonData.text}
-      </ButtonMenu>
+      <div className={classes.menuDivider}>
+        <ButtonMenu to={routes.words.list}>My words</ButtonMenu>
+        <ButtonMenu variant="outlined" to={authButtonData.href}>
+          {authButtonData.text}
+        </ButtonMenu>
+      </div>
     </div>
   );
 };
 
 Header.propTypes = {
   classes: composeClassesPropTypes(styles),
-  isUserLoggedIn: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
 };
 
 Header.defaultProps = {
   classes: {},
-  isUserLoggedIn: false,
+  isLoggedIn: false,
 };
 
 export default Header;

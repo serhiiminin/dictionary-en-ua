@@ -9,6 +9,11 @@ const styles = theme => ({
     width: '250px',
     height: '55px',
   },
+  menuDivider: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gridColumnGap: '5px',
+  },
   headerLinkWrapper: {
     margin: 0,
   },
