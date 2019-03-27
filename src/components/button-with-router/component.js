@@ -11,7 +11,7 @@ const ButtonWithRouter = ({ location, to, staticContext, ...restProps }) => (
 ButtonWithRouter.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
-  staticContext: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  staticContext: PropTypes.shape({}),
   to: PropTypes.string.isRequired,
 };
 

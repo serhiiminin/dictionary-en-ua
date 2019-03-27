@@ -2,14 +2,6 @@
 
 exports[`Header render 1`] = `
 <div>
-  <h1>
-    <Link
-      replace={false}
-      to="/"
-    >
-      The dictionary
-    </Link>
-  </h1>
-  <Jss(Component) />
+  <Jss(withRouter()) />
 </div>
 `;

@@ -1,21 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button control isActive 1`] = `
-<Jss(ButtonCustomized)
+<ButtonMenu
+  classes={
+    Object {
+      "buttonMenu": "ButtonMenu-buttonMenu-0-1-1",
+    }
+  }
   isActive={true}
-  mini={true}
-  variant="fab"
 >
   Text
-</Jss(ButtonCustomized)>
+</ButtonMenu>
 `;
 
 exports[`Button control render 1`] = `
-<Jss(ButtonCustomized)
-  isActive={false}
-  mini={true}
-  variant="fab"
+<ButtonMenu
+  classes={
+    Object {
+      "buttonMenu": "ButtonMenu-buttonMenu-0-1-1",
+    }
+  }
 >
   Text
-</Jss(ButtonCustomized)>
+</ButtonMenu>
 `;
