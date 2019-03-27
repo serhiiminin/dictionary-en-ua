@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
-import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
+import { TextField, Checkbox, FormControlLabel, LinearProgress, Fade } from '@material-ui/core';
 import { Button } from '../../../components';
+import loadingNames from '../../../constants/loading-names';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import routes from '../../../routes';
 import config from '../../../config';
@@ -17,6 +18,7 @@ class Login extends Component {
     handleBasicLogIn: PropTypes.func.isRequired,
     handleGoogleLogIn: PropTypes.func.isRequired,
     handleFacebookLogIn: PropTypes.func.isRequired,
+    checkIsLoading: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
@@ -101,11 +103,15 @@ class Login extends Component {
 
   render() {
     const { login, password } = this.state;
-    const { classes } = this.props;
+    const { classes, checkIsLoading } = this.props;
+    const isLoading = checkIsLoading(loadingNames.auth.logIn);
 
     return (
       <div className={classes.loginButton}>
         <h1>Login</h1>
+        <Fade in={isLoading}>
+          <LinearProgress color="secondary" variant="query" />
+        </Fade>
         <GoogleLogin clientId={config.auth.google.clientId} onSuccess={this.handleGoogle} />
         <FacebookLogin appId={config.auth.facebook.appId} callback={this.handleFacebook} />
         <form onSubmit={this.handleSubmit}>
@@ -134,7 +140,7 @@ class Login extends Component {
             </Button>
           </div>
         </form>
-        <Link to={routes.auth.signup}>Do not have an account yet? Sign up</Link>
+        <Link to={routes.auth.signUp}>Do not have an account yet? Sign up</Link>
       </div>
     );
   }

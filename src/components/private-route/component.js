@@ -11,7 +11,7 @@ const PrivateRoute = ({ isLoggedIn, component: Cmp, render, ...rest }) => (
         return (
           <Redirect
             to={{
-              pathname: routes.auth.login,
+              pathname: routes.auth.logIn,
               redirectedFrom: params.location,
             }}
           />

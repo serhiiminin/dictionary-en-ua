@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
-import { List, Home, NoteAdd, Input, ExitToApp } from '@material-ui/icons';
+import { List, Home, NoteAdd, Input, ExitToApp, Search } from '@material-ui/icons';
 import routes from '../../routes';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
@@ -19,18 +19,23 @@ const createLinks = (isUserLoggedIn, logOut) => [
     placeholder: 'My words',
   },
   {
+    path: routes.words.search,
+    icon: <Search />,
+    placeholder: 'Search a word',
+  },
+  {
     path: routes.words.add,
     icon: <NoteAdd />,
     placeholder: 'Add a word',
   },
   isUserLoggedIn
     ? {
-        path: routes.auth.login,
+        path: routes.auth.logIn,
         icon: <ExitToApp onClick={logOut} />,
         placeholder: 'Logout',
       }
     : {
-        path: routes.auth.login,
+        path: routes.auth.logIn,
         icon: <Input />,
         placeholder: 'Login',
       },

@@ -99,7 +99,7 @@ class Signup extends Component {
             </Button>
           </div>
         </form>
-        <Link to={routes.auth.login}>Already have an account? Log in</Link>
+        <Link to={routes.auth.logIn}>Already have an account? Log in</Link>
       </div>
     );
   }

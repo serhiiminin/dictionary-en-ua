@@ -3,9 +3,9 @@ const words = '/words';
 const routes = {
   root: '/',
   auth: {
-    login: '/login',
-    logout: '/logout',
-    signup: '/signup',
+    logIn: '/log-in',
+    logOut: '/log-out',
+    signUp: '/sign-up',
   },
   words: {
     root: words,
@@ -13,6 +13,7 @@ const routes = {
     edit: `${words}/:id/edit`,
     list: `${words}/list`,
     preview: `${words}/:id`,
+    search: `${words}/search`,
   },
 };
 

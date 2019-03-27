@@ -63,7 +63,7 @@ class AuthProviderCmp extends Component {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
-      loadingName: loadingNames.auth.login,
+      loadingName: loadingNames.auth.logIn,
       apiHandler: apiMethodsBasicAuth
         .logIn({ login, password })
         .then(this.setToken)
@@ -80,7 +80,7 @@ class AuthProviderCmp extends Component {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
-      loadingName: loadingNames.auth.signup,
+      loadingName: loadingNames.auth.signUp,
       apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() => {
         history.push(routes.words.list);
         return enqueueSnackbar('Welcome! You have been signed up successfully', {
@@ -94,7 +94,7 @@ class AuthProviderCmp extends Component {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
-      loadingName: loadingNames.auth.login,
+      loadingName: loadingNames.auth.logIn,
       apiHandler: apiMethodsGoogleAuth
         .logIn(token)
         .then(this.setToken)
@@ -111,7 +111,7 @@ class AuthProviderCmp extends Component {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
-      loadingName: loadingNames.auth.login,
+      loadingName: loadingNames.auth.signUp,
       apiHandler: apiMethodsGoogleAuth
         .signUp(token)
         .then(this.setToken)
@@ -128,7 +128,7 @@ class AuthProviderCmp extends Component {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
-      loadingName: loadingNames.auth.login,
+      loadingName: loadingNames.auth.logIn,
       apiHandler: apiMethodsFacebookAuth
         .logIn(token)
         .then(this.setToken)
@@ -145,7 +145,7 @@ class AuthProviderCmp extends Component {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
-      loadingName: loadingNames.auth.login,
+      loadingName: loadingNames.auth.signUp,
       apiHandler: apiMethodsFacebookAuth
         .signUp(token)
         .then(this.setToken)
@@ -163,7 +163,7 @@ class AuthProviderCmp extends Component {
 
     this.setState({ tokenData: null }, () => {
       Cookies.remove(ACCESS_TOKEN);
-      history.push(routes.auth.login);
+      history.push(routes.auth.logIn);
       enqueueSnackbar('Successfully logged out', {
         variant: notificationType.success,
       });
