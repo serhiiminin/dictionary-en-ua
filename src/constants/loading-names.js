@@ -5,6 +5,10 @@ const AUTH = `${NS}/AUTH`;
 const GIF = `${NS}/GIF`;
 
 const loadingNames = {
+  auth: {
+    logIn: `${AUTH}/log-in`,
+    signUp: `${AUTH}/sign-up`,
+  },
   words: {
     list: `${WORDS}/list`,
     save: `${WORDS}/save`,
@@ -15,10 +19,6 @@ const loadingNames = {
   },
   user: {
     fetch: `${USER}/fetch`,
-  },
-  auth: {
-    login: `${AUTH}/login`,
-    signup: `${AUTH}/signup`,
   },
   gif: {
     fetch: `${GIF}/fetch`,
