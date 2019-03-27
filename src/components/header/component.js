@@ -4,19 +4,18 @@ import { Link } from 'react-router-dom';
 import { UserIcon } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import routes from '../../routes';
-import styles from './styles';
 import loadingNames from '../../constants/loading-names';
+import { ReactComponent as Logo } from '../../images/logo.svg';
+import styles from './styles';
 
 const Header = ({ classes, isUserLoggedIn, checkIsLoading }) => {
   const isLoading = checkIsLoading(loadingNames.user.fetch);
 
   return (
     <div className={classes.header}>
-      <h1 className={classes.headerLinkWrapper}>
-        <Link to={routes.root} className={classes.headerLink}>
-          The dictionary
-        </Link>
-      </h1>
+      <Link to={routes.root} className={classes.headerLink}>
+        <Logo className={classes.logo} />
+      </Link>
       {isUserLoggedIn && <UserIcon isLoading={isLoading} />}
     </div>
   );

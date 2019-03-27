@@ -5,6 +5,10 @@ const styles = theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  logo: {
+    width: '250px',
+    height: '55px',
+  },
   headerLinkWrapper: {
     margin: 0,
   },
