@@ -1,5 +1,4 @@
 export { default as BlocksWrapper } from './blocks-wrapper';
-export { default as Button } from './button';
 export { default as ButtonControl } from './button-control';
 export { default as ButtonMenu } from './button-menu';
 export { default as ButtonWithRouter } from './button-with-router';

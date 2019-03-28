@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { Button } from '@material-ui/core';
 import { parseSearchParams, joinRoute } from 'url-joiner';
 import uuid from 'uuid';
-import { Button, ControlsSeparator, TextFieldLoading, WordPreview } from '../../../components';
+import { ControlsSeparator, TextFieldLoading, WordPreview } from '../../../components';
 import loadingNames from '../../../constants/loading-names';
 import routes from '../../../routes';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';

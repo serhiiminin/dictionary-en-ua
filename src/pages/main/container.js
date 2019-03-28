@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { Button } from '@material-ui/core';
 import { joinRoute } from 'url-joiner';
-import { Button, ControlsSeparator, TextFieldLoading } from '../../components';
+import { ControlsSeparator, TextFieldLoading } from '../../components';
 import loadingNames from '../../constants/loading-names';
 import routes from '../../routes';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { TextField, Checkbox, FormControlLabel } from '@material-ui/core';
-import { Button } from '../../../components';
+import { Button, TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import routes from '../../../routes';
 import styles from './styles';
