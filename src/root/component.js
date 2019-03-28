@@ -1,10 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'react-jss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { SnackbarProvider } from 'notistack';
 import { MuiThemeProvider, Zoom } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import { PrivateRoute, Header, BlocksWrapper } from '../components';
+import { SnackbarProvider } from 'notistack';
+import { PrivateRoute, Header, BlocksWrapper } from '../components-new';
 import {
   LogInContainer,
   SignUpContainer,

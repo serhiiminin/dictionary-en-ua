@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Button } from '@material-ui/core';
 import { joinRoute } from 'url-joiner';
-import { ControlsSeparator, TextFieldLoading } from '../../components';
-import loadingNames from '../../constants/loading-names';
-import routes from '../../routes';
+import { ControlsSeparator, TextField } from '../../components-new';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
+import routes from '../../routes';
 import styles from './styles';
 
 class MainContainer extends Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
@@ -49,20 +46,18 @@ class MainContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { checkIsLoading, classes } = this.props;
+    const { classes } = this.props;
     const isEmpty = !searchValue;
-    const loading = checkIsLoading(loadingNames.words.search);
 
     return (
       <main>
         <h1 className={classes.pageTitle}>It&#39;s English time</h1>
         <div className={classes.searchBlock}>
           <ControlsSeparator align="center">
-            <TextFieldLoading
+            <TextField
               label="Search a word"
               value={searchValue}
               onChange={this.handleOnChange}
-              loading={loading}
               onKeyUp={this.handleOnEnterPress}
             />
             <Button onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
