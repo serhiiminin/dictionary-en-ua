@@ -1,12 +1,14 @@
 {
-  "main.js": "/dictionary/static/js/main.896e38c6.chunk.js",
-  "main.js.map": "/dictionary/static/js/main.896e38c6.chunk.js.map",
-  "static/js/1.0028a5ed.chunk.js": "/dictionary/static/js/1.0028a5ed.chunk.js",
-  "static/js/1.0028a5ed.chunk.js.map": "/dictionary/static/js/1.0028a5ed.chunk.js.map",
-  "runtime~main.js": "/dictionary/static/js/runtime~main.be32c7bf.js",
-  "runtime~main.js.map": "/dictionary/static/js/runtime~main.be32c7bf.js.map",
-  "static/media/texture.png": "/dictionary/static/media/texture.9aecd722.png",
+  "main.js": "/dictionary/static/js/main.9e8dab81.chunk.js",
+  "main.js.map": "/dictionary/static/js/main.9e8dab81.chunk.js.map",
+  "runtime~main.js": "/dictionary/static/js/runtime~main.93e119b9.js",
+  "runtime~main.js.map": "/dictionary/static/js/runtime~main.93e119b9.js.map",
+  "static/js/2.db3560b7.chunk.js": "/dictionary/static/js/2.db3560b7.chunk.js",
+  "static/js/2.db3560b7.chunk.js.map": "/dictionary/static/js/2.db3560b7.chunk.js.map",
   "index.html": "/dictionary/index.html",
-  "precache-manifest.5d87b27329938b534396ab37c486f246.js": "/dictionary/precache-manifest.5d87b27329938b534396ab37c486f246.js",
-  "service-worker.js": "/dictionary/service-worker.js"
+  "precache-manifest.5c4de75b53b507602698703440ad9101.js": "/dictionary/precache-manifest.5c4de75b53b507602698703440ad9101.js",
+  "service-worker.js": "/dictionary/service-worker.js",
+  "static/media/cairo-regular.woff2": "/dictionary/static/media/cairo-regular.d3bc57d1.woff2",
+  "static/media/cairo-regular.woff": "/dictionary/static/media/cairo-regular.dfaadced.woff",
+  "static/media/logo.bd58af2d.svg": "/dictionary/static/media/logo.bd58af2d.svg"
 }

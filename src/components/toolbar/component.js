@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, Zoom } from '@material-ui/core';
-import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import { SelectWithOptions, Button } from '..';
+import { Button, List, ListItem, Zoom } from '@material-ui/core';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
+import { SelectWithOptions } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 

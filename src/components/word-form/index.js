@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Fade, LinearProgress, TextField } from '@material-ui/core';
 import uuid from 'uuid';
-import { Button, MultipleInputs, InputsBlock, ChipSet, ControlsSeparator, SelectWithOptions } from '..';
+import { Fade, LinearProgress, TextField, Button } from '@material-ui/core';
+import { MultipleInputs, InputsBlock, ChipSet, ControlsSeparator, SelectWithOptions } from '..';
 import loadingNames from '../../constants/loading-names';
 import WORD_INITIAL_VALUES from '../../constants/word-initial-values';
 

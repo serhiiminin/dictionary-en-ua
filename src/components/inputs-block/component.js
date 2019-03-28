@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import { Button } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 import PropTypes from 'prop-types';
-import { TextField, Button } from '..';
+import { TextField } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
@@ -57,7 +58,7 @@ class InputsBlock extends Component {
                 onKeyPress={this.handleEnterPress}
                 control={
                   <Button onClick={this.handleOnAddItem} title="Add new option" disabled={!input} mini>
-                    <AddIcon />
+                    <Add />
                   </Button>
                 }
               />
