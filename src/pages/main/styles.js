@@ -12,6 +12,10 @@ const styles = {
     display: 'grid',
     gridAutoFlow: 'column',
     gridColumnGap: '30px',
+    alignItems: 'center',
+  },
+  searchInput: {
+    width: '350px',
   },
 };
 

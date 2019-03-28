@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinRoute } from 'url-joiner';
-import { TextField, ButtonSearch } from '../../components-new';
+import { TextField } from '@material-ui/core';
+import { ButtonSearch } from '../../components-new';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import routes from '../../routes';
 import styles from './styles';
@@ -55,8 +56,10 @@ class MainContainer extends Component {
           <TextField
             label="Search a word"
             value={searchValue}
+            className={classes.searchInput}
             onChange={this.handleOnChange}
             onKeyUp={this.handleOnEnterPress}
+            variant="outlined"
           />
           <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
             Search

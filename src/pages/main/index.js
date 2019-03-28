@@ -5,8 +5,8 @@ import Main from './container';
 import styles from './styles';
 
 const enhance = compose(
-  injectSheet(styles),
-  withRouter
+  withRouter,
+  injectSheet(styles)
 );
 
 export default enhance(Main);
