@@ -54,7 +54,7 @@ class MainContainer extends Component {
 
     return (
       <main>
-        <h1>This is the dictionary of definitions</h1>
+        <h1 className={classes.pageTitle}>It&#39;s English time</h1>
         <div className={classes.searchBlock}>
           <ControlsSeparator align="center">
             <TextFieldLoading

@@ -2,7 +2,7 @@
 
 exports[`Controls separator align right 1`] = `
 <div
-  className="undefined right"
+  className="right"
 >
   <button
     type="button"
@@ -19,7 +19,7 @@ exports[`Controls separator align right 1`] = `
 
 exports[`Controls separator render 1`] = `
 <div
-  className="undefined left"
+  className="left"
 >
   <button
     type="button"

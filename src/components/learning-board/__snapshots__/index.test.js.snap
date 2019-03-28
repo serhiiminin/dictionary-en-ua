@@ -19,28 +19,28 @@ exports[`LearningBoard loading 1`] = `
       onClick={[Function]}
       title="Submit my answer"
     >
-      <pure(Done) />
+      <pure(DoneIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={true}
       onClick={[Function]}
       title="Give me a hint"
     >
-      <pure(RemoveRedEye) />
+      <pure(RemoveRedEyeIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={true}
       onClick={[Function]}
       title="I know this word"
     >
-      <pure(DoneAll) />
+      <pure(DoneAllIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={true}
       onClick={[Function]}
       title="I forgot this word, show me the translation"
     >
-      <pure(ErrorOutline) />
+      <pure(ErrorOutlineIcon) />
     </ButtonControl>
   </Jss(ControlsSeparator)>
 </div>
@@ -65,28 +65,28 @@ exports[`LearningBoard render 1`] = `
       onClick={[Function]}
       title="Submit my answer"
     >
-      <pure(Done) />
+      <pure(DoneIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={null}
       onClick={[Function]}
       title="Give me a hint"
     >
-      <pure(RemoveRedEye) />
+      <pure(RemoveRedEyeIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={null}
       onClick={[Function]}
       title="I know this word"
     >
-      <pure(DoneAll) />
+      <pure(DoneAllIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={null}
       onClick={[Function]}
       title="I forgot this word, show me the translation"
     >
-      <pure(ErrorOutline) />
+      <pure(ErrorOutlineIcon) />
     </ButtonControl>
   </Jss(ControlsSeparator)>
 </div>
@@ -113,28 +113,28 @@ exports[`LearningBoard times learnt is more then 1 1`] = `
       onClick={[Function]}
       title="Submit my answer"
     >
-      <pure(Done) />
+      <pure(DoneIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={null}
       onClick={[Function]}
       title="Give me a hint"
     >
-      <pure(RemoveRedEye) />
+      <pure(RemoveRedEyeIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={null}
       onClick={[Function]}
       title="I know this word"
     >
-      <pure(DoneAll) />
+      <pure(DoneAllIcon) />
     </ButtonControl>
     <ButtonControl
       disabled={null}
       onClick={[Function]}
       title="I forgot this word, show me the translation"
     >
-      <pure(ErrorOutline) />
+      <pure(ErrorOutlineIcon) />
     </ButtonControl>
   </Jss(ControlsSeparator)>
 </div>
