@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Button } from '@material-ui/core';
 import { joinRoute } from 'url-joiner';
-import { ControlsSeparator, TextField } from '../../components-new';
+import { TextField, ButtonSearch } from '../../components-new';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import routes from '../../routes';
 import styles from './styles';
@@ -50,20 +49,18 @@ class MainContainer extends Component {
     const isEmpty = !searchValue;
 
     return (
-      <main>
+      <main className={classes.mainPage}>
         <h1 className={classes.pageTitle}>It&#39;s English time</h1>
         <div className={classes.searchBlock}>
-          <ControlsSeparator align="center">
-            <TextField
-              label="Search a word"
-              value={searchValue}
-              onChange={this.handleOnChange}
-              onKeyUp={this.handleOnEnterPress}
-            />
-            <Button onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
-              Search
-            </Button>
-          </ControlsSeparator>
+          <TextField
+            label="Search a word"
+            value={searchValue}
+            onChange={this.handleOnChange}
+            onKeyUp={this.handleOnEnterPress}
+          />
+          <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
+            Search
+          </ButtonSearch>
         </div>
       </main>
     );

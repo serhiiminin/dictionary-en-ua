@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button control isActive 1`] = `
+<ButtonMenu
+  classes={
+    Object {
+      "buttonMenu": "ButtonMenu-buttonMenu-0-1-1",
+    }
+  }
+  isActive={true}
+>
+  Text
+</ButtonMenu>
+`;
+
+exports[`Button control render 1`] = `
+<ButtonMenu
+  classes={
+    Object {
+      "buttonMenu": "ButtonMenu-buttonMenu-0-1-1",
+    }
+  }
+>
+  Text
+</ButtonMenu>
+`;
