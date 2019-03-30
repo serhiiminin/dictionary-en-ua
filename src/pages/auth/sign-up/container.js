@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, TextField, Checkbox, FormControlLabel } from '@material-ui/core';
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import routes from '../../../routes';
+import config from '../../../config';
 import styles from './styles';
 
 const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
@@ -11,6 +14,8 @@ const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.tes
 class Signup extends Component {
   static propTypes = {
     handleSignUp: PropTypes.func.isRequired,
+    handleGoogleSignUp: PropTypes.func.isRequired,
+    handleFacebookSignUp: PropTypes.func.isRequired,
     classes: composeClassesPropTypes(styles),
   };
 
@@ -64,6 +69,20 @@ class Signup extends Component {
     }
   };
 
+  handleGoogle = tokenData => {
+    const { accessToken } = tokenData;
+    const { handleGoogleSignUp } = this.props;
+
+    return handleGoogleSignUp(accessToken);
+  };
+
+  handleFacebook = tokenData => {
+    const { accessToken } = tokenData;
+    const { handleFacebookSignUp } = this.props;
+
+    return handleFacebookSignUp(accessToken);
+  };
+
   render() {
     const { login, name, gender, age, password, repeatPassword, isPasswordVisible, isMailValid } = this.state;
     const { classes } = this.props;
@@ -71,6 +90,8 @@ class Signup extends Component {
     return (
       <div className={classes.signupButton}>
         <h1>Sign up</h1>
+        <GoogleLogin clientId={config.auth.google.clientId} onSuccess={this.handleGoogle} />
+        <FacebookLogin appId={config.auth.facebook.appId} callback={this.handleFacebook} />
         <form onSubmit={this.handleSubmit}>
           <TextField label="Name" value={name} onChange={this.handleInputChange('name')} />
           <TextField label="Gender" value={gender} onChange={this.handleInputChange('gender')} />
