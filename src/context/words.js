@@ -4,7 +4,7 @@ import { withSnackbar } from 'notistack';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { parseSearchParams } from 'url-joiner';
+import { parseSearch } from 'url-joiner';
 import { apiWord, apiGif } from '../api';
 import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
@@ -66,7 +66,7 @@ class WordsProviderCmp extends Component {
   getSearchParams = () => {
     const { location } = this.props;
     const { sortBy, sortDirection, page, countPerPage } = INITIAL_SORT_DATA;
-    const parsedParams = parseSearchParams(location.search);
+    const parsedParams = parseSearch(location.search);
 
     return {
       sortBy: parsedParams.sortBy || sortBy,

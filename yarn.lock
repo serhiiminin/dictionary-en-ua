@@ -10626,10 +10626,10 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-url-joiner@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/url-joiner/-/url-joiner-0.0.7.tgz#19fd6521353cbf883f6bb1c63669da9fea4fc3e9"
-  integrity sha512-0vT68/jgNQ44bpI92jc+w6FJhoEquydBMm3/9aZAA51NJ7rGKyvE0CJy9Hq3+wEYIrWevoOnrY1qmgBgTJsggw==
+url-joiner@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/url-joiner/-/url-joiner-1.1.3.tgz#220b1ee408fbb812077b45b629b1ebed62b1d969"
+  integrity sha512-hQwjLp8lW1mKqibLpOfMTF9Mth/ryA4X3YLD+OGB0VIHGI0LKYn5u2tshde5wg43ziBoarh0DmQYk/+0E87KWQ==
 
 url-loader@1.1.2:
   version "1.1.2"

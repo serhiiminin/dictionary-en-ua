@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Button } from '@material-ui/core';
-import { parseSearchParams, joinRoute } from 'url-joiner';
+import { parseSearch, mergeSearch } from 'url-joiner';
 import uuid from 'uuid';
+import { joinUrl } from 'url-joiner/dist/join-utils';
 import { ControlsSeparator, TextFieldLoading, WordPreview } from '../../../components';
 import loadingNames from '../../../constants/loading-names';
 import routes from '../../../routes';
@@ -38,8 +39,7 @@ class SearchWordContainer extends Component {
 
   componentDidMount() {
     const { location } = this.props;
-    const searchParams = parseSearchParams(location.search);
-
+    const searchParams = parseSearch(location.search);
     if (searchParams.query) {
       this.searchWord(searchParams.query);
     }
@@ -47,7 +47,7 @@ class SearchWordContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { location } = this.props;
-    const searchParams = parseSearchParams(location.search);
+    const searchParams = parseSearch(location.search);
 
     if (location.search !== prevProps.location.search && searchParams.query) {
       this.searchWord(searchParams.query);
@@ -83,7 +83,7 @@ class SearchWordContainer extends Component {
     this.setState({ searchValue: value });
 
     this.inputTimer = setTimeout(() => {
-      history.push(joinRoute({ pathname: routes.words.search, searchParams: { query: value } }));
+      history.push(joinUrl(routes.words.search, mergeSearch({ query: value })));
     }, SEARCH_INPUT_TIMEOUT);
   };
 

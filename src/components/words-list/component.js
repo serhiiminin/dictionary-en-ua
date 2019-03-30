@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { List, ListItem } from '@material-ui/core';
 import uuid from 'uuid';
-import { joinRoute } from 'url-joiner';
+import { joinPath } from 'url-joiner';
 import routes from '../../routes';
 import { WordItemInList } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
@@ -20,10 +20,7 @@ const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, cla
           ))
       : wordsList.map(wordItem => {
           const { _id } = wordItem;
-          const linkToWord = joinRoute({
-            pathname: routes.words.list,
-            paths: [_id],
-          });
+          const linkToWord = joinPath(routes.words.list, _id);
           const isChecked = checked.includes(_id);
 
           return (

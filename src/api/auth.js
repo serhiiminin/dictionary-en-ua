@@ -1,22 +1,22 @@
-import { joinUrl } from 'url-joiner';
+import { joinPath } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
 import createSocialAuthFetcher from './create-social-auth-fetcher';
 import config from '../config';
 
 const createApiMethodsBasicAuth = endpoint => fetcher => ({
-  logIn: body => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['basic/log-in'] }), { body })),
-  signUp: body => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['basic/sign-up'] }), { body })),
+  logIn: body => fetcher(requests.post(joinPath(endpoint, 'basic/log-in'), { body })),
+  signUp: body => fetcher(requests.post(joinPath(endpoint, 'basic/sign-up'), { body })),
 });
 
 const createApiMethodsGoogleAuth = endpoint => fetcher => ({
-  logIn: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['google/log-in'] })), token),
-  signUp: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['google/sign-up'] })), token),
+  logIn: token => fetcher(requests.get(joinPath(endpoint, 'google/log-in')), token),
+  signUp: token => fetcher(requests.get(joinPath(endpoint, 'google/sign-up')), token),
 });
 
 const createApiMethodsFacebookAuth = endpoint => fetcher => ({
-  logIn: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['facebook/log-in'] })), token),
-  signUp: token => fetcher(requests.get(joinUrl({ url: endpoint, paths: ['facebook/sign-up'] })), token),
+  logIn: token => fetcher(requests.get(joinPath(endpoint, 'facebook/log-in')), token),
+  signUp: token => fetcher(requests.get(joinPath(endpoint, 'facebook/sign-up')), token),
 });
 
 const apiMethodsBasicAuth = createApiMethodsBasicAuth(config.endpoints.auth)(createFetcherJson(window.fetch));

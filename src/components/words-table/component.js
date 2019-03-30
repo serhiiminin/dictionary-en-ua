@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Checkbox } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
-import { parseSearchParams, joinRoute } from 'url-joiner';
+import { parseSearch, joinUrl, mergeSearch } from 'url-joiner';
 import loadingNames from '../../constants/loading-names';
 import { PaginationPanel, Toolbar, WordsList, ButtonControl } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
@@ -60,11 +60,7 @@ class WordsTable extends Component {
   generateUrl = params => {
     const { location } = this.props;
 
-    return joinRoute({
-      pathname: location.pathname,
-      search: location.search,
-      searchParams: params,
-    });
+    return joinUrl(location.pathname, mergeSearch(params, location.search));
   };
 
   handleOnChangeSelect = (event, field) => {
@@ -78,7 +74,7 @@ class WordsTable extends Component {
 
     return history.push(
       this.generateUrl({
-        sortDirection: parseSearchParams(location.search).sortDirection === 'descend' ? 'ascend' : 'descend',
+        sortDirection: parseSearch(location.search).sortDirection === 'descend' ? 'ascend' : 'descend',
       })
     );
   };

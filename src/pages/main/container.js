@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { joinRoute } from 'url-joiner';
+import { joinUrl, mergeSearch } from 'url-joiner';
 import { TextField } from '@material-ui/core';
 import { ButtonSearch } from '../../components-new';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
@@ -33,7 +33,7 @@ class MainContainer extends Component {
     const { searchValue } = this.state;
     const { history } = this.props;
 
-    history.push(joinRoute({ pathname: routes.words.search, searchParams: { query: searchValue } }));
+    history.push(joinUrl(routes.words.search, mergeSearch({ query: searchValue })));
   };
 
   handleOnEnterPress = event => {
