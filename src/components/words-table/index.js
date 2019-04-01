@@ -6,10 +6,10 @@ import { withWords } from '../../context/words';
 import WordsTable from './component';
 
 const enhance = compose(
-  withTheme,
   withRouter,
   withLoadingNames,
-  withWords
+  withWords,
+  withTheme
 );
 
 export default enhance(WordsTable);

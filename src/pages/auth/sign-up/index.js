@@ -6,10 +6,10 @@ import LoginCmp from './container';
 import { withErrors } from '../../../context/errors';
 
 const SignUp = compose(
-  withTheme,
   withRouter,
   withAuth,
-  withErrors
+  withErrors,
+  withTheme
 )(LoginCmp);
 
 export default SignUp;

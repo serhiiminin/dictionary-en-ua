@@ -4,8 +4,8 @@ import { withUser } from '../../context/user';
 import UserIcon from './component';
 
 const enhance = compose(
-  withTheme,
-  withUser
+  withUser,
+  withTheme
 );
 
 export default enhance(UserIcon);

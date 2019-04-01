@@ -5,9 +5,9 @@ import FooterNavigation from './component';
 import { withAuth } from '../../context/auth';
 
 const enhance = compose(
-  withTheme,
   withRouter,
-  withAuth
+  withAuth,
+  withTheme
 );
 
 export default enhance(FooterNavigation);

@@ -5,9 +5,9 @@ import { withLoadingNames } from '../../context/loading-names';
 import Header from './component';
 
 const enhance = compose(
-  withTheme,
   withLoadingNames,
-  withAuth
+  withAuth,
+  withTheme
 );
 
 export default enhance(Header);

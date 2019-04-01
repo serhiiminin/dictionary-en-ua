@@ -6,10 +6,10 @@ import { withWords } from '../../../context/words';
 import SearchWordContainer from './container';
 
 const enhance = compose(
-  withTheme,
   withRouter,
   withLoadingNames,
-  withWords
+  withWords,
+  withTheme
 );
 
 export default enhance(SearchWordContainer);

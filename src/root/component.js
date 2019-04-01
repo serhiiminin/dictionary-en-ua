@@ -29,15 +29,14 @@ body {
   color: ${props => props.theme.main.colors.text};
   font-size: 1em;
   margin: 0;
-}
+} 
 * {
   box-sizing: border-box;
   font-family: "Cairo", sans-serif;
 },
 @font-face {
-  fontFamily: "Cairo";
-  src: url(${cairoRegularWoff});
-  fallbacks: [{ src: url(${cairoRegularWoff}) format(woff) }, { src: url(${cairoRegularWoff2}) format(woff2) }],
+  font-family: "Cairo";
+  src: url(${cairoRegularWoff}) format(woff), url(${cairoRegularWoff2}) format(woff2);
 }
 `;
 

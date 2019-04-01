@@ -7,11 +7,11 @@ import { withErrors } from '../../../context/errors';
 import LoginCmp from './container';
 
 const Login = compose(
-  withTheme,
   withRouter,
   withLoadingNames,
   withAuth,
-  withErrors
+  withErrors,
+  withTheme
 )(LoginCmp);
 
 export default Login;
