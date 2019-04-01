@@ -1,12 +1,12 @@
 import { withRouter } from 'react-router-dom';
-import injectSheet from 'react-jss';
+import { withTheme } from 'styled-components';
 import { compose } from 'recompose';
 import Main from './container';
 import styles from './styles';
 
 const enhance = compose(
   withRouter,
-  injectSheet(styles)
+  withTheme(styles)
 );
 
 export default enhance(Main);

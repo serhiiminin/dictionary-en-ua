@@ -5,7 +5,6 @@ import cairoRegularWoff2 from '../fonts/cairo-regular.woff2';
 const GlobalStyle = {
   '@global body': {
     overflowX: 'hidden',
-    background: theme.main.colors.background,
     color: theme.main.colors.text,
     fontSize: '1em',
     margin: 0,
