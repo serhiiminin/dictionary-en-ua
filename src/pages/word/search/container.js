@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Button } from '@material-ui/core';
+import styled from 'styled-components';
 import { parseSearch, mergeSearch } from 'url-joiner';
 import uuid from 'uuid';
 import { joinUrl } from 'url-joiner/dist/join-utils';
 import { ControlsSeparator, TextFieldLoading, WordPreview } from '../../../components';
 import loadingNames from '../../../constants/loading-names';
 import routes from '../../../routes';
-import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import wordShape from '../../../constants/shapes';
-import styles from './styles';
+
+const StyledSearchBlock = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+`;
 
 const SEARCH_INPUT_TIMEOUT = 500;
 
@@ -24,12 +29,10 @@ class SearchWordContainer extends Component {
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
     setWordToState: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
     wordItem: null,
-    classes: {},
   };
 
   state = {
@@ -112,14 +115,14 @@ class SearchWordContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { wordItem, checkIsLoading, classes } = this.props;
+    const { wordItem, checkIsLoading } = this.props;
     const isEmpty = !Object.keys(wordItem).length;
     const loading = checkIsLoading(loadingNames.words.search);
 
     return (
       <main>
         <h1>This is the dictionary of definitions</h1>
-        <div className={classes.searchBlock}>
+        <StyledSearchBlock>
           <TextFieldLoading
             label="Search a word"
             value={searchValue}
@@ -134,7 +137,7 @@ class SearchWordContainer extends Component {
               Edit before saving
             </Button>
           </ControlsSeparator>
-        </div>
+        </StyledSearchBlock>
         <WordPreview wordItem={wordItem} />
       </main>
     );

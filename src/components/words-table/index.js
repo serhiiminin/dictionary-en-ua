@@ -4,10 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { withLoadingNames } from '../../context/loading-names';
 import { withWords } from '../../context/words';
 import WordsTable from './component';
-import styles from './styles';
 
 const enhance = compose(
-  withTheme(styles),
+  withTheme,
   withRouter,
   withLoadingNames,
   withWords

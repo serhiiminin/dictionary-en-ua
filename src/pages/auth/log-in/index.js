@@ -3,12 +3,11 @@ import { withTheme } from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withAuth } from '../../../context/auth';
 import { withLoadingNames } from '../../../context/loading-names';
-import LoginCmp from './container';
-import styles from './styles';
 import { withErrors } from '../../../context/errors';
+import LoginCmp from './container';
 
 const Login = compose(
-  withTheme(styles),
+  withTheme,
   withRouter,
   withLoadingNames,
   withAuth,

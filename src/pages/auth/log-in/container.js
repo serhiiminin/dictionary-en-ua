@@ -5,10 +5,8 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Button, TextField, Checkbox, FormControlLabel, LinearProgress, Fade } from '@material-ui/core';
 import loadingNames from '../../../constants/loading-names';
-import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import routes from '../../../routes';
 import config from '../../../config';
-import styles from './styles';
 
 const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
@@ -18,7 +16,6 @@ class Login extends Component {
     handleGoogleLogIn: PropTypes.func.isRequired,
     handleFacebookLogIn: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles),
   };
 
   state = {
@@ -31,10 +28,6 @@ class Login extends Component {
       value: '',
       isVisible: false,
     },
-  };
-
-  static defaultProps = {
-    classes: {},
   };
 
   handleInputChange = event => {
@@ -102,11 +95,11 @@ class Login extends Component {
 
   render() {
     const { login, password } = this.state;
-    const { classes, checkIsLoading } = this.props;
+    const { checkIsLoading } = this.props;
     const isLoading = checkIsLoading(loadingNames.auth.logIn);
 
     return (
-      <div className={classes.loginButton}>
+      <div>
         <h1>Login</h1>
         <Fade in={isLoading}>
           <LinearProgress color="secondary" variant="query" />

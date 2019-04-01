@@ -2,19 +2,32 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinUrl, mergeSearch } from 'url-joiner';
 import { TextField } from '@material-ui/core';
+import styled from 'styled-components';
 import { ButtonSearch } from '../../components-new';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import routes from '../../routes';
-import styles from './styles';
+
+const StyledMainPage = styled.div`
+  display: grid;
+  justify-content: center;
+  padding-top: 230px;
+`;
+const StyledPageTitle = styled.h1`
+  font-size: 30px;
+  letter-spacing: 2px;
+`;
+const StyledSearchBlock = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 30px;
+  align-items: center;
+`;
+const StyledTextField = styled(TextField)`
+  width: 350px;
+`;
 
 class MainContainer extends Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
-    classes: composeClassesPropTypes(styles),
-  };
-
-  static defaultProps = {
-    classes: {},
   };
 
   state = {
@@ -46,17 +59,15 @@ class MainContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { classes } = this.props;
     const isEmpty = !searchValue;
 
     return (
-      <main className={classes.mainPage}>
-        <h1 className={classes.pageTitle}>It&#39;s English time</h1>
-        <div className={classes.searchBlock}>
-          <TextField
+      <StyledMainPage>
+        <StyledPageTitle>It&#39;s English time</StyledPageTitle>
+        <StyledSearchBlock>
+          <StyledTextField
             label="Search a word"
             value={searchValue}
-            className={classes.searchInput}
             onChange={this.handleOnChange}
             onKeyUp={this.handleOnEnterPress}
             variant="outlined"
@@ -64,8 +75,8 @@ class MainContainer extends Component {
           <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
             Search
           </ButtonSearch>
-        </div>
-      </main>
+        </StyledSearchBlock>
+      </StyledMainPage>
     );
   }
 }
