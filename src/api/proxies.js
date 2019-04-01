@@ -1,12 +1,16 @@
-import { joinUrl, mergeSearch } from 'url-joiner';
+import { joinUrl, mergeSearch, getUrlParts } from 'url-joiner';
 import generatorApiKeys from '../modules/generator-api-key';
 import createFetcherJson from './create-fetcher';
 import config from '../config';
 
-const updateSearchParams = (params, newSearchParams) => ({
-  ...params,
-  endpoint: joinUrl(params.endpoint, mergeSearch(newSearchParams)),
-});
+const updateSearchParams = (params, newSearchParams) => {
+  const [url, search] = getUrlParts(params.endpoint);
+
+  return {
+    ...params,
+    endpoint: joinUrl(url, mergeSearch(newSearchParams, search)),
+  };
+};
 
 const createApiKeyProxy = generator => fetcher => params =>
   fetcher(updateSearchParams(params, { api_key: generator.next().value })).catch(error => {

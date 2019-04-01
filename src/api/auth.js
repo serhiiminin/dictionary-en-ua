@@ -1,7 +1,7 @@
 import { joinPath } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
-import createSocialAuthFetcher from './create-social-auth-fetcher';
+import { createAuthProxy } from './proxies';
 import config from '../config';
 
 const createApiMethodsBasicAuth = endpoint => fetcher => ({
@@ -21,10 +21,10 @@ const createApiMethodsFacebookAuth = endpoint => fetcher => ({
 
 const apiMethodsBasicAuth = createApiMethodsBasicAuth(config.endpoints.auth)(createFetcherJson(window.fetch));
 const apiMethodsGoogleAuth = createApiMethodsGoogleAuth(config.endpoints.auth)(
-  createSocialAuthFetcher(createFetcherJson(window.fetch))
+  createAuthProxy(createFetcherJson(window.fetch))
 );
 const apiMethodsFacebookAuth = createApiMethodsFacebookAuth(config.endpoints.auth)(
-  createSocialAuthFetcher(createFetcherJson(window.fetch))
+  createAuthProxy(createFetcherJson(window.fetch))
 );
 
 export {
