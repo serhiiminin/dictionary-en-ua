@@ -1,4 +1,4 @@
-import { joinUrl } from 'url-joiner';
+import { joinPath } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './create-fetcher';
 import { createAuthProxy } from './proxies';
@@ -6,10 +6,10 @@ import config from '../config';
 
 export const createApiMethodsWords = endpoint => fetcher => ({
   create: (body, token) => fetcher(requests.post(endpoint, { body }), token),
-  get: (id, token) => fetcher(requests.get(joinUrl({ url: endpoint, paths: [id] })), token),
-  getList: (body, token) => fetcher(requests.post(joinUrl({ url: endpoint, paths: ['list'] }), { body }), token),
+  get: (id, token) => fetcher(requests.get(joinPath(endpoint, id)), token),
+  getList: (body, token) => fetcher(requests.post(joinPath(endpoint, 'list'), { body }), token),
   getListToLearn: (params, token) => {
-    const url = joinUrl({ url: endpoint, paths: ['list'] });
+    const url = joinPath(endpoint, 'list');
     const yesterday = new Date();
 
     yesterday.setDate(yesterday.getDate() - 1);
@@ -27,16 +27,16 @@ export const createApiMethodsWords = endpoint => fetcher => ({
   update: (word, token) => {
     const { _id: id } = word;
     return fetcher(
-      requests.put(joinUrl({ url: endpoint, paths: [id] }), {
+      requests.put(joinPath(endpoint, id), {
         body: word,
       }),
       token
     );
   },
-  delete: (wordId, token) => fetcher(requests.delete(joinUrl({ url: endpoint, paths: [wordId] })), token),
+  delete: (wordId, token) => fetcher(requests.delete(joinPath(endpoint, wordId)), token),
   learn: (wordId, token) =>
     fetcher(
-      requests.put(joinUrl({ url: endpoint, paths: [wordId] }), {
+      requests.put(joinPath(endpoint, wordId), {
         body: {
           dateLastLearnt: new Date(Date.now()).toISOString(),
           $inc: { timesLearnt: 1 },
@@ -46,7 +46,7 @@ export const createApiMethodsWords = endpoint => fetcher => ({
     ),
   search: (params, token) =>
     fetcher(
-      requests.post(joinUrl({ url: endpoint, paths: ['search-new'] }), {
+      requests.post(joinPath(endpoint, 'search-new'), {
         body: params,
       }),
       token

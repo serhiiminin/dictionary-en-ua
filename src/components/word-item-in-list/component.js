@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Edit from '@material-ui/icons/Edit';
 import { Checkbox, Fade, CircularProgress, Grid, ListItemText } from '@material-ui/core';
-import { joinRoute } from 'url-joiner';
+import { joinPath } from 'url-joiner';
 import routes from '../../routes';
 import { ButtonWithRouter } from '..';
 import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
@@ -49,14 +49,7 @@ const WordItemInList = ({ isChecked, onWordCheck, wordItem, linkToWord, loading,
         <div className={classes.wordTime}>{(dateCreated && moment(dateCreated).fromNow()) || EMPTY_VALUE}</div>
       </Grid>
       <Grid item xs={1}>
-        <ButtonWithRouter
-          to={joinRoute({
-            pathname: routes.words.root,
-            paths: [_id, 'edit'],
-          })}
-          disabled={loading}
-          title="Edit"
-        >
+        <ButtonWithRouter to={joinPath(routes.words.root, _id, 'edit')} disabled={loading} title="Edit">
           <Edit />
         </ButtonWithRouter>
       </Grid>
