@@ -1,18 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import SC from './styles';
 
-const StyledControlsSeparator = styled.div`
-  display: grid;
-  align-content: center;
-  grid-auto-flow: column;
-  padding: ${props => props.theme.main.padding.medium} 0;
-  justify-content: ${props => props.align};
-  column-gap: 0.5rem;
-  row-gap: 0.5rem;
-`;
-
-const ControlsSeparator = props => <StyledControlsSeparator {...props} />;
+const ControlsSeparator = props => <SC.ControlsSeparator {...props} />;
 
 ControlsSeparator.propTypes = {
   children: PropTypes.node.isRequired,

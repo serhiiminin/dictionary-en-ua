@@ -1,29 +1,9 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinUrl, mergeSearch } from 'url-joiner';
-import { TextField } from '@material-ui/core';
-import styled from 'styled-components';
 import { ButtonSearch } from '../../components-new';
 import routes from '../../routes';
-
-const StyledMainPage = styled.div`
-  display: grid;
-  justify-content: center;
-  padding-top: 230px;
-`;
-const StyledPageTitle = styled.h1`
-  font-size: 30px;
-  letter-spacing: 2px;
-`;
-const StyledSearchBlock = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-column-gap: 30px;
-  align-items: center;
-`;
-const StyledTextField = styled(TextField)`
-  width: 350px;
-`;
+import SC from './styles';
 
 class MainContainer extends Component {
   static propTypes = {
@@ -62,10 +42,10 @@ class MainContainer extends Component {
     const isEmpty = !searchValue;
 
     return (
-      <StyledMainPage>
-        <StyledPageTitle>It&#39;s English time</StyledPageTitle>
-        <StyledSearchBlock>
-          <StyledTextField
+      <SC.MainPage>
+        <SC.PageTitle>It&#39;s English time</SC.PageTitle>
+        <SC.SearchBlock>
+          <SC.TextField
             label="Search a word"
             value={searchValue}
             onChange={this.handleOnChange}
@@ -75,8 +55,9 @@ class MainContainer extends Component {
           <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
             Search
           </ButtonSearch>
-        </StyledSearchBlock>
-      </StyledMainPage>
+        </SC.SearchBlock>
+        <SC.MainDecorSvg />
+      </SC.MainPage>
     );
   }
 }

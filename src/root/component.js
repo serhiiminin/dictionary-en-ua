@@ -7,6 +7,7 @@ import { SnackbarProvider } from 'notistack';
 import { PrivateRoute, Header, BlocksWrapper } from '../components-new';
 import {
   LogInContainer,
+  LogOutContainer,
   SignUpContainer,
   MainContainer,
   WordsListContainer,
@@ -63,6 +64,7 @@ const Root = () => (
                 <Switch>
                   <Route exact path={routes.root} component={MainContainer} />
                   <Route exact path={routes.auth.logIn} component={LogInContainer} />
+                  <Route exact path={routes.auth.logOut} component={LogOutContainer} />
                   <Route exact path={routes.auth.signUp} component={SignUpContainer} />
                   <PrivateRoute exact path={routes.words.add} component={WordsAddContainer} />
                   <PrivateRoute exact path={routes.words.list} component={WordsListContainer} />

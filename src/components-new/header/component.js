@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { ButtonMenu } from '..';
-import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../images/logo.svg';
+import SC from './styles';
 import routes from '../../routes';
 
 const buttonsData = {
@@ -17,42 +15,21 @@ const buttonsData = {
   },
 };
 
-const StyledHeader = styled.div` {
-  padding: ${props => props.theme.main.padding.large} 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const StyledHeaderLink = styled(Link)`
-  color: theme.palette.text.primary;
-  text-decoration: none;
-  font-size: 1.6rem;
-`;
-const StyledLogo = styled(Logo)`
-  width: 250px;
-  height: 55px;
-`;
-const StyledMenuDivider = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-column-gap: 5px;
-`;
-
 const Header = ({ isLoggedIn }) => {
   const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
 
   return (
-    <StyledHeader>
-      <StyledHeaderLink to={routes.root}>
-        <StyledLogo />
-      </StyledHeaderLink>
-      <StyledMenuDivider>
+    <SC.Header>
+      <SC.HeaderLink to={routes.root}>
+        <SC.LogoSvg />
+      </SC.HeaderLink>
+      <SC.MenuDivider>
         <ButtonMenu to={routes.words.list}>My words</ButtonMenu>
         <ButtonMenu variant="outlined" to={authButtonData.href}>
           {authButtonData.text}
         </ButtonMenu>
-      </StyledMenuDivider>
-    </StyledHeader>
+      </SC.MenuDivider>
+    </SC.Header>
   );
 };
 
