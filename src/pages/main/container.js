@@ -43,19 +43,24 @@ class MainContainer extends Component {
 
     return (
       <SC.MainPage>
-        <SC.PageTitle>It&#39;s English time</SC.PageTitle>
-        <SC.SearchBlock>
-          <SC.TextField
-            label="Search a word"
-            value={searchValue}
-            onChange={this.handleOnChange}
-            onKeyUp={this.handleOnEnterPress}
-            variant="outlined"
-          />
-          <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
-            Search
-          </ButtonSearch>
-        </SC.SearchBlock>
+        <SC.SearchBlockWrapper>
+          <SC.PageTitle>
+            The Best Dictionary ever.
+            <SC.BoldText>TRY IT!</SC.BoldText>
+          </SC.PageTitle>
+          <SC.SearchBlock>
+            <SC.TextField
+              label="your word"
+              value={searchValue}
+              onChange={this.handleOnChange}
+              onKeyUp={this.handleOnEnterPress}
+              variant="outlined"
+            />
+            <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
+              Search
+            </ButtonSearch>
+          </SC.SearchBlock>
+        </SC.SearchBlockWrapper>
         <SC.MainDecorSvg />
       </SC.MainPage>
     );

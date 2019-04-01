@@ -4,9 +4,9 @@ import { ButtonWithRouter } from '..';
 
 const ButtonMenu = styled(props => <ButtonWithRouter {...props} />)`
   && {
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(0, 0, 0, 0.85);
-    padding: 10px 45px;
+    padding: 15px 45px;
     background: rgba(216, 216, 216, 0.0001);
     &:hover {
       background: rgba(216, 216, 216, 0.0001);

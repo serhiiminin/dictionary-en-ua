@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, Zoom } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
@@ -21,25 +21,7 @@ import StateProvider from '../context';
 import routes from '../routes';
 import muiTheme from './mui-theme';
 import config from '../config';
-import cairoRegularWoff from '../fonts/cairo-regular.woff';
-import cairoRegularWoff2 from '../fonts/cairo-regular.woff2';
-
-const GlobalStyle = createGlobalStyle`
-body {
-  overflow-x: hidden;
-  color: ${props => props.theme.main.colors.text};
-  font-size: 1em;
-  margin: 0;
-} 
-* {
-  box-sizing: border-box;
-  font-family: "Cairo", sans-serif;
-},
-@font-face {
-  font-family: "Cairo";
-  src: url(${cairoRegularWoff}) format(woff), url(${cairoRegularWoff2}) format(woff2);
-}
-`;
+import GlobalStyle from './styles';
 
 const snackbarConfig = {
   TransitionComponent: Zoom,

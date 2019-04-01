@@ -7,12 +7,12 @@ import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import styles from './styles';
 
 const SearchableWord = ({ word, classes, delimiter }) => (
-  <React.Fragment>
+  <>
     <Link className={classes.clickableWord} to={joinUrl(routes.words.search, mergeSearch({ query: word }))}>
       {word}
     </Link>
     {delimiter}
-  </React.Fragment>
+  </>
 );
 
 SearchableWord.propTypes = {

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, List, ListItem, Zoom } from '@material-ui/core';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
@@ -23,7 +23,7 @@ const Toolbar = ({
         {isAnyChecked ? (
           <Zoom in={isAnyChecked}>{children}</Zoom>
         ) : (
-          <Fragment>
+          <>
             <Button onClick={onChangeSortDirection} title="Sort direction" color="primary" variant="contained" mini>
               {sortDirection === 'descend' ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </Button>
@@ -40,7 +40,7 @@ const Toolbar = ({
                 ]}
               />
             </div>
-          </Fragment>
+          </>
         )}
       </div>
     </ListItem>
