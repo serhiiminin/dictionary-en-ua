@@ -21,11 +21,13 @@ const theme = {
       small: '5px',
       medium: '10px',
       large: '15px',
+      extraLarge: '25px',
     },
     padding: {
       small: '5px',
       medium: '10px',
       large: '15px',
+      extraLarge: '25px',
     },
     borderWidth: {
       base: '1px',

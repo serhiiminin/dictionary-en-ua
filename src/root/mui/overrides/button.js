@@ -13,7 +13,7 @@ export default theme => ({
         opacity: theme.main.opacity.disabled,
       },
       '&$contained&$disabled': {
-        color: `${theme.main.colors.background}`,
+        color: theme.main.colors.background,
       },
     },
     outlinedPrimary: {

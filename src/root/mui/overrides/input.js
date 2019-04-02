@@ -18,10 +18,11 @@ export default theme => ({
       },
     },
     input: {
-      padding: '15px 25px',
+      padding: `${theme.main.padding.large} ${theme.main.padding.extraLarge}`,
+      lineHeight: 1.5,
     },
     notchedOutline: {
-      borderRadius: '8px',
+      borderRadius: theme.main.borderRadius.medium,
     },
   },
   MuiFormInput: {},
@@ -32,7 +33,8 @@ export default theme => ({
       },
     },
     outlined: {
-      transform: 'translate(25px, 15px) scale(1)',
+      transform: `translate(${theme.main.padding.extraLarge}, ${theme.main.padding.large}) scale(1)`,
+      lineHeight: 1.5,
     },
   },
 });
