@@ -6,13 +6,13 @@ const GlobalStyle = createGlobalStyle`
 body {
   overflow-x: hidden;
   color: ${props => props.theme.main.colors.text};
-  font-size: 1em;
+  font-size: 14px;
   margin: 0;
 } 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: "Cairo", sans-serif;
-},
+}
 @font-face {
   font-family: "Cairo";
   src: url(${cairoRegularWoff}) format(woff), url(${cairoRegularWoff2}) format(woff2);

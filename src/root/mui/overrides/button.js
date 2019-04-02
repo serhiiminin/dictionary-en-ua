@@ -11,8 +11,9 @@ export default theme => ({
       },
       '&$disabled': {
         opacity: theme.main.opacity.disabled,
-        background: theme.main.colors.light,
-        color: `${theme.main.colors.background} !important`,
+      },
+      '&$contained&$disabled': {
+        color: `${theme.main.colors.background}`,
       },
     },
     outlinedPrimary: {

@@ -30,7 +30,7 @@ const SearchBlock = styled.div`
   grid-column-gap: 30px;
   align-items: center;
 `;
-const TextField = styled(props => <MuiTextField InputProps={{ classes: { input: 'input' } }} {...props} />)`
+const TextField = styled(props => <MuiTextField {...props} />)`
   && {
     width: 350px;
   }
