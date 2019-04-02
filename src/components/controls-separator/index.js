@@ -1,8 +1,4 @@
-import injectSheet from 'react-jss';
-import { compose } from 'recompose';
+import { withTheme } from 'styled-components';
 import ControlsSeparator from './component';
-import styles from './styles';
 
-const enhance = compose(injectSheet(styles));
-
-export default enhance(ControlsSeparator);
+export default withTheme(ControlsSeparator);

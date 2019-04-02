@@ -1,8 +1,20 @@
-import injectSheet from 'react-jss';
-import { compose } from 'recompose';
-import PageNotFound from './container';
-import styles from './styles';
+import React from 'react';
+import styled from 'styled-components';
+import { ButtonWithRouter } from '../../components';
+import routes from '../../routes';
 
-const enhance = compose(injectSheet(styles));
+const StyledNotFoundWrapper = styled.div`
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+`;
 
-export default enhance(PageNotFound);
+const PageNotFoundContainer = () => (
+  <StyledNotFoundWrapper>
+    <h1>Page not found</h1>
+    <ButtonWithRouter to={routes.root}>Home</ButtonWithRouter>
+  </StyledNotFoundWrapper>
+);
+
+export default PageNotFoundContainer;

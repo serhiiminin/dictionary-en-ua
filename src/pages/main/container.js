@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinUrl, mergeSearch } from 'url-joiner';
-import { TextField } from '@material-ui/core';
 import { ButtonSearch } from '../../components-new';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
 import routes from '../../routes';
-import styles from './styles';
+import SC from './styles';
 
 class MainContainer extends Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
-    classes: composeClassesPropTypes(styles),
-  };
-
-  static defaultProps = {
-    classes: {},
   };
 
   state = {
@@ -46,26 +39,30 @@ class MainContainer extends Component {
 
   render() {
     const { searchValue } = this.state;
-    const { classes } = this.props;
     const isEmpty = !searchValue;
 
     return (
-      <main className={classes.mainPage}>
-        <h1 className={classes.pageTitle}>It&#39;s English time</h1>
-        <div className={classes.searchBlock}>
-          <TextField
-            label="Search a word"
-            value={searchValue}
-            className={classes.searchInput}
-            onChange={this.handleOnChange}
-            onKeyUp={this.handleOnEnterPress}
-            variant="outlined"
-          />
-          <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
-            Search
-          </ButtonSearch>
-        </div>
-      </main>
+      <SC.MainPage>
+        <SC.SearchBlockWrapper>
+          <SC.PageTitle>
+            The Best Dictionary ever.
+            <SC.BoldText>TRY IT!</SC.BoldText>
+          </SC.PageTitle>
+          <SC.SearchBlock>
+            <SC.TextField
+              label="your word"
+              value={searchValue}
+              onChange={this.handleOnChange}
+              onKeyUp={this.handleOnEnterPress}
+              variant="outlined"
+            />
+            <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
+              Search
+            </ButtonSearch>
+          </SC.SearchBlock>
+        </SC.SearchBlockWrapper>
+        <SC.MainDecorSvg />
+      </SC.MainPage>
     );
   }
 }

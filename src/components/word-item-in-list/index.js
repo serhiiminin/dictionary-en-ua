@@ -1,8 +1,4 @@
-import { compose } from 'recompose';
-import injectSheet from 'react-jss';
+import { withTheme } from 'styled-components';
 import WordItemInList from './component';
-import styles from './styles';
 
-const enhance = compose(injectSheet(styles));
-
-export default enhance(WordItemInList);
+export default withTheme(WordItemInList);

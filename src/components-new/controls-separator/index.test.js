@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ControlsSeparator from './component';
+import ControlsSeparator from '.';
 
 describe('Controls separator', () => {
   let wrapper;

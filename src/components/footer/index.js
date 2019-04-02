@@ -1,8 +1,4 @@
-import injectSheet from 'react-jss';
-import { compose } from 'recompose';
-import styles from './styles';
+import { withTheme } from 'styled-components';
 import Footer from './component';
 
-const enhance = compose(injectSheet(styles));
-
-export default enhance(Footer);
+export default withTheme(Footer);
