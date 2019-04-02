@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import InputsBlock from './component';
-import muiTheme from '../../root/mui-theme';
+import muiTheme from '../../root/mui';
 
 describe('Inputs block', () => {
   let wrapper;

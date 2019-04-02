@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import muiTheme from '../../root/mui-theme';
+import muiTheme from '../../root/mui';
 import ListOfSearchableWords from '.';
 
 describe('List of clickable strings', () => {

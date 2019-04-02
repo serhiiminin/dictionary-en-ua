@@ -19,7 +19,7 @@ import {
 } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
-import muiTheme from './mui-theme';
+import muiTheme from './mui';
 import config from '../config';
 import GlobalStyle from './styles';
 
