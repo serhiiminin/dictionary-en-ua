@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -30,14 +30,14 @@ const WordItemInList = ({ isChecked, onWordCheck, wordItem, linkToWord, loading,
                 <CircularProgress color="secondary" size={20} />
               </Fade>
             ) : (
-              <Fragment>
+              <>
                 {word && (
                   <Link className={classes.wordLink} to={linkToWord}>
                     {word}
                   </Link>
                 )}
                 {[word && ' ', transcription && `[${transcription}]`].filter(Boolean).join(' - ')}
-              </Fragment>
+              </>
             )
           }
           secondary={[timesLearnt != null && `Times learnt: ${timesLearnt}`, lastLearnt && `Last learnt: ${lastLearnt}`]

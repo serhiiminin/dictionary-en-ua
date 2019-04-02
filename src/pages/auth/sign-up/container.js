@@ -4,19 +4,16 @@ import { Link } from 'react-router-dom';
 import { Button, TextField, Checkbox, FormControlLabel } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
-import composeClassesPropTypes from '../../../modules/compose-classes-prop-types';
 import routes from '../../../routes';
 import config from '../../../config';
-import styles from './styles';
 
 const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
-class Signup extends Component {
+class SignUp extends Component {
   static propTypes = {
     handleSignUp: PropTypes.func.isRequired,
     handleGoogleSignUp: PropTypes.func.isRequired,
     handleFacebookSignUp: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles),
   };
 
   state = {
@@ -28,10 +25,6 @@ class Signup extends Component {
     repeatPassword: '',
     isPasswordVisible: false,
     isMailValid: true,
-  };
-
-  static defaultProps = {
-    classes: {},
   };
 
   handleInputChange = key => event =>
@@ -85,10 +78,9 @@ class Signup extends Component {
 
   render() {
     const { login, name, gender, age, password, repeatPassword, isPasswordVisible, isMailValid } = this.state;
-    const { classes } = this.props;
 
     return (
-      <div className={classes.signupButton}>
+      <div>
         <h1>Sign up</h1>
         <GoogleLogin clientId={config.auth.google.clientId} onSuccess={this.handleGoogle} />
         <FacebookLogin appId={config.auth.facebook.appId} callback={this.handleFacebook} />
@@ -125,4 +117,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default SignUp;

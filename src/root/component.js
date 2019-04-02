@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'react-jss';
+import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, Zoom } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
@@ -7,6 +7,7 @@ import { SnackbarProvider } from 'notistack';
 import { PrivateRoute, Header, BlocksWrapper } from '../components-new';
 import {
   LogInContainer,
+  LogOutContainer,
   SignUpContainer,
   MainContainer,
   WordsListContainer,
@@ -18,8 +19,9 @@ import {
 } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
-import muiTheme from './mui-theme';
+import muiTheme from './mui';
 import config from '../config';
+import GlobalStyle from './styles';
 
 const snackbarConfig = {
   TransitionComponent: Zoom,
@@ -33,28 +35,32 @@ const snackbarConfig = {
 
 const Root = () => (
   <ThemeProvider theme={muiTheme}>
-    <MuiThemeProvider theme={muiTheme}>
-      <Router basename={config.publicUrl}>
-        <SnackbarProvider {...snackbarConfig}>
-          <StateProvider>
-            <BlocksWrapper>
-              <Header />
-              <Switch>
-                <Route exact path={routes.root} component={MainContainer} />
-                <Route exact path={routes.auth.logIn} component={LogInContainer} />
-                <Route exact path={routes.auth.signUp} component={SignUpContainer} />
-                <PrivateRoute exact path={routes.words.add} component={WordsAddContainer} />
-                <PrivateRoute exact path={routes.words.list} component={WordsListContainer} />
-                <PrivateRoute exact path={routes.words.search} component={WordSearchContainer} />
-                <PrivateRoute exact path={routes.words.preview} component={WordPreviewContainer} />
-                <PrivateRoute exact path={routes.words.edit} component={WordsEditContainer} />
-                <Route component={PageNotFoundContainer} />
-              </Switch>
-            </BlocksWrapper>
-          </StateProvider>
-        </SnackbarProvider>
-      </Router>
-    </MuiThemeProvider>
+    <>
+      <GlobalStyle />
+      <MuiThemeProvider theme={muiTheme}>
+        <Router basename={config.publicUrl}>
+          <SnackbarProvider {...snackbarConfig}>
+            <StateProvider>
+              <BlocksWrapper>
+                <Header />
+                <Switch>
+                  <Route exact path={routes.root} component={MainContainer} />
+                  <Route exact path={routes.auth.logIn} component={LogInContainer} />
+                  <Route exact path={routes.auth.logOut} component={LogOutContainer} />
+                  <Route exact path={routes.auth.signUp} component={SignUpContainer} />
+                  <PrivateRoute exact path={routes.words.add} component={WordsAddContainer} />
+                  <PrivateRoute exact path={routes.words.list} component={WordsListContainer} />
+                  <PrivateRoute exact path={routes.words.search} component={WordSearchContainer} />
+                  <PrivateRoute exact path={routes.words.preview} component={WordPreviewContainer} />
+                  <PrivateRoute exact path={routes.words.edit} component={WordsEditContainer} />
+                  <Route component={PageNotFoundContainer} />
+                </Switch>
+              </BlocksWrapper>
+            </StateProvider>
+          </SnackbarProvider>
+        </Router>
+      </MuiThemeProvider>
+    </>
   </ThemeProvider>
 );
 

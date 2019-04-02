@@ -1,8 +1,4 @@
-import { compose } from 'recompose';
-import injectSheet from 'react-jss';
+import { withTheme } from 'styled-components';
 import Image from './component';
-import styles from './styles';
 
-const enhance = compose(injectSheet(styles));
-
-export default enhance(Image);
+export default withTheme(Image);

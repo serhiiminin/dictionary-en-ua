@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LearningBoard from '.';
-import muiTheme from '../../root/mui-theme';
+import muiTheme from '../../root/mui';
 
 describe('LearningBoard', () => {
   let wrapper;

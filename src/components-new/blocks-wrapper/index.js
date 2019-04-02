@@ -1,8 +1,11 @@
-import injectSheet from 'react-jss';
-import { compose } from 'recompose';
-import BlocksWrapper from './component';
-import styles from './styles';
+import React from 'react';
+import PropTypes from 'prop-types';
+import SC from './styles';
 
-const enhance = compose(injectSheet(styles));
+const BlocksWrapper = ({ children }) => <SC.BlockWrapper>{children}</SC.BlockWrapper>;
 
-export default enhance(BlocksWrapper);
+BlocksWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default BlocksWrapper;
