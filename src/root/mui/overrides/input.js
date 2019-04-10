@@ -3,15 +3,6 @@ export default theme => ({
     root: {
       width: '100%',
     },
-    label: {
-      color: `${theme.main.colors.text} !important`,
-      opacity: 0.7,
-    },
-    underline: {
-      '&:after': {
-        borderBottomColor: `${theme.main.colors.text} !important`,
-      },
-    },
   },
   MuiFormControl: {
     root: {
@@ -20,6 +11,30 @@ export default theme => ({
   },
   MuiFormHelperText: {},
   MuiInput: {},
-  MuiOutlinedInput: {},
-  MuiInputLabel: {},
+  MuiOutlinedInput: {
+    root: {
+      '& $notchedOutline': {
+        borderColor: theme.main.colors.main,
+      },
+    },
+    input: {
+      padding: `${theme.main.padding.large} ${theme.main.padding.extraLarge}`,
+      lineHeight: 1.5,
+    },
+    notchedOutline: {
+      borderRadius: theme.main.borderRadius.medium,
+    },
+  },
+  MuiFormInput: {},
+  MuiInputLabel: {
+    root: {
+      '&$focused': {
+        color: theme.main.colors.main,
+      },
+    },
+    outlined: {
+      transform: `translate(${theme.main.padding.extraLarge}, ${theme.main.padding.large}) scale(1)`,
+      lineHeight: 1.5,
+    },
+  },
 });

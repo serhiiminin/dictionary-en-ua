@@ -1,11 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Page not found render 1`] = `
-<PageNotFoundContainer
-  classes={
-    Object {
-      "notFoundWrapper": "PageNotFoundContainer-notFoundWrapper-0-1-1",
-    }
-  }
-/>
+<styled.div>
+  <h1>
+    Page not found
+  </h1>
+  <withRouter(ButtonWithRouter)
+    to="/"
+  >
+    Home
+  </withRouter(ButtonWithRouter)>
+</styled.div>
 `;

@@ -17,6 +17,8 @@ const SearchBlockWrapper = styled.div`
 const PageTitle = styled.h1`
   font-size: 18px;
   letter-spacing: 2px;
+  font-weight: normal;
+  margin: ${props => props.theme.main.margin.small} 0;
 `;
 const BoldText = styled.span`
   font-size: 24px;
@@ -29,8 +31,9 @@ const SearchBlock = styled.div`
   grid-auto-flow: column;
   grid-column-gap: 30px;
   align-items: center;
+  margin-top: ${props => props.theme.main.margin.extraLarge};
 `;
-const TextField = styled(props => <MuiTextField InputProps={{ classes: { input: 'input' } }} {...props} />)`
+const TextField = styled(props => <MuiTextField {...props} />)`
   && {
     width: 350px;
   }

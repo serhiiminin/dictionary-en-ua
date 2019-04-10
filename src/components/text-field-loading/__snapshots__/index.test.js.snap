@@ -2,9 +2,7 @@
 
 exports[`Text field loading loading 1`] = `
 <div>
-  <Jss(TextFieldCustomized)
-    control={null}
-  />
+  <WithTheme(TextFieldCustomized) />
   <WithTheme(Fade)
     in={true}
   >
@@ -17,9 +15,7 @@ exports[`Text field loading loading 1`] = `
 
 exports[`Text field loading render 1`] = `
 <div>
-  <Jss(TextFieldCustomized)
-    control={null}
-  />
+  <WithTheme(TextFieldCustomized) />
   <WithTheme(Fade)
     in={false}
   >

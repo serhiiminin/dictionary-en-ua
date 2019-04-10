@@ -11,7 +11,7 @@ exports[`LearningBoard loading 1`] = `
   />
   <h3 />
   <h5 />
-  <Jss(ControlsSeparator)
+  <WithTheme(ControlsSeparator)
     align="center"
   >
     <ButtonControl
@@ -42,7 +42,7 @@ exports[`LearningBoard loading 1`] = `
     >
       <pure(ErrorOutlineIcon) />
     </ButtonControl>
-  </Jss(ControlsSeparator)>
+  </WithTheme(ControlsSeparator)>
 </div>
 `;
 
@@ -57,7 +57,7 @@ exports[`LearningBoard render 1`] = `
   />
   <h3 />
   <h5 />
-  <Jss(ControlsSeparator)
+  <WithTheme(ControlsSeparator)
     align="center"
   >
     <ButtonControl
@@ -88,7 +88,7 @@ exports[`LearningBoard render 1`] = `
     >
       <pure(ErrorOutlineIcon) />
     </ButtonControl>
-  </Jss(ControlsSeparator)>
+  </WithTheme(ControlsSeparator)>
 </div>
 `;
 
@@ -105,7 +105,7 @@ exports[`LearningBoard times learnt is more then 1 1`] = `
   <h5>
     Learnt 2 times before
   </h5>
-  <Jss(ControlsSeparator)
+  <WithTheme(ControlsSeparator)
     align="center"
   >
     <ButtonControl
@@ -136,6 +136,6 @@ exports[`LearningBoard times learnt is more then 1 1`] = `
     >
       <pure(ErrorOutlineIcon) />
     </ButtonControl>
-  </Jss(ControlsSeparator)>
+  </WithTheme(ControlsSeparator)>
 </div>
 `;

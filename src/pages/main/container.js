@@ -57,7 +57,7 @@ class MainContainer extends Component {
               variant="outlined"
             />
             <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
-              Search
+              search
             </ButtonSearch>
           </SC.SearchBlock>
         </SC.SearchBlockWrapper>
