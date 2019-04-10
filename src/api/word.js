@@ -46,7 +46,7 @@ export const createApiMethodsWords = endpoint => fetcher => ({
     ),
   search: (params, token) =>
     fetcher(
-      requests.post(joinPath(endpoint, 'search-new'), {
+      requests.post(joinPath(endpoint, 'search'), {
         body: params,
       }),
       token
