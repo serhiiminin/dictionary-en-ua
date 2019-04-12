@@ -4,12 +4,12 @@ exports[`List of clickable strings render 1`] = `
 Array [
   <WithTheme(SearchableWord)
     delimiter=", "
-    key="ffa6cb51-ac11-4335-a8b6-7fd872675f08"
+    key="42c446e2-c18f-4819-90a2-99b69b56ca12"
     word="one"
   />,
   <WithTheme(SearchableWord)
     delimiter={false}
-    key="7ef448c7-3792-4c03-a05f-d6ad2b821e34"
+    key="cd88f540-ffb1-42f8-b823-4a96e7a8deb1"
     word="two"
   />,
 ]
