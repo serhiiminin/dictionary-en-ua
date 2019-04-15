@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextField as MuiTextField } from '@material-ui/core';
 import styled from 'styled-components';
-import { ReactComponent as MainDecor } from '../../images/main-decor.svg';
 
 const MainPage = styled.div`
   display: grid;
@@ -38,9 +37,5 @@ const TextField = styled(props => <MuiTextField {...props} />)`
     width: 350px;
   }
 `;
-const MainDecorSvg = styled(MainDecor)`
-  max-width: 100%;
-  margin-top: 150px;
-`;
 
-export default { MainPage, SearchBlockWrapper, PageTitle, BoldText, SearchBlock, TextField, MainDecorSvg };
+export default { MainPage, SearchBlockWrapper, PageTitle, BoldText, SearchBlock, TextField };

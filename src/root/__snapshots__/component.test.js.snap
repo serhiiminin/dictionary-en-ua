@@ -1037,7 +1037,7 @@ exports[`Root render 1`] = `
               />
               <Route
                 component={[Function]}
-                path="/log-in"
+                path="/auth"
               />
               <Component
                 component={[Function]}
