@@ -1007,7 +1007,7 @@ exports[`Root render 1`] = `
     }
   >
     <BrowserRouter
-      basename="/dictionary"
+      basename=""
     >
       <SnackbarProvider
         TransitionComponent={[Function]}
