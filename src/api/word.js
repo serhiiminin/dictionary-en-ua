@@ -38,7 +38,7 @@ export const createApiMethodsWords = endpoint => fetcher => ({
     fetcher(
       requests.put(joinPath(endpoint, wordId), {
         body: {
-          dateLastLearnt: new Date(Date.now()).toISOString(),
+          dateLastLearnt: new Date().toISOString(),
           $inc: { timesLearnt: 1 },
         },
       }),

@@ -3,7 +3,6 @@
 exports[`Searchable Word render 1`] = `
 <Fragment>
   <Link
-    replace={false}
     to="/words/search?query=word"
   >
     word
