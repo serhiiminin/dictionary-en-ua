@@ -1,11 +1,13 @@
+const auth = '/auth';
 const words = '/words';
 
 const routes = {
   root: '/',
   auth: {
-    logIn: '/log-in',
-    logOut: '/log-out',
-    signUp: '/sign-up',
+    root: auth,
+    logIn: `${auth}/log-in`,
+    logOut: `${auth}/log-out`,
+    signUp: `${auth}/sign-up`,
   },
   words: {
     root: words,

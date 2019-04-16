@@ -61,7 +61,6 @@ class MainContainer extends Component {
             </ButtonSearch>
           </SC.SearchBlock>
         </SC.SearchBlockWrapper>
-        <SC.MainDecorSvg />
       </SC.MainPage>
     );
   }

@@ -1037,18 +1037,7 @@ exports[`Root render 1`] = `
               />
               <Route
                 component={[Function]}
-                exact={true}
-                path="/log-in"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/log-out"
-              />
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/sign-up"
+                path="/auth"
               />
               <Component
                 component={[Function]}

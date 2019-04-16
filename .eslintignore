@@ -1,4 +1,4 @@
-/src/registerServiceWorker.js
+/src/serviceWorker.js
 /src/setupTests.js
 /src/__test-helpers__
 /coverage

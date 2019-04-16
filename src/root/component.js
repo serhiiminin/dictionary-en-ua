@@ -6,16 +6,14 @@ import { Close } from '@material-ui/icons';
 import { SnackbarProvider } from 'notistack';
 import { PrivateRoute, Header, BlocksWrapper } from '../components-new';
 import {
-  LogInContainer,
-  LogOutContainer,
-  SignUpContainer,
-  MainContainer,
-  WordsListContainer,
-  WordsAddContainer,
-  PageNotFoundContainer,
-  WordsEditContainer,
-  WordPreviewContainer,
-  WordSearchContainer,
+  AuthPage,
+  MainPage,
+  WordsListPage,
+  WordsAddPage,
+  PageNotFoundPage,
+  WordsEditPage,
+  WordPreviewPage,
+  WordSearchPage,
 } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
@@ -44,16 +42,14 @@ const Root = () => (
               <BlocksWrapper>
                 <Header />
                 <Switch>
-                  <Route exact path={routes.root} component={MainContainer} />
-                  <Route exact path={routes.auth.logIn} component={LogInContainer} />
-                  <Route exact path={routes.auth.logOut} component={LogOutContainer} />
-                  <Route exact path={routes.auth.signUp} component={SignUpContainer} />
-                  <PrivateRoute exact path={routes.words.add} component={WordsAddContainer} />
-                  <PrivateRoute exact path={routes.words.list} component={WordsListContainer} />
-                  <PrivateRoute exact path={routes.words.search} component={WordSearchContainer} />
-                  <PrivateRoute exact path={routes.words.preview} component={WordPreviewContainer} />
-                  <PrivateRoute exact path={routes.words.edit} component={WordsEditContainer} />
-                  <Route component={PageNotFoundContainer} />
+                  <Route exact path={routes.root} component={MainPage} />
+                  <Route path={routes.auth.root} component={AuthPage} />
+                  <PrivateRoute exact path={routes.words.add} component={WordsAddPage} />
+                  <PrivateRoute exact path={routes.words.list} component={WordsListPage} />
+                  <PrivateRoute exact path={routes.words.search} component={WordSearchPage} />
+                  <PrivateRoute exact path={routes.words.preview} component={WordPreviewPage} />
+                  <PrivateRoute exact path={routes.words.edit} component={WordsEditPage} />
+                  <Route component={PageNotFoundPage} />
                 </Switch>
               </BlocksWrapper>
             </StateProvider>
