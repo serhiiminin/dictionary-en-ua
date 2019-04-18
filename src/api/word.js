@@ -5,11 +5,11 @@ import { createAuthProxy } from './proxies';
 import config from '../config';
 
 export const createApiMethodsWords = endpoint => fetcher => ({
-  create: (body, token) => fetcher(requests.post(endpoint, { body }), token),
-  get: (id, token) => fetcher(requests.get(joinPath(endpoint, id)), token),
-  getList: (body, token) => fetcher(requests.post(joinPath(endpoint, 'list'), { body }), token),
+  create: (body, token) => fetcher(requests.post(joinPath(endpoint, 'words'), { body }), token),
+  get: (id, token) => fetcher(requests.get(joinPath(endpoint, `words/${id}`)), token),
+  getList: (body, token) => fetcher(requests.post(joinPath(endpoint, 'words/list'), { body }), token),
   getListToLearn: (params, token) => {
-    const url = joinPath(endpoint, 'list');
+    const url = joinPath(endpoint, 'words/list');
     const yesterday = new Date();
 
     yesterday.setDate(yesterday.getDate() - 1);
@@ -27,13 +27,13 @@ export const createApiMethodsWords = endpoint => fetcher => ({
   update: (word, token) => {
     const { _id: id } = word;
     return fetcher(
-      requests.put(joinPath(endpoint, id), {
+      requests.put(joinPath(endpoint, `words/${id}`), {
         body: word,
       }),
       token
     );
   },
-  delete: (wordId, token) => fetcher(requests.delete(joinPath(endpoint, wordId)), token),
+  delete: (wordId, token) => fetcher(requests.delete(joinPath(endpoint, `words/${wordId}`)), token),
   learn: (wordId, token) =>
     fetcher(
       requests.put(joinPath(endpoint, wordId), {
@@ -46,13 +46,13 @@ export const createApiMethodsWords = endpoint => fetcher => ({
     ),
   search: (params, token) =>
     fetcher(
-      requests.post(joinPath(endpoint, 'search'), {
+      requests.post(joinPath(endpoint, 'words/search'), {
         body: params,
       }),
       token
     ),
 });
 
-const apiMethodsWords = createApiMethodsWords(config.endpoints.words)(createAuthProxy(createFetcherJson(window.fetch)));
+const apiMethodsWords = createApiMethodsWords(config.endpoints.api)(createAuthProxy(createFetcherJson(window.fetch)));
 
 export default apiMethodsWords;

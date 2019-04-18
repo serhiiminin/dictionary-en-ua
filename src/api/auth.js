@@ -3,7 +3,7 @@ import requests from './request';
 import createFetcherJson from './create-fetcher';
 import { createAuthProxy } from './proxies';
 import config from '../config';
-import apiRoutes from './routes';
+import apiRoutes from './apiRoutes';
 
 const createApiMethodsBasicAuth = endpoint => fetcher => ({
   logIn: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.logIn), { body })),
@@ -20,11 +20,11 @@ const createApiMethodsFacebookAuth = endpoint => fetcher => ({
   signUp: token => fetcher(requests.get(joinPath(endpoint, apiRoutes.auth.facebook.signUp)), token),
 });
 
-const apiMethodsBasicAuth = createApiMethodsBasicAuth(config.endpoints.auth)(createFetcherJson(window.fetch));
-const apiMethodsGoogleAuth = createApiMethodsGoogleAuth(config.endpoints.auth)(
+const apiMethodsBasicAuth = createApiMethodsBasicAuth(config.endpoints.api)(createFetcherJson(window.fetch));
+const apiMethodsGoogleAuth = createApiMethodsGoogleAuth(config.endpoints.api)(
   createAuthProxy(createFetcherJson(window.fetch))
 );
-const apiMethodsFacebookAuth = createApiMethodsFacebookAuth(config.endpoints.auth)(
+const apiMethodsFacebookAuth = createApiMethodsFacebookAuth(config.endpoints.api)(
   createAuthProxy(createFetcherJson(window.fetch))
 );
 

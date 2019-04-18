@@ -20,6 +20,6 @@ export const createApiMethodsUsers = endpoint => fetcher => ({
   delete: (id, tokens) => fetcher(requests.delete(joinPath(endpoint, id)), tokens),
 });
 
-const apiMethodsUsers = createApiMethodsUsers(config.endpoints.users)(createAuthProxy(createFetcherJson(window.fetch)));
+const apiMethodsUsers = createApiMethodsUsers(config.endpoints.api)(createAuthProxy(createFetcherJson(window.fetch)));
 
 export default apiMethodsUsers;
