@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinUrl, mergeSearch } from 'url-joiner';
-import { ButtonSearch } from '../../components-new';
+import { ButtonSearch } from '../../components';
 import routes from '../../routes';
 import SC from './styles';
 

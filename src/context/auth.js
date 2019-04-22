@@ -10,7 +10,7 @@ import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
 import routes from '../routes';
 import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../modules/handle-fetch';
+import createHandleFetch from '../util/handle-fetch';
 import { withErrors } from './errors';
 import config from '../config';
 

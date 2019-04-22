@@ -8,10 +8,10 @@ import { parseSearch } from 'url-joiner';
 import { apiWord, apiGif } from '../api';
 import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
-import { normalizeWord } from '../modules/word-utils';
+import { normalizeWord } from '../util/word-utils';
 import { withAuth } from './auth';
 import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../modules/handle-fetch';
+import createHandleFetch from '../util/handle-fetch';
 import { withErrors } from './errors';
 
 const INITIAL_SORT_DATA = {

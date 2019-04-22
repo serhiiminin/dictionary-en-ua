@@ -1,5 +1,5 @@
 import { joinUrl, mergeSearch, getUrlParts } from 'url-joiner';
-import generatorApiKeys from '../modules/generator-api-key';
+import generatorApiKeys from '../util/generator-api-key';
 import createFetcherJson from './create-fetcher';
 import config from '../config';
 

@@ -1,13 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button control isActive 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bZQynM",
+        "isStatic": true,
+        "rules": Array [
+          "
+  && {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.85);
+    padding: 15px 45px;
+    background: rgba(216, 216, 216, 0.0001);
+    &:hover {
+      background: rgba(216, 216, 216, 0.0001);
+    }
+  }
+",
+        ],
+      },
+      "displayName": "Styled(Component)",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bZQynM",
+      "target": [Function],
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+      Symbol(Symbol.hasInstance): [Function],
+    }
+  }
+  forwardedRef={null}
+  isActive={true}
+>
+  Text
+</StyledComponent>
 `;
 
 exports[`Button control render 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bZQynM",
+        "isStatic": true,
+        "rules": Array [
+          "
+  && {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.85);
+    padding: 15px 45px;
+    background: rgba(216, 216, 216, 0.0001);
+    &:hover {
+      background: rgba(216, 216, 216, 0.0001);
+    }
+  }
+",
+        ],
+      },
+      "displayName": "Styled(Component)",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bZQynM",
+      "target": [Function],
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+      Symbol(Symbol.hasInstance): [Function],
+    }
+  }
+  forwardedRef={null}
+>
+  Text
+</StyledComponent>
 `;

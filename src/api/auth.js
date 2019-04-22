@@ -3,7 +3,7 @@ import requests from './request';
 import createFetcherJson from './create-fetcher';
 import { createAuthProxy } from './proxies';
 import config from '../config';
-import apiRoutes from './apiRoutes';
+import apiRoutes from './api-routes';
 
 const createApiMethodsBasicAuth = endpoint => fetcher => ({
   logIn: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.logIn), { body })),

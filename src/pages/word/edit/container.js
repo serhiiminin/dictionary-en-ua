@@ -1,39 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { WordForm } from '../../../components';
+import React from 'react';
 
-class WordEdit extends Component {
-  static propTypes = {
-    wordItem: PropTypes.shape({}),
-    fetchWord: PropTypes.func.isRequired,
-    cleanWord: PropTypes.func.isRequired,
-    match: ReactRouterPropTypes.match.isRequired,
-    editWord: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
-  };
-
-  static defaultProps = {
-    wordItem: null,
-  };
-
-  componentDidMount() {
-    const { fetchWord, match } = this.props;
-
-    fetchWord(match.params.id);
-  }
-
-  componentWillUnmount() {
-    const { cleanWord } = this.props;
-
-    cleanWord();
-  }
-
-  render() {
-    const { wordItem, editWord, checkIsLoading } = this.props;
-
-    return <WordForm wordItem={wordItem} onSubmit={editWord} checkIsLoading={checkIsLoading} />;
-  }
-}
+const WordEdit = () => <div>Edit</div>;
 
 export default WordEdit;

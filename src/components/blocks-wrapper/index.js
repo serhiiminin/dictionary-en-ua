@@ -1,4 +1,11 @@
-import { withTheme } from 'styled-components';
-import BlocksWrapper from './component';
+import React from 'react';
+import PropTypes from 'prop-types';
+import SC from './styles';
 
-export default withTheme(BlocksWrapper);
+const BlocksWrapper = ({ children }) => <SC.BlockWrapper>{children}</SC.BlockWrapper>;
+
+BlocksWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default BlocksWrapper;

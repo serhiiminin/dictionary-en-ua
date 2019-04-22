@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { withSnackbar } from 'notistack';
 import notificationType from '../constants/notifications-type';
 import routes from '../routes';
-import { getErrorMessage, getErrorType } from '../modules/handle-errors';
+import { getErrorMessage, getErrorType } from '../util/handle-errors';
 
 const ErrorsContext = createContext({});
 
