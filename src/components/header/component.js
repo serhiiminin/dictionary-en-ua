@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { ButtonMenu } from '..';
-import { ReactComponent as Logo } from '../../images/logo.svg';
+import ButtonMenu from '../button-menu';
+import SC from './styles';
 import routes from '../../routes';
 
 const buttonsData = {
@@ -20,17 +19,17 @@ const Header = ({ isLoggedIn }) => {
   const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
 
   return (
-    <div>
-      <Link to={routes.root}>
-        <Logo />
-      </Link>
-      <div>
+    <SC.Header isLoggedIn={isLoggedIn}>
+      <SC.HeaderLink to={routes.root}>
+        <SC.LogoSvg />
+      </SC.HeaderLink>
+      <SC.MenuDivider>
         <ButtonMenu to={routes.words.list}>My words</ButtonMenu>
         <ButtonMenu variant="outlined" to={authButtonData.href}>
           {authButtonData.text}
         </ButtonMenu>
-      </div>
-    </div>
+      </SC.MenuDivider>
+    </SC.Header>
   );
 };
 
