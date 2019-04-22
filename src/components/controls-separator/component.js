@@ -1,22 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
-const ControlsSeparator = ({ children, classes, align }) => (
-  <div className={classes.alignControls} align={align}>
-    {children}
-  </div>
-);
+const ControlsSeparator = ({ children, align }) => <div align={align}>{children}</div>;
 
 ControlsSeparator.propTypes = {
-  classes: composeClassesPropTypes(styles),
   children: PropTypes.node.isRequired,
   align: PropTypes.string,
 };
 
 ControlsSeparator.defaultProps = {
-  classes: {},
   align: 'left',
 };
 

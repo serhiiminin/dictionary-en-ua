@@ -5,11 +5,9 @@ import uuid from 'uuid';
 import { joinPath } from 'url-joiner';
 import routes from '../../routes';
 import { WordItemInList } from '..';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
-const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck, classes }) => (
-  <List className={classes.wordsList} classes={{ root: classes.wordsList }}>
+const WordsList = ({ wordsList, loading, countPerPage, checked, onWordCheck }) => (
+  <List>
     {loading
       ? Array(countPerPage)
           .fill(null)
@@ -48,7 +46,6 @@ WordsList.propTypes = {
   countPerPage: PropTypes.number,
   checked: PropTypes.arrayOf(PropTypes.string),
   onWordCheck: PropTypes.func.isRequired,
-  classes: composeClassesPropTypes(styles),
 };
 
 WordsList.defaultProps = {
@@ -56,7 +53,6 @@ WordsList.defaultProps = {
   loading: null,
   countPerPage: null,
   checked: null,
-  classes: {},
 };
 
 export default WordsList;

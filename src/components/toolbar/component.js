@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Button, List, ListItem, Zoom } from '@material-ui/core';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
 import { SelectWithOptions } from '..';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
 const Toolbar = ({
   checkAllControl,
@@ -14,12 +12,11 @@ const Toolbar = ({
   onChangeSortBy,
   isAnyChecked,
   children,
-  classes,
 }) => (
   <List>
     <ListItem divider>
       <div>{checkAllControl}</div>
-      <div className={classes.toolbarWrapper}>
+      <div>
         {isAnyChecked ? (
           <Zoom in={isAnyChecked}>{children}</Zoom>
         ) : (
@@ -55,7 +52,6 @@ Toolbar.propTypes = {
   onChangeSortBy: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   isAnyChecked: PropTypes.bool,
-  classes: composeClassesPropTypes(styles),
 };
 
 Toolbar.defaultProps = {
@@ -63,7 +59,6 @@ Toolbar.defaultProps = {
   sortBy: 'dateCreated',
   sortDirection: 'ascend',
   isAnyChecked: false,
-  classes: {},
 };
 
 export default Toolbar;

@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { TextField, ButtonControl } from '..';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
-const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
+const Pagination = ({ pageNumber, maxPageCount, onChangePage }) => {
   const prevPage = Number(pageNumber) > 1 ? Number(pageNumber) - 1 : 1;
   const nextPage = Number(pageNumber) < maxPageCount ? Number(pageNumber) + 1 : maxPageCount;
 
   return (
-    <div className={classes.page}>
+    <div>
       <ButtonControl
         onClick={() => onChangePage(prevPage)}
         disabled={pageNumber === 1}
@@ -20,7 +18,7 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
       >
         <KeyboardArrowLeft />
       </ButtonControl>
-      <div className={classes.paginationInput}>
+      <div>
         <TextField
           label={maxPageCount ? `Page ${pageNumber} of ${maxPageCount}` : 'Page number'}
           onChange={event => {
@@ -47,14 +45,12 @@ const Pagination = ({ classes, pageNumber, maxPageCount, onChangePage }) => {
 };
 
 Pagination.propTypes = {
-  classes: composeClassesPropTypes(styles),
   pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxPageCount: PropTypes.number,
   onChangePage: PropTypes.func.isRequired,
 };
 
 Pagination.defaultProps = {
-  classes: {},
   pageNumber: 1,
   maxPageCount: 0,
 };

@@ -3,12 +3,9 @@ import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import { TextField } from '..';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
 class InputsBlock extends Component {
   static propTypes = {
-    classes: composeClassesPropTypes(styles),
     children: PropTypes.node.isRequired,
     title: PropTypes.string,
     control: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
@@ -16,7 +13,6 @@ class InputsBlock extends Component {
   };
 
   static defaultProps = {
-    classes: {},
     title: null,
     onAddItem: () => {},
     control: false,
@@ -43,12 +39,12 @@ class InputsBlock extends Component {
 
   render() {
     const { input } = this.state;
-    const { children, title, control, classes } = this.props;
+    const { children, title, control } = this.props;
 
     return (
-      <div className={classes.inputsBlock}>
-        <div className={classes.topLine}>
-          <h3 className={classes.blockTitle}>{title}</h3>
+      <div>
+        <div>
+          <h3>{title}</h3>
           <div>
             {control && control === true ? (
               <TextField
@@ -67,7 +63,7 @@ class InputsBlock extends Component {
             )}
           </div>
         </div>
-        <div className={classes.blockItems}>{children}</div>
+        <div>{children}</div>
       </div>
     );
   }

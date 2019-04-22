@@ -6,8 +6,6 @@ import Delete from '@material-ui/icons/Delete';
 import { parseSearch, joinUrl, mergeSearch } from 'url-joiner';
 import loadingNames from '../../constants/loading-names';
 import { PaginationPanel, Toolbar, WordsList, ButtonControl } from '..';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
 class WordsTable extends Component {
   static propTypes = {
@@ -22,13 +20,11 @@ class WordsTable extends Component {
     deleteWord: PropTypes.func.isRequired,
     getWordsSearchParams: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
-    classes: composeClassesPropTypes(styles),
   };
 
   static defaultProps = {
     wordsList: null,
     wordsCount: 0,
-    classes: {},
   };
 
   state = {
@@ -87,14 +83,14 @@ class WordsTable extends Component {
 
   render() {
     const { checked } = this.state;
-    const { wordsList, wordsCount, checkIsLoading, getWordsSearchParams, classes } = this.props;
+    const { wordsList, wordsCount, checkIsLoading, getWordsSearchParams } = this.props;
     const { countPerPage, sortBy, sortDirection, page } = getWordsSearchParams();
     const loading = checkIsLoading(loadingNames.words.list);
     const isCheckedAll = checked.length === wordsList.length && checked.length > 0;
 
     return (
       <main>
-        <div className={classes.wordsTableWrapper}>
+        <div>
           <Toolbar
             isAnyChecked={checked.length > 0}
             sortBy={sortBy}

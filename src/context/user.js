@@ -7,7 +7,7 @@ import notificationType from '../constants/notifications-type';
 import loadingNames from '../constants/loading-names';
 import { withAuth } from './auth';
 import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../modules/handle-fetch';
+import createHandleFetch from '../util/handle-fetch';
 import { withErrors } from './errors';
 
 const UserContext = createContext({});

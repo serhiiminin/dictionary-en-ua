@@ -4,8 +4,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { List, Home, NoteAdd, Input, ExitToApp, Search } from '@material-ui/icons';
 import routes from '../../routes';
-import composeClassesPropTypes from '../../modules/compose-classes-prop-types';
-import styles from './styles';
 
 const createLinks = (isUserLoggedIn, logOut) => [
   {
@@ -41,13 +39,8 @@ const createLinks = (isUserLoggedIn, logOut) => [
       },
 ];
 
-const FooterNavigation = ({ isLoggedIn, handleLogout, classes, history, location }) => (
-  <BottomNavigation
-    classes={{ root: classes.bottomNavigation }}
-    value={location.pathname}
-    onChange={(_, value) => history.push(value)}
-    className={classes.root}
-  >
+const FooterNavigation = ({ isLoggedIn, handleLogout, history, location }) => (
+  <BottomNavigation value={location.pathname} onChange={(_, value) => history.push(value)}>
     {createLinks(isLoggedIn, handleLogout).map(({ icon, path, placeholder }) => (
       <BottomNavigationAction key={path} value={path} icon={icon} label={placeholder} showLabel />
     ))}
@@ -55,7 +48,6 @@ const FooterNavigation = ({ isLoggedIn, handleLogout, classes, history, location
 );
 
 FooterNavigation.propTypes = {
-  classes: composeClassesPropTypes(styles),
   isLoggedIn: PropTypes.bool,
   handleLogout: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
@@ -64,7 +56,6 @@ FooterNavigation.propTypes = {
 
 FooterNavigation.defaultProps = {
   isLoggedIn: false,
-  classes: {},
 };
 
 export default FooterNavigation;
