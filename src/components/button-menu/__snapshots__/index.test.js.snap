@@ -7,7 +7,7 @@ exports[`Button control isActive 1`] = `
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "sc-bZQynM",
+        "componentId": "sc-bdVaJa",
         "isStatic": true,
         "rules": Array [
           "
@@ -26,7 +26,7 @@ exports[`Button control isActive 1`] = `
       "displayName": "Styled(Component)",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "sc-bZQynM",
+      "styledComponentId": "sc-bdVaJa",
       "target": [Function],
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -48,7 +48,7 @@ exports[`Button control render 1`] = `
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "sc-bZQynM",
+        "componentId": "sc-bdVaJa",
         "isStatic": true,
         "rules": Array [
           "
@@ -67,7 +67,7 @@ exports[`Button control render 1`] = `
       "displayName": "Styled(Component)",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "sc-bZQynM",
+      "styledComponentId": "sc-bdVaJa",
       "target": [Function],
       "toString": [Function],
       "warnTooManyClasses": [Function],
