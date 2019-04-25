@@ -4,6 +4,7 @@ const SMALL_WIDTH = '40%';
 const BIG_WIDTH = '60%';
 
 const Outer = styled.div`
+  margin-top: 100px;
   display: flex;
   flex-flow: row wrap;
   position: relative;

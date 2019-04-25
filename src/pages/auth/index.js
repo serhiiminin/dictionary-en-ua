@@ -9,7 +9,7 @@ import SignUpContainer from './sign-up';
 import routes from '../../routes';
 import SC from './styles';
 
-const SLIDING_TIME = 600;
+const SLIDING_TIME = 500;
 
 class AuthPage extends Component {
   state = {
