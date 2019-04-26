@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const Form = styled.form`
+  display: grid;
+  gap: 1em;
+`;
+
 const Title = styled.h2`
   font-family: Cairo;
   font-style: normal;
@@ -11,4 +16,4 @@ const Title = styled.h2`
   color: #161617;
 `;
 
-export default { Title };
+export default { Form, Title };

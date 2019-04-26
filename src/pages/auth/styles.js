@@ -26,16 +26,11 @@ const Background = styled.div`
   z-index: 0;
 `;
 
-const Left = styled.div`
-  width: ${props => (props.isActive ? BIG_WIDTH : SMALL_WIDTH)}
+const HalfPart = styled.div`
+  width: ${props => (props.isActive ? BIG_WIDTH : SMALL_WIDTH)};
   position: relative;
   min-height: 100%;
+  padding: 20px 25px;
 `;
 
-const Right = styled.div`
-  width: ${props => (props.isActive ? BIG_WIDTH : SMALL_WIDTH)}
-  position: relative;
-  min-height: 100%;
-`;
-
-export default { Outer, Left, Right, Background };
+export default { Outer, HalfPart, Background };

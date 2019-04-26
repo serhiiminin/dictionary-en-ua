@@ -4,6 +4,7 @@ export { default as ButtonPrimary } from './button-primary';
 export { default as ButtonSearch } from './button-search';
 export { default as ButtonWithRouter } from './button-with-router';
 export { default as Header } from './header';
+export { default as InputPassword } from './input-password';
 export { default as PrivateRoute } from './private-route';
 export { default as SignUp } from './sign-up';
 export { default as WidgetLogin } from './widget-log-in';

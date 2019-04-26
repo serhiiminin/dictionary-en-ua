@@ -7,7 +7,7 @@ import FacebookLogin from 'react-facebook-login';
 import routes from '../../../routes';
 import config from '../../../config';
 
-const email = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
+const isEmailValid = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
 class SignUp extends Component {
   static propTypes = {
@@ -18,9 +18,7 @@ class SignUp extends Component {
 
   state = {
     name: '',
-    gender: '',
-    age: '',
-    login: '',
+    email: '',
     password: '',
     repeatPassword: '',
     isPasswordVisible: false,
@@ -41,9 +39,9 @@ class SignUp extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { login, password } = this.state;
+    const { email, password } = this.state;
     const { handleSignUp } = this.props;
-    const isMailValid = Boolean(email(login));
+    const isMailValid = Boolean(isEmailValid(email));
     if (isMailValid) {
       this.setState(
         prevState => ({
@@ -51,7 +49,7 @@ class SignUp extends Component {
           isMailValid: true,
         }),
         () => {
-          handleSignUp({ login, password });
+          handleSignUp({ email, password });
         }
       );
     } else {
@@ -77,7 +75,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { login, name, gender, age, password, repeatPassword, isPasswordVisible, isMailValid } = this.state;
+    const { email, name, gender, age, password, repeatPassword, isPasswordVisible, isMailValid } = this.state;
 
     return (
       <div>
@@ -88,7 +86,7 @@ class SignUp extends Component {
           <TextField label="Name" value={name} onChange={this.handleInputChange('name')} />
           <TextField label="Gender" value={gender} onChange={this.handleInputChange('gender')} />
           <TextField label="Age" value={age} onChange={this.handleInputChange('age')} />
-          <TextField error={!isMailValid} label="Email" value={login} onChange={this.handleInputChange('login')} />
+          <TextField error={!isMailValid} label="Email" value={email} onChange={this.handleInputChange('email')} />
           <TextField
             label="Password"
             value={password}

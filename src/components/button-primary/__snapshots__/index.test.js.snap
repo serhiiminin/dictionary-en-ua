@@ -8,16 +8,22 @@ exports[`Button control isActive 1`] = `
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "sc-bdVaJa",
-        "isStatic": true,
+        "isStatic": false,
         "rules": Array [
           "
   && {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.85);
+    color: ",
+          [Function],
+          "
+    box-shadow: 9px 9px 15px rgba(15, 99, 203, 0.179551);
     padding: 15px 45px;
-    background: rgba(216, 216, 216, 0.0001);
+    background: #fff;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 2px;
     &:hover {
-      background: rgba(216, 216, 216, 0.0001);
+      background: #fff;
     }
   }
 ",
@@ -49,16 +55,22 @@ exports[`Button control render 1`] = `
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "sc-bdVaJa",
-        "isStatic": true,
+        "isStatic": false,
         "rules": Array [
           "
   && {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.85);
+    color: ",
+          [Function],
+          "
+    box-shadow: 9px 9px 15px rgba(15, 99, 203, 0.179551);
     padding: 15px 45px;
-    background: rgba(216, 216, 216, 0.0001);
+    background: #fff;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 2px;
     &:hover {
-      background: rgba(216, 216, 216, 0.0001);
+      background: #fff;
     }
   }
 ",

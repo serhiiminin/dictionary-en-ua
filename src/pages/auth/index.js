@@ -42,7 +42,7 @@ class AuthPage extends Component {
         <Route path={routes.auth.logOut} component={LogOutContainer} />
         <SC.Outer>
           <SC.Background isLeft={isLeftActive} transitionDelay={SLIDING_TIME} />
-          <SC.Left isActive={isLeftActive}>
+          <SC.HalfPart isActive={isLeftActive}>
             {!isSliding && (
               <Fade in={!isSliding}>
                 <Switch>
@@ -51,8 +51,8 @@ class AuthPage extends Component {
                 </Switch>
               </Fade>
             )}
-          </SC.Left>
-          <SC.Right isActive={isRightActive}>
+          </SC.HalfPart>
+          <SC.HalfPart isActive={isRightActive}>
             {!isSliding && (
               <Fade in={!isSliding}>
                 <Switch>
@@ -61,7 +61,7 @@ class AuthPage extends Component {
                 </Switch>
               </Fade>
             )}
-          </SC.Right>
+          </SC.HalfPart>
         </SC.Outer>
       </Switch>
     );
