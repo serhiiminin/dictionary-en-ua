@@ -4,8 +4,7 @@ import { Fade } from '@material-ui/core';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import LogInContainer from './log-in';
 import LogOutContainer from './log-out';
-import { WidgetLogin, WidgetSignUp } from '../../components';
-import SignUpContainer from './sign-up';
+import { WidgetLogin, WidgetSignUp, SignUp } from '../../components';
 import routes from '../../routes';
 import SC from './styles';
 
@@ -58,7 +57,7 @@ class AuthPage extends Component {
               <Fade in={!isSliding}>
                 <Switch>
                   <Route path={routes.auth.logIn} component={WidgetSignUp} />
-                  <Route path={routes.auth.signUp} component={SignUpContainer} />
+                  <Route path={routes.auth.signUp} component={SignUp} />
                 </Switch>
               </Fade>
             )}
