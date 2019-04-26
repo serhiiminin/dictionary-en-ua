@@ -1,5 +1,5 @@
 const {
-  PUBLIC_URL,
+  REACT_APP_PUBLIC_URL,
   REACT_APP_API_ENDPOINT,
   REACT_APP_ENDPOINT_GIPHY,
   REACT_APP_GOOGLE_API_KEY,
@@ -22,7 +22,7 @@ const {
 } = process.env;
 
 const config = {
-  publicUrl: PUBLIC_URL,
+  publicUrl: REACT_APP_PUBLIC_URL,
   auth: {
     google: {
       apiKey: REACT_APP_GOOGLE_API_KEY,
