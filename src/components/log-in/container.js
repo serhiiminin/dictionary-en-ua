@@ -11,27 +11,19 @@ import ButtonGoogle from '../button-google';
 import config from '../../config';
 import SC from './styles';
 
-class SignUp extends Component {
+class Login extends Component {
   static propTypes = {
-    handleBasicSignUp: PropTypes.func.isRequired,
-    handleGoogleSignUp: PropTypes.func.isRequired,
-    handleFacebookSignUp: PropTypes.func.isRequired,
+    handleBasicLogIn: PropTypes.func.isRequired,
+    handleGoogleLogIn: PropTypes.func.isRequired,
+    handleFacebookLogIn: PropTypes.func.isRequired,
   };
 
   state = {
-    name: {
-      value: '',
-    },
     email: {
       value: '',
       isValid: true,
     },
     password: {
-      value: '',
-      isValid: true,
-      isVisible: false,
-    },
-    repeatPassword: {
       value: '',
       isValid: true,
       isVisible: false,
@@ -61,33 +53,32 @@ class SignUp extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    const { handleBasicSignUp } = this.props;
+    const { handleBasicLogIn } = this.props;
 
-    handleBasicSignUp({ email, password });
+    handleBasicLogIn({ email, password });
   };
 
   handleGoogle = tokenData => {
     const { accessToken } = tokenData;
-    const { handleGoogleSignUp } = this.props;
+    const { handleGoogleLogIn } = this.props;
 
-    return handleGoogleSignUp(accessToken);
+    return handleGoogleLogIn(accessToken);
   };
 
   handleFacebook = tokenData => {
     const { accessToken } = tokenData;
-    const { handleFacebookSignUp } = this.props;
+    const { handleFacebookLogIn } = this.props;
 
-    return handleFacebookSignUp(accessToken);
+    return handleFacebookLogIn(accessToken);
   };
 
   render() {
-    const { email, name, password, repeatPassword } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div>
-        <SC.Title>First here? Create an account now!</SC.Title>
+        <SC.Title>Welcome back, friend!</SC.Title>
         <SC.Form onSubmit={this.handleSubmit}>
-          <TextField name="name" variant="outlined" label="Name" value={name.value} onChange={this.handleOnChange} />
           <TextField
             name="email"
             variant="outlined"
@@ -104,17 +95,9 @@ class SignUp extends Component {
             value={password.value}
             label="Password"
           />
-          <InputPassword
-            name="repeatPassword"
-            isVisible={repeatPassword.isVisible}
-            toggleVisibility={this.handleIsVisibleToggle('repeatPassword')}
-            onChange={this.handleOnChange}
-            value={repeatPassword.value}
-            label="Repeat password"
-          />
           <div>
             <ButtonSearch type="submit" color="secondary" variant="contained">
-              Sign up
+              Log in
             </ButtonSearch>
           </div>
         </SC.Form>
@@ -135,4 +118,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Login;
