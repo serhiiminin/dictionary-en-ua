@@ -1,10 +1,13 @@
+export { default as BlocksSocial } from './block-social';
 export { default as BlocksWrapper } from './blocks-wrapper';
+export { default as Button } from './button';
 export { default as ButtonMenu } from './button-menu';
 export { default as ButtonPrimary } from './button-primary';
 export { default as ButtonSearch } from './button-search';
-export { default as ButtonWithRouter } from './button-with-router';
+export { default as ButtonSocial } from './button-social';
 export { default as Header } from './header';
 export { default as InputPassword } from './input-password';
+export { default as LogIn } from './log-in';
 export { default as PrivateRoute } from './private-route';
 export { default as SignUp } from './sign-up';
 export { default as WidgetLogin } from './widget-log-in';
