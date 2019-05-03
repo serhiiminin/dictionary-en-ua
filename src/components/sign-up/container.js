@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import InputPassword from '../input-password';
 import ButtonSearch from '../button-search';
+import ButtonFacebook from '../button-facebook';
+import ButtonGoogle from '../button-google';
 import config from '../../config';
 import SC from './styles';
-
-const isValidEmail = value => value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(value);
 
 class SignUp extends Component {
   static propTypes = {
@@ -61,23 +61,8 @@ class SignUp extends Component {
     event.preventDefault();
     const { email, password } = this.state;
     const { handleBasicSignUp } = this.props;
-    const isMailValid = Boolean(isValidEmail(email));
-    if (isMailValid) {
-      this.setState(
-        prevState => ({
-          ...prevState,
-          isMailValid: true,
-        }),
-        () => {
-          handleBasicSignUp({ email, password });
-        }
-      );
-    } else {
-      this.setState(prevState => ({
-        ...prevState,
-        isMailValid: false,
-      }));
-    }
+
+    handleBasicSignUp({ email, password });
   };
 
   handleGoogle = tokenData => {
@@ -95,18 +80,18 @@ class SignUp extends Component {
   };
 
   render() {
-    const { email, name, password, repeatPassword, isMailValid } = this.state;
+    const { email, name, password, repeatPassword } = this.state;
 
     return (
-      <SC.Form>
+      <div>
         <SC.Title>First here? Create an account now!</SC.Title>
         <SC.Form onSubmit={this.handleSubmit}>
           <TextField name="name" variant="outlined" label="Name" value={name.value} onChange={this.handleOnChange} />
           <TextField
             name="email"
             variant="outlined"
-            error={!isMailValid}
             label="Email"
+            error={!email.isValid}
             value={email.value}
             onChange={this.handleOnChange}
           />
@@ -133,10 +118,18 @@ class SignUp extends Component {
           </div>
         </SC.Form>
         <div>
-          <GoogleLogin clientId={config.auth.google.clientId} onSuccess={this.handleGoogle} />
-          <FacebookLogin appId={config.auth.facebook.appId} callback={this.handleFacebook} />
+          <FacebookLogin
+            appId={config.auth.facebook.appId}
+            callback={this.handleFacebook}
+            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+          />
+          <GoogleLogin
+            clientId={config.auth.google.clientId}
+            onSuccess={this.handleGoogle}
+            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+          />
         </div>
-      </SC.Form>
+      </div>
     );
   }
 }

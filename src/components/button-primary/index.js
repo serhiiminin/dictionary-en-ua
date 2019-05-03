@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonWithRouter from '../button-with-router';
+import ButtonWithRouter from '../button';
 
 const ButtonPrimary = styled(props => <ButtonWithRouter {...props} />)`
   && {

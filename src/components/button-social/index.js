@@ -1,8 +1,9 @@
 import React from 'react';
+import { Fab } from '@material-ui/core';
 import styled from 'styled-components';
-import ButtonWithRouter from '../button';
+import Button from '../button';
 
-const ButtonMenu = styled(props => <ButtonWithRouter {...props} />)`
+const ButtonSocial = styled(props => <Button {...props} component={Fab} />)`
   && {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.85);
@@ -14,4 +15,4 @@ const ButtonMenu = styled(props => <ButtonWithRouter {...props} />)`
   }
 `;
 
-export default ButtonMenu;
+export default ButtonSocial;
