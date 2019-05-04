@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ButtonPrimary from '../button-primary';
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,10 +32,6 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const Button = styled(ButtonPrimary)`
-  && {
-    margin-top: 10px;
-  }
-`;
+const Control = styled.div``;
 
-export default { Wrapper, Inner, Title, Description, Button };
+export default { Wrapper, Inner, Title, Description, Control };
