@@ -16,6 +16,9 @@ export default theme => ({
       '& $notchedOutline': {
         borderColor: theme.main.colors.main,
       },
+      '&$focused $notchedOutline': {
+        borderWidth: 1,
+      },
     },
     input: {
       padding: `${theme.main.padding.large} ${theme.main.padding.extraLarge}`,

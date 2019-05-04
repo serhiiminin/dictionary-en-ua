@@ -1,3 +1,4 @@
+export { default as AuthSuggestion } from './auth-suggestion';
 export { default as BlocksSocial } from './block-social';
 export { default as BlocksWrapper } from './blocks-wrapper';
 export { default as Button } from './button';
@@ -10,5 +11,5 @@ export { default as InputPassword } from './input-password';
 export { default as LogIn } from './log-in';
 export { default as PrivateRoute } from './private-route';
 export { default as SignUp } from './sign-up';
-export { default as WidgetLogin } from './widget-log-in';
-export { default as WidgetSignUp } from './widget-sign-up';
+export { default as TextCircle } from './text-circle';
+export { default as TitleLg } from './title-lg';
