@@ -10,5 +10,6 @@ export { default as InputPassword } from './input-password';
 export { default as LogIn } from './log-in';
 export { default as PrivateRoute } from './private-route';
 export { default as SignUp } from './sign-up';
+export { default as TextCircle } from './text-circle';
 export { default as WidgetLogin } from './widget-log-in';
 export { default as WidgetSignUp } from './widget-sign-up';

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Slide } from '@material-ui/core';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinUrl, mergeSearch } from 'url-joiner';
 import { ButtonSearch } from '../../components';
@@ -13,8 +14,6 @@ class MainContainer extends Component {
   state = {
     searchValue: '',
   };
-
-  cleanSearchValue = () => this.setState({ searchValue: '' });
 
   handleOnChange = event => {
     const { value } = event.target;
@@ -43,24 +42,26 @@ class MainContainer extends Component {
 
     return (
       <SC.MainPage>
-        <SC.SearchBlockWrapper>
-          <SC.PageTitle>
-            The Best Dictionary ever.
-            <SC.BoldText>TRY IT!</SC.BoldText>
-          </SC.PageTitle>
-          <SC.SearchBlock>
-            <SC.TextField
-              label="your word"
-              value={searchValue}
-              onChange={this.handleOnChange}
-              onKeyUp={this.handleOnEnterPress}
-              variant="outlined"
-            />
-            <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
-              search
-            </ButtonSearch>
-          </SC.SearchBlock>
-        </SC.SearchBlockWrapper>
+        <Slide in direction="right">
+          <SC.SearchBlockWrapper>
+            <SC.PageTitle>
+              The Best Dictionary ever.
+              <SC.BoldText>TRY IT!</SC.BoldText>
+            </SC.PageTitle>
+            <SC.SearchBlock>
+              <SC.TextField
+                label="your word"
+                value={searchValue}
+                onChange={this.handleOnChange}
+                onKeyUp={this.handleOnEnterPress}
+                variant="outlined"
+              />
+              <ButtonSearch onClick={this.handleOnSearch} disabled={isEmpty} variant="contained" color="primary">
+                search
+              </ButtonSearch>
+            </SC.SearchBlock>
+          </SC.SearchBlockWrapper>
+        </Slide>
       </SC.MainPage>
     );
   }
