@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TitleLg from '../title-lg';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,16 +14,8 @@ const Inner = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h2`
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 45px;
-  text-align: center;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+const Title = styled(TitleLg)`
+  color: ${props => props.theme.main.colors.background};
 `;
 
 const Description = styled.p`

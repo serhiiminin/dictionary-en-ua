@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { TextCircle } from '../../components';
 
@@ -15,7 +16,7 @@ const Outer = styled.div`
   border-radius: 8px;
 `;
 
-const Background = styled.div`
+const Background = styled.button`
   position: absolute;
   width: ${SMALL_WIDTH};  
   height: 100%;  
@@ -24,6 +25,7 @@ const Background = styled.div`
   left: ${props => (props.isLeft ? BIG_WIDTH : 0)}
   top: 0;
   border-radius: 8px;
+  border-width: 0;
   z-index: 0;
 `;
 
@@ -43,7 +45,7 @@ const rotate = keyframes`
   }
 `;
 
-const Circle = styled(TextCircle)`
+const Circle = styled(({ transitionDelay, isLeft, ...props }) => <TextCircle {...props} />)`
   transition: all ${props => props.transitionDelay}ms ease-in-out;
   animation: ${rotate} 12s linear infinite;
   transform: translate(-50%, -50%) rotate(0deg);

@@ -12,3 +12,4 @@ export { default as LogIn } from './log-in';
 export { default as PrivateRoute } from './private-route';
 export { default as SignUp } from './sign-up';
 export { default as TextCircle } from './text-circle';
+export { default as TitleLg } from './title-lg';
