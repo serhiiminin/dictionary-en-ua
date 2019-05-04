@@ -59,13 +59,13 @@ class AuthProviderCmp extends Component {
       });
     });
 
-  handleBasicLogIn = ({ login, password }) => {
+  handleBasicLogIn = ({ email, password }) => {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.logIn,
       apiHandler: apiMethodsBasicAuth
-        .logIn({ login, password })
+        .logIn({ email, password })
         .then(this.setToken)
         .then(() => {
           history.push(routes.words.list);
@@ -76,12 +76,12 @@ class AuthProviderCmp extends Component {
     });
   };
 
-  handleBasicSignUp = ({ login, password }) => {
+  handleBasicSignUp = ({ email, password }) => {
     const { enqueueSnackbar, history } = this.props;
 
     return this.handleFetch()({
       loadingName: loadingNames.auth.signUp,
-      apiHandler: apiMethodsBasicAuth.signUp({ login, password }).then(() => {
+      apiHandler: apiMethodsBasicAuth.signUp({ email, password }).then(() => {
         history.push(routes.words.list);
         return enqueueSnackbar('Welcome! You have been signed up successfully', {
           variant: notificationType.success,

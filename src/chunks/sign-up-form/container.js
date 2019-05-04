@@ -3,27 +3,31 @@ import PropTypes from 'prop-types';
 import { TextField } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import InputPassword from '../input-password';
-import BlockSocial from '../block-social';
-import ButtonSearch from '../button-search';
-import ButtonFacebook from '../button-facebook';
-import ButtonGoogle from '../button-google';
+import { InputPassword, BlockSocial, ButtonSearch, ButtonFacebook, ButtonGoogle } from '../../components';
 import config from '../../config';
 import SC from './styles';
 
-class Login extends Component {
+class SignUpForm extends Component {
   static propTypes = {
-    handleBasicLogIn: PropTypes.func.isRequired,
-    handleGoogleLogIn: PropTypes.func.isRequired,
-    handleFacebookLogIn: PropTypes.func.isRequired,
+    handleBasicSignUp: PropTypes.func.isRequired,
+    handleGoogleSignUp: PropTypes.func.isRequired,
+    handleFacebookSignUp: PropTypes.func.isRequired,
   };
 
   state = {
+    name: {
+      value: '',
+    },
     email: {
       value: '',
       isValid: true,
     },
     password: {
+      value: '',
+      isValid: true,
+      isVisible: false,
+    },
+    repeatPassword: {
       value: '',
       isValid: true,
       isVisible: false,
@@ -53,32 +57,36 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    const { handleBasicLogIn } = this.props;
+    const { handleBasicSignUp } = this.props;
 
-    handleBasicLogIn({ email, password });
+    handleBasicSignUp({
+      email: email.value,
+      password: password.value,
+    });
   };
 
   handleGoogle = tokenData => {
     const { accessToken } = tokenData;
-    const { handleGoogleLogIn } = this.props;
+    const { handleGoogleSignUp } = this.props;
 
-    return handleGoogleLogIn(accessToken);
+    return handleGoogleSignUp(accessToken);
   };
 
   handleFacebook = tokenData => {
     const { accessToken } = tokenData;
-    const { handleFacebookLogIn } = this.props;
+    const { handleFacebookSignUp } = this.props;
 
-    return handleFacebookLogIn(accessToken);
+    return handleFacebookSignUp(accessToken);
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, name, password, repeatPassword } = this.state;
 
     return (
       <div>
-        <SC.Title>Welcome back, friend!</SC.Title>
+        <SC.Title>First here? Create an account now!</SC.Title>
         <SC.Form onSubmit={this.handleSubmit}>
+          <TextField name="name" variant="outlined" label="Name" value={name.value} onChange={this.handleOnChange} />
           <TextField
             name="email"
             variant="outlined"
@@ -95,9 +103,17 @@ class Login extends Component {
             value={password.value}
             label="Password"
           />
+          <InputPassword
+            name="repeatPassword"
+            isVisible={repeatPassword.isVisible}
+            toggleVisibility={this.handleIsVisibleToggle('repeatPassword')}
+            onChange={this.handleOnChange}
+            value={repeatPassword.value}
+            label="Repeat password"
+          />
           <div>
             <ButtonSearch type="submit" color="secondary" variant="contained">
-              Log in
+              Sign up
             </ButtonSearch>
           </div>
         </SC.Form>
@@ -118,4 +134,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default SignUpForm;
