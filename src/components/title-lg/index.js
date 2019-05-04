@@ -6,9 +6,10 @@ const TitleLg = styled.h2`
   font-weight: bold;
   font-size: 24px;
   line-height: 45px;
+  text-align: center;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #161617;
+  color: ${props => props.theme.main.colors.text};
 `;
 
 export default TitleLg;
