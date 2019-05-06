@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TextField } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { InputPassword, BlockSocial, ButtonSearch, ButtonFacebook, ButtonGoogle } from '../../components';
+import {
+  InputPassword,
+  BlockSocial,
+  ButtonSearch,
+  ButtonFacebook,
+  ButtonGoogle,
+  Form,
+  FormField,
+} from '../../components';
 import config from '../../config';
 import SC from './styles';
 
@@ -14,55 +21,10 @@ class SignUpForm extends Component {
     handleFacebookSignUp: PropTypes.func.isRequired,
   };
 
-  state = {
-    name: {
-      value: '',
-    },
-    email: {
-      value: '',
-      isValid: true,
-    },
-    password: {
-      value: '',
-      isValid: true,
-      isVisible: false,
-    },
-    repeatPassword: {
-      value: '',
-      isValid: true,
-      isVisible: false,
-    },
-  };
-
-  handleOnChange = event => {
-    const { value, name } = event.target;
-
-    this.setState(prevState => ({
-      [name]: {
-        ...prevState[name],
-        value,
-      },
-    }));
-  };
-
-  handleIsVisibleToggle = key => () => {
-    this.setState(prevState => ({
-      [key]: {
-        ...prevState[key],
-        isVisible: !prevState[key].isVisible,
-      },
-    }));
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { email, password } = this.state;
+  handleSubmit = formData => {
     const { handleBasicSignUp } = this.props;
 
-    handleBasicSignUp({
-      email: email.value,
-      password: password.value,
-    });
+    handleBasicSignUp(formData);
   };
 
   handleGoogle = tokenData => {
@@ -80,43 +42,27 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { email, name, password, repeatPassword } = this.state;
+    const initialValues = {
+      name: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+    };
 
     return (
       <div>
         <SC.Title>First here? Create an account now!</SC.Title>
-        <SC.Form onSubmit={this.handleSubmit}>
-          <TextField name="name" variant="outlined" label="Name" value={name.value} onChange={this.handleOnChange} />
-          <TextField
-            name="email"
-            variant="outlined"
-            label="Email"
-            error={!email.isValid}
-            value={email.value}
-            onChange={this.handleOnChange}
-          />
-          <InputPassword
-            name="password"
-            isVisible={password.isVisible}
-            toggleVisibility={this.handleIsVisibleToggle('password')}
-            onChange={this.handleOnChange}
-            value={password.value}
-            label="Password"
-          />
-          <InputPassword
-            name="repeatPassword"
-            isVisible={repeatPassword.isVisible}
-            toggleVisibility={this.handleIsVisibleToggle('repeatPassword')}
-            onChange={this.handleOnChange}
-            value={repeatPassword.value}
-            label="Repeat password"
-          />
+        <Form initialValues={initialValues} onSubmit={this.handleSubmit}>
+          <FormField name="name" variant="outlined" label="Name" />
+          <FormField name="email" variant="outlined" label="Email" />
+          <FormField name="password" label="Password" variant="outlined" component={InputPassword} />
+          <FormField name="repeatPassword" label="Repeat password" variant="outlined" component={InputPassword} />
           <div>
             <ButtonSearch type="submit" color="secondary" variant="contained">
               Sign up
             </ButtonSearch>
           </div>
-        </SC.Form>
+        </Form>
         <BlockSocial>
           <FacebookLogin
             appId={config.auth.facebook.appId}
