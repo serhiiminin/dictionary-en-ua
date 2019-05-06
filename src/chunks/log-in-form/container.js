@@ -13,6 +13,7 @@ import {
 } from '../../components';
 import config from '../../config';
 import SC from './styles';
+import { isPresent, isEmail } from '../../util/validators';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -51,8 +52,14 @@ class LoginForm extends Component {
       <div>
         <SC.Title>Welcome back, friend!</SC.Title>
         <Form initialValues={initialValues} onSubmit={this.handleSubmit}>
-          <FormField name="email" variant="outlined" label="Email" />
-          <FormField name="password" label="Password" variant="outlined" component={InputPassword} />
+          <FormField name="email" variant="outlined" validate={[isPresent, isEmail]} label="Email" />
+          <FormField
+            name="password"
+            label="Password"
+            variant="outlined"
+            component={InputPassword}
+            validate={[isPresent]}
+          />
           <div>
             <ButtonSearch type="submit" color="secondary" variant="contained">
               Log in
