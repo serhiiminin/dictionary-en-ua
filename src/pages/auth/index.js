@@ -3,8 +3,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Fade } from '@material-ui/core';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import LogOutContainer from './log-out';
-import { LogInSuggestion, SignUpSuggestion } from '../../chunks';
-import { SignUp, LogIn } from '../../components';
+import { LogInSuggestion, SignUpSuggestion, LogInForm, SignUpForm } from '../../chunks';
 import routes from '../../routes';
 import SC from './styles';
 
@@ -44,7 +43,7 @@ class AuthPage extends Component {
             {!isSliding && (
               <Fade in={!isSliding}>
                 <Switch>
-                  <Route path={routes.auth.logIn} component={LogIn} />
+                  <Route path={routes.auth.logIn} component={LogInForm} />
                   <Route path={routes.auth.signUp} component={LogInSuggestion} />
                 </Switch>
               </Fade>
@@ -55,7 +54,7 @@ class AuthPage extends Component {
               <Fade in={!isSliding}>
                 <Switch>
                   <Route path={routes.auth.logIn} component={SignUpSuggestion} />
-                  <Route path={routes.auth.signUp} component={SignUp} />
+                  <Route path={routes.auth.signUp} component={SignUpForm} />
                 </Switch>
               </Fade>
             )}
