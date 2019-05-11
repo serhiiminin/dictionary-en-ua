@@ -56,7 +56,7 @@ class Form extends Component {
   render() {
     const { form, fieldsErrors, errors } = this.state;
     const { children } = this.props;
-    console.log(children);
+
     return (
       <FormContext.Provider
         value={{
