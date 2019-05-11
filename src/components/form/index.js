@@ -13,35 +13,56 @@ class Form extends Component {
 
   state = {
     form: this.props.initialValues,
+    fieldsErrors: Object.fromEntries(
+      Object.entries(this.props.initialValues).map(([key]) => [key, { isError: true, values: [] }])
+    ),
+    errors: Object.fromEntries(
+      Object.entries(this.props.initialValues).map(([key]) => [key, { isError: false, values: [] }])
+    ),
   };
 
   handleSubmit = event => {
     event.preventDefault();
     const { onSubmit } = this.props;
-    const { form } = this.state;
+    const { form, fieldsErrors } = this.state;
+    const isErrorPresent = Object.values(fieldsErrors).some(({ isError }) => isError === true);
 
-    onSubmit(form);
+    this.setState(prevState => ({
+      errors: prevState.fieldsErrors,
+    }));
+
+    return !isErrorPresent && onSubmit(form);
   };
 
-  onChange = event => {
+  onChange = (event, params) => {
     const { name, value } = event.target;
+    const { isError, values } = params;
 
     this.setState(prevState => ({
       form: {
         ...prevState.form,
         [name]: value,
       },
+      fieldsErrors: {
+        ...prevState.fieldsErrors,
+        [name]: {
+          isError,
+          values,
+        },
+      },
     }));
   };
 
   render() {
-    const { form } = this.state;
+    const { form, fieldsErrors, errors } = this.state;
     const { children } = this.props;
-
+    console.log(children);
     return (
       <FormContext.Provider
         value={{
           form,
+          errors,
+          fieldsErrors,
           onChange: this.onChange,
         }}
       >

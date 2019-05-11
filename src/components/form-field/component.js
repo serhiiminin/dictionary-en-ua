@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@material-ui/core';
 
-const FormField = ({ form, initialValues, component, onChange, validate, ...props }) => {
+const FormField = ({ name, form, initialValues, component, validate, onChange, errors, fieldsErrors, ...props }) => {
   const Cmp = component || TextField;
-  const [isInvalid, setValidation] = useState(false);
+  const { isError, values } = errors[name];
 
-  const validateValue = event => {
-    const isInv = !validate.map(validator => validator(event.target.value)).includes(true);
-    setValidation(isInv);
+  const handleOnChange = event => {
+    const isInvalid = validate.map(validator => Boolean(validator(form[name]))).includes(false);
+    const err = isInvalid ? ['not empty'] : [];
 
-    onChange(event);
+    onChange(event, { isError: isInvalid, values: err });
   };
 
-  return <Cmp value={form[props.name]} onChange={validateValue} error={isInvalid} {...props} />;
+  return (
+    <Cmp name={name} value={form[name]} onChange={handleOnChange} helperText={values[0]} error={isError} {...props} />
+  );
 };
 
 FormField.propTypes = {
   validate: PropTypes.arrayOf(PropTypes.func),
+  errors: PropTypes.objectOf(
+    PropTypes.shape({
+      isError: PropTypes.bool,
+      values: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
+  fieldsErrors: PropTypes.objectOf(
+    PropTypes.shape({
+      isError: PropTypes.bool,
+      values: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
   component: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
