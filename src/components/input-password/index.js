@@ -8,6 +8,7 @@ const InputPassword = props => {
 
   return (
     <TextField
+      {...props}
       variant="outlined"
       type={isVisible ? 'text' : 'password'}
       InputProps={{
@@ -19,7 +20,6 @@ const InputPassword = props => {
           </InputAdornment>
         ),
       }}
-      {...props}
     />
   );
 };

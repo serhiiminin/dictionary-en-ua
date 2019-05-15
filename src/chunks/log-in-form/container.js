@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as yup from 'yup';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import {
-  InputPassword,
-  BlockSocial,
-  ButtonSearch,
-  ButtonFacebook,
-  ButtonGoogle,
-  Form,
-  FormField,
-} from '../../components';
+import { InputPassword, BlockSocial, ButtonSearch, ButtonFacebook, ButtonGoogle, Form } from '../../components';
 import config from '../../config';
 import SC from './styles';
-import { isPresent, isEmail } from '../../util/validators';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
+
+const validationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Invalid email')
+    .required('Required'),
+  password: yup.string().required('Required'),
+});
 
 class LoginForm extends Component {
   static propTypes = {
@@ -43,29 +48,34 @@ class LoginForm extends Component {
   };
 
   render() {
-    const initialValues = {
-      email: '',
-      password: '',
-    };
-
     return (
       <div>
         <SC.Title>Welcome back, friend!</SC.Title>
-        <Form initialValues={initialValues} onSubmit={this.handleSubmit}>
-          <FormField name="email" variant="outlined" validate={[isPresent, isEmail]} label="Email" />
-          <FormField
-            name="password"
-            label="Password"
-            variant="outlined"
-            component={InputPassword}
-            validate={[isPresent]}
-          />
-          <div>
-            <ButtonSearch type="submit" color="secondary" variant="contained">
-              Log in
-            </ButtonSearch>
-          </div>
-        </Form>
+        <Form
+          validateOnBlur
+          validateOnChange={false}
+          onSubmit={this.handleSubmit}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          fields={[
+            {
+              name: 'email',
+              label: 'Email',
+            },
+            {
+              name: 'password',
+              label: 'Password',
+              component: InputPassword,
+            },
+          ]}
+          renderSubmit={handleSubmit => (
+            <div>
+              <ButtonSearch onClick={handleSubmit} color="secondary" variant="contained">
+                Log in
+              </ButtonSearch>
+            </div>
+          )}
+        />
         <BlockSocial>
           <FacebookLogin
             appId={config.auth.facebook.appId}
