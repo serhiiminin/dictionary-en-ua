@@ -1,79 +1,83 @@
-import React, { Component, createContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Formik } from 'formik';
+import { TextField } from '@material-ui/core';
 import SC from './styles';
 
-const FormContext = createContext({});
+const FormCmp = ({
+  renderSubmit,
+  validationSchema,
+  initialValues,
+  onSubmit,
+  fields,
+  validateOnBlur,
+  validateOnChange,
+}) => {
+  return (
+    <Formik
+      validateOnBlur={validateOnBlur}
+      validateOnChange={validateOnChange}
+      onSubmit={(values, actions) => {
+        onSubmit(values);
+        actions.setSubmitting(false);
+        actions.resetForm(initialValues);
+      }}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+    >
+      {({ values, errors, handleSubmit, handleChange, handleBlur, isSubmitting }) => (
+        <SC.Form onSubmit={handleSubmit}>
+          {fields.map(({ name = '', type = 'text', label = '', variant = 'outlined', component }) => {
+            const Cmp = component || TextField;
 
-class Form extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    initialValues: PropTypes.instanceOf(Object).isRequired,
-  };
+            return (
+              <Cmp
+                key={name}
+                type={type}
+                name={name}
+                label={label}
+                variant={variant}
+                values={values[name]}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={Boolean(errors[name])}
+                helperText={errors[name]}
+                disabled={isSubmitting}
+              />
+            );
+          })}
+          {renderSubmit && renderSubmit(handleSubmit)}
+        </SC.Form>
+      )}
+    </Formik>
+  );
+};
 
-  state = {
-    form: this.props.initialValues,
-    fieldsErrors: Object.fromEntries(
-      Object.entries(this.props.initialValues).map(([key]) => [key, { isError: true, values: [] }])
-    ),
-    errors: Object.fromEntries(
-      Object.entries(this.props.initialValues).map(([key]) => [key, { isError: false, values: [] }])
-    ),
-  };
+FormCmp.propTypes = {
+  validateOnBlur: PropTypes.bool,
+  validateOnChange: PropTypes.bool,
+  fields: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string,
+      label: PropTypes.string,
+      variant: PropTypes.string,
+      component: PropTypes.func,
+    })
+  ),
+  renderSubmit: PropTypes.func,
+  validationSchema: PropTypes.shape({}),
+  initialValues: PropTypes.shape({}),
+  onSubmit: PropTypes.func.isRequired,
+};
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { onSubmit } = this.props;
-    const { form, fieldsErrors } = this.state;
-    const isErrorPresent = Object.values(fieldsErrors).some(({ isError }) => isError === true);
+FormCmp.defaultProps = {
+  fields: [],
+  validateOnBlur: false,
+  validateOnChange: false,
+  renderSubmit: null,
+  validationSchema: null,
+  initialValues: {},
+};
 
-    this.setState(prevState => ({
-      errors: prevState.fieldsErrors,
-    }));
-
-    return !isErrorPresent && onSubmit(form);
-  };
-
-  onChange = (event, params) => {
-    const { name, value } = event.target;
-    const { isError, values } = params;
-
-    this.setState(prevState => ({
-      form: {
-        ...prevState.form,
-        [name]: value,
-      },
-      fieldsErrors: {
-        ...prevState.fieldsErrors,
-        [name]: {
-          isError,
-          values,
-        },
-      },
-    }));
-  };
-
-  render() {
-    const { form, fieldsErrors, errors } = this.state;
-    const { children } = this.props;
-
-    return (
-      <FormContext.Provider
-        value={{
-          form,
-          errors,
-          fieldsErrors,
-          onChange: this.onChange,
-        }}
-      >
-        <SC.Form onSubmit={this.handleSubmit}>{children}</SC.Form>
-      </FormContext.Provider>
-    );
-  }
-}
-
-export default Form;
-
-export const withForm = Cmp => props => (
-  <FormContext.Consumer>{value => <Cmp {...value} {...props} />}</FormContext.Consumer>
-);
+export default FormCmp;
