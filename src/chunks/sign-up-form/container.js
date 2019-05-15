@@ -19,8 +19,14 @@ const validationSchema = yup.object().shape({
     .string()
     .email('Invalid email')
     .required('Required'),
-  password: yup.string().required('Required'),
-  repeatPassword: yup.string().required('Required'),
+  password: yup
+    .string()
+    .oneOf([yup.ref('repeatPassword'), null], "Passwords don't match")
+    .required('Required'),
+  repeatPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], "Passwords don't match")
+    .required('Required'),
 });
 
 class SignUpForm extends Component {
@@ -78,9 +84,9 @@ class SignUpForm extends Component {
               component: InputPassword,
             },
           ]}
-          renderSubmit={handleSubmit => (
+          renderSubmit={() => (
             <div>
-              <ButtonSearch onClick={handleSubmit} type="submit" color="secondary" variant="contained">
+              <ButtonSearch type="submit" color="secondary" variant="contained">
                 Sign up
               </ButtonSearch>
             </div>

@@ -68,9 +68,9 @@ class LoginForm extends Component {
               component: InputPassword,
             },
           ]}
-          renderSubmit={handleSubmit => (
+          renderSubmit={() => (
             <div>
-              <ButtonSearch onClick={handleSubmit} color="secondary" variant="contained">
+              <ButtonSearch type="submit" color="secondary" variant="contained">
                 Log in
               </ButtonSearch>
             </div>
