@@ -12,46 +12,44 @@ const FormCmp = ({
   fields,
   validateOnBlur,
   validateOnChange,
-}) => {
-  return (
-    <Formik
-      validateOnBlur={validateOnBlur}
-      validateOnChange={validateOnChange}
-      onSubmit={(values, actions) => {
-        onSubmit(values);
-        actions.setSubmitting(false);
-        actions.resetForm(initialValues);
-      }}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-    >
-      {({ values, errors, handleSubmit, handleChange, handleBlur, isSubmitting }) => (
-        <SC.Form onSubmit={handleSubmit}>
-          {fields.map(({ name = '', type = 'text', label = '', variant = 'outlined', component }) => {
-            const Cmp = component || TextField;
+  isLoading,
+}) => (
+  <Formik
+    validateOnBlur={validateOnBlur}
+    validateOnChange={validateOnChange}
+    onSubmit={(values, actions) => {
+      actions.resetForm(initialValues);
+      onSubmit(values);
+    }}
+    initialValues={initialValues}
+    validationSchema={validationSchema}
+  >
+    {({ values, errors, handleSubmit, handleChange, handleBlur }) => (
+      <SC.Form onSubmit={handleSubmit}>
+        {fields.map(({ name = '', type = 'text', label = '', variant = 'outlined', component }) => {
+          const Cmp = component || TextField;
 
-            return (
-              <Cmp
-                key={name}
-                type={type}
-                name={name}
-                label={label}
-                variant={variant}
-                values={values[name]}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={Boolean(errors[name])}
-                helperText={errors[name]}
-                disabled={isSubmitting}
-              />
-            );
-          })}
-          {renderSubmit && renderSubmit(handleSubmit)}
-        </SC.Form>
-      )}
-    </Formik>
-  );
-};
+          return (
+            <Cmp
+              key={name}
+              type={type}
+              name={name}
+              label={label}
+              variant={variant}
+              values={values[name]}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={Boolean(errors[name])}
+              helperText={errors[name]}
+              disabled={isLoading}
+            />
+          );
+        })}
+        {renderSubmit && renderSubmit(handleSubmit)}
+      </SC.Form>
+    )}
+  </Formik>
+);
 
 FormCmp.propTypes = {
   validateOnBlur: PropTypes.bool,
@@ -69,6 +67,7 @@ FormCmp.propTypes = {
   validationSchema: PropTypes.shape({}),
   initialValues: PropTypes.shape({}),
   onSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 FormCmp.defaultProps = {

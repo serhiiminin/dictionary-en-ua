@@ -9,6 +9,7 @@ export { default as ButtonPrimary } from './button-primary';
 export { default as ButtonSearch } from './button-search';
 export { default as ButtonSocial } from './button-social';
 export { default as Form } from './form';
+export { default as FormWrapper } from './form-wrapper';
 export { default as Header } from './header';
 export { default as InputPassword } from './input-password';
 export { default as PrivateRoute } from './private-route';
