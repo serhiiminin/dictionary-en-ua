@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const MainPage = styled.div`
   display: grid;
   justify-content: center;
-  padding-top: 210px;
+  padding-top: 240px;
 `;
 
 const SearchBlockWrapper = styled.div`
