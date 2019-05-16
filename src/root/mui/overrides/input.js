@@ -9,7 +9,6 @@ export default theme => ({
       width: '100%',
     },
   },
-  MuiFormHelperText: {},
   MuiInput: {},
   MuiOutlinedInput: {
     root: {

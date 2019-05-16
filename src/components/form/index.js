@@ -40,7 +40,7 @@ const FormCmp = ({
               onChange={handleChange}
               onBlur={handleBlur}
               error={Boolean(errors[name])}
-              helperText={errors[name]}
+              helperText={errors[name] || ' '}
               disabled={isLoading}
             />
           );

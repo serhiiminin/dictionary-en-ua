@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Form = styled(FormFormik)`
   display: grid;
-  gap: 1em;
+  gap: 0.5em;
 `;
 
 export default { Form };

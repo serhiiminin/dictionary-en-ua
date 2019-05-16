@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: ${props => props.theme.main.colors.background};
 `;
 
 const Inner = styled.div`
