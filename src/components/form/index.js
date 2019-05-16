@@ -45,7 +45,7 @@ const FormCmp = ({
             />
           );
         })}
-        {renderSubmit && renderSubmit(handleSubmit)}
+        <div>{renderSubmit && renderSubmit(handleSubmit)}</div>
       </SC.Form>
     )}
   </Formik>

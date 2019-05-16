@@ -13,6 +13,7 @@ import {
   FormWrapper,
 } from '../../components';
 import LN from '../../constants/loading-names';
+import VL from '../../constants/validation-lines';
 import config from '../../config';
 import SC from './styles';
 
@@ -24,9 +25,12 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Invalid email')
-    .required('Required'),
-  password: yup.string().required('Required'),
+    .required(VL.required)
+    .email(VL.email),
+  password: yup
+    .string()
+    .min(8, VL.passwordMinLength)
+    .required(VL.required),
 });
 
 class LoginForm extends Component {
@@ -84,11 +88,9 @@ class LoginForm extends Component {
               },
             ]}
             renderSubmit={() => (
-              <div>
-                <ButtonSearch type="submit" color="secondary" variant="contained">
-                  Log in
-                </ButtonSearch>
-              </div>
+              <ButtonSearch type="submit" color="secondary" variant="contained">
+                Log in
+              </ButtonSearch>
             )}
           />
         </FormWrapper>

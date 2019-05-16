@@ -9,7 +9,6 @@ export default theme => ({
       width: '100%',
     },
   },
-  MuiInput: {},
   MuiOutlinedInput: {
     root: {
       '& $notchedOutline': {
@@ -21,13 +20,11 @@ export default theme => ({
     },
     input: {
       padding: `${theme.main.padding.large} ${theme.main.padding.extraLarge}`,
-      lineHeight: 1.5,
     },
     notchedOutline: {
       borderRadius: theme.main.borderRadius.medium,
     },
   },
-  MuiFormInput: {},
   MuiInputLabel: {
     root: {
       '&$focused': {
@@ -36,7 +33,6 @@ export default theme => ({
     },
     outlined: {
       transform: `translate(${theme.main.padding.extraLarge}, ${theme.main.padding.large}) scale(1)`,
-      lineHeight: 1.5,
     },
   },
 });
