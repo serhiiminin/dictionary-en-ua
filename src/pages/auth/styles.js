@@ -16,13 +16,13 @@ const Outer = styled.div`
   border-radius: 8px;
 `;
 
-const Background = styled.button`
+const Background = styled.div`
   position: absolute;
-  width: ${SMALL_WIDTH};  
-  height: 100%;  
-  background: linear-gradient(149.02deg,#86d1ff -11.95%,#bbd6fd 89.7%,#c5d7fd 89.71%,#c5d7fd 89.73%);
+  width: ${SMALL_WIDTH};
+  height: 100%;
+  background: linear-gradient(149.02deg, #86d1ff -11.95%, #bbd6fd 89.7%, #c5d7fd 89.71%, #c5d7fd 89.73%);
   transition: all ${props => props.transitionDelay}ms ease-in-out;
-  left: ${props => (props.isLeft ? BIG_WIDTH : 0)}
+  left: ${props => (props.isLeft ? BIG_WIDTH : 0)};
   top: 0;
   border-radius: 8px;
   border-width: 0;
