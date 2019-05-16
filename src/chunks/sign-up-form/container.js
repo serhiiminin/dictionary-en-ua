@@ -3,7 +3,16 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { InputPassword, BlockSocial, ButtonSearch, ButtonFacebook, ButtonGoogle, Form } from '../../components';
+import {
+  InputPassword,
+  BlockSocial,
+  ButtonSearch,
+  ButtonFacebook,
+  ButtonGoogle,
+  Form,
+  FormWrapper,
+} from '../../components';
+import LN from '../../constants/loading-names';
 import config from '../../config';
 import SC from './styles';
 
@@ -34,6 +43,7 @@ class SignUpForm extends Component {
     handleBasicSignUp: PropTypes.func.isRequired,
     handleGoogleSignUp: PropTypes.func.isRequired,
     handleFacebookSignUp: PropTypes.func.isRequired,
+    checkIsLoading: PropTypes.func.isRequired,
   };
 
   handleSubmit = formData => {
@@ -57,41 +67,47 @@ class SignUpForm extends Component {
   };
 
   render() {
+    const { checkIsLoading } = this.props;
+    const isLoading = checkIsLoading(LN.auth.signUp);
+
     return (
       <div>
         <SC.Title>First here? Create an account now!</SC.Title>
-        <Form
-          validationSchema={validationSchema}
-          initialValues={initialValues}
-          onSubmit={this.handleSubmit}
-          fields={[
-            {
-              name: 'name',
-              label: 'Name',
-            },
-            {
-              name: 'email',
-              label: 'Email',
-            },
-            {
-              name: 'password',
-              label: 'Password',
-              component: InputPassword,
-            },
-            {
-              name: 'repeatPassword',
-              label: 'Repeat password',
-              component: InputPassword,
-            },
-          ]}
-          renderSubmit={() => (
-            <div>
-              <ButtonSearch type="submit" color="secondary" variant="contained">
-                Sign up
-              </ButtonSearch>
-            </div>
-          )}
-        />
+        <FormWrapper>
+          <Form
+            isLoading={isLoading}
+            validationSchema={validationSchema}
+            initialValues={initialValues}
+            onSubmit={this.handleSubmit}
+            fields={[
+              {
+                name: 'name',
+                label: 'Name',
+              },
+              {
+                name: 'email',
+                label: 'Email',
+              },
+              {
+                name: 'password',
+                label: 'Password',
+                component: InputPassword,
+              },
+              {
+                name: 'repeatPassword',
+                label: 'Repeat password',
+                component: InputPassword,
+              },
+            ]}
+            renderSubmit={() => (
+              <div>
+                <ButtonSearch type="submit" color="secondary" variant="contained">
+                  Sign up
+                </ButtonSearch>
+              </div>
+            )}
+          />
+        </FormWrapper>
         <BlockSocial>
           <FacebookLogin
             appId={config.auth.facebook.appId}

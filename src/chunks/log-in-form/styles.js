@@ -6,7 +6,6 @@ const Form = styled.form`
 `;
 
 const Title = styled.h2`
-  font-family: Cairo;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;

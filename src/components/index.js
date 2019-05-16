@@ -1,4 +1,5 @@
 export { default as AuthSuggestion } from './auth-suggestion';
+export { default as BlockOffset } from './block-offset';
 export { default as BlockSocial } from './block-social';
 export { default as BlocksWrapper } from './blocks-wrapper';
 export { default as Button } from './button';
@@ -9,6 +10,7 @@ export { default as ButtonPrimary } from './button-primary';
 export { default as ButtonSearch } from './button-search';
 export { default as ButtonSocial } from './button-social';
 export { default as Form } from './form';
+export { default as FormWrapper } from './form-wrapper';
 export { default as Header } from './header';
 export { default as InputPassword } from './input-password';
 export { default as PrivateRoute } from './private-route';

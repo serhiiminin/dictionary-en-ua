@@ -31,9 +31,9 @@ const Background = styled.button`
 
 const HalfPart = styled.div`
   width: ${props => (props.isActive ? BIG_WIDTH : SMALL_WIDTH)};
+  padding: 40px 70px;
   position: relative;
   min-height: 100%;
-  padding: 20px 25px;
 `;
 
 const rotate = keyframes`
