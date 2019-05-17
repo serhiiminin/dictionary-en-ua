@@ -4,14 +4,14 @@ import { withRouter } from 'react-router-dom';
 import { withAuth } from '../../context/auth';
 import { withErrors } from '../../context/errors';
 import { withLoadingNames } from '../../context/loading-names';
-import LogInCmp from './component';
+import ForgotPasswordCmp from './component';
 
-const LogIn = compose(
+const ForgotPassword = compose(
   withRouter,
   withAuth,
   withErrors,
   withLoadingNames,
   withTheme
-)(LogInCmp);
+)(ForgotPasswordCmp);
 
-export default LogIn;
+export default ForgotPassword;

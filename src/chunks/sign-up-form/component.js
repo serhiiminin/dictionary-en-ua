@@ -52,7 +52,7 @@ class SignUpForm extends Component {
   handleSubmit = formData => {
     const { handleBasicSignUp } = this.props;
 
-    handleBasicSignUp(formData);
+    return handleBasicSignUp(formData);
   };
 
   handleGoogle = tokenData => {
@@ -108,19 +108,19 @@ class SignUpForm extends Component {
               </ButtonSearch>
             )}
           />
+          <BlockSocial>
+            <FacebookLogin
+              appId={config.auth.facebook.appId}
+              callback={this.handleFacebook}
+              render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+            />
+            <GoogleLogin
+              clientId={config.auth.google.clientId}
+              onSuccess={this.handleGoogle}
+              render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+            />
+          </BlockSocial>
         </FormWrapper>
-        <BlockSocial>
-          <FacebookLogin
-            appId={config.auth.facebook.appId}
-            callback={this.handleFacebook}
-            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
-          />
-          <GoogleLogin
-            clientId={config.auth.google.clientId}
-            onSuccess={this.handleGoogle}
-            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
-          />
-        </BlockSocial>
       </div>
     );
   }

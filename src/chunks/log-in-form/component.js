@@ -16,6 +16,7 @@ import LN from '../../constants/loading-names';
 import VL from '../../constants/validation-lines';
 import config from '../../config';
 import SC from './styles';
+import routes from '../../routes';
 
 const initialValues = {
   email: '',
@@ -44,7 +45,7 @@ class LoginForm extends Component {
   handleSubmit = formData => {
     const { handleBasicLogIn } = this.props;
 
-    handleBasicLogIn(formData);
+    return handleBasicLogIn(formData);
   };
 
   handleGoogle = tokenData => {
@@ -88,24 +89,27 @@ class LoginForm extends Component {
               },
             ]}
             renderSubmit={() => (
-              <ButtonSearch type="submit" color="secondary" variant="contained">
-                Log in
-              </ButtonSearch>
+              <SC.SubmitBlock>
+                <ButtonSearch type="submit" color="secondary" variant="contained">
+                  Log in
+                </ButtonSearch>
+                <SC.LinkForgotPassword to={routes.auth.forgotPassword}>Forgot your password?</SC.LinkForgotPassword>
+              </SC.SubmitBlock>
             )}
           />
+          <BlockSocial>
+            <FacebookLogin
+              appId={config.auth.facebook.appId}
+              callback={this.handleFacebook}
+              render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+            />
+            <GoogleLogin
+              clientId={config.auth.google.clientId}
+              onSuccess={this.handleGoogle}
+              render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+            />
+          </BlockSocial>
         </FormWrapper>
-        <BlockSocial>
-          <FacebookLogin
-            appId={config.auth.facebook.appId}
-            callback={this.handleFacebook}
-            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
-          />
-          <GoogleLogin
-            clientId={config.auth.google.clientId}
-            onSuccess={this.handleGoogle}
-            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
-          />
-        </BlockSocial>
       </div>
     );
   }

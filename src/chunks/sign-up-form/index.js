@@ -3,7 +3,7 @@ import { withTheme } from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withAuth } from '../../context/auth';
 import { withErrors } from '../../context/errors';
-import SignUpCmp from './container';
+import SignUpCmp from './component';
 import { withLoadingNames } from '../../context/loading-names';
 
 const SignUp = compose(
