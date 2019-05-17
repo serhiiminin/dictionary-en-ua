@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, InputAdornment, IconButton } from '@material-ui/core';
+import { TextField, InputAdornment } from '@material-ui/core';
 import { VisibilityOff, Visibility } from '@material-ui/icons';
+import ButtonVisibility from '../button-visibility';
 
 const InputPassword = props => {
   const [isVisible, setVisibility] = useState(false);
@@ -14,9 +15,9 @@ const InputPassword = props => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton aria-label="Toggle password visibility" onClick={toggleVisibility}>
+            <ButtonVisibility aria-label="Toggle password visibility" onClick={toggleVisibility}>
               {isVisible ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
+            </ButtonVisibility>
           </InputAdornment>
         ),
       }}

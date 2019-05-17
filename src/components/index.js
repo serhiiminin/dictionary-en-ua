@@ -8,6 +8,7 @@ export { default as ButtonMenu } from './button-menu';
 export { default as ButtonPrimary } from './button-primary';
 export { default as ButtonSearch } from './button-search';
 export { default as ButtonSocial } from './button-social';
+export { default as ButtonVisibility } from './button-visibility';
 export { default as Form } from './form';
 export { default as FormWrapper } from './form-wrapper';
 export { default as Header } from './header';
