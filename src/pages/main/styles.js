@@ -30,7 +30,7 @@ const SearchBlock = styled.div`
   grid-auto-flow: column;
   grid-column-gap: 30px;
   align-items: center;
-  margin-top: ${props => props.theme.main.margin.extraLarge};
+  margin-top: ${props => props.theme.main.margin.medium};
 `;
 const TextField = styled(props => <MuiTextField {...props} />)`
   && {

@@ -16,6 +16,7 @@ const Inner = styled.div`
 
 const Title = styled(TitleLg)`
   color: ${props => props.theme.main.colors.background};
+  margin: 0;
 `;
 
 const Description = styled.p`
@@ -25,6 +26,8 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const Control = styled.div``;
+const Control = styled.div`
+  margin-top: 45px;
+`;
 
 export default { Wrapper, Inner, Title, Description, Control };
