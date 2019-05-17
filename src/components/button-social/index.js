@@ -5,12 +5,10 @@ import Button from '../button';
 
 const ButtonSocial = styled(props => <Button {...props} component={Fab} />)`
   && {
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.85);
-    padding: 15px 45px;
-    background: rgba(216, 216, 216, 0.0001);
+    background: #ffffff;
+    box-shadow: 9px 9px 18px rgba(123, 123, 123, 0.1);
     &:hover {
-      background: rgba(216, 216, 216, 0.0001);
+      background: #ffffff;
     }
   }
 `;

@@ -40,12 +40,12 @@ const FormCmp = ({
               onChange={handleChange}
               onBlur={handleBlur}
               error={Boolean(errors[name])}
-              helperText={errors[name]}
+              helperText={errors[name] || ' '}
               disabled={isLoading}
             />
           );
         })}
-        {renderSubmit && renderSubmit(handleSubmit)}
+        <div>{renderSubmit && renderSubmit(handleSubmit)}</div>
       </SC.Form>
     )}
   </Formik>

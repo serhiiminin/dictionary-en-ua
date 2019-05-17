@@ -34,11 +34,7 @@ const Header = ({ isLoggedIn }) => {
 };
 
 Header.propTypes = {
-  isLoggedIn: PropTypes.bool,
-};
-
-Header.defaultProps = {
-  isLoggedIn: false,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Header;

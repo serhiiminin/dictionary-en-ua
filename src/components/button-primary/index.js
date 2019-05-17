@@ -11,6 +11,7 @@ const ButtonPrimary = styled(props => <ButtonWithRouter {...props} />)`
     background: #fff;
     line-height: 26px;
     text-align: center;
+    font-weight: bold;
     letter-spacing: 2px;
     &:hover {
       background: #fff;

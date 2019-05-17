@@ -8,6 +8,7 @@ import apiRoutes from './api-routes';
 const createApiMethodsBasicAuth = endpoint => fetcher => ({
   logIn: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.logIn), { body })),
   signUp: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.signUp), { body })),
+  forgotPassword: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.forgotPassword), { body })),
 });
 
 const createApiMethodsGoogleAuth = endpoint => fetcher => ({

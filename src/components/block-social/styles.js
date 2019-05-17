@@ -5,6 +5,7 @@ const BlockSocial = styled.div`
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-around;
+  margin-top: 30px;
 `;
 
 const Label = styled.span`

@@ -13,8 +13,8 @@ const HeaderLink = styled(Link)`
   text-decoration: none;
 `;
 const LogoSvg = styled(Logo)`
-  width: 250px;
-  height: 55px;
+  width: 190px;
+  height: 40px;
 `;
 const MenuDivider = styled.div`
   display: grid;

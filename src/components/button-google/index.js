@@ -1,9 +1,8 @@
 import React from 'react';
-import { Fab } from '@material-ui/core';
-import Button from '../button';
+import ButtonSocial from '../button-social';
 
 const ButtonGoogle = props => (
-  <Button {...props} component={Fab}>
+  <ButtonSocial {...props}>
     <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
       <g clipPath="url(#clip0)">
         <path
@@ -29,7 +28,7 @@ const ButtonGoogle = props => (
         </clipPath>
       </defs>
     </svg>
-  </Button>
+  </ButtonSocial>
 );
 
 export default ButtonGoogle;

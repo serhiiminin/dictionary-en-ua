@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import WordsList from './container';
+import WordsList from './component';
 
 describe('MainContainer page', () => {
   let wrapper;

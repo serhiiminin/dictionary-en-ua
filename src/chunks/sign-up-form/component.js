@@ -13,6 +13,7 @@ import {
   FormWrapper,
 } from '../../components';
 import LN from '../../constants/loading-names';
+import VL from '../../constants/validation-lines';
 import config from '../../config';
 import SC from './styles';
 
@@ -26,16 +27,18 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Invalid email')
-    .required('Required'),
+    .required(VL.required)
+    .email(VL.email),
   password: yup
     .string()
-    .oneOf([yup.ref('repeatPassword'), null], "Passwords don't match")
-    .required('Required'),
+    .required(VL.required)
+    .min(8, VL.passwordMinLength)
+    .oneOf([yup.ref('repeatPassword'), null], VL.match),
   repeatPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], "Passwords don't match")
-    .required('Required'),
+    .required(VL.required)
+    .min(8, VL.passwordMinLength)
+    .oneOf([yup.ref('password'), null], VL.match),
 });
 
 class SignUpForm extends Component {
@@ -49,7 +52,7 @@ class SignUpForm extends Component {
   handleSubmit = formData => {
     const { handleBasicSignUp } = this.props;
 
-    handleBasicSignUp(formData);
+    return handleBasicSignUp(formData);
   };
 
   handleGoogle = tokenData => {
@@ -100,26 +103,24 @@ class SignUpForm extends Component {
               },
             ]}
             renderSubmit={() => (
-              <div>
-                <ButtonSearch type="submit" color="secondary" variant="contained">
-                  Sign up
-                </ButtonSearch>
-              </div>
+              <ButtonSearch type="submit" color="secondary" variant="contained">
+                Sign up
+              </ButtonSearch>
             )}
           />
+          <BlockSocial>
+            <FacebookLogin
+              appId={config.auth.facebook.appId}
+              callback={this.handleFacebook}
+              render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+            />
+            <GoogleLogin
+              clientId={config.auth.google.clientId}
+              onSuccess={this.handleGoogle}
+              render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+            />
+          </BlockSocial>
         </FormWrapper>
-        <BlockSocial>
-          <FacebookLogin
-            appId={config.auth.facebook.appId}
-            callback={this.handleFacebook}
-            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
-          />
-          <GoogleLogin
-            clientId={config.auth.google.clientId}
-            onSuccess={this.handleGoogle}
-            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
-          />
-        </BlockSocial>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const MainPage = styled.div`
   display: grid;
   justify-content: center;
-  padding-top: 210px;
+  padding-top: 240px;
 `;
 
 const SearchBlockWrapper = styled.div`
@@ -30,7 +30,7 @@ const SearchBlock = styled.div`
   grid-auto-flow: column;
   grid-column-gap: 30px;
   align-items: center;
-  margin-top: ${props => props.theme.main.margin.extraLarge};
+  margin-top: ${props => props.theme.main.margin.medium};
 `;
 const TextField = styled(props => <MuiTextField {...props} />)`
   && {

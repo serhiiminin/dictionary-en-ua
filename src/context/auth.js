@@ -90,6 +90,19 @@ class AuthProviderCmp extends Component {
     });
   };
 
+  handleBasicForgotPassword = ({ email }) => {
+    const { enqueueSnackbar } = this.props;
+
+    return this.handleFetch()({
+      loadingName: loadingNames.auth.forgotPassword,
+      apiHandler: apiMethodsBasicAuth.forgotPassword({ email }).then(() =>
+        enqueueSnackbar('Password is sent! Check your email', {
+          variant: notificationType.success,
+        })
+      ),
+    });
+  };
+
   handleGoogleLogIn = token => {
     const { enqueueSnackbar, history } = this.props;
 
@@ -184,6 +197,7 @@ class AuthProviderCmp extends Component {
           cleanToken: this.cleanToken,
           handleBasicLogIn: this.handleBasicLogIn,
           handleBasicSignUp: this.handleBasicSignUp,
+          handleBasicForgotPassword: this.handleBasicForgotPassword,
           handleGoogleLogIn: this.handleGoogleLogIn,
           handleGoogleSignUp: this.handleGoogleSignUp,
           handleFacebookLogIn: this.handleFacebookLogIn,
