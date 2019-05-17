@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withSnackbar } from 'notistack';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -21,81 +21,54 @@ const INITIAL_SORT_DATA = {
   countPerPage: 5,
 };
 
-const wordsInitialState = {
-  wordsList: [],
-  wordItem: {},
-  count: 0,
-  gif: '',
+const getSearchParams = search => {
+  const { sortBy, sortDirection, page, countPerPage } = INITIAL_SORT_DATA;
+  const parsedParams = parseSearch(search);
+
+  return {
+    sortBy: parsedParams.sortBy || sortBy,
+    sortDirection: parsedParams.sortDirection || sortDirection,
+    page: Number(parsedParams.page) || page,
+    countPerPage: Number(parsedParams.countPerPage) || countPerPage,
+  };
 };
+
 const WordsContext = createContext({});
 
-class WordsProviderCmp extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    enqueueSnackbar: PropTypes.func.isRequired,
-    startLoading: PropTypes.func.isRequired,
-    stopLoading: PropTypes.func.isRequired,
-    handleError: PropTypes.func.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-    tokenData: PropTypes.shape({
-      token: PropTypes.string,
-      _id: PropTypes.string,
-      email: PropTypes.string,
-      expiresAt: PropTypes.number,
-    }),
-    user: PropTypes.shape({}),
-  };
+const WordsProviderCmp = ({
+  startLoading,
+  stopLoading,
+  handleError,
+  location,
+  tokenData,
+  enqueueSnackbar,
+  children,
+}) => {
+  const [wordsList, setWordsList] = useState([]);
+  const [wordItem, setWordItem] = useState({});
+  const [count, setCount] = useState(0);
 
-  static defaultProps = {
-    tokenData: null,
-    user: null,
-  };
+  const handleFetch = createHandleFetch({
+    startLoading,
+    stopLoading,
+    errorHandler: handleError,
+  });
+  const { token, _id: ownerId } = tokenData || {};
 
-  state = wordsInitialState;
+  const cleanWordsList = () => setWordsList([]);
 
-  handleFetch = () => {
-    const { startLoading, stopLoading, handleError } = this.props;
+  const cleanWord = () => setWordItem({});
 
-    return createHandleFetch({
-      startLoading,
-      stopLoading,
-      errorHandler: handleError,
-    });
-  };
+  const setWordToState = wordData => setWordItem(wordData);
 
-  getSearchParams = () => {
-    const { location } = this.props;
-    const { sortBy, sortDirection, page, countPerPage } = INITIAL_SORT_DATA;
-    const parsedParams = parseSearch(location.search);
-
-    return {
-      sortBy: parsedParams.sortBy || sortBy,
-      sortDirection: parsedParams.sortDirection || sortDirection,
-      page: Number(parsedParams.page) || page,
-      countPerPage: Number(parsedParams.countPerPage) || countPerPage,
-    };
-  };
-
-  cleanWordsList = () => this.setState({ wordsList: wordsInitialState.wordsList });
-
-  cleanWord = () => this.setState({ wordItem: wordsInitialState.wordItem });
-
-  setWordToState = wordItem => this.setState({ wordItem });
-
-  fetchWord = wordId => {
-    const { tokenData } = this.props;
-    const { token } = tokenData || {};
-
-    return this.handleFetch()({
+  const fetchWord = wordId =>
+    handleFetch({
       loadingName: loadingNames.words.fetch,
-      apiHandler: apiWord.get(wordId, token).then(wordItem => this.setState({ wordItem })),
+      apiHandler: apiWord.get(wordId, token).then(setWordToState),
     });
-  };
 
-  fetchWordsList = () => {
-    const { sortBy, sortDirection, page, countPerPage } = this.getSearchParams();
-    const { tokenData } = this.props;
-    const { _id: ownerId, token } = tokenData || {};
+  const fetchWordsList = () => {
+    const { sortBy, sortDirection, page, countPerPage } = getSearchParams(location.search);
     const query = {
       skip: (page - 1) * countPerPage,
       limit: Number(countPerPage),
@@ -103,19 +76,17 @@ class WordsProviderCmp extends Component {
       sortBy,
     };
 
-    return this.handleFetch()({
+    return handleFetch({
       loadingName: loadingNames.words.list,
-      apiHandler: apiWord.getList({ query, ownerId }, token).then(({ items, count }) => {
-        this.setState({ wordsList: items, count });
+      apiHandler: apiWord.getList({ query, ownerId }, token).then(({ items, count: wordsCount }) => {
+        setWordsList(items);
+        setCount(wordsCount);
       }),
     });
   };
 
-  createWord = word => {
-    const { tokenData, enqueueSnackbar } = this.props;
-    const { _id: ownerId, token } = tokenData || {};
-
-    return this.handleFetch()({
+  const createWord = word =>
+    handleFetch({
       loadingName: loadingNames.words.save,
       apiHandler: apiWord.create({ ...word, ownerId }, token).then(() =>
         enqueueSnackbar('The word has been saved successfully', {
@@ -123,13 +94,9 @@ class WordsProviderCmp extends Component {
         })
       ),
     });
-  };
 
-  editWord = word => {
-    const { tokenData, enqueueSnackbar } = this.props;
-    const { token } = tokenData || {};
-
-    return this.handleFetch()({
+  const editWord = word =>
+    handleFetch({
       loadingName: loadingNames.words.fetch,
       apiHandler: apiWord.update(word, token).then(() =>
         enqueueSnackbar('The word has been updated successfully', {
@@ -137,115 +104,108 @@ class WordsProviderCmp extends Component {
         })
       ),
     });
-  };
 
-  deleteWord = id => {
-    const { tokenData, enqueueSnackbar } = this.props;
-    const { token } = tokenData || {};
-
-    return this.handleFetch()({
+  const deleteWord = id =>
+    handleFetch({
       loadingName: loadingNames.words.delete,
       apiHandler: apiWord
         .delete(id, token)
-        .then(this.fetchWordsList)
+        .then(fetchWordsList)
         .then(() =>
           enqueueSnackbar('The word has been deleted successfully', {
             variant: notificationType.success,
           })
         ),
     });
-  };
 
-  searchWord = params => {
-    const { tokenData } = this.props;
-    const { token } = tokenData || {};
-
-    return this.handleFetch()({
+  const searchWord = params =>
+    handleFetch({
       loadingName: loadingNames.words.search,
       apiHandler: apiWord.search(params, token).then(foundWord =>
         apiGif.get({ q: foundWord.word }).then(gifs => {
           const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
           const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 
-          this.setState({
-            wordItem: {
-              ...normalizeWord(foundWord),
-              gif: randomGif,
-            },
+          setWordItem({
+            ...normalizeWord(foundWord),
+            gif: randomGif,
           });
         })
       ),
     });
-  };
 
-  fetchWordsToLearn = () => {
-    const { tokenData } = this.props;
-    const { _id: ownerId, token } = tokenData || {};
+  const fetchWordsToLearn = () =>
+    handleFetch({
+      loadingName: loadingNames.words.learn,
+      apiHandler: apiWord.getListToLearn({ ownerId }, token).then(({ items, count: wordsCount }) => {
+        setWordsList(items);
+        setCount(wordsCount);
+      }),
+    });
 
-    return this.handleFetch()({
+  const learnWord = wordId =>
+    handleFetch({
       loadingName: loadingNames.words.learn,
       apiHandler: apiWord
-        .getListToLearn({ ownerId }, token)
-        .then(({ items, count }) => this.setState({ wordsList: items, count })),
+        .learn(wordId, token)
+        .then(() => setWordsList(prevState => [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)])),
     });
-  };
 
-  learnWord = wordId => {
-    const { tokenData } = this.props;
-    const { token } = tokenData || {};
-
-    return this.handleFetch()({
-      loadingName: loadingNames.words.learn,
-      apiHandler: apiWord.learn(wordId, token).then(() =>
-        this.setState(prevState => ({
-          wordsList: [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)],
-        }))
-      ),
-    });
-  };
-
-  relearnWord = wordId => {
-    this.setState(prevState => {
+  const relearnWord = wordId => {
+    setWordsList(prevState => {
       const wordToRelearn = prevState.wordsList.find(({ _id: id }) => id === wordId) || {};
       const { _id: wordToRelearnId } = wordToRelearn;
 
-      return {
-        wordsList: [...prevState.wordsList.filter(({ _id: id }) => id !== wordToRelearnId), wordToRelearn],
-      };
+      return [...prevState.wordsList.filter(({ _id: id }) => id !== wordToRelearnId), wordToRelearn];
     });
   };
 
-  render() {
-    const { wordsList, wordItem, count, gif } = this.state;
-    const { children } = this.props;
+  return (
+    <WordsContext.Provider
+      value={{
+        wordItem,
+        wordsList,
+        wordsCount: count,
+        getWordsSearchParams: getSearchParams,
+        setWordToState,
+        cleanWord,
+        cleanWordsList,
+        fetchWord,
+        fetchWordsList,
+        fetchWordsToLearn,
+        editWord,
+        deleteWord,
+        learnWord,
+        relearnWord,
+        saveWord: createWord,
+        searchWord,
+      }}
+    >
+      {children}
+    </WordsContext.Provider>
+  );
+};
 
-    return (
-      <WordsContext.Provider
-        value={{
-          gif,
-          wordItem,
-          wordsList,
-          wordsCount: count,
-          getWordsSearchParams: this.getSearchParams,
-          setWordToState: this.setWordToState,
-          cleanWord: this.cleanWord,
-          cleanWordsList: this.cleanWordsList,
-          fetchWord: this.fetchWord,
-          fetchWordsList: this.fetchWordsList,
-          fetchWordsToLearn: this.fetchWordsToLearn,
-          editWord: this.editWord,
-          deleteWord: this.deleteWord,
-          learnWord: this.learnWord,
-          relearnWord: this.relearnWord,
-          saveWord: this.createWord,
-          searchWord: this.searchWord,
-        }}
-      >
-        {children}
-      </WordsContext.Provider>
-    );
-  }
-}
+WordsProviderCmp.propTypes = {
+  children: PropTypes.node.isRequired,
+  enqueueSnackbar: PropTypes.func.isRequired,
+  startLoading: PropTypes.func.isRequired,
+  stopLoading: PropTypes.func.isRequired,
+  handleError: PropTypes.func.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
+  tokenData: PropTypes.shape({
+    token: PropTypes.string,
+    _id: PropTypes.string,
+    email: PropTypes.string,
+    expiresAt: PropTypes.number,
+  }),
+  user: PropTypes.shape({}),
+};
+
+WordsProviderCmp.defaultProps = {
+  tokenData: null,
+  user: null,
+};
 
 const WordsProvider = compose(
   withRouter,
