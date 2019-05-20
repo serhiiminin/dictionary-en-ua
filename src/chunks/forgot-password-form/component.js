@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
-import { ButtonSearch, Form, FormWrapper } from '../../components';
+import { ButtonSearch, Form, FormWrapper, TitleBlock } from '../../components';
 import LN from '../../constants/loading-names';
 import VL from '../../constants/validation-lines';
-import SC from './styles';
 
 const initialValues = {
   email: '',
@@ -35,7 +34,7 @@ class ForgotPasswordForm extends Component {
 
     return (
       <div>
-        <SC.Title>Your email</SC.Title>
+        <TitleBlock>Your email</TitleBlock>
         <FormWrapper>
           <Form
             validateOnBlur

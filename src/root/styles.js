@@ -19,12 +19,12 @@ const GlobalStyle = createGlobalStyle`
 body {
   overflow-x: hidden;
   color: ${props => props.theme.main.colors.text};
-  font-size: 14px;
+  font-size: ${props => props.theme.main.fontSizes.sm};
   margin: 0;
 } 
 * {
   box-sizing: border-box;
-  font-family: "Cairo Regular", sans-serif;
+  font-family: ${props => props.theme.main.fontFamilies.cairoRegular}, sans-serif;
 }
 `;
 

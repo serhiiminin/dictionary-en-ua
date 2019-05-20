@@ -11,11 +11,11 @@ import {
   ButtonGoogle,
   Form,
   FormWrapper,
+  TitleBlock,
 } from '../../components';
 import LN from '../../constants/loading-names';
 import VL from '../../constants/validation-lines';
 import config from '../../config';
-import SC from './styles';
 
 const initialValues = {
   name: '',
@@ -75,7 +75,7 @@ class SignUpForm extends Component {
 
     return (
       <div>
-        <SC.Title>First here? Create an account now!</SC.Title>
+        <TitleBlock>First here? Create an account now!</TitleBlock>
         <FormWrapper>
           <Form
             isLoading={isLoading}

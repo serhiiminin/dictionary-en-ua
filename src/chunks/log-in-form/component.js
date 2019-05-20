@@ -11,6 +11,7 @@ import {
   ButtonGoogle,
   Form,
   FormWrapper,
+  TitleBlock,
 } from '../../components';
 import LN from '../../constants/loading-names';
 import VL from '../../constants/validation-lines';
@@ -68,7 +69,7 @@ class LoginForm extends Component {
 
     return (
       <div>
-        <SC.Title>Welcome back, friend!</SC.Title>
+        <TitleBlock>Welcome back, friend!</TitleBlock>
         <FormWrapper>
           <Form
             validateOnBlur

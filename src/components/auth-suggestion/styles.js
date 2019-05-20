@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TitleLg from '../title-lg';
+import TitleBlock from '../title-block';
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,15 +14,14 @@ const Inner = styled.div`
   text-align: center;
 `;
 
-const Title = styled(TitleLg)`
+const Title = styled(TitleBlock)`
   color: ${props => props.theme.main.colors.background};
-  margin: 0;
 `;
 
 const Description = styled.p`
-  line-height: 26px;
+  line-height: ${props => props.theme.main.lineHeight.lg};
+  letter-spacing: ${props => props.theme.main.letterSpacing.sm};
   text-align: center;
-  letter-spacing: 2px;
   margin: 0;
 `;
 
