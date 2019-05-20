@@ -1,58 +1,44 @@
-import React, { Component, createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const LoadingNamesContext = createContext({});
 
-const loadingNamesInitialState = {
-  currentLoadingNames: {},
+const LoadingNamesProvider = ({ children }) => {
+  const [currentLoadingNames, setCurrentLoadingNames] = useState({});
+
+  const handleStartLoading = name =>
+    setCurrentLoadingNames(prevState => ({
+      ...prevState,
+      [name]: (prevState[name] || 0) + 1,
+    }));
+
+  const handleStopLoading = name =>
+    setCurrentLoadingNames(prevState => ({
+      ...prevState,
+      [name]: (prevState[name] || 1) - 1,
+    }));
+
+  const checkIsLoading = (...loadingNamesToCheck) =>
+    Object.entries(currentLoadingNames).some(
+      loadingName => loadingNamesToCheck.includes(loadingName[0]) && loadingName[1] > 0
+    );
+
+  return (
+    <LoadingNamesContext.Provider
+      value={{
+        checkIsLoading,
+        startLoading: handleStartLoading,
+        stopLoading: handleStopLoading,
+      }}
+    >
+      {children}
+    </LoadingNamesContext.Provider>
+  );
 };
 
-class LoadingNamesProvider extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  state = loadingNamesInitialState;
-
-  handleStartLoading = name =>
-    this.setState(prevState => ({
-      currentLoadingNames: {
-        ...prevState.currentLoadingNames,
-        [name]: (prevState.currentLoadingNames[name] || 0) + 1,
-      },
-    }));
-
-  handleStopLoading = name =>
-    this.setState(prevState => ({
-      currentLoadingNames: {
-        ...prevState.currentLoadingNames,
-        [name]: (prevState.currentLoadingNames[name] || 1) - 1,
-      },
-    }));
-
-  checkIsLoading = (currentLoadingNames = {}) => (...loadingNamesToCheck) =>
-    Object.entries(currentLoadingNames).some(
-      currentLoadingName => loadingNamesToCheck.includes(currentLoadingName[0]) && currentLoadingName[1] > 0
-    );
-
-  render() {
-    const { currentLoadingNames } = this.state;
-    const { children } = this.props;
-    const checkIsLoading = this.checkIsLoading(currentLoadingNames);
-
-    return (
-      <LoadingNamesContext.Provider
-        value={{
-          checkIsLoading,
-          startLoading: this.handleStartLoading,
-          stopLoading: this.handleStopLoading,
-        }}
-      >
-        {children}
-      </LoadingNamesContext.Provider>
-    );
-  }
-}
+LoadingNamesProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 const withLoadingNames = Cmp => props => (
   <LoadingNamesContext.Consumer>{value => <Cmp {...value} {...props} />}</LoadingNamesContext.Consumer>

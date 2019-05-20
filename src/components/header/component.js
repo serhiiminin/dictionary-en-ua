@@ -7,11 +7,11 @@ import routes from '../../routes';
 const buttonsData = {
   signIn: {
     href: routes.auth.logIn,
-    text: 'Sign in',
+    text: 'Log in',
   },
   signOut: {
     href: routes.auth.logOut,
-    text: 'Sign out',
+    text: 'Log out',
   },
 };
 
