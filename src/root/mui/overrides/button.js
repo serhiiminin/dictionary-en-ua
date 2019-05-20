@@ -3,8 +3,8 @@ export default theme => ({
     root: {
       color: theme.main.colors.text,
       textTransform: 'none',
-      transition: theme.main.transition,
-      borderRadius: theme.main.borderRadius.medium,
+      transition: theme.main.transition.base,
+      borderRadius: theme.main.borderRadius.md,
       '&:hover': {
         background: theme.main.colors.main,
         opacity: theme.main.opacity.disabled,

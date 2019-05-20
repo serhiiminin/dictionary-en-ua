@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const BlockWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding: 0 ${props => props.theme.main.padding.large};
+  padding: 0 ${props => props.theme.main.spaces.lg};
   @media (min-width: 576px) {
     max-width: 540px;
   }

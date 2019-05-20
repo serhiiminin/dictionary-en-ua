@@ -19,10 +19,10 @@ export default theme => ({
       },
     },
     input: {
-      padding: `${theme.main.padding.large} ${theme.main.padding.extraLarge}`,
+      padding: `${theme.main.spaces.lg} ${theme.main.spaces.xl}`,
     },
     notchedOutline: {
-      borderRadius: theme.main.borderRadius.medium,
+      borderRadius: theme.main.borderRadius.md,
     },
   },
   MuiInputLabel: {
@@ -32,7 +32,7 @@ export default theme => ({
       },
     },
     outlined: {
-      transform: `translate(${theme.main.padding.extraLarge}, ${theme.main.padding.large}) scale(1)`,
+      transform: `translate(${theme.main.spaces.xl}, ${theme.main.spaces.lg}) scale(1)`,
     },
   },
 });

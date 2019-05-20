@@ -1,5 +1,18 @@
 const theme = {
   main: {
+    borderRadius: {
+      xs: '2px',
+      sm: '4px',
+      md: '8px',
+      lg: '12px',
+      xl: '16px',
+    },
+    borderStyle: {
+      base: 'solid',
+    },
+    borderWidth: {
+      base: '1px',
+    },
     colors: {
       background: '#FFFFFF',
       text: '#161617',
@@ -14,39 +27,48 @@ const theme = {
         info: '#A9D9E4',
       },
     },
+    fontFamilies: {
+      cairoRegular: 'Cairo Regular',
+    },
+    fontSizes: {
+      xs: '12px',
+      sm: '14px',
+      md: '16px',
+      lg: '12px',
+      xl: '26px',
+    },
+    letterSpacing: {
+      xs: '12px',
+      sm: '14px',
+      md: '16px',
+      lg: '12px',
+      xl: '26px',
+    },
+    lineHeight: {
+      xs: '12px',
+      sm: '14px',
+      md: '16px',
+      lg: '12px',
+      xl: '26px',
+    },
+    spaces: {
+      xs: '5px',
+      sm: '10px',
+      md: '15px',
+      lg: '20px',
+      xl: '25px',
+    },
     opacity: {
       disabled: 0.7,
-    },
-    margin: {
-      small: '5px',
-      medium: '10px',
-      large: '15px',
-      extraLarge: '25px',
-    },
-    padding: {
-      small: '5px',
-      medium: '10px',
-      large: '15px',
-      extraLarge: '25px',
-    },
-    borderWidth: {
-      base: '1px',
-    },
-    borderStyle: {
-      base: 'solid',
-    },
-    borderRadius: {
-      small: '4px',
-      medium: '8px',
-      large: '12px',
+      snackbar: 0.9,
     },
     zIndex: {
       notification: 1000,
     },
-    timeout: {
+    transition: {
+      base: 300,
       notification: 300,
     },
-    transition: '.3s',
   },
 };
 

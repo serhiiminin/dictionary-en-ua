@@ -1,7 +1,7 @@
-export default () => ({
+export default theme => ({
   MuiSnackbar: {
     anchorOriginTopRight: {
-      opacity: 0.9,
+      opacity: theme.main.opacity.snackbar,
     },
   },
 });
