@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { parseSearch } from 'url-joiner';
 import { apiWord, apiGif } from '../api';
-import notificationType from '../constants/notifications-type';
-import loadingNames from '../constants/loading-names';
+import NT from '../constants/notifications-type';
+import LN from '../constants/loading-names';
 import { normalizeWord } from '../util/word-utils';
 import { withAuth } from './auth';
 import { withLoadingNames } from './loading-names';
@@ -52,7 +52,7 @@ const WordsProviderCmp = props => {
 
   const fetchWord = wordId =>
     handleFetch({
-      loadingName: loadingNames.words.fetch,
+      loadingName: LN.words.fetch,
       apiHandler: apiWord.get(wordId, token).then(setWordToState),
     });
 
@@ -66,7 +66,7 @@ const WordsProviderCmp = props => {
     };
 
     return handleFetch({
-      loadingName: loadingNames.words.list,
+      loadingName: LN.words.list,
       apiHandler: apiWord.getList({ query, ownerId }, token).then(({ items, count: wordsCount }) => {
         setWordsList(items);
         setCount(wordsCount);
@@ -76,40 +76,32 @@ const WordsProviderCmp = props => {
 
   const createWord = word =>
     handleFetch({
-      loadingName: loadingNames.words.save,
-      apiHandler: apiWord.create({ ...word, ownerId }, token).then(() =>
-        enqueueSnackbar('The word has been saved successfully', {
-          variant: notificationType.success,
-        })
-      ),
+      loadingName: LN.words.save,
+      apiHandler: apiWord
+        .create({ ...word, ownerId }, token)
+        .then(() => enqueueSnackbar('The word has been saved successfully', { variant: NT.success })),
     });
 
   const editWord = word =>
     handleFetch({
-      loadingName: loadingNames.words.fetch,
-      apiHandler: apiWord.update(word, token).then(() =>
-        enqueueSnackbar('The word has been updated successfully', {
-          variant: notificationType.success,
-        })
-      ),
+      loadingName: LN.words.fetch,
+      apiHandler: apiWord
+        .update(word, token)
+        .then(() => enqueueSnackbar('The word has been updated successfully', { variant: NT.success })),
     });
 
   const deleteWord = id =>
     handleFetch({
-      loadingName: loadingNames.words.delete,
+      loadingName: LN.words.delete,
       apiHandler: apiWord
         .delete(id, token)
         .then(fetchWordsList)
-        .then(() =>
-          enqueueSnackbar('The word has been deleted successfully', {
-            variant: notificationType.success,
-          })
-        ),
+        .then(() => enqueueSnackbar('The word has been deleted successfully', { variant: NT.success })),
     });
 
   const searchWord = params =>
     handleFetch({
-      loadingName: loadingNames.words.search,
+      loadingName: LN.words.search,
       apiHandler: apiWord.search(params, token).then(foundWord =>
         apiGif.get({ q: foundWord.word }).then(gifs => {
           const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
@@ -125,7 +117,7 @@ const WordsProviderCmp = props => {
 
   const fetchWordsToLearn = () =>
     handleFetch({
-      loadingName: loadingNames.words.learn,
+      loadingName: LN.words.learn,
       apiHandler: apiWord.getListToLearn({ ownerId }, token).then(({ items, count: wordsCount }) => {
         setWordsList(items);
         setCount(wordsCount);
@@ -134,7 +126,7 @@ const WordsProviderCmp = props => {
 
   const learnWord = wordId =>
     handleFetch({
-      loadingName: loadingNames.words.learn,
+      loadingName: LN.words.learn,
       apiHandler: apiWord
         .learn(wordId, token)
         .then(() => setWordsList(prevState => [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)])),
