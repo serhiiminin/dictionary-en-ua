@@ -76,7 +76,7 @@ class SignUpForm extends Component {
     return (
       <div>
         <TitleBlock>First here? Create an account now!</TitleBlock>
-        <FormWrapper>
+        <FormWrapper marginTop={3.5}>
           <Form
             isLoading={isLoading}
             validationSchema={validationSchema}

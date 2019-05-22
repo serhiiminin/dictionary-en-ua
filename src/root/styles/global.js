@@ -35,12 +35,12 @@ const GlobalStyle = createGlobalStyle`
 }
 body {
   overflow-x: hidden;
-  color: ${props => props.theme.main.colors.text};
+  color: ${props => props.theme.main.color.text};
+  font-family: ${props => props.theme.main.fontFamily.cairoRegular}, sans-serif;
   margin: 0;
 } 
 * {
   box-sizing: border-box;
-  font-family: ${props => props.theme.main.fontFamilies.cairoRegular}, sans-serif;
 }
 `;
 

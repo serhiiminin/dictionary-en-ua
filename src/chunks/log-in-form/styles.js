@@ -9,14 +9,12 @@ const SubmitBlock = styled.div`
 `;
 
 const LinkForgotPassword = styled(Link)`
-  font-family: Cairo;
   font-style: normal;
-  font-weight: 600;
-  font-size: ${props => props.theme.main.fontSizes.sm};
-  line-height: ${props => props.theme.main.lineHeight.md};
-  letter-spacing: ${props => props.theme.main.letterSpacing.xs};
-  color: ${props => props.theme.main.colors.dark};
   text-decoration: none;
+  font-size: ${props => props.theme.main.fontSize.xs};
+  font-family: ${props => props.theme.main.fontFamily.cairoRegular};
+  letter-spacing: ${props => props.theme.main.letterSpacing.xs};
+  color: ${props => props.theme.main.color.dark};
 `;
 
 export default { SubmitBlock, LinkForgotPassword };

@@ -3,12 +3,12 @@ export default theme => ({
     root: {
       width: '100%',
       '&:hover': {
-        background: `${theme.main.colors.main} !important`,
-        color: `${theme.main.colors.background} !important`,
+        background: `${theme.main.color.main} !important`,
+        color: `${theme.main.color.background} !important`,
       },
       '&$selected': {
-        background: `${theme.main.colors.main} !important`,
-        color: `${theme.main.colors.background} !important`,
+        background: `${theme.main.color.main} !important`,
+        color: `${theme.main.color.background} !important`,
       },
     },
   },

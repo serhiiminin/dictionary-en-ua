@@ -70,7 +70,7 @@ class LoginForm extends Component {
     return (
       <div>
         <TitleBlock>Welcome back, friend!</TitleBlock>
-        <FormWrapper>
+        <FormWrapper marginTop={3.5}>
           <Form
             validateOnBlur
             isLoading={isLoading}

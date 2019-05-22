@@ -4,36 +4,37 @@ import { TextCircle } from '../../components';
 
 const SMALL_WIDTH = '40%';
 const BIG_WIDTH = '60%';
+const DEFAULT_SPEED = 12;
 
 const Outer = styled.div`
-  margin-top: 100px;
-  display: flex;
-  flex-flow: row wrap;
-  position: relative;
   width: 100%;
-  height: 560px;
-  box-shadow: 4px 8px 40px rgba(123, 123, 123, 0.4);
-  border-radius: 8px;
+  height: 56rem;
+  display: flex;
+  margin-top: 10rem;
+  flex-flow: row wrap;
+  box-shadow: ${props => props.theme.main.boxShadow.block};
+  position: relative;
+  border-radius: ${props => props.theme.main.borderRadius.md};
 `;
 
 const Background = styled.div`
   position: absolute;
-  width: ${SMALL_WIDTH};
   height: 100%;
-  background: linear-gradient(149.02deg, #86d1ff -11.95%, #bbd6fd 89.7%, #c5d7fd 89.71%, #c5d7fd 89.73%);
+  width: ${SMALL_WIDTH};
+  background: ${props => props.theme.main.color.gradient.block};
   transition: all ${props => props.transitionDelay}ms ease-in-out;
   left: ${props => (props.isLeft ? BIG_WIDTH : 0)};
-  top: 0;
-  border-radius: 8px;
+  border-radius: ${props => props.theme.main.borderRadius.md};
   border-width: 0;
   z-index: 0;
+  top: 0;
 `;
 
 const HalfPart = styled.div`
   width: ${props => (props.isActive ? BIG_WIDTH : SMALL_WIDTH)};
-  padding: 40px 70px;
+  padding: 4rem 7rem;
   position: relative;
-  min-height: 100%;
+  height: 100%;
 `;
 
 const rotate = keyframes`
@@ -45,9 +46,9 @@ const rotate = keyframes`
   }
 `;
 
-const Circle = styled(({ transitionDelay, isLeft, ...props }) => <TextCircle {...props} />)`
+const Circle = styled(({ transitionDelay, isLeft, speed, ...props }) => <TextCircle {...props} />)`
   transition: all ${props => props.transitionDelay}ms ease-in-out;
-  animation: ${rotate} 12s linear infinite;
+  animation: ${rotate} ${props => props.speed || DEFAULT_SPEED}s linear infinite;
   transform: translate(-50%, -50%) rotate(0deg);
   position: absolute;
   z-index: 1;

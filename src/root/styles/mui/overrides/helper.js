@@ -1,12 +1,12 @@
 export default theme => ({
   MuiFormHelperText: {
     root: {
-      fontSize: theme.main.fontSizes.sm,
+      fontSize: theme.main.fontSize.xs,
       '&$contained': {
-        margin: `${theme.main.spaces.md} ${theme.main.spaces.md} 0`,
+        margin: `${theme.main.space.xs} ${theme.main.space.sm} 0`,
       },
       '&$error': {
-        color: theme.main.colors.notification.error,
+        color: theme.main.color.notification.error,
       },
     },
   },

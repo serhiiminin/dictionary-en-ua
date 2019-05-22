@@ -1,19 +1,28 @@
 const theme = {
   main: {
     borderRadius: {
-      xs: '2px',
-      sm: '4px',
-      md: '8px',
-      lg: '12px',
-      xl: '16px',
+      xs: '.2rem',
+      sm: '.4rem',
+      md: '.8rem',
+      lg: '1.2rem',
+      xl: '1.6rem',
     },
     borderStyle: {
       base: 'solid',
     },
     borderWidth: {
-      base: '1px',
+      base: '.1rem',
     },
-    colors: {
+    breakpoint: {
+      xs: '57.6em',
+      sm: '76.8em',
+      md: '99.2em',
+      lg: '120em',
+    },
+    boxShadow: {
+      block: '.4rem .8rem 4rem rgba(123, 123, 123, 0.4)',
+    },
+    color: {
       background: '#FFFFFF',
       text: '#161617',
       main: '#979797',
@@ -26,37 +35,41 @@ const theme = {
         warning: '#FAE639',
         info: '#A9D9E4',
       },
+      gradient: {
+        block: 'linear-gradient(149.02deg, #86d1ff -11.95%, #bbd6fd 89.7%, #c5d7fd 89.71%, #c5d7fd 89.73%)',
+      },
     },
-    fontFamilies: {
+    fontFamily: {
+      cairoBold: 'Cairo Bold',
       cairoRegular: 'Cairo Regular',
     },
-    fontSizes: {
-      xs: '12px',
-      sm: '14px',
-      md: '16px',
-      lg: '18px',
-      xl: '24px',
+    fontSize: {
+      xs: '1.2rem',
+      sm: '1.4rem',
+      md: '1.6rem',
+      lg: '1.8rem',
+      xl: '2.4rem',
     },
     letterSpacing: {
-      xs: '2px',
-      sm: '4px',
-      md: '6px',
-      lg: '8px',
-      xl: '10px',
+      xs: '.2rem',
+      sm: '.4rem',
+      md: '.6rem',
+      lg: '.8rem',
+      xl: '1rem',
     },
     lineHeight: {
-      xs: '2px',
-      sm: '4px',
-      md: '6px',
-      lg: '8px',
-      xl: '10px',
+      xs: '.2rem',
+      sm: '.4rem',
+      md: '.6rem',
+      lg: '.8rem',
+      xl: '1rem',
     },
-    spaces: {
-      xs: '5px',
-      sm: '10px',
-      md: '15px',
-      lg: '20px',
-      xl: '25px',
+    space: {
+      xs: '.5rem',
+      sm: '1rem',
+      md: '1.5rem',
+      lg: '2rem',
+      xl: '2.5rem',
     },
     opacity: {
       disabled: 0.7,
@@ -68,6 +81,7 @@ const theme = {
     transition: {
       base: 300,
       button: 100,
+      controls: 100,
       notification: 300,
     },
   },

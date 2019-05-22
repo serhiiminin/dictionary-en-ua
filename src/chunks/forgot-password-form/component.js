@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { ButtonSearch, Form, FormWrapper, TitleBlock } from '../../components';
@@ -16,49 +16,40 @@ const validationSchema = yup.object().shape({
     .email(VL.email),
 });
 
-class ForgotPasswordForm extends Component {
-  static propTypes = {
-    handleBasicForgotPassword: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
-  };
+const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }) => {
+  const isLoading = checkIsLoading(LN.auth.logIn);
 
-  handleSubmit = formData => {
-    const { handleBasicForgotPassword } = this.props;
+  return (
+    <>
+      <TitleBlock>Your email</TitleBlock>
+      <FormWrapper marginTop={3.5}>
+        <Form
+          validateOnBlur
+          isLoading={isLoading}
+          validateOnChange={false}
+          onSubmit={handleBasicForgotPassword}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          fields={[
+            {
+              name: 'email',
+              label: 'Email',
+            },
+          ]}
+          renderSubmit={() => (
+            <ButtonSearch type="submit" color="secondary" variant="contained">
+              Send
+            </ButtonSearch>
+          )}
+        />
+      </FormWrapper>
+    </>
+  );
+};
 
-    return handleBasicForgotPassword(formData);
-  };
-
-  render() {
-    const { checkIsLoading } = this.props;
-    const isLoading = checkIsLoading(LN.auth.logIn);
-
-    return (
-      <div>
-        <TitleBlock>Your email</TitleBlock>
-        <FormWrapper>
-          <Form
-            validateOnBlur
-            isLoading={isLoading}
-            validateOnChange={false}
-            onSubmit={this.handleSubmit}
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            fields={[
-              {
-                name: 'email',
-                label: 'Email',
-              },
-            ]}
-            renderSubmit={() => (
-              <ButtonSearch type="submit" color="secondary" variant="contained">
-                Send
-              </ButtonSearch>
-            )}
-          />
-        </FormWrapper>
-      </div>
-    );
-  }
-}
+ForgotPasswordForm.propTypes = {
+  handleBasicForgotPassword: PropTypes.func.isRequired,
+  checkIsLoading: PropTypes.func.isRequired,
+};
 
 export default ForgotPasswordForm;

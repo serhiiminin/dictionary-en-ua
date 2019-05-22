@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 
 const Header = styled.div`
-  margin-top: ${props => props.theme.main.spaces.lg};
+  margin-top: ${props => props.theme.main.space.lg};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,13 +13,13 @@ const HeaderLink = styled(Link)`
   text-decoration: none;
 `;
 const LogoSvg = styled(Logo)`
-  width: 190px;
-  height: 40px;
+  width: 19rem;
+  height: 4rem;
 `;
 const MenuDivider = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: ${props => props.theme.main.spaces.sm};
+  grid-column-gap: ${props => props.theme.main.space.sm};
 `;
 
 export default { Header, HeaderLink, LogoSvg, MenuDivider };

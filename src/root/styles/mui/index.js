@@ -6,28 +6,28 @@ const muiTheme = createMuiTheme({
   overrides,
   palette: {
     background: {
-      paper: theme.main.colors.background,
+      paper: theme.main.color.background,
     },
     primary: {
-      light: theme.main.colors.light,
-      main: theme.main.colors.main,
-      dark: theme.main.colors.dark,
-      contrastText: theme.main.colors.contrastText,
+      light: theme.main.color.light,
+      main: theme.main.color.main,
+      dark: theme.main.color.dark,
+      contrastText: theme.main.color.contrastText,
     },
     secondary: {
-      light: theme.main.colors.light,
-      main: theme.main.colors.main,
-      dark: theme.main.colors.dark,
-      contrastText: theme.main.colors.contrastText,
+      light: theme.main.color.light,
+      main: theme.main.color.main,
+      dark: theme.main.color.dark,
+      contrastText: theme.main.color.contrastText,
     },
     text: {
-      primary: theme.main.colors.text,
+      primary: theme.main.color.text,
     },
   },
   typography: {
     useNextVariants: true,
-    fontFamily: `${theme.main.fontFamilies.cairoRegular}, sans-serif`,
-    fontSize: theme.main.fontSizes.md,
+    fontFamily: `${theme.main.fontFamily.cairoRegular}, sans-serif`,
+    fontSize: theme.main.fontSize.md,
   },
   ...theme,
 });
