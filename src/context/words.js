@@ -35,24 +35,13 @@ const getSearchParams = search => {
 
 const WordsContext = createContext({});
 
-const WordsProviderCmp = ({
-  startLoading,
-  stopLoading,
-  handleError,
-  location,
-  tokenData,
-  enqueueSnackbar,
-  children,
-}) => {
+const WordsProviderCmp = props => {
+  const { startLoading, stopLoading, handleError, location, tokenData, enqueueSnackbar, children } = props;
   const [wordsList, setWordsList] = useState([]);
   const [wordItem, setWordItem] = useState({});
   const [count, setCount] = useState(0);
 
-  const handleFetch = createHandleFetch({
-    startLoading,
-    stopLoading,
-    errorHandler: handleError,
-  });
+  const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
   const { token, _id: ownerId } = tokenData || {};
 
   const cleanWordsList = () => setWordsList([]);
@@ -199,12 +188,10 @@ WordsProviderCmp.propTypes = {
     email: PropTypes.string,
     expiresAt: PropTypes.number,
   }),
-  user: PropTypes.shape({}),
 };
 
 WordsProviderCmp.defaultProps = {
   tokenData: null,
-  user: null,
 };
 
 const WordsProvider = compose(

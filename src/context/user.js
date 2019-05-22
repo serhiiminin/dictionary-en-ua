@@ -15,11 +15,7 @@ const UserContext = createContext({});
 const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, enqueueSnackbar, children }) => {
   const [user, setUser] = useState({});
 
-  const handleFetch = createHandleFetch({
-    startLoading,
-    stopLoading,
-    errorHandler: handleError,
-  });
+  const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const cleanUser = () => setUser({});
 

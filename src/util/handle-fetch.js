@@ -1,7 +1,7 @@
-const createHandleFetch = ({ startLoading, stopLoading, errorHandler }) => ({ loadingName, apiHandler }) =>
+const createHandleFetch = ({ startLoading, stopLoading, handleError }) => ({ loadingName, apiHandler }) =>
   Promise.resolve(startLoading(loadingName))
     .then(() => apiHandler)
-    .catch(errorHandler)
+    .catch(handleError)
     .finally(() => stopLoading(loadingName));
 
 export default createHandleFetch;

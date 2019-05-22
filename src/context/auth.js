@@ -20,11 +20,7 @@ const AuthContext = createContext({});
 
 const AuthProviderCmp = ({ startLoading, stopLoading, handleError, enqueueSnackbar, history, children }) => {
   const [tokenData, setTokenData] = useState(JSON.parse(Cookies.get(ACCESS_TOKEN) || null));
-  const handleFetch = createHandleFetch({
-    startLoading,
-    stopLoading,
-    errorHandler: handleError,
-  });
+  const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const setToken = token => {
     setTokenData(tokenData);
