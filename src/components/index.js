@@ -15,4 +15,4 @@ export { default as Header } from './header';
 export { default as InputPassword } from './input-password';
 export { default as PrivateRoute } from './private-route';
 export { default as TextCircle } from './text-circle';
-export { default as TitleLg } from './title-lg';
+export { default as TitleBlock } from './title-block';

@@ -5,18 +5,17 @@ const BlockSocial = styled.div`
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-around;
-  margin-top: 30px;
+  margin-top: 3rem;
 `;
 
 const Label = styled.span`
-  margin: 0;
-  font-family: Cairo;
+  font-size: ${props => props.theme.main.fontSize.xs};
+  font-family: ${props => props.theme.main.fontFamily.cairoRegular};
+  letter-spacing: ${props => props.theme.main.letterSpacing.xs};
+  color: ${props => props.theme.main.color.main};
   font-style: normal;
   font-weight: 300;
-  font-size: 12px;
-  line-height: 22px;
-  letter-spacing: 2px;
-  color: #979797;
+  margin: 0;
 `;
 
 export default { BlockSocial, Label };

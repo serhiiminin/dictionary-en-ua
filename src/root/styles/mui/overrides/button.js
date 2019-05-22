@@ -1,24 +1,24 @@
 export default theme => ({
   MuiButton: {
     root: {
-      color: theme.main.colors.text,
+      color: theme.main.color.text,
       textTransform: 'none',
-      transition: theme.main.transition,
-      borderRadius: theme.main.borderRadius.medium,
+      transition: theme.main.transition.base,
+      borderRadius: theme.main.borderRadius.md,
       '&:hover': {
-        background: theme.main.colors.main,
+        background: theme.main.color.main,
         opacity: theme.main.opacity.disabled,
       },
       '&$disabled': {
         opacity: theme.main.opacity.disabled,
       },
       '&$contained&$disabled': {
-        color: theme.main.colors.background,
+        color: theme.main.color.background,
       },
     },
     outlinedPrimary: {
-      color: theme.main.colors.text,
-      borderColor: theme.main.colors.text,
+      color: theme.main.color.text,
+      borderColor: theme.main.color.text,
     },
   },
 });
