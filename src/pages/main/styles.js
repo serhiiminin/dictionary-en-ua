@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const MainPage = styled.div`
   display: grid;
   justify-content: center;
-  padding-top: 240px;
+  margin-top: 240px;
 `;
 
 const SearchBlockWrapper = styled.div`
@@ -17,11 +17,11 @@ const PageTitle = styled.h1`
   font-size: 18px;
   letter-spacing: 2px;
   font-weight: normal;
-  margin: ${props => props.theme.main.spaces.sm} 0;
+  margin: 0;
 `;
 const BoldText = styled.span`
   font-size: 24px;
-  font-weight: bold;
+  font-family: 'Cairo Bold';
   letter-spacing: 2px;
 `;
 

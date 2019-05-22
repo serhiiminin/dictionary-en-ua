@@ -67,6 +67,7 @@ const theme = {
     },
     transition: {
       base: 300,
+      button: 100,
       notification: 300,
     },
   },

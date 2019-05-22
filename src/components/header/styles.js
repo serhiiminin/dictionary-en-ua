@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 
 const Header = styled.div`
-  padding: ${props => props.theme.main.spaces.lg} 0;
+  margin-top: ${props => props.theme.main.spaces.lg};
   display: flex;
   justify-content: space-between;
   align-items: center;
