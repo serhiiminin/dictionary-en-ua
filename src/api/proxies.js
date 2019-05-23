@@ -28,7 +28,7 @@ const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(config.auth.giphy.ap
   createFetcherJson(window.fetch)
 );
 
-const createAuthProxy = fetcher => (params, token) =>
+const createAuthProxy = token => fetcher => params =>
   fetcher({
     ...params,
     headers: {

@@ -2,24 +2,18 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
-import { apiUser } from '../api';
-import notificationType from '../constants/notifications-type';
-import loadingNames from '../constants/loading-names';
+import { createApiUser } from '../api';
+import NT from '../constants/notifications-type';
+import LN from '../constants/loading-names';
 import { withAuth } from './auth';
-import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../util/handle-fetch';
-import { withErrors } from './errors';
+import { withFetcher } from './fetcher';
 
 const UserContext = createContext({});
 
-const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, enqueueSnackbar, children }) => {
+const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }) => {
   const [user, setUser] = useState({});
-
-  const handleFetch = createHandleFetch({
-    startLoading,
-    stopLoading,
-    errorHandler: handleError,
-  });
+  const { token } = tokenData || {};
+  const apiUser = createApiUser(token);
 
   const cleanUser = () => setUser({});
 
@@ -27,32 +21,32 @@ const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, en
 
   const fetchUser = id =>
     handleFetch({
-      loadingName: loadingNames.user.fetch,
-      apiHandler: apiUser.get(id, tokenData.token),
+      loadingName: LN.user.fetch,
+      apiHandler: apiUser.get(id),
     });
 
   const createUser = userData =>
     handleFetch({
-      loadingName: loadingNames.user.fetch,
+      loadingName: LN.user.fetch,
       apiHandler: apiUser
-        .create({ ...userData }, tokenData && tokenData.token)
-        .then(() => enqueueSnackbar('The user has been saved successfully', { variant: notificationType.success })),
+        .create({ ...userData })
+        .then(() => enqueueSnackbar('The user has been saved successfully', { variant: NT.success })),
     });
 
   const editUser = userData =>
     handleFetch({
-      loadingName: loadingNames.user.fetch,
+      loadingName: LN.user.fetch,
       apiHandler: apiUser
-        .update({ ...userData }, tokenData && tokenData.token)
-        .then(() => enqueueSnackbar('The user has been updated successfully', { variant: notificationType.success })),
+        .update({ ...userData })
+        .then(() => enqueueSnackbar('The user has been updated successfully', { variant: NT.success })),
     });
 
   const deleteUser = id =>
     handleFetch({
-      loadingName: loadingNames.user.fetch,
+      loadingName: LN.user.fetch,
       apiHandler: apiUser
-        .delete(id, tokenData && tokenData.token)
-        .then(() => enqueueSnackbar('The user has been deleted successfully', { variant: notificationType.success })),
+        .delete(id)
+        .then(() => enqueueSnackbar('The user has been deleted successfully', { variant: NT.success })),
     });
 
   return (
@@ -76,9 +70,7 @@ UserProviderCmp.propTypes = {
   children: PropTypes.node.isRequired,
   tokenData: PropTypes.shape({}),
   enqueueSnackbar: PropTypes.func.isRequired,
-  startLoading: PropTypes.func.isRequired,
-  stopLoading: PropTypes.func.isRequired,
-  handleError: PropTypes.func.isRequired,
+  handleFetch: PropTypes.func.isRequired,
 };
 
 UserProviderCmp.defaultProps = {
@@ -86,10 +78,9 @@ UserProviderCmp.defaultProps = {
 };
 
 const UserProvider = compose(
-  withLoadingNames,
+  withFetcher,
   withAuth,
-  withSnackbar,
-  withErrors
+  withSnackbar
 )(UserProviderCmp);
 
 const withUser = Cmp => props => <UserContext.Consumer>{value => <Cmp {...value} {...props} />}</UserContext.Consumer>;
