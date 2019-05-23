@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withSnackbar } from 'notistack';
-import notificationType from '../constants/notifications-type';
+import NT from '../constants/notifications-type';
 import routes from '../routes';
 import { getErrorMessage, getErrorType } from '../util/handle-errors';
 
@@ -19,11 +19,11 @@ class ErrorsProviderCmp extends Component {
 
   handleError = error => {
     const { history, enqueueSnackbar } = this.props;
-    if (error.message === notificationType.error.forbidden) {
+    if (error.message === NT.error.forbidden) {
       history.push(routes.auth.logIn);
     }
     const errorMessage = getErrorMessage(getErrorType(error));
-    enqueueSnackbar(errorMessage, { variant: notificationType.info });
+    enqueueSnackbar(errorMessage, { variant: NT.info });
   };
 
   componentDidCatch(error, info) {

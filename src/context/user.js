@@ -6,17 +6,14 @@ import { createApiUser } from '../api';
 import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import { withAuth } from './auth';
-import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../util/handle-fetch';
-import { withErrors } from './errors';
+import { withFetcher } from './fetcher';
 
 const UserContext = createContext({});
 
-const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, enqueueSnackbar, children }) => {
+const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }) => {
   const [user, setUser] = useState({});
   const { token } = tokenData || {};
   const apiUser = createApiUser(token);
-  const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const cleanUser = () => setUser({});
 
@@ -73,9 +70,7 @@ UserProviderCmp.propTypes = {
   children: PropTypes.node.isRequired,
   tokenData: PropTypes.shape({}),
   enqueueSnackbar: PropTypes.func.isRequired,
-  startLoading: PropTypes.func.isRequired,
-  stopLoading: PropTypes.func.isRequired,
-  handleError: PropTypes.func.isRequired,
+  handleFetch: PropTypes.func.isRequired,
 };
 
 UserProviderCmp.defaultProps = {
@@ -83,10 +78,9 @@ UserProviderCmp.defaultProps = {
 };
 
 const UserProvider = compose(
-  withLoadingNames,
+  withFetcher,
   withAuth,
-  withSnackbar,
-  withErrors
+  withSnackbar
 )(UserProviderCmp);
 
 const withUser = Cmp => props => <UserContext.Consumer>{value => <Cmp {...value} {...props} />}</UserContext.Consumer>;

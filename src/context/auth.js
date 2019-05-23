@@ -9,18 +9,15 @@ import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } fro
 import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import routes from '../routes';
-import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../util/handle-fetch';
-import { withErrors } from './errors';
 import config from '../config';
+import { withFetcher } from './fetcher';
 
 const ACCESS_TOKEN = 'access_token';
 
 const AuthContext = createContext({});
 
-const AuthProviderCmp = ({ startLoading, stopLoading, handleError, enqueueSnackbar, history, children }) => {
+const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) => {
   const [tokenData, setTokenData] = useState(JSON.parse(Cookies.get(ACCESS_TOKEN) || null));
-  const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const setToken = token => {
     setTokenData(token);
@@ -140,17 +137,14 @@ const AuthProviderCmp = ({ startLoading, stopLoading, handleError, enqueueSnackb
 AuthProviderCmp.propTypes = {
   children: PropTypes.node.isRequired,
   enqueueSnackbar: PropTypes.func.isRequired,
-  startLoading: PropTypes.func.isRequired,
-  stopLoading: PropTypes.func.isRequired,
-  handleError: PropTypes.func.isRequired,
+  handleFetch: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 
 const AuthProvider = compose(
   withRouter,
-  withLoadingNames,
-  withSnackbar,
-  withErrors
+  withFetcher,
+  withSnackbar
 )(AuthProviderCmp);
 
 const withAuth = Cmp => props => <AuthContext.Consumer>{value => <Cmp {...value} {...props} />}</AuthContext.Consumer>;

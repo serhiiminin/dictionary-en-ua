@@ -10,9 +10,7 @@ import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import { normalizeWord } from '../util/word-utils';
 import { withAuth } from './auth';
-import { withLoadingNames } from './loading-names';
-import createHandleFetch from '../util/handle-fetch';
-import { withErrors } from './errors';
+import { withFetcher } from './fetcher';
 
 const INITIAL_SORT_DATA = {
   sortBy: 'dateCreated',
@@ -36,14 +34,12 @@ const getSearchParams = search => {
 const WordsContext = createContext({});
 
 const WordsProviderCmp = props => {
-  const { startLoading, stopLoading, handleError, location, tokenData, enqueueSnackbar, children } = props;
+  const { handleFetch, location, tokenData, enqueueSnackbar, children } = props;
   const { token, _id: ownerId } = tokenData || {};
   const apiWord = createApiWord(token);
   const [wordsList, setWordsList] = useState([]);
   const [wordItem, setWordItem] = useState({});
   const [count, setCount] = useState(0);
-
-  const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const cleanWordsList = () => setWordsList([]);
 
@@ -171,9 +167,7 @@ const WordsProviderCmp = props => {
 WordsProviderCmp.propTypes = {
   children: PropTypes.node.isRequired,
   enqueueSnackbar: PropTypes.func.isRequired,
-  startLoading: PropTypes.func.isRequired,
-  stopLoading: PropTypes.func.isRequired,
-  handleError: PropTypes.func.isRequired,
+  handleFetch: PropTypes.func.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   tokenData: PropTypes.shape({
     token: PropTypes.string,
@@ -189,10 +183,9 @@ WordsProviderCmp.defaultProps = {
 
 const WordsProvider = compose(
   withRouter,
+  withFetcher,
   withAuth,
-  withLoadingNames,
-  withSnackbar,
-  withErrors
+  withSnackbar
 )(WordsProviderCmp);
 
 const withWords = Cmp => props => (
