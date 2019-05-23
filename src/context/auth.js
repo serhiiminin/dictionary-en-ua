@@ -23,7 +23,7 @@ const AuthProviderCmp = ({ startLoading, stopLoading, handleError, enqueueSnackb
   const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const setToken = token => {
-    setTokenData(tokenData);
+    setTokenData(token);
     Cookies.set(ACCESS_TOKEN, JSON.stringify(token), {
       expires: 1,
       path: config.publicUrl,

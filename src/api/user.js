@@ -6,23 +6,27 @@ import generateRoute from '../util/routes';
 import config from '../config';
 import apiRoutes from './api-routes';
 
-export const createApiMethodsUsers = endpoint => fetcher => ({
-  create: (body, tokens) => fetcher(requests.post(joinPath(endpoint, apiRoutes.users.create), { body }), tokens),
-  get: (id, tokens) => fetcher(requests.get(joinPath(endpoint, generateRoute(apiRoutes.users.read, { id }))), tokens),
-  update: (data, tokens) => {
-    const { _id: id } = data;
+export const createFetcherApiMethodsUsers = endpoint => fetcher => token => {
+  const fetcherWithToken = fetcher(token);
 
-    return fetcher(
-      requests.put(joinPath(endpoint, generateRoute(apiRoutes.users.update, { id })), {
-        body: data,
-      }),
-      tokens
-    );
-  },
-  delete: (id, tokens) =>
-    fetcher(requests.delete(joinPath(endpoint, generateRoute(apiRoutes.users.delete, { id }))), tokens),
-});
+  return {
+    create: body => fetcherWithToken(requests.post(joinPath(endpoint, apiRoutes.users.create), { body })),
+    get: id => fetcherWithToken(requests.get(joinPath(endpoint, generateRoute(apiRoutes.users.read, { id })))),
+    update: data => {
+      const { _id: id } = data;
 
-const apiMethodsUsers = createApiMethodsUsers(config.endpoints.api)(createAuthProxy(createFetcherJson(window.fetch)));
+      return fetcherWithToken(
+        requests.put(joinPath(endpoint, generateRoute(apiRoutes.users.update, { id })), {
+          body: data,
+        })
+      );
+    },
+    delete: id => fetcherWithToken(requests.delete(joinPath(endpoint, generateRoute(apiRoutes.users.delete, { id })))),
+  };
+};
 
-export default apiMethodsUsers;
+const createApiMethodsUsers = createFetcherApiMethodsUsers(config.endpoints.api)(
+  createAuthProxy(createFetcherJson(window.fetch))
+);
+
+export default createApiMethodsUsers;

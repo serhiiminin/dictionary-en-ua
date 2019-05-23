@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
-import { apiUser } from '../api';
+import { createApiUser } from '../api';
 import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import { withAuth } from './auth';
@@ -14,7 +14,8 @@ const UserContext = createContext({});
 
 const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, enqueueSnackbar, children }) => {
   const [user, setUser] = useState({});
-
+  const { token } = tokenData || {};
+  const apiUser = createApiUser(token);
   const handleFetch = createHandleFetch({ startLoading, stopLoading, handleError });
 
   const cleanUser = () => setUser({});
@@ -24,14 +25,14 @@ const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, en
   const fetchUser = id =>
     handleFetch({
       loadingName: LN.user.fetch,
-      apiHandler: apiUser.get(id, tokenData.token),
+      apiHandler: apiUser.get(id),
     });
 
   const createUser = userData =>
     handleFetch({
       loadingName: LN.user.fetch,
       apiHandler: apiUser
-        .create({ ...userData }, tokenData && tokenData.token)
+        .create({ ...userData })
         .then(() => enqueueSnackbar('The user has been saved successfully', { variant: NT.success })),
     });
 
@@ -39,7 +40,7 @@ const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, en
     handleFetch({
       loadingName: LN.user.fetch,
       apiHandler: apiUser
-        .update({ ...userData }, tokenData && tokenData.token)
+        .update({ ...userData })
         .then(() => enqueueSnackbar('The user has been updated successfully', { variant: NT.success })),
     });
 
@@ -47,7 +48,7 @@ const UserProviderCmp = ({ startLoading, stopLoading, tokenData, handleError, en
     handleFetch({
       loadingName: LN.user.fetch,
       apiHandler: apiUser
-        .delete(id, tokenData && tokenData.token)
+        .delete(id)
         .then(() => enqueueSnackbar('The user has been deleted successfully', { variant: NT.success })),
     });
 
