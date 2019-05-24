@@ -17,48 +17,41 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }) 
 
   const cleanUser = () => setUser({});
 
-  const setUserToState = userData => setUser(userData);
-
-  const fetchUser = id =>
-    handleFetch({
-      loadingName: LN.user.fetch,
-      apiHandler: apiUser.get(id),
+  const handleFetchUser = id =>
+    handleFetch(LN.user.fetch)(async () => {
+      const userData = await apiUser.get(id);
+      setUser(userData);
     });
 
-  const createUser = userData =>
-    handleFetch({
-      loadingName: LN.user.fetch,
-      apiHandler: apiUser
-        .create({ ...userData })
-        .then(() => enqueueSnackbar('The user has been saved successfully', { variant: NT.success })),
+  const handleCreateUser = userData =>
+    handleFetch(LN.user.fetch)(async () => {
+      const { _id } = await apiUser.create(userData);
+      await handleFetchUser(_id);
+      enqueueSnackbar('The user has been saved successfully', { variant: NT.success });
     });
 
-  const editUser = userData =>
-    handleFetch({
-      loadingName: LN.user.fetch,
-      apiHandler: apiUser
-        .update({ ...userData })
-        .then(() => enqueueSnackbar('The user has been updated successfully', { variant: NT.success })),
+  const handleEditUser = userData =>
+    handleFetch(LN.user.fetch)(async () => {
+      const { _id } = await apiUser.update(userData);
+      await handleFetchUser(_id);
+      enqueueSnackbar('The user has been updated successfully', { variant: NT.success });
     });
 
-  const deleteUser = id =>
-    handleFetch({
-      loadingName: LN.user.fetch,
-      apiHandler: apiUser
-        .delete(id)
-        .then(() => enqueueSnackbar('The user has been deleted successfully', { variant: NT.success })),
+  const handleDeleteUser = id =>
+    handleFetch(LN.user.fetch)(async () => {
+      await apiUser.delete(id);
+      enqueueSnackbar('The user has been deleted successfully', { variant: NT.success });
     });
 
   return (
     <UserContext.Provider
       value={{
         user,
-        setUserToState,
         cleanUser,
-        fetchUser,
-        createUser,
-        editUser,
-        deleteUser,
+        handleFetchUser,
+        handleCreateUser,
+        handleEditUser,
+        handleDeleteUser,
       }}
     >
       {children}

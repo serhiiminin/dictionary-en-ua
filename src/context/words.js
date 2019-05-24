@@ -38,6 +38,13 @@ const generateQuery = ({ page, countPerPage, sortDirection, sortBy }) => ({
   sortBy,
 });
 
+const getRandlomGif = (gifs = []) => {
+  const gifData = gifs || [];
+  const downsizedGifs = gifData.map(gif => gif.images.downsized_large.url);
+
+  return downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+};
+
 const WordsContext = createContext({});
 
 const WordsProviderCmp = props => {
@@ -70,13 +77,15 @@ const WordsProviderCmp = props => {
 
   const handleCreateWord = word =>
     handleFetch(LN.words.save)(async () => {
-      await apiWord.create({ ...word, ownerId });
+      const { _id } = await apiWord.create({ ...word, ownerId });
+      await handleFetchWord(_id);
       enqueueSnackbar('The word has been saved successfully', { variant: NT.success });
     });
 
   const handleEditWord = word =>
     handleFetch(LN.words.fetch)(async () => {
-      await apiWord.update(word);
+      const { _id } = await apiWord.update(word);
+      await handleFetchWord(_id);
       enqueueSnackbar('The word has been updated successfully', { variant: NT.success });
     });
 
@@ -91,14 +100,13 @@ const WordsProviderCmp = props => {
     handleFetch(LN.words.search)(async () => {
       const foundWord = await apiWord.search(params);
       const gifs = await apiGif.get({ q: foundWord.word });
+      const randomGif = gifs && getRandlomGif(gifs.data);
+      const normalizedWord = normalizeWord(foundWord);
 
-      const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-      const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
-
-      setWordItem({
-        ...normalizeWord(foundWord),
-        gif: randomGif,
-      });
+      if (randomGif) {
+        normalizedWord.gif = randomGif;
+      }
+      setWordItem(normalizedWord);
     });
 
   const handleFetchWordsToLearn = () =>
@@ -111,7 +119,7 @@ const WordsProviderCmp = props => {
   const handleLearnWord = wordId =>
     handleFetch(LN.words.learn)(async () => {
       await apiWord.learn(wordId);
-      setWordsList(prevState => [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)]);
+      setWordsList(prevState => [...prevState.wordsList.filter(({ _id }) => _id !== wordId)]);
     });
 
   const handleRelearnWord = wordId => {
