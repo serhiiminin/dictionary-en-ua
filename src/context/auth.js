@@ -21,7 +21,6 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
   const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
 
   const handleSetToken = token => {
-    console.log(token);
     if (!token) {
       throw new Error('token is not passed');
     }
@@ -40,9 +39,9 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
-  const handleBasicSignUp = ({ email, password }) =>
+  const handleBasicSignUp = ({ name, email, password, repeatPassword }) =>
     handleFetch(LN.auth.signUp)(async () => {
-      const token = await apiMethodsBasicAuth.signUp({ email, password });
+      const token = await apiMethodsBasicAuth.signUp({ name, email, password, repeatPassword });
       handleSetToken(token);
       enqueueSnackbar('Welcome! You have been signed up successfully', { variant: NT.success });
     });
