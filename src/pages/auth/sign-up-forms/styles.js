@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { TextCircle } from '../../components';
+import { TextCircle } from '../../../components';
 
 const SMALL_WIDTH = '40%';
 const BIG_WIDTH = '60%';
