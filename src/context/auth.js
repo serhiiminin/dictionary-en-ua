@@ -21,6 +21,10 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
   const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
 
   const handleSetToken = token => {
+    console.log(token);
+    if (!token) {
+      throw new Error('token is not passed');
+    }
     setTokenData(token);
     Cookies.set(ACCESS_TOKEN, JSON.stringify(token), {
       expires: 1,
