@@ -16,6 +16,13 @@ const validationSchema = yup.object().shape({
     .email(VL.email),
 });
 
+const fields = [
+  {
+    name: 'email',
+    label: 'Email',
+  },
+];
+
 const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }) => {
   const isLoading = checkIsLoading(LN.auth.logIn);
 
@@ -30,12 +37,7 @@ const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }) => {
           onSubmit={handleBasicForgotPassword}
           initialValues={initialValues}
           validationSchema={validationSchema}
-          fields={[
-            {
-              name: 'email',
-              label: 'Email',
-            },
-          ]}
+          fields={fields}
           renderSubmit={() => (
             <ButtonSearch type="submit" color="secondary" variant="contained">
               Send

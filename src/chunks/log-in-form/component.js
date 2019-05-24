@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { GoogleLogin } from 'react-google-login';
@@ -35,85 +35,66 @@ const validationSchema = yup.object().shape({
     .required(VL.required),
 });
 
-class LoginForm extends Component {
-  static propTypes = {
-    handleBasicLogIn: PropTypes.func.isRequired,
-    handleGoogleLogIn: PropTypes.func.isRequired,
-    handleFacebookLogIn: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
-  };
+const fields = [
+  {
+    name: 'email',
+    label: 'Email',
+  },
+  {
+    name: 'password',
+    label: 'Password',
+    component: InputPassword,
+  },
+];
 
-  handleSubmit = formData => {
-    const { handleBasicLogIn } = this.props;
+const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, checkIsLoading }) => {
+  const isLoading = checkIsLoading(LN.auth.logIn);
+  const handleGoogle = ({ accessToken }) => handleGoogleLogIn(accessToken);
+  const handleFacebook = ({ accessToken }) => handleFacebookLogIn(accessToken);
 
-    return handleBasicLogIn(formData);
-  };
-
-  handleGoogle = tokenData => {
-    const { accessToken } = tokenData;
-    const { handleGoogleLogIn } = this.props;
-
-    return handleGoogleLogIn(accessToken);
-  };
-
-  handleFacebook = tokenData => {
-    const { accessToken } = tokenData;
-    const { handleFacebookLogIn } = this.props;
-
-    return handleFacebookLogIn(accessToken);
-  };
-
-  render() {
-    const { checkIsLoading } = this.props;
-    const isLoading = checkIsLoading(LN.auth.logIn);
-
-    return (
-      <div>
-        <TitleBlock>Welcome back, friend!</TitleBlock>
-        <FormWrapper marginTop={3.5}>
-          <Form
-            validateOnBlur
-            isLoading={isLoading}
-            validateOnChange={false}
-            onSubmit={this.handleSubmit}
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            fields={[
-              {
-                name: 'email',
-                label: 'Email',
-              },
-              {
-                name: 'password',
-                label: 'Password',
-                component: InputPassword,
-              },
-            ]}
-            renderSubmit={() => (
-              <SC.SubmitBlock>
-                <ButtonSearch type="submit" color="secondary" variant="contained">
-                  Log in
-                </ButtonSearch>
-                <SC.LinkForgotPassword to={routes.auth.forgotPassword}>Forgot your password?</SC.LinkForgotPassword>
-              </SC.SubmitBlock>
-            )}
+  return (
+    <>
+      <TitleBlock>Welcome back, friend!</TitleBlock>
+      <FormWrapper marginTop={3.5}>
+        <Form
+          validateOnBlur
+          isLoading={isLoading}
+          validateOnChange={false}
+          onSubmit={handleBasicLogIn}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          fields={fields}
+          renderSubmit={() => (
+            <SC.SubmitBlock>
+              <ButtonSearch type="submit" color="secondary" variant="contained">
+                Log in
+              </ButtonSearch>
+              <SC.LinkForgotPassword to={routes.auth.forgotPassword}>Forgot your password?</SC.LinkForgotPassword>
+            </SC.SubmitBlock>
+          )}
+        />
+        <BlockSocial>
+          <FacebookLogin
+            appId={config.auth.facebook.appId}
+            callback={handleFacebook}
+            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
           />
-          <BlockSocial>
-            <FacebookLogin
-              appId={config.auth.facebook.appId}
-              callback={this.handleFacebook}
-              render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
-            />
-            <GoogleLogin
-              clientId={config.auth.google.clientId}
-              onSuccess={this.handleGoogle}
-              render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
-            />
-          </BlockSocial>
-        </FormWrapper>
-      </div>
-    );
-  }
-}
+          <GoogleLogin
+            clientId={config.auth.google.clientId}
+            onSuccess={handleGoogle}
+            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+          />
+        </BlockSocial>
+      </FormWrapper>
+    </>
+  );
+};
+
+LoginForm.propTypes = {
+  handleBasicLogIn: PropTypes.func.isRequired,
+  handleGoogleLogIn: PropTypes.func.isRequired,
+  handleFacebookLogIn: PropTypes.func.isRequired,
+  checkIsLoading: PropTypes.func.isRequired,
+};
 
 export default LoginForm;
