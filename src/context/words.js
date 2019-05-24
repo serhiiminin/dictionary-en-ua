@@ -19,7 +19,7 @@ const INITIAL_SORT_DATA = {
   countPerPage: 5,
 };
 
-const getSearchParams = search => {
+const getWordsSearchParams = search => {
   const { sortBy, sortDirection, page, countPerPage } = INITIAL_SORT_DATA;
   const parsedParams = parseSearch(search);
 
@@ -31,6 +31,13 @@ const getSearchParams = search => {
   };
 };
 
+const generateQuery = ({ page, countPerPage, sortDirection, sortBy }) => ({
+  skip: (page - 1) * countPerPage,
+  limit: Number(countPerPage),
+  sortDirection: sortDirection === 'descend' ? -1 : 1,
+  sortBy,
+});
+
 const WordsContext = createContext({});
 
 const WordsProviderCmp = props => {
@@ -39,102 +46,80 @@ const WordsProviderCmp = props => {
   const apiWord = createApiWord(token);
   const [wordsList, setWordsList] = useState([]);
   const [wordItem, setWordItem] = useState({});
-  const [count, setCount] = useState(0);
+  const [wordsCount, setWordsCount] = useState(0);
 
   const cleanWordsList = () => setWordsList([]);
 
   const cleanWord = () => setWordItem({});
 
-  const setWordToState = wordData => setWordItem(wordData);
-
-  const fetchWord = wordId =>
-    handleFetch({
-      loadingName: LN.words.fetch,
-      apiHandler: apiWord.get(wordId).then(setWordToState),
+  const handleFetchWord = wordId =>
+    handleFetch(LN.words.fetch)(async () => {
+      const word = await apiWord.get(wordId);
+      setWordItem(word);
     });
 
-  const fetchWordsList = () => {
-    const { sortBy, sortDirection, page, countPerPage } = getSearchParams(location.search);
-    const query = {
-      skip: (page - 1) * countPerPage,
-      limit: Number(countPerPage),
-      sortDirection: sortDirection === 'descend' ? -1 : 1,
-      sortBy,
-    };
+  const handleFetchWordsList = () => {
+    const query = generateQuery(getWordsSearchParams(location.search));
 
-    return handleFetch({
-      loadingName: LN.words.list,
-      apiHandler: apiWord.getList({ query, ownerId }).then(({ items, count: wordsCount }) => {
-        setWordsList(items);
-        setCount(wordsCount);
-      }),
+    return handleFetch(LN.words.list)(async () => {
+      const { items, count } = await apiWord.getList({ query, ownerId });
+      setWordsList(items);
+      setWordsCount(count);
     });
   };
 
-  const createWord = word =>
-    handleFetch({
-      loadingName: LN.words.save,
-      apiHandler: apiWord
-        .create({ ...word, ownerId })
-        .then(() => enqueueSnackbar('The word has been saved successfully', { variant: NT.success })),
+  const handleCreateWord = word =>
+    handleFetch(LN.words.save)(async () => {
+      await apiWord.create({ ...word, ownerId });
+      enqueueSnackbar('The word has been saved successfully', { variant: NT.success });
     });
 
-  const editWord = word =>
-    handleFetch({
-      loadingName: LN.words.fetch,
-      apiHandler: apiWord
-        .update(word)
-        .then(() => enqueueSnackbar('The word has been updated successfully', { variant: NT.success })),
+  const handleEditWord = word =>
+    handleFetch(LN.words.fetch)(async () => {
+      await apiWord.update(word);
+      enqueueSnackbar('The word has been updated successfully', { variant: NT.success });
     });
 
-  const deleteWord = id =>
-    handleFetch({
-      loadingName: LN.words.delete,
-      apiHandler: apiWord
-        .delete(id)
-        .then(fetchWordsList)
-        .then(() => enqueueSnackbar('The word has been deleted successfully', { variant: NT.success })),
+  const handleDeleteWord = id =>
+    handleFetch(LN.words.delete)(async () => {
+      await apiWord.delete(id);
+      await handleFetchWordsList();
+      enqueueSnackbar('The word has been deleted successfully', { variant: NT.success });
     });
 
-  const searchWord = params =>
-    handleFetch({
-      loadingName: LN.words.search,
-      apiHandler: apiWord.search(params).then(foundWord =>
-        apiGif.get({ q: foundWord.word }).then(gifs => {
-          const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
-          const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+  const handleSearchWord = params =>
+    handleFetch(LN.words.search)(async () => {
+      const foundWord = await apiWord.search(params);
+      const gifs = await apiGif.get({ q: foundWord.word });
 
-          setWordItem({
-            ...normalizeWord(foundWord),
-            gif: randomGif,
-          });
-        })
-      ),
+      const downsizedGifs = gifs && gifs.data && gifs.data.map(gif => gif.images.downsized_large.url);
+      const randomGif = downsizedGifs && downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+
+      setWordItem({
+        ...normalizeWord(foundWord),
+        gif: randomGif,
+      });
     });
 
-  const fetchWordsToLearn = () =>
-    handleFetch({
-      loadingName: LN.words.learn,
-      apiHandler: apiWord.getListToLearn({ ownerId }).then(({ items, count: wordsCount }) => {
-        setWordsList(items);
-        setCount(wordsCount);
-      }),
+  const handleFetchWordsToLearn = () =>
+    handleFetch(LN.words.learn)(async () => {
+      const { items, count } = await apiWord.getListToLearn({ ownerId });
+      setWordsList(items);
+      setWordsCount(count);
     });
 
-  const learnWord = wordId =>
-    handleFetch({
-      loadingName: LN.words.learn,
-      apiHandler: apiWord
-        .learn(wordId)
-        .then(() => setWordsList(prevState => [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)])),
+  const handleLearnWord = wordId =>
+    handleFetch(LN.words.learn)(async () => {
+      await apiWord.learn(wordId);
+      setWordsList(prevState => [...prevState.wordsList.filter(({ _id: id }) => id !== wordId)]);
     });
 
-  const relearnWord = wordId => {
+  const handleRelearnWord = wordId => {
     setWordsList(prevState => {
-      const wordToRelearn = prevState.wordsList.find(({ _id: id }) => id === wordId) || {};
+      const wordToRelearn = prevState.wordsList.find(({ _id }) => _id === wordId) || {};
       const { _id: wordToRelearnId } = wordToRelearn;
 
-      return [...prevState.wordsList.filter(({ _id: id }) => id !== wordToRelearnId), wordToRelearn];
+      return [...prevState.wordsList.filter(({ _id }) => _id !== wordToRelearnId), wordToRelearn];
     });
   };
 
@@ -143,20 +128,18 @@ const WordsProviderCmp = props => {
       value={{
         wordItem,
         wordsList,
-        wordsCount: count,
-        getWordsSearchParams: getSearchParams,
-        setWordToState,
+        wordsCount,
         cleanWord,
         cleanWordsList,
-        fetchWord,
-        fetchWordsList,
-        fetchWordsToLearn,
-        editWord,
-        deleteWord,
-        learnWord,
-        relearnWord,
-        saveWord: createWord,
-        searchWord,
+        handleFetchWord,
+        handleFetchWordsList,
+        handleFetchWordsToLearn,
+        handleEditWord,
+        handleDeleteWord,
+        handleLearnWord,
+        handleRelearnWord,
+        handleCreateWord,
+        handleSearchWord,
       }}
     >
       {children}
