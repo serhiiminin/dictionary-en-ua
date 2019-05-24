@@ -7,9 +7,9 @@ import { withLoadingNames } from './loading-names';
 const FetcherContext = createContext({});
 
 const FetcherProviderCmp = ({ children, handleError, startLoading, stopLoading }) => {
-  const handleFetch = ({ loadingName, apiHandler }) =>
+  const handleFetch = loadingName => apiHandler =>
     Promise.resolve(startLoading(loadingName))
-      .then(() => apiHandler)
+      .then(apiHandler)
       .catch(handleError)
       .finally(() => stopLoading(loadingName));
 

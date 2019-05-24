@@ -37,4 +37,13 @@ const createAuthProxy = token => fetcher => params =>
     },
   });
 
-export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy };
+const createSocialAuthProxy = fetcher => (params, token) =>
+  fetcher({
+    ...params,
+    headers: {
+      ...params.headers,
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy, createSocialAuthProxy };

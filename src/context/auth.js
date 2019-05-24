@@ -18,90 +18,66 @@ const AuthContext = createContext({});
 
 const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) => {
   const [tokenData, setTokenData] = useState(JSON.parse(Cookies.get(ACCESS_TOKEN) || null));
+  const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
 
-  const setToken = token => {
+  const handleSetToken = token => {
+    if (!token) {
+      throw new Error('token is not passed');
+    }
     setTokenData(token);
     Cookies.set(ACCESS_TOKEN, JSON.stringify(token), {
       expires: 1,
       path: config.publicUrl,
     });
+    history.push(routes.words.list);
   };
 
   const handleBasicLogIn = ({ email, password }) =>
-    handleFetch({
-      loadingName: LN.auth.logIn,
-      apiHandler: apiMethodsBasicAuth
-        .logIn({ email, password })
-        .then(setToken)
-        .then(() => {
-          history.push(routes.words.list);
-          enqueueSnackbar('Successfully authorized', { variant: NT.success });
-        }),
+    handleFetch(LN.auth.logIn)(async () => {
+      const token = await apiMethodsBasicAuth.logIn({ email, password });
+      handleSetToken(token);
+      enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
-  const handleBasicSignUp = ({ email, password }) =>
-    handleFetch({
-      loadingName: LN.auth.signUp,
-      apiHandler: apiMethodsBasicAuth.signUp({ email, password }).then(() => {
-        history.push(routes.words.list);
-        enqueueSnackbar('Welcome! You have been signed up successfully', { variant: NT.success });
-      }),
+  const handleBasicSignUp = ({ name, email, password, repeatPassword }) =>
+    handleFetch(LN.auth.signUp)(async () => {
+      const token = await apiMethodsBasicAuth.signUp({ name, email, password, repeatPassword });
+      handleSetToken(token);
+      enqueueSnackbar('Welcome! You have been signed up successfully', { variant: NT.success });
     });
 
   const handleBasicForgotPassword = ({ email }) =>
-    handleFetch({
-      loadingName: LN.auth.forgotPassword,
-      apiHandler: apiMethodsBasicAuth
-        .forgotPassword({ email })
-        .then(() => enqueueSnackbar('Password is sent! Check your email', { variant: NT.success })),
+    handleFetch(LN.auth.forgotPassword)(async () => {
+      await apiMethodsBasicAuth.forgotPassword({ email });
+      enqueueSnackbar('Password is sent! Check your email', { variant: NT.success });
     });
 
-  const handleGoogleLogIn = token =>
-    handleFetch({
-      loadingName: LN.auth.logIn,
-      apiHandler: apiMethodsGoogleAuth
-        .logIn(token)
-        .then(setToken)
-        .then(() => {
-          history.push(routes.words.list);
-          enqueueSnackbar('Successfully authorized', { variant: NT.success });
-        }),
+  const handleGoogleLogIn = googleToken =>
+    handleFetch(LN.auth.logIn)(async () => {
+      const apiToken = await apiMethodsGoogleAuth.logIn(googleToken);
+      handleSetToken(apiToken);
+      enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
-  const handleGoogleSignUp = token =>
-    handleFetch({
-      loadingName: LN.auth.signUp,
-      apiHandler: apiMethodsGoogleAuth
-        .signUp(token)
-        .then(setToken)
-        .then(() => {
-          history.push(routes.words.list);
-          enqueueSnackbar('Successfully authorized', { variant: NT.success });
-        }),
+  const handleGoogleSignUp = googleToken =>
+    handleFetch(LN.auth.signUp)(async () => {
+      const apiToken = await apiMethodsGoogleAuth.signUp(googleToken);
+      handleSetToken(apiToken);
+      enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
-  const handleFacebookLogIn = token =>
-    handleFetch({
-      loadingName: LN.auth.logIn,
-      apiHandler: apiMethodsFacebookAuth
-        .logIn(token)
-        .then(setToken)
-        .then(() => {
-          history.push(routes.words.list);
-          enqueueSnackbar('Successfully authorized', { variant: NT.success });
-        }),
+  const handleFacebookLogIn = facebookToken =>
+    handleFetch(LN.auth.logIn)(async () => {
+      const apiToken = await apiMethodsFacebookAuth.logIn(facebookToken);
+      handleSetToken(apiToken);
+      enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
   const handleFacebookSignUp = token =>
-    handleFetch({
-      loadingName: LN.auth.signUp,
-      apiHandler: apiMethodsFacebookAuth
-        .signUp(token)
-        .then(setToken)
-        .then(() => {
-          history.push(routes.words.list);
-          enqueueSnackbar('Successfully authorized', { variant: NT.success });
-        }),
+    handleFetch(LN.auth.signUp)(async () => {
+      const apiToken = await apiMethodsFacebookAuth.signUp(token);
+      handleSetToken(apiToken);
+      enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
   const handleLogout = () => {
@@ -111,14 +87,11 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
     enqueueSnackbar('Successfully logged out', { variant: NT.success });
   };
 
-  const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
-
   return (
     <AuthContext.Provider
       value={{
         tokenData,
         isLoggedIn,
-        setToken,
         handleBasicLogIn,
         handleBasicSignUp,
         handleBasicForgotPassword,
