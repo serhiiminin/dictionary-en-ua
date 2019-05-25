@@ -17,10 +17,7 @@ const FormCmp = ({
   <Formik
     validateOnBlur={validateOnBlur}
     validateOnChange={validateOnChange}
-    onSubmit={(values, actions) => {
-      actions.resetForm(initialValues);
-      onSubmit(values);
-    }}
+    onSubmit={onSubmit}
     initialValues={initialValues}
     validationSchema={validationSchema}
   >

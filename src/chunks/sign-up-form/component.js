@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { GoogleLogin } from 'react-google-login';
@@ -41,89 +41,69 @@ const validationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], VL.match),
 });
 
-class SignUpForm extends Component {
-  static propTypes = {
-    handleBasicSignUp: PropTypes.func.isRequired,
-    handleGoogleSignUp: PropTypes.func.isRequired,
-    handleFacebookSignUp: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
-  };
+const fields = [
+  {
+    name: 'name',
+    label: 'Name',
+  },
+  {
+    name: 'email',
+    label: 'Email',
+  },
+  {
+    name: 'password',
+    label: 'Password',
+    component: InputPassword,
+  },
+  {
+    name: 'repeatPassword',
+    label: 'Repeat password',
+    component: InputPassword,
+  },
+];
 
-  handleSubmit = formData => {
-    const { handleBasicSignUp } = this.props;
+const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp, checkIsLoading }) => {
+  const isLoading = checkIsLoading(LN.auth.signUp);
+  const handleGoogle = ({ accessToken }) => handleGoogleSignUp(accessToken);
+  const handleFacebook = ({ accessToken }) => handleFacebookSignUp(accessToken);
 
-    return handleBasicSignUp(formData);
-  };
-
-  handleGoogle = tokenData => {
-    const { accessToken } = tokenData;
-    const { handleGoogleSignUp } = this.props;
-
-    return handleGoogleSignUp(accessToken);
-  };
-
-  handleFacebook = tokenData => {
-    const { accessToken } = tokenData;
-    const { handleFacebookSignUp } = this.props;
-
-    return handleFacebookSignUp(accessToken);
-  };
-
-  render() {
-    const { checkIsLoading } = this.props;
-    const isLoading = checkIsLoading(LN.auth.signUp);
-
-    return (
-      <div>
-        <TitleBlock>First here? Create an account now!</TitleBlock>
-        <FormWrapper marginTop={3.5}>
-          <Form
-            isLoading={isLoading}
-            validationSchema={validationSchema}
-            initialValues={initialValues}
-            onSubmit={this.handleSubmit}
-            fields={[
-              {
-                name: 'name',
-                label: 'Name',
-              },
-              {
-                name: 'email',
-                label: 'Email',
-              },
-              {
-                name: 'password',
-                label: 'Password',
-                component: InputPassword,
-              },
-              {
-                name: 'repeatPassword',
-                label: 'Repeat password',
-                component: InputPassword,
-              },
-            ]}
-            renderSubmit={() => (
-              <ButtonSearch type="submit" color="secondary" variant="contained">
-                Sign up
-              </ButtonSearch>
-            )}
+  return (
+    <>
+      <TitleBlock>First here? Create an account now!</TitleBlock>
+      <FormWrapper marginTop={3.5}>
+        <Form
+          isLoading={isLoading}
+          validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={handleBasicSignUp}
+          fields={fields}
+          renderSubmit={() => (
+            <ButtonSearch type="submit" color="secondary" variant="contained">
+              Sign up
+            </ButtonSearch>
+          )}
+        />
+        <BlockSocial>
+          <FacebookLogin
+            appId={config.auth.facebook.appId}
+            callback={handleFacebook}
+            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
           />
-          <BlockSocial>
-            <FacebookLogin
-              appId={config.auth.facebook.appId}
-              callback={this.handleFacebook}
-              render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
-            />
-            <GoogleLogin
-              clientId={config.auth.google.clientId}
-              onSuccess={this.handleGoogle}
-              render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
-            />
-          </BlockSocial>
-        </FormWrapper>
-      </div>
-    );
-  }
-}
+          <GoogleLogin
+            clientId={config.auth.google.clientId}
+            onSuccess={handleGoogle}
+            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+          />
+        </BlockSocial>
+      </FormWrapper>
+    </>
+  );
+};
 
+SignUpForm.propTypes = {
+  handleBasicSignUp: PropTypes.func.isRequired,
+  handleGoogleSignUp: PropTypes.func.isRequired,
+  handleFacebookSignUp: PropTypes.func.isRequired,
+  checkIsLoading: PropTypes.func.isRequired,
+};
 export default SignUpForm;
