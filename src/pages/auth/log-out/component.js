@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
+import { TitleBlock, ButtonPrimary } from '../../../components';
+import SC from './styles';
 
 const LogOut = ({ handleLogout }) => (
-  <>
-    <h1>Log out</h1>
-    <Button onClick={handleLogout} variant="outlined">
-      Log out
-    </Button>
-  </>
+  <SC.Wrapper>
+    <SC.CryingGirl />
+    <div>
+      <TitleBlock>Already leaving?</TitleBlock>
+      <SC.ActionsBlock>
+        <ButtonPrimary onClick={handleLogout} variant="outlined">
+          Log out
+        </ButtonPrimary>
+      </SC.ActionsBlock>
+    </div>
+  </SC.Wrapper>
 );
 
 LogOut.propTypes = {
