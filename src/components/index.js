@@ -11,6 +11,7 @@ export { default as ButtonSocial } from './button-social';
 export { default as ButtonVisibility } from './button-visibility';
 export { default as Form } from './form';
 export { default as FormWrapper } from './form-wrapper';
+export { default as InfoBlock } from './info-block';
 export { default as Header } from './header';
 export { default as InputPassword } from './input-password';
 export { default as PrivateRoute } from './private-route';

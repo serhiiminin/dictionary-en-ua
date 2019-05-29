@@ -9,6 +9,7 @@ const routes = {
     logOut: `${auth}/log-out`,
     signUp: `${auth}/sign-up`,
     confirm: `${auth}/confirm`,
+    checkSignUp: `${auth}/check-sign-up`,
     resetPassword: `${auth}/reset-password`,
     forgotPassword: `${auth}/forgot-password`,
   },

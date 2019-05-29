@@ -47,9 +47,8 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
       const appEndpoint = generateAppEndpoint(routes.auth.confirm);
 
       const body = { name, email, password, passwordConfirm, appEndpoint };
-      const token = await apiMethodsBasicAuth.signUp(body);
-      handleSetToken(token);
-      enqueueSnackbar('Welcome! You have been signed up successfully', { variant: NT.success });
+      await apiMethodsBasicAuth.signUp(body);
+      history.push(routes.auth.checkSignUp);
     });
 
   const handleBasicForgotPassword = ({ email }) =>
