@@ -8,8 +8,9 @@ const routes = {
     logIn: `${auth}/log-in`,
     logOut: `${auth}/log-out`,
     signUp: `${auth}/sign-up`,
-    forgotPassword: `${auth}/forgot-password`,
+    confirm: `${auth}/confirm`,
     resetPassword: `${auth}/reset-password`,
+    forgotPassword: `${auth}/forgot-password`,
   },
   words: {
     root: words,

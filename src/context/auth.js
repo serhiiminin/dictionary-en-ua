@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { joinPath } from 'url-joiner';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
@@ -15,6 +16,8 @@ import { withFetcher } from './fetcher';
 const ACCESS_TOKEN = 'access_token';
 
 const AuthContext = createContext({});
+
+const generateAppEndpoint = path => (window ? joinPath(`${window.location.origin}/#`, path) : '');
 
 const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) => {
   const [tokenData, setTokenData] = useState(JSON.parse(Cookies.get(ACCESS_TOKEN) || null));
@@ -39,16 +42,21 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
-  const handleBasicSignUp = ({ name, email, password, repeatPassword }) =>
+  const handleBasicSignUp = ({ name, email, password, passwordConfirm }) =>
     handleFetch(LN.auth.signUp)(async () => {
-      const token = await apiMethodsBasicAuth.signUp({ name, email, password, repeatPassword });
+      const appEndpoint = generateAppEndpoint(routes.auth.confirm);
+
+      const body = { name, email, password, passwordConfirm, appEndpoint };
+      const token = await apiMethodsBasicAuth.signUp(body);
       handleSetToken(token);
       enqueueSnackbar('Welcome! You have been signed up successfully', { variant: NT.success });
     });
 
   const handleBasicForgotPassword = ({ email }) =>
     handleFetch(LN.auth.forgotPassword)(async () => {
-      await apiMethodsBasicAuth.forgotPassword({ email });
+      const appEndpoint = generateAppEndpoint(routes.auth.forgotPassword);
+
+      await apiMethodsBasicAuth.forgotPassword({ email, appEndpoint });
       enqueueSnackbar('Password is sent! Check your email', { variant: NT.success });
     });
 

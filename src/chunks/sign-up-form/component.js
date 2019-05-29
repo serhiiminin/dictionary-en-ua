@@ -21,7 +21,7 @@ const initialValues = {
   name: '',
   email: '',
   password: '',
-  repeatPassword: '',
+  passwordConfirm: '',
 };
 
 const validationSchema = yup.object().shape({
@@ -33,8 +33,8 @@ const validationSchema = yup.object().shape({
     .string()
     .required(VL.required)
     .min(8, VL.passwordMinLength)
-    .oneOf([yup.ref('repeatPassword'), null], VL.match),
-  repeatPassword: yup
+    .oneOf([yup.ref('passwordConfirm'), null], VL.match),
+  passwordConfirm: yup
     .string()
     .required(VL.required)
     .min(8, VL.passwordMinLength)
@@ -56,7 +56,7 @@ const fields = [
     component: InputPassword,
   },
   {
-    name: 'repeatPassword',
+    name: 'passwordConfirm',
     label: 'Repeat password',
     component: InputPassword,
   },
