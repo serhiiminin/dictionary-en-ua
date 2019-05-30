@@ -13,6 +13,7 @@ import { withFetcher } from './fetcher';
 import { withCookies } from './cookies';
 
 const ACCESS_TOKEN = 'access_token';
+const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
 
 const AuthContext = createContext({});
 
@@ -21,7 +22,12 @@ const generateAppEndpoint = path => (window ? joinPath(`${window.location.origin
 const AuthProviderCmp = props => {
   const { handleFetch, enqueueSnackbar, history, children, getFromCookies, setToCookies, removeFromCookies } = props;
   const [tokenData, setTokenData] = useState(getFromCookies(ACCESS_TOKEN));
+  const [isSignUpApplied, setIsSignUpApplied] = useState(false);
   const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
+
+  const handleSuccessRedirect = () => {
+    history.goBack();
+  };
 
   const handleSetToken = token => {
     if (!token) {
@@ -35,13 +41,21 @@ const AuthProviderCmp = props => {
     removeFromCookies(ACCESS_TOKEN);
     history.push(routes.words.list);
   };
+  const setEmailConfirmation = () => {
+    setToCookies(IS_SIGN_UP_APPLIED, true);
+    setIsSignUpApplied(true);
+  };
+  const removeEmailConfirmation = () => {
+    removeFromCookies(IS_SIGN_UP_APPLIED);
+    setIsSignUpApplied(false);
+  };
 
   const handleBasicLogIn = ({ email, password }) =>
     handleFetch(LN.auth.logIn)(async () => {
       const token = await apiMethodsBasicAuth.logIn({ email, password });
       handleSetToken(token);
-      history.push(routes.words.list);
-      enqueueSnackbar('Successfully authorized', { variant: NT.success });
+      handleSuccessRedirect();
+      enqueueSnackbar('Welcome!', { variant: NT.success });
     });
 
   const handleBasicSignUp = ({ name, email, password, passwordConfirm }) =>
@@ -50,6 +64,7 @@ const AuthProviderCmp = props => {
 
       const body = { name, email, password, passwordConfirm, appEndpoint };
       await apiMethodsBasicAuth.signUp(body);
+      setEmailConfirmation();
       history.push(routes.auth.checkSignUp);
     });
 
@@ -78,32 +93,32 @@ const AuthProviderCmp = props => {
     handleFetch(LN.auth.logIn)(async () => {
       const apiToken = await apiMethodsGoogleAuth.logIn(googleToken);
       handleSetToken(apiToken);
-      history.push(routes.words.list);
-      enqueueSnackbar('Successfully authorized', { variant: NT.success });
+      handleSuccessRedirect();
+      enqueueSnackbar('Welcome!', { variant: NT.success });
     });
 
   const handleGoogleSignUp = googleToken =>
     handleFetch(LN.auth.signUp)(async () => {
       const apiToken = await apiMethodsGoogleAuth.signUp(googleToken);
       handleSetToken(apiToken);
-      history.push(routes.words.list);
-      enqueueSnackbar('Successfully authorized', { variant: NT.success });
+      handleSuccessRedirect();
+      enqueueSnackbar('Welcome!', { variant: NT.success });
     });
 
   const handleFacebookLogIn = facebookToken =>
     handleFetch(LN.auth.logIn)(async () => {
       const apiToken = await apiMethodsFacebookAuth.logIn(facebookToken);
       handleSetToken(apiToken);
-      history.push(routes.words.list);
-      enqueueSnackbar('Successfully authorized', { variant: NT.success });
+      handleSuccessRedirect();
+      enqueueSnackbar('Welcome!', { variant: NT.success });
     });
 
   const handleFacebookSignUp = token =>
     handleFetch(LN.auth.signUp)(async () => {
       const apiToken = await apiMethodsFacebookAuth.signUp(token);
       handleSetToken(apiToken);
-      history.push(routes.words.list);
-      enqueueSnackbar('Successfully authorized', { variant: NT.success });
+      handleSuccessRedirect();
+      enqueueSnackbar('Welcome!', { variant: NT.success });
     });
 
   const handleLogout = () => {
@@ -115,6 +130,7 @@ const AuthProviderCmp = props => {
       value={{
         tokenData,
         isLoggedIn,
+        isSignUpApplied,
         handleBasicLogIn,
         handleBasicSignUp,
         handleConfirmBasicSignUp,
@@ -124,6 +140,8 @@ const AuthProviderCmp = props => {
         handleFacebookLogIn,
         handleFacebookSignUp,
         handleLogout,
+        setEmailConfirmation,
+        removeEmailConfirmation,
       }}
     >
       {children}

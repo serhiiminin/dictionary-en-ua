@@ -1,6 +1,4 @@
-import React from 'react';
-import { InfoBlock } from '../../components';
+import { withAuth } from '../../context/auth';
+import CheckSignUp from './component';
 
-const CheckSignUp = () => <InfoBlock title="Success" description="Check your email to confirm registration!" />;
-
-export default CheckSignUp;
+export default withAuth(CheckSignUp);
