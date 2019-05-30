@@ -8,6 +8,7 @@ const loadingNames = {
   auth: {
     logIn: `${AUTH}/log-in`,
     signUp: `${AUTH}/sign-up`,
+    confirm: `${AUTH}/confirm`,
     forgotPassword: `${AUTH}/forgot-password`,
   },
   words: {

@@ -8,7 +8,10 @@ import apiRoutes from './api-routes';
 const createApiMethodsBasicAuth = endpoint => fetcher => ({
   logIn: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.logIn), { body })),
   signUp: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.signUp), { body })),
-  confirm: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.confirm), { body })),
+  confirm: token =>
+    fetcher(
+      requests.get(joinPath(endpoint, apiRoutes.auth.basic.confirm), { headers: { authorization: `Bearer ${token}` } })
+    ),
   forgotPassword: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.forgotPassword), { body })),
   resetPassword: body => fetcher(requests.post(joinPath(endpoint, apiRoutes.auth.basic.resetPassword), { body })),
 });

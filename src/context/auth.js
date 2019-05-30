@@ -51,6 +51,19 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
       history.push(routes.auth.checkSignUp);
     });
 
+  const handleConfirmBasicSignUp = token =>
+    handleFetch(LN.auth.confirm)(async () => {
+      try {
+        const tokenSuccess = await apiMethodsBasicAuth.confirm(token);
+        if (tokenSuccess) {
+          setTokenData(tokenSuccess);
+        }
+      } catch (error) {
+        history.push(routes.auth.logIn);
+        enqueueSnackbar('Invalid activation reference', { variant: NT.error.default });
+      }
+    });
+
   const handleBasicForgotPassword = ({ email }) =>
     handleFetch(LN.auth.forgotPassword)(async () => {
       const appEndpoint = generateAppEndpoint(routes.auth.forgotPassword);
@@ -101,6 +114,7 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
         isLoggedIn,
         handleBasicLogIn,
         handleBasicSignUp,
+        handleConfirmBasicSignUp,
         handleBasicForgotPassword,
         handleGoogleLogIn,
         handleGoogleSignUp,
