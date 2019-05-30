@@ -5,13 +5,12 @@ import { joinPath } from 'url-joiner';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
-import Cookies from 'js-cookie';
 import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
 import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import routes from '../routes';
-import config from '../config';
 import { withFetcher } from './fetcher';
+import { withCookies } from './cookies';
 
 const ACCESS_TOKEN = 'access_token';
 
@@ -19,8 +18,9 @@ const AuthContext = createContext({});
 
 const generateAppEndpoint = path => (window ? joinPath(`${window.location.origin}/#`, path) : '');
 
-const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) => {
-  const [tokenData, setTokenData] = useState(JSON.parse(Cookies.get(ACCESS_TOKEN) || null));
+const AuthProviderCmp = props => {
+  const { handleFetch, enqueueSnackbar, history, children, getFromCookies, setToCookies, removeFromCookies } = props;
+  const [tokenData, setTokenData] = useState(getFromCookies(ACCESS_TOKEN));
   const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
 
   const handleSetToken = token => {
@@ -28,10 +28,7 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
       throw new Error('token is not passed');
     }
     setTokenData(token);
-    Cookies.set(ACCESS_TOKEN, JSON.stringify(token), {
-      expires: 1,
-      path: config.publicUrl,
-    });
+    setToCookies(ACCESS_TOKEN, token);
     history.push(routes.words.list);
   };
 
@@ -102,7 +99,7 @@ const AuthProviderCmp = ({ handleFetch, enqueueSnackbar, history, children }) =>
 
   const handleLogout = () => {
     setTokenData(null);
-    Cookies.remove(ACCESS_TOKEN);
+    removeFromCookies(ACCESS_TOKEN);
     history.push(routes.auth.logIn);
     enqueueSnackbar('Successfully logged out', { variant: NT.success });
   };
@@ -132,10 +129,14 @@ AuthProviderCmp.propTypes = {
   children: PropTypes.node.isRequired,
   enqueueSnackbar: PropTypes.func.isRequired,
   handleFetch: PropTypes.func.isRequired,
+  getFromCookies: PropTypes.func.isRequired,
+  setToCookies: PropTypes.func.isRequired,
+  removeFromCookies: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 
 const AuthProvider = compose(
+  withCookies,
   withRouter,
   withFetcher,
   withSnackbar
