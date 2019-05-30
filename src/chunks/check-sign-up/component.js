@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { InfoBlock } from '../../components';
 
-const CheckSignUp = ({ removeEmailConfirmation }) => {
-  useEffect(() => () => removeEmailConfirmation(), []);
+class CheckSignUp extends Component {
+  static propTypes = {
+    removeEmailConfirmation: PropTypes.func.isRequired,
+  };
 
-  return <InfoBlock title="Success" description="Check your email to confirm registration!" />;
-};
+  componentWillUnmount() {
+    this.props.removeEmailConfirmation();
+  }
 
-CheckSignUp.propTypes = {
-  removeEmailConfirmation: PropTypes.func.isRequired,
-};
+  render() {
+    return <InfoBlock title="Success" description="Check your email to confirm registration!" />;
+  }
+}
 
 export default CheckSignUp;
