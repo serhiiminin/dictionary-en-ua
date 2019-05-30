@@ -29,6 +29,10 @@ const AuthProviderCmp = props => {
     }
     setTokenData(token);
     setToCookies(ACCESS_TOKEN, token);
+  };
+  const handleRemoveToken = () => {
+    setTokenData(null);
+    removeFromCookies(ACCESS_TOKEN);
     history.push(routes.words.list);
   };
 
@@ -36,6 +40,7 @@ const AuthProviderCmp = props => {
     handleFetch(LN.auth.logIn)(async () => {
       const token = await apiMethodsBasicAuth.logIn({ email, password });
       handleSetToken(token);
+      history.push(routes.words.list);
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
@@ -53,11 +58,11 @@ const AuthProviderCmp = props => {
       try {
         const tokenSuccess = await apiMethodsBasicAuth.confirm(token);
         if (tokenSuccess) {
-          setTokenData(tokenSuccess);
+          handleSetToken(tokenSuccess);
         }
       } catch (error) {
-        history.push(routes.auth.logIn);
-        enqueueSnackbar('Invalid activation reference', { variant: NT.error.default });
+        history.push(routes.root);
+        enqueueSnackbar('This activation reference is invalid or expired', { variant: NT.error.default });
       }
     });
 
@@ -73,6 +78,7 @@ const AuthProviderCmp = props => {
     handleFetch(LN.auth.logIn)(async () => {
       const apiToken = await apiMethodsGoogleAuth.logIn(googleToken);
       handleSetToken(apiToken);
+      history.push(routes.words.list);
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
@@ -80,6 +86,7 @@ const AuthProviderCmp = props => {
     handleFetch(LN.auth.signUp)(async () => {
       const apiToken = await apiMethodsGoogleAuth.signUp(googleToken);
       handleSetToken(apiToken);
+      history.push(routes.words.list);
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
@@ -87,6 +94,7 @@ const AuthProviderCmp = props => {
     handleFetch(LN.auth.logIn)(async () => {
       const apiToken = await apiMethodsFacebookAuth.logIn(facebookToken);
       handleSetToken(apiToken);
+      history.push(routes.words.list);
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
@@ -94,14 +102,12 @@ const AuthProviderCmp = props => {
     handleFetch(LN.auth.signUp)(async () => {
       const apiToken = await apiMethodsFacebookAuth.signUp(token);
       handleSetToken(apiToken);
+      history.push(routes.words.list);
       enqueueSnackbar('Successfully authorized', { variant: NT.success });
     });
 
   const handleLogout = () => {
-    setTokenData(null);
-    removeFromCookies(ACCESS_TOKEN);
-    history.push(routes.auth.logIn);
-    enqueueSnackbar('Successfully logged out', { variant: NT.success });
+    handleRemoveToken();
   };
 
   return (

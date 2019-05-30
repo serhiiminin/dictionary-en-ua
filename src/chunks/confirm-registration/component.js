@@ -1,32 +1,29 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { CircularProgress } from '@material-ui/core';
+import LN from '../../constants/loading-names';
+import routes from '../../routes';
 
-class ConfirmRegistration extends Component {
-  static propTypes = {
-    handleConfirmBasicSignUp: PropTypes.func.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
+const ConfirmRegistration = ({ handleConfirmBasicSignUp, checkIsLoading, location, history }) => {
+  const isLoading = checkIsLoading(LN.auth.confirm);
 
-  state = {
-    isLoading: true,
-  };
-
-  componentDidMount() {
-    const { location, handleConfirmBasicSignUp } = this.props;
+  useEffect(() => {
     const token = new URLSearchParams(location.search).get('token');
+    if (!token) {
+      history.push(routes.root);
+    }
+    handleConfirmBasicSignUp(token);
+  }, []);
 
-    handleConfirmBasicSignUp(token).then(() => {
-      this.setState({ isLoading: false });
-    });
-  }
+  return isLoading ? <CircularProgress /> : 'finish';
+};
 
-  render() {
-    const { isLoading } = this.state;
-
-    return isLoading ? <CircularProgress /> : 'finish';
-  }
-}
+ConfirmRegistration.propTypes = {
+  handleConfirmBasicSignUp: PropTypes.func.isRequired,
+  checkIsLoading: PropTypes.func.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
+};
 
 export default ConfirmRegistration;
