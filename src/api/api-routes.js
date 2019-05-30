@@ -8,6 +8,7 @@ const WORDS = 'words';
 const apiRoutes = {
   auth: {
     basic: {
+      confirm: `${AUTH_BASIC}/confirm`,
       forgotPassword: `${AUTH_BASIC}/forgot-password`,
       logIn: `${AUTH_BASIC}/log-in`,
       resetPassword: `${AUTH_BASIC}/reset-password`,

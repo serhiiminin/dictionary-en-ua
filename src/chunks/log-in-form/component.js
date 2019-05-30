@@ -49,8 +49,8 @@ const fields = [
 
 const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, checkIsLoading }) => {
   const isLoading = checkIsLoading(LN.auth.logIn);
-  const handleGoogle = ({ accessToken }) => handleGoogleLogIn(accessToken);
-  const handleFacebook = ({ accessToken }) => handleFacebookLogIn(accessToken);
+  const handleGoogle = ({ accessToken }) => accessToken && handleGoogleLogIn(accessToken);
+  const handleFacebook = ({ accessToken }) => accessToken && handleFacebookLogIn(accessToken);
 
   return (
     <>

@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, Zoom } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { SnackbarProvider } from 'notistack';
-import { PrivateRoute, Header, BlocksWrapper } from '../components';
+import { PrivateRouteLoggedIn, Header, BlocksWrapper } from '../components';
 import {
   AuthPage,
   MainPage,
@@ -42,11 +42,11 @@ const Root = () => (
                 <Switch>
                   <Route exact path={routes.root} component={MainPage} />
                   <Route path={routes.auth.root} component={AuthPage} />
-                  <PrivateRoute exact path={routes.words.add} component={WordsAddPage} />
-                  <PrivateRoute exact path={routes.words.list} component={WordsListPage} />
-                  <PrivateRoute exact path={routes.words.search} component={WordSearchPage} />
-                  <PrivateRoute exact path={routes.words.preview} component={WordPreviewPage} />
-                  <PrivateRoute exact path={routes.words.edit} component={WordsEditPage} />
+                  <PrivateRouteLoggedIn exact path={routes.words.add} component={WordsAddPage} />
+                  <PrivateRouteLoggedIn exact path={routes.words.list} component={WordsListPage} />
+                  <PrivateRouteLoggedIn exact path={routes.words.search} component={WordSearchPage} />
+                  <PrivateRouteLoggedIn exact path={routes.words.preview} component={WordPreviewPage} />
+                  <PrivateRouteLoggedIn exact path={routes.words.edit} component={WordsEditPage} />
                   <Route component={PageNotFoundPage} />
                 </Switch>
               </BlocksWrapper>
