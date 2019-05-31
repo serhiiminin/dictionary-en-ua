@@ -6,6 +6,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "now-build": "react-app-rewired build",
     "eject": "react-app-rewired eject",
     "test": "react-app-rewired test --env=jsdom --watchAll",
     "test:coverage": "react-app-rewired test --env=jsdom --coverage",
@@ -59,7 +60,7 @@
       "src/**/*.{js,jsx}",
       "!src/**/styles.js",
       "!src/index.js",
-      "!src/registerServiceWorker.js"
+      "!src/serviceWorker.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

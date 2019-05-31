@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, Zoom } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { SnackbarProvider } from 'notistack';
@@ -17,6 +17,7 @@ import {
 } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
+import config from '../config';
 import { muiTheme, GlobalStyle } from './styles';
 
 const snackbarConfig = {
@@ -34,7 +35,7 @@ const Root = () => (
     <>
       <GlobalStyle />
       <MuiThemeProvider theme={muiTheme}>
-        <Router>
+        <Router basename={config.publicUrl}>
           <SnackbarProvider {...snackbarConfig}>
             <StateProvider>
               <BlocksWrapper>

@@ -9,8 +9,14 @@ branches:
     - master
 
 cache:
+  yarn: true
   directories:
     - node_modules
+
+before_install:
+  # Download latest yarn since travis defaults to v1.3.2
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
 
 install:
   - npm install -g yarn
@@ -20,6 +26,7 @@ script:
   - rm -rf docs
   - yarn run build
   - mv build docs
+
 deploy:
   provider: pages
   skip_cleanup: true
