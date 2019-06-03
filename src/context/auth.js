@@ -11,13 +11,14 @@ import LN from '../constants/loading-names';
 import routes from '../routes';
 import { withFetcher } from './fetcher';
 import { withCookies } from './cookies';
+import config from '../config';
 
 const ACCESS_TOKEN = 'access_token';
 const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
 
 const AuthContext = createContext({});
 
-const generateAppEndpoint = path => (window ? joinPath(`${window.location.origin}/#`, path) : '');
+const generateAppEndpoint = path => (window ? joinPath(window.location.origin, config.publicUrl, path) : '');
 
 const AuthProviderCmp = props => {
   const { handleFetch, enqueueSnackbar, history, children, getFromCookies, setToCookies, removeFromCookies } = props;

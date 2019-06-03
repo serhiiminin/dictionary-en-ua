@@ -96,9 +96,9 @@ const WordsProviderCmp = props => {
       enqueueSnackbar('The word has been deleted successfully', { variant: NT.success });
     });
 
-  const handleSearchWord = params =>
+  const handleSearchWord = word =>
     handleFetch(LN.words.search)(async () => {
-      const foundWord = await apiWord.search(params);
+      const foundWord = await apiWord.search({ word });
       const gifs = await apiGif.get({ q: foundWord.word });
       const randomGif = gifs && getRandlomGif(gifs.data);
       const normalizedWord = normalizeWord(foundWord);
