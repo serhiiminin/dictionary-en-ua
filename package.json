@@ -41,7 +41,7 @@
   "devDependencies": {
     "babel-plugin-styled-components": "1.10.0",
     "customize-cra": "0.2.13",
-    "enzyme": "3.9.0",
+    "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.13.2",
     "enzyme-to-json": "3.3.5",
     "eslint-config-airbnb": "17.1.0",
