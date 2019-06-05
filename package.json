@@ -28,7 +28,7 @@
     "react-dom": "16.8.6",
     "react-facebook-login": "4.1.1",
     "react-google-login": "5.0.4",
-    "react-router-dom": "5.0.0",
+    "react-router-dom": "5.0.1",
     "react-router-prop-types": "1.0.4",
     "react-scripts": "3.0.1",
     "recompose": "0.30.0",
