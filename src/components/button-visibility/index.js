@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const ButtonVisibility = styled(props => <IconButton disableRipple {...props} />)`
   && {
+    font-size: ${props => props.theme.main.fontSize.lg};
     background: transparent;
     margin: 0;
     padding: 0;
