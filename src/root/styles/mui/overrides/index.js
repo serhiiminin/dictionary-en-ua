@@ -1,6 +1,7 @@
 import button from './button';
 import chip from './chip';
 import helper from './helper';
+import icon from './icon';
 import input from './input';
 import menu from './menu';
 import progress from './progress';
@@ -12,6 +13,7 @@ export default {
   ...button(theme),
   ...chip(theme),
   ...helper(theme),
+  ...icon(theme),
   ...input(theme),
   ...menu(theme),
   ...progress(theme),
