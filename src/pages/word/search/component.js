@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { TextField } from '@material-ui/core';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { parseSearch, joinUrl, mergeSearch } from 'url-joiner';
+import { BlockSearch, ButtonSearch, TitleBlock } from '../../../components';
 import routes from '../../../routes';
 
 class SearchWordContainer extends Component {
@@ -45,8 +47,24 @@ class SearchWordContainer extends Component {
     const { options } = wordItem;
 
     return (
-      <div>
-        <h2>Search</h2>
+      <>
+        <TitleBlock>Search</TitleBlock>
+        <BlockSearch>
+          {({ linkTo, searchValue, handleOnChange, handleOnEnterPress }) => (
+            <div>
+              <TextField
+                label="your word"
+                value={searchValue}
+                onChange={handleOnChange}
+                onKeyUp={handleOnEnterPress}
+                variant="outlined"
+              />
+              <ButtonSearch component={Link} to={linkTo} disabled={!searchValue} variant="contained" color="primary">
+                search
+              </ButtonSearch>
+            </div>
+          )}
+        </BlockSearch>
         <p>{wordItem.word}</p>
         {options && <p>Maybe you meant:</p>}
         <ul>
@@ -64,7 +82,7 @@ class SearchWordContainer extends Component {
         </ul>
         <p>{wordItem.transcription}</p>
         <img src={wordItem.gif} alt={wordItem.word} />
-      </div>
+      </>
     );
   }
 }

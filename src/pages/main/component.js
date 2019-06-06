@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Slide } from '@material-ui/core';
 import { BlockSearch, ButtonSearch } from '../../components';
 import SC from './styles';
@@ -21,7 +22,7 @@ const MainContainer = () => (
                 onKeyUp={handleOnEnterPress}
                 variant="outlined"
               />
-              <ButtonSearch to={linkTo} disabled={!searchValue} variant="contained" color="primary">
+              <ButtonSearch component={Link} to={linkTo} disabled={!searchValue} variant="contained" color="primary">
                 search
               </ButtonSearch>
             </SC.SearchBlock>

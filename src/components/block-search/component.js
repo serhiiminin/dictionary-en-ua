@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { joinUrl, mergeSearch } from 'url-joiner';
+import { joinUrl, mergeSearch, parseSearch } from 'url-joiner';
 import routes from '../../routes';
 
-const BlockSearch = ({ history, children }) => {
-  const [searchValue, setSearchValue] = useState('');
+const BlockSearch = ({ history, location, children }) => {
+  const { query } = parseSearch(location.search);
+  const [searchValue, setSearchValue] = useState(query || '');
 
   const handleOnChange = event => setSearchValue(event.target.value);
 
@@ -23,13 +24,13 @@ const BlockSearch = ({ history, children }) => {
     linkTo,
     searchValue,
     handleOnChange,
-    handleOnSearch,
     handleOnEnterPress,
   });
 };
 
 BlockSearch.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
 };
 
 export default BlockSearch;
