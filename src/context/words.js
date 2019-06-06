@@ -60,6 +60,7 @@ const WordsProviderCmp = props => {
 
   const handleFetchWord = wordId =>
     handleFetch(LN.words.fetch)(async () => {
+      cleanWord();
       const word = await apiWord.get(wordId);
       setWordItem(word);
     });
@@ -97,6 +98,7 @@ const WordsProviderCmp = props => {
 
   const handleSearchWord = word =>
     handleFetch(LN.words.search)(async () => {
+      cleanWord();
       const foundWord = await apiWord.search({ word });
       const gifs = await apiGif.get({ q: foundWord.word });
       const randomGif = gifs && getRandlomGif(gifs.data);

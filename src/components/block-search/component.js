@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { joinUrl, mergeSearch, parseSearch } from 'url-joiner';
 import routes from '../../routes';
 
 const BlockSearch = ({ history, location, children }) => {
-  const { query } = parseSearch(location.search);
-  const [searchValue, setSearchValue] = useState(query || '');
+  const [searchValue, setSearchValue] = useState('');
+
+  useEffect(() => {
+    const { query } = parseSearch(location.search);
+    setSearchValue(query);
+  }, [location.search]);
 
   const handleOnChange = event => setSearchValue(event.target.value);
 
