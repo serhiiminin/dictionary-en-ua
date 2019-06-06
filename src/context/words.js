@@ -8,7 +8,6 @@ import { parseSearch } from 'url-joiner';
 import { createApiWord, apiGif } from '../api';
 import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
-import { normalizeWord } from '../util/word-utils';
 import { withAuth } from './auth';
 import { withFetcher } from './fetcher';
 
@@ -101,12 +100,12 @@ const WordsProviderCmp = props => {
       const foundWord = await apiWord.search({ word });
       const gifs = await apiGif.get({ q: foundWord.word });
       const randomGif = gifs && getRandlomGif(gifs.data);
-      const normalizedWord = normalizeWord(foundWord);
+      const wordData = JSON.parse(JSON.stringify(foundWord));
 
       if (randomGif) {
-        normalizedWord.gif = randomGif;
+        wordData.gif = randomGif;
       }
-      setWordItem(normalizedWord);
+      setWordItem(wordData);
     });
 
   const handleFetchWordsToLearn = () =>
