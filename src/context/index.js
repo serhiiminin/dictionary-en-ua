@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LoadingNamesProvider } from './loading-names';
+import { LoadingProvider } from './loading';
 import { CookiesProvider } from './cookies';
 import { FetcherProvider } from './fetcher';
 import { ErrorProvider } from './errors';
@@ -11,7 +11,7 @@ import { AuthProvider } from './auth';
 const StateProvider = ({ children }) => (
   <CookiesProvider>
     <ErrorProvider>
-      <LoadingNamesProvider>
+      <LoadingProvider>
         <FetcherProvider>
           <AuthProvider>
             <UserProvider>
@@ -19,7 +19,7 @@ const StateProvider = ({ children }) => (
             </UserProvider>
           </AuthProvider>
         </FetcherProvider>
-      </LoadingNamesProvider>
+      </LoadingProvider>
     </ErrorProvider>
   </CookiesProvider>
 );

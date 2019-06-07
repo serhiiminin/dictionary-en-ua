@@ -1,11 +1,11 @@
 import { withTheme } from 'styled-components';
 import { compose } from 'recompose';
 import { withAuth } from '../../context/auth';
-import { withLoadingNames } from '../../context/loading-names';
+import { withLoading } from '../../context/loading';
 import Header from './component';
 
 const enhance = compose(
-  withLoadingNames,
+  withLoading,
   withAuth,
   withTheme
 );

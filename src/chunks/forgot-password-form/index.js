@@ -3,14 +3,14 @@ import { withTheme } from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withAuth } from '../../context/auth';
 import { withErrors } from '../../context/errors';
-import { withLoadingNames } from '../../context/loading-names';
+import { withLoading } from '../../context/loading';
 import ForgotPasswordCmp from './component';
 
 const ForgotPassword = compose(
   withRouter,
   withAuth,
   withErrors,
-  withLoadingNames,
+  withLoading,
   withTheme
 )(ForgotPasswordCmp);
 

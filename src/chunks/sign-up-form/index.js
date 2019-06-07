@@ -4,12 +4,12 @@ import { withRouter } from 'react-router-dom';
 import { withAuth } from '../../context/auth';
 import { withErrors } from '../../context/errors';
 import SignUpCmp from './component';
-import { withLoadingNames } from '../../context/loading-names';
+import { withLoading } from '../../context/loading';
 
 const SignUp = compose(
   withRouter,
   withAuth,
-  withLoadingNames,
+  withLoading,
   withErrors,
   withTheme
 )(SignUpCmp);

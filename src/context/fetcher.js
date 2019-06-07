@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withErrors } from './errors';
-import { withLoadingNames } from './loading-names';
+import { withLoading } from './loading';
 
 const FetcherContext = createContext({});
 
@@ -33,7 +33,7 @@ FetcherProviderCmp.propTypes = {
 
 const FetcherProvider = compose(
   withErrors,
-  withLoadingNames
+  withLoading
 )(FetcherProviderCmp);
 
 const withFetcher = Cmp => props => (
