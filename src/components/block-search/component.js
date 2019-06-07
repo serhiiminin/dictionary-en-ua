@@ -7,7 +7,7 @@ const BlockSearch = ({ history, location, children }) => {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    const { query } = parseSearch(location.search);
+    const { query = '' } = parseSearch(location.search);
     setSearchValue(query);
   }, [location.search]);
 

@@ -15,34 +15,33 @@ const snackbarConfig = {
   TransitionComponent: Zoom,
   maxSnack: 5,
   anchorOrigin: {
-    vertical: 'top',
-    horizontal: 'right',
+    vertical: 'bottom',
+    horizontal: 'left',
   },
-  action: [<Close key="close" />],
+  preventDuplicate: true,
+  action: key => <Close key={key} />,
 };
 
 const Root = () => (
   <ThemeProvider theme={muiTheme}>
-    <>
+    <MuiThemeProvider theme={muiTheme}>
       <GlobalStyle />
-      <MuiThemeProvider theme={muiTheme}>
-        <Router basename={config.publicUrl}>
-          <SnackbarProvider {...snackbarConfig}>
-            <StateProvider>
-              <BlocksWrapper>
-                <Header />
-                <Switch>
-                  <Route exact path={routes.root} component={MainPage} />
-                  <Route path={routes.auth.root} component={AuthPage} />
-                  <PrivateRouteLoggedIn path={routes.words.root} component={WordPage} />
-                  <Route component={PageNotFoundPage} />
-                </Switch>
-              </BlocksWrapper>
-            </StateProvider>
-          </SnackbarProvider>
-        </Router>
-      </MuiThemeProvider>
-    </>
+      <Router basename={config.publicUrl}>
+        <SnackbarProvider {...snackbarConfig}>
+          <StateProvider>
+            <BlocksWrapper>
+              <Header />
+              <Switch>
+                <Route exact path={routes.root} component={MainPage} />
+                <Route path={routes.auth.root} component={AuthPage} />
+                <PrivateRouteLoggedIn path={routes.words.root} component={WordPage} />
+                <Route component={PageNotFoundPage} />
+              </Switch>
+            </BlocksWrapper>
+          </StateProvider>
+        </SnackbarProvider>
+      </Router>
+    </MuiThemeProvider>
   </ThemeProvider>
 );
 
