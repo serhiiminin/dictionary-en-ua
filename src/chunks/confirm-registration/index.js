@@ -2,10 +2,10 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withAuth } from '../../context/auth';
 import ConfirmRegistration from './component';
-import { withLoadingNames } from '../../context/loading-names';
+import { withLoading } from '../../context/loading';
 
 export default compose(
   withRouter,
-  withLoadingNames,
+  withLoading,
   withAuth
 )(ConfirmRegistration);
