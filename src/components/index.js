@@ -1,4 +1,5 @@
 export { default as AuthSuggestion } from './auth-suggestion';
+export { default as BlockSearch } from './block-search';
 export { default as BlockSocial } from './block-social';
 export { default as BlocksWrapper } from './blocks-wrapper';
 export { default as Button } from './button';

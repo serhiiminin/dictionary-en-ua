@@ -13,7 +13,7 @@
     "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
     "lint:fix": "LINT_ARGS=--fix yarn run lint",
     "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' yarn run lint",
-    "format": "prettier --write '{src}/**/*.js'",
+    "format": "prettier --write 'src/**/*.js'",
     "validate": "yarn run lint"
   },
   "dependencies": {

@@ -21,7 +21,9 @@ const CookiesProviderCmp = ({ children }) => {
     Cookies.set(key, JSON.stringify(value), cookiesParams);
   };
 
-  const removeFromCookies = key => JSON.parse(Cookies.remove(key) || null);
+  const removeFromCookies = key => {
+    Cookies.remove(key);
+  };
 
   return (
     <CookiesContext.Provider

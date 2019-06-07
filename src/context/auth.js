@@ -37,15 +37,17 @@ const AuthProviderCmp = props => {
     setTokenData(token);
     setToCookies(ACCESS_TOKEN, token);
   };
-  const handleRemoveToken = () => {
+
+  const handleCleanToken = () => {
     setTokenData(null);
     removeFromCookies(ACCESS_TOKEN);
-    history.push(routes.words.list);
   };
+
   const setEmailConfirmation = () => {
     setToCookies(IS_SIGN_UP_APPLIED, true);
     setIsSignUpApplied(true);
   };
+
   const removeEmailConfirmation = () => {
     removeFromCookies(IS_SIGN_UP_APPLIED);
     setIsSignUpApplied(false);
@@ -123,7 +125,7 @@ const AuthProviderCmp = props => {
     });
 
   const handleLogout = () => {
-    handleRemoveToken();
+    handleCleanToken();
   };
 
   return (

@@ -22,7 +22,7 @@ const {
 } = process.env;
 
 const config = {
-  publicUrl: PUBLIC_URL,
+  publicUrl: PUBLIC_URL || '/',
   auth: {
     google: {
       apiKey: REACT_APP_GOOGLE_API_KEY,

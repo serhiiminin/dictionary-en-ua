@@ -2,19 +2,19 @@ const mockRouterProps = {
   match: {
     isExact: true,
     params: {},
-    path: "",
-    url: ""
+    path: '',
+    url: '',
   },
   location: {
-    hash: "",
-    key: "",
-    pathname: "",
-    search: "",
-    state: {}
+    hash: '',
+    key: '',
+    pathname: '',
+    search: '',
+    state: {},
   },
   history: {
     length: 2,
-    action: "POP",
+    action: 'POP',
     location: location,
     push: () => {},
     replace: () => {},
@@ -23,9 +23,9 @@ const mockRouterProps = {
     goForward: () => {},
     block: () => {},
     createHref: () => {},
-    listen: () => {}
+    listen: () => {},
   },
-  staticContext: {}
+  staticContext: {},
 };
 
 export default mockRouterProps;
