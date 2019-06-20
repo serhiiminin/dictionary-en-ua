@@ -12,6 +12,7 @@ import SC from './styles';
 class SearchWordContainer extends Component {
   static propTypes = {
     location: ReactRouterPropTypes.location.isRequired,
+    handleCreateWord: PropTypes.func.isRequired,
     handleSearchWord: PropTypes.func.isRequired,
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
@@ -46,7 +47,7 @@ class SearchWordContainer extends Component {
   };
 
   render() {
-    const { wordItem, checkIsLoading } = this.props;
+    const { wordItem, checkIsLoading, handleCreateWord } = this.props;
     const { options } = wordItem;
     const isLoading = checkIsLoading(LN.words.search);
 
@@ -90,6 +91,7 @@ class SearchWordContainer extends Component {
             </ul>
             <p>{wordItem.transcription}</p>
             <img src={wordItem.gif} alt={wordItem.word} />
+            <ButtonSearch onClick={handleCreateWord}>Save</ButtonSearch>
           </>
         )}
       </>
