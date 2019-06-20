@@ -75,9 +75,9 @@ const WordsProviderCmp = props => {
     });
   };
 
-  const handleCreateWord = word =>
+  const handleCreateWord = () =>
     handleFetch(LN.words.save)(async () => {
-      const { _id } = await apiWord.create({ ...word, ownerId });
+      const { _id } = await apiWord.create({ ...wordItem, ownerId });
       await handleFetchWord(_id);
       enqueueSnackbar('The word has been saved successfully', { variant: NT.success });
     });
