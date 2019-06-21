@@ -24,13 +24,13 @@ const apiRoutes = {
     },
   },
   users: {
-    create: USERS,
+    create: `${USERS}/new`,
     delete: `${USERS}/:id`,
     read: `${USERS}/:id`,
     update: `${USERS}/:id`,
   },
   words: {
-    create: WORDS,
+    create: `${WORDS}/new`,
     delete: `${WORDS}/:id`,
     learn: `${WORDS}/:id/learn`,
     list: `${WORDS}/list`,
