@@ -5,7 +5,6 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import {
   InputPassword,
-  BlockSocial,
   ButtonSearch,
   ButtonFacebook,
   ButtonGoogle,
@@ -16,6 +15,7 @@ import {
 import LN from '../../constants/loading-names';
 import VL from '../../constants/validation-lines';
 import config from '../../config';
+import SC from './styles';
 
 const initialValues = {
   name: '',
@@ -78,23 +78,23 @@ const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignU
           onSubmit={handleBasicSignUp}
           fields={fields}
           renderSubmit={() => (
-            <ButtonSearch type="submit" color="secondary" variant="contained">
-              Sign up
-            </ButtonSearch>
+            <SC.SubmitWrapper>
+              <ButtonSearch type="submit" color="secondary" variant="contained">
+                Sign up
+              </ButtonSearch>
+              <FacebookLogin
+                appId={config.auth.facebook.appId}
+                callback={handleFacebook}
+                render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+              />
+              <GoogleLogin
+                clientId={config.auth.google.clientId}
+                onSuccess={handleGoogle}
+                render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+              />
+            </SC.SubmitWrapper>
           )}
         />
-        <BlockSocial>
-          <FacebookLogin
-            appId={config.auth.facebook.appId}
-            callback={handleFacebook}
-            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
-          />
-          <GoogleLogin
-            clientId={config.auth.google.clientId}
-            onSuccess={handleGoogle}
-            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
-          />
-        </BlockSocial>
       </FormWrapper>
     </>
   );
