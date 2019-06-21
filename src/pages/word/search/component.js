@@ -20,7 +20,7 @@ class SearchWordContainer extends Component {
   };
 
   static defaultProps = {
-    wordItem: null,
+    wordItem: {},
   };
 
   componentDidMount() {

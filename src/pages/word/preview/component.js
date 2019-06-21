@@ -6,6 +6,7 @@ class WordPreviewContainer extends Component {
   static propTypes = {
     match: ReactRouterPropTypes.match.isRequired,
     handleFetchWord: PropTypes.func.isRequired,
+    cleanWord: PropTypes.func.isRequired,
     wordItem: PropTypes.shape({
       word: PropTypes.string,
       transcription: PropTypes.string,
@@ -14,7 +15,7 @@ class WordPreviewContainer extends Component {
   };
 
   static defaultProps = {
-    wordItem: null,
+    wordItem: {},
   };
 
   componentDidMount() {
@@ -22,6 +23,10 @@ class WordPreviewContainer extends Component {
     const { id } = match.params;
 
     handleFetchWord(id);
+  }
+
+  componentWillUnmount() {
+    this.props.cleanWord();
   }
 
   render() {
