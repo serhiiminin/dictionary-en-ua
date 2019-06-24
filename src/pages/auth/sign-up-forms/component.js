@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Fade } from '@material-ui/core';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { LogInSuggestion, SignUpSuggestion, LogInForm, SignUpForm, ForgotPasswordForm } from '../../../chunks';
 import routes from '../../../routes';
@@ -27,24 +26,20 @@ const SignUpForms = ({ location }) => {
       <SC.Circle transitionDelay={SLIDING_TIME} isLeft={isLeftActive} />
       <SC.HalfPart isActive={isLeftActive}>
         {!isSliding && (
-          <Fade in={!isSliding}>
-            <Switch>
-              <Route path={routes.auth.logIn} component={LogInForm} />
-              <Route path={routes.auth.signUp} component={LogInSuggestion} />
-              <Route path={routes.auth.forgotPassword} component={LogInSuggestion} />
-            </Switch>
-          </Fade>
+          <Switch>
+            <Route path={routes.auth.logIn} component={LogInForm} />
+            <Route path={routes.auth.signUp} component={LogInSuggestion} />
+            <Route path={routes.auth.forgotPassword} component={LogInSuggestion} />
+          </Switch>
         )}
       </SC.HalfPart>
       <SC.HalfPart isActive={isRightActive}>
         {!isSliding && (
-          <Fade in={!isSliding}>
-            <Switch>
-              <Route path={routes.auth.logIn} component={SignUpSuggestion} />
-              <Route path={routes.auth.signUp} component={SignUpForm} />
-              <Route path={routes.auth.forgotPassword} component={ForgotPasswordForm} />
-            </Switch>
-          </Fade>
+          <Switch>
+            <Route path={routes.auth.logIn} component={SignUpSuggestion} />
+            <Route path={routes.auth.signUp} component={SignUpForm} />
+            <Route path={routes.auth.forgotPassword} component={ForgotPasswordForm} />
+          </Switch>
         )}
       </SC.HalfPart>
     </SC.Outer>
