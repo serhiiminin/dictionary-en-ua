@@ -9,7 +9,6 @@ const SLIDING_TIME = 500;
 
 const SignUpForms = ({ location }) => {
   const [isSliding, setIsSliding] = useState(false);
-
   useEffect(() => {
     setIsSliding(true);
     setTimeout(() => {
