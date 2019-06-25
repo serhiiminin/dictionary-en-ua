@@ -16,7 +16,12 @@ class SearchWordContainer extends Component {
     handleSearchWord: PropTypes.func.isRequired,
     cleanWord: PropTypes.func.isRequired,
     checkIsLoading: PropTypes.func.isRequired,
-    wordItem: PropTypes.shape({}),
+    wordItem: PropTypes.shape({
+      options: PropTypes.arrayOf(PropTypes.string),
+      word: PropTypes.string,
+      transcription: PropTypes.string,
+      gif: PropTypes.string,
+    }),
   };
 
   static defaultProps = {

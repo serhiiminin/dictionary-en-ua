@@ -8,11 +8,7 @@ import { withCookies } from './cookies';
 
 const DimensionsContext = createContext({});
 
-const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
-
-  return { width, height };
-};
+const getWindowDimensions = () => ({ width: window.innerWidth, height: window.innerHeight });
 
 const DimensionsProviderCmp = ({ children }) => {
   const [dimensions, setDimensions] = useState(getWindowDimensions());
