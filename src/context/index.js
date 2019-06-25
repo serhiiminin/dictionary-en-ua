@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { LoadingProvider } from './loading';
 import { CookiesProvider } from './cookies';
+import { DimensionsProvider } from './dimensions';
 import { FetcherProvider } from './fetcher';
 import { ErrorProvider } from './errors';
 import { WordsProvider } from './words';
@@ -11,15 +12,17 @@ import { AuthProvider } from './auth';
 const StateProvider = ({ children }) => (
   <CookiesProvider>
     <ErrorProvider>
-      <LoadingProvider>
-        <FetcherProvider>
-          <AuthProvider>
-            <UserProvider>
-              <WordsProvider>{children}</WordsProvider>
-            </UserProvider>
-          </AuthProvider>
-        </FetcherProvider>
-      </LoadingProvider>
+      <DimensionsProvider>
+        <LoadingProvider>
+          <FetcherProvider>
+            <AuthProvider>
+              <UserProvider>
+                <WordsProvider>{children}</WordsProvider>
+              </UserProvider>
+            </AuthProvider>
+          </FetcherProvider>
+        </LoadingProvider>
+      </DimensionsProvider>
     </ErrorProvider>
   </CookiesProvider>
 );
