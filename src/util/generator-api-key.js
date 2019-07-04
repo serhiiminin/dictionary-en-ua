@@ -5,7 +5,8 @@ function* generatorApiKeys(keys) {
     lastUsed: null,
   }));
 
-  for (let i = 0; i < keysWithLastUsedTime.length; i += 1) {
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < keysWithLastUsedTime.length; i++) {
     const currentKey = keysWithLastUsedTime[i];
     const currentTime = Date.now();
     if (currentTime - currentKey.lastUsed < TIME_KEYS_REPEAT) {
