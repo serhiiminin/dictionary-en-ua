@@ -6,9 +6,9 @@ import { withSnackbar } from 'notistack';
 import { withFetcher } from './fetcher';
 import { withCookies } from './cookies';
 
-const DimensionsContext = createContext({});
-
 const getWindowDimensions = () => ({ width: window.innerWidth, height: window.innerHeight });
+
+const { Provider, Consumer } = createContext(getWindowDimensions());
 
 const DimensionsProviderCmp = ({ children }) => {
   const [dimensions, setDimensions] = useState(getWindowDimensions());
@@ -22,7 +22,7 @@ const DimensionsProviderCmp = ({ children }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return <DimensionsContext.Provider value={dimensions}>{children}</DimensionsContext.Provider>;
+  return <Provider value={{ dimensions }}>{children}</Provider>;
 };
 
 DimensionsProviderCmp.propTypes = {
@@ -36,8 +36,6 @@ const DimensionsProvider = compose(
   withSnackbar
 )(DimensionsProviderCmp);
 
-const withDimensions = Cmp => props => (
-  <DimensionsContext.Consumer>{value => <Cmp {...value} {...props} />}</DimensionsContext.Consumer>
-);
+const withDimensions = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { DimensionsProvider, withDimensions };

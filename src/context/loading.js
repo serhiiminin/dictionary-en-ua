@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const LoadingContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 const LoadingProvider = ({ children }) => {
   const [currentLoadingNames, setCurrentLoadingNames] = useState({});
@@ -24,7 +24,7 @@ const LoadingProvider = ({ children }) => {
     );
 
   return (
-    <LoadingContext.Provider
+    <Provider
       value={{
         checkIsLoading,
         startLoading: handleStartLoading,
@@ -32,7 +32,7 @@ const LoadingProvider = ({ children }) => {
       }}
     >
       {children}
-    </LoadingContext.Provider>
+    </Provider>
   );
 };
 
@@ -40,8 +40,6 @@ LoadingProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const withLoading = Cmp => props => (
-  <LoadingContext.Consumer>{value => <Cmp {...value} {...props} />}</LoadingContext.Consumer>
-);
+const withLoading = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { LoadingProvider, withLoading };

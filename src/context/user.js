@@ -8,7 +8,7 @@ import LN from '../constants/loading-names';
 import { withAuth } from './auth';
 import { withFetcher } from './fetcher';
 
-const UserContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }) => {
   const [user, setUser] = useState({});
@@ -44,7 +44,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }) 
     });
 
   return (
-    <UserContext.Provider
+    <Provider
       value={{
         user,
         cleanUser,
@@ -55,7 +55,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }) 
       }}
     >
       {children}
-    </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -76,6 +76,6 @@ const UserProvider = compose(
   withSnackbar
 )(UserProviderCmp);
 
-const withUser = Cmp => props => <UserContext.Consumer>{value => <Cmp {...value} {...props} />}</UserContext.Consumer>;
+const withUser = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { UserProvider, withUser };
