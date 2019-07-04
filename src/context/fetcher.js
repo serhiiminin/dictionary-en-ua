@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import { withErrors } from './errors';
 import { withLoading } from './loading';
 
-const FetcherContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 const FetcherProviderCmp = ({ children, handleError, startLoading, stopLoading }) => {
   const handleFetch = loadingName => apiHandler =>
@@ -13,15 +13,7 @@ const FetcherProviderCmp = ({ children, handleError, startLoading, stopLoading }
       .catch(handleError)
       .finally(() => stopLoading(loadingName));
 
-  return (
-    <FetcherContext.Provider
-      value={{
-        handleFetch,
-      }}
-    >
-      {children}
-    </FetcherContext.Provider>
-  );
+  return <Provider value={{ handleFetch }}>{children}</Provider>;
 };
 
 FetcherProviderCmp.propTypes = {
@@ -36,8 +28,6 @@ const FetcherProvider = compose(
   withLoading
 )(FetcherProviderCmp);
 
-const withFetcher = Cmp => props => (
-  <FetcherContext.Consumer>{value => <Cmp {...value} {...props} />}</FetcherContext.Consumer>
-);
+const withFetcher = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { FetcherProvider, withFetcher };

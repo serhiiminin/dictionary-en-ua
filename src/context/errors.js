@@ -8,7 +8,7 @@ import NT from '../constants/notifications-type';
 import routes from '../routes';
 import { getErrorMessage, getErrorType } from '../util/handle-errors';
 
-const ErrorsContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 class ErrorsProviderCmp extends Component {
   static propTypes = {
@@ -35,13 +35,13 @@ class ErrorsProviderCmp extends Component {
     const { children } = this.props;
 
     return (
-      <ErrorsContext.Provider
+      <Provider
         value={{
           handleError: this.handleError,
         }}
       >
         {children}
-      </ErrorsContext.Provider>
+      </Provider>
     );
   }
 }
@@ -51,8 +51,6 @@ const ErrorProvider = compose(
   withRouter
 )(ErrorsProviderCmp);
 
-const withErrors = Cmp => props => (
-  <ErrorsContext.Consumer>{value => <Cmp {...value} {...props} />}</ErrorsContext.Consumer>
-);
+const withErrors = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { ErrorProvider, withErrors };

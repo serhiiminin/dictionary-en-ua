@@ -44,7 +44,7 @@ const getRandlomGif = (gifs = []) => {
   return downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
 };
 
-const WordsContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 const WordsProviderCmp = props => {
   const { handleFetch, location, tokenData, enqueueSnackbar, children } = props;
@@ -133,7 +133,7 @@ const WordsProviderCmp = props => {
   };
 
   return (
-    <WordsContext.Provider
+    <Provider
       value={{
         wordItem,
         wordsList,
@@ -152,7 +152,7 @@ const WordsProviderCmp = props => {
       }}
     >
       {children}
-    </WordsContext.Provider>
+    </Provider>
   );
 };
 
@@ -180,8 +180,6 @@ const WordsProvider = compose(
   withSnackbar
 )(WordsProviderCmp);
 
-const withWords = Cmp => props => (
-  <WordsContext.Consumer>{value => <Cmp {...value} {...props} />}</WordsContext.Consumer>
-);
+const withWords = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { WordsProvider, withWords };

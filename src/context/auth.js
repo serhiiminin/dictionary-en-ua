@@ -16,7 +16,7 @@ import config from '../config';
 const ACCESS_TOKEN = 'access_token';
 const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
 
-const AuthContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 const generateAppEndpoint = path => (window ? joinPath(window.location.origin, config.publicUrl, path) : '');
 
@@ -129,7 +129,7 @@ const AuthProviderCmp = props => {
   };
 
   return (
-    <AuthContext.Provider
+    <Provider
       value={{
         tokenData,
         isLoggedIn,
@@ -148,7 +148,7 @@ const AuthProviderCmp = props => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </Provider>
   );
 };
 
@@ -169,6 +169,6 @@ const AuthProvider = compose(
   withSnackbar
 )(AuthProviderCmp);
 
-const withAuth = Cmp => props => <AuthContext.Consumer>{value => <Cmp {...value} {...props} />}</AuthContext.Consumer>;
+const withAuth = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { AuthProvider, withAuth };

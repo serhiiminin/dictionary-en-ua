@@ -5,9 +5,8 @@ import { compose } from 'recompose';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
 import config from '../config';
-import { withFetcher } from './fetcher';
 
-const CookiesContext = createContext({});
+const { Provider, Consumer } = createContext({});
 
 const CookiesProviderCmp = ({ children }) => {
   const getFromCookies = key => JSON.parse(Cookies.get(key) || null);
@@ -26,7 +25,7 @@ const CookiesProviderCmp = ({ children }) => {
   };
 
   return (
-    <CookiesContext.Provider
+    <Provider
       value={{
         getFromCookies,
         setToCookies,
@@ -34,7 +33,7 @@ const CookiesProviderCmp = ({ children }) => {
       }}
     >
       {children}
-    </CookiesContext.Provider>
+    </Provider>
   );
 };
 
@@ -44,12 +43,9 @@ CookiesProviderCmp.propTypes = {
 
 const CookiesProvider = compose(
   withRouter,
-  withFetcher,
   withSnackbar
 )(CookiesProviderCmp);
 
-const withCookies = Cmp => props => (
-  <CookiesContext.Consumer>{value => <Cmp {...value} {...props} />}</CookiesContext.Consumer>
-);
+const withCookies = Cmp => props => <Consumer>{value => <Cmp {...value} {...props} />}</Consumer>;
 
 export { CookiesProvider, withCookies };
