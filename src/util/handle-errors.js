@@ -1,4 +1,4 @@
-import notificationsTypes from '../constants/notifications-type';
+import NT from '../constants/notifications-type';
 
 const createGetterErrorType = notifications => error => {
   // eslint-disable-next-line no-console
@@ -53,7 +53,7 @@ const createGetErrorMessages = notifications => notificationType =>
     [notifications.error.unknown]: 'Unknown error',
   }[notificationType]);
 
-const getErrorType = createGetterErrorType(notificationsTypes);
-const getErrorMessage = createGetErrorMessages(notificationsTypes);
+const getErrorType = createGetterErrorType(NT);
+const getErrorMessage = createGetErrorMessages(NT);
 
 export { getErrorType, getErrorMessage };

@@ -2,6 +2,7 @@ import { joinUrl, mergeSearch, getUrlParts } from 'url-joiner';
 import generatorApiKeys from '../util/generator-api-key';
 import createFetcherJson from './create-fetcher';
 import config from '../config';
+import { addAuthTokenToRequest } from '../util/api';
 
 const updateSearchParams = (params, newSearchParams) => {
   const [url, search] = getUrlParts(params.endpoint);
@@ -28,22 +29,8 @@ const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(config.auth.giphy.ap
   createFetcherJson(window.fetch)
 );
 
-const createAuthProxy = fetcher => token => params =>
-  fetcher({
-    ...params,
-    headers: {
-      ...params.headers,
-      authorization: `Bearer ${token}`,
-    },
-  });
+const createAuthProxy = fetcher => token => params => fetcher(addAuthTokenToRequest(token, params));
 
-const createSocialAuthProxy = fetcher => (params, token) =>
-  fetcher({
-    ...params,
-    headers: {
-      ...params.headers,
-      authorization: `Bearer ${token}`,
-    },
-  });
+const createSocialAuthProxy = fetcher => (params, token) => fetcher(addAuthTokenToRequest(token, params));
 
 export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy, createSocialAuthProxy };
