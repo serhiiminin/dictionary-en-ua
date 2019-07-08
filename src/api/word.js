@@ -1,6 +1,6 @@
 import { joinPath } from 'url-joiner';
 import requests from './request';
-import createFetcherJson from './create-fetcher';
+import createFetcherJson from './fetcher';
 import { createAuthProxy } from './proxies';
 import generateRoute from '../util/routes';
 import config from '../config';
