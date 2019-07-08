@@ -1,6 +1,6 @@
 import { joinUrl, mergeSearch, getUrlParts } from 'url-joiner';
 import generatorApiKeys from '../util/generator-api-key';
-import createFetcherJson from './create-fetcher';
+import createFetcherJson from './fetcher';
 import config from '../config';
 import { addAuthTokenToRequest } from '../util/api';
 
