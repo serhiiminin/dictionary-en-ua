@@ -10,16 +10,29 @@
     "eject": "react-app-rewired eject",
     "test": "react-app-rewired test --env=jsdom --watchAll",
     "test:coverage": "react-app-rewired test --env=jsdom --coverage",
-    "lint": "eslint ./ --ext '.js,.jsx' --max-warnings 0 $LINT_ARGS && echo 'Your code is clear' || (echo 'Please, fix problems'; exit 1)",
+    "lint": "eslint ./ --ext '.js,.jsx,.ts,.tsx' --max-warnings 0 $LINT_ARGS",
     "lint:fix": "LINT_ARGS=--fix yarn run lint",
     "lint:with-cache": "LINT_ARGS='--cache --cache-location=.cache/' yarn run lint",
-    "format": "prettier --write 'src/**/*.js'",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "validate": "yarn run lint",
     "commit": "git-cz"
   },
   "dependencies": {
     "@material-ui/core": "4.2.0",
     "@material-ui/icons": "4.2.1",
+    "@types/enzyme": "^3.9.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.15",
+    "@types/js-cookie": "^2.2.2",
+    "@types/material-ui": "^0.21.6",
+    "@types/node": "^12.0.10",
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-facebook-login": "^4.1.0",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/recompose": "^0.30.6",
+    "@types/styled-components": "^4.1.16",
+    "@types/yup": "^0.26.20",
     "formik": "1.5.7",
     "js-cookie": "2.2.0",
     "notistack": "0.8.8",
@@ -41,6 +54,8 @@
   "devDependencies": {
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "babel-plugin-styled-components": "1.10.6",
     "chalk": "2.4.2",
     "commitizen": "3.1.1",
@@ -63,7 +78,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
+      "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/styles.js",
       "!src/index.js",
       "!src/serviceWorker.js"
@@ -85,7 +100,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint",
       "git add"

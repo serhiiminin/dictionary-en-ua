@@ -46,6 +46,7 @@ const rotate = keyframes`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Circle = styled(({ transitionDelay, isLeft, speed, ...props }) => <TextCircle {...props} />)`
   transition: all ${props => props.transitionDelay}ms ease-in-out;
   animation: ${rotate} ${props => props.speed || DEFAULT_SPEED}s linear infinite;

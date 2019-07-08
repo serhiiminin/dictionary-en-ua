@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ButtonCustomized = ({ location, to, staticContext, ...restProps }) =>
   to ? (
     <Button to={to} color="primary" component={Link} disabled={location.pathname === to} {...restProps} />

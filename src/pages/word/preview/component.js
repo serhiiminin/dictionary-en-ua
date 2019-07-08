@@ -36,7 +36,7 @@ class WordPreviewContainer extends Component {
     return (
       <div>
         <h1>{word}</h1>
-        <p>[{transcription}]</p>
+        <p>{transcription}</p>
         <img src={gif} alt={word} />
       </div>
     );

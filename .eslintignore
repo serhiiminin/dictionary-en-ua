@@ -4,3 +4,6 @@
 /coverage
 /build
 /docs
+/commitizen.config.js
+/commitlint.config.js
+/config-overrides.js
