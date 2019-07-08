@@ -27,7 +27,7 @@ const muiTheme = createMuiTheme({
   typography: {
     useNextVariants: true,
     fontFamily: `${theme.main.fontFamily.cairoRegular}, sans-serif`,
-    fontSize: theme.main.fontSize.md,
+    fontSize: 16,
   },
   ...theme,
 });

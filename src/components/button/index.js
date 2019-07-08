@@ -1,4 +1,4 @@
 import { withRouter } from 'react-router-dom';
-import ButtonWithRouter from './component';
+import ButtonCustomized from './component';
 
-export default withRouter(ButtonWithRouter);
+export default withRouter(ButtonCustomized);
