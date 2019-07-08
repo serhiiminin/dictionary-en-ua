@@ -5,7 +5,7 @@ import PropsTypes from 'prop-types';
 import routes from '../../../routes';
 import LN from '../../../constants/loading-names';
 import { TitleBlock } from '../../../components';
-import { generatePath } from '../../../util/path';
+import generateRoute from '../../../util/routes';
 
 class WordsListContainer extends Component {
   static propTypes = {
@@ -38,7 +38,7 @@ class WordsListContainer extends Component {
         <ul>
           {wordsList.map(({ _id, word }) => (
             <li key={_id}>
-              <Link to={generatePath(routes.words.preview, { id: _id })}>{word}</Link>
+              <Link to={generateRoute(routes.words.preview, { id: _id })}>{word}</Link>
             </li>
           ))}
         </ul>
