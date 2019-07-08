@@ -13,12 +13,14 @@ const updateSearchParams = (params, newSearchParams) => {
   };
 };
 
+const API_KEY = 'api_key';
+
 const createApiKeyProxy = generator => fetcher => params =>
-  fetcher(updateSearchParams(params, { api_key: generator.next().value })).catch(error => {
+  fetcher(updateSearchParams(params, { [API_KEY]: generator.next().value })).catch(error => {
     if (error.message === 'Failed to fetch') {
       return fetcher(
         updateSearchParams(params, {
-          api_key: generator.next().value,
+          [API_KEY]: generator.next().value,
         })
       );
     }
