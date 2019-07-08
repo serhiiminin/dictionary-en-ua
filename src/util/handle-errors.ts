@@ -1,6 +1,31 @@
 import NT from '../constants/notifications-type';
 
-const createGetterErrorType = notifications => error => {
+interface Notifications {
+  success: string;
+  warning: string;
+  info: string;
+  error: {
+    clientError: string;
+    default: string;
+    disconnect: string;
+    redirect: string;
+    serverError: string;
+    unknown: string;
+    forbidden: string;
+    notFound: string;
+  };
+}
+
+interface Error {
+  message: string;
+  response: {
+    status: number;
+  };
+}
+
+type GetType = (error: Error) => string;
+
+const createGetterErrorType = (notifications: Notifications): GetType => (error: Error): string => {
   // eslint-disable-next-line no-console
   console.error(error);
 
@@ -41,7 +66,9 @@ const createGetterErrorType = notifications => error => {
   return notifications.error.unknown;
 };
 
-const createGetErrorMessages = notifications => notificationType =>
+type GetMessage = (type: string) => string;
+
+const createGetErrorMessages = (notifications: Notifications): GetMessage => (notificationType: string): string =>
   ({
     [notifications.error.clientError]: 'Client error',
     [notifications.error.default]: 'Something went wrong',

@@ -1,5 +1,5 @@
 /src/serviceWorker.js
-/src/setupTests.js
+/src/setupTests.ts
 /src/__test-helpers__
 /coverage
 /build
