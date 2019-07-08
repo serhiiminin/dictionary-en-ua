@@ -4,23 +4,23 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-const ButtonWithRouter = ({ location, to, staticContext, ...restProps }) =>
+const ButtonCustomized = ({ location, to, staticContext, ...restProps }) =>
   to ? (
     <Button to={to} color="primary" component={Link} disabled={location.pathname === to} {...restProps} />
   ) : (
     <Button {...restProps} />
   );
 
-ButtonWithRouter.propTypes = {
+ButtonCustomized.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   staticContext: PropTypes.shape({}),
   to: PropTypes.string,
 };
 
-ButtonWithRouter.defaultProps = {
+ButtonCustomized.defaultProps = {
   staticContext: undefined,
   to: null,
 };
 
-export default ButtonWithRouter;
+export default ButtonCustomized;
