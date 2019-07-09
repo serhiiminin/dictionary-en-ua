@@ -6,11 +6,11 @@ import config from '../config';
 import { addAuthTokenToRequest } from '../util/api';
 
 const updateSearchParams = (params, newSearchParams) => {
-  const [url, search] = getUrlParts(params.endpoint);
+  const [url, search] = getUrlParts(params.url);
 
   return {
     ...params,
-    endpoint: joinUrl(url, mergeSearch(newSearchParams, search)),
+    url: joinUrl(url, mergeSearch(newSearchParams, search)),
   };
 };
 
@@ -34,6 +34,4 @@ const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(config.auth.giphy.ap
 
 const createAuthProxy = fetcher => token => params => fetcher(addAuthTokenToRequest(token, params));
 
-const createSocialAuthProxy = fetcher => (params, token) => fetcher(addAuthTokenToRequest(token, params));
-
-export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy, createSocialAuthProxy };
+export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy };

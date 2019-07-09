@@ -1,5 +1,5 @@
-const createRequest = method => (endpoint, params) => ({
-  endpoint,
+const createRequest = method => (url, params) => ({
+  url,
   method,
   ...params,
 });
