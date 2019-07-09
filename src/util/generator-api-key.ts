@@ -5,10 +5,12 @@ interface TokenTime {
 
 function* generatorApiKeys(keys: string[]): IterableIterator<string> {
   const TIME_KEYS_REPEAT = keys.length * 200;
-  const keysWithLastUsedTime = keys.map((apiKey: string): TokenTime => ({
-    key: apiKey,
-    lastUsed: 0,
-  }));
+  const keysWithLastUsedTime = keys.map(
+    (apiKey: string): TokenTime => ({
+      key: apiKey,
+      lastUsed: 0,
+    })
+  );
 
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < keysWithLastUsedTime.length; i++) {
