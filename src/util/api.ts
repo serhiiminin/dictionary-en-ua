@@ -11,6 +11,6 @@ const addAuthTokenToRequest = (token: string, request: Request = {}): Request =>
 
 type FN = (...path: string[]) => string;
 
-const generateEndpoint = (endpoint: string): FN => (...paths: string[]): string => joinPath(endpoint, ...paths);
+const joinEndpoint = (endpoint: string): FN => (...paths: string[]): string => joinPath(endpoint, ...paths);
 
-export { addAuthTokenToRequest, generateEndpoint };
+export { addAuthTokenToRequest, joinEndpoint };

@@ -1,20 +1,20 @@
-import { joinPath } from 'url-joiner';
 import requests from './request';
 import createFetcherJson from './fetcher';
 import { createAuthProxy } from './proxies';
 import generateRoute from '../util/routes';
 import config from '../config';
-import apiRoutes from './api-routes';
+import AR from './api-routes';
+import { joinEndpoint } from '../util/api';
 
-export const createFetcherApiMethodsWords = endpoint => fetcher => token => {
+export const createApiWords = endpointJoiner => fetcher => token => {
   const fetcherWithToken = fetcher(token);
 
   return {
-    create: body => fetcherWithToken(requests.post(joinPath(endpoint, apiRoutes.words.create), { body })),
-    get: id => fetcherWithToken(requests.get(joinPath(endpoint, generateRoute(apiRoutes.words.read, { id })))),
-    getList: body => fetcherWithToken(requests.post(joinPath(endpoint, apiRoutes.words.list), { body })),
+    create: body => fetcherWithToken(requests.post(endpointJoiner(AR.words.create), { body })),
+    get: id => fetcherWithToken(requests.get(endpointJoiner(generateRoute(AR.words.read, { id })))),
+    getList: body => fetcherWithToken(requests.post(endpointJoiner(endpointJoiner, AR.words.list), { body })),
     getListToLearn: params => {
-      const url = joinPath(endpoint, apiRoutes.words.list);
+      const url = endpointJoiner(AR.words.list);
       const yesterday = new Date();
 
       yesterday.setDate(yesterday.getDate() - 1);
@@ -31,27 +31,26 @@ export const createFetcherApiMethodsWords = endpoint => fetcher => token => {
     update: word => {
       const { _id: id } = word;
       return fetcherWithToken(
-        requests.put(joinPath(endpoint, generateRoute(apiRoutes.words.update, { id })), {
+        requests.put(endpointJoiner(generateRoute(AR.words.update, { id })), {
           body: word,
         })
       );
     },
-    delete: id =>
-      fetcherWithToken(requests.delete(joinPath(endpoint, generateRoute(apiRoutes.words.delete, { id }))), token),
+    delete: id => fetcherWithToken(requests.delete(endpointJoiner(generateRoute(AR.words.delete, { id })))),
     learn: id =>
       fetcherWithToken(
-        requests.put(joinPath(endpoint, generateRoute(apiRoutes.words.learn, { id })), {
+        requests.put(endpointJoiner(generateRoute(AR.words.learn, { id })), {
           body: {
             dateLastLearnt: new Date().toISOString(),
             $inc: { timesLearnt: 1 },
           },
         })
       ),
-    search: body => fetcherWithToken(requests.post(joinPath(endpoint, apiRoutes.words.search), { body })),
+    search: body => fetcherWithToken(requests.post(endpointJoiner(AR.words.search), { body })),
   };
 };
 
-const createApiMethodsWords = createFetcherApiMethodsWords(config.endpoints.api)(
+const createApiMethodsWords = createApiWords(joinEndpoint(config.endpoints.api))(
   createAuthProxy(createFetcherJson(window.fetch))
 );
 
