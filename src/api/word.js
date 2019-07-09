@@ -47,12 +47,7 @@ export const createFetcherApiMethodsWords = endpoint => fetcher => token => {
           },
         })
       ),
-    search: params =>
-      fetcherWithToken(
-        requests.post(joinPath(endpoint, apiRoutes.words.search), {
-          body: params,
-        })
-      ),
+    search: body => fetcherWithToken(requests.post(joinPath(endpoint, apiRoutes.words.search), { body })),
   };
 };
 

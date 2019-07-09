@@ -1,3 +1,4 @@
+import boom from '@hapi/boom';
 import { joinUrl, mergeSearch, getUrlParts } from 'url-joiner';
 import generatorApiKeys from '../util/generator-api-key';
 import createFetcherJson from './fetcher';
@@ -24,7 +25,7 @@ const createApiKeyProxy = generator => fetcher => params =>
         })
       );
     }
-    throw error;
+    throw boom.boomify(error);
   });
 
 const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(config.auth.giphy.apiKeys))(
