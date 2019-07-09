@@ -1,12 +1,9 @@
 import { joinPath } from 'url-joiner';
+import { RequestParams } from '../types';
 
-interface Request {
-  headers?: object;
-}
-
-const addAuthTokenToRequest = (token: string, request: Request = {}): Request => ({
+const addAuthTokenToRequest = (token: string, request?: RequestParams): RequestParams => ({
   ...request,
-  headers: Object.assign({}, request.headers, { authorization: `Bearer ${token}` }),
+  headers: Object.assign({}, request && request.headers, { authorization: `Bearer ${token}` }),
 });
 
 type FN = (...path: string[]) => string;
