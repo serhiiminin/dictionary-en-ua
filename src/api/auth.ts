@@ -3,53 +3,47 @@ import createFetcherJson from './fetcher';
 import config from '../config';
 import AR from './api-routes';
 import { joinEndpoint, addAuthTokenToRequest } from '../util/api';
-
-interface RequestParams {
-  url: string;
-  headers: object;
-  body: object;
-}
-type R = Promise<object>;
-type EJ = (path: string) => string;
-type F = (params: RequestParams) => R;
+import { FetchResult, Fetcher, EndpointJoiner } from '../types';
 
 interface Basic {
-  logIn(body: object): R;
-  signUp(body: object): R;
-  confirm(token: string): R;
-  forgotPassword(body: object): R;
-  resetPassword(body: object): R;
+  logIn(body: object): FetchResult;
+  signUp(body: object): FetchResult;
+  confirm(token: string): FetchResult;
+  forgotPassword(body: object): FetchResult;
+  resetPassword(body: object): FetchResult;
 }
 
-type BR = (f: F) => Basic;
+type BR = (f: Fetcher) => Basic;
 
-const createApiBasicAuth = (endpointJoiner: EJ): BR => (fetcher: F): Basic => ({
-  logIn: (body: object): R => fetcher(requests.post(endpointJoiner(AR.auth.basic.logIn), { body })),
-  signUp: (body: object): R => fetcher(requests.post(endpointJoiner(AR.auth.basic.signUp), { body })),
-  confirm: (token: string): R =>
+const createApiBasicAuth = (endpointJoiner: EndpointJoiner): BR => (fetcher: Fetcher): Basic => ({
+  logIn: (body: object): FetchResult => fetcher(requests.post(endpointJoiner(AR.auth.basic.logIn), { body })),
+  signUp: (body: object): FetchResult => fetcher(requests.post(endpointJoiner(AR.auth.basic.signUp), { body })),
+  confirm: (token: string): FetchResult =>
     fetcher(requests.get(endpointJoiner(AR.auth.basic.confirm), addAuthTokenToRequest(token))),
-  forgotPassword: (body: object): R => fetcher(requests.post(endpointJoiner(AR.auth.basic.forgotPassword), { body })),
-  resetPassword: (body: object): R => fetcher(requests.post(endpointJoiner(AR.auth.basic.resetPassword), { body })),
+  forgotPassword: (body: object): FetchResult =>
+    fetcher(requests.post(endpointJoiner(AR.auth.basic.forgotPassword), { body })),
+  resetPassword: (body: object): FetchResult =>
+    fetcher(requests.post(endpointJoiner(AR.auth.basic.resetPassword), { body })),
 });
 
 interface Social {
-  logIn(token: string): R;
-  signUp(token: string): R;
+  logIn(token: string): FetchResult;
+  signUp(token: string): FetchResult;
 }
 
-type SR = (f: F) => Social;
+type SR = (f: Fetcher) => Social;
 
-const createApiGoogleAuth = (endpointJoiner: EJ): SR => (fetcher: F): Social => ({
-  logIn: (token: string): R =>
+const createApiGoogleAuth = (endpointJoiner: EndpointJoiner): SR => (fetcher: Fetcher): Social => ({
+  logIn: (token: string): FetchResult =>
     fetcher(requests.get(endpointJoiner(AR.auth.google.logIn), addAuthTokenToRequest(token))),
-  signUp: (token: string): R =>
+  signUp: (token: string): FetchResult =>
     fetcher(requests.get(endpointJoiner(AR.auth.google.signUp), addAuthTokenToRequest(token))),
 });
 
-const createApiFacebookAuth = (endpointJoiner: EJ): SR => (fetcher: F): Social => ({
-  logIn: (token: string): R =>
+const createApiFacebookAuth = (endpointJoiner: EndpointJoiner): SR => (fetcher: Fetcher): Social => ({
+  logIn: (token: string): FetchResult =>
     fetcher(requests.get(endpointJoiner(AR.auth.facebook.logIn), addAuthTokenToRequest(token))),
-  signUp: (token: string): R =>
+  signUp: (token: string): FetchResult =>
     fetcher(requests.get(endpointJoiner(AR.auth.facebook.signUp), addAuthTokenToRequest(token))),
 });
 
