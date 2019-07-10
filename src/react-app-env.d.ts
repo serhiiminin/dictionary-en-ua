@@ -1,7 +1,8 @@
 // / <reference types="react-scripts" />
 
 declare module '*.svg' {
-  const ReactComponent: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ReactComponent: any;
   export { ReactComponent };
 }
 

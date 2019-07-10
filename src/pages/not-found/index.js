@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../components';
+import { ButtonWithRouter } from '../../components';
 import routes from '../../routes';
 
 const StyledNotFoundWrapper = styled.div`
@@ -13,7 +13,7 @@ const StyledNotFoundWrapper = styled.div`
 const PageNotFoundContainer = () => (
   <StyledNotFoundWrapper>
     <h1>Page not found</h1>
-    <Button to={routes.root}>Home</Button>
+    <ButtonWithRouter to={routes.root}>Home</ButtonWithRouter>
   </StyledNotFoundWrapper>
 );
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SearchWordContainer from '.';
+import Component from '.';
 
 describe('MainContainer page', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<SearchWordContainer />);
+    wrapper = shallow(<Component />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();

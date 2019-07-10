@@ -2,13 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Component from '.';
 
-describe('Page not found', () => {
-  let wrapper;
+describe('Root', (): void => {
+  let wrapper: object;
 
-  beforeEach(() => {
+  beforeEach((): void => {
     wrapper = shallow(<Component />);
   });
-  test('render', () => {
+  test('render', (): void => {
     expect(wrapper).toMatchSnapshot();
   });
 });
