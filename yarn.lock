@@ -1089,9 +1089,9 @@
   resolved "https://npm.globit.com/@hapi%2faddress/-/address-2.0.0.tgz#9f05469c88cb2fd3dcd624776b54ee95c312126a"
   integrity sha512-mV6T0IYqb0xL1UALPFplXYQmR0twnXG0M6jUswpquqT2sD12BOiCiLy3EvMp/Fy7s3DZElC4/aPjEjo2jeZpvw==
 
-"@hapi/boom@^7.4.2":
+"@hapi/boom@7.4.2":
   version "7.4.2"
-  resolved "https://npm.globit.com/@hapi%2fboom/-/boom-7.4.2.tgz#c16957cd09796f6c1bfb4031bdc39d66d6d750c3"
+  resolved "https://registry.yarnpkg.com/@hapi/boom/-/boom-7.4.2.tgz#c16957cd09796f6c1bfb4031bdc39d66d6d750c3"
   integrity sha512-T2CYcTI0AqSvC6YC7keu/fh9LVSMzfoMLharBnPbOwmc+Cexj9joIc5yNDKunaxYq9LPuOwMS0f2B3S1tFQUNw==
   dependencies:
     "@hapi/hoek" "6.x.x"
@@ -1561,9 +1561,9 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/hapi__boom@^7.4.0":
+"@types/hapi__boom@7.4.0":
   version "7.4.0"
-  resolved "https://npm.globit.com/@types%2fhapi__boom/-/hapi__boom-7.4.0.tgz#81d58cffb67c54896614560c007a5015a79c30ba"
+  resolved "https://registry.yarnpkg.com/@types/hapi__boom/-/hapi__boom-7.4.0.tgz#81d58cffb67c54896614560c007a5015a79c30ba"
   integrity sha512-i4nerd/aJd5zW8OPHxgeuDYiuiuHxHczkqIaALhINUqBCavRgbiwjfndpgrarB43jcb/2LxzrohMOH7akyt3og==
 
 "@types/history@*":
