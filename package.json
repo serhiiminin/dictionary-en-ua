@@ -31,7 +31,7 @@
     "@types/react-facebook-login": "4.1.0",
     "@types/react-router-dom": "4.3.4",
     "@types/recompose": "0.30.6",
-    "@types/styled-components": "4.1.16",
+    "@types/styled-components": "4.1.17",
     "@types/yup": "0.26.21",
     "formik": "1.5.7",
     "js-cookie": "2.2.0",
