@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Main from '.';
+import Component from '.';
 
 describe('MainContainer page', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Main />);
+    wrapper = shallow(<Component />);
   });
   test('render', () => {
     expect(wrapper).toMatchSnapshot();
