@@ -5,7 +5,6 @@ import routes from '../../routes';
 
 interface Props {
   isLoggedIn: boolean;
-  rest: object;
 }
 
 export default withAuth(

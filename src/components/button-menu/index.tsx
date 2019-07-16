@@ -1,9 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 import ButtonWithRouter from '../button-with-router';
 import { ThemeProps } from '../../types';
 
-const ButtonMenu = styled((props: object): JSX.Element => <ButtonWithRouter {...props} />)`
+const ButtonMenu = styled(ButtonWithRouter)`
   && {
     min-width: 108px;
     min-height: 48px;

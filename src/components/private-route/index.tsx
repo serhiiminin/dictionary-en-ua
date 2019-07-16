@@ -1,15 +1,11 @@
 import React from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
-
-interface Params {
-  location: string;
-}
+import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
 
 interface OwnProps {
   condition: boolean;
   pathname: string;
-  component: JSX.Element;
-  render(params: Params): JSX.Element;
+  component?: JSX.Element;
+  render?(params: RouteComponentProps): JSX.Element;
 }
 
 type Props = RouteProps & OwnProps;
@@ -17,13 +13,13 @@ type Props = RouteProps & OwnProps;
 const PrivateRoute = ({ condition, pathname, component: Cmp, render, ...rest }: Props): JSX.Element => (
   <Route
     {...rest}
-    render={(params: Params): JSX.Element => {
+    render={(params: RouteComponentProps): React.ReactNode => {
       if (condition) {
         return (
           <Redirect
             to={{
               pathname,
-              redirectedFrom: params.location,
+              state: { from: params.location },
             }}
           />
         );
@@ -33,10 +29,5 @@ const PrivateRoute = ({ condition, pathname, component: Cmp, render, ...rest }: 
     }}
   />
 );
-
-PrivateRoute.defaultProps = {
-  component: null,
-  render: null,
-};
 
 export default PrivateRoute;
