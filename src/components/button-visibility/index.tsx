@@ -1,9 +1,9 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 import { ThemeProps } from '../../types';
 
-const ButtonVisibility = styled((props: object): JSX.Element => <IconButton disableRipple {...props} />)`
+const ButtonVisibility = styled((props: IconButtonProps): JSX.Element => <IconButton {...props} />)`
   && {
     font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.lg};
     background: transparent;

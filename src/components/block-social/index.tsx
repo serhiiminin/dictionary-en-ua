@@ -2,7 +2,7 @@ import React from 'react';
 import SC from './styles';
 
 interface Props {
-  children(props: object): JSX.Element;
+  children: JSX.Element;
 }
 
 const BlockSocial = ({ children }: Props): JSX.Element => (
