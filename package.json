@@ -34,7 +34,7 @@
     "@types/react-router-dom": "4.3.4",
     "@types/recompose": "0.30.6",
     "@types/styled-components": "4.1.18",
-    "@types/yup": "0.26.21",
+    "@types/yup": "0.26.22",
     "formik": "1.5.8",
     "js-cookie": "2.2.0",
     "notistack": "0.8.8",
