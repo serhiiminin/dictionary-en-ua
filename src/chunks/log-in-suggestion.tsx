@@ -1,8 +1,8 @@
 import React from 'react';
-import { AuthSuggestion, ButtonPrimary } from '../../components';
-import routes from '../../routes';
+import { AuthSuggestion, ButtonPrimary } from '../components';
+import routes from '../routes';
 
-const LogInSuggestion = () => (
+const LogInSuggestion = (): JSX.Element => (
   <AuthSuggestion
     title="Have an account?"
     description="Welcome back, friend!"
