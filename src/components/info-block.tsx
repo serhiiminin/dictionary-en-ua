@@ -22,7 +22,7 @@ const Info = styled.div`
 interface Props {
   title: string;
   description: string;
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 const InfoBlock = ({ title, description, children }: Props): JSX.Element => (

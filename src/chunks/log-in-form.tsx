@@ -1,8 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { compose } from 'recompose';
+import { withRouter, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import styled from 'styled-components';
 import {
   InputPassword,
   BlockSocial,
@@ -12,12 +14,30 @@ import {
   Form,
   FormWrapper,
   TitleBlock,
-} from '../../components';
-import LN from '../../constants/loading-names';
-import VL from '../../constants/validation-lines';
-import config from '../../config';
-import SC from './styles';
-import routes from '../../routes';
+} from '../components';
+import LN from '../constants/loading-names';
+import VL from '../constants/validation-lines';
+import config from '../config';
+import routes from '../routes';
+import { withAuth } from '../context/auth';
+import { withErrors } from '../context/errors';
+import { withLoading } from '../context/loading';
+
+const SubmitBlock = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LinkForgotPassword = styled(Link)`
+  font-style: normal;
+  text-decoration: none;
+  font-size: ${props => props.theme.main.fontSize.xs};
+  font-family: ${props => props.theme.main.fontFamily.cairoRegular};
+  letter-spacing: ${props => props.theme.main.letterSpacing.xs};
+  color: ${props => props.theme.main.color.dark};
+`;
 
 const initialValues = {
   email: '',
@@ -36,15 +56,8 @@ const validationSchema = yup.object().shape({
 });
 
 const fields = [
-  {
-    name: 'email',
-    label: 'Email',
-  },
-  {
-    name: 'password',
-    label: 'Password',
-    component: InputPassword,
-  },
+  { name: 'email', label: 'Email' },
+  { name: 'password', label: 'Password', component: InputPassword },
 ];
 
 const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, checkIsLoading }) => {
@@ -65,12 +78,12 @@ const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, c
           validationSchema={validationSchema}
           fields={fields}
           renderSubmit={() => (
-            <SC.SubmitBlock>
+            <SubmitBlock>
               <ButtonSearch type="submit" color="secondary" variant="contained">
                 Log in
               </ButtonSearch>
-              <SC.LinkForgotPassword to={routes.auth.forgotPassword}>Forgot your password?</SC.LinkForgotPassword>
-            </SC.SubmitBlock>
+              <LinkForgotPassword to={routes.auth.forgotPassword}>Forgot your password?</LinkForgotPassword>
+            </SubmitBlock>
           )}
         />
         <BlockSocial>
@@ -90,11 +103,9 @@ const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, c
   );
 };
 
-LoginForm.propTypes = {
-  handleBasicLogIn: PropTypes.func.isRequired,
-  handleGoogleLogIn: PropTypes.func.isRequired,
-  handleFacebookLogIn: PropTypes.func.isRequired,
-  checkIsLoading: PropTypes.func.isRequired,
-};
-
-export default LoginForm;
+export default compose(
+  withRouter,
+  withAuth,
+  withErrors,
+  withLoading
+)(LoginForm);

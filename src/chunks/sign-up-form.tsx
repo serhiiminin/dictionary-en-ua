@@ -1,6 +1,8 @@
 import React from 'react';
 import * as yup from 'yup';
-import PropTypes from 'prop-types';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import {
@@ -11,11 +13,19 @@ import {
   Form,
   FormWrapper,
   TitleBlock,
-} from '../../components';
-import LN from '../../constants/loading-names';
-import VL from '../../constants/validation-lines';
-import config from '../../config';
-import SC from './styles';
+} from '../components';
+import LN from '../constants/loading-names';
+import VL from '../constants/validation-lines';
+import config from '../config';
+import { withAuth } from '../context/auth';
+import { withLoading } from '../context/loading';
+import { withErrors } from '../context/errors';
+
+const SubmitWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
 
 const initialValues = {
   name: '',
@@ -42,24 +52,10 @@ const validationSchema = yup.object().shape({
 });
 
 const fields = [
-  {
-    name: 'name',
-    label: 'Name',
-  },
-  {
-    name: 'email',
-    label: 'Email',
-  },
-  {
-    name: 'password',
-    label: 'Password',
-    component: InputPassword,
-  },
-  {
-    name: 'passwordConfirm',
-    label: 'Repeat password',
-    component: InputPassword,
-  },
+  { name: 'name', label: 'Name' },
+  { name: 'email', label: 'Email' },
+  { name: 'password', label: 'Password', component: InputPassword },
+  { name: 'passwordConfirm', label: 'Repeat password', component: InputPassword },
 ];
 
 const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp, checkIsLoading }) => {
@@ -78,7 +74,7 @@ const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignU
           onSubmit={handleBasicSignUp}
           fields={fields}
           renderSubmit={() => (
-            <SC.SubmitWrapper>
+            <SubmitWrapper>
               <ButtonSearch type="submit" color="secondary" variant="contained">
                 Sign up
               </ButtonSearch>
@@ -92,7 +88,7 @@ const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignU
                 onSuccess={handleGoogle}
                 render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
               />
-            </SC.SubmitWrapper>
+            </SubmitWrapper>
           )}
         />
       </FormWrapper>
@@ -100,10 +96,9 @@ const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignU
   );
 };
 
-SignUpForm.propTypes = {
-  handleBasicSignUp: PropTypes.func.isRequired,
-  handleGoogleSignUp: PropTypes.func.isRequired,
-  handleFacebookSignUp: PropTypes.func.isRequired,
-  checkIsLoading: PropTypes.func.isRequired,
-};
-export default SignUpForm;
+export default compose(
+  withRouter,
+  withAuth,
+  withLoading,
+  withErrors
+)(SignUpForm);
