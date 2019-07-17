@@ -61,7 +61,7 @@
     "babel-plugin-styled-components": "1.10.6",
     "chalk": "2.4.2",
     "commitizen": "3.1.1",
-    "customize-cra": "0.2.14",
+    "customize-cra": "0.4.1",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.3.5",
