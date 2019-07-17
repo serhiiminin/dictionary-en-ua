@@ -21,7 +21,7 @@ const Label = styled.span`
 `;
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element[];
 }
 
 const BlockSocial = ({ children }: Props): JSX.Element => (

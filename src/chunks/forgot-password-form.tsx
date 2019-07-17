@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as yup from 'yup';
 import { ButtonSearch, Form, FormWrapper, TitleBlock } from '../components';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
-import { withAuth } from '../context/auth';
-import { withErrors } from '../context/errors';
-import { withLoading } from '../context/loading';
+import { withAuth, AI } from '../context/auth';
+import { withLoading, LI } from '../context/loading';
 
-const initialValues = {
-  email: '',
-};
+const initialValues = { email: '' };
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -21,14 +18,11 @@ const validationSchema = yup.object().shape({
     .email(VL.email),
 });
 
-const fields = [
-  {
-    name: 'email',
-    label: 'Email',
-  },
-];
+const fields = [{ name: 'email', label: 'Email' }];
 
-const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }): JSX.Element => {
+type Props = RouteComponentProps & AI & LI;
+
+const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }: Props): JSX.Element => {
   const isLoading = checkIsLoading(LN.auth.logIn);
 
   return (
@@ -59,9 +53,8 @@ ForgotPasswordForm.propTypes = {
   checkIsLoading: PropTypes.func.isRequired,
 };
 
-export default compose(
+export default compose<Props, {}>(
   withRouter,
   withAuth,
-  withErrors,
   withLoading
 )(ForgotPasswordForm);

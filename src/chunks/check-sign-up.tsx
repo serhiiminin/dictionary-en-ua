@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { InfoBlock } from '../components';
-import { withAuth } from '../context/auth';
+import { withAuth } from '../context/hocs';
 
 interface Props {
   removeEmailConfirmation: Function;

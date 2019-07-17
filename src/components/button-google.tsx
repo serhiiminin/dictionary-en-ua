@@ -1,7 +1,8 @@
 import React from 'react';
+import { ButtonProps } from '@material-ui/core/Button';
 import ButtonSocial from './button-social';
 
-const ButtonGoogle = (props: object): JSX.Element => (
+const ButtonGoogle = (props: ButtonProps): JSX.Element => (
   <ButtonSocial {...props}>
     <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
       <g clipPath="url(#clip0)">

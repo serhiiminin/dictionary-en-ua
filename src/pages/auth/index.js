@@ -4,8 +4,8 @@ import { CheckSignUp, ConfirmRegistration } from '../../chunks';
 import { PrivateRouteLoggedOut, PrivateRouteLoggedIn, PrivateRoute } from '../../components';
 import LogOutContainer from './log-out';
 import SignUpFormsRoute from './sign-up-forms';
+import { withAuth } from '../../context/hocs';
 import routes from '../../routes';
-import { withAuth } from '../../context/auth';
 
 const PrivateRouteSuccess = withAuth(({ isSignUpApplied, ...rest }) => (
   <PrivateRoute pathname={routes.root} condition={!isSignUpApplied} {...rest} />

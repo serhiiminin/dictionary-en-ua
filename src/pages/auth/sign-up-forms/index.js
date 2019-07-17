@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import SignUpFormsCmp from './component';
 import routes from '../../../routes';
-import { withAuth } from '../../../context/auth';
+import { withAuth } from '../../../context/hocs';
 
 const SignUpFormsRoute = ({ isLoggedIn, ...rest }) => (
   <Route

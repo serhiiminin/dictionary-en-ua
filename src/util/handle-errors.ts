@@ -18,7 +18,7 @@ interface Notifications {
 
 interface Error {
   message: string;
-  response: {
+  response?: {
     status: number;
   };
 }

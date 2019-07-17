@@ -1,7 +1,6 @@
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withLoading } from '../../../context/loading';
-import { withWords } from '../../../context/words';
+import { withLoading, withWords } from '../../../context/hocs';
 import WordPreviewContainer from './component';
 
 const enhance = compose(
