@@ -1,7 +1,7 @@
 import React from 'react';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import styled from 'styled-components';
-import { ThemeProps } from '../../types';
+import { ThemeProps } from '../types';
 
 const ButtonVisibility = styled((props: IconButtonProps): JSX.Element => <IconButton {...props} />)`
   && {

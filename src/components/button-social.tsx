@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fab } from '@material-ui/core';
 import styled from 'styled-components';
-import ButtonWithRouter from '../button-with-router';
+import ButtonWithRouter from './button-with-router';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const FabRouterButton = (props: any): JSX.Element => <ButtonWithRouter {...props} component={Fab} />;

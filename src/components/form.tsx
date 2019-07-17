@@ -1,8 +1,15 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form as FormFormik } from 'formik';
+import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
-import SC from './styles';
+import { ThemeProps } from '../types';
 
+const FormFormikStyled = styled(FormFormik)`
+  display: grid;
+  gap: ${(props: ThemeProps): string => props.theme.main.space.sm};
+`;
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const Form = props => {
   const {
     // eslint-disable-next-line react/prop-types
@@ -31,9 +38,10 @@ const Form = props => {
       initialValues={initialValues}
       validationSchema={validationSchema}
     >
+      {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
       {({ values, errors, handleSubmit, handleChange, handleBlur }) => (
-        <SC.Form onSubmit={handleSubmit}>
-          {/* eslint-disable-next-line react/prop-types */}
+        <FormFormikStyled onSubmit={handleSubmit}>
+          {/* eslint-disable-next-line react/prop-types,@typescript-eslint/explicit-function-return-type */}
           {fields.map(({ name, type = 'text', label, variant = 'outlined', component }) => {
             const Cmp = component || TextField;
 
@@ -54,7 +62,7 @@ const Form = props => {
             );
           })}
           <div>{renderSubmit && renderSubmit(handleSubmit)}</div>
-        </SC.Form>
+        </FormFormikStyled>
       )}
     </Formik>
   );
