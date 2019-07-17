@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { joinUrl, mergeSearch, parseSearch } from 'url-joiner';
-import routes from '../../routes';
+import routes from '../routes';
 
 interface OwnProps {
   children(props: {

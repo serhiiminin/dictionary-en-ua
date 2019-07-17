@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, InputAdornment } from '@material-ui/core';
 import { VisibilityOff, Visibility } from '@material-ui/icons';
-import ButtonVisibility from '../button-visibility';
+import ButtonVisibility from './button-visibility';
 
 const InputPassword = (props: object): JSX.Element => {
   const [isVisible, setVisibility] = useState<boolean>(false);

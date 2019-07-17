@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThemeProps } from '../../types';
+import { ThemeProps } from '../types';
 
 const TitleBlock = styled.h2`
   font-style: normal;

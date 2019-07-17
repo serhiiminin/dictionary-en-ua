@@ -1,7 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
-import { ThemeProps } from '../../types';
+import { ThemeProps } from '../types';
 
-const BlockSocial = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -19,4 +20,15 @@ const Label = styled.span`
   margin: 0;
 `;
 
-export default { BlockSocial, Label };
+interface Props {
+  children: JSX.Element;
+}
+
+const BlockSocial = ({ children }: Props): JSX.Element => (
+  <Wrapper>
+    <Label>or continue with</Label>
+    {children}
+  </Wrapper>
+);
+
+export default BlockSocial;

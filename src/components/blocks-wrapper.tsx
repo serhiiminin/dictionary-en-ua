@@ -1,7 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
-import { ThemeProps } from '../../types';
+import { ThemeProps } from '../types';
 
-const BlockWrapper = styled.div`
+const BlockWrapperContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 ${(props: ThemeProps): string => props.theme.main.space.lg};
@@ -19,4 +20,10 @@ const BlockWrapper = styled.div`
   }
 `;
 
-export default { BlockWrapper };
+interface Props {
+  children: JSX.Element[];
+}
+
+const BlocksWrapper = ({ children }: Props): JSX.Element => <BlockWrapperContainer>{children}</BlockWrapperContainer>;
+
+export default BlocksWrapper;

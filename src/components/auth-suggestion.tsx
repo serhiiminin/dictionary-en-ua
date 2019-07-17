@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
-import TitleBlock from '../title-block';
-import { ThemeProps } from '../../types';
+import { ThemeProps } from '../types';
+import TitleBlock from './title-block';
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,4 +31,20 @@ const Control = styled.div`
   margin-top: 4.5rem;
 `;
 
-export default { Wrapper, Inner, Title, Description, Control };
+interface Props {
+  title: string;
+  description: string;
+  control?: JSX.Element;
+}
+
+const AuthSuggestion = ({ title, description, control }: Props): JSX.Element => (
+  <Wrapper>
+    <Inner>
+      <Title>{title}</Title>
+      <Description>{description}</Description>
+      <Control>{control}</Control>
+    </Inner>
+  </Wrapper>
+);
+
+export default AuthSuggestion;

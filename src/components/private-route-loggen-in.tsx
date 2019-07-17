@@ -1,7 +1,7 @@
 import React from 'react';
-import { withAuth } from '../../context/auth';
-import PrivateRoute from '../private-route';
-import routes from '../../routes';
+import { withAuth } from '../context/auth';
+import PrivateRoute from './private-route';
+import routes from '../routes';
 
 interface Props {
   isLoggedIn: boolean;

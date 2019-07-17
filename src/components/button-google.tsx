@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonSocial from '../button-social';
+import ButtonSocial from './button-social';
 
 const ButtonGoogle = (props: object): JSX.Element => (
   <ButtonSocial {...props}>

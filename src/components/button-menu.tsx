@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ButtonWithRouter from '../button-with-router';
-import { ThemeProps } from '../../types';
+import ButtonWithRouter from './button-with-router';
+import { ThemeProps } from '../types';
 
 const ButtonMenu = styled(ButtonWithRouter)`
   && {
