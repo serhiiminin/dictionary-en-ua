@@ -1,7 +1,8 @@
 import React from 'react';
+import { ButtonProps } from '@material-ui/core/Button';
 import ButtonSocial from './button-social';
 
-const ButtonFacebook = (props: object): JSX.Element => (
+const ButtonFacebook = (props: ButtonProps): JSX.Element => (
   <ButtonSocial {...props}>
     <svg width="11" height="21" viewBox="0 0 11 21" fill="none">
       <path

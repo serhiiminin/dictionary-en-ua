@@ -1,9 +1,9 @@
 import React from 'react';
 import * as yup from 'yup';
 import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoogleLogin } from 'react-google-login';
+// @ts-ignore
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import {
   InputPassword,
@@ -17,9 +17,9 @@ import {
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';
-import { withAuth } from '../context/auth';
-import { withLoading } from '../context/loading';
-import { withErrors } from '../context/errors';
+import { withAuth, AI } from '../context/auth';
+import { withErrors, EI } from '../context/errors';
+import { withLoading, LI } from '../context/loading';
 
 const SubmitWrapper = styled.div`
   display: flex;
@@ -43,12 +43,12 @@ const validationSchema = yup.object().shape({
     .string()
     .required(VL.required)
     .min(8, VL.passwordMinLength)
-    .oneOf([yup.ref('passwordConfirm'), null], VL.match),
+    .oneOf([yup.ref('passwordConfirm'), ''], VL.match),
   passwordConfirm: yup
     .string()
     .required(VL.required)
     .min(8, VL.passwordMinLength)
-    .oneOf([yup.ref('password'), null], VL.match),
+    .oneOf([yup.ref('password'), ''], VL.match),
 });
 
 const fields = [
@@ -58,10 +58,14 @@ const fields = [
   { name: 'passwordConfirm', label: 'Repeat password', component: InputPassword },
 ];
 
-const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp, checkIsLoading }) => {
+type Props = AI & EI & LI;
+interface RenderProps {
+  onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+}
+
+const SignUpForm = (props: Props): JSX.Element => {
+  const { handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp, checkIsLoading, handleError } = props;
   const isLoading = checkIsLoading(LN.auth.signUp);
-  const handleGoogle = ({ accessToken }) => accessToken && handleGoogleSignUp(accessToken);
-  const handleFacebook = ({ accessToken }) => accessToken && handleFacebookSignUp(accessToken);
 
   return (
     <>
@@ -73,20 +77,21 @@ const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignU
           initialValues={initialValues}
           onSubmit={handleBasicSignUp}
           fields={fields}
-          renderSubmit={() => (
+          renderSubmit={(): JSX.Element => (
             <SubmitWrapper>
               <ButtonSearch type="submit" color="secondary" variant="contained">
                 Sign up
               </ButtonSearch>
               <FacebookLogin
                 appId={config.auth.facebook.appId}
-                callback={handleFacebook}
-                render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+                callback={handleFacebookSignUp}
+                render={({ onClick }: RenderProps): JSX.Element => <ButtonFacebook onClick={onClick} />}
               />
               <GoogleLogin
                 clientId={config.auth.google.clientId}
-                onSuccess={handleGoogle}
-                render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+                onSuccess={handleGoogleSignUp}
+                onFailure={handleError}
+                render={(renderProps): JSX.Element => <ButtonGoogle onClick={renderProps && renderProps.onClick} />}
               />
             </SubmitWrapper>
           )}
@@ -96,9 +101,8 @@ const SignUpForm = ({ handleBasicSignUp, handleGoogleSignUp, handleFacebookSignU
   );
 };
 
-export default compose(
-  withRouter,
+export default compose<Props, {}>(
   withAuth,
-  withLoading,
-  withErrors
+  withErrors,
+  withLoading
 )(SignUpForm);

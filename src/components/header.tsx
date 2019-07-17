@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ButtonMenu from './button-menu';
 import routes from '../routes';
-import { withLoading } from '../context/loading';
-import { withAuth } from '../context/auth';
+import { withAuth, withLoading } from '../context/hocs';
 import { ReactComponent as Logo } from '../images/logo.svg';
 import { ThemeProps } from '../types';
 

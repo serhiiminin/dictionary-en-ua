@@ -9,7 +9,11 @@ import { WordsProvider } from './words';
 import { UserProvider } from './user';
 import { AuthProvider } from './auth';
 
-const StateProvider = ({ children }) => (
+interface Props {
+  children: JSX.Element;
+}
+
+const StateProvider = ({ children }: Props): JSX.Element => (
   <CookiesProvider>
     <ErrorProvider>
       <DimensionsProvider>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withAuth } from '../context/auth';
+import { withAuth } from '../context/hocs';
 import PrivateRoute from './private-route';
 import routes from '../routes';
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { compose } from 'recompose';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+// @ts-ignore
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import styled from 'styled-components';
 import {
@@ -19,9 +20,10 @@ import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';
 import routes from '../routes';
-import { withAuth } from '../context/auth';
-import { withErrors } from '../context/errors';
-import { withLoading } from '../context/loading';
+import { withAuth, AI } from '../context/auth';
+import { withLoading, LI } from '../context/loading';
+import { ThemeProps } from '../types';
+import { withErrors, EI } from '../context/errors';
 
 const SubmitBlock = styled.div`
   display: flex;
@@ -33,10 +35,10 @@ const SubmitBlock = styled.div`
 const LinkForgotPassword = styled(Link)`
   font-style: normal;
   text-decoration: none;
-  font-size: ${props => props.theme.main.fontSize.xs};
-  font-family: ${props => props.theme.main.fontFamily.cairoRegular};
-  letter-spacing: ${props => props.theme.main.letterSpacing.xs};
-  color: ${props => props.theme.main.color.dark};
+  font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.xs};
+  font-family: ${(props: ThemeProps): string => props.theme.main.fontFamily.cairoRegular};
+  letter-spacing: ${(props: ThemeProps): string => props.theme.main.letterSpacing.xs};
+  color: ${(props: ThemeProps): string => props.theme.main.color.dark};
 `;
 
 const initialValues = {
@@ -55,15 +57,16 @@ const validationSchema = yup.object().shape({
     .required(VL.required),
 });
 
-const fields = [
-  { name: 'email', label: 'Email' },
-  { name: 'password', label: 'Password', component: InputPassword },
-];
+const fields = [{ name: 'email', label: 'Email' }, { name: 'password', label: 'Password', component: InputPassword }];
 
-const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, checkIsLoading }) => {
+type Props = AI & LI & EI;
+interface RenderProps {
+  onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+}
+
+const LoginForm = (props: Props): JSX.Element => {
+  const { handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, checkIsLoading, handleError } = props;
   const isLoading = checkIsLoading(LN.auth.logIn);
-  const handleGoogle = ({ accessToken }) => accessToken && handleGoogleLogIn(accessToken);
-  const handleFacebook = ({ accessToken }) => accessToken && handleFacebookLogIn(accessToken);
 
   return (
     <>
@@ -77,7 +80,7 @@ const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, c
           initialValues={initialValues}
           validationSchema={validationSchema}
           fields={fields}
-          renderSubmit={() => (
+          renderSubmit={(): JSX.Element => (
             <SubmitBlock>
               <ButtonSearch type="submit" color="secondary" variant="contained">
                 Log in
@@ -89,13 +92,14 @@ const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, c
         <BlockSocial>
           <FacebookLogin
             appId={config.auth.facebook.appId}
-            callback={handleFacebook}
-            render={({ onClick }) => <ButtonFacebook onClick={onClick} />}
+            callback={handleFacebookLogIn}
+            render={({ onClick }: RenderProps): JSX.Element => <ButtonFacebook onClick={onClick} />}
           />
           <GoogleLogin
             clientId={config.auth.google.clientId}
-            onSuccess={handleGoogle}
-            render={({ onClick }) => <ButtonGoogle onClick={onClick} />}
+            onSuccess={handleGoogleLogIn}
+            onFailure={handleError}
+            render={(renderProps): JSX.Element => <ButtonGoogle onClick={renderProps && renderProps.onClick} />}
           />
         </BlockSocial>
       </FormWrapper>
@@ -103,8 +107,7 @@ const LoginForm = ({ handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, c
   );
 };
 
-export default compose(
-  withRouter,
+export default compose<Props, {}>(
   withAuth,
   withErrors,
   withLoading

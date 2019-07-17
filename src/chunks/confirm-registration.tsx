@@ -3,16 +3,11 @@ import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 import LN from '../constants/loading-names';
-import { withLoading } from '../context/loading';
-import { withAuth } from '../context/auth';
+import { withAuth, AI } from '../context/auth';
+import { withLoading, LI } from '../context/loading';
 import routes from '../routes';
 
-interface OwnProps {
-  checkIsLoading: Function;
-  handleConfirmBasicSignUp: Function;
-}
-
-type Props = RouteComponentProps & OwnProps;
+type Props = RouteComponentProps & LI & AI;
 
 class ConfirmRegistration extends Component<Props> {
   public componentDidMount(): void {
@@ -21,7 +16,7 @@ class ConfirmRegistration extends Component<Props> {
     if (!token) {
       history.push(routes.root);
     }
-    handleConfirmBasicSignUp(token);
+    handleConfirmBasicSignUp(token || '');
   }
 
   public render(): JSX.Element {
@@ -32,7 +27,7 @@ class ConfirmRegistration extends Component<Props> {
   }
 }
 
-export default compose(
+export default compose<Props, {}>(
   withRouter,
   withLoading,
   withAuth

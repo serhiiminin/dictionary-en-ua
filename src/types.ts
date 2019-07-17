@@ -13,34 +13,34 @@ export type FetcherWithToken = (token: string) => Fetcher;
 export type EndpointJoiner = (path: string) => string;
 
 export interface User {
-  _id: string;
-  name: string;
-  imageUrl: string;
-  googleId: string;
-  facebookId: string;
-  email: string;
-  active: boolean;
-  password: string;
-  expires: string;
+  _id?: string;
+  name?: string;
+  imageUrl?: string;
+  googleId?: string;
+  facebookId?: string;
+  email?: string;
+  active?: boolean;
+  password?: string;
+  expires?: string;
 }
 
 export interface Word {
-  _id: string;
-  antonyms: string[];
-  definitions: string[];
-  examples: string[];
-  gif: string;
-  options: string[];
-  partOfSpeech: string[];
-  similarTo: string[];
-  synonyms: string[];
-  transcription: string;
-  word: string;
-  ownerId: string;
-  dateCreated: string;
-  dateLastUpdated: string;
-  timesLearnt: number;
-  dateLastLearnt: string;
+  _id?: string;
+  antonyms?: string[];
+  definitions?: string[];
+  examples?: string[];
+  gif?: string;
+  options?: string[];
+  partOfSpeech?: string[];
+  similarTo?: string[];
+  synonyms?: string[];
+  transcription?: string;
+  word?: string;
+  ownerId?: string;
+  dateCreated?: string;
+  dateLastUpdated?: string;
+  timesLearnt?: number;
+  dateLastLearnt?: string;
 }
 
 export interface Token {
@@ -174,4 +174,26 @@ export interface FormField {
   type?: string;
   variant?: string;
   component: JSX.Element;
+}
+
+export interface SearchParams {
+  sortBy: string;
+  sortDirection: string;
+  page: number;
+  countPerPage: number;
+}
+
+export interface QueryParams {
+  skip: number;
+  limit: number;
+  sortDirection: number;
+  sortBy: string;
+}
+
+export interface GoogleToken {
+  accessToken?: string;
+}
+
+export interface FacebookToken {
+  accessToken?: string;
 }

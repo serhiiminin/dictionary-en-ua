@@ -1,7 +1,6 @@
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { withLoading } from '../../../context/loading';
-import { withWords } from '../../../context/words';
+import { withLoading, withWords } from '../../../context/hocs';
 import WordsList from './component';
 
 const enhance = compose(
