@@ -26,7 +26,7 @@ const FetcherProviderCmp = ({ children, handleError, startLoading, stopLoading }
   return <Provider value={{ handleFetch }}>{children}</Provider>;
 };
 
-const FetcherProvider = compose<Props, {}>(
+const FetcherProvider = compose<Props, OwnProps>(
   withErrors,
   withLoading
 )(FetcherProviderCmp);
@@ -37,9 +37,6 @@ export interface FI {
 
 const withFetcher = <T extends {}>(Cmp: ComponentType<T>): ((props: T & FI) => JSX.Element) => (
   props: T & FI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 
 export { FetcherProvider, withFetcher };

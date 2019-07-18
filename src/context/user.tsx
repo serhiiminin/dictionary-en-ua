@@ -1,8 +1,7 @@
 import React, { ComponentType, createContext, useState } from 'react';
 import { compose } from 'recompose';
-import { withSnackbar } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { createApiUser } from '../api';
-import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import { withAuth, AI } from './auth';
 import { withFetcher, FI } from './fetcher';
@@ -10,10 +9,9 @@ import { User } from '../types';
 
 interface OwnProps {
   children: JSX.Element;
-  enqueueSnackbar(n: string, p: object): void;
 }
 
-type Props = AI & FI & OwnProps;
+type Props = AI & FI & WithSnackbarProps & OwnProps;
 
 const { Provider, Consumer } = createContext({});
 
@@ -38,7 +36,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
       async (): Promise<void> => {
         const { _id } = await apiUser.create(userData);
         await handleFetchUser(_id);
-        enqueueSnackbar('The user has been saved successfully', { variant: NT.success });
+        enqueueSnackbar('The user has been saved successfully', { variant: 'success' });
       }
     );
   };
@@ -48,7 +46,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
       async (): Promise<void> => {
         const { _id } = await apiUser.update(userData);
         await handleFetchUser(_id);
-        enqueueSnackbar('The user has been updated successfully', { variant: NT.success });
+        enqueueSnackbar('The user has been updated successfully', { variant: 'success' });
       }
     );
   };
@@ -57,7 +55,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         await apiUser.delete(id);
-        enqueueSnackbar('The user has been deleted successfully', { variant: NT.success });
+        enqueueSnackbar('The user has been deleted successfully', { variant: 'success' });
       }
     );
   };
@@ -78,7 +76,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
   );
 };
 
-const UserProvider = compose<Props, {}>(
+const UserProvider = compose<Props, OwnProps>(
   withFetcher,
   withAuth,
   withSnackbar
@@ -95,9 +93,6 @@ interface UI {
 
 const withUser = <T extends {}>(Cmp: ComponentType<T>): ((props: T & UI) => JSX.Element) => (
   props: T & UI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 
 export { UserProvider, withUser };

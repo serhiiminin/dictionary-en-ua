@@ -1,10 +1,9 @@
 import React, { ComponentType, createContext, useState } from 'react';
-import { withSnackbar } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
 import { parseSearch } from 'url-joiner';
 import { createApiWord, apiGif } from '../api';
-import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import { AI, withAuth } from './auth';
 import { FI, withFetcher } from './fetcher';
@@ -45,11 +44,9 @@ const getRandlomGif = (gifs: Gif[] = []): string => {
 
 interface OwnProps {
   children: JSX.Element;
-
-  enqueueSnackbar(n: string, p: object): void;
 }
 
-type Props = RouteComponentProps & FI & AI & OwnProps;
+type Props = RouteComponentProps & FI & AI & WithSnackbarProps & OwnProps;
 
 const { Provider, Consumer } = createContext({});
 
@@ -92,7 +89,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         const { _id } = await apiWord.create({ ...wordItem, ownerId });
         await handleFetchWord(_id);
-        enqueueSnackbar('The word has been saved successfully', { variant: NT.success });
+        enqueueSnackbar('The word has been saved successfully', { variant: 'success' });
       }
     );
   };
@@ -102,7 +99,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         const { _id } = await apiWord.update(word);
         await handleFetchWord(_id);
-        enqueueSnackbar('The word has been updated successfully', { variant: NT.success });
+        enqueueSnackbar('The word has been updated successfully', { variant: 'success' });
       }
     );
   };
@@ -112,7 +109,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         await apiWord.delete(id);
         await handleFetchWordsList();
-        enqueueSnackbar('The word has been deleted successfully', { variant: NT.success });
+        enqueueSnackbar('The word has been deleted successfully', { variant: 'success' });
       }
     );
   };
@@ -186,7 +183,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
   );
 };
 
-const WordsProvider = compose<Props, {}>(
+const WordsProvider = compose<Props, OwnProps>(
   withRouter,
   withFetcher,
   withAuth,
@@ -212,9 +209,6 @@ export interface WI {
 
 const withWords = <T extends {}>(Cmp: ComponentType<T>): ((props: T & WI) => JSX.Element) => (
   props: T & WI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 
 export { WordsProvider, withWords };

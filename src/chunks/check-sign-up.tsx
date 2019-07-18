@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { InfoBlock } from '../components';
-import { withAuth } from '../context/hocs';
+import { withAuth, AI } from '../context/auth';
 
-interface Props {
-  removeEmailConfirmation: Function;
-}
-
-class CheckSignUp extends Component<Props> {
+class CheckSignUp extends Component<AI> {
   public componentWillUnmount(): void {
     this.props.removeEmailConfirmation();
   }
@@ -16,4 +12,5 @@ class CheckSignUp extends Component<Props> {
   }
 }
 
+// @ts-ignore
 export default withAuth(CheckSignUp);
