@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 // @ts-ignore
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import styled from 'styled-components';

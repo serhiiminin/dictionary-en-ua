@@ -24,15 +24,16 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
 
   const cleanUser = (): void => setUser({});
 
-  const handleFetchUser = (id: string): Promise<object | void> =>
+  const handleFetchUser = (id: string): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
-        const userData = await apiUser.get(id);
+        const userData = await apiUser.get<User>(id);
         setUser(userData);
       }
     );
+  };
 
-  const handleCreateUser = (userData: User): Promise<object | void> =>
+  const handleCreateUser = (userData: User): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         const { _id } = await apiUser.create(userData);
@@ -40,8 +41,9 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
         enqueueSnackbar('The user has been saved successfully', { variant: NT.success });
       }
     );
+  };
 
-  const handleEditUser = (userData: User): Promise<object | void> =>
+  const handleEditUser = (userData: User): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         const { _id } = await apiUser.update(userData);
@@ -49,14 +51,16 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
         enqueueSnackbar('The user has been updated successfully', { variant: NT.success });
       }
     );
+  };
 
-  const handleDeleteUser = (id: string): Promise<object | void> =>
+  const handleDeleteUser = (id: string): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         await apiUser.delete(id);
         enqueueSnackbar('The user has been deleted successfully', { variant: NT.success });
       }
     );
+  };
 
   return (
     <Provider
@@ -83,10 +87,10 @@ const UserProvider = compose<Props, {}>(
 interface UI {
   user: User;
   cleanUser(): void;
-  handleFetchUser(id: string): Promise<object | void>;
-  handleCreateUser(user: User): Promise<object | void>;
-  handleEditUser(user: User): Promise<object | void>;
-  handleDeleteUser(user: User): Promise<object | void>;
+  handleFetchUser(id: string): void;
+  handleCreateUser(user: User): void;
+  handleEditUser(user: User): void;
+  handleDeleteUser(user: User): void;
 }
 
 const withUser = <T extends {}>(Cmp: ComponentType<T>): ((props: T & UI) => JSX.Element) => (

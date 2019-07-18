@@ -3,15 +3,15 @@ import createFetcherJson from './fetcher';
 import { createAuthProxy } from './proxies';
 import generateRoute from '../util/routes';
 import config from '../config';
-import apiRoutes from './api-routes';
+import AR from './api-routes';
 import { joinEndpoint } from '../util/api';
-import { EndpointJoiner, FetcherWithToken, FetchResult, User } from '../types';
+import { EndpointJoiner, FetcherWithToken, User } from '../types';
 
 interface Users {
-  create(body: object): FetchResult;
-  get(id: string): FetchResult;
-  update(body: object): FetchResult;
-  delete(id: string): FetchResult;
+  create<T>(body: object): Promise<T>;
+  get<T>(id: string): Promise<T>;
+  update<T>(body: object): Promise<T>;
+  delete<T>(id: string): Promise<T>;
 }
 
 type R = (t: string) => Users;
@@ -23,21 +23,21 @@ export const createApiUsers = (endpointJoiner: EndpointJoiner): UR => (fetcher: 
   const fetcherWithToken = fetcher(token);
 
   return {
-    create: (body: object): FetchResult =>
-      fetcherWithToken(requests.post(endpointJoiner(apiRoutes.users.create), { body })),
-    get: (id: string): FetchResult =>
-      fetcherWithToken(requests.get(endpointJoiner(generateRoute(apiRoutes.users.read, { id })))),
-    update: (data: User): FetchResult => {
+    create: <T>(body: object): Promise<T> =>
+      fetcherWithToken<T>(requests.post(endpointJoiner(AR.users.create), { body })),
+    get: <T>(id: string): Promise<T> =>
+      fetcherWithToken<T>(requests.get(endpointJoiner(generateRoute(AR.users.read, { id })))),
+    update: <T>(data: User): Promise<T> => {
       const { _id: id } = data;
 
-      return fetcherWithToken(
-        requests.put(endpointJoiner(generateRoute(apiRoutes.users.update, { id })), {
+      return fetcherWithToken<T>(
+        requests.put(endpointJoiner(generateRoute(AR.users.update, { id })), {
           body: data,
         })
       );
     },
-    delete: (id: string): FetchResult =>
-      fetcherWithToken(requests.delete(endpointJoiner(generateRoute(apiRoutes.users.delete, { id })))),
+    delete: <T>(id: string): Promise<T> =>
+      fetcherWithToken<T>(requests.delete(endpointJoiner(generateRoute(AR.users.delete, { id })))),
   };
 };
 

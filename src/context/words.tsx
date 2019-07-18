@@ -8,7 +8,7 @@ import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import { AI, withAuth } from './auth';
 import { FI, withFetcher } from './fetcher';
-import { QueryParams, SearchParams, Word } from '../types';
+import { QueryParams, SearchParams, Word, Gif } from '../types';
 
 const INITIAL_SORT_DATA = {
   sortBy: 'dateCreated',
@@ -36,14 +36,6 @@ const generateQuery = ({ page, countPerPage, sortDirection, sortBy }: SearchPara
   sortBy,
 });
 
-interface Gif {
-  images: {
-    downsized_large: {
-      url: string;
-    };
-  };
-}
-
 const getRandlomGif = (gifs: Gif[] = []): string => {
   const gifData = gifs || [];
   const downsizedGifs = gifData.map((gif: Gif): string => gif.images.downsized_large.url);
@@ -53,6 +45,7 @@ const getRandlomGif = (gifs: Gif[] = []): string => {
 
 interface OwnProps {
   children: JSX.Element;
+
   enqueueSnackbar(n: string, p: object): void;
 }
 
@@ -72,19 +65,20 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
 
   const cleanWord = (): void => setWordItem({});
 
-  const handleFetchWord = (wordId: string): Promise<object | void> =>
+  const handleFetchWord = (wordId: string): void => {
     handleFetch(LN.words.fetch)(
       async (): Promise<void> => {
         cleanWord();
-        const word = await apiWord.get(wordId);
+        const word = await apiWord.get<Word>(wordId);
         setWordItem(word);
       }
     );
+  };
 
-  const handleFetchWordsList = (): Promise<object | void> => {
+  const handleFetchWordsList = (): void => {
     const query = generateQuery(getWordsSearchParams(location.search));
 
-    return handleFetch(LN.words.list)(
+    handleFetch(LN.words.list)(
       async (): Promise<void> => {
         const { items, count } = await apiWord.getList({ query, ownerId });
         setWordsList(items);
@@ -93,7 +87,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleCreateWord = (): Promise<object | void> =>
+  const handleCreateWord = (): void => {
     handleFetch(LN.words.save)(
       async (): Promise<void> => {
         const { _id } = await apiWord.create({ ...wordItem, ownerId });
@@ -101,8 +95,9 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
         enqueueSnackbar('The word has been saved successfully', { variant: NT.success });
       }
     );
+  };
 
-  const handleEditWord = (word: Word): Promise<object | void> =>
+  const handleEditWord = (word: Word): void => {
     handleFetch(LN.words.fetch)(
       async (): Promise<void> => {
         const { _id } = await apiWord.update(word);
@@ -110,8 +105,9 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
         enqueueSnackbar('The word has been updated successfully', { variant: NT.success });
       }
     );
+  };
 
-  const handleDeleteWord = (id: string): Promise<object | void> =>
+  const handleDeleteWord = (id: string): void => {
     handleFetch(LN.words.delete)(
       async (): Promise<void> => {
         await apiWord.delete(id);
@@ -119,13 +115,14 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
         enqueueSnackbar('The word has been deleted successfully', { variant: NT.success });
       }
     );
+  };
 
-  const handleSearchWord = (word: string): Promise<object | void> =>
+  const handleSearchWord = (word: string): void => {
     handleFetch(LN.words.search)(
       async (): Promise<void> => {
         cleanWord();
-        const foundWord = await apiWord.search({ word });
-        const gifs = await apiGif.get({ q: foundWord.word });
+        const foundWord = await apiWord.search<Word>({ word });
+        const gifs = await apiGif.get<{ data: Gif[] }>({ q: foundWord.word });
         const randomGif = gifs && getRandlomGif(gifs.data);
         const wordData = JSON.parse(JSON.stringify(foundWord));
 
@@ -135,8 +132,9 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
         setWordItem(wordData);
       }
     );
+  };
 
-  const handleFetchWordsToLearn = (): Promise<object | void> =>
+  const handleFetchWordsToLearn = (): void => {
     handleFetch(LN.words.learn)(
       async (): Promise<void> => {
         const { items, count } = await apiWord.getListToLearn({ ownerId });
@@ -144,14 +142,16 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
         setWordsCount(count);
       }
     );
+  };
 
-  const handleLearnWord = (wordId: string): Promise<object | void> =>
+  const handleLearnWord = (wordId: string): void => {
     handleFetch(LN.words.learn)(
       async (): Promise<void> => {
         await apiWord.learn(wordId);
         setWordsList((prevState): Word[] => [...prevState.filter(({ _id }: Word): boolean => _id !== wordId)]);
       }
     );
+  };
 
   const handleRelearnWord = (wordId: string): void => {
     setWordsList((prevState): Word[] => {
@@ -199,12 +199,12 @@ export interface WI {
   wordsCount: number;
   cleanWord(): void;
   cleanWordsList(): void;
-  handleFetchWord(id: string): Promise<object | void>;
-  handleFetchWordsList(): Promise<object | void>;
-  handleFetchWordsToLearn(): Promise<object | void>;
-  handleEditWord(w: Word): Promise<object | void>;
-  handleDeleteWord(id: string): Promise<object | void>;
-  handleLearnWord(): Promise<object | void>;
+  handleFetchWord(id: string): void;
+  handleFetchWordsList(): void;
+  handleFetchWordsToLearn(): void;
+  handleEditWord(w: Word): void;
+  handleDeleteWord(id: string): void;
+  handleLearnWord(): void;
   handleRelearnWord(id: string): void;
   handleCreateWord(): void;
   handleSearchWord(): void;

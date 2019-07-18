@@ -1,5 +1,5 @@
 import boom from '@hapi/boom';
-import { FetchResult, RequestParams } from '../types';
+import { RequestParams } from '../types';
 
 const checkStatus = (response: Response): Response => {
   if (response.status >= 200 && response.status < 300) {
@@ -10,12 +10,12 @@ const checkStatus = (response: Response): Response => {
   throw boom.boomify(error, { statusCode: response.status });
 };
 
-const parseJson = (response: Response): FetchResult => response.json();
+const parseJson = <T>(response: Response): Promise<T> => response.json();
 
 type F = (params: Request) => Promise<Response>;
-type FN = (params: RequestParams) => FetchResult;
+type FN = <T>(params: RequestParams) => Promise<T>;
 
-const createFetcherJson = (fetcher: F): FN => (params: RequestParams): FetchResult => {
+const createFetcherJson = (fetcher: F): FN => <T>(params: RequestParams): Promise<T> => {
   const { url = '', body, headers, ...restParams } = params;
   const request = new Request(url, {
     body: JSON.stringify(body),
@@ -29,7 +29,7 @@ const createFetcherJson = (fetcher: F): FN => (params: RequestParams): FetchResu
 
   return fetcher(request)
     .then(checkStatus)
-    .then(parseJson);
+    .then((response: Response): Promise<T> => parseJson<T>(response));
 };
 
 export default createFetcherJson;

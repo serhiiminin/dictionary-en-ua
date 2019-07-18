@@ -4,15 +4,15 @@ import generatorApiKeys from '../util/generator-api-key';
 import createFetcherJson from './fetcher';
 import config from '../config';
 import { addAuthTokenToRequest } from '../util/api';
-import { Fetcher, FetchResult, RequestParams } from '../types';
+import { Fetcher, RequestParams } from '../types';
 
 const API_KEY = 'api_key';
 
-interface NewParams {
+interface Params {
   [API_KEY]: string;
 }
 
-const updateSearchParams = (params: RequestParams, newSearchParams: NewParams): RequestParams => {
+const updateSearchParams = (params: RequestParams, newSearchParams: Params): RequestParams => {
   const [url, search] = getUrlParts(params.url || '');
 
   return {
@@ -21,14 +21,14 @@ const updateSearchParams = (params: RequestParams, newSearchParams: NewParams): 
   };
 };
 
-type R = (params: RequestParams) => FetchResult;
+type R = <T>(params: RequestParams) => Promise<T>;
 type PR = (fetcher: Fetcher) => R;
 
-const createApiKeyProxy = (generator: IterableIterator<string>): PR => (fetcher: Fetcher): R => (
+const createApiKeyProxy = (generator: IterableIterator<string>): PR => (fetcher: Fetcher): R => <T>(
   params: RequestParams
-): FetchResult =>
-  fetcher(updateSearchParams(params, { [API_KEY]: generator.next().value })).catch(
-    (error: Error): FetchResult => {
+): Promise<T> =>
+  fetcher<T>(updateSearchParams(params, { [API_KEY]: generator.next().value })).catch(
+    (error: Error): Promise<T> => {
       if (error.message === 'Failed to fetch') {
         return fetcher(
           updateSearchParams(params, {
@@ -46,7 +46,7 @@ const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(config.auth.giphy.ap
 
 type TR = (token: string) => R;
 
-const createAuthProxy = (fetcher: Fetcher): TR => (token: string): R => (params: RequestParams): FetchResult =>
+const createAuthProxy = (fetcher: Fetcher): TR => (token: string): R => <T>(params: RequestParams): Promise<T> =>
   fetcher(addAuthTokenToRequest(token, params));
 
 export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy };
