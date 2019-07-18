@@ -1,32 +1,47 @@
 import React from 'react';
-import { Formik, Form as FormFormik } from 'formik';
+import { Formik, Form as FormFormik, FormikProps } from 'formik';
+import { Schema } from 'yup';
 import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
-import { ThemeProps } from '../types';
+import { ThemeProps, FormData } from '../types';
 
 const FormFormikStyled = styled(FormFormik)`
   display: grid;
   gap: ${(props: ThemeProps): string => props.theme.main.space.sm};
 `;
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const Form = props => {
+interface Field {
+  name: string;
+  type?: string;
+  label: string;
+  variant?: 'outlined';
+  component?: React.ComponentType;
+}
+
+interface InitialValues {
+  [propName: string]: string;
+}
+
+interface Props {
+  renderSubmit?(submit: Function): JSX.Element;
+  validationSchema: Schema<FormData>;
+  initialValues: InitialValues;
+  onSubmit(fd: FormData): void;
+  fields: Field[];
+  validateOnBlur?: boolean;
+  validateOnChange?: boolean;
+  isLoading: boolean;
+}
+
+const Form = (props: Props): JSX.Element => {
   const {
-    // eslint-disable-next-line react/prop-types
     renderSubmit,
-    // eslint-disable-next-line react/prop-types,react/prop-types
     validationSchema,
-    // eslint-disable-next-line react/prop-types
     initialValues,
-    // eslint-disable-next-line react/prop-types
     onSubmit,
-    // eslint-disable-next-line react/prop-types,react/prop-types
     fields,
-    // eslint-disable-next-line react/prop-types
     validateOnBlur,
-    // eslint-disable-next-line react/prop-types
     validateOnChange,
-    // eslint-disable-next-line react/prop-types
     isLoading,
   } = props;
 
@@ -37,34 +52,39 @@ const Form = props => {
       onSubmit={onSubmit}
       initialValues={initialValues}
       validationSchema={validationSchema}
-    >
-      {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
-      {({ values, errors, handleSubmit, handleChange, handleBlur }) => (
-        <FormFormikStyled onSubmit={handleSubmit}>
-          {/* eslint-disable-next-line react/prop-types,@typescript-eslint/explicit-function-return-type */}
-          {fields.map(({ name, type = 'text', label, variant = 'outlined', component }) => {
-            const Cmp = component || TextField;
+      render={({
+        values,
+        errors,
+        handleSubmit,
+        handleChange,
+        handleBlur,
+      }: FormikProps<FormData & InitialValues>): JSX.Element => (
+        <FormFormikStyled>
+          {fields.map(
+            ({ name, type = 'text', label, variant = 'outlined', component }: Field): JSX.Element => {
+              const Cmp = component || TextField;
 
-            return (
-              <Cmp
-                key={name}
-                type={type}
-                name={name}
-                label={label}
-                variant={variant}
-                values={values[name]}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={Boolean(errors[name])}
-                helperText={errors[name] || ' '}
-                disabled={isLoading}
-              />
-            );
-          })}
+              return (
+                <Cmp
+                  key={name}
+                  type={type}
+                  name={name}
+                  label={label}
+                  variant={variant}
+                  value={values[name]}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={Boolean(errors[name])}
+                  helperText={errors[name] || ' '}
+                  disabled={isLoading}
+                />
+              );
+            }
+          )}
           <div>{renderSubmit && renderSubmit(handleSubmit)}</div>
         </FormFormikStyled>
       )}
-    </Formik>
+    />
   );
 };
 

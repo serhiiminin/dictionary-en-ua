@@ -11,18 +11,11 @@ import routes from '../routes';
 import { withFetcher, FI } from './fetcher';
 import { withCookies, CI } from './cookies';
 import config from '../config';
-import { FacebookToken, GoogleToken, Token } from '../types';
+import { FacebookToken, GoogleToken, Token, FormData } from '../types';
 
 interface OwnProps {
   children: JSX.Element;
   enqueueSnackbar(n: string, p: object): void;
-}
-
-interface FormData {
-  name?: string;
-  email?: string;
-  password?: string;
-  passwordConfirm?: string;
 }
 
 type Props = FI & CI & RouteComponentProps & OwnProps;

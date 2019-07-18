@@ -5,9 +5,7 @@ export interface RequestParams {
   body?: object;
 }
 
-export type FetchResult = Promise<object>;
-
-export type Fetcher = <T>(params: RequestParams) => T;
+export type Fetcher = <T>(params: RequestParams) => Promise<T>;
 export type FetcherWithToken = (token: string) => Fetcher;
 
 export type EndpointJoiner = (path: string) => string;
@@ -196,4 +194,19 @@ export interface GoogleToken {
 
 export interface FacebookToken {
   accessToken?: string;
+}
+
+export interface Gif {
+  images: {
+    downsized_large: {
+      url: string;
+    };
+  };
+}
+
+export interface FormData {
+  name?: string;
+  email?: string;
+  password?: string;
+  passwordConfirm?: string;
 }

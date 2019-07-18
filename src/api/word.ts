@@ -5,17 +5,17 @@ import generateRoute from '../util/routes';
 import config from '../config';
 import AR from './api-routes';
 import { joinEndpoint } from '../util/api';
-import { EndpointJoiner, FetcherWithToken, FetchResult, Word } from '../types';
+import { EndpointJoiner, FetcherWithToken, Word } from '../types';
 
 interface Words {
-  create(body: Word): FetchResult;
-  get(id: string): FetchResult;
-  getList(body: object): FetchResult;
-  getListToLearn(params: object): FetchResult;
-  update(word: Word): FetchResult;
-  learn(id: string): FetchResult;
-  delete(id: string): FetchResult;
-  search(params: object): FetchResult;
+  create<T>(body: Word): Promise<T>;
+  get<T>(id: string): Promise<T>;
+  getList<T>(body: object): Promise<T>;
+  getListToLearn<T>(params: object): Promise<T>;
+  update<T>(word: Word): Promise<T>;
+  learn<T>(id: string): Promise<T>;
+  delete<T>(id: string): Promise<T>;
+  search<T>(params: object): Promise<T>;
 }
 
 type R = (t: string) => Words;
@@ -27,16 +27,18 @@ export const createApiWords = (endpointJoiner: EndpointJoiner): WR => (fetcher: 
   const fetcherWithToken = fetcher(token);
 
   return {
-    create: (body: Word): FetchResult => fetcherWithToken(requests.post(endpointJoiner(AR.words.create), { body })),
-    get: (id: string): FetchResult =>
-      fetcherWithToken(requests.get(endpointJoiner(generateRoute(AR.words.read, { id })))),
-    getList: (body: object): FetchResult => fetcherWithToken(requests.post(endpointJoiner(AR.words.list), { body })),
-    getListToLearn: (params: object): FetchResult => {
+    create: <T>(body: Word): Promise<T> =>
+      fetcherWithToken<T>(requests.post(endpointJoiner(AR.words.create), { body })),
+    get: <T>(id: string): Promise<T> =>
+      fetcherWithToken<T>(requests.get(endpointJoiner(generateRoute(AR.words.read, { id })))),
+    getList: <T>(body: object): Promise<T> =>
+      fetcherWithToken<T>(requests.post(endpointJoiner(AR.words.list), { body })),
+    getListToLearn: <T>(params: object): Promise<T> => {
       const url = endpointJoiner(AR.words.list);
       const yesterday = new Date();
 
       yesterday.setDate(yesterday.getDate() - 1);
-      return fetcherWithToken(
+      return fetcherWithToken<T>(
         requests.post(url, {
           body: {
             timesLearnt: { $gte: 0, $lte: 5 },
@@ -46,18 +48,18 @@ export const createApiWords = (endpointJoiner: EndpointJoiner): WR => (fetcher: 
         })
       );
     },
-    update: (word: Word): FetchResult => {
+    update: <T>(word: Word): Promise<T> => {
       const { _id: id } = word;
-      return fetcherWithToken(
+      return fetcherWithToken<T>(
         requests.put(endpointJoiner(generateRoute(AR.words.update, { id })), {
           body: word,
         })
       );
     },
-    delete: (id: string): FetchResult =>
-      fetcherWithToken(requests.delete(endpointJoiner(generateRoute(AR.words.delete, { id })))),
-    learn: (id: string): FetchResult =>
-      fetcherWithToken(
+    delete: <T>(id: string): Promise<T> =>
+      fetcherWithToken<T>(requests.delete(endpointJoiner(generateRoute(AR.words.delete, { id })))),
+    learn: <T>(id: string): Promise<T> =>
+      fetcherWithToken<T>(
         requests.put(endpointJoiner(generateRoute(AR.words.learn, { id })), {
           body: {
             dateLastLearnt: new Date().toISOString(),
@@ -65,7 +67,8 @@ export const createApiWords = (endpointJoiner: EndpointJoiner): WR => (fetcher: 
           },
         })
       ),
-    search: (body: object): FetchResult => fetcherWithToken(requests.post(endpointJoiner(AR.words.search), { body })),
+    search: <T>(body: object): Promise<T> =>
+      fetcherWithToken<T>(requests.post(endpointJoiner(AR.words.search), { body })),
   };
 };
 
