@@ -7,7 +7,7 @@ export interface RequestParams {
 
 export type FetchResult = Promise<object>;
 
-export type Fetcher = (params: RequestParams) => FetchResult;
+export type Fetcher = <T>(params: RequestParams) => T;
 export type FetcherWithToken = (token: string) => Fetcher;
 
 export type EndpointJoiner = (path: string) => string;

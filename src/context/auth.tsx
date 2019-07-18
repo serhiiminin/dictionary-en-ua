@@ -68,33 +68,35 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     setIsSignUpApplied(false);
   };
 
-  const handleBasicLogIn = ({ email, password }: FormData): Promise<object | void> =>
+  const handleBasicLogIn = ({ email, password }: FormData): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
-        const token = await apiMethodsBasicAuth.logIn({ email, password });
+        const token = await apiMethodsBasicAuth.logIn<Token>({ email, password });
         handleSetToken(token);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: NT.success });
       }
     );
+  };
 
-  const handleBasicSignUp = ({ name, email, password, passwordConfirm }: FormData): Promise<object | void> =>
+  const handleBasicSignUp = ({ name, email, password, passwordConfirm }: FormData): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.confirm);
 
         const body = { name, email, password, passwordConfirm, appEndpoint };
-        await apiMethodsBasicAuth.signUp(body);
+        await apiMethodsBasicAuth.signUp<Token>(body);
         setEmailConfirmation();
         history.push(routes.auth.checkSignUp);
       }
     );
+  };
 
-  const handleConfirmBasicSignUp = (token: string): Promise<object | void> =>
+  const handleConfirmBasicSignUp = (token: string): void => {
     handleFetch(LN.auth.confirm)(
       async (): Promise<void> => {
         try {
-          const tokenSuccess = await apiMethodsBasicAuth.confirm(token);
+          const tokenSuccess = await apiMethodsBasicAuth.confirm<Token>(token);
           if (tokenSuccess) {
             handleSetToken(tokenSuccess);
           }
@@ -104,56 +106,62 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         }
       }
     );
+  };
 
-  const handleBasicForgotPassword = ({ email }: FormData): Promise<object | void> =>
+  const handleBasicForgotPassword = ({ email }: FormData): void => {
     handleFetch(LN.auth.forgotPassword)(
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.forgotPassword);
 
-        await apiMethodsBasicAuth.forgotPassword({ email, appEndpoint });
+        await apiMethodsBasicAuth.forgotPassword<Token>({ email, appEndpoint });
         enqueueSnackbar('Password is sent! Check your email', { variant: NT.success });
       }
     );
+  };
 
-  const handleGoogleLogIn = (googleToken: GoogleToken = {}): Promise<object | void> =>
+  const handleGoogleLogIn = (googleToken: GoogleToken = {}): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsGoogleAuth.logIn(googleToken.accessToken || '');
+        const apiToken = await apiMethodsGoogleAuth.logIn<Token>(googleToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: NT.success });
       }
     );
+  };
 
-  const handleGoogleSignUp = (googleToken: GoogleToken = {}): Promise<object | void> =>
+  const handleGoogleSignUp = (googleToken: GoogleToken = {}): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsGoogleAuth.signUp(googleToken.accessToken || '');
+        const apiToken = await apiMethodsGoogleAuth.signUp<Token>(googleToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: NT.success });
       }
     );
+  };
 
-  const handleFacebookLogIn = (facebookToken: FacebookToken = {}): Promise<object | void> =>
+  const handleFacebookLogIn = (facebookToken: FacebookToken = {}): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsFacebookAuth.logIn(facebookToken.accessToken || '');
+        const apiToken = await apiMethodsFacebookAuth.logIn<Token>(facebookToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: NT.success });
       }
     );
+  };
 
-  const handleFacebookSignUp = (facebookToken: FacebookToken): Promise<object | void> =>
+  const handleFacebookSignUp = (facebookToken: FacebookToken): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsFacebookAuth.signUp(facebookToken.accessToken || '');
+        const apiToken = await apiMethodsFacebookAuth.signUp<Token>(facebookToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: NT.success });
       }
     );
+  };
 
   const handleLogout = (): void => {
     handleCleanToken();
@@ -194,15 +202,15 @@ export interface AI {
   tokenData: Token;
   isLoggedIn: boolean;
   isSignUpApplied: boolean;
-  handleBasicLogIn(fd: FormData): Promise<object | void>;
-  handleBasicSignUp(fd: FormData): Promise<object | void>;
-  handleConfirmBasicSignUp(t: string): Promise<object | void>;
-  handleBasicForgotPassword(fd: FormData): Promise<object | void>;
+  handleBasicLogIn(fd: FormData): void;
+  handleBasicSignUp(fd: FormData): void;
+  handleConfirmBasicSignUp(t: string): void;
+  handleBasicForgotPassword(fd: FormData): void;
   handleGoogleLogIn(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
   handleGoogleSignUp(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
-  handleFacebookLogIn(t: FacebookToken): Promise<object | void>;
-  handleFacebookSignUp(t: FacebookToken): Promise<object | void>;
-  handleLogout(): Promise<object | void>;
+  handleFacebookLogIn(t: FacebookToken): void;
+  handleFacebookSignUp(t: FacebookToken): void;
+  handleLogout(): void;
   setEmailConfirmation(): void;
   removeEmailConfirmation(): void;
 }
