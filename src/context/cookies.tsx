@@ -10,7 +10,7 @@ interface Props {
 
 const CookiesProvider = ({ children }: Props): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getFromCookies = (key: string): any => JSON.parse(Cookies.get(key) || '');
+  const getFromCookies = (key: string): any => JSON.parse(Cookies.get(key) || '{}');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setToCookies = (key: string, value: any, params = {}): void => {
@@ -49,8 +49,5 @@ export interface CI {
 
 const withCookies = <T extends {}>(Cmp: ComponentType<T>): ((props: T & CI) => JSX.Element) => (
   props: T & CI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 export { CookiesProvider, withCookies };

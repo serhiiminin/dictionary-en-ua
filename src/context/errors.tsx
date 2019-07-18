@@ -1,7 +1,7 @@
 import React, { Component, ComponentType, createContext } from 'react';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { withSnackbar } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
 import NT from '../constants/notifications-type';
 import routes from '../routes';
 import { getErrorMessage, getErrorType } from '../util/handle-errors';
@@ -10,19 +10,29 @@ const { Provider, Consumer } = createContext({});
 
 interface OwnProps {
   children: JSX.Element;
-  enqueueSnackbar(m: string, p: object): void;
 }
 
-type Props = RouteComponentProps & OwnProps;
+type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
 
 class ErrorsProviderCmp extends Component<Props> {
+  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
+  state = {
+    // eslint-disable-next-line react/no-unused-state
+    hasError: false,
+  };
+
+  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility,@typescript-eslint/explicit-function-return-type
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
   public handleError = (error: Error): void => {
     const { history, enqueueSnackbar } = this.props;
     if (error.message === NT.error.forbidden) {
       history.push(routes.auth.logIn);
     }
     const errorMessage = getErrorMessage(getErrorType(error));
-    enqueueSnackbar(errorMessage, { variant: NT.info });
+    enqueueSnackbar(errorMessage, { variant: 'info' });
   };
 
   public componentDidCatch(error: Error, info: object): void {
@@ -41,16 +51,13 @@ export interface EI {
   handleError(error: Error): void;
 }
 
-const ErrorProvider = compose<Props, {}>(
+const ErrorProvider = compose<Props, OwnProps>(
   withRouter,
   withSnackbar
 )(ErrorsProviderCmp);
 
 const withErrors = <T extends {}>(Cmp: ComponentType<T>): ((props: T & EI) => JSX.Element) => (
   props: T & EI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 
 export { ErrorProvider, withErrors };

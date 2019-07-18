@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ButtonMenu from './button-menu';
 import routes from '../routes';
-import { withAuth, withLoading } from '../context/hocs';
+import { withAuth, AI } from '../context/auth';
+import { withLoading, LI } from '../context/loading';
 import { ReactComponent as Logo } from '../images/logo.svg';
 import { ThemeProps } from '../types';
 
@@ -39,10 +40,11 @@ const buttonsData = {
   },
 };
 
-interface Props {
-  isLoggedIn?: boolean;
+interface OwnProps {
   children?: React.ReactNode;
 }
+
+type Props = AI & LI & OwnProps;
 
 const Header = ({ isLoggedIn }: Props): JSX.Element => {
   const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
@@ -62,7 +64,7 @@ const Header = ({ isLoggedIn }: Props): JSX.Element => {
   );
 };
 
-export default compose(
+export default compose<Props, OwnProps>(
   withLoading,
   withAuth
 )(Header);

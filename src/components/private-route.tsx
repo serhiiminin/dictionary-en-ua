@@ -4,15 +4,16 @@ import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-d
 interface OwnProps {
   condition: boolean;
   pathname: string;
-  component?: JSX.Element;
+  component?: React.ComponentType;
   render?(params: RouteComponentProps): JSX.Element;
 }
 
 type Props = RouteProps & OwnProps;
 
-const PrivateRoute = ({ condition, pathname, component: Cmp, render, ...rest }: Props): JSX.Element => (
+const PrivateRoute = ({ condition, pathname, component: Cmp, render, path, ...rest }: Props): JSX.Element => (
   <Route
     {...rest}
+    path={path}
     render={(params: RouteComponentProps): React.ReactNode => {
       if (condition) {
         return (

@@ -54,9 +54,6 @@ export interface LI {
 
 const withLoading = <T extends {}>(Cmp: ComponentType<T>): ((props: T & LI) => JSX.Element) => (
   props: T & LI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 
 export { LoadingProvider, withLoading };

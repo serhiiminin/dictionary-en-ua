@@ -2,10 +2,9 @@ import React, { ComponentType, createContext, useState } from 'react';
 import { joinPath } from 'url-joiner';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withSnackbar } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
-import NT from '../constants/notifications-type';
 import LN from '../constants/loading-names';
 import routes from '../routes';
 import { withFetcher, FI } from './fetcher';
@@ -15,10 +14,9 @@ import { FacebookToken, GoogleToken, Token, FormData } from '../types';
 
 interface OwnProps {
   children: JSX.Element;
-  enqueueSnackbar(n: string, p: object): void;
 }
 
-type Props = FI & CI & RouteComponentProps & OwnProps;
+type Props = FI & CI & RouteComponentProps & WithSnackbarProps & OwnProps;
 
 const ACCESS_TOKEN = 'access_token';
 const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
@@ -67,7 +65,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         const token = await apiMethodsBasicAuth.logIn<Token>({ email, password });
         handleSetToken(token);
         handleSuccessRedirect();
-        enqueueSnackbar('Welcome!', { variant: NT.success });
+        enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
   };
@@ -95,7 +93,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
           }
         } catch (error) {
           history.push(routes.root);
-          enqueueSnackbar('This activation reference is invalid or expired', { variant: NT.error.default });
+          enqueueSnackbar('This activation reference is invalid or expired', { variant: 'error' });
         }
       }
     );
@@ -107,7 +105,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         const appEndpoint = generateAppEndpoint(routes.auth.forgotPassword);
 
         await apiMethodsBasicAuth.forgotPassword<Token>({ email, appEndpoint });
-        enqueueSnackbar('Password is sent! Check your email', { variant: NT.success });
+        enqueueSnackbar('Password is sent! Check your email', { variant: 'success' });
       }
     );
   };
@@ -118,7 +116,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         const apiToken = await apiMethodsGoogleAuth.logIn<Token>(googleToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
-        enqueueSnackbar('Welcome!', { variant: NT.success });
+        enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
   };
@@ -129,7 +127,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         const apiToken = await apiMethodsGoogleAuth.signUp<Token>(googleToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
-        enqueueSnackbar('Welcome!', { variant: NT.success });
+        enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
   };
@@ -140,7 +138,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         const apiToken = await apiMethodsFacebookAuth.logIn<Token>(facebookToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
-        enqueueSnackbar('Welcome!', { variant: NT.success });
+        enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
   };
@@ -151,7 +149,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
         const apiToken = await apiMethodsFacebookAuth.signUp<Token>(facebookToken.accessToken || '');
         handleSetToken(apiToken);
         handleSuccessRedirect();
-        enqueueSnackbar('Welcome!', { variant: NT.success });
+        enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
   };
@@ -184,7 +182,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   );
 };
 
-const AuthProvider = compose<Props, {}>(
+const AuthProvider = compose<Props, OwnProps>(
   withCookies,
   withRouter,
   withFetcher,
@@ -210,9 +208,6 @@ export interface AI {
 
 const withAuth = <T extends {}>(Cmp: ComponentType<T>): ((props: T & AI) => JSX.Element) => (
   props: T & AI
-): JSX.Element => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <Consumer>{(context: any): JSX.Element => <Cmp {...context} {...props} />}</Consumer>
-);
+): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
 
 export { AuthProvider, withAuth };
