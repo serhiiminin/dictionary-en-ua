@@ -1,48 +1,41 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
 import { TextField, LinearProgress } from '@material-ui/core';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import { parseSearch, joinUrl, mergeSearch } from 'url-joiner';
-import { BlockSearch, ButtonSearch, TitleBlock } from '../../../components';
-import LN from '../../../constants/loading-names';
-import routes from '../../../routes';
-import SC from './styles';
+import styled from 'styled-components';
+import { compose } from 'recompose';
+import { withLoading, LI } from '../../context/loading';
+import { withWords, WI } from '../../context/words';
+import { BlockSearch, ButtonSearch, TitleBlock } from '../../components';
+import LN from '../../constants/loading-names';
+import routes from '../../routes';
+import { ThemeProps } from '../../types';
 
-class SearchWordContainer extends Component {
-  static propTypes = {
-    location: ReactRouterPropTypes.location.isRequired,
-    handleCreateWord: PropTypes.func.isRequired,
-    handleSearchWord: PropTypes.func.isRequired,
-    cleanWord: PropTypes.func.isRequired,
-    checkIsLoading: PropTypes.func.isRequired,
-    wordItem: PropTypes.shape({
-      options: PropTypes.arrayOf(PropTypes.string),
-      word: PropTypes.string,
-      transcription: PropTypes.string,
-      gif: PropTypes.string,
-    }),
-  };
+const SearchBlock = styled.div`
+  display: grid;
+  width: 50rem;
+  grid-auto-flow: column;
+  gap: ${(props: ThemeProps): string => props.theme.main.space.sm};
+`;
 
-  static defaultProps = {
-    wordItem: {},
-  };
+type Props = RouteComponentProps & LI & WI;
 
-  componentDidMount() {
+class SearchWordContainer extends Component<Props, {}> {
+  public componentDidMount(): void {
     this.handleSearch();
   }
 
-  componentDidUpdate(prevProps) {
+  public componentDidUpdate(prevProps: Props): void {
     if (prevProps.location.search !== this.props.location.search) {
       this.handleSearch();
     }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount(): void {
     this.props.cleanWord();
   }
 
-  handleSearch = () => {
+  private handleSearch = (): void => {
     const { location, handleSearchWord } = this.props;
     const { query } = parseSearch(location.search);
 
@@ -51,7 +44,7 @@ class SearchWordContainer extends Component {
     }
   };
 
-  render() {
+  public render(): JSX.Element {
     const { wordItem, checkIsLoading, handleCreateWord } = this.props;
     const { options } = wordItem;
     const isLoading = checkIsLoading(LN.words.search);
@@ -60,8 +53,8 @@ class SearchWordContainer extends Component {
       <>
         <TitleBlock>Search</TitleBlock>
         <BlockSearch>
-          {({ linkTo, searchValue, handleOnChange, handleOnEnterPress }) => (
-            <SC.SearchBlock>
+          {({ linkTo, searchValue, handleOnChange, handleOnEnterPress }): JSX.Element => (
+            <SearchBlock>
               <TextField
                 label="your word"
                 value={searchValue}
@@ -72,7 +65,7 @@ class SearchWordContainer extends Component {
               <ButtonSearch component={Link} to={linkTo} disabled={!searchValue} variant="contained" color="primary">
                 search
               </ButtonSearch>
-            </SC.SearchBlock>
+            </SearchBlock>
           )}
         </BlockSearch>
         {isLoading ? (
@@ -83,16 +76,16 @@ class SearchWordContainer extends Component {
             <p>Maybe you meant:</p>
             <ul>
               {options &&
-                options.map(item => {
-                  const query = encodeURIComponent(item).replace(/%20/gi, '+');
-                  const to = joinUrl(routes.words.search, mergeSearch({ query }));
+              options.map((item): JSX.Element => {
+                const query = encodeURIComponent(item).replace(/%20/gi, '+');
+                const to = joinUrl(routes.words.search, mergeSearch({ query }));
 
-                  return (
-                    <li key={to}>
-                      <Link to={to}>{item}</Link>
-                    </li>
-                  );
-                })}
+                return (
+                  <li key={to}>
+                    <Link to={to}>{item}</Link>
+                  </li>
+                );
+              })}
             </ul>
             <p>{wordItem.transcription}</p>
             <img src={wordItem.gif} alt={wordItem.word} />
@@ -104,4 +97,8 @@ class SearchWordContainer extends Component {
   }
 }
 
-export default SearchWordContainer;
+export default compose<Props, {}>(
+  withRouter,
+  withLoading,
+  withWords
+)(SearchWordContainer);

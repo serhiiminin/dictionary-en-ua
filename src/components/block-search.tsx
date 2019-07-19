@@ -7,8 +7,8 @@ interface OwnProps {
   children(props: {
     linkTo: string;
     searchValue: string;
-    handleOnChange: Function;
-    handleOnEnterPress: Function;
+    handleOnChange(event: React.ChangeEvent<HTMLInputElement>): void;
+    handleOnEnterPress(event: React.KeyboardEvent<HTMLDivElement>): void;
   }): JSX.Element;
 }
 
@@ -30,7 +30,7 @@ const BlockSearch = ({ history, location, children }: Props): JSX.Element => {
     history.push(joinUrl(routes.words.search, mergeSearch({ query: searchValue })));
   };
 
-  const handleOnEnterPress = (event: React.KeyboardEvent<HTMLButtonElement>): void => {
+  const handleOnEnterPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     const key = event.key || event.keyCode;
 
     if (key === 'Enter' || key === 13) {
