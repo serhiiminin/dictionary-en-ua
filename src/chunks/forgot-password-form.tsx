@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as yup from 'yup';
@@ -46,11 +45,6 @@ const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }: Props
       </FormWrapper>
     </>
   );
-};
-
-ForgotPasswordForm.propTypes = {
-  handleBasicForgotPassword: PropTypes.func.isRequired,
-  checkIsLoading: PropTypes.func.isRequired,
 };
 
 export default compose<Props, {}>(
