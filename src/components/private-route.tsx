@@ -4,8 +4,6 @@ import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-d
 interface OwnProps {
   condition: boolean;
   pathname: string;
-  component?: React.ComponentType;
-  render?(params: RouteComponentProps): JSX.Element;
 }
 
 type Props = RouteProps & OwnProps;

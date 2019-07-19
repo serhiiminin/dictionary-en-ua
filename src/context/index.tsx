@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { LoadingProvider } from './loading';
 import { CookiesProvider } from './cookies';
 import { DimensionsProvider } from './dimensions';
@@ -30,9 +29,5 @@ const StateProvider = ({ children }: Props): JSX.Element => (
     </ErrorProvider>
   </CookiesProvider>
 );
-
-StateProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default StateProvider;
