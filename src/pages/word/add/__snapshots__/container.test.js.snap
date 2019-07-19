@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`MainContainer page render 1`] = `
-<div>
-  Add word
-</div>
-`;

@@ -204,7 +204,7 @@ export interface WI {
   handleLearnWord(): void;
   handleRelearnWord(id: string): void;
   handleCreateWord(): void;
-  handleSearchWord(): void;
+  handleSearchWord(word: string): void;
 }
 
 const withWords = <T extends {}>(Cmp: ComponentType<T>): ((props: T & WI) => JSX.Element) => (

@@ -1,8 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
 import ButtonWithRouter from './button-with-router';
 import { ThemeProps } from '../types';
 
-const ButtonPrimary = styled(ButtonWithRouter)`
+const ButtonPrimary = styled((props): JSX.Element => <ButtonWithRouter {...props} />)`
   && {
     font-size: 14px;
     color: ${(props: ThemeProps): string => props.theme.main.color.dark}
