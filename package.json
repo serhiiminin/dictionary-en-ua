@@ -37,7 +37,7 @@
     "@types/yup": "0.26.22",
     "formik": "1.5.8",
     "js-cookie": "2.2.0",
-    "notistack": "0.8.8",
+    "notistack": "0.8.9",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-facebook-login": "4.1.1",
