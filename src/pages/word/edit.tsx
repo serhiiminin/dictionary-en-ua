@@ -8,10 +8,8 @@ type Props = LI & WI;
 
 const WordEdit = (): JSX.Element => <div>Edit</div>;
 
-const enhance = compose<Props, {}>(
+export default compose<Props, {}>(
   withRouter,
   withWords,
   withLoading
-);
-
-export default enhance(WordEdit);
+)(WordEdit);

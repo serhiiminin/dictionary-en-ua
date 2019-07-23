@@ -42,8 +42,8 @@ export interface Word {
 }
 
 export interface Token {
-  token: string;
   _id: string;
+  token: string;
   email: string;
   expiresAt: number;
 }

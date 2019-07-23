@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Zoom } from '@material-ui/core';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
-import { Close } from '@material-ui/icons';
 import { SnackbarProvider } from 'notistack';
 import { PrivateRouteLoggedIn, Header, BlocksWrapper } from '../components';
 import { AuthPage, MainPage, WordPage, PageNotFoundPage } from '../pages';
@@ -16,7 +15,6 @@ const snackbarConfig = {
   TransitionComponent: Zoom,
   maxSnack: 5,
   preventDuplicate: true,
-  action: (key: string): JSX.Element => <Close key={key} />,
 };
 
 const Root = (): JSX.Element => (

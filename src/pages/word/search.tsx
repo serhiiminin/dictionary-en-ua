@@ -76,16 +76,18 @@ class SearchWordContainer extends Component<Props, {}> {
             <p>Maybe you meant:</p>
             <ul>
               {options &&
-              options.map((item): JSX.Element => {
-                const query = encodeURIComponent(item).replace(/%20/gi, '+');
-                const to = joinUrl(routes.words.search, mergeSearch({ query }));
+                options.map(
+                  (item): JSX.Element => {
+                    const query = encodeURIComponent(item).replace(/%20/gi, '+');
+                    const to = joinUrl(routes.words.search, mergeSearch({ query }));
 
-                return (
-                  <li key={to}>
-                    <Link to={to}>{item}</Link>
-                  </li>
-                );
-              })}
+                    return (
+                      <li key={to}>
+                        <Link to={to}>{item}</Link>
+                      </li>
+                    );
+                  }
+                )}
             </ul>
             <p>{wordItem.transcription}</p>
             <img src={wordItem.gif} alt={wordItem.word} />
