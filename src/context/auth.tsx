@@ -26,11 +26,18 @@ const { Provider, Consumer } = createContext({});
 const generateAppEndpoint = (path: string): string =>
   window ? joinPath(window.location.origin, config.publicUrl, path) : '';
 
+const initialToken = {
+  _id: '',
+  token: '',
+  email: '',
+  expiresAt: 0,
+};
+
 const AuthProviderCmp = (props: Props): JSX.Element => {
   const { handleFetch, enqueueSnackbar, history, children, getFromCookies, setToCookies, removeFromCookies } = props;
-  const [tokenData, setTokenData] = useState<Token | null>(getFromCookies(ACCESS_TOKEN));
+  const [tokenData, setTokenData] = useState<Token>(getFromCookies(ACCESS_TOKEN) || initialToken);
   const [isSignUpApplied, setIsSignUpApplied] = useState<boolean>(false);
-  const isLoggedIn = Boolean(tokenData && tokenData.expiresAt - Date.now() > 0);
+  const isLoggedIn = Boolean(tokenData.expiresAt - Date.now() > 0);
 
   const handleSuccessRedirect = (): void => {
     history.goBack();
@@ -45,7 +52,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   };
 
   const handleCleanToken = (): void => {
-    setTokenData(null);
+    setTokenData(initialToken);
     removeFromCookies(ACCESS_TOKEN);
   };
 
