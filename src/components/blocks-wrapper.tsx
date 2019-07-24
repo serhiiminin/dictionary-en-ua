@@ -21,7 +21,7 @@ const BlockWrapperContainer = styled.div`
 `;
 
 interface Props {
-  children: JSX.Element[];
+  children: JSX.Element;
 }
 
 const BlocksWrapper = ({ children }: Props): JSX.Element => <BlockWrapperContainer>{children}</BlockWrapperContainer>;

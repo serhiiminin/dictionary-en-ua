@@ -8,6 +8,7 @@ import { withAuth, AI } from '../context/auth';
 import { withLoading, LI } from '../context/loading';
 import { ReactComponent as Logo } from '../images/logo.svg';
 import { ThemeProps } from '../types';
+import BlocksWrapper from './blocks-wrapper';
 
 const HeaderWrapper = styled.div`
   margin-top: ${(props: ThemeProps): string => props.theme.main.space.lg};
@@ -50,17 +51,19 @@ const Header = ({ isLoggedIn }: Props): JSX.Element => {
   const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
 
   return (
-    <HeaderWrapper>
-      <HeaderLink to={routes.root}>
-        <LogoSvg />
-      </HeaderLink>
-      <MenuDivider>
-        <ButtonMenu to={routes.words.list}>My words</ButtonMenu>
-        <ButtonMenu variant="outlined" to={authButtonData.href}>
-          {authButtonData.text}
-        </ButtonMenu>
-      </MenuDivider>
-    </HeaderWrapper>
+    <BlocksWrapper>
+      <HeaderWrapper>
+        <HeaderLink to={routes.root}>
+          <LogoSvg />
+        </HeaderLink>
+        <MenuDivider>
+          <ButtonMenu to={routes.words.list}>My words</ButtonMenu>
+          <ButtonMenu to={authButtonData.href} variant="outlined">
+            {authButtonData.text}
+          </ButtonMenu>
+        </MenuDivider>
+      </HeaderWrapper>
+    </BlocksWrapper>
   );
 };
 

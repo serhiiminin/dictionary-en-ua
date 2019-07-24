@@ -940,7 +940,6 @@ exports[`Root render 1`] = `
             "render": [Function],
           }
         }
-        action={[Function]}
         anchorOrigin={
           Object {
             "horizontal": "left",
@@ -955,27 +954,25 @@ exports[`Root render 1`] = `
         preventDuplicate={true}
       >
         <StateProvider>
-          <BlocksWrapper>
-            <Component />
-            <Switch>
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/"
-              />
-              <Route
-                component={[Function]}
-                path="/auth"
-              />
-              <Component
-                component={[Function]}
-                path="/words"
-              />
-              <Route
-                component={[Function]}
-              />
-            </Switch>
-          </BlocksWrapper>
+          <Component />
+          <Switch>
+            <Route
+              component={[Function]}
+              exact={true}
+              path="/"
+            />
+            <Route
+              component={[Function]}
+              path="/auth"
+            />
+            <Component
+              component={[Function]}
+              path="/words"
+            />
+            <Route
+              component={[Function]}
+            />
+          </Switch>
         </StateProvider>
       </SnackbarProvider>
     </BrowserRouter>
