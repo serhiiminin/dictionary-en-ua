@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import { Route, Switch, withRouter, RouteProps } from 'react-router-dom';
 import { CheckSignUp, ConfirmRegistration } from '../../chunks';
-import { PrivateRouteLoggedOut, PrivateRouteLoggedIn, PrivateRoute } from '../../components';
+import { PrivateRouteLoggedOut, PrivateRouteLoggedIn, PrivateRoute, BlocksWrapper } from '../../components';
 import LogOutContainer from './log-out';
 import SignUpFormsRoute from './sign-up-forms';
 import { withAuth, AI } from '../../context/auth';
@@ -17,12 +17,14 @@ const PrivateRouteSuccess = compose<Props, RouteProps>(withAuth)(
 );
 
 const AuthPage = (): JSX.Element => (
-  <Switch>
-    <PrivateRouteLoggedIn path={routes.auth.logOut} component={LogOutContainer} />
-    <PrivateRouteSuccess path={routes.auth.checkSignUp} component={CheckSignUp} />
-    <Route path={routes.auth.confirm} component={ConfirmRegistration} />
-    <PrivateRouteLoggedOut path={routes.auth.root} component={SignUpFormsRoute} />
-  </Switch>
+  <BlocksWrapper>
+    <Switch>
+      <PrivateRouteLoggedIn path={routes.auth.logOut} component={LogOutContainer} />
+      <PrivateRouteSuccess path={routes.auth.checkSignUp} component={CheckSignUp} />
+      <Route path={routes.auth.confirm} component={ConfirmRegistration} />
+      <PrivateRouteLoggedOut path={routes.auth.root} component={SignUpFormsRoute} />
+    </Switch>
+  </BlocksWrapper>
 );
 
 export default withRouter(AuthPage);

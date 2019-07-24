@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Zoom } from '@material-ui/core';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 import { SnackbarProvider } from 'notistack';
-import { PrivateRouteLoggedIn, Header, BlocksWrapper } from '../components';
+import { PrivateRouteLoggedIn, Header } from '../components';
 import { AuthPage, MainPage, WordPage, PageNotFoundPage } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
@@ -24,7 +24,7 @@ const Root = (): JSX.Element => (
       <Router basename={config.publicUrl}>
         <SnackbarProvider {...snackbarConfig}>
           <StateProvider>
-            <BlocksWrapper>
+            <>
               <Header />
               <Switch>
                 <Route exact path={routes.root} component={MainPage} />
@@ -32,7 +32,7 @@ const Root = (): JSX.Element => (
                 <PrivateRouteLoggedIn path={routes.words.root} component={WordPage} />
                 <Route component={PageNotFoundPage} />
               </Switch>
-            </BlocksWrapper>
+            </>
           </StateProvider>
         </SnackbarProvider>
       </Router>
