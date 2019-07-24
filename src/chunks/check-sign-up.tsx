@@ -12,5 +12,4 @@ class CheckSignUp extends Component<AI> {
   }
 }
 
-// @ts-ignore
 export default withAuth(CheckSignUp);
