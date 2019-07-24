@@ -16,7 +16,7 @@ const wrap = require('word-wrap');
 const longest = require('longest');
 const chalk = require('chalk');
 
-const wrapOptions = {
+const WRAP_OPTIONS = {
   trim: true,
   newline: '\n',
   indent: '',
@@ -40,18 +40,8 @@ const questions = [
   {
     type: 'input',
     name: 'subject',
-    message: 'Write a short, imperative tense description of the change:\n',
+    message: 'Write an imperative tense description of the change:\n',
     required: true,
-  },
-  {
-    type: 'input',
-    name: 'body',
-    message: `Provide a longer description of the change: ${skip}\n`,
-  },
-  {
-    type: 'input',
-    name: 'breaking',
-    message: `List any ${chalk.red('BREAKING CHANGES')}: ${skip}\n`,
   },
   {
     type: 'input',
@@ -63,14 +53,14 @@ const questions = [
 module.exports = {
   prompter: (cz, commit) => {
     cz.prompt(questions).then(answers => {
-      const { type, subject, body, breaking, issues } = Object.assign(
+      const { type, subject, issues } = Object.assign(
         {},
         ...Object.entries(answers).map(([key, value]) => ({ [key]: value.trim() }))
       );
 
-      const message = [`${type}: ${issues} ${subject}`, body, breaking && `BREAKING CHANGE: ${issues} ${breaking}`]
+      const message = [`${type}: ${issues} ${subject}`]
         .filter(Boolean)
-        .map(line => wrap(line, wrapOptions))
+        .map(line => wrap(line, WRAP_OPTIONS))
         .join('\n\n')
         .trim();
 
