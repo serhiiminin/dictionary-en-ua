@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Tooltip } from '@material-ui/core';
-import { distanceInWords, format } from 'date-fns';
 import BlockWrapper from './blocks-wrapper';
 import ButtonDelete from './button-delete';
-import { Word } from '../types';
+import WordDate from './word-date';
+import { ThemeProps, Word } from '../types';
+import generateRoute from '../util/routes';
+import routes from '../routes';
 
 const ItemWrapper = styled.div`
   margin-bottom: 10px;
@@ -19,6 +21,19 @@ const WordItemInner = styled.div`
   height: 80px;
 `;
 
+const WordText = styled.span`
+  font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.lg};
+`;
+
+const WordTranscription = styled.span`
+  font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.lg};
+  color: ${(props: ThemeProps): string => props.theme.main.color.main};
+`;
+
+const WordExample = styled.span`
+  font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.sm};
+`;
+
 interface Props {
   word: Word;
   onDelete(id: string): void;
@@ -29,16 +44,12 @@ const WordListItem = ({ word, onDelete }: Props): JSX.Element => (
     <BlockWrapper>
       <WordItemInner>
         <ButtonDelete onClick={(): void => onDelete(word._id)} />
-        <span>{word.word}</span>
-        <span>{`[${word.transcription}]`}</span>
-        <span>{word.examples && word.examples[0]}</span>
-        <span>
-          {word.created && (
-            <Tooltip title={format(new Date(word.created), 'DD MMM YYYY, HH:mm:ss')} placement="right">
-              <span>{distanceInWords(new Date(word.created), new Date(), { includeSeconds: true })}</span>
-            </Tooltip>
-          )}
-        </span>
+        <WordText>
+          <Link to={generateRoute(routes.words.preview, { id: word._id })}>{word.word}</Link>
+        </WordText>
+        <WordTranscription>{`[${word.transcription}]`}</WordTranscription>
+        <WordExample>{word.examples && word.examples[0]}</WordExample>
+        <span>{word.created && <WordDate date={word.created} />}</span>
       </WordItemInner>
     </BlockWrapper>
   </ItemWrapper>

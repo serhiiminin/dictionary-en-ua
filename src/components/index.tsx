@@ -22,4 +22,5 @@ export { default as PrivateRouteLoggedOut } from './private-route-logged-out';
 export { default as TextCircle } from './text-circle';
 export { default as TitleBlock } from './title-block';
 export { default as WordList } from './word-list';
+export { default as WordDate } from './word-date';
 export { default as WordListItem } from './word-list-item';
