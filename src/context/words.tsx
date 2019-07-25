@@ -89,8 +89,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
   const handleCreateWord = (): void => {
     handleFetch(LN.words.save)(
       async (): Promise<void> => {
-        const { _id } = await apiWord.create({ ...wordItem, ownerId });
-        await handleFetchWord(_id);
+        await apiWord.create({ ...wordItem, ownerId });
         enqueueSnackbar('The word has been saved successfully', { variant: 'success' });
       }
     );
