@@ -6,9 +6,18 @@ import { ThemeProps } from '../types';
 
 const Button = styled((props: IconButtonProps): JSX.Element => <IconButton {...props} />)`
   && {
-    background: transparent;
+    background: ${(props: ThemeProps): string => props.theme.main.color.background};
+    padding: 0;
     &:hover {
-      background: transparent;
+      background: ${(props: ThemeProps): string => props.theme.main.color.background};
+    }
+  }
+`;
+
+const DeleteIcon = styled(DeleteOutline)`
+  && {
+    font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.xl};
+    &:hover {
       color: ${(props: ThemeProps): string => props.theme.main.color.notification.error};
     }
   }
@@ -20,7 +29,7 @@ interface Props {
 
 const ButtonDelete = ({ onClick }: Props): JSX.Element => (
   <Button onClick={onClick}>
-    <DeleteOutline />
+    <DeleteIcon />
   </Button>
 );
 
