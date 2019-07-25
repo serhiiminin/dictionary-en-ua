@@ -7,6 +7,7 @@ import menu from './menu';
 import progress from './progress';
 import select from './select';
 import snackbar from './snackbar';
+import tooltip from './tooltip';
 import theme from '../../themes';
 import { Theme } from '../../../../types';
 
@@ -20,4 +21,5 @@ export default {
   ...progress(theme as Theme),
   ...select(),
   ...snackbar(theme as Theme),
+  ...tooltip(theme as Theme),
 };
