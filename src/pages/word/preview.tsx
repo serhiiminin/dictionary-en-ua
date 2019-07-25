@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withLoading, LI } from '../../context/loading';
@@ -10,31 +10,24 @@ interface Match {
 
 type Props = RouteComponentProps<Match> & LI & WI;
 
-class WordPreviewContainer extends Component<Props, {}> {
-  public componentDidMount(): void {
-    const { match, handleFetchWord } = this.props;
-    const { id } = match.params;
-
+const WordPreviewContainer = (props: Props): JSX.Element => {
+  const { wordItem, handleFetchWord, cleanWord, match } = props;
+  const { word, transcription, gif } = wordItem;
+  const { id } = match.params;
+  useEffect((): (() => void) => {
     handleFetchWord(id);
-  }
 
-  public componentWillUnmount(): void {
-    this.props.cleanWord();
-  }
-
-  public render(): JSX.Element {
-    const { wordItem } = this.props;
-    const { word, transcription, gif } = wordItem;
-
-    return (
-      <div>
-        <h1>{word}</h1>
-        <p>{transcription}</p>
-        <img src={gif} alt={word} />
-      </div>
-    );
-  }
-}
+    return cleanWord;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+  return (
+    <div>
+      <h1>{word}</h1>
+      <p>{transcription}</p>
+      <img src={gif} alt={word} />
+    </div>
+  );
+};
 
 export default compose<Props, {}>(
   withRouter,
