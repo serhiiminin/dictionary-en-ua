@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { withLoading, LI } from '../../context/loading';
@@ -8,33 +8,29 @@ import { TitleBlock, WordListItem, WordList } from '../../components';
 
 type Props = LI & WI & RouteComponentProps;
 
-class WordsList extends Component<Props, {}> {
-  public componentDidMount(): void {
-    this.props.handleFetchWordsList();
-  }
+const WordsList = (props: Props): JSX.Element => {
+  const { wordsList, checkIsLoading, handleDeleteWord, handleFetchWordsList, cleanWordsList } = props;
+  const isLoading = checkIsLoading(LN.words.list);
+  useEffect((): (() => void) => {
+    handleFetchWordsList();
 
-  public componentWillUnmount(): void {
-    this.props.cleanWordsList();
-  }
+    return cleanWordsList;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  public render(): JSX.Element {
-    const { wordsList, checkIsLoading, handleDeleteWord } = this.props;
-    const isLoading = checkIsLoading(LN.words.list);
-
-    return (
-      <>
-        <TitleBlock>Your words</TitleBlock>
-        <WordList isLoading={isLoading}>
-          {wordsList.map(
-            (word): JSX.Element => (
-              <WordListItem key={word._id} word={word} onDelete={handleDeleteWord} />
-            )
-          )}
-        </WordList>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <TitleBlock>Your words</TitleBlock>
+      <WordList isLoading={isLoading}>
+        {wordsList.map(
+          (word): JSX.Element => (
+            <WordListItem key={word._id} word={word} onDelete={handleDeleteWord} />
+          )
+        )}
+      </WordList>
+    </>
+  );
+};
 
 export default compose<Props, {}>(
   withRouter,

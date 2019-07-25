@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
@@ -9,23 +9,22 @@ import routes from '../routes';
 
 type Props = RouteComponentProps & LI & AI;
 
-class ConfirmRegistration extends Component<Props> {
-  public componentDidMount(): void {
-    const { location, history, handleConfirmBasicSignUp } = this.props;
+const ConfirmRegistration = (props: Props): JSX.Element => {
+  const { checkIsLoading, location, history, handleConfirmBasicSignUp } = props;
+  const isLoading = checkIsLoading(LN.auth.confirm);
+
+  useEffect((): void => {
     const token = new URLSearchParams(location.search).get('token');
     if (!token) {
       history.push(routes.root);
     }
     handleConfirmBasicSignUp(token || '');
-  }
 
-  public render(): JSX.Element {
-    const { checkIsLoading } = this.props;
-    const isLoading = checkIsLoading(LN.auth.confirm);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    return isLoading ? <CircularProgress /> : <div>finish</div>;
-  }
-}
+  return isLoading ? <CircularProgress /> : <div>finish</div>;
+};
 
 export default compose<Props, {}>(
   withRouter,
