@@ -1,34 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Tooltip, IconButton } from '@material-ui/core';
-import { DeleteOutline } from '@material-ui/icons';
+import { Tooltip } from '@material-ui/core';
 import { distanceInWords, format } from 'date-fns';
 import BlockWrapper from './blocks-wrapper';
+import ButtonDelete from './button-delete';
 import { Word } from '../types';
 
-interface Props {
-  word: Word;
-}
-
 const ItemWrapper = styled.div`
-  border-bottom: 1px solid gray;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  box-shadow: 6px 6px 18px rgba(123, 123, 123, 0.14);
 `;
 
 const WordItemInner = styled.div`
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+  height: 80px;
 `;
 
-const WordListItem = ({ word }: Props): JSX.Element => (
+interface Props {
+  word: Word;
+  onDelete(id: string): void;
+}
+
+const WordListItem = ({ word, onDelete }: Props): JSX.Element => (
   <ItemWrapper>
     <BlockWrapper>
       <WordItemInner>
-        <IconButton>
-          <DeleteOutline />
-        </IconButton>
+        <ButtonDelete onClick={(): void => onDelete(word._id)} />
         <span>{word.word}</span>
         <span>{`[${word.transcription}]`}</span>
         <span>{word.examples && word.examples[0]}</span>

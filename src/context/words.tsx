@@ -50,17 +50,19 @@ type Props = RouteComponentProps & FI & AI & WithSnackbarProps & OwnProps;
 
 const { Provider, Consumer } = createContext({});
 
+const initialWord = { _id: '' };
+
 const WordsProviderCmp = (props: Props): JSX.Element => {
   const { handleFetch, location, tokenData, enqueueSnackbar, children } = props;
   const { token, _id: ownerId } = tokenData;
   const apiWord = createApiWord(token);
   const [wordsList, setWordsList] = useState<Word[]>([]);
-  const [wordItem, setWordItem] = useState<Word>({});
+  const [wordItem, setWordItem] = useState<Word>(initialWord);
   const [wordsCount, setWordsCount] = useState<number>(0);
 
   const cleanWordsList = (): void => setWordsList([]);
 
-  const cleanWord = (): void => setWordItem({});
+  const cleanWord = (): void => setWordItem(initialWord);
 
   const handleFetchWord = (wordId: string): void => {
     handleFetch(LN.words.fetch)(
@@ -152,7 +154,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
 
   const handleRelearnWord = (wordId: string): void => {
     setWordsList((prevState): Word[] => {
-      const wordToRelearn = prevState.find(({ _id }: Word): boolean => _id === wordId) || {};
+      const wordToRelearn = prevState.find(({ _id }: Word): boolean => _id === wordId) || initialWord;
       const { _id: wordToRelearnId } = wordToRelearn;
 
       return [...prevState.filter(({ _id }: Word): boolean => _id !== wordToRelearnId), wordToRelearn];

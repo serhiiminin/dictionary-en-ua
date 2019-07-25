@@ -23,7 +23,7 @@ export interface User {
 }
 
 export interface Word {
-  _id?: string;
+  _id: string;
   antonyms?: string[];
   definitions?: string[];
   examples?: string[];
