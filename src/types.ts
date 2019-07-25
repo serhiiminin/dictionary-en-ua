@@ -35,10 +35,10 @@ export interface Word {
   transcription?: string;
   word?: string;
   ownerId?: string;
-  dateCreated?: string;
-  dateLastUpdated?: string;
   timesLearnt?: number;
-  dateLastLearnt?: string;
+  created?: string;
+  updated?: string;
+  lastLearnt?: string;
 }
 
 export interface Token {

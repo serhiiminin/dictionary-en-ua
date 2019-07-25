@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
 import { LinearProgress } from '@material-ui/core';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
-
-import routes from '../../routes';
 import LN from '../../constants/loading-names';
-import { TitleBlock } from '../../components';
-import generateRoute from '../../util/routes';
+import { TitleBlock, WordListItem } from '../../components';
 
 type Props = LI & WI & RouteComponentProps;
 
@@ -29,15 +26,13 @@ class WordsList extends Component<Props, {}> {
       wordsList.length === 0 ? (
         "You don't have saved words at the moment"
       ) : (
-        <ul>
+        <div>
           {wordsList.map(
-            ({ _id, word }): JSX.Element => (
-              <li key={_id}>
-                <Link to={generateRoute(routes.words.preview, { id: _id })}>{word}</Link>
-              </li>
+            (word): JSX.Element => (
+              <WordListItem key={word._id} word={word} />
             )
           )}
-        </ul>
+        </div>
       );
     return (
       <>

@@ -34,6 +34,7 @@
     "react/no-did-update-set-state": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
+    "no-underscore-dangle": 0
   },
   "globals": {
     "document": true,
