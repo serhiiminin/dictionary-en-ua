@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Grid, { GridProps } from '@material-ui/core/Grid';
 import BlockWrapper from './blocks-wrapper';
 import ButtonDelete from './button-delete';
+import Dialog, { DialogRenderProps } from './dialog';
 import WordDate from './word-date';
 import { ThemeProps, Word } from '../types';
 import generateRoute from '../util/routes';
@@ -45,7 +46,13 @@ const WordListItem = ({ word, onDelete }: Props): JSX.Element => (
     <BlockWrapper>
       <GridContainer alignItems="center">
         <Grid item xs={1}>
-          <ButtonDelete onClick={(): void => onDelete(word._id)} />
+          <Dialog
+            title="Delete word"
+            description="Are you sure you want to delete this word?"
+            onConfirm={(): void => onDelete(word._id)}
+          >
+            {({ onOpen }: DialogRenderProps): JSX.Element => <ButtonDelete onClick={onOpen} />}
+          </Dialog>
         </Grid>
         <Grid item xs={2}>
           <WordText>
