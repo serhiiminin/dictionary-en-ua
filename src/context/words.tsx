@@ -50,7 +50,11 @@ type Props = RouteComponentProps & FI & AI & WithSnackbarProps & OwnProps;
 
 const { Provider, Consumer } = createContext({});
 
-const initialWord = { _id: '' };
+const initialWord = {
+  _id: '',
+  created: '',
+  updated: '',
+};
 
 const WordsProviderCmp = (props: Props): JSX.Element => {
   const { handleFetch, location, tokenData, enqueueSnackbar, children } = props;
