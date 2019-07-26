@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
 import LN from '../../constants/loading-names';
-import { TitleBlock, WordListItem, WordList } from '../../components';
+import { TitleBlock, WordListItem, WordList, BlocksWrapper } from '../../components';
 
 type Props = LI & WI & RouteComponentProps;
 
@@ -20,7 +20,9 @@ const WordsList = (props: Props): JSX.Element => {
 
   return (
     <>
-      <TitleBlock>Your words</TitleBlock>
+      <BlocksWrapper>
+        <TitleBlock>Your words</TitleBlock>
+      </BlocksWrapper>
       <WordList isLoading={isLoading}>
         {wordsList.map(
           (word): JSX.Element => (

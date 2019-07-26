@@ -36,9 +36,9 @@ export interface Word {
   word?: string;
   ownerId?: string;
   timesLearnt?: number;
-  created?: string;
-  updated?: string;
   lastLearnt?: string;
+  created: string;
+  updated: string;
 }
 
 export interface Token {
