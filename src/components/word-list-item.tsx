@@ -17,7 +17,7 @@ const ItemWrapper = styled.div`
 `;
 
 const GridContainer = styled((props: GridProps): JSX.Element => <Grid container {...props} />)`
-  height: 80px;
+  height: 8rem;
 `;
 
 const WordLink = styled(Link)`
@@ -42,36 +42,59 @@ interface Props {
   word: Word;
   onDelete(id: string): void;
   filter?: string;
+  isLoading: boolean;
 }
 
-const WordListItem = ({ word, onDelete, filter }: Props): JSX.Element => (
+const Progress = styled.div`
+  background: gray;
+  opacity: 0.2;
+  color: transparent;
+  width: 80%;
+  border-radius: 0.2em;
+  position: relative;
+  height: 2rem;
+`;
+
+const WordListItem = ({ word, onDelete, filter, isLoading }: Props): JSX.Element => (
   <ItemWrapper>
     <BlockWrapper>
       <GridContainer alignItems="center">
         <Grid item xs={1}>
-          <Dialog
-            title="Delete word"
-            description="Are you sure you want to delete this word?"
-            onConfirm={(): void => onDelete(word._id)}
-          >
-            {({ onOpen }: DialogRenderProps): JSX.Element => <ButtonDelete onClick={onOpen} />}
-          </Dialog>
+          {isLoading ? (
+            <Progress />
+          ) : (
+            <Dialog
+              title="Delete word"
+              description="Are you sure you want to delete this word?"
+              onConfirm={(): void => onDelete(word._id)}
+            >
+              {({ onOpen }: DialogRenderProps): JSX.Element => <ButtonDelete onClick={onOpen} />}
+            </Dialog>
+          )}
         </Grid>
         <Grid item xs={2}>
-          <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>
-            {word.word && <HighlightedText text={word.word} pattern={filter || ''} />}
-          </WordLink>
+          {isLoading ? (
+            <Progress />
+          ) : (
+            <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>
+              {word.word && <HighlightedText text={word.word} pattern={filter || ''} />}
+            </WordLink>
+          )}
         </Grid>
         <Grid item xs={3}>
-          <WordTranscription>{`[${word.transcription}]`}</WordTranscription>
+          {isLoading ? <Progress /> : <WordTranscription>{`[${word.transcription}]`}</WordTranscription>}
         </Grid>
         <Grid item xs={4}>
-          <WordExample>
-            {word.examples && word.examples[0] && <HighlightedText text={word.examples[0]} pattern={filter || ''} />}
-          </WordExample>
+          {isLoading ? (
+            <Progress />
+          ) : (
+            <WordExample>
+              {word.examples && word.examples[0] && <HighlightedText text={word.examples[0]} pattern={filter || ''} />}
+            </WordExample>
+          )}
         </Grid>
         <Grid item xs={2}>
-          <DateWrapper>{word.created && <WordDate date={word.created} />}</DateWrapper>
+          {isLoading ? <Progress /> : <DateWrapper>{word.created && <WordDate date={word.created} />}</DateWrapper>}
         </Grid>
       </GridContainer>
     </BlockWrapper>

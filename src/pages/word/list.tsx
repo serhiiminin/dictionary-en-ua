@@ -51,12 +51,32 @@ const WordsList = (props: Props): JSX.Element => {
           <TitleBlock>Your words</TitleBlock>
         </>
       </BlocksWrapper>
-      <WordList isLoading={isLoading}>
-        {wordsList.map(
-          (word): JSX.Element => (
-            <WordListItem key={word._id} word={word} onDelete={handleDeleteWord} filter={searchParams.filter} />
-          )
-        )}
+      <WordList>
+        {isLoading
+          ? Array(searchParams.countPerPage)
+              .fill(null)
+              .map(
+                (): JSX.Element => (
+                  <WordListItem
+                    key={Math.random()}
+                    word={{ _id: '', created: '', updated: '' }}
+                    onDelete={handleDeleteWord}
+                    filter={searchParams.filter}
+                    isLoading={isLoading}
+                  />
+                )
+              )
+          : wordsList.map(
+              (word): JSX.Element => (
+                <WordListItem
+                  key={word._id}
+                  word={word}
+                  onDelete={handleDeleteWord}
+                  filter={searchParams.filter}
+                  isLoading={isLoading}
+                />
+              )
+            )}
       </WordList>
     </>
   );
