@@ -39,5 +39,6 @@ declare module 'url-joiner' {
     page: string;
     countPerPage: string;
     query: string;
+    filter?: string;
   };
 }

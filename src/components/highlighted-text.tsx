@@ -8,21 +8,23 @@ const Highlight = styled.span`
 
 interface Props {
   text: string;
-  pattern: string;
+  pattern?: string;
 }
 
 const HighlightedText = ({ text, pattern }: Props): JSX.Element => (
   <span>
-    {text.split(pattern).map((item, index, arr): JSX.Element | string =>
-      index < arr.length - 1 ? (
-        <Fragment key={item}>
-          {item}
-          <Highlight>{pattern}</Highlight>
-        </Fragment>
-      ) : (
-        item
-      )
-    )}
+    {pattern
+      ? text.split(pattern).map((item, index, arr): JSX.Element | string =>
+          index < arr.length - 1 ? (
+            <Fragment key={item}>
+              {item}
+              <Highlight>{pattern}</Highlight>
+            </Fragment>
+          ) : (
+            item
+          )
+        )
+      : text}
   </span>
 );
 
