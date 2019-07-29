@@ -180,6 +180,7 @@ export interface SearchParams {
   page: number;
   countPerPage: number;
   query?: string;
+  filter?: string;
 }
 
 export interface QueryParams {
@@ -187,6 +188,7 @@ export interface QueryParams {
   limit: number;
   sortDirection: number;
   sortBy: string;
+  filter?: string;
 }
 
 export interface GoogleToken {
