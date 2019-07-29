@@ -179,6 +179,7 @@ export interface SearchParams {
   sortDirection: string;
   page: number;
   countPerPage: number;
+  query?: string;
 }
 
 export interface QueryParams {

@@ -19,7 +19,8 @@ const GridContainer = styled((props: GridProps): JSX.Element => <Grid container 
   height: 80px;
 `;
 
-const WordText = styled.span`
+const WordLink = styled(Link)`
+  text-decoration: none;
   font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.lg};
 `;
 
@@ -55,9 +56,7 @@ const WordListItem = ({ word, onDelete }: Props): JSX.Element => (
           </Dialog>
         </Grid>
         <Grid item xs={2}>
-          <WordText>
-            <Link to={generateRoute(routes.words.preview, { id: word._id })}>{word.word}</Link>
-          </WordText>
+          <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>{word.word}</WordLink>
         </Grid>
         <Grid item xs={3}>
           <WordTranscription>{`[${word.transcription}]`}</WordTranscription>

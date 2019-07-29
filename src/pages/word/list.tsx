@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { compose } from 'recompose';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { TextField, Fab, Select, MenuItem } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
 import LN from '../../constants/loading-names';
 import { TitleBlock, WordListItem, WordList, BlocksWrapper } from '../../components';
 
-type Props = LI & WI & RouteComponentProps;
+type Props = LI & WI;
 
 const WordsList = (props: Props): JSX.Element => {
   const { wordsList, checkIsLoading, handleDeleteWord, handleFetchWordsList, cleanWordsList } = props;
@@ -21,7 +22,25 @@ const WordsList = (props: Props): JSX.Element => {
   return (
     <>
       <BlocksWrapper>
-        <TitleBlock>Your words</TitleBlock>
+        <>
+          <TextField variant="outlined" label="search" />
+          <Fab variant="extended" color="primary" aria-label="add">
+            <Add />
+            add word
+          </Fab>
+          <Select
+            value=""
+            inputProps={{
+              name: 'age',
+              id: 'age-simple',
+            }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <TitleBlock>Your words</TitleBlock>
+        </>
       </BlocksWrapper>
       <WordList isLoading={isLoading}>
         {wordsList.map(
@@ -35,7 +54,6 @@ const WordsList = (props: Props): JSX.Element => {
 };
 
 export default compose<Props, {}>(
-  withRouter,
   withLoading,
   withWords
 )(WordsList);

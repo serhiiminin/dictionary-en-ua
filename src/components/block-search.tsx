@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { joinUrl, mergeSearch, parseSearch } from 'url-joiner';
+import { compose } from 'recompose';
+import { joinUrl, mergeSearch } from 'url-joiner';
 import routes from '../routes';
+import { withSearchParams, SI } from '../context/search-params';
 
 interface OwnProps {
   children(props: {
@@ -12,22 +13,21 @@ interface OwnProps {
   }): JSX.Element;
 }
 
-type Props = RouteComponentProps & OwnProps;
+type Props = SI & OwnProps;
 
-const BlockSearch = ({ history, location, children }: Props): JSX.Element => {
+const BlockSearch = ({ setNewSearchParams, searchParams, children }: Props): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   useEffect((): void => {
-    const { query = '' } = parseSearch(location.search);
-    setSearchValue(query);
-  }, [location.search]);
+    setSearchValue(searchParams.query || '');
+  }, [searchParams.query]);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(event.target.value);
   };
 
   const handleOnSearch = (): void => {
-    history.push(joinUrl(routes.words.search, mergeSearch({ query: searchValue })));
+    setNewSearchParams(routes.words.search, { query: searchValue });
   };
 
   const handleOnEnterPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -47,4 +47,4 @@ const BlockSearch = ({ history, location, children }: Props): JSX.Element => {
   });
 };
 
-export default withRouter(BlockSearch);
+export default compose<Props, OwnProps>(withSearchParams)(BlockSearch);
