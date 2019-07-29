@@ -14,13 +14,14 @@ const INITIAL_SORT_DATA = {
 };
 
 const getWordsSearchParams = (search: string): SearchParams => {
-  const { sortBy, sortDirection, page, countPerPage, ...rest } = parseSearch(search);
+  const { sortBy, sortDirection, page, countPerPage, filter, ...rest } = parseSearch(search);
 
   return {
     sortBy: sortBy || INITIAL_SORT_DATA.sortBy,
     sortDirection: sortDirection || INITIAL_SORT_DATA.sortDirection,
     page: Number(page) || INITIAL_SORT_DATA.page,
     countPerPage: Number(countPerPage) || INITIAL_SORT_DATA.countPerPage,
+    filter: filter || '',
     ...rest,
   };
 };
