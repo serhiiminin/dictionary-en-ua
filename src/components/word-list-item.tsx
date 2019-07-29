@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Grid, { GridProps } from '@material-ui/core/Grid';
-import BlockWrapper from './blocks-wrapper';
+import Container from './container';
 import ButtonDelete from './button-delete';
 import HighlightedText from './highlighted-text';
 import Dialog, { DialogRenderProps } from './dialog';
@@ -57,7 +57,7 @@ const Progress = styled.div`
 
 const WordListItem = ({ word, onDelete, filter, isLoading }: Props): JSX.Element => (
   <ItemWrapper>
-    <BlockWrapper>
+    <Container>
       <GridContainer alignItems="center">
         <Grid item xs={1}>
           {isLoading ? (
@@ -97,7 +97,7 @@ const WordListItem = ({ word, onDelete, filter, isLoading }: Props): JSX.Element
           {isLoading ? <Progress /> : <DateWrapper>{word.created && <WordDate date={word.created} />}</DateWrapper>}
         </Grid>
       </GridContainer>
-    </BlockWrapper>
+    </Container>
   </ItemWrapper>
 );
 

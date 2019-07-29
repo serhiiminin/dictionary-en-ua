@@ -7,7 +7,7 @@ import { QueryParams, SearchParams } from '../types';
 const { Provider, Consumer } = createContext({});
 
 const INITIAL_SORT_DATA = {
-  sortBy: 'dateCreated',
+  sortBy: 'created',
   sortDirection: 'descend',
   page: 1,
   countPerPage: 5,
