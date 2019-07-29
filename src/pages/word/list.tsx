@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { compose } from 'recompose';
-import { Fab, Select, MenuItem } from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
 import LN from '../../constants/loading-names';
-import { TitleBlock, InputWithSearch, WordListItem, WordList, BlocksWrapper } from '../../components';
+import { TitleBlock, InputWithSearch, WordListItem, WordList, Container, Select } from '../../components';
 import { withSearchParams, SI } from '../../context/search-params';
 import routes from '../../routes';
+
+const SELECT_CONFIG = [{ value: 'created', title: 'Most recent' }, { value: 'word', title: 'Word' }];
 
 type Props = LI & WI & SI;
 
@@ -27,30 +29,30 @@ const WordsList = (props: Props): JSX.Element => {
 
     return cleanWordsList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams.filter]);
+  }, [Object.values(searchParams).toString()]);
+
+  const handleSetNewParams = (paramName: string): ((v: string) => void) => (value: string): void => {
+    setNewSearchParams(routes.words.list, { [paramName]: value });
+  };
 
   return (
     <>
-      <BlocksWrapper>
+      <Container>
         <>
           <InputWithSearch
             variant="outlined"
             label="search"
             urlValue={searchParams.filter || ''}
-            onEnterPress={(filter: string): void => setNewSearchParams(routes.words.list, { filter })}
+            onEnterPress={handleSetNewParams('filter')}
           />
           <Fab variant="extended" color="primary" aria-label="add">
             <Add />
             add word
           </Fab>
-          <Select value={20}>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <Select urlValue={searchParams.sortBy} items={SELECT_CONFIG} onChange={handleSetNewParams('sortBy')} />
           <TitleBlock>Your words</TitleBlock>
         </>
-      </BlocksWrapper>
+      </Container>
       <WordList>
         {isLoading
           ? Array(searchParams.countPerPage)

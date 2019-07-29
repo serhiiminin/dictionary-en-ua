@@ -8,7 +8,7 @@ import { withAuth, AI } from '../context/auth';
 import { withLoading, LI } from '../context/loading';
 import { ReactComponent as Logo } from '../images/logo.svg';
 import { ThemeProps } from '../types';
-import BlocksWrapper from './blocks-wrapper';
+import Container from './container';
 
 const HeaderWrapper = styled.div`
   margin-top: ${(props: ThemeProps): string => props.theme.main.space.lg};
@@ -51,7 +51,7 @@ const Header = ({ isLoggedIn }: Props): JSX.Element => {
   const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
 
   return (
-    <BlocksWrapper>
+    <Container>
       <HeaderWrapper>
         <HeaderLink to={routes.root}>
           <LogoSvg />
@@ -63,7 +63,7 @@ const Header = ({ isLoggedIn }: Props): JSX.Element => {
           </ButtonMenu>
         </MenuDivider>
       </HeaderWrapper>
-    </BlocksWrapper>
+    </Container>
   );
 };
 
