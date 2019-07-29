@@ -16,6 +16,7 @@ export { default as Form } from './form';
 export { default as FormWrapper } from './form-wrapper';
 export { default as InfoBlock } from './info-block';
 export { default as Header } from './header';
+export { default as HighlightedText } from './highlighted-text';
 export { default as InputPassword } from './input-password';
 export { default as PrivateRoute } from './private-route';
 export { default as PrivateRouteLoggedIn } from './private-route-logged-in';

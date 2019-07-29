@@ -54,7 +54,16 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
   const handleFetchWordsList = (): void => {
     handleFetch(LN.words.list)(
       async (): Promise<void> => {
-        const { items, count } = await apiWord.getList({ ...query, ownerId });
+        const { filter, ...sortParams } = query;
+        const { items, count } = await apiWord.getList({
+          query: filter
+            ? {
+                word: { $regex: filter },
+              }
+            : {},
+          ...sortParams,
+          ownerId,
+        });
         setWordsList(items);
         setWordsCount(count);
       }

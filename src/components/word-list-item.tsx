@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Grid, { GridProps } from '@material-ui/core/Grid';
 import BlockWrapper from './blocks-wrapper';
 import ButtonDelete from './button-delete';
+import HighlightedText from './highlighted-text';
 import Dialog, { DialogRenderProps } from './dialog';
 import WordDate from './word-date';
 import { ThemeProps, Word } from '../types';
@@ -40,9 +41,10 @@ const DateWrapper = styled.div`
 interface Props {
   word: Word;
   onDelete(id: string): void;
+  filter?: string;
 }
 
-const WordListItem = ({ word, onDelete }: Props): JSX.Element => (
+const WordListItem = ({ word, onDelete, filter }: Props): JSX.Element => (
   <ItemWrapper>
     <BlockWrapper>
       <GridContainer alignItems="center">
@@ -56,13 +58,17 @@ const WordListItem = ({ word, onDelete }: Props): JSX.Element => (
           </Dialog>
         </Grid>
         <Grid item xs={2}>
-          <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>{word.word}</WordLink>
+          <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>
+            {word.word && <HighlightedText text={word.word} pattern={filter || ''} />}
+          </WordLink>
         </Grid>
         <Grid item xs={3}>
           <WordTranscription>{`[${word.transcription}]`}</WordTranscription>
         </Grid>
         <Grid item xs={4}>
-          <WordExample>{word.examples && word.examples[0]}</WordExample>
+          <WordExample>
+            {word.examples && word.examples[0] && <HighlightedText text={word.examples[0]} pattern={filter || ''} />}
+          </WordExample>
         </Grid>
         <Grid item xs={2}>
           <DateWrapper>{word.created && <WordDate date={word.created} />}</DateWrapper>

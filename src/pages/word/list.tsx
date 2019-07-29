@@ -6,11 +6,12 @@ import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
 import LN from '../../constants/loading-names';
 import { TitleBlock, WordListItem, WordList, BlocksWrapper } from '../../components';
+import { withSearchParams, SI } from '../../context/search-params';
 
-type Props = LI & WI;
+type Props = LI & WI & SI;
 
 const WordsList = (props: Props): JSX.Element => {
-  const { wordsList, checkIsLoading, handleDeleteWord, handleFetchWordsList, cleanWordsList } = props;
+  const { wordsList, checkIsLoading, handleDeleteWord, handleFetchWordsList, cleanWordsList, searchParams } = props;
   const isLoading = checkIsLoading(LN.words.list);
   useEffect((): (() => void) => {
     handleFetchWordsList();
@@ -28,13 +29,7 @@ const WordsList = (props: Props): JSX.Element => {
             <Add />
             add word
           </Fab>
-          <Select
-            value=""
-            inputProps={{
-              name: 'age',
-              id: 'age-simple',
-            }}
-          >
+          <Select value={20}>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
@@ -45,7 +40,7 @@ const WordsList = (props: Props): JSX.Element => {
       <WordList isLoading={isLoading}>
         {wordsList.map(
           (word): JSX.Element => (
-            <WordListItem key={word._id} word={word} onDelete={handleDeleteWord} />
+            <WordListItem key={word._id} word={word} onDelete={handleDeleteWord} filter={searchParams.filter} />
           )
         )}
       </WordList>
@@ -55,5 +50,6 @@ const WordsList = (props: Props): JSX.Element => {
 
 export default compose<Props, {}>(
   withLoading,
+  withSearchParams,
   withWords
 )(WordsList);

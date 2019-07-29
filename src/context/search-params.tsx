@@ -14,23 +14,23 @@ const INITIAL_SORT_DATA = {
 };
 
 const getWordsSearchParams = (search: string): SearchParams => {
-  const { sortBy, sortDirection, page, countPerPage, query, ...rest } = parseSearch(search);
+  const { sortBy, sortDirection, page, countPerPage, ...rest } = parseSearch(search);
 
   return {
     sortBy: sortBy || INITIAL_SORT_DATA.sortBy,
     sortDirection: sortDirection || INITIAL_SORT_DATA.sortDirection,
     page: Number(page) || INITIAL_SORT_DATA.page,
     countPerPage: Number(countPerPage) || INITIAL_SORT_DATA.countPerPage,
-    query,
     ...rest,
   };
 };
 
-const generateQuery = ({ page, countPerPage, sortDirection, sortBy }: SearchParams): QueryParams => ({
+const generateQuery = ({ page, countPerPage, sortDirection, sortBy, filter }: SearchParams): QueryParams => ({
   skip: (page - 1) * countPerPage,
   limit: Number(countPerPage),
   sortDirection: sortDirection === 'descend' ? -1 : 1,
   sortBy,
+  filter,
 });
 
 interface OwnProps {
