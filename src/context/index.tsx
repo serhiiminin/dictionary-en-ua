@@ -7,6 +7,7 @@ import { ErrorProvider } from './errors';
 import { WordsProvider } from './words';
 import { UserProvider } from './user';
 import { AuthProvider } from './auth';
+import { SearchParamsProvider } from './search-params';
 
 interface Props {
   children: JSX.Element;
@@ -15,17 +16,19 @@ interface Props {
 const StateProvider = ({ children }: Props): JSX.Element => (
   <CookiesProvider>
     <ErrorProvider>
-      <DimensionsProvider>
-        <LoadingProvider>
-          <FetcherProvider>
-            <AuthProvider>
-              <UserProvider>
-                <WordsProvider>{children}</WordsProvider>
-              </UserProvider>
-            </AuthProvider>
-          </FetcherProvider>
-        </LoadingProvider>
-      </DimensionsProvider>
+      <SearchParamsProvider>
+        <DimensionsProvider>
+          <LoadingProvider>
+            <FetcherProvider>
+              <AuthProvider>
+                <UserProvider>
+                  <WordsProvider>{children}</WordsProvider>
+                </UserProvider>
+              </AuthProvider>
+            </FetcherProvider>
+          </LoadingProvider>
+        </DimensionsProvider>
+      </SearchParamsProvider>
     </ErrorProvider>
   </CookiesProvider>
 );

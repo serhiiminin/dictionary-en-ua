@@ -1,52 +1,25 @@
 import React, { ComponentType, createContext, useState } from 'react';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
-import { parseSearch } from 'url-joiner';
 import { createApiWord, apiGif } from '../api';
 import LN from '../constants/loading-names';
 import { AI, withAuth } from './auth';
 import { FI, withFetcher } from './fetcher';
-import { QueryParams, SearchParams, Word, Gif } from '../types';
+import { Word, Gif } from '../types';
+import { withSearchParams, SI } from './search-params';
 
-const INITIAL_SORT_DATA = {
-  sortBy: 'dateCreated',
-  sortDirection: 'descend',
-  page: 1,
-  countPerPage: 5,
-};
+const getRandomGif = (gifList: Gif[] = []): string => {
+  const gifData = gifList || [];
+  const downsizedGifList = gifData.map((gif: Gif): string => gif.images.downsized_large.url);
 
-const getWordsSearchParams = (search: string): SearchParams => {
-  const { sortBy, sortDirection, page, countPerPage } = INITIAL_SORT_DATA;
-  const parsedParams = parseSearch(search);
-
-  return {
-    sortBy: parsedParams.sortBy || sortBy,
-    sortDirection: parsedParams.sortDirection || sortDirection,
-    page: Number(parsedParams.page) || page,
-    countPerPage: Number(parsedParams.countPerPage) || countPerPage,
-  };
-};
-
-const generateQuery = ({ page, countPerPage, sortDirection, sortBy }: SearchParams): QueryParams => ({
-  skip: (page - 1) * countPerPage,
-  limit: Number(countPerPage),
-  sortDirection: sortDirection === 'descend' ? -1 : 1,
-  sortBy,
-});
-
-const getRandlomGif = (gifs: Gif[] = []): string => {
-  const gifData = gifs || [];
-  const downsizedGifs = gifData.map((gif: Gif): string => gif.images.downsized_large.url);
-
-  return downsizedGifs[Math.round(Math.random() * downsizedGifs.length)];
+  return downsizedGifList[Math.round(Math.random() * downsizedGifList.length)];
 };
 
 interface OwnProps {
   children: JSX.Element;
 }
 
-type Props = RouteComponentProps & FI & AI & WithSnackbarProps & OwnProps;
+type Props = SI & FI & AI & WithSnackbarProps & OwnProps;
 
 const { Provider, Consumer } = createContext({});
 
@@ -57,7 +30,7 @@ const initialWord = {
 };
 
 const WordsProviderCmp = (props: Props): JSX.Element => {
-  const { handleFetch, location, tokenData, enqueueSnackbar, children } = props;
+  const { handleFetch, tokenData, enqueueSnackbar, children, query } = props;
   const { token, _id: ownerId } = tokenData;
   const apiWord = createApiWord(token);
   const [wordsList, setWordsList] = useState<Word[]>([]);
@@ -79,11 +52,9 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
   };
 
   const handleFetchWordsList = (): void => {
-    const query = generateQuery(getWordsSearchParams(location.search));
-
     handleFetch(LN.words.list)(
       async (): Promise<void> => {
-        const { items, count } = await apiWord.getList({ query, ownerId });
+        const { items, count } = await apiWord.getList({ ...query, ownerId });
         setWordsList(items);
         setWordsCount(count);
       }
@@ -124,8 +95,8 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         cleanWord();
         const foundWord = await apiWord.search<Word>({ word });
-        const gifs = await apiGif.get<{ data: Gif[] }>({ q: foundWord.word });
-        const randomGif = gifs && getRandlomGif(gifs.data);
+        const gifList = await apiGif.get<{ data: Gif[] }>({ q: foundWord.word });
+        const randomGif = gifList && getRandomGif(gifList.data);
         const wordData = JSON.parse(JSON.stringify(foundWord));
 
         if (randomGif) {
@@ -189,7 +160,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
 };
 
 const WordsProvider = compose<Props, OwnProps>(
-  withRouter,
+  withSearchParams,
   withFetcher,
   withAuth,
   withSnackbar
