@@ -9,6 +9,6 @@ type Props = AI & RouteProps;
 
 export default compose<Props, RouteProps>(withAuth)(
   ({ isLoggedIn, path, component }: Props): JSX.Element => (
-    <PrivateRoute path={path} component={component} pathname={routes.auth.logOut} condition={isLoggedIn} />
+    <PrivateRoute path={path} component={component} pathname={routes.words.list} condition={isLoggedIn} />
   )
 );

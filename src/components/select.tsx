@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Select, MenuItem } from '@material-ui/core';
 import { KeyboardArrowDown } from '@material-ui/icons';
+import { ThemeProps } from '../types';
 
 interface Item {
   value: string;
@@ -16,15 +17,34 @@ interface Props {
 
 const StyledSelect = styled(Select)`
   && {
-    font-size: 14px;
+    font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.sm};
     letter-spacing: 2px;
   }
 `;
 
-const SelectItem = styled(MenuItem)`
+const SelectItem = styled((props): JSX.Element => <MenuItem classes={{ selected: 'selected' }} {...props} />)`
   && {
-    font-size: 14px;
+    font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.sm};
+    background: ${(props: ThemeProps): string => props.theme.main.color.background};
+    color: ${(props: ThemeProps): string => props.theme.main.color.text};
+    transition: all 0.3s ease-in-out;
     letter-spacing: 2px;
+    border-bottom: 1px solid #fff;
+
+    &:hover {
+      background: ${(props: ThemeProps): string => props.theme.main.color.text};
+      color: ${(props: ThemeProps): string => props.theme.main.color.background};
+    }
+
+    &.selected {
+      background: ${(props: ThemeProps): string => props.theme.main.color.text};
+      color: ${(props: ThemeProps): string => props.theme.main.color.background};
+
+      &:hover {
+        background: ${(props: ThemeProps): string => props.theme.main.color.text};
+        color: ${(props: ThemeProps): string => props.theme.main.color.background};
+      }
+    }
   }
 `;
 
