@@ -1,5 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Select, MenuItem } from '@material-ui/core';
+import { KeyboardArrowDown } from '@material-ui/icons';
 
 interface Item {
   value: string;
@@ -12,6 +14,20 @@ interface Props {
   onChange(value: string): void;
 }
 
+const StyledSelect = styled(Select)`
+  && {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+`;
+
+const SelectItem = styled(MenuItem)`
+  && {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+`;
+
 const SelectWithItems = ({ items, urlValue, onChange }: Props): JSX.Element => {
   // React.ChangeEvent<HTMLSelectElement>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,15 +36,15 @@ const SelectWithItems = ({ items, urlValue, onChange }: Props): JSX.Element => {
   };
 
   return (
-    <Select value={urlValue} onChange={handleOnChange}>
+    <StyledSelect IconComponent={KeyboardArrowDown} value={urlValue} onChange={handleOnChange}>
       {items.map(
         ({ value, title }): JSX.Element => (
-          <MenuItem key={value} value={value}>
+          <SelectItem key={value} value={value}>
             {title}
-          </MenuItem>
+          </SelectItem>
         )
       )}
-    </Select>
+    </StyledSelect>
   );
 };
 

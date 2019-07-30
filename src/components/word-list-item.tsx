@@ -14,6 +14,7 @@ import routes from '../routes';
 const ItemWrapper = styled.div`
   margin-bottom: 10px;
   box-shadow: 6px 6px 18px rgba(123, 123, 123, 0.14);
+  letter-spacing: 2px;
 `;
 
 const GridContainer = styled((props: GridProps): JSX.Element => <Grid container {...props} />)`
@@ -23,20 +24,25 @@ const GridContainer = styled((props: GridProps): JSX.Element => <Grid container 
 const WordLink = styled(Link)`
   text-decoration: none;
   font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.lg};
+  letter-spacing: 2px;
 `;
 
 const WordTranscription = styled.span`
   font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.lg};
   color: ${(props: ThemeProps): string => props.theme.main.color.main};
+  letter-spacing: 2px;
 `;
 
 const WordExample = styled.span`
   font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.sm};
+  letter-spacing: 2px;
 `;
 
 const DateWrapper = styled.div`
   text-align: end;
+  letter-spacing: 2px;
 `;
+
 interface GridItemProps {
   isLoading: boolean;
   children: JSX.Element;

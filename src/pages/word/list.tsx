@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { compose } from 'recompose';
+import { Grid } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+import styled from 'styled-components';
 import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
 import LN from '../../constants/loading-names';
@@ -8,7 +10,12 @@ import { TitleBlock, InputWithSearch, WordListItem, WordList, Container, Select,
 import { withSearchParams, SI } from '../../context/search-params';
 import routes from '../../routes';
 
-const SELECT_CONFIG = [{ value: 'created', title: 'Most recent' }, { value: 'word', title: 'Word' }];
+const SELECT_CONFIG = [{ value: 'created', title: 'most recent' }, { value: 'word', title: 'word' }];
+
+const WrapperTools = styled.div`
+  padding: 20px 0;
+  box-shadow: 6px 6px 40px rgba(123, 123, 123, 0.1);
+`;
 
 type Props = LI & WI & SI;
 
@@ -36,22 +43,32 @@ const WordsList = (props: Props): JSX.Element => {
 
   return (
     <>
-      <Container>
-        <>
-          <InputWithSearch
-            variant="outlined"
-            label="search"
-            urlValue={searchParams.filter || ''}
-            onEnterPress={handleSetNewParams('filter')}
-          />
-          <ButtonLink to={routes.words.add}>
-            <Add />
-            add word
-          </ButtonLink>
-          <Select urlValue={searchParams.sortBy} items={SELECT_CONFIG} onChange={handleSetNewParams('sortBy')} />
-          <TitleBlock>Your words</TitleBlock>
-        </>
-      </Container>
+      <WrapperTools>
+        <Container>
+          <Grid container spacing={2} justify="space-between" alignItems="center">
+            <Grid item>
+              <InputWithSearch
+                variant="outlined"
+                label="search"
+                urlValue={searchParams.filter || ''}
+                onEnterPress={handleSetNewParams('filter')}
+              />
+            </Grid>
+            <Grid item>
+              <ButtonLink to={routes.words.add}>
+                <Add />
+                add word
+              </ButtonLink>
+            </Grid>
+            <Grid item>
+              <Select urlValue={searchParams.sortBy} items={SELECT_CONFIG} onChange={handleSetNewParams('sortBy')} />
+            </Grid>
+            <Grid item>
+              <TitleBlock textAlign="right">Your words</TitleBlock>
+            </Grid>
+          </Grid>
+        </Container>
+      </WrapperTools>
       <WordList>
         {isLoading
           ? Array(searchParams.countPerPage)
