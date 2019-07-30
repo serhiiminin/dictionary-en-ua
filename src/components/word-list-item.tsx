@@ -37,6 +37,15 @@ const WordExample = styled.span`
 const DateWrapper = styled.div`
   text-align: end;
 `;
+interface GridItemProps {
+  isLoading: boolean;
+  children: JSX.Element;
+}
+const GridItem = ({ isLoading, children, ...props }: GridProps & GridItemProps): JSX.Element => (
+  <Grid item {...props}>
+    {isLoading ? <Progress /> : children}
+  </Grid>
+);
 
 interface Props {
   word: Word;
@@ -59,43 +68,31 @@ const WordListItem = ({ word, onDelete, filter, isLoading }: Props): JSX.Element
   <ItemWrapper>
     <Container>
       <GridContainer alignItems="center">
-        <Grid item xs={1}>
-          {isLoading ? (
-            <Progress />
-          ) : (
-            <Dialog
-              title="Delete word"
-              description="Are you sure you want to delete this word?"
-              onConfirm={(): void => onDelete(word._id)}
-            >
-              {({ onOpen }: DialogRenderProps): JSX.Element => <ButtonDelete onClick={onOpen} />}
-            </Dialog>
-          )}
-        </Grid>
-        <Grid item xs={2}>
-          {isLoading ? (
-            <Progress />
-          ) : (
-            <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>
-              {word.word && <HighlightedText text={word.word} pattern={filter || ''} />}
-            </WordLink>
-          )}
-        </Grid>
-        <Grid item xs={3}>
-          {isLoading ? <Progress /> : <WordTranscription>{`[${word.transcription}]`}</WordTranscription>}
-        </Grid>
-        <Grid item xs={4}>
-          {isLoading ? (
-            <Progress />
-          ) : (
-            <WordExample>
-              {word.examples && word.examples[0] && <HighlightedText text={word.examples[0]} pattern={filter || ''} />}
-            </WordExample>
-          )}
-        </Grid>
-        <Grid item xs={2}>
-          {isLoading ? <Progress /> : <DateWrapper>{word.created && <WordDate date={word.created} />}</DateWrapper>}
-        </Grid>
+        <GridItem xs={1} isLoading={isLoading}>
+          <Dialog
+            title="Delete word"
+            description="Are you sure you want to delete this word?"
+            onConfirm={(): void => onDelete(word._id)}
+          >
+            {({ onOpen }: DialogRenderProps): JSX.Element => <ButtonDelete onClick={onOpen} />}
+          </Dialog>
+        </GridItem>
+        <GridItem xs={2} isLoading={isLoading}>
+          <WordLink to={generateRoute(routes.words.preview, { id: word._id })}>
+            {word.word && <HighlightedText text={word.word} pattern={filter || ''} />}
+          </WordLink>
+        </GridItem>
+        <GridItem xs={3} isLoading={isLoading}>
+          <WordTranscription>{`[${word.transcription}]`}</WordTranscription>
+        </GridItem>
+        <GridItem xs={4} isLoading={isLoading}>
+          <WordExample>
+            {word.examples && word.examples[0] && <HighlightedText text={word.examples[0]} pattern={filter || ''} />}
+          </WordExample>
+        </GridItem>
+        <GridItem xs={2} isLoading={isLoading}>
+          <DateWrapper>{word.created && <WordDate date={word.created} />}</DateWrapper>
+        </GridItem>
       </GridContainer>
     </Container>
   </ItemWrapper>

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { compose } from 'recompose';
-import { Fab } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { withLoading, LI } from '../../context/loading';
 import { withWords, WI } from '../../context/words';
 import LN from '../../constants/loading-names';
-import { TitleBlock, InputWithSearch, WordListItem, WordList, Container, Select } from '../../components';
+import { TitleBlock, InputWithSearch, WordListItem, WordList, Container, Select, ButtonLink } from '../../components';
 import { withSearchParams, SI } from '../../context/search-params';
 import routes from '../../routes';
 
@@ -45,10 +44,10 @@ const WordsList = (props: Props): JSX.Element => {
             urlValue={searchParams.filter || ''}
             onEnterPress={handleSetNewParams('filter')}
           />
-          <Fab variant="extended" color="primary" aria-label="add">
+          <ButtonLink to={routes.words.add}>
             <Add />
             add word
-          </Fab>
+          </ButtonLink>
           <Select urlValue={searchParams.sortBy} items={SELECT_CONFIG} onChange={handleSetNewParams('sortBy')} />
           <TitleBlock>Your words</TitleBlock>
         </>

@@ -4,6 +4,7 @@ export { default as BlockSocial } from './block-social';
 export { default as ButtonDelete } from './button-delete';
 export { default as ButtonFacebook } from './button-facebook';
 export { default as ButtonGoogle } from './button-google';
+export { default as ButtonLink } from './button-link';
 export { default as ButtonMenu } from './button-menu';
 export { default as ButtonPrimary } from './button-primary';
 export { default as ButtonSearch } from './button-search';
