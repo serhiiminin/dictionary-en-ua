@@ -10,7 +10,7 @@ import { TitleBlock, InputWithSearch, WordListItem, WordList, Container, Select,
 import { withSearchParams, SI } from '../../context/search-params';
 import routes from '../../routes';
 
-const SELECT_CONFIG = [{ value: 'created', title: 'most recent' }, { value: 'word', title: 'word' }];
+const SELECT_CONFIG = [{ value: 'created', title: 'most recent' }, { value: 'word', title: 'alphabet' }];
 
 const WrapperTools = styled.div`
   padding: 20px 0;
@@ -45,8 +45,8 @@ const WordsList = (props: Props): JSX.Element => {
     <>
       <WrapperTools>
         <Container>
-          <Grid container spacing={2} justify="space-between" alignItems="center">
-            <Grid item>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={4}>
               <InputWithSearch
                 variant="outlined"
                 label="search"
@@ -54,16 +54,16 @@ const WordsList = (props: Props): JSX.Element => {
                 onEnterPress={handleSetNewParams('filter')}
               />
             </Grid>
-            <Grid item>
+            <Grid item xs={2}>
               <ButtonLink to={routes.words.add}>
                 <Add />
                 add word
               </ButtonLink>
             </Grid>
-            <Grid item>
+            <Grid item xs={2}>
               <Select urlValue={searchParams.sortBy} items={SELECT_CONFIG} onChange={handleSetNewParams('sortBy')} />
             </Grid>
-            <Grid item>
+            <Grid item xs={4}>
               <TitleBlock textAlign="right">Your words</TitleBlock>
             </Grid>
           </Grid>

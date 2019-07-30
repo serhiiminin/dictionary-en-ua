@@ -27,8 +27,8 @@ interface Props {
   onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
 
-const ButtonDelete = ({ onClick }: Props): JSX.Element => (
-  <Button onClick={onClick}>
+const ButtonDelete = ({ onClick, ...props }: Props): JSX.Element => (
+  <Button onClick={onClick} {...props}>
     <DeleteIcon />
   </Button>
 );

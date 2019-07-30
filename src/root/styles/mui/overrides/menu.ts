@@ -5,12 +5,12 @@ export default (theme: Theme): object => ({
     root: {
       width: '100%',
       '&:hover': {
-        background: `${theme.main.color.main} !important`,
-        color: `${theme.main.color.background} !important`,
+        background: `${theme.main.color.main}`,
+        color: `${theme.main.color.background}`,
       },
       '&$selected': {
-        background: `${theme.main.color.main} !important`,
-        color: `${theme.main.color.background} !important`,
+        background: `${theme.main.color.main}`,
+        color: `${theme.main.color.background}`,
       },
     },
   },
