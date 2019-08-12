@@ -30,6 +30,7 @@ const WordsList = (props: Props): JSX.Element => {
     setNewSearchParams,
   } = props;
   const isLoading = checkIsLoading(LN.words.list);
+
   useEffect((): (() => void) => {
     handleFetchWordsList();
 
