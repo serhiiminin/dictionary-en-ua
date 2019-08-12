@@ -32,7 +32,7 @@
     "@types/react-dom": "16.8.5",
     "@types/react-facebook-login": "4.1.0",
     "@types/react-router-dom": "4.3.4",
-    "@types/recompose": "0.30.6",
+    "@types/recompose": "0.30.7",
     "@types/styled-components": "4.1.18",
     "@types/yup": "0.26.22",
     "date-fns": "1.30.1",
