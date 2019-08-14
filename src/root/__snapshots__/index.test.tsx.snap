@@ -186,12 +186,12 @@ exports[`Root render 1`] = `
         "MuiMenuItem": Object {
           "root": Object {
             "&$selected": Object {
-              "background": "#979797 !important",
-              "color": "#FFFFFF !important",
+              "background": "#979797",
+              "color": "#FFFFFF",
             },
             "&:hover": Object {
-              "background": "#979797 !important",
-              "color": "#FFFFFF !important",
+              "background": "#979797",
+              "color": "#FFFFFF",
             },
             "width": "100%",
           },
@@ -241,6 +241,18 @@ exports[`Root render 1`] = `
               "cursor": "pointer",
             },
             "fontSize": "1.8rem",
+          },
+        },
+        "MuiTooltip": Object {
+          "tooltipPlacementRight": Object {
+            "background": "#161617",
+            "color": "#FFFFFF",
+            "fontSize": "1.2rem",
+          },
+        },
+        "MuiTouchRipple": Object {
+          "childPulsate": Object {
+            "background": "#86D1FF",
           },
         },
       },
@@ -646,12 +658,12 @@ exports[`Root render 1`] = `
           "MuiMenuItem": Object {
             "root": Object {
               "&$selected": Object {
-                "background": "#979797 !important",
-                "color": "#FFFFFF !important",
+                "background": "#979797",
+                "color": "#FFFFFF",
               },
               "&:hover": Object {
-                "background": "#979797 !important",
-                "color": "#FFFFFF !important",
+                "background": "#979797",
+                "color": "#FFFFFF",
               },
               "width": "100%",
             },
@@ -701,6 +713,18 @@ exports[`Root render 1`] = `
                 "cursor": "pointer",
               },
               "fontSize": "1.8rem",
+            },
+          },
+          "MuiTooltip": Object {
+            "tooltipPlacementRight": Object {
+              "background": "#161617",
+              "color": "#FFFFFF",
+              "fontSize": "1.2rem",
+            },
+          },
+          "MuiTouchRipple": Object {
+            "childPulsate": Object {
+              "background": "#86D1FF",
             },
           },
         },

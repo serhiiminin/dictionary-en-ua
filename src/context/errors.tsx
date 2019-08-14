@@ -12,14 +12,16 @@ interface OwnProps {
   children: JSX.Element;
 }
 
+interface State {
+  hasError: boolean;
+}
+
 type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
 
-class ErrorsProviderCmp extends Component<Props> {
-  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
+class ErrorsProviderCmp extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
       hasError: false,
     };
   }
@@ -45,8 +47,13 @@ class ErrorsProviderCmp extends Component<Props> {
 
   public render(): JSX.Element {
     const { children } = this.props;
+    const { hasError } = this.state;
 
-    return <Provider value={{ handleError: this.handleError }}>{children}</Provider>;
+    return (
+      <Provider value={{ handleError: this.handleError }}>
+        {hasError ? <div>Something went wrong</div> : children}
+      </Provider>
+    );
   }
 }
 
