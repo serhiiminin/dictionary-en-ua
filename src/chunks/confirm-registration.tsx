@@ -19,8 +19,6 @@ const ConfirmRegistration = (props: Props): JSX.Element => {
       history.push(routes.root);
     }
     handleConfirmBasicSignUp(token || '');
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isLoading ? <CircularProgress /> : <div>finish</div>;

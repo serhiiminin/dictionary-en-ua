@@ -16,14 +16,22 @@ type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
 
 class ErrorsProviderCmp extends Component<Props> {
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
-  state = {
-    // eslint-disable-next-line react/no-unused-state
-    hasError: false,
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      // eslint-disable-next-line react/no-unused-state
+      hasError: false,
+    };
+  }
 
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility,@typescript-eslint/explicit-function-return-type
   static getDerivedStateFromError() {
     return { hasError: true };
+  }
+
+  public componentDidCatch(error: Error, info: object): void {
+    // eslint-disable-next-line
+    console.log(error, info);
   }
 
   public handleError = (error: Error): void => {
@@ -34,11 +42,6 @@ class ErrorsProviderCmp extends Component<Props> {
     const errorMessage = getErrorMessage(getErrorType(error));
     enqueueSnackbar(errorMessage, { variant: 'info' });
   };
-
-  public componentDidCatch(error: Error, info: object): void {
-    // eslint-disable-next-line
-    console.log(error, info);
-  }
 
   public render(): JSX.Element {
     const { children } = this.props;

@@ -34,7 +34,6 @@ const WordsList = (props: Props): JSX.Element => {
     handleFetchWordsList();
 
     return cleanWordsList;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Object.values(searchParams).toString()]);
 
   const handleSetNewParams = (paramName: string): ((v: string) => void) => (value: string): void => {

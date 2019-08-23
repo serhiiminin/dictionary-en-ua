@@ -12,7 +12,7 @@ const createRequest = (method: string): R => (url: string, params?: RequestParam
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { body = {}, ...rest } = params || {};
 
-  return Object.assign({}, { url, method }, method === GET ? rest : params);
+  return { url, method, ...(method === GET ? rest : params) };
 };
 
 const requests = {

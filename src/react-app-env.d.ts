@@ -42,3 +42,8 @@ declare module 'url-joiner' {
     filter?: string;
   };
 }
+
+declare module 'react-facebook-login/dist/facebook-login-render-props' {
+  const content: Component;
+  export default content;
+}

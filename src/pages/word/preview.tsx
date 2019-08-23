@@ -18,7 +18,6 @@ const WordPreviewContainer = (props: Props): JSX.Element => {
     handleFetchWord(id);
 
     return cleanWord;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   return (
     <div>
