@@ -33,7 +33,6 @@ const SearchWordContainer = (props: Props): JSX.Element => {
   useEffect((): (() => void) => {
     handleSearch();
     return cleanWord;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
   return (

@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import { compose } from 'recompose';
 import styled from 'styled-components';
 import { GoogleLogin } from 'react-google-login';
-// @ts-ignore
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import {
   InputPassword,
