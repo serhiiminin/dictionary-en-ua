@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Tooltip } from '@material-ui/core';
-import { distanceInWords, format } from 'date-fns';
+import { formatDistance, format } from 'date-fns';
 import { ThemeProps } from '../types';
 
 const WordDateWrapper = styled.span`
@@ -14,8 +14,8 @@ interface Props {
 }
 
 const WordDate = ({ date }: Props): JSX.Element => (
-  <Tooltip title={format(new Date(date), 'DD MMM YYYY, HH:mm:ss')} placement="right">
-    <WordDateWrapper>{distanceInWords(new Date(date), new Date(), { includeSeconds: true })}</WordDateWrapper>
+  <Tooltip title={format(new Date(date), 'dd MMM yyyy, HH:mm:ss')} placement="right">
+    <WordDateWrapper>{formatDistance(new Date(date), new Date(), { includeSeconds: true })}</WordDateWrapper>
   </Tooltip>
 );
 
