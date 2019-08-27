@@ -30,11 +30,11 @@ const WordsList = (props: Props): JSX.Element => {
     setNewSearchParams,
   } = props;
   const isLoading = checkIsLoading(LN.words.list);
+
   useEffect((): (() => void) => {
     handleFetchWordsList();
 
     return cleanWordsList;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Object.values(searchParams).toString()]);
 
   const handleSetNewParams = (paramName: string): ((v: string) => void) => (value: string): void => {

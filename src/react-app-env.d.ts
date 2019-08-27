@@ -1,5 +1,3 @@
-// / <reference types="react-scripts" />
-
 declare module '*.svg' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ReactComponent: any;
@@ -41,4 +39,9 @@ declare module 'url-joiner' {
     query: string;
     filter?: string;
   };
+}
+
+declare module 'react-facebook-login/dist/facebook-login-render-props' {
+  const content: Component;
+  export default content;
 }

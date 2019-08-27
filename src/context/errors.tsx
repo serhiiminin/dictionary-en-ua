@@ -12,18 +12,28 @@ interface OwnProps {
   children: JSX.Element;
 }
 
+interface State {
+  hasError: boolean;
+}
+
 type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
 
-class ErrorsProviderCmp extends Component<Props> {
-  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
-  state = {
-    // eslint-disable-next-line react/no-unused-state
-    hasError: false,
-  };
+class ErrorsProviderCmp extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      hasError: false,
+    };
+  }
 
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility,@typescript-eslint/explicit-function-return-type
   static getDerivedStateFromError() {
     return { hasError: true };
+  }
+
+  public componentDidCatch(error: Error, info: object): void {
+    // eslint-disable-next-line
+    console.log(error, info);
   }
 
   public handleError = (error: Error): void => {
@@ -35,15 +45,15 @@ class ErrorsProviderCmp extends Component<Props> {
     enqueueSnackbar(errorMessage, { variant: 'info' });
   };
 
-  public componentDidCatch(error: Error, info: object): void {
-    // eslint-disable-next-line
-    console.log(error, info);
-  }
-
   public render(): JSX.Element {
     const { children } = this.props;
+    const { hasError } = this.state;
 
-    return <Provider value={{ handleError: this.handleError }}>{children}</Provider>;
+    return (
+      <Provider value={{ handleError: this.handleError }}>
+        {hasError ? <div>Something went wrong</div> : children}
+      </Provider>
+    );
   }
 }
 

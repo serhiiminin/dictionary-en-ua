@@ -3,7 +3,7 @@ import { RequestParams } from '../types';
 
 const addAuthTokenToRequest = (token: string, request?: RequestParams): RequestParams => ({
   ...request,
-  headers: Object.assign({}, request && request.headers, { authorization: `Bearer ${token}` }),
+  headers: { ...((request && request.headers) || {}), authorization: `Bearer ${token}` },
 });
 
 type FN = (...path: string[]) => string;

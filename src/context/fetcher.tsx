@@ -12,7 +12,6 @@ type Props = EI & LI & OwnProps;
 const { Provider, Consumer } = createContext({});
 
 type R = Promise<object | void>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type F = () => void;
 type H = (handler: F) => R;
 

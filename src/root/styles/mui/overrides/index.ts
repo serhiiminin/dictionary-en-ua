@@ -5,6 +5,7 @@ import icon from './icon';
 import input from './input';
 import menu from './menu';
 import progress from './progress';
+import ripple from './ripple';
 import select from './select';
 import snackbar from './snackbar';
 import tooltip from './tooltip';
@@ -19,6 +20,7 @@ export default {
   ...input(theme as Theme),
   ...menu(theme as Theme),
   ...progress(theme as Theme),
+  ...ripple(theme as Theme),
   ...select(),
   ...snackbar(theme as Theme),
   ...tooltip(theme as Theme),
