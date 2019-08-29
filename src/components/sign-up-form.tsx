@@ -4,15 +4,7 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import {
-  InputPassword,
-  ButtonSearch,
-  ButtonFacebook,
-  ButtonGoogle,
-  Form,
-  FormWrapper,
-  TitleBlock,
-} from '../components';
+import { InputPassword, ButtonSearch, ButtonFacebook, ButtonGoogle, Form, FormWrapper, TitleBlock } from './index';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';

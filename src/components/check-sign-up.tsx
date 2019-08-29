@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { InfoBlock } from '../components';
+import { InfoBlock } from './index';
 import { withAuth, AI } from '../context/auth';
 
 const CheckSignUp = ({ removeEmailConfirmation }: AI): JSX.Element => {

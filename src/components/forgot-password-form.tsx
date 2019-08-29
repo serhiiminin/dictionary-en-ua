@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as yup from 'yup';
-import { ButtonSearch, Form, FormWrapper, TitleBlock } from '../components';
+import { ButtonSearch, Form, FormWrapper, TitleBlock } from './index';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import { withAuth, AI } from '../context/auth';

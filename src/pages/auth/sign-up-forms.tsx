@@ -4,8 +4,15 @@ import { compose } from 'recompose';
 import styled, { keyframes } from 'styled-components';
 import routes from '../../routes';
 import { withAuth, AI } from '../../context/auth';
-import { TextCircle, PrivateRoute } from '../../components';
-import { ForgotPasswordForm, LogInForm, LogInSuggestion, SignUpForm, SignUpSuggestion } from '../../chunks';
+import {
+  TextCircle,
+  PrivateRoute,
+  ForgotPasswordForm,
+  LogInForm,
+  LogInSuggestion,
+  SignUpForm,
+  SignUpSuggestion,
+} from '../../components';
 import { ThemeProps } from '../../types';
 
 const SMALL_WIDTH = '40%';

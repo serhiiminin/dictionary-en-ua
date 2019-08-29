@@ -1,8 +1,14 @@
 import React from 'react';
 import { compose } from 'recompose';
 import { Route, Switch, withRouter, RouteProps } from 'react-router-dom';
-import { CheckSignUp, ConfirmRegistration } from '../../chunks';
-import { PrivateRouteLoggedOut, PrivateRouteLoggedIn, PrivateRoute, Container } from '../../components';
+import {
+  CheckSignUp,
+  ConfirmRegistration,
+  PrivateRouteLoggedOut,
+  PrivateRouteLoggedIn,
+  PrivateRoute,
+  Container,
+} from '../../components';
 import LogOutContainer from './log-out';
 import SignUpFormsRoute from './sign-up-forms';
 import { withAuth, AI } from '../../context/auth';

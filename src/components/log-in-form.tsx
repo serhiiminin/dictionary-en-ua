@@ -14,7 +14,7 @@ import {
   Form,
   FormWrapper,
   TitleBlock,
-} from '../components';
+} from './index';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';
