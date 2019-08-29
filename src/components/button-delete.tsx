@@ -14,7 +14,7 @@ const Button = styled((props: IconButtonProps): JSX.Element => <IconButton {...p
   }
 `;
 
-const DeleteIcon = styled(DeleteOutline)`
+const DeleteIcon = styled(props => <DeleteOutline {...props} />)`
   && {
     font-size: ${(props: ThemeProps): string => props.theme.main.fontSize.xl};
     &:hover {
