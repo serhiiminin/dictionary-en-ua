@@ -5,7 +5,7 @@ import { Zoom } from '@material-ui/core';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 import { SnackbarProvider } from 'notistack';
 import { PrivateRouteLoggedIn, Header } from '../components';
-import { AuthPage, MainPage, WordPage, PageNotFoundPage } from '../pages';
+import { AuthPage, MainPage, WordPage, NotFound } from '../pages';
 import StateProvider from '../context';
 import routes from '../routes';
 import config from '../config';
@@ -30,7 +30,7 @@ const Root = (): JSX.Element => (
                 <Route exact path={routes.root} component={MainPage} />
                 <Route path={routes.auth.root} component={AuthPage} />
                 <PrivateRouteLoggedIn path={routes.words.root} component={WordPage} />
-                <Route component={PageNotFoundPage} />
+                <Route component={NotFound} />
               </Switch>
             </>
           </StateProvider>
