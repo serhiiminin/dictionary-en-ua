@@ -1083,10 +1083,10 @@
   resolved "https://npm.globit.com/@hapi%2faddress/-/address-2.0.0.tgz#9f05469c88cb2fd3dcd624776b54ee95c312126a"
   integrity sha512-mV6T0IYqb0xL1UALPFplXYQmR0twnXG0M6jUswpquqT2sD12BOiCiLy3EvMp/Fy7s3DZElC4/aPjEjo2jeZpvw==
 
-"@hapi/boom@7.4.3":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@hapi/boom/-/boom-7.4.3.tgz#79ffed6ef8c625046a3bd069abed5a9d35fc50c1"
-  integrity sha512-3di+R+BcGS7HKy67Zi6mIga8orf67GdR0ubDEVBG1oqz3y9B70LewsuCMCSvWWLKlI6V1+266zqhYzjMrPGvZw==
+"@hapi/boom@7.4.7":
+  version "7.4.7"
+  resolved "https://registry.yarnpkg.com/@hapi/boom/-/boom-7.4.7.tgz#69c8a73348294eeb3b01e2d37fcf143cb32e1c54"
+  integrity sha512-MaZsoOZE4oFhYiohsDLxs5tubcFyqE2yIi9KEHWLTgCI6KKPoEf0EKHcaypUoxT4yIjULiTyd1tDkPtku7Ualg==
   dependencies:
     "@hapi/hoek" "8.x.x"
 
