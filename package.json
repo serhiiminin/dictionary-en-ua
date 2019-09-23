@@ -18,7 +18,7 @@
     "commit": "git-cz"
   },
   "dependencies": {
-    "@hapi/boom": "7.4.9",
+    "@hapi/boom": "7.4.10",
     "@material-ui/core": "4.4.3",
     "@material-ui/icons": "4.4.3",
     "@types/enzyme": "3.10.3",
