@@ -23,7 +23,6 @@ yarn-error.log*
 # custom
 .idea/
 .vscode/
-/src/api/credentials.js
 .cache/
 
 /scripts
