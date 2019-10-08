@@ -1,41 +1,34 @@
-import React, { ComponentType, createContext } from 'react';
-import { compose } from 'recompose';
-import { withErrors, EI } from './errors';
-import { withLoading, LI } from './loading';
+import React, { createContext, useContext } from 'react';
+import { ErrorsContext, EI } from './errors';
+import { LI, LoadingContext } from './loading';
 
 interface OwnProps {
   children: JSX.Element;
 }
 
-type Props = EI & LI & OwnProps;
+export interface FI {
+  handleFetch: (ln: string) => H;
+}
 
-const { Provider, Consumer } = createContext({});
+const FetcherContext = createContext({} as FI);
+
+type Props = EI & LI & OwnProps;
 
 type R = Promise<object | void>;
 type F = () => void;
 type H = (handler: F) => R;
 
-const FetcherProviderCmp = ({ children, handleError, startLoading, stopLoading }: Props): JSX.Element => {
+const FetcherProvider = ({ children }: Props): JSX.Element => {
+  const { handleError } = useContext(ErrorsContext);
+  const { startLoading, stopLoading } = useContext(LoadingContext);
+
   const handleFetch = (loadingName: string): H => (apiHandler: F): R =>
     Promise.resolve(startLoading(loadingName))
       .then(apiHandler)
       .catch(handleError)
       .finally((): void => stopLoading(loadingName));
 
-  return <Provider value={{ handleFetch }}>{children}</Provider>;
+  return <FetcherContext.Provider value={{ handleFetch }}>{children}</FetcherContext.Provider>;
 };
 
-const FetcherProvider = compose<Props, OwnProps>(
-  withErrors,
-  withLoading
-)(FetcherProviderCmp);
-
-export interface FI {
-  handleFetch: (ln: string) => H;
-}
-
-const withFetcher = <T extends {}>(Cmp: ComponentType<T>): ((props: T & FI) => JSX.Element) => (
-  props: T & FI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { FetcherProvider, withFetcher };
+export { FetcherProvider, FetcherContext };

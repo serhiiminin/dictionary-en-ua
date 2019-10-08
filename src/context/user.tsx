@@ -1,11 +1,22 @@
-import React, { ComponentType, createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { compose } from 'recompose';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { createApiUser } from '../api';
 import LN from '../constants/loading-names';
-import { withAuth, AI } from './auth';
-import { withFetcher, FI } from './fetcher';
+import { AI, AuthContext } from './auth';
+import { FetcherContext, FI } from './fetcher';
 import { User } from '../types';
+
+export interface UI {
+  user: User;
+  cleanUser(): void;
+  handleFetchUser(id: string): void;
+  handleCreateUser(user: User): void;
+  handleEditUser(user: User): void;
+  handleDeleteUser(user: string): void;
+}
+
+const UserContext = createContext({} as UI);
 
 interface OwnProps {
   children: JSX.Element;
@@ -13,9 +24,9 @@ interface OwnProps {
 
 type Props = AI & FI & WithSnackbarProps & OwnProps;
 
-const { Provider, Consumer } = createContext({});
-
-const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: Props): JSX.Element => {
+const UserProviderCmp = ({ enqueueSnackbar, children }: Props): JSX.Element => {
+  const { handleFetch } = useContext(FetcherContext);
+  const { tokenData } = useContext(AuthContext);
   const [user, setUser] = useState<User>({});
   const { token } = tokenData;
   const apiUser = createApiUser(token);
@@ -61,7 +72,7 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
   };
 
   return (
-    <Provider
+    <UserContext.Provider
       value={{
         user,
         cleanUser,
@@ -72,27 +83,10 @@ const UserProviderCmp = ({ tokenData, handleFetch, enqueueSnackbar, children }: 
       }}
     >
       {children}
-    </Provider>
+    </UserContext.Provider>
   );
 };
 
-const UserProvider = compose<Props, OwnProps>(
-  withFetcher,
-  withAuth,
-  withSnackbar
-)(UserProviderCmp);
+const UserProvider = compose<Props, OwnProps>(withSnackbar)(UserProviderCmp);
 
-interface UI {
-  user: User;
-  cleanUser(): void;
-  handleFetchUser(id: string): void;
-  handleCreateUser(user: User): void;
-  handleEditUser(user: User): void;
-  handleDeleteUser(user: User): void;
-}
-
-const withUser = <T extends {}>(Cmp: ComponentType<T>): ((props: T & UI) => JSX.Element) => (
-  props: T & UI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { UserProvider, withUser };
+export { UserProvider, UserContext };

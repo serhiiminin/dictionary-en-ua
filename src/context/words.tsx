@@ -1,12 +1,31 @@
-import React, { ComponentType, createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { compose } from 'recompose';
 import { createApiWord, apiGif } from '../api';
 import LN from '../constants/loading-names';
-import { AI, withAuth } from './auth';
-import { FI, withFetcher } from './fetcher';
+import { AI, AuthContext } from './auth';
+import { FI, FetcherContext } from './fetcher';
 import { Word, Gif } from '../types';
-import { withSearchParams, SI } from './search-params';
+import { SearchParamsContext, SI } from './search-params';
+
+export interface WI {
+  wordItem: Word;
+  wordsList: Word[];
+  wordsCount: number;
+  cleanWord(): void;
+  cleanWordsList(): void;
+  handleFetchWord(id: string): void;
+  handleFetchWordsList(): void;
+  handleFetchWordsToLearn(): void;
+  handleEditWord(w: Word): void;
+  handleDeleteWord(id: string): void;
+  handleLearnWord(id: string): void;
+  handleRelearnWord(id: string): void;
+  handleCreateWord(): void;
+  handleSearchWord(word: string): void;
+}
+
+const WordsContext = createContext({} as WI);
 
 const getRandomGif = (gifList: Gif[] = []): string => {
   const gifData = gifList || [];
@@ -21,8 +40,6 @@ interface OwnProps {
 
 type Props = SI & FI & AI & WithSnackbarProps & OwnProps;
 
-const { Provider, Consumer } = createContext({});
-
 const initialWord = {
   _id: '',
   created: '',
@@ -30,7 +47,10 @@ const initialWord = {
 };
 
 const WordsProviderCmp = (props: Props): JSX.Element => {
-  const { handleFetch, tokenData, enqueueSnackbar, children, query } = props;
+  const { enqueueSnackbar, children } = props;
+  const { tokenData } = useContext(AuthContext);
+  const { query } = useContext(SearchParamsContext);
+  const { handleFetch } = useContext(FetcherContext);
   const { token, _id: ownerId } = tokenData;
   const apiWord = createApiWord(token);
   const [wordsList, setWordsList] = useState<Word[]>([]);
@@ -56,11 +76,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         const { filter, ...sortParams } = query;
         const { items, count } = await apiWord.getList({
-          query: filter
-            ? {
-                word: { $regex: filter },
-              }
-            : {},
+          query: filter ? { word: { $regex: filter } } : {},
           ...sortParams,
           ownerId,
         });
@@ -145,7 +161,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
   };
 
   return (
-    <Provider
+    <WordsContext.Provider
       value={{
         wordItem,
         wordsList,
@@ -164,36 +180,10 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
       }}
     >
       {children}
-    </Provider>
+    </WordsContext.Provider>
   );
 };
 
-const WordsProvider = compose<Props, OwnProps>(
-  withSearchParams,
-  withFetcher,
-  withAuth,
-  withSnackbar
-)(WordsProviderCmp);
+const WordsProvider = compose<Props, OwnProps>(withSnackbar)(WordsProviderCmp);
 
-export interface WI {
-  wordItem: Word;
-  wordsList: Word[];
-  wordsCount: number;
-  cleanWord(): void;
-  cleanWordsList(): void;
-  handleFetchWord(id: string): void;
-  handleFetchWordsList(): void;
-  handleFetchWordsToLearn(): void;
-  handleEditWord(w: Word): void;
-  handleDeleteWord(id: string): void;
-  handleLearnWord(): void;
-  handleRelearnWord(id: string): void;
-  handleCreateWord(): void;
-  handleSearchWord(word: string): void;
-}
-
-const withWords = <T extends {}>(Cmp: ComponentType<T>): ((props: T & WI) => JSX.Element) => (
-  props: T & WI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { WordsProvider, withWords };
+export { WordsProvider, WordsContext };

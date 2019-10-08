@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { compose } from 'recompose';
+import React, { useContext, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import styled from 'styled-components';
-import { withLoading, LI } from '../../context/loading';
-import { withWords, WI } from '../../context/words';
+import { LoadingContext } from '../../context/loading';
+import { WordsContext } from '../../context/words';
 import LN from '../../constants/loading-names';
 import { TitleBlock, InputWithSearch, WordListItem, WordList, Container, Select, ButtonLink } from '../../components';
-import { withSearchParams, SI } from '../../context/search-params';
+import { SearchParamsContext } from '../../context/search-params';
 import routes from '../../routes';
 
 const SELECT_CONFIG = [{ value: 'created', title: 'most recent' }, { value: 'word', title: 'alphabet' }];
@@ -17,18 +16,10 @@ const WrapperTools = styled.div`
   box-shadow: 6px 6px 40px rgba(123, 123, 123, 0.1);
 `;
 
-type Props = LI & WI & SI;
-
-const WordsList = (props: Props): JSX.Element => {
-  const {
-    wordsList,
-    checkIsLoading,
-    handleDeleteWord,
-    handleFetchWordsList,
-    cleanWordsList,
-    searchParams,
-    setNewSearchParams,
-  } = props;
+const WordsList = (): JSX.Element => {
+  const { searchParams, setNewSearchParams } = useContext(SearchParamsContext);
+  const { checkIsLoading } = useContext(LoadingContext);
+  const { wordsList, handleDeleteWord, handleFetchWordsList, cleanWordsList } = useContext(WordsContext);
   const isLoading = checkIsLoading(LN.words.list);
 
   useEffect((): (() => void) => {
@@ -100,8 +91,4 @@ const WordsList = (props: Props): JSX.Element => {
   );
 };
 
-export default compose<Props, {}>(
-  withLoading,
-  withSearchParams,
-  withWords
-)(WordsList);
+export default WordsList;

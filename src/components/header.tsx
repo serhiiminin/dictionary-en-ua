@@ -1,11 +1,9 @@
-import React from 'react';
-import { compose } from 'recompose';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ButtonMenu from './button-menu';
 import routes from '../routes';
-import { withAuth, AI } from '../context/auth';
-import { withLoading, LI } from '../context/loading';
+import { AuthContext } from '../context/auth';
 import { ReactComponent as Logo } from '../images/logo.svg';
 import { ThemeProps } from '../types';
 import Container from './container';
@@ -45,9 +43,8 @@ interface OwnProps {
   children?: React.ReactNode;
 }
 
-type Props = AI & LI & OwnProps;
-
-const Header = ({ isLoggedIn }: Props): JSX.Element => {
+const Header = (): JSX.Element => {
+  const { isLoggedIn } = useContext(AuthContext);
   const authButtonData = isLoggedIn ? buttonsData.signOut : buttonsData.signIn;
 
   return (
@@ -67,7 +64,4 @@ const Header = ({ isLoggedIn }: Props): JSX.Element => {
   );
 };
 
-export default compose<Props, OwnProps>(
-  withLoading,
-  withAuth
-)(Header);
+export default Header;

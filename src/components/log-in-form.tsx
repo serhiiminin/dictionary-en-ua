@@ -1,5 +1,4 @@
-import React from 'react';
-import { compose } from 'recompose';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { GoogleLogin } from 'react-google-login';
@@ -19,10 +18,10 @@ import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';
 import routes from '../routes';
-import { withAuth, AI } from '../context/auth';
-import { withLoading, LI } from '../context/loading';
+import { AuthContext } from '../context/auth';
+import { LoadingContext } from '../context/loading';
+import { ErrorsContext } from '../context/errors';
 import { ThemeProps } from '../types';
-import { withErrors, EI } from '../context/errors';
 
 const SubmitBlock = styled.div`
   display: flex;
@@ -58,13 +57,14 @@ const validationSchema = yup.object().shape({
 
 const fields = [{ name: 'email', label: 'Email' }, { name: 'password', label: 'Password', component: InputPassword }];
 
-type Props = AI & LI & EI;
 interface RenderProps {
   onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
 
-const LoginForm = (props: Props): JSX.Element => {
-  const { handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn, checkIsLoading, handleError } = props;
+const LoginForm = (): JSX.Element => {
+  const { handleBasicLogIn, handleGoogleLogIn, handleFacebookLogIn } = useContext(AuthContext);
+  const { checkIsLoading } = useContext(LoadingContext);
+  const { handleError } = useContext(ErrorsContext);
   const isLoading = checkIsLoading(LN.auth.logIn);
 
   return (
@@ -106,8 +106,4 @@ const LoginForm = (props: Props): JSX.Element => {
   );
 };
 
-export default compose<Props, {}>(
-  withAuth,
-  withErrors,
-  withLoading
-)(LoginForm);
+export default LoginForm;

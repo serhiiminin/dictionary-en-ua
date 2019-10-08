@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { InfoBlock } from './index';
-import { withAuth, AI } from '../context/auth';
+import { AuthContext } from '../context/auth';
 
-const CheckSignUp = ({ removeEmailConfirmation }: AI): JSX.Element => {
+const CheckSignUp = (): JSX.Element => {
+  const { removeEmailConfirmation } = useContext(AuthContext);
   useEffect((): (() => void) => {
     return removeEmailConfirmation;
   }, []);
   return <InfoBlock title="Success" description="Check your email to confirm registration!" />;
 };
 
-export default withAuth(CheckSignUp);
+export default CheckSignUp;

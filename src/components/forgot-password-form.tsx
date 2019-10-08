@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as yup from 'yup';
 import { ButtonSearch, Form, FormWrapper, TitleBlock } from './index';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
-import { withAuth, AI } from '../context/auth';
-import { withLoading, LI } from '../context/loading';
+import { AuthContext, AI } from '../context/auth';
+import { LoadingContext, LI } from '../context/loading';
 
 const initialValues = { email: '' };
 
@@ -21,7 +21,9 @@ const fields = [{ name: 'email', label: 'Email' }];
 
 type Props = RouteComponentProps & AI & LI;
 
-const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }: Props): JSX.Element => {
+const ForgotPasswordForm = (): JSX.Element => {
+  const { handleBasicForgotPassword } = useContext(AuthContext);
+  const { checkIsLoading } = useContext(LoadingContext);
   const isLoading = checkIsLoading(LN.auth.logIn);
 
   return (
@@ -47,8 +49,4 @@ const ForgotPasswordForm = ({ handleBasicForgotPassword, checkIsLoading }: Props
   );
 };
 
-export default compose<Props, {}>(
-  withRouter,
-  withAuth,
-  withLoading
-)(ForgotPasswordForm);
+export default compose<Props, {}>(withRouter)(ForgotPasswordForm);

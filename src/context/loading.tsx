@@ -1,10 +1,16 @@
-import React, { ComponentType, createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
+
+export interface LI {
+  checkIsLoading(...names: string[]): boolean;
+  startLoading(name: string): void;
+  stopLoading(name: string): void;
+}
+
+const LoadingContext = createContext({} as LI);
 
 interface Props {
   children: JSX.Element;
 }
-
-const { Provider, Consumer } = createContext({});
 
 interface State {
   [propName: string]: number;
@@ -34,7 +40,7 @@ const LoadingProvider = ({ children }: Props): JSX.Element => {
     );
 
   return (
-    <Provider
+    <LoadingContext.Provider
       value={{
         checkIsLoading,
         startLoading: handleStartLoading,
@@ -42,18 +48,8 @@ const LoadingProvider = ({ children }: Props): JSX.Element => {
       }}
     >
       {children}
-    </Provider>
+    </LoadingContext.Provider>
   );
 };
 
-export interface LI {
-  checkIsLoading(...names: string[]): boolean;
-  startLoading(name: string): void;
-  stopLoading(name: string): void;
-}
-
-const withLoading = <T extends {}>(Cmp: ComponentType<T>): ((props: T & LI) => JSX.Element) => (
-  props: T & LI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { LoadingProvider, withLoading };
+export { LoadingProvider, LoadingContext };

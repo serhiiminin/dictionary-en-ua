@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as yup from 'yup';
-import { compose } from 'recompose';
 import styled from 'styled-components';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { InputPassword, ButtonSearch, ButtonFacebook, ButtonGoogle, Form, FormWrapper, TitleBlock } from './index';
+import { InputPassword, ButtonSearch, ButtonFacebook, ButtonGoogle, Form, FormWrapper, TitleBlock } from '.';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';
-import { withAuth, AI } from '../context/auth';
-import { withErrors, EI } from '../context/errors';
-import { withLoading, LI } from '../context/loading';
+import { AuthContext } from '../context/auth';
+import { ErrorsContext } from '../context/errors';
+import { LoadingContext } from '../context/loading';
 
 const SubmitWrapper = styled.div`
   display: flex;
@@ -49,13 +48,14 @@ const fields = [
   { name: 'passwordConfirm', label: 'Repeat password', component: InputPassword },
 ];
 
-type Props = AI & EI & LI;
 interface RenderProps {
   onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
 
-const SignUpForm = (props: Props): JSX.Element => {
-  const { handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp, checkIsLoading, handleError } = props;
+const SignUpForm = (): JSX.Element => {
+  const { handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp } = useContext(AuthContext);
+  const { handleError } = useContext(ErrorsContext);
+  const { checkIsLoading } = useContext(LoadingContext);
   const isLoading = checkIsLoading(LN.auth.signUp);
 
   return (
@@ -92,8 +92,4 @@ const SignUpForm = (props: Props): JSX.Element => {
   );
 };
 
-export default compose<Props, {}>(
-  withAuth,
-  withErrors,
-  withLoading
-)(SignUpForm);
+export default SignUpForm;

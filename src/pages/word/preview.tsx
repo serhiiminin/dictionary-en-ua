@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { compose } from 'recompose';
-import { withLoading, LI } from '../../context/loading';
-import { withWords, WI } from '../../context/words';
+import { WordsContext } from '../../context/words';
 
 interface Match {
   id: string;
 }
 
-type Props = RouteComponentProps<Match> & LI & WI;
+type Props = RouteComponentProps<Match>;
 
 const WordPreviewContainer = (props: Props): JSX.Element => {
-  const { wordItem, handleFetchWord, cleanWord, match } = props;
+  const { wordItem, handleFetchWord, cleanWord } = useContext(WordsContext);
+  const { match } = props;
   const { word, transcription, gif } = wordItem;
   const { id } = match.params;
   useEffect((): (() => void) => {
@@ -28,8 +27,4 @@ const WordPreviewContainer = (props: Props): JSX.Element => {
   );
 };
 
-export default compose<Props, {}>(
-  withRouter,
-  withLoading,
-  withWords
-)(WordPreviewContainer);
+export default withRouter(WordPreviewContainer);

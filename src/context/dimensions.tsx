@@ -1,4 +1,4 @@
-import React, { ComponentType, createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 interface Dimensions {
   width: number;
@@ -11,7 +11,7 @@ export interface DI {
 
 const getWindowDimensions = (): Dimensions => ({ width: window.innerWidth, height: window.innerHeight });
 
-const { Provider, Consumer } = createContext<DI>({ dimensions: getWindowDimensions() });
+const DimensionsContext = createContext<DI>({ dimensions: getWindowDimensions() });
 
 interface Props {
   children: JSX.Element;
@@ -29,11 +29,7 @@ const DimensionsProvider = ({ children }: Props): JSX.Element => {
     return (): void => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return <Provider value={{ dimensions }}>{children}</Provider>;
+  return <DimensionsContext.Provider value={{ dimensions }}>{children}</DimensionsContext.Provider>;
 };
 
-const withDimensions = <T extends {}>(Cmp: ComponentType<T>): ((props: T & DI) => JSX.Element) => (
-  props: T & DI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { DimensionsProvider, withDimensions };
+export { DimensionsProvider, DimensionsContext };

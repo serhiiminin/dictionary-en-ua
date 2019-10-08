@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { withRouter, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
 import styled, { keyframes } from 'styled-components';
 import routes from '../../routes';
-import { withAuth, AI } from '../../context/auth';
+import { AuthContext } from '../../context/auth';
 import {
   TextCircle,
   PrivateRoute,
@@ -83,7 +83,7 @@ interface OwnProps {
   path: string;
 }
 
-type Props = AI & RouteComponentProps & OwnProps;
+type Props = RouteComponentProps & OwnProps;
 
 const SLIDING_TIME = 500;
 
@@ -127,8 +127,8 @@ const SignUpForms = ({ location }: Props): JSX.Element => {
 
 const Component = compose<Props, OwnProps>(withRouter)(SignUpForms);
 
-export default compose<Props, OwnProps>(withAuth)(
-  ({ isLoggedIn, path }: Props): JSX.Element => (
-    <PrivateRoute path={path} component={Component} pathname={routes.auth.logIn} condition={isLoggedIn} />
-  )
-);
+export default ({ path }: Props): JSX.Element => {
+  const { isLoggedIn } = useContext(AuthContext);
+
+  return <PrivateRoute path={path} component={Component} pathname={routes.auth.logIn} condition={isLoggedIn} />;
+};

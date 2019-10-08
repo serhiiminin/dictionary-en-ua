@@ -1,10 +1,16 @@
-import React, { ComponentType, createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { parseSearch, mergeSearch, joinUrl } from 'url-joiner';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { QueryParams, SearchParams } from '../types';
 
-const { Provider, Consumer } = createContext({});
+export interface SI {
+  query: QueryParams;
+  searchParams: SearchParams;
+  setNewSearchParams(path: string, params: object): void;
+}
+
+const SearchParamsContext = createContext<Partial<SI>>({});
 
 const INITIAL_SORT_DATA = {
   sortBy: 'created',
@@ -57,7 +63,7 @@ const SearchParamsProviderCmp = ({ children, location, history }: Props): JSX.El
   };
 
   return (
-    <Provider
+    <SearchParamsContext.Provider
       value={{
         query,
         searchParams,
@@ -65,20 +71,10 @@ const SearchParamsProviderCmp = ({ children, location, history }: Props): JSX.El
       }}
     >
       {children}
-    </Provider>
+    </SearchParamsContext.Provider>
   );
 };
 
 const SearchParamsProvider = compose<Props, OwnProps>(withRouter)(SearchParamsProviderCmp);
 
-export interface SI {
-  query: QueryParams;
-  searchParams: SearchParams;
-  setNewSearchParams(path: string, params: object): void;
-}
-
-const withSearchParams = <T extends {}>(Cmp: ComponentType<T>): ((props: T & SI) => JSX.Element) => (
-  props: T & SI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { SearchParamsProvider, withSearchParams };
+export { SearchParamsProvider, SearchParamsContext };

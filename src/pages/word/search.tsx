@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
 import { TextField, LinearProgress } from '@material-ui/core';
 import { parseSearch, joinUrl, mergeSearch } from 'url-joiner';
 import styled from 'styled-components';
-import { compose } from 'recompose';
-import { withLoading, LI } from '../../context/loading';
-import { withWords, WI } from '../../context/words';
+import { LoadingContext } from '../../context/loading';
+import { WordsContext } from '../../context/words';
 import { BlockSearch, ButtonSearch, TitleBlock } from '../../components';
 import LN from '../../constants/loading-names';
 import routes from '../../routes';
@@ -18,10 +17,10 @@ const SearchBlock = styled.div`
   gap: ${(props: ThemeProps): string => props.theme.main.space.sm};
 `;
 
-type Props = RouteComponentProps & LI & WI;
-
-const SearchWordContainer = (props: Props): JSX.Element => {
-  const { wordItem, checkIsLoading, handleCreateWord, location, handleSearchWord, cleanWord } = props;
+const SearchWordContainer = (props: RouteComponentProps): JSX.Element => {
+  const { checkIsLoading } = useContext(LoadingContext);
+  const { wordItem, handleCreateWord, handleSearchWord, cleanWord } = useContext(WordsContext);
+  const { location } = props;
   const { options } = wordItem;
   const isLoading = checkIsLoading(LN.words.search);
   const handleSearch = (): void => {
@@ -84,8 +83,4 @@ const SearchWordContainer = (props: Props): JSX.Element => {
   );
 };
 
-export default compose<Props, {}>(
-  withRouter,
-  withLoading,
-  withWords
-)(SearchWordContainer);
+export default withRouter(SearchWordContainer);

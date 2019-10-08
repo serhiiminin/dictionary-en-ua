@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
-import { compose } from 'recompose';
+import { useState, useEffect, useContext } from 'react';
 import { joinUrl, mergeSearch } from 'url-joiner';
 import routes from '../routes';
-import { withSearchParams, SI } from '../context/search-params';
+import { SearchParamsContext, SI } from '../context/search-params';
 
 interface OwnProps {
   children(props: {
@@ -15,7 +14,8 @@ interface OwnProps {
 
 type Props = SI & OwnProps;
 
-const BlockSearch = ({ setNewSearchParams, searchParams, children }: Props): JSX.Element => {
+const BlockSearch = ({ children }: Props): JSX.Element => {
+  const { setNewSearchParams, searchParams } = useContext(SearchParamsContext);
   const [searchValue, setSearchValue] = useState<string>('');
 
   useEffect((): void => {
@@ -47,4 +47,4 @@ const BlockSearch = ({ setNewSearchParams, searchParams, children }: Props): JSX
   });
 };
 
-export default compose<Props, OwnProps>(withSearchParams)(BlockSearch);
+export default BlockSearch;

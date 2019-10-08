@@ -1,14 +1,13 @@
-import React, { ComponentType, createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { joinPath } from 'url-joiner';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
-import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
 import LN from '../constants/loading-names';
 import routes from '../routes';
-import { withFetcher, FI } from './fetcher';
-import { withCookies, CI } from './cookies';
+import { FetcherContext, FI } from './fetcher';
+import { CI, CookiesContext } from './cookies';
 import config from '../config';
 import { FacebookToken, GoogleToken, Token, FormData } from '../types';
 
@@ -16,12 +15,29 @@ interface OwnProps {
   children: JSX.Element;
 }
 
+export interface AI {
+  tokenData: Token;
+  isLoggedIn: boolean;
+  isSignUpApplied: boolean;
+  handleBasicLogIn(fd: FormData): void;
+  handleBasicSignUp(fd: FormData): void;
+  handleConfirmBasicSignUp(t: string): void;
+  handleBasicForgotPassword(fd: FormData): void;
+  handleGoogleLogIn(t: GoogleToken): void;
+  handleGoogleSignUp(t: GoogleToken): void;
+  handleFacebookLogIn(t: FacebookToken): void;
+  handleFacebookSignUp(t: FacebookToken): void;
+  handleLogout(): void;
+  setEmailConfirmation(): void;
+  removeEmailConfirmation(): void;
+}
+
 type Props = FI & CI & RouteComponentProps & WithSnackbarProps & OwnProps;
+
+const AuthContext = createContext({} as AI);
 
 const ACCESS_TOKEN = 'access_token';
 const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
-
-const { Provider, Consumer } = createContext({});
 
 const generateAppEndpoint = (path: string): string =>
   window ? joinPath(window.location.origin, config.publicUrl, path) : '';
@@ -34,9 +50,11 @@ const initialToken = {
 };
 
 const AuthProviderCmp = (props: Props): JSX.Element => {
-  const { handleFetch, enqueueSnackbar, history, children, getFromCookies, setToCookies, removeFromCookies } = props;
-  const [tokenData, setTokenData] = useState<Token>(getFromCookies(ACCESS_TOKEN) || initialToken);
+  const { getFromCookies, setToCookies, removeFromCookies } = useContext(CookiesContext);
+  const { handleFetch } = useContext(FetcherContext);
   const [isSignUpApplied, setIsSignUpApplied] = useState<boolean>(false);
+  const [tokenData, setTokenData] = useState<Token>(getFromCookies(ACCESS_TOKEN) || initialToken);
+  const { enqueueSnackbar, history, children } = props;
   const isLoggedIn = Boolean(tokenData.expiresAt - Date.now() > 0);
 
   const handleSuccessRedirect = (): void => {
@@ -117,7 +135,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleGoogleLogIn = (googleToken: GoogleToken = {}): void => {
+  const handleGoogleLogIn = (googleToken: GoogleToken): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsGoogleAuth.logIn<Token>(googleToken.accessToken || '');
@@ -128,7 +146,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleGoogleSignUp = (googleToken: GoogleToken = {}): void => {
+  const handleGoogleSignUp = (googleToken: GoogleToken): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsGoogleAuth.signUp<Token>(googleToken.accessToken || '');
@@ -139,7 +157,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleFacebookLogIn = (facebookToken: FacebookToken = {}): void => {
+  const handleFacebookLogIn = (facebookToken: FacebookToken): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsFacebookAuth.logIn<Token>(facebookToken.accessToken || '');
@@ -166,7 +184,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   };
 
   return (
-    <Provider
+    <AuthContext.Provider
       value={{
         tokenData,
         isLoggedIn,
@@ -185,36 +203,13 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
       }}
     >
       {children}
-    </Provider>
+    </AuthContext.Provider>
   );
 };
 
 const AuthProvider = compose<Props, OwnProps>(
-  withCookies,
   withRouter,
-  withFetcher,
   withSnackbar
 )(AuthProviderCmp);
 
-export interface AI {
-  tokenData: Token;
-  isLoggedIn: boolean;
-  isSignUpApplied: boolean;
-  handleBasicLogIn(fd: FormData): void;
-  handleBasicSignUp(fd: FormData): void;
-  handleConfirmBasicSignUp(t: string): void;
-  handleBasicForgotPassword(fd: FormData): void;
-  handleGoogleLogIn(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
-  handleGoogleSignUp(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
-  handleFacebookLogIn(t: FacebookToken): void;
-  handleFacebookSignUp(t: FacebookToken): void;
-  handleLogout(): void;
-  setEmailConfirmation(): void;
-  removeEmailConfirmation(): void;
-}
-
-const withAuth = <T extends {}>(Cmp: ComponentType<T>): ((props: T & AI) => JSX.Element) => (
-  props: T & AI
-): JSX.Element => <Consumer>{(context: {}): JSX.Element => <Cmp {...context} {...props} />}</Consumer>;
-
-export { AuthProvider, withAuth };
+export { AuthProvider, AuthContext };
