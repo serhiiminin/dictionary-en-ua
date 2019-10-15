@@ -18,7 +18,7 @@ export interface EI {
   handleError(error: Error): void;
 }
 
-const ErrorsContext = createContext<Partial<EI>>({});
+const ErrorsContext = createContext({} as EI);
 
 type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
 

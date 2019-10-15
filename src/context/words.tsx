@@ -3,10 +3,10 @@ import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { compose } from 'recompose';
 import { createApiWord, apiGif } from '../api';
 import LN from '../constants/loading-names';
-import { AI, AuthContext } from './auth';
-import { FI, FetcherContext } from './fetcher';
+import { AuthContext } from './auth';
+import { FetcherContext } from './fetcher';
 import { Word, Gif } from '../types';
-import { SearchParamsContext, SI } from './search-params';
+import { SearchParamsContext } from './search-params';
 
 export interface WI {
   wordItem: Word;
@@ -38,7 +38,7 @@ interface OwnProps {
   children: JSX.Element;
 }
 
-type Props = SI & FI & AI & WithSnackbarProps & OwnProps;
+type Props = WithSnackbarProps & OwnProps;
 
 const initialWord = {
   _id: '',

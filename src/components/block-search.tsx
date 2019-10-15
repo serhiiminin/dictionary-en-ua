@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { joinUrl, mergeSearch } from 'url-joiner';
 import routes from '../routes';
-import { SearchParamsContext, SI } from '../context/search-params';
+import { SearchParamsContext } from '../context/search-params';
 
-interface OwnProps {
+interface Props {
   children(props: {
     linkTo: string;
     searchValue: string;
@@ -11,8 +11,6 @@ interface OwnProps {
     handleOnEnterPress(event: React.KeyboardEvent<HTMLDivElement>): void;
   }): JSX.Element;
 }
-
-type Props = SI & OwnProps;
 
 const BlockSearch = ({ children }: Props): JSX.Element => {
   const { setNewSearchParams, searchParams } = useContext(SearchParamsContext);

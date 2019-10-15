@@ -3,8 +3,8 @@ import { compose } from 'recompose';
 import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { createApiUser } from '../api';
 import LN from '../constants/loading-names';
-import { AI, AuthContext } from './auth';
-import { FetcherContext, FI } from './fetcher';
+import { AuthContext } from './auth';
+import { FetcherContext } from './fetcher';
 import { User } from '../types';
 
 export interface UI {
@@ -22,7 +22,7 @@ interface OwnProps {
   children: JSX.Element;
 }
 
-type Props = AI & FI & WithSnackbarProps & OwnProps;
+type Props = WithSnackbarProps & OwnProps;
 
 const UserProviderCmp = ({ enqueueSnackbar, children }: Props): JSX.Element => {
   const { handleFetch } = useContext(FetcherContext);

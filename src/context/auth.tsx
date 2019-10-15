@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { joinPath } from 'url-joiner';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -6,14 +7,18 @@ import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
 import LN from '../constants/loading-names';
 import routes from '../routes';
-import { FetcherContext, FI } from './fetcher';
-import { CI, CookiesContext } from './cookies';
+import { FetcherContext } from './fetcher';
+import { CookiesContext } from './cookies';
 import config from '../config';
-import { FacebookToken, GoogleToken, Token, FormData } from '../types';
+import { FacebookToken, Token, FormData } from '../types';
 
 interface OwnProps {
   children: JSX.Element;
 }
+
+type GoogleResponse = (GoogleLoginResponse | GoogleLoginResponseOffline) & {
+  accessToken: string;
+};
 
 export interface AI {
   tokenData: Token;
@@ -23,8 +28,8 @@ export interface AI {
   handleBasicSignUp(fd: FormData): void;
   handleConfirmBasicSignUp(t: string): void;
   handleBasicForgotPassword(fd: FormData): void;
-  handleGoogleLogIn(t: GoogleToken): void;
-  handleGoogleSignUp(t: GoogleToken): void;
+  handleGoogleLogIn(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
+  handleGoogleSignUp(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
   handleFacebookLogIn(t: FacebookToken): void;
   handleFacebookSignUp(t: FacebookToken): void;
   handleLogout(): void;
@@ -32,7 +37,7 @@ export interface AI {
   removeEmailConfirmation(): void;
 }
 
-type Props = FI & CI & RouteComponentProps & WithSnackbarProps & OwnProps;
+type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
 
 const AuthContext = createContext({} as AI);
 
@@ -42,18 +47,11 @@ const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
 const generateAppEndpoint = (path: string): string =>
   window ? joinPath(window.location.origin, config.publicUrl, path) : '';
 
-const initialToken = {
-  _id: '',
-  token: '',
-  email: '',
-  expiresAt: 0,
-};
-
 const AuthProviderCmp = (props: Props): JSX.Element => {
   const { getFromCookies, setToCookies, removeFromCookies } = useContext(CookiesContext);
   const { handleFetch } = useContext(FetcherContext);
   const [isSignUpApplied, setIsSignUpApplied] = useState<boolean>(false);
-  const [tokenData, setTokenData] = useState<Token>(getFromCookies(ACCESS_TOKEN) || initialToken);
+  const [tokenData, setTokenData] = useState(getFromCookies(ACCESS_TOKEN));
   const { enqueueSnackbar, history, children } = props;
   const isLoggedIn = Boolean(tokenData.expiresAt - Date.now() > 0);
 
@@ -70,7 +68,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   };
 
   const handleCleanToken = (): void => {
-    setTokenData(initialToken);
+    setTokenData(null);
     removeFromCookies(ACCESS_TOKEN);
   };
 
@@ -135,7 +133,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleGoogleLogIn = (googleToken: GoogleToken): void => {
+  const handleGoogleLogIn = (googleToken: GoogleResponse): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsGoogleAuth.logIn<Token>(googleToken.accessToken || '');
@@ -146,7 +144,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleGoogleSignUp = (googleToken: GoogleToken): void => {
+  const handleGoogleSignUp = (googleToken: GoogleResponse): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsGoogleAuth.signUp<Token>(googleToken.accessToken || '');

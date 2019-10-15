@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react';
-import { ErrorsContext, EI } from './errors';
-import { LI, LoadingContext } from './loading';
+import { ErrorsContext } from './errors';
+import { LoadingContext } from './loading';
 
-interface OwnProps {
+interface Props {
   children: JSX.Element;
 }
 
@@ -11,8 +11,6 @@ export interface FI {
 }
 
 const FetcherContext = createContext({} as FI);
-
-type Props = EI & LI & OwnProps;
 
 type R = Promise<object | void>;
 type F = () => void;
