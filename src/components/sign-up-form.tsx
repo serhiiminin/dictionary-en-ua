@@ -3,19 +3,19 @@ import * as yup from 'yup';
 import styled from 'styled-components';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { InputPassword, ButtonSearch, ButtonFacebook, ButtonGoogle, Form, FormWrapper, TitleBlock } from '.';
+import InputPassword from './input-password';
+import ButtonSearch from './button-search';
+import ButtonFacebook from './button-facebook';
+import ButtonGoogle from './button-google';
+import Form from './form';
+import FormWrapper from './form-wrapper';
+import TitleBlock from './title-block';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';
 import { AuthContext } from '../context/auth';
 import { ErrorsContext } from '../context/errors';
 import { LoadingContext } from '../context/loading';
-
-const SubmitWrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-`;
 
 const initialValues = {
   name: '',
@@ -51,6 +51,12 @@ const fields = [
 interface RenderProps {
   onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
 }
+
+const SubmitWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
 
 const SignUpForm = (): JSX.Element => {
   const { handleBasicSignUp, handleGoogleSignUp, handleFacebookSignUp } = useContext(AuthContext);

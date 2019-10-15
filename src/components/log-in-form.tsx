@@ -4,16 +4,14 @@ import * as yup from 'yup';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import styled from 'styled-components';
-import {
-  InputPassword,
-  BlockSocial,
-  ButtonSearch,
-  ButtonFacebook,
-  ButtonGoogle,
-  Form,
-  FormWrapper,
-  TitleBlock,
-} from './index';
+import InputPassword from './input-password';
+import BlockSocial from './block-social';
+import ButtonSearch from './button-search';
+import ButtonFacebook from './button-facebook';
+import ButtonGoogle from './button-google';
+import Form from './form';
+import FormWrapper from './form-wrapper';
+import TitleBlock from './title-block';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
 import config from '../config';

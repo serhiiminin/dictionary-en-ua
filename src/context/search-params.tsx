@@ -10,7 +10,7 @@ export interface SI {
   setNewSearchParams(path: string, params: object): void;
 }
 
-const SearchParamsContext = createContext<Partial<SI>>({});
+const SearchParamsContext = createContext({} as SI);
 
 const INITIAL_SORT_DATA = {
   sortBy: 'created',
