@@ -1,26 +1,47 @@
-import { RequestParams } from '../types';
+interface Requests {
+  create<T>(body: object): Promise<T>;
+  get<T>(id: string): Promise<T>;
+  getList<T>(body: object): Promise<T>;
+  update<T>(body: T): Promise<T>;
+  delete<T>(id: string): Promise<T>;
+  search<T>(params: object): Promise<T>;
+}
 
-type R = (url: string, params?: RequestParams) => RequestParams;
+const createRequests = (endpoint: string, fetcher: Function): Requests => ({
+  get: <T>(id: string): Promise<T> =>
+    fetcher({
+      endpoint: `${endpoint}/${id}`,
+      method: 'GET',
+    }),
+  create: <T>(entity: object): Promise<T> =>
+    fetcher({
+      endpoint: `${endpoint}/new`,
+      method: 'POST',
+      body: entity,
+    }),
+  update: <T>(entity: T): Promise<T> =>
+    fetcher({
+      endpoint: `${endpoint}/${entity}`,
+      method: 'PUT',
+      body: entity,
+    }),
+  delete: <T>(id: string): Promise<T> =>
+    fetcher({
+      endpoint: `${endpoint}/${id}`,
+      method: 'DELETE',
+    }),
+  getList: <T>(params: object): Promise<T> =>
+    fetcher({
+      endpoint: `${endpoint}/list`,
+      method: 'POST',
+      body: params,
+    }),
+  search: <T>(params: object): Promise<T> =>
+    fetcher({
+      endpoint: `${endpoint}/search`,
+      method: 'POST',
+      body: params,
+    }),
+});
 
-const GET = 'GET';
-const POST = 'POST';
-const PUT = 'PUT';
-const PATCH = 'PATCH';
-const DELETE = 'DELETE';
-
-const createRequest = (method: string): R => (url: string, params?: RequestParams): RequestParams => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { body = {}, ...rest } = params || {};
-
-  return { url, method, ...(method === GET ? rest : params) };
-};
-
-const requests = {
-  get: createRequest(GET),
-  post: createRequest(POST),
-  put: createRequest(PUT),
-  patch: createRequest(PATCH),
-  delete: createRequest(DELETE),
-};
-
-export default requests;
+export default createRequests;

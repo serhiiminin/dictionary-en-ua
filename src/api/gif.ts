@@ -1,5 +1,4 @@
 import { joinUrl, mergeSearch } from 'url-joiner';
-import requests from './request';
 import { apiKeyGiphyProxy } from './proxies';
 import config from '../config';
 import { Fetcher } from '../types';
@@ -11,17 +10,10 @@ type R = (f: Fetcher) => Gif;
 
 export const createApiMethodsGifs = (endpoint: string): R => (fetcher: Fetcher): Gif => ({
   get: <T>(searchParams: object): Promise<T> =>
-    fetcher<T>(
-      requests.get(
-        joinUrl(
-          endpoint,
-          mergeSearch({
-            limit: 100,
-            ...searchParams,
-          })
-        )
-      )
-    ),
+    fetcher<T>({
+      endpoint: joinUrl(endpoint, mergeSearch({ limit: 100, ...searchParams })),
+      method: 'GET',
+    }),
 });
 
 const apiMethodsGifs = createApiMethodsGifs(config.endpoints.giphy)(apiKeyGiphyProxy);

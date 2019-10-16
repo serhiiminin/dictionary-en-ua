@@ -1,6 +1,6 @@
 export interface RequestParams {
-  url?: string;
-  method?: string;
+  endpoint: string;
+  method: string;
   headers?: object;
   body?: object;
 }
@@ -8,10 +8,8 @@ export interface RequestParams {
 export type Fetcher = <T>(params: RequestParams) => Promise<T>;
 export type FetcherWithToken = (token: string) => Fetcher;
 
-export type EndpointJoiner = (path: string) => string;
-
 export interface User {
-  _id?: string;
+  _id: string;
   name?: string;
   imageUrl?: string;
   googleId?: string;
@@ -189,14 +187,6 @@ export interface QueryParams {
   sortDirection: number;
   sortBy: string;
   filter?: string;
-}
-
-export interface GoogleToken {
-  accessToken?: string;
-}
-
-export interface FacebookToken {
-  accessToken?: string;
 }
 
 export interface Gif {

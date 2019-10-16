@@ -6,7 +6,7 @@ interface Props {
   children: JSX.Element;
 }
 
-export interface FI {
+interface FI {
   handleFetch: (ln: string) => H;
 }
 

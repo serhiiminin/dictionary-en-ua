@@ -16,8 +16,8 @@ type F = (params: Request) => Promise<Response>;
 type FN = <T>(params: RequestParams) => Promise<T>;
 
 const createFetcherJson = (fetcher: F): FN => <T>(params: RequestParams): Promise<T> => {
-  const { url = '', body, headers, ...restParams } = params;
-  const request = new Request(url, {
+  const { endpoint = '', body, headers, ...restParams } = params;
+  const request = new Request(endpoint, {
     body: JSON.stringify(body),
     headers: new Headers({
       Accept: 'application/json',

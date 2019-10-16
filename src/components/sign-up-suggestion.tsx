@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthSuggestion, ButtonPrimary } from './index';
+import { AuthSuggestion, ButtonPrimary } from '.';
 import routes from '../routes';
 
 const SignUpSuggestion = (): JSX.Element => (

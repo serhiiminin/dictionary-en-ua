@@ -3,7 +3,6 @@ import { joinUrl, mergeSearch, getUrlParts } from 'url-joiner';
 import generatorApiKeys from '../util/generator-api-key';
 import createFetcherJson from './fetcher';
 import config from '../config';
-import { addAuthTokenToRequest } from '../util/api';
 import { Fetcher, RequestParams } from '../types';
 
 const API_KEY = 'api_key';
@@ -13,11 +12,11 @@ interface Params {
 }
 
 const updateSearchParams = (params: RequestParams, newSearchParams: Params): RequestParams => {
-  const [url, search] = getUrlParts(params.url || '');
+  const [url, search] = getUrlParts(params.endpoint || '');
 
   return {
     ...params,
-    url: joinUrl(url, mergeSearch(newSearchParams, search)),
+    endpoint: joinUrl(url, mergeSearch(newSearchParams, search)),
   };
 };
 
@@ -47,6 +46,9 @@ const apiKeyGiphyProxy = createApiKeyProxy(generatorApiKeys(config.auth.giphy.ap
 type TR = (token: string) => R;
 
 const createAuthProxy = (fetcher: Fetcher): TR => (token: string): R => <T>(params: RequestParams): Promise<T> =>
-  fetcher(addAuthTokenToRequest(token, params));
+  fetcher({
+    ...params,
+    headers: { ...params.headers, authorization: `Bearer ${token}` },
+  });
 
 export { apiKeyGiphyProxy, createApiKeyProxy, createAuthProxy };

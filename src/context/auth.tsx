@@ -7,10 +7,10 @@ import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
 import LN from '../constants/loading-names';
 import routes from '../routes';
-import { FetcherContext } from './fetcher';
 import { CookiesContext } from './cookies';
 import config from '../config';
-import { FacebookToken, Token, FormData } from '../types';
+import { Token, FormData } from '../types';
+import { FetcherContext } from './fetcher';
 
 interface OwnProps {
   children: JSX.Element;
@@ -20,7 +20,11 @@ type GoogleResponse = (GoogleLoginResponse | GoogleLoginResponseOffline) & {
   accessToken: string;
 };
 
-export interface AI {
+type FacebookResponse = {
+  accessToken: string;
+};
+
+interface AI {
   tokenData: Token;
   isLoggedIn: boolean;
   isSignUpApplied: boolean;
@@ -30,8 +34,8 @@ export interface AI {
   handleBasicForgotPassword(fd: FormData): void;
   handleGoogleLogIn(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
   handleGoogleSignUp(t: GoogleLoginResponse | GoogleLoginResponseOffline): void;
-  handleFacebookLogIn(t: FacebookToken): void;
-  handleFacebookSignUp(t: FacebookToken): void;
+  handleFacebookLogIn(t: FacebookResponse): void;
+  handleFacebookSignUp(t: FacebookResponse): void;
   handleLogout(): void;
   setEmailConfirmation(): void;
   removeEmailConfirmation(): void;
@@ -47,11 +51,54 @@ const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
 const generateAppEndpoint = (path: string): string =>
   window ? joinPath(window.location.origin, config.publicUrl, path) : '';
 
+interface Res {
+  error: Error | null;
+  loading: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+}
+type DataApi = [Res, Function];
+
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const useDataApi = (methods: any): DataApi => {
+//   const [loading, setLoading] = useState<boolean>(false);
+//   const [error, setError] = useState<Error | null>(null);
+//   const [data, setData] = useState<Error | null>(null);
+//   const [handler, setHandler] = useState<Function>(() => {});
+//   const [params, setParams] = useState<Error | null>(null);
+//
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   const doBla = ({ api, method, arg }: any) => {
+//     setParams(arg);
+//     setHandler(methods[api].method);
+//   };
+//
+//   useEffect(() => {
+//     if (params) {
+//       const fetchData = async (): Promise<void> => {
+//         setError(null);
+//         setLoading(true);
+//         try {
+//           const result = await handler(params);
+//           setData(result);
+//         } catch (err) {
+//           setError(err);
+//         }
+//         setLoading(false);
+//       };
+//       fetchData();
+//     }
+//   }, [params]);
+//
+//   return [{ data, error, loading }, doBla];
+// };
+
 const AuthProviderCmp = (props: Props): JSX.Element => {
-  const { getFromCookies, setToCookies, removeFromCookies } = useContext(CookiesContext);
+  // const [{ error, loading, data }, doFetch] = useDataApi({ basic: apiMethodsBasicAuth });
   const { handleFetch } = useContext(FetcherContext);
-  const [isSignUpApplied, setIsSignUpApplied] = useState<boolean>(false);
+  const { getFromCookies, setToCookies, removeFromCookies } = useContext(CookiesContext);
   const [tokenData, setTokenData] = useState(getFromCookies(ACCESS_TOKEN));
+  const [isSignUpApplied, setIsSignUpApplied] = useState<boolean>(false);
   const { enqueueSnackbar, history, children } = props;
   const isLoggedIn = Boolean(tokenData.expiresAt - Date.now() > 0);
 
@@ -98,8 +145,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.confirm);
 
-        const body = { name, email, password, passwordConfirm, appEndpoint };
-        await apiMethodsBasicAuth.signUp<Token>(body);
+        await apiMethodsBasicAuth.signUp<Token>({ name, email, password, passwordConfirm, appEndpoint });
         setEmailConfirmation();
         history.push(routes.auth.checkSignUp);
       }
@@ -155,7 +201,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleFacebookLogIn = (facebookToken: FacebookToken): void => {
+  const handleFacebookLogIn = (facebookToken: FacebookResponse): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsFacebookAuth.logIn<Token>(facebookToken.accessToken || '');
@@ -166,7 +212,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     );
   };
 
-  const handleFacebookSignUp = (facebookToken: FacebookToken): void => {
+  const handleFacebookSignUp = (facebookToken: FacebookResponse): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsFacebookAuth.signUp<Token>(facebookToken.accessToken || '');

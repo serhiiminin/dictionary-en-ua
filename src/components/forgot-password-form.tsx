@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as yup from 'yup';
-import { ButtonSearch, Form, FormWrapper, TitleBlock } from './index';
+import { ButtonSearch, Form, FormWrapper, TitleBlock } from '.';
 import LN from '../constants/loading-names';
 import VL from '../constants/validation-lines';
-import { AuthContext, AI } from '../context/auth';
-import { LoadingContext, LI } from '../context/loading';
+import { AuthContext } from '../context/auth';
+import { LoadingContext } from '../context/loading';
 
 const initialValues = { email: '' };
 
@@ -19,7 +19,7 @@ const validationSchema = yup.object().shape({
 
 const fields = [{ name: 'email', label: 'Email' }];
 
-type Props = RouteComponentProps & AI & LI;
+type Props = RouteComponentProps;
 
 const ForgotPasswordForm = (): JSX.Element => {
   const { handleBasicForgotPassword } = useContext(AuthContext);

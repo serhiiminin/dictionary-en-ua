@@ -3,11 +3,11 @@ import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
 import LN from '../constants/loading-names';
-import { AuthContext, AI } from '../context/auth';
-import { LoadingContext, LI } from '../context/loading';
+import { AuthContext } from '../context/auth';
+import { LoadingContext } from '../context/loading';
 import routes from '../routes';
 
-type Props = RouteComponentProps & LI & AI;
+type Props = RouteComponentProps;
 
 const ConfirmRegistration = (props: Props): JSX.Element => {
   const { handleConfirmBasicSignUp } = useContext(AuthContext);

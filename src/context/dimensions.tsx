@@ -5,7 +5,7 @@ interface Dimensions {
   height: number;
 }
 
-export interface DI {
+interface DI {
   dimensions: Dimensions;
 }
 

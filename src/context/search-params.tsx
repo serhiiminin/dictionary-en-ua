@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { QueryParams, SearchParams } from '../types';
 
-export interface SI {
+interface SI {
   query: QueryParams;
   searchParams: SearchParams;
   setNewSearchParams(path: string, params: object): void;

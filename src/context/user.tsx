@@ -7,7 +7,7 @@ import { AuthContext } from './auth';
 import { FetcherContext } from './fetcher';
 import { User } from '../types';
 
-export interface UI {
+interface UI {
   user: User;
   cleanUser(): void;
   handleFetchUser(id: string): void;
@@ -24,14 +24,16 @@ interface OwnProps {
 
 type Props = WithSnackbarProps & OwnProps;
 
+const initialValue = { _id: '' };
+
 const UserProviderCmp = ({ enqueueSnackbar, children }: Props): JSX.Element => {
   const { handleFetch } = useContext(FetcherContext);
   const { tokenData } = useContext(AuthContext);
-  const [user, setUser] = useState<User>({});
+  const [user, setUser] = useState<User>(initialValue);
   const { token } = tokenData;
   const apiUser = createApiUser(token);
 
-  const cleanUser = (): void => setUser({});
+  const cleanUser = (): void => setUser(initialValue);
 
   const handleFetchUser = (id: string): void => {
     handleFetch(LN.user.fetch)(

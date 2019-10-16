@@ -1,9 +1,6 @@
-import requests from './request';
 import createFetcherJson from './fetcher';
 import config from '../config';
-import AR from './api-routes';
-import { joinEndpoint, addAuthTokenToRequest } from '../util/api';
-import { Fetcher, EndpointJoiner } from '../types';
+import { Fetcher } from '../types';
 
 interface Basic {
   logIn<T>(body: object): Promise<T>;
@@ -15,17 +12,39 @@ interface Basic {
 
 type BR = (f: Fetcher) => Basic;
 
-const { basic, facebook, google } = AR.auth;
-
-const createApiBasicAuth = (endpointJoiner: EndpointJoiner): BR => (fetcher: Fetcher): Basic => ({
-  logIn: <T>(body: object): Promise<T> => fetcher<T>(requests.post(endpointJoiner(basic.logIn), { body })),
-  signUp: <T>(body: object): Promise<T> => fetcher<T>(requests.post(endpointJoiner(basic.signUp), { body })),
+const createApiBasicAuth = (endpoint: string): BR => (fetcher: Fetcher): Basic => ({
+  logIn: <T>(body: object): Promise<T> =>
+    fetcher<T>({
+      endpoint: `${endpoint}/log-in`,
+      method: 'POST',
+      body,
+    }),
+  signUp: <T>(body: object): Promise<T> =>
+    fetcher<T>({
+      endpoint: `${endpoint}/sign-up`,
+      method: 'POST',
+      body,
+    }),
   confirm: <T>(token: string): Promise<T> =>
-    fetcher<T>(requests.get(endpointJoiner(basic.confirm), addAuthTokenToRequest(token))),
+    fetcher<T>({
+      endpoint: `${endpoint}/confirm`,
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }),
   forgotPassword: <T>(body: object): Promise<T> =>
-    fetcher<T>(requests.post(endpointJoiner(basic.forgotPassword), { body })),
+    fetcher<T>({
+      endpoint: `${endpoint}/forgot-password`,
+      method: 'POST',
+      body,
+    }),
   resetPassword: <T>(body: object): Promise<T> =>
-    fetcher<T>(requests.post(endpointJoiner(basic.resetPassword), { body })),
+    fetcher<T>({
+      endpoint: `${endpoint}/reset-password`,
+      method: 'POST',
+      body,
+    }),
 });
 
 interface Social {
@@ -35,24 +54,54 @@ interface Social {
 
 type SR = (f: Fetcher) => Social;
 
-const createApiGoogleAuth = (endpointJoiner: EndpointJoiner): SR => (fetcher: Fetcher): Social => ({
+const createApiGoogleAuth = (endpoint: string): SR => (fetcher: Fetcher): Social => ({
   logIn: <T>(token: string): Promise<T> =>
-    fetcher<T>(requests.get(endpointJoiner(google.logIn), addAuthTokenToRequest(token))),
+    fetcher<T>({
+      endpoint: `${endpoint}/log-in`,
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }),
   signUp: <T>(token: string): Promise<T> =>
-    fetcher<T>(requests.get(endpointJoiner(google.signUp), addAuthTokenToRequest(token))),
+    fetcher<T>({
+      endpoint: `${endpoint}/sign-up`,
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }),
 });
 
-const createApiFacebookAuth = (endpointJoiner: EndpointJoiner): SR => (fetcher: Fetcher): Social => ({
+const createApiFacebookAuth = (endpoint: string): SR => (fetcher: Fetcher): Social => ({
   logIn: <T>(token: string): Promise<T> =>
-    fetcher<T>(requests.get(endpointJoiner(facebook.logIn), addAuthTokenToRequest(token))),
+    fetcher<T>({
+      endpoint: `${endpoint}/log-in`,
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }),
   signUp: <T>(token: string): Promise<T> =>
-    fetcher<T>(requests.get(endpointJoiner(facebook.signUp), addAuthTokenToRequest(token))),
+    fetcher<T>({
+      endpoint: `${endpoint}/sign-up`,
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }),
 });
 
 const fetcherJson = createFetcherJson(window.fetch);
-const apiMethodsBasicAuth = createApiBasicAuth(joinEndpoint(config.endpoints.api))(fetcherJson);
-const apiMethodsGoogleAuth = createApiGoogleAuth(joinEndpoint(config.endpoints.api))(fetcherJson);
-const apiMethodsFacebookAuth = createApiFacebookAuth(joinEndpoint(config.endpoints.api))(fetcherJson);
+
+const AUTH = 'auth';
+const endpointBasic = `${config.endpoints.api}/${AUTH}/basic`;
+const endpointGoogle = `${config.endpoints.api}/${AUTH}/google`;
+const endpointFacebook = `${config.endpoints.api}/${AUTH}/facebook`;
+
+const apiMethodsBasicAuth = createApiBasicAuth(endpointBasic)(fetcherJson);
+const apiMethodsGoogleAuth = createApiGoogleAuth(endpointGoogle)(fetcherJson);
+const apiMethodsFacebookAuth = createApiFacebookAuth(endpointFacebook)(fetcherJson);
 
 export {
   createApiBasicAuth,
