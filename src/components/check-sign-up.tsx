@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { InfoBlock } from '.';
+import InfoBlock from './info-block';
 import { AuthContext } from '../context/auth';
 
 const CheckSignUp = (): JSX.Element => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { AuthSuggestion, ButtonPrimary } from '.';
+import AuthSuggestion from './auth-suggestion';
+import ButtonPrimary from './button-primary';
 import routes from '../routes';
 
 const LogInSuggestion = (): JSX.Element => (
