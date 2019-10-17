@@ -4,15 +4,20 @@ import { createAuthProxy } from './proxies';
 import config from '../config';
 import { FetcherWithToken, Word } from '../types';
 
+interface List {
+  items: Word[];
+  count: number;
+}
+
 interface Words {
-  create<T>(body: Word): Promise<T>;
-  get<T>(id: string): Promise<T>;
-  getList<T>(body: object): Promise<T>;
-  getListToLearn<T>(params: object): Promise<T>;
-  update<T>(word: T): Promise<T>;
-  learn<T>(id: string): Promise<T>;
-  delete<T>(id: string): Promise<T>;
-  search<T>(params: object): Promise<T>;
+  create(body: Word): Promise<Word>;
+  get(id: string): Promise<Word>;
+  getList(body: object): Promise<List>;
+  getListToLearn(params: object): Promise<List>;
+  update(word: Word): Promise<Word>;
+  learn(id: string): Promise<Word>;
+  delete(id: string): Promise<void>;
+  search(params: object): Promise<Word>;
 }
 
 type R = (t: string) => Words;
@@ -23,8 +28,13 @@ export const createApiWords = (endpoint: string): WR => (fetcher: FetcherWithTok
   const requests = createRequests(endpoint, fetcherWithToken);
 
   return {
-    ...requests,
-    getListToLearn: <T>(params: object): Promise<T> => {
+    create: (body: Word): Promise<Word> => requests.create<Word>(body),
+    get: (id: string): Promise<Word> => requests.get<Word>(id),
+    getList: (body: object): Promise<List> => requests.getList<List>(body),
+    update: (body: Word): Promise<Word> => requests.update<Word>(body),
+    delete: (id: string): Promise<void> => requests.delete<void>(id),
+    search: (params: object): Promise<Word> => requests.search<Word>(params),
+    getListToLearn: (params: object): Promise<{ items: Word[]; count: number }> => {
       const yesterday = new Date();
 
       yesterday.setDate(yesterday.getDate() - 1);
@@ -34,7 +44,7 @@ export const createApiWords = (endpoint: string): WR => (fetcher: FetcherWithTok
         ...params,
       });
     },
-    learn: <T>(id: string): Promise<T> =>
+    learn: (id: string): Promise<Word> =>
       fetcherWithToken({
         endpoint: `${endpoint}/${id}/learn`,
         method: 'PUT',

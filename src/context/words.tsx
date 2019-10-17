@@ -65,7 +65,7 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
     handleFetch(LN.words.fetch)(
       async (): Promise<void> => {
         cleanWord();
-        const word = await apiWord.get<Word>(wordId);
+        const word = await apiWord.get(wordId);
         setWordItem(word);
       }
     );
@@ -119,8 +119,8 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
     handleFetch(LN.words.search)(
       async (): Promise<void> => {
         cleanWord();
-        const foundWord = await apiWord.search<Word>({ word });
-        const gifList = await apiGif.get<{ data: Gif[] }>({ q: foundWord.word });
+        const foundWord = await apiWord.search({ word });
+        const gifList = await apiGif.get({ q: foundWord.word });
         const randomGif = gifList && getRandomGif(gifList.data);
         const wordData = JSON.parse(JSON.stringify(foundWord));
 

@@ -38,7 +38,7 @@ const UserProviderCmp = ({ enqueueSnackbar, children }: Props): JSX.Element => {
   const handleFetchUser = (id: string): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
-        const userData = await apiUser.get<User>(id);
+        const userData = await apiUser.get(id);
         setUser(userData);
       }
     );

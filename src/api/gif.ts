@@ -1,16 +1,20 @@
 import { joinUrl, mergeSearch } from 'url-joiner';
 import { apiKeyGiphyProxy } from './proxies';
 import config from '../config';
-import { Fetcher } from '../types';
+import { Fetcher, Gif } from '../types';
 
-interface Gif {
-  get<T>(body: object): Promise<T>;
+interface Response {
+  data: Gif[];
 }
-type R = (f: Fetcher) => Gif;
 
-export const createApiMethodsGifs = (endpoint: string): R => (fetcher: Fetcher): Gif => ({
-  get: <T>(searchParams: object): Promise<T> =>
-    fetcher<T>({
+interface GifI {
+  get(body: object): Promise<Response>;
+}
+type R = (f: Fetcher) => GifI;
+
+export const createApiMethodsGifs = (endpoint: string): R => (fetcher: Fetcher): GifI => ({
+  get: (searchParams: object): Promise<Response> =>
+    fetcher({
       endpoint: joinUrl(endpoint, mergeSearch({ limit: 100, ...searchParams })),
       method: 'GET',
     }),

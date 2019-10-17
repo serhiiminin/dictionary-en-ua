@@ -164,14 +164,6 @@ export interface ThemeProps {
   theme: Theme;
 }
 
-export interface FormField {
-  name: string;
-  label: string;
-  type?: string;
-  variant?: string;
-  component: JSX.Element;
-}
-
 export interface SearchParams {
   sortBy: string;
   sortDirection: string;
@@ -202,4 +194,5 @@ export interface FormData {
   email?: string;
   password?: string;
   passwordConfirm?: string;
+  appEndpoint?: string;
 }

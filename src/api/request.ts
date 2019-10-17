@@ -21,7 +21,7 @@ const createRequests = (endpoint: string, fetcher: Function): Requests => ({
     }),
   update: <T>(entity: T): Promise<T> =>
     fetcher({
-      endpoint: `${endpoint}/${entity}`,
+      endpoint: `${endpoint}/${entity._id}`,
       method: 'PUT',
       body: entity,
     }),

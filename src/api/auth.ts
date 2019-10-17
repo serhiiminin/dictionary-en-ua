@@ -1,46 +1,46 @@
 import createFetcherJson from './fetcher';
 import config from '../config';
-import { Fetcher } from '../types';
+import { Fetcher, Token, FormData } from '../types';
 
 interface Basic {
-  logIn<T>(body: object): Promise<T>;
-  signUp<T>(body: object): Promise<T>;
-  confirm<T>(token: string): Promise<T>;
-  forgotPassword<T>(body: object): Promise<T>;
-  resetPassword<T>(body: object): Promise<T>;
+  logIn(body: FormData): Promise<Token>;
+  signUp(body: FormData): Promise<Token>;
+  confirm(token: string): Promise<Token>;
+  forgotPassword(body: FormData): Promise<Token>;
+  resetPassword(body: FormData): Promise<Token>;
 }
 
 type BR = (f: Fetcher) => Basic;
 
 const createApiBasicAuth = (endpoint: string): BR => (fetcher: Fetcher): Basic => ({
-  logIn: <T>(body: object): Promise<T> =>
-    fetcher<T>({
+  logIn: (body: object): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/log-in`,
       method: 'POST',
       body,
     }),
-  signUp: <T>(body: object): Promise<T> =>
-    fetcher<T>({
+  signUp: (body: object): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/sign-up`,
       method: 'POST',
       body,
     }),
-  confirm: <T>(token: string): Promise<T> =>
-    fetcher<T>({
+  confirm: (token: string): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/confirm`,
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`,
       },
     }),
-  forgotPassword: <T>(body: object): Promise<T> =>
-    fetcher<T>({
+  forgotPassword: (body: object): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/forgot-password`,
       method: 'POST',
       body,
     }),
-  resetPassword: <T>(body: object): Promise<T> =>
-    fetcher<T>({
+  resetPassword: (body: object): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/reset-password`,
       method: 'POST',
       body,
@@ -48,23 +48,23 @@ const createApiBasicAuth = (endpoint: string): BR => (fetcher: Fetcher): Basic =
 });
 
 interface Social {
-  logIn<T>(token: string): Promise<T>;
-  signUp<T>(token: string): Promise<T>;
+  logIn(token: string): Promise<Token>;
+  signUp(token: string): Promise<Token>;
 }
 
 type SR = (f: Fetcher) => Social;
 
 const createApiGoogleAuth = (endpoint: string): SR => (fetcher: Fetcher): Social => ({
-  logIn: <T>(token: string): Promise<T> =>
-    fetcher<T>({
+  logIn: (token: string): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/log-in`,
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`,
       },
     }),
-  signUp: <T>(token: string): Promise<T> =>
-    fetcher<T>({
+  signUp: (token: string): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/sign-up`,
       method: 'GET',
       headers: {
@@ -74,16 +74,16 @@ const createApiGoogleAuth = (endpoint: string): SR => (fetcher: Fetcher): Social
 });
 
 const createApiFacebookAuth = (endpoint: string): SR => (fetcher: Fetcher): Social => ({
-  logIn: <T>(token: string): Promise<T> =>
-    fetcher<T>({
+  logIn: (token: string): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/log-in`,
       method: 'GET',
       headers: {
         authorization: `Bearer ${token}`,
       },
     }),
-  signUp: <T>(token: string): Promise<T> =>
-    fetcher<T>({
+  signUp: (token: string): Promise<Token> =>
+    fetcher({
       endpoint: `${endpoint}/sign-up`,
       method: 'GET',
       headers: {

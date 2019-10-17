@@ -52,7 +52,6 @@ const generateAppEndpoint = (path: string): string =>
   window ? joinPath(window.location.origin, config.publicUrl, path) : '';
 
 const AuthProviderCmp = (props: Props): JSX.Element => {
-  // const [{ error, loading, data }, doFetch] = useDataApi({ basic: apiMethodsBasicAuth });
   const { handleFetch } = useContext(FetcherContext);
   const { getFromCookies, setToCookies, removeFromCookies } = useContext(CookiesContext);
   const [tokenData, setTokenData] = useState(getFromCookies(ACCESS_TOKEN));
@@ -90,7 +89,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   const handleBasicLogIn = ({ email, password }: FormData): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
-        const token = await apiMethodsBasicAuth.logIn<Token>({ email, password });
+        const token = await apiMethodsBasicAuth.logIn({ email, password });
         handleSetToken(token);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: 'success' });
@@ -103,7 +102,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.confirm);
 
-        await apiMethodsBasicAuth.signUp<Token>({ name, email, password, passwordConfirm, appEndpoint });
+        await apiMethodsBasicAuth.signUp({ name, email, password, passwordConfirm, appEndpoint });
         setEmailConfirmation();
         history.push(routes.auth.checkSignUp);
       }
@@ -114,7 +113,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     handleFetch(LN.auth.confirm)(
       async (): Promise<void> => {
         try {
-          const tokenSuccess = await apiMethodsBasicAuth.confirm<Token>(token);
+          const tokenSuccess = await apiMethodsBasicAuth.confirm(token);
           if (tokenSuccess) {
             handleSetToken(tokenSuccess);
           }
@@ -130,8 +129,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     handleFetch(LN.auth.forgotPassword)(
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.forgotPassword);
-
-        await apiMethodsBasicAuth.forgotPassword<Token>({ email, appEndpoint });
+        await apiMethodsBasicAuth.forgotPassword({ email, appEndpoint });
         enqueueSnackbar('Password is sent! Check your email', { variant: 'success' });
       }
     );
@@ -140,7 +138,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   const handleGoogleLogIn = (googleToken: GoogleResponse): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsGoogleAuth.logIn<Token>(googleToken.accessToken);
+        const apiToken = await apiMethodsGoogleAuth.logIn(googleToken.accessToken);
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: 'success' });
@@ -151,7 +149,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   const handleGoogleSignUp = (googleToken: GoogleResponse): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsGoogleAuth.signUp<Token>(googleToken.accessToken);
+        const apiToken = await apiMethodsGoogleAuth.signUp(googleToken.accessToken);
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: 'success' });
@@ -162,7 +160,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   const handleFacebookLogIn = (facebookToken: FacebookResponse): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsFacebookAuth.logIn<Token>(facebookToken.accessToken);
+        const apiToken = await apiMethodsFacebookAuth.logIn(facebookToken.accessToken);
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: 'success' });
@@ -173,7 +171,7 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
   const handleFacebookSignUp = (facebookToken: FacebookResponse): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
-        const apiToken = await apiMethodsFacebookAuth.signUp<Token>(facebookToken.accessToken);
+        const apiToken = await apiMethodsFacebookAuth.signUp(facebookToken.accessToken);
         handleSetToken(apiToken);
         handleSuccessRedirect();
         enqueueSnackbar('Welcome!', { variant: 'success' });
