@@ -26,8 +26,8 @@ export const createApiUsers = (endpoint: string): UR => (fetcher: FetcherWithTok
   };
 };
 
-const endpoint = `${config.endpoints.api}/users`;
-
-const createApiMethodsUsers = createApiUsers(endpoint)(createAuthProxy(createFetcherJson(window.fetch)));
+const createApiMethodsUsers = createApiUsers(config.endpoints.api.users)(
+  createAuthProxy(createFetcherJson(window.fetch))
+);
 
 export default createApiMethodsUsers;

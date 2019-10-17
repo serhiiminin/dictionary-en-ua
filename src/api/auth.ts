@@ -94,14 +94,11 @@ const createApiFacebookAuth = (endpoint: string): SR => (fetcher: Fetcher): Soci
 
 const fetcherJson = createFetcherJson(window.fetch);
 
-const AUTH = 'auth';
-const endpointBasic = `${config.endpoints.api}/${AUTH}/basic`;
-const endpointGoogle = `${config.endpoints.api}/${AUTH}/google`;
-const endpointFacebook = `${config.endpoints.api}/${AUTH}/facebook`;
+const { basic, facebook, google } = config.endpoints.api.auth;
 
-const apiMethodsBasicAuth = createApiBasicAuth(endpointBasic)(fetcherJson);
-const apiMethodsGoogleAuth = createApiGoogleAuth(endpointGoogle)(fetcherJson);
-const apiMethodsFacebookAuth = createApiFacebookAuth(endpointFacebook)(fetcherJson);
+const apiMethodsBasicAuth = createApiBasicAuth(basic)(fetcherJson);
+const apiMethodsGoogleAuth = createApiGoogleAuth(google)(fetcherJson);
+const apiMethodsFacebookAuth = createApiFacebookAuth(facebook)(fetcherJson);
 
 export {
   createApiBasicAuth,

@@ -56,8 +56,8 @@ export const createApiWords = (endpoint: string): WR => (fetcher: FetcherWithTok
   };
 };
 
-const endpoint = `${config.endpoints.api}/words`;
-
-const createApiMethodsWords = createApiWords(endpoint)(createAuthProxy(createFetcherJson(window.fetch)));
+const createApiMethodsWords = createApiWords(config.endpoints.api.words)(
+  createAuthProxy(createFetcherJson(window.fetch))
+);
 
 export default createApiMethodsWords;

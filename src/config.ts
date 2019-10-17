@@ -21,6 +21,13 @@ const {
   REACT_APP_GIPHY_API_KEYS_09 = '',
 } = process.env;
 
+const AUTH = `${REACT_APP_API_ENDPOINT}/auth`;
+const AUTH_BASIC = `${AUTH}/basic`;
+const AUTH_FACEBOOK = `${AUTH}/facebook`;
+const AUTH_GOOGLE = `${AUTH}/google`;
+const USERS = `${REACT_APP_API_ENDPOINT}/users`;
+const WORDS = `${REACT_APP_API_ENDPOINT}/words`;
+
 const config = {
   publicUrl: PUBLIC_URL,
   auth: {
@@ -51,7 +58,15 @@ const config = {
     },
   },
   endpoints: {
-    api: REACT_APP_API_ENDPOINT,
+    api: {
+      auth: {
+        basic: AUTH_BASIC,
+        google: AUTH_GOOGLE,
+        facebook: AUTH_FACEBOOK,
+      },
+      users: USERS,
+      words: WORDS,
+    },
     giphy: REACT_APP_ENDPOINT_GIPHY,
   },
 };
