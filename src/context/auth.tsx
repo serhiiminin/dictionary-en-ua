@@ -1,9 +1,8 @@
 import React, { createContext, useState, useContext } from 'react';
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { joinPath } from 'url-joiner';
-import { RouteComponentProps, useHistory } from 'react-router-dom';
-import { compose } from 'recompose';
-import { withSnackbar, WithSnackbarProps } from 'notistack';
+import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { apiMethodsBasicAuth, apiMethodsGoogleAuth, apiMethodsFacebookAuth } from '../api';
 import LN from '../constants/loading-names';
 import routes from '../routes';
@@ -12,7 +11,7 @@ import config from '../config';
 import { Token, FormData } from '../types';
 import { FetcherContext } from './fetcher';
 
-interface OwnProps {
+interface Props {
   children: JSX.Element;
 }
 
@@ -41,8 +40,6 @@ interface AI {
   removeEmailConfirmation(): void;
 }
 
-type Props = RouteComponentProps & WithSnackbarProps & OwnProps;
-
 const AuthContext = createContext({} as AI);
 
 const ACCESS_TOKEN = 'access_token';
@@ -51,13 +48,13 @@ const IS_SIGN_UP_APPLIED = 'is_sign_up_applied';
 const generateAppEndpoint = (path: string): string =>
   window ? joinPath(window.location.origin, config.publicUrl, path) : '';
 
-const AuthProviderCmp = (props: Props): JSX.Element => {
+const AuthProvider = ({ children }: Props): JSX.Element => {
   const { handleFetch } = useContext(FetcherContext);
+  const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const { getFromCookies, setToCookies, removeFromCookies } = useContext(CookiesContext);
   const [tokenData, setTokenData] = useState(getFromCookies(ACCESS_TOKEN));
   const [isSignUpApplied, setIsSignUpApplied] = useState<boolean>(false);
-  const { enqueueSnackbar, children } = props;
   const isLoggedIn = Boolean(tokenData.expiresAt - Date.now() > 0);
 
   const handleSuccessRedirect = (): void => {
@@ -207,7 +204,5 @@ const AuthProviderCmp = (props: Props): JSX.Element => {
     </AuthContext.Provider>
   );
 };
-
-const AuthProvider = compose<Props, OwnProps>(withSnackbar)(AuthProviderCmp);
 
 export { AuthProvider, AuthContext };

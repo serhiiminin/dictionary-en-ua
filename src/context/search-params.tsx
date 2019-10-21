@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { parseSearch, mergeSearch, joinUrl } from 'url-joiner';
-import { compose } from 'recompose';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { QueryParams, SearchParams } from '../types';
 
 interface SI {
@@ -40,13 +39,13 @@ const generateQuery = ({ page, countPerPage, sortDirection, sortBy, filter }: Se
   filter,
 });
 
-interface OwnProps {
+interface Props {
   children: JSX.Element;
 }
 
-type Props = RouteComponentProps & OwnProps;
-
-const SearchParamsProviderCmp = ({ children, location, history }: Props): JSX.Element => {
+const SearchParamsProvider = ({ children }: Props): JSX.Element => {
+  const location = useLocation();
+  const history = useHistory();
   const params = getWordsSearchParams(location.search);
   const [searchParams, setSearchParams] = useState<SearchParams>(params);
   const [query, setQuery] = useState<QueryParams>(generateQuery(params));
@@ -74,7 +73,5 @@ const SearchParamsProviderCmp = ({ children, location, history }: Props): JSX.El
     </SearchParamsContext.Provider>
   );
 };
-
-const SearchParamsProvider = compose<Props, OwnProps>(withRouter)(SearchParamsProviderCmp);
 
 export { SearchParamsProvider, SearchParamsContext };

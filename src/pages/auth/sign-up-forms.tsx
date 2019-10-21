@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { withRouter, Switch, Route, RouteComponentProps } from 'react-router-dom';
-import { compose } from 'recompose';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import routes from '../../routes';
 import { AuthContext } from '../../context/auth';
@@ -79,15 +78,14 @@ const Circle = styled(({ transitionDelay, isLeft, speed, ...props }): JSX.Elemen
   left: ${(props): string => (props.isLeft ? BIG_WIDTH : SMALL_WIDTH)};
 `;
 
-interface OwnProps {
+interface Props {
   path: string;
 }
 
-type Props = RouteComponentProps & OwnProps;
-
 const SLIDING_TIME = 500;
 
-const SignUpForms = ({ location }: Props): JSX.Element => {
+const SignUpForms = (): JSX.Element => {
+  const location = useLocation();
   const [isSliding, setIsSliding] = useState(false);
   useEffect((): void => {
     setIsSliding(true);
@@ -125,10 +123,8 @@ const SignUpForms = ({ location }: Props): JSX.Element => {
   );
 };
 
-const Component = compose<Props, OwnProps>(withRouter)(SignUpForms);
-
 export default ({ path }: Props): JSX.Element => {
   const { isLoggedIn } = useContext(AuthContext);
 
-  return <PrivateRoute path={path} component={Component} pathname={routes.auth.logIn} condition={isLoggedIn} />;
+  return <PrivateRoute path={path} component={SignUpForms} pathname={routes.auth.logIn} condition={isLoggedIn} />;
 };

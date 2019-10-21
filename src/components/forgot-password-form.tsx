@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import { compose } from 'recompose';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as yup from 'yup';
 import ButtonSearch from './button-search';
 import Form from './form';
@@ -21,8 +19,6 @@ const validationSchema = yup.object().shape({
 });
 
 const fields = [{ name: 'email', label: 'Email' }];
-
-type Props = RouteComponentProps;
 
 const ForgotPasswordForm = (): JSX.Element => {
   const { handleBasicForgotPassword } = useContext(AuthContext);
@@ -52,4 +48,4 @@ const ForgotPasswordForm = (): JSX.Element => {
   );
 };
 
-export default compose<Props, {}>(withRouter)(ForgotPasswordForm);
+export default ForgotPasswordForm;

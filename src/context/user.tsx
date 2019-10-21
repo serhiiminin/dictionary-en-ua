@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import { compose } from 'recompose';
-import { withSnackbar, WithSnackbarProps } from 'notistack';
+import { useSnackbar } from 'notistack';
 import { createApiUser } from '../api';
 import LN from '../constants/loading-names';
 import { AuthContext } from './auth';
@@ -18,15 +17,14 @@ interface UI {
 
 const UserContext = createContext({} as UI);
 
-interface OwnProps {
+interface Props {
   children: JSX.Element;
 }
 
-type Props = WithSnackbarProps & OwnProps;
-
 const initialValue = { _id: '' };
 
-const UserProviderCmp = ({ enqueueSnackbar, children }: Props): JSX.Element => {
+const UserProvider = ({ children }: Props): JSX.Element => {
+  const { enqueueSnackbar } = useSnackbar();
   const { handleFetch } = useContext(FetcherContext);
   const { tokenData } = useContext(AuthContext);
   const [user, setUser] = useState<User>(initialValue);
@@ -88,7 +86,5 @@ const UserProviderCmp = ({ enqueueSnackbar, children }: Props): JSX.Element => {
     </UserContext.Provider>
   );
 };
-
-const UserProvider = compose<Props, OwnProps>(withSnackbar)(UserProviderCmp);
 
 export { UserProvider, UserContext };

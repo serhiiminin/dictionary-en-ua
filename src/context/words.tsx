@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import { withSnackbar, WithSnackbarProps } from 'notistack';
-import { compose } from 'recompose';
+import { useSnackbar } from 'notistack';
 import { createApiWord, apiGif } from '../api';
 import LN from '../constants/loading-names';
 import { AuthContext } from './auth';
@@ -34,11 +33,9 @@ const getRandomGif = (gifList: Gif[] = []): string => {
   return downsizedGifList[Math.round(Math.random() * downsizedGifList.length)];
 };
 
-interface OwnProps {
+interface Props {
   children: JSX.Element;
 }
-
-type Props = WithSnackbarProps & OwnProps;
 
 const initialWord = {
   _id: '',
@@ -46,8 +43,8 @@ const initialWord = {
   updated: '',
 };
 
-const WordsProviderCmp = (props: Props): JSX.Element => {
-  const { enqueueSnackbar, children } = props;
+const WordsProvider = ({ children }: Props): JSX.Element => {
+  const { enqueueSnackbar } = useSnackbar();
   const { tokenData } = useContext(AuthContext);
   const { query } = useContext(SearchParamsContext);
   const { handleFetch } = useContext(FetcherContext);
@@ -183,7 +180,5 @@ const WordsProviderCmp = (props: Props): JSX.Element => {
     </WordsContext.Provider>
   );
 };
-
-const WordsProvider = compose<Props, OwnProps>(withSnackbar)(WordsProviderCmp);
 
 export { WordsProvider, WordsContext };

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-interface Res {
+interface Response {
   error: Error | null;
   loading: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 }
-type DataApi = [Res, Function];
+type DataApi = [Response, Function];
 
 const useDataApi = (handler: Function): DataApi => {
   const [loading, setLoading] = useState<number>(0);
@@ -16,7 +16,7 @@ const useDataApi = (handler: Function): DataApi => {
 
   useEffect(() => {
     if (params) {
-      const fetchData = async (): Promise<void> => {
+      (async (): Promise<void> => {
         setError(null);
         setLoading(prevState => prevState + 1);
         try {
@@ -26,8 +26,7 @@ const useDataApi = (handler: Function): DataApi => {
           setError(err);
         }
         setLoading(prevState => prevState - 1);
-      };
-      fetchData();
+      })();
     }
   }, [params]);
 
