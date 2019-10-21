@@ -1,8 +1,12 @@
+interface RequiredFields {
+  _id: string;
+}
+
 interface Requests {
   create<T>(body: object): Promise<T>;
   get<T>(id: string): Promise<T>;
   getList<T>(body: object): Promise<T>;
-  update<T>(body: T): Promise<T>;
+  update<T extends RequiredFields>(body: T): Promise<T>;
   delete<T>(id: string): Promise<T>;
   search<T>(params: object): Promise<T>;
 }
@@ -19,7 +23,7 @@ const createRequests = (endpoint: string, fetcher: Function): Requests => ({
       method: 'POST',
       body: entity,
     }),
-  update: <T>(entity: T): Promise<T> =>
+  update: <T extends RequiredFields>(entity: T): Promise<T> =>
     fetcher({
       endpoint: `${endpoint}/${entity._id}`,
       method: 'PUT',
