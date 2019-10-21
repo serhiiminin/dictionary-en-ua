@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { TextField, LinearProgress } from '@material-ui/core';
 import { parseSearch, joinUrl, mergeSearch } from 'url-joiner';
 import styled from 'styled-components';
@@ -17,10 +17,10 @@ const SearchBlock = styled.div`
   gap: ${(props: ThemeProps): string => props.theme.main.space.sm};
 `;
 
-const SearchWordContainer = (props: RouteComponentProps): JSX.Element => {
+const SearchWordContainer = (): JSX.Element => {
+  const location = useLocation();
   const { checkIsLoading } = useContext(LoadingContext);
   const { wordItem, handleCreateWord, handleSearchWord, cleanWord } = useContext(WordsContext);
-  const { location } = props;
   const { options } = wordItem;
   const isLoading = checkIsLoading(LN.words.search);
   const handleSearch = (): void => {
@@ -83,4 +83,4 @@ const SearchWordContainer = (props: RouteComponentProps): JSX.Element => {
   );
 };
 
-export default withRouter(SearchWordContainer);
+export default SearchWordContainer;

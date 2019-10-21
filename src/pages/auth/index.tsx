@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, Switch, withRouter, RouteProps } from 'react-router-dom';
+import { Route, Switch, RouteProps } from 'react-router-dom';
 import {
   CheckSignUp,
   ConfirmRegistration,
@@ -30,4 +30,4 @@ const AuthPage = (): JSX.Element => (
   </Container>
 );
 
-export default withRouter(AuthPage);
+export default AuthPage;

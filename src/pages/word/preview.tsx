@@ -1,18 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { WordsContext } from '../../context/words';
 
-interface Match {
-  id: string;
-}
-
-type Props = RouteComponentProps<Match>;
-
-const WordPreviewContainer = (props: Props): JSX.Element => {
-  const { wordItem, handleFetchWord, cleanWord } = useContext(WordsContext);
-  const { match } = props;
-  const { word, transcription, gif } = wordItem;
+const WordPreviewContainer = (): JSX.Element => {
+  const match = useRouteMatch();
   const { id } = match.params;
+  const { wordItem, handleFetchWord, cleanWord } = useContext(WordsContext);
+  const { word, transcription, gif } = wordItem;
   useEffect((): (() => void) => {
     handleFetchWord(id);
 
@@ -27,4 +21,4 @@ const WordPreviewContainer = (props: Props): JSX.Element => {
   );
 };
 
-export default withRouter(WordPreviewContainer);
+export default WordPreviewContainer;
