@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react';
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { joinPath } from 'url-joiner';
 import { useHistory } from 'react-router-dom';
@@ -61,30 +61,30 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
     history.goBack();
   };
 
-  const handleSetToken = (token: Token): void => {
+  const handleSetToken = useCallback((token: Token): void => {
     if (!token) {
       throw new Error('token is not passed');
     }
     setTokenData(token);
     setToCookies(ACCESS_TOKEN, token);
-  };
+  }, []);
 
-  const handleCleanToken = (): void => {
+  const handleCleanToken = useCallback((): void => {
     setTokenData(null);
     removeFromCookies(ACCESS_TOKEN);
-  };
+  }, []);
 
-  const setEmailConfirmation = (): void => {
+  const setEmailConfirmation = useCallback((): void => {
     setToCookies(IS_SIGN_UP_APPLIED, true);
     setIsSignUpApplied(true);
-  };
+  }, []);
 
-  const removeEmailConfirmation = (): void => {
+  const removeEmailConfirmation = useCallback((): void => {
     removeFromCookies(IS_SIGN_UP_APPLIED);
     setIsSignUpApplied(false);
-  };
+  }, []);
 
-  const handleBasicLogIn = ({ email, password }: FormData): void => {
+  const handleBasicLogIn = useCallback(({ email, password }: FormData): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const token = await apiMethodsBasicAuth.logIn({ email, password });
@@ -93,9 +93,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleBasicSignUp = ({ name, email, password, passwordConfirm }: FormData): void => {
+  const handleBasicSignUp = useCallback(({ name, email, password, passwordConfirm }: FormData): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.confirm);
@@ -105,9 +105,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         history.push(routes.auth.checkSignUp);
       }
     );
-  };
+  }, []);
 
-  const handleConfirmBasicSignUp = (token: string): void => {
+  const handleConfirmBasicSignUp = useCallback((token: string): void => {
     handleFetch(LN.auth.confirm)(
       async (): Promise<void> => {
         try {
@@ -121,9 +121,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         }
       }
     );
-  };
+  }, []);
 
-  const handleBasicForgotPassword = ({ email }: FormData): void => {
+  const handleBasicForgotPassword = useCallback(({ email }: FormData): void => {
     handleFetch(LN.auth.forgotPassword)(
       async (): Promise<void> => {
         const appEndpoint = generateAppEndpoint(routes.auth.forgotPassword);
@@ -131,9 +131,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('Password is sent! Check your email', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleGoogleLogIn = (googleToken: GoogleResponse): void => {
+  const handleGoogleLogIn = useCallback((googleToken: GoogleResponse): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsGoogleAuth.logIn(googleToken.accessToken);
@@ -142,9 +142,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleGoogleSignUp = (googleToken: GoogleResponse): void => {
+  const handleGoogleSignUp = useCallback((googleToken: GoogleResponse): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsGoogleAuth.signUp(googleToken.accessToken);
@@ -153,9 +153,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleFacebookLogIn = (facebookToken: FacebookResponse): void => {
+  const handleFacebookLogIn = useCallback((facebookToken: FacebookResponse): void => {
     handleFetch(LN.auth.logIn)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsFacebookAuth.logIn(facebookToken.accessToken);
@@ -164,9 +164,9 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleFacebookSignUp = (facebookToken: FacebookResponse): void => {
+  const handleFacebookSignUp = useCallback((facebookToken: FacebookResponse): void => {
     handleFetch(LN.auth.signUp)(
       async (): Promise<void> => {
         const apiToken = await apiMethodsFacebookAuth.signUp(facebookToken.accessToken);
@@ -175,11 +175,11 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('Welcome!', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleLogout = (): void => {
+  const handleLogout = useCallback((): void => {
     handleCleanToken();
-  };
+  }, []);
 
   return (
     <AuthContext.Provider

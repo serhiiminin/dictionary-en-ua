@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react';
 import { useSnackbar } from 'notistack';
 import { createApiWord, apiGif } from '../api';
 import LN from '../constants/loading-names';
@@ -58,7 +58,7 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
 
   const cleanWord = (): void => setWordItem(initialWord);
 
-  const handleFetchWord = (wordId: string): void => {
+  const handleFetchWord = useCallback((wordId: string): void => {
     handleFetch(LN.words.fetch)(
       async (): Promise<void> => {
         cleanWord();
@@ -66,9 +66,9 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
         setWordItem(word);
       }
     );
-  };
+  }, []);
 
-  const handleFetchWordsList = (): void => {
+  const handleFetchWordsList = useCallback((): void => {
     handleFetch(LN.words.list)(
       async (): Promise<void> => {
         const { filter, ...sortParams } = query;
@@ -81,18 +81,18 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
         setWordsCount(count);
       }
     );
-  };
+  }, []);
 
-  const handleCreateWord = (): void => {
+  const handleCreateWord = useCallback((): void => {
     handleFetch(LN.words.save)(
       async (): Promise<void> => {
         await apiWord.create({ ...wordItem, ownerId });
         enqueueSnackbar('The word has been saved successfully', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleEditWord = (word: Word): void => {
+  const handleEditWord = useCallback((word: Word): void => {
     handleFetch(LN.words.fetch)(
       async (): Promise<void> => {
         const { _id } = await apiWord.update(word);
@@ -100,9 +100,9 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('The word has been updated successfully', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleDeleteWord = (id: string): void => {
+  const handleDeleteWord = useCallback((id: string): void => {
     handleFetch(LN.words.delete)(
       async (): Promise<void> => {
         await apiWord.delete(id);
@@ -110,9 +110,9 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('The word has been deleted successfully', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleSearchWord = (word: string): void => {
+  const handleSearchWord = useCallback((word: string): void => {
     handleFetch(LN.words.search)(
       async (): Promise<void> => {
         cleanWord();
@@ -127,9 +127,9 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
         setWordItem(wordData);
       }
     );
-  };
+  }, []);
 
-  const handleFetchWordsToLearn = (): void => {
+  const handleFetchWordsToLearn = useCallback((): void => {
     handleFetch(LN.words.learn)(
       async (): Promise<void> => {
         const { items, count } = await apiWord.getListToLearn({ ownerId });
@@ -137,25 +137,25 @@ const WordsProvider = ({ children }: Props): JSX.Element => {
         setWordsCount(count);
       }
     );
-  };
+  }, []);
 
-  const handleLearnWord = (wordId: string): void => {
+  const handleLearnWord = useCallback((wordId: string): void => {
     handleFetch(LN.words.learn)(
       async (): Promise<void> => {
         await apiWord.learn(wordId);
         setWordsList((prevState): Word[] => [...prevState.filter(({ _id }: Word): boolean => _id !== wordId)]);
       }
     );
-  };
+  }, []);
 
-  const handleRelearnWord = (wordId: string): void => {
+  const handleRelearnWord = useCallback((wordId: string): void => {
     setWordsList((prevState): Word[] => {
       const wordToRelearn = prevState.find(({ _id }: Word): boolean => _id === wordId) || initialWord;
       const { _id: wordToRelearnId } = wordToRelearn;
 
       return [...prevState.filter(({ _id }: Word): boolean => _id !== wordToRelearnId), wordToRelearn];
     });
-  };
+  }, []);
 
   return (
     <WordsContext.Provider

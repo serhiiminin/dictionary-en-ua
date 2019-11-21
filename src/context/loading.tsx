@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 
 interface LI {
   checkIsLoading(...names: string[]): boolean;
@@ -18,21 +18,27 @@ interface State {
 const LoadingProvider = ({ children }: Props): JSX.Element => {
   const [currentLoadingNames, setCurrentLoadingNames] = useState<State>({});
 
-  const handleStartLoading = (name: string): void =>
-    setCurrentLoadingNames(
-      (prevState): State => ({
-        ...prevState,
-        [name]: (prevState[name] || 0) + 1,
-      })
-    );
+  const handleStartLoading = useCallback(
+    (name: string): void =>
+      setCurrentLoadingNames(
+        (prevState): State => ({
+          ...prevState,
+          [name]: (prevState[name] || 0) + 1,
+        })
+      ),
+    []
+  );
 
-  const handleStopLoading = (name: string): void =>
-    setCurrentLoadingNames(
-      (prevState): State => ({
-        ...prevState,
-        [name]: (prevState[name] || 1) - 1,
-      })
-    );
+  const handleStopLoading = useCallback(
+    (name: string): void =>
+      setCurrentLoadingNames(
+        (prevState): State => ({
+          ...prevState,
+          [name]: (prevState[name] || 1) - 1,
+        })
+      ),
+    []
+  );
 
   const checkIsLoading = (...loadingNamesToCheck: string[]): boolean =>
     Object.entries(currentLoadingNames).some(

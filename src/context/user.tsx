@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react';
 import { useSnackbar } from 'notistack';
 import { createApiUser } from '../api';
 import LN from '../constants/loading-names';
@@ -33,16 +33,16 @@ const UserProvider = ({ children }: Props): JSX.Element => {
 
   const cleanUser = (): void => setUser(initialValue);
 
-  const handleFetchUser = (id: string): void => {
+  const handleFetchUser = useCallback((id: string): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         const userData = await apiUser.get(id);
         setUser(userData);
       }
     );
-  };
+  }, []);
 
-  const handleCreateUser = (userData: User): void => {
+  const handleCreateUser = useCallback((userData: User): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         const { _id } = await apiUser.create(userData);
@@ -50,9 +50,9 @@ const UserProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('The user has been saved successfully', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleEditUser = (userData: User): void => {
+  const handleEditUser = useCallback((userData: User): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         const { _id } = await apiUser.update(userData);
@@ -60,16 +60,16 @@ const UserProvider = ({ children }: Props): JSX.Element => {
         enqueueSnackbar('The user has been updated successfully', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
-  const handleDeleteUser = (id: string): void => {
+  const handleDeleteUser = useCallback((id: string): void => {
     handleFetch(LN.user.fetch)(
       async (): Promise<void> => {
         await apiUser.delete(id);
         enqueueSnackbar('The user has been deleted successfully', { variant: 'success' });
       }
     );
-  };
+  }, []);
 
   return (
     <UserContext.Provider
