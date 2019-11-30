@@ -37,11 +37,7 @@ interface Props {
   children: JSX.Element;
 }
 
-const initialWord = {
-  _id: '',
-  created: '',
-  updated: '',
-};
+const initialWord = {} as Word;
 
 const WordsProvider = ({ children }: Props): JSX.Element => {
   const { enqueueSnackbar } = useSnackbar();

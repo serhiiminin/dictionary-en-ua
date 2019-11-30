@@ -21,17 +21,15 @@ interface Props {
   children: JSX.Element;
 }
 
-const initialValue = { _id: '' };
-
 const UserProvider = ({ children }: Props): JSX.Element => {
   const { enqueueSnackbar } = useSnackbar();
   const { handleFetch } = useContext(FetcherContext);
   const { tokenData } = useContext(AuthContext);
-  const [user, setUser] = useState<User>(initialValue);
+  const [user, setUser] = useState<User>({} as User);
   const { token } = tokenData;
   const apiUser = createApiUser(token);
 
-  const cleanUser = (): void => setUser(initialValue);
+  const cleanUser = (): void => setUser({} as User);
 
   const handleFetchUser = useCallback((id: string): void => {
     handleFetch(LN.user.fetch)(
