@@ -3,7 +3,7 @@ import { parseSearch, mergeSearch, joinUrl } from 'url-joiner';
 import { useHistory, useLocation } from 'react-router-dom';
 import { QueryParams, SearchParams } from '../types';
 
-interface SI {
+export interface SI {
   query: QueryParams;
   searchParams: SearchParams;
   setNewSearchParams(path: string, params: object): void;

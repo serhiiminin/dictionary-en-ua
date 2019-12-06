@@ -6,7 +6,7 @@ import { AuthContext } from './auth';
 import { FetcherContext } from './fetcher';
 import { User } from '../types';
 
-interface UI {
+export interface UI {
   user: User;
   cleanUser(): void;
   handleFetchUser(id: string): void;

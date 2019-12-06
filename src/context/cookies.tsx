@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import Cookies from 'js-cookie';
 import config from '../config';
 
-interface CI {
+export interface CI {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getFromCookies(key: string): any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

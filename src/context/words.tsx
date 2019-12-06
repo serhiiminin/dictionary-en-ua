@@ -7,7 +7,7 @@ import { FetcherContext } from './fetcher';
 import { Word, Gif } from '../types';
 import { SearchParamsContext } from './search-params';
 
-interface WI {
+export interface WI {
   wordItem: Word;
   wordsList: Word[];
   wordsCount: number;

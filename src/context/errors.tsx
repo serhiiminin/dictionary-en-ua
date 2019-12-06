@@ -13,7 +13,7 @@ interface State {
   hasError: boolean;
 }
 
-interface EI {
+export interface EI {
   handleError(error: Error): void;
 }
 

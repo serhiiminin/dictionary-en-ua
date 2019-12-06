@@ -8,6 +8,7 @@ describe('Root', (): void => {
   beforeEach((): void => {
     wrapper = shallow(<Component />);
   });
+
   test('render', (): void => {
     expect(wrapper).toMatchSnapshot();
   });

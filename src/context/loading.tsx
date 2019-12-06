@@ -1,6 +1,6 @@
 import React, { createContext, useState, useCallback } from 'react';
 
-interface LI {
+export interface LI {
   checkIsLoading(...names: string[]): boolean;
   startLoading(name: string): void;
   stopLoading(name: string): void;
